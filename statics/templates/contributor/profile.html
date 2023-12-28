@@ -1,0 +1,107 @@
+{% extends "contributor/index.html" %}
+{% load static %}
+
+{% block content %}
+<div id = "profile-box">
+    <div class = "profile">
+        <div class = "character">
+            <div id = "column">
+                <div class = "character-header">
+                    <img class = "profile-photo" src = "{{user.profile_photo.url}}" alt = "profile-photo" width = "200px">                
+                    
+                    <header class = "prevent-select">{{user.account.username}}</header>
+                </div>
+
+                <div class = "character-body">
+                    <div class = "field first input-field">
+                        <label for = "user-id">User ID</label>
+
+                        <input type = "text" placeholder = "{{user.account.id}}" id = "user-id" name = "user_id" readonly>
+                    
+                        <i class = "bx bx-purchase-tag-alt field-icon"></i>
+                    </div>
+
+                    <div class = "field input-field">
+                        <label for = "usertype">User Type</label>
+                        
+                        <input type = "text" placeholder = "{{user.account.usertype}}" id = "usertype" name = "usertype" readonly>
+                    
+                        <i class = "bx bxs-user-account field-icon"></i>
+                    </div>
+
+                    <div class = "field input-field">
+                        <label for = "is-active">User Status</label>
+
+                        <input type = "text" placeholder = "{% if user.account.is_active == True %} Alive {% else %} Dead {% endif %}" id = "is-active" name = "is_active" readonly>
+                        
+                        {% if user.account.is_active == True %} <i class = "bx bxs-user-check field-icon"></i>
+                        {% else %} <i class = "bx bxs-user-x field-icon"></i>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class = "details">
+            <div id = "column">
+                <div class = "details-header">
+                    <header class = "prevent-select">General Information</header>
+                </div>
+
+                <div class = "details-body">
+                    <div class = "field first input-field">
+                        <label for = "first-name">First Name</label>
+
+                        <input type = "text" placeholder = "{{user.first_name | default:'nonexistent'}}" id = "first-name" name = "first_name" readonly>
+
+                        <i class = 'bx bx-id-card field-icon'></i>
+                    </div>
+
+                    <div class = "field input-field">
+                        <label for = "last-name">Last Name</label>
+
+                        <input type = "text" placeholder = "{{user.last_name | default:'nonexistent'}}" id = "last-name" name = "last_name" readonly>
+
+                        <i class = 'bx bx-id-card field-icon'></i>
+                    </div>
+
+                    <div class = "field input-field">
+                        <label for = "email">Email</label>
+
+                        <input type = "email" placeholder = "{{user.email | default:'nonexistent'}}" id = "email" name = "email" readonly>
+
+                        <i class = 'bx bx-envelope field-icon'></i>
+                    </div>
+
+                    <div class = "field input-field">
+                        <label for = "phone-number">Phone Number</label>
+
+                        <input type = "text" placeholder = "{{user.phone_number | default:'nonexistent'}}" id = "phone-number" name = "phone_number" readonly>
+
+                        <i class = 'bx bx-phone field-icon'></i>
+                    </div>
+
+                    <div class = "field input-field">
+                        <label for = "date-joined">Date Joined</label>
+
+                        <input type = "text" placeholder = "{{user.date_joined}}" id = "date-joined" name = "date_joined" readonly>
+
+                        <i class = 'bx bx-calendar-star field-icon'></i>
+                    </div>
+                    
+                    <div class = "field input-field">
+                        <label for = "last-login">Last Login</label>
+
+                        <input type = "text" placeholder = "{{user.account.last_login}}" id = "last-login" name = "last_login" readonly>
+
+                        <i class = 'bx bx-log-in field-icon'></i>
+                    </div>
+
+                    <a id = "update" href = "{% url 'Contributor Profile Update' %}" class = "btn btn-success">Update</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

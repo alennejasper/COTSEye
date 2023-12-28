@@ -1,0 +1,125 @@
+{% extends "contributor/index.html" %}
+{% load static %}
+
+{% block content %}
+<div id = "posts-box">
+    <div class = "posts">
+        <div class = "details">
+            <div id = "column">
+                <div class = "details-header">
+                    <header class = "prevent-select">Uncertain Posts</header>
+                </div>
+
+                <div class = "details-body">
+                    <div id = "row">
+                        <div class = "field first input-field">
+                            <label for = "post-count">Posts Count</label> 
+                            
+                            <input type = "text" placeholder = "{{uncertain_posts.count}}" id = "post-count" name = "post_count" readonly>
+                            
+                            <i class = "bx bxs-user-account field-icon"></i>
+                        </div>
+
+                        <div class = "fence"></div>
+
+                        <div class = "field input-field">
+                            <label for = "date">Date</label> 
+
+                            <input type = "text" placeholder = "{{uncertain_dates.date | default:'nonexistent'}}" id = "date" name = "date" readonly>
+
+                            <i class = "bx bx-calendar-alt field-icon"></i>
+                        </div>
+                    </div>
+
+                    {% if uncertain_posts.count > 0 %}<a id = "browse" href = "{% url 'Contributor Uncertain' %}" class = "btn btn-primary">Browse</a>
+                    {% else %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class = "posts">
+        <div class = "details">
+            <div id = "column">
+                <div class = "details-header">
+                    <header class = "prevent-select">Valid Posts</header>
+                </div>
+
+                <div class = "details-body">
+                    <div id = "row">
+                        <div class = "field first input-field">
+                            <label for = "post-count">Posts Count</label> 
+                            
+                            <input type = "text" placeholder = "{{valid_posts.count}}" id = "post-count" name = "post_count" readonly>
+                            
+                            <i class = "bx bxs-user-account field-icon"></i>
+                        </div>
+
+                        <div class = "fence"></div>
+
+                        <div class = "field input-field">
+                            <label for = "date">Date</label> 
+
+                            <input type = "text" placeholder = "{{valid_dates.date | default:'nonexistent'}}" id = "date" name = "date" readonly>
+
+                            <i class = "bx bx-calendar-star field-icon"></i>
+                        </div>
+                    </div>
+
+                    {% if valid_posts.count > 0 %}<a id = "browse" href = "{% url 'Contributor Valid' %}" class = "btn btn-primary">Browse</a>
+                    {% else %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class = "posts">
+        <div class = "details">
+            <div id = "column">
+                <div class = "details-header">
+                    <header class = "prevent-select">Invalid Posts</header>
+                </div>
+
+                <div class = "details-body">
+                    <div id = "row">
+                        <div class = "field first input-field">
+                            <label for = "post-count">Posts Count</label> 
+                            
+                            <input type = "text" placeholder = "{{invalid_posts.count}}" id = "post-count" name = "post_count" readonly>
+                            
+                            <i class = "bx bxs-user-account field-icon"></i>
+                        </div>
+
+                        <div class = "fence"></div>
+
+                        <div class = "field input-field">
+                            <label for = "date">Date</label> 
+
+                            <input type = "text" placeholder = "{{invalid_dates.date | default:'nonexistent'}}" id = "date" name = "date" readonly>
+
+                            <i class = "bx bx-calendar-star field-icon"></i>
+                        </div>
+                    </div>
+
+                    {% if invalid_posts.count > 0 %}<a id = "browse" href = "{% url 'Contributor Invalid' %}" class = "btn btn-primary">Browse</a>
+                    {% else %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if messages %}
+    {% for message in messages %}
+        <script src = "https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        {% if message.tags == "info" %}<script>Swal.fire({title: "Hey!", text: "{{message}}", icon: "warning", iconColor: "#3B5998", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#3B5998"})</script>
+        {% elif message.tags == "success" %}<script>Swal.fire({title: "Yay!", text: "{{message}}", icon: "success", iconColor: "#2ECC71", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#2ECC71"})</script>
+        {% else %}<script>Swal.fire({title: "Oops!", text: "{{message}}", icon: "error", iconColor: "#E74C3C", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#E74C3C"})</script>
+        {% endif %}    
+    {% endfor %}
+{% endif %}
+
+{% endblock content %}

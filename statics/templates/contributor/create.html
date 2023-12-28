@@ -1,0 +1,273 @@
+{% extends "contributor/index.html" %}
+{% load static %}
+
+{% block content %}
+<form action = "" method = "POST" enctype = "multipart/form-data">
+    {% csrf_token %}
+
+    <div id = "create-box">
+        <div class = "create">
+            <div class = "details">
+                <div id = "column">
+                    <div class = "details-header">
+                        <header class = "prevent-select">Create Report</header>
+                    </div>
+
+                    <div class = "details-body">
+                        <div class = "field first input-field">
+                            <label for = "date">Date</label>
+
+                            <input type = "date" placeholder = "Date" id = "date" name = "date" required>
+                        </div>
+
+                        <div class = "field input-field">
+                            <label for = "description">Description</label>
+
+                            <input type = "text" placeholder = "Description" id = "description" name = "description" required>
+                        
+                            <i class = "bx bx-notepad field-icon"></i>
+                        </div>
+
+                        <div class = "field input-field">
+                            <label for = "latitude">Latitude</label>
+
+                            <input type = "text" placeholder = "Latitude" id = "latitude" name = "latitude" required>
+                        
+                            <i class = "bx bx-map field-icon"></i>
+                        </div>
+
+                        <div class = "field input-field">
+                            <label for = "longitude">Longitude</label>
+
+                            <input type = "text" placeholder = "Longitude" id = "longitude" name = "longitude" required>
+                        
+                            <i class = "bx bx-map field-icon"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div id = "column">
+                    <div class = "details-body">
+                        <img id = "post-display" class = "post-photo" src = "{% static 'assets/posts/default.png' %}" alt = "post-photo">             
+
+                        <span id = "browse" class = "btn btn-primary btn-file"><input type = "file" id = "post-photo" name = "post_photo" accept = "image">Browse</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class = "options">
+                <div id = "column">
+                    <div class = "options-body">
+                        <div id = "map" class = "post-map">
+                        </div>
+                        
+                        <input id = "refresh" class = "btn btn-success" type = "button" onclick = "refreshMap()" value = "Refresh">
+                    </div>
+                </div>
+
+                <div id = "column">
+                    <div class = "options-header">
+                        <header class = "prevent-select">Add Information</header>
+                    </div>
+
+                    <div class = "options-body">
+                        <div class = "field first input-field">
+                            <label for = "size">Size</label>
+
+                            <input type = "text" placeholder = "Size" id = "size" name = "size">
+                        
+                            <i class = "bx bx-shape-polygon field-icon"></i>
+                        </div>
+
+                        <div class = "field input-field">
+                            <label for = "depth">Depth</label>
+
+                            <input type = "text" placeholder = "Depth" id = "depth" name = "depth">
+                        
+                            <i class = "bx bx-sort-down field-icon"></i>
+                        </div>
+
+                        <div class = "field input-field">
+                            <label for = "density">Density</label>
+
+                            <input type = "text" placeholder = "Density" id = "density" name = "density">
+                        
+                            <i class = "bx bx-scatter-chart field-icon"></i>
+                        </div>
+
+                        <div class = "field input-field">
+                            <label for = "weather">Weather</label>
+
+                            <input type = "text" placeholder = "Weather" id = "weather" name = "weather">
+                        
+                            <i class = "bx bx-sun field-icon"></i>
+                        </div>
+
+                        <input id = "save" class = "btn btn-success" type = "submit" value = "Save">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+{% if messages %}
+    {% for message in messages %}
+        <script src = "https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        {% if message.tags == "info" %}<script>Swal.fire({title: "Hey!", text: "{{message}}", icon: "warning", iconColor: "#3B5998", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#3B5998"})</script>
+        {% elif message.tags == "success" %}<script>Swal.fire({title: "Yay!", text: "{{message}}", icon: "success", iconColor: "#2ECC71", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#2ECC71"})</script>
+        {% else %}<script>Swal.fire({title: "Oops!", text: "{{message}}", icon: "error", iconColor: "#E74C3C", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#E74C3C"})</script>
+        {% endif %}    
+    {% endfor %}
+{% endif %}
+
+<script>
+    date.value = new Date().toJSON().split("T")[0]
+</script>
+
+<script>
+    const photoInput = document.querySelector("#post-photo")
+    const photoDisplay = document.querySelector("#post-display")
+
+    photoInput.addEventListener("change", (event)=>{
+        const photoObject = event.target.files[0]
+        photoDisplay.src = URL.createObjectURL(photoObject)
+    })
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script>
+    $("#post-photo").change(function() {
+        for (var i = 0; i < this.files.length; i++) {
+            var file = this.files[i];
+            var modifiedDate = file.lastModifiedDate;
+
+            var formattedDate = modifiedDate.toISOString().split('T')[0];
+
+            $("#date").val(formattedDate);
+        }
+    });
+</script>
+
+<link rel = "stylesheet" href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity = "sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin = ""/>    
+
+<script src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity = "sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin = ""></script>
+
+<script>
+    var map = L.map("map", {
+        zoomControl: true,
+        scrollWheelZoom: false, 
+        dragging: true,
+        maxBounds: [[5.3, 124.3],[6.3, 126.3]],
+    }).setView([5.9656, 125.1929], 11);
+    
+    L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
+        minZoom: 11,
+        attribution: "ESRI",
+    }).addTo(map);
+
+    var starfish = L.icon({
+        iconUrl: "{% static 'assets/icons/marker.png' %}",
+        iconSize: [30, 30],          
+        iconAnchor: [15, 15],     
+    });
+
+    var marker = L.marker([5.9656, 125.1929], {
+        draggable: true,
+        icon: starfish,
+    }).addTo(map);
+
+    function updateCoordinates(){
+        var latitude = marker.getLatLng().lat.toFixed(6);
+        var longitude = marker.getLatLng().lng.toFixed(6);
+
+        document.getElementById("latitude").value = latitude;
+        document.getElementById("longitude").value = longitude;
+    }
+
+    updateCoordinates();
+
+    marker.on("drag", updateCoordinates);
+
+    marker.on("dragend", function (e){
+        var position = marker.getLatLng();
+
+        document.getElementById("latitude").value = position.lat.toFixed(6);
+        document.getElementById("longitude").value = position.lng.toFixed(6);
+    });
+
+    document.getElementById("latitude").addEventListener("input", function (){
+        var lat = parseFloat(this.value);
+
+        marker.setLatLng([lat, marker.getLatLng().lng]);
+    });
+
+    document.getElementById("longitude").addEventListener("input", function (){
+        var lng = parseFloat(this.value);
+
+        marker.setLatLng([marker.getLatLng().lat, lng]);
+    });
+
+    function refreshMap(){
+        map.setView([5.9656, 125.1929], 11);
+    }
+
+    document.getElementById("refresh").addEventListener("click", refreshMap);
+</script>
+
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/exif-js/2.3.0/exif.js"></script>
+
+<script src = "https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    let postDisplay;
+
+    document.getElementById("post-photo").addEventListener("change", function(e) {
+        const file = e.target.files[0];
+        const image = new Image();
+
+        image.src = URL.createObjectURL(file);
+        image.onload = function(){
+            EXIF.getData(image, function(){
+                const latitude = EXIF.getTag(this, "GPSLatitude");
+                const longitude = EXIF.getTag(this, "GPSLongitude");
+
+                if (latitude && longitude){
+                    const roundLatitude = parseFloat(latitude).toFixed(6);
+                    const roundLongitude = parseFloat(longitude).toFixed(6);
+                    
+                    if (checkCoordinates(roundLatitude, roundLongitude)){
+                        document.getElementById("latitude").value = roundLatitude;
+                        document.getElementById("longitude").value = roundLongitude;
+                        
+                        postDisplay = image;
+
+                    } else {
+                        Swal.fire({title: "Oops!", text: "The photo given to COTSEye incorporated coordinates out of bounds.", icon: "error", iconColor: "#E74C3C", confirmButtonColor: "#E74C3C"});
+                        
+                        document.getElementById("post-display").src = "{% static 'assets/posts/default.png' %}";
+                    }
+
+                } else {
+                    Swal.fire({title: "Hey!", text: "The photo given to COTSEye did not incorporate any coordinates.", icon: "warning", iconColor: "#3B5998", confirmButtonColor: "#3B5998"});
+                }
+            });
+        };
+    });
+
+    function checkCoordinates(latitude, longitude){
+        const maximumLatitude = 6.3;
+        const minimumLatitude = 5.3;
+        const maximumLongitude = 126.3;
+        const minimumLongitude = 124.3;
+
+        return (
+            latitude >= minimumLatitude &&
+            latitude <= maximumLatitude &&
+            longitude >= minimumLongitude &&
+            longitude <= maximumLongitude
+        );
+    }
+</script>
+{% endblock content %}

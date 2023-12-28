@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang = "en">
+    <head>
+        <meta charset = "UTF-8">
+            
+        <meta http-equiv = "X-UA-Compatible" content = "IE=edge">
+            
+        <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+
+        <link rel = "icon" type = "image/x-icon" href = "{% static 'assets/icons/logo.png' %}">
+                        
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/core.css' %}">
+                    
+        <link href = "https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel = "stylesheet">    
+        
+        <title>Signup | COTSEye</title>
+    </head>
+
+    <body>
+        <div class = "container-signup forms">
+            <div class = "form signup" id = "form-signup">
+
+                <div class = "form-content">
+                    <header class = "prevent-select">Signup</header>
+
+                    <form method = "POST" action = "">
+                        {% csrf_token %}
+
+                        <div class = "field input-field">
+                            <label for = "username">Username</label>
+
+                            <input type = "text" placeholder = "Username" class = "input" id = "username" name = "username" data-initial-value = "cotseye/" oninput = "retainValue(this);" required>
+
+                            <i class = "bx bx-user field-icon"></i>
+                        </div>
+
+                        <div class = "field input-field">
+                            <label for = "first-name">First Name</label>
+
+                            <input type = "text" placeholder = "First Name" class = "input" id = "first-name" name = "first_name" required>
+
+                            <i class = "bx bx-id-card field-icon"></i>
+                        </div>
+
+                        <div class = "field input-field">
+                            <label for = "last-name">Last Name</label>
+
+                            <input type = "text" placeholder = "Last Name" class = "input" id = "last-name" name = "last_name" required>
+
+                            <i class = "bx bx-id-card field-icon"></i>
+                        </div>
+
+                        <div class = "field input-field">
+                            <label for = "email">Email</label>
+
+                            <input type = "email" placeholder = "Email" class = "input" id = "email" name = "email" required>
+
+                            <i class = "bx bx-envelope field-icon"></i>
+                        </div>
+
+                        <div class = "field input-field">
+                            <label for = "phone-number">Phone Number</label>
+
+                            <input type = "text" placeholder = "Phone Number" class = "input" id = "phone-number" name = "phone_number" required>
+
+                            <i class = "bx bx-phone field-icon"></i>
+                        </div>
+
+                        <div class = "field input-field">
+                            <label for = "password1">Create Password</label>
+
+                            <input type = "password" placeholder = "Create Password" class = "password" id = "password1" name = "password1" required>
+
+                            <i class = "bx bx-hide toggle-icon" id = "toggle-password1"></i>
+                        </div>
+
+                        <div class = "field input-field">
+                            <label for = "password2">Confirm Password</label>
+
+                            <input type = "password" placeholder = "Confirm Password" class = "password" id = "password2" name = "password2" required>
+
+                            <i class = "bx bx-hide toggle-icon" id = "toggle-password2"></i>
+                        </div>
+
+                        <div class = "field checkbox-field">
+                            <label for = "is-staff">Officer Role</label>
+
+                            <input type = "text" placeholder = "Officer" class = "text"  id = "is-staff" readonly = "readonly">
+                            
+                            <input type = "checkbox" class = "checkbox" id = "is-staff" name = "is_staff" required>	
+                        </div>
+
+                        <div class = "g-recaptcha" data-sitekey = "6LfYwRMnAAAAAG8B0ZyMeD-NNV1pnVFlXS_A0-yV" data-error-callback = "recaptchaError"></div>
+
+                        <div class = "field button-field">
+                            <button type = "submit">Signup</button>
+                        </div>
+                    </form>
+
+                    {% if messages %}
+                        {% for message in messages %}
+                            <script src = "https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                            {% if message.tags == "info" %}<script>Swal.fire({title: "Hey!", text: "{{message}}", icon: "warning", iconColor: "#3B5998", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#3B5998"})</script>
+                            {% elif message.tags == "success" %}<script>Swal.fire({title: "Yay!", text: "{{message}}", icon: "success", iconColor: "#2ECC71", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#2ECC71"})</script>
+                            {% else %}<script>Swal.fire({title: "Oops!", text: "{{message}}", icon: "error", iconColor: "#E74C3C", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#E74C3C"})</script>
+                            {% endif %}    
+                        {% endfor %}
+                    {% endif %}
+
+                    <div class = "form-link prevent-select">
+                        <span>Already have an account? <a href = "{% url 'Officer Signin' %}" class = "link signin-link">Signin</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+    <script src = "https://www.google.com/recaptcha/api.js" async defer></script>
+
+    <script> 
+		window.onload = function(){
+			var $recaptcha = document.querySelector("#g-recaptcha-response");
+	
+			if ($recaptcha){
+			$recaptcha.setAttribute("required", "required");
+			}
+		};
+	</script>
+
+    <script>
+        function recaptchaError(){
+            Swal.fire({title: "Oops!", text: "The COTSEye cannot contact reCAPTCHA today. Kindly check the connection and try again.", icon: "error", iconColor: "#E74C3C", confirmButtonColor: "#E74C3C"});
+        }
+    </script>
+
+    <script>
+		const togglePassword1 = document.querySelector("#toggle-password1");
+		const password1 = document.querySelector("#password1");
+
+		togglePassword1.addEventListener("click", function(){
+			const type = password1.getAttribute("type") === "password" ? "text" : "password";
+			password1.setAttribute("type", type);
+			this.classList.toggle("bx-show");
+		});
+	</script>
+
+	<script>
+		const togglePassword2 = document.querySelector("#toggle-password2");
+		const password2 = document.querySelector("#password2");
+
+		togglePassword2.addEventListener("click", function(){
+			const type = password2.getAttribute("type") === "password" ? "text" : "password";
+			password2.setAttribute("type", type);
+			this.classList.toggle("bx-show");
+		});
+	</script>
+
+    <script>
+        var checkboxes = $("input[type='checkbox']"),
+            submit = $("button[type='submit']");
+
+        checkboxes.click(function(){
+            submit.attr("required", !checkboxes.is(":checked"));
+        });
+    </script>
+
+    <script>
+        function retainValue(input){
+            if (input.value.length <= "cotseye/".length){
+                input.value = "cotseye/";
+                input.selectionStart = "cotseye/".length;
+            }
+        }
+    </script>
+
+    <script>
+        document.getElementById("username").addEventListener("click", function(){
+            this.style.color = "#154659";
+            this.value = this.dataset.initialValue;
+            this.focus();
+        });
+    </script>
+</html>

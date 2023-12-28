@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+{% load static %}
+{% load socialaccount %}
+
+<html lang = "en">
+    <head>
+        <meta charset = "UTF-8">
+            
+        <meta http-equiv = "X-UA-Compatible" content = "IE=edge">
+            
+        <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+
+        <link rel = "icon" type = "image/x-icon" href = "{% static 'assets/icons/logo.png' %}">
+                        
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/core.css' %}">
+                    
+        <link href = "https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel = "stylesheet">         
+        
+        <title>Signin | COTSEye</title>
+    </head>
+
+    <body>
+        <div class = "container-signin contributor forms">
+            <div class = "form signin" id = "form-signin">
+
+                <div class = "form-content">
+                    <header class = "prevent-select">Signin</header>
+
+                    <form method = "POST" action = "">
+                        {% csrf_token %}
+                        
+                        <div class = "field input-field">
+                            <label for = "username">Username</label>
+
+                            <input type = "text" placeholder = "Username" class = "input" id = "username" name = "username" data-initial-value = "cotseye/" oninput = "retainValue(this);" required>
+
+                            <i class = "bx bx-user field-icon"></i>
+                        </div>
+                    
+                        <div class = "field input-field">
+                            <label for = "password">Password</label>
+
+                            <input type = "password" placeholder = "Password" class = "password" id = "password1" name = "password1" required>
+
+                            <i class = "bx bx-hide toggle-icon" id = "toggle-password1"></i>
+                        </div>
+
+                        <div class = "g-recaptcha" data-sitekey = "6LfYwRMnAAAAAG8B0ZyMeD-NNV1pnVFlXS_A0-yV" data-error-callback = "recaptchaError"></div>
+                    
+                        <div class = "field button-field">
+                            <button type = "submit" onclick = "alertRemove()">Signin</button>
+                        </div>
+                    </form>
+                    
+                    {% if messages %}
+                        {% for message in messages %}
+                            <script src = "https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                            {% if message.tags == "info" %}<script>Swal.fire({title: "Hey!", text: "{{message}}", icon: "warning", iconColor: "#3B5998", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#3B5998"})</script>
+                            {% elif message.tags == "success" %}<script>Swal.fire({title: "Yay!", text: "{{message}}", icon: "success", iconColor: "#2ECC71", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#2ECC71"})</script>
+                            {% else %}<script>Swal.fire({title: "Oops!", text: "{{message}}", icon: "error", iconColor: "#E74C3C", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#E74C3C"})</script>
+                            {% endif %}    
+                        {% endfor %}
+                    {% endif %}
+                    
+                    <div class = "form-link prevent-select">
+                        <span>Do not have an account? <a href = "{% url 'Contributor Signup' %}" class = "link signup-link">Signup</a></span>
+                    </div>
+                </div>
+
+                <div class = "line"></div>
+                    <div class = "media-options">
+                        <a href = "{% provider_login_url 'facebook' %}?next=/contributor/home" class = "field facebook" onclick = "alertRemove()">
+                            <i class = "bx bxl-facebook facebook-icon"></i>
+                            <span>Signin with Facebook</span>
+                        </a>
+                    </div>
+
+                    <div class = "media-options">
+                        <a href = "{% provider_login_url 'google' %}?next=/contributor/home" class = "field google" onclick = "alertRemove()">
+                            <img src = "{% static 'assets/icons/google.svg' %}" class = "google-img">
+                            <span>Signin with Google</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+    <script type = "text/javascript">if(window.location.hash && window.location.hash === "#_=_"){ window.location.hash = ""; history.pushState("", document.title, window.location.pathname);}</script>
+
+    <script src = "https://www.google.com/recaptcha/api.js" async defer></script>
+
+    <script src = "https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script> 
+		window.onload = function(){
+			var $recaptcha = document.querySelector("#g-recaptcha-response");
+	
+			if ($recaptcha){
+			$recaptcha.setAttribute("required", "required");
+			}
+		};
+	</script>
+
+    <script>
+        function recaptchaError(){
+            Swal.fire({title: "Oops!", text: "The COTSEye cannot contact reCAPTCHA today. Kindly check the connection and try again.", icon: "error", iconColor: "#E74C3C", confirmButtonColor: "#E74C3C"});
+        }
+    </script>
+
+    <script>
+        const togglePassword1 = document.querySelector("#toggle-password1");
+        const password1 = document.querySelector("#password1");
+
+        togglePassword1.addEventListener("click", function(){
+            const type = password1.getAttribute("type") === "password" ? "text" : "password";
+            password1.setAttribute("type", type);
+            this.classList.toggle("bx-show");
+        });
+	</script>
+
+    <script>
+        function alertRemove(){
+            sessionStorage.removeItem("alertShown");
+        };
+    </script>
+
+    <script>
+        function retainValue(input){
+            if (input.value.length <= "cotseye/".length){
+                input.value = "cotseye/";
+                input.selectionStart = "cotseye/".length;
+            }
+        }
+    </script>
+
+    <script>
+        document.getElementById("username").addEventListener("click", function(){
+            this.style.color = "#154659";
+            this.value = this.dataset.initialValue;
+            this.focus();
+        });
+    </script>
+</html>

@@ -1,0 +1,96 @@
+{% extends "public/index.html" %}
+{% load static %}
+
+{% block content %}
+<div id = "announcements-box">
+    {% for announcement in announcements %}
+    <div class = "primary announcements">
+        <div class = "details">
+            <div id = "column">
+                <div class = "details-header">
+                    <header class = "prevent-select">{{announcement.title}}</header>
+                </div>
+
+                <div class = "details-body">
+                    <div class = "field last input-field">
+                        <label for = "context">Context</label> 
+
+                        <textarea placeholder = "{{announcement.context}}" id = "context" name = "context" readonly></textarea>
+
+                        <i class = "bx bxs-caret-up-circle field-icon" onclick = "scrollTextarea(-30)"></i>
+
+                        <i class = "bx bxs-caret-down-circle last field-icon" onclick = "scrollTextarea(30)"></i>
+                    </div>
+
+                    <a id = "share" href = "#" class = "btn btn-primary">Share</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class = "secondary announcements">
+        <div class = "character">
+            <div id = "column">
+                <div class = "character-header">                    
+                    <header class = "prevent-select">Author Information</header>
+                </div>
+
+                <div class = "character-body">
+                    <div class = "field first input-field">
+
+                        <label for = "username">Username</label> 
+                        
+                        <input type = "text" placeholder = "{{announcement.user.account.username}}" id = "username" name = "username" readonly>
+                        
+                        <i class = "bx bxs-user-account field-icon"></i>
+                    </div>
+                    
+                    <div class = "field input-field">
+                        <label for = "is-active">User Status</label>
+
+                        <input type = "text" placeholder = "{% if announcement.user.account.is_active == True %} Alive {% else %} Dead {% endif %}" id = "is-active" name = "is_active" readonly>
+                        
+                        {% if announcement.user.account.is_active == True %} <i class = "bx bxs-user-check field-icon"></i>
+                        {% else %} <i class = "bx bxs-user-x field-icon"></i>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class = "details">
+            <div id = "column">
+                <div class = "details-header">
+                    <header class = "prevent-select">Important Notice</header>
+                </div>
+
+                <div class = "details-body">
+                    <div class = "field first input-field">
+                        <label for = "date">Date</label> 
+
+                        <input type = "text" placeholder = "{{announcement.date}}" id = "date" name = "date" readonly>
+
+                        <i class = "bx bx-calendar-star field-icon"></i>
+                    </div>
+
+                    <div class = "field input-field">
+                        <label for = "place">Place</label> 
+
+                        <input type = "text" placeholder = "{{announcement.place}}" id = "place" name = "place" readonly>
+
+                        <i class = "bx bx-current-location field-icon"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<script>
+    function scrollTextarea(height){
+        var textarea = document.getElementById("context");
+        textarea.scrollTop += height;
+    }
+</script>
+{% endblock content %}
