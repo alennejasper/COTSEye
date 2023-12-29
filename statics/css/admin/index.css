@@ -269,6 +269,11 @@ i.fas.fa-users{
     }
 }
 
+.leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar{
+    border-radius: 5px;
+    border: 1px solid #B2BEB5 !important; 
+}
+
 .leaflet-bar a, .leaflet-bar a{
     background-color: #154360 !important;
     color: #FFFFFF !important;
@@ -295,6 +300,11 @@ i.fas.fa-users{
 
 .leaflet-disabled span{
     color: #B2BEB5 !important;
+}
+
+.leaflet-touch .leaflet-control-attribution, .leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar {
+    border-radius: 5px;
+    border: 1px solid #B2BEB5; 
 }
 
 .leaflet-control-attribution a{
