@@ -556,6 +556,11 @@ i.fas.fa-users{
     }
 }
 
+.col-md-6.col-sm-12 .btn-group{
+    border-radius: 5px;
+    border: 1px solid #B2BEB5; 
+}
+
 .col-md-6.col-sm-12 .card-body a.btn-success{
     border: 1px solid #B2BEB5; 
     outline: none !important;
