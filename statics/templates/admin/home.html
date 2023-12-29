@@ -14,7 +14,7 @@
         var map;
 
         function revealMap(){
-            map = L.map("map", {
+            map = L.map("admin-map", {
                 zoomControl: true,
                 scrollWheelZoom: false, 
                 dragging: true,
@@ -46,8 +46,8 @@
 {% endblock %}
 
 {% block content %}
-    <div class = "administrator-map">
-        <div id = "map">
+    <div class = "map">
+        <div id = "admin-map">
         </div>
     </div>
     {{ block.super }}

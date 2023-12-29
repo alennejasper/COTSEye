@@ -220,6 +220,6 @@ JAZZMIN_SETTINGS = {
     "copyright": "Team Rocket",
     "show_sidebar": False,
     "navigation_expanded": False,
-    "custom_css": "css/core.css", 
+    "custom_css": "css/admin/index.css", 
     "changeform_format": "horizontal_tabs",
 }

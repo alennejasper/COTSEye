@@ -3,11 +3,10 @@ from django.dispatch import receiver
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, user_passes_test
-from allauth.socialaccount.models import SocialAccount
 from allauth.socialaccount.signals import social_account_updated
 from authentications.forms import AccountForm, UserForm, ProfileForm
 from authentications.models import *
-from reports.models import Post, PostStatus
+from reports.models import Post
 
 
 # Create your views here.
@@ -123,7 +122,7 @@ def ContributorSignin(request):
                         instance.save()
                         sociallogin.account.user.save()
 
-                user.save()
+                    user.save()
     
     social_account_updated.connect(UpdateUser, sender = None)
      
@@ -164,7 +163,7 @@ def ContributorHome(request):
     posts = Post.objects.filter(id = 1)
 
     if request.user.is_authenticated:
-        messages.info(request, username + ", " + "see announcements within the menu of COTSEye to check for updates today.")
+        messages.info(request, username + ", " + "see announcements page within the menu of COTSEye to check for updates today.")
 
     context = {"posts": posts}
     return render(request, "contributor/home.html", context)
