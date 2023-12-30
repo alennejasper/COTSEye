@@ -184,17 +184,17 @@ i.fas.fa-users{
     font-family: "Philosopher";
     font-weight: 700;
     font-size: 18px;
-    background-color: #698F3F;
+    background-color: #154360;
     color: #FFFFFF;
 }
 
 .dropdown-footer:hover{
-    background-color: #557433;
+    background-color: #10354C;
     color: #B2BEB5 !important;
 }
 
 .dropdown-footer.active{
-    background-color: #698F3F !important;
+    background-color: #10354C !important;
     color: #B2BEB5 !important;
 }
 
@@ -207,7 +207,7 @@ i.fas.fa-users{
         font-family: "Philosopher";
         font-weight: 700;
         font-size: 16px;
-        background-color: #698F3F;
+        background-color: #154360;
         color: #FFFFFF;
     }
 }
@@ -221,8 +221,461 @@ i.fas.fa-users{
         font-family: "Philosopher";
         font-weight: 700;
         font-size: 14px;
-        background-color: #698F3F;
+        background-color: #154360;
         color: #FFFFFF;
+    }
+}
+
+
+.col-12 > .card{
+    margin-bottom: 0px !important;
+    border-radius: 5px;
+    border: 1px solid #B2BEB5; 
+}
+
+.col-12 > .card > .card-header{
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 100% !important;
+    background-color: #154360;
+}
+
+.card-title p{
+    margin-bottom: 0px !important;
+    font-family: "Philosopher" !important;
+    font-weight: 700 !important;
+    font-size: 22px !important;
+    color: #FFFFFF !important;
+    white-space: nowrap !important; 
+    overflow: hidden !important;
+    text-overflow: ellipsis !important; 
+}
+
+.col-12 > .card > .card-body{
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 100% !important;
+}
+
+.col-12 > .card > .card-body .row.form-group{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    align-items: center;
+}
+
+.row.form-group .col-12.col-md-2{
+    max-width: 100% !important;
+    flex: 0 0 20% !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 1318px){
+    .row.form-group .col-12.col-md-2{
+        flex: 0 0 100% !important;
+    }
+}
+
+.row.form-group .col-12.col-md-2 label{
+    margin-right: 10px !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 1318px){
+    .row.form-group .col-12.col-md-2 label{
+        margin-right: 10px !important;
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        float: left !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 20px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .row.form-group .col-12.col-md-2 label{
+        margin-right: 10px !important;
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        float: left !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .row.form-group .col-12.col-md-2 label{
+        margin-right: 10px !important;
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        float: left !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .row.form-group .col-12.col-md-2 label{
+        margin-right: 10px !important;
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        float: left !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.row.form-group .col-12.col-md-6{
+    max-width: 100% !important;
+    flex: 0 0 80% !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 1318px){
+    .row.form-group .col-12.col-md-6{
+        flex: 0 0 100% !important;
+    }
+}
+
+.row.form-group .col-12.col-md-6 .text-red{
+    display: none !important;
+}
+
+.row.form-group .col-12.col-md-6 input[name = "old_password"]{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    width: 100% !important;
+    outline: none !important;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px;    
+    color: #154360 !important;
+}
+
+.row.form-group .col-12.col-md-6 input[name = "old_password"]:focus{
+    border-bottom-width: 2px !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 1318px){
+    .row.form-group .col-12.col-md-6 input[name = "old_password"]{
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        width: 100% !important;
+        outline: none !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 20px !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px;    
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .row.form-group .col-12.col-md-6 input[name = "old_password"]{
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        width: 100% !important;
+        outline: none !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px;    
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .row.form-group .col-12.col-md-6 input[name = "old_password"]{
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        width: 100% !important;
+        outline: none !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px;    
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .row.form-group .col-12.col-md-6 input[name = "old_password"]{
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        width: 100% !important;
+        outline: none !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px;    
+        color: #154360 !important;
+    }
+}
+
+.row.form-group .col-12.col-md-4{
+    display: none !important;
+}
+
+.row.form-group .col-12.col-md-6 input[name = "new_password1"]{
+    width: 100% !important;
+    outline: none !important;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px;     
+    color: #154360 !important;
+}
+
+.row.form-group .col-12.col-md-6 input[name = "new_password1"]:focus{
+    border-bottom-width: 2px !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 1318px){
+    .row.form-group .col-12.col-md-6 input[name = "new_password1"]{
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        width: 100% !important;
+        outline: none !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 20px !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px;    
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .row.form-group .col-12.col-md-6 input[name = "new_password1"]{
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        width: 100% !important;
+        outline: none !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px;    
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .row.form-group .col-12.col-md-6 input[name = "new_password1"]{
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        width: 100% !important;
+        outline: none !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px;    
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .row.form-group .col-12.col-md-6 input[name = "new_password1"]{
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        width: 100% !important;
+        outline: none !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px;    
+        color: #154360 !important;
+    }
+}
+
+.row.form-group .col-12.col-md-6 .help-block{
+    display: none !important;
+}
+
+.row.form-group .col-12.col-md-6 input[name = "new_password2"]{
+    width: 100% !important;
+    outline: none !important;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px;     
+    color: #154360 !important;
+}
+
+.row.form-group .col-12.col-md-6 input[name = "new_password2"]:focus{
+    border-bottom-width: 2px !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 1083px){
+    .row.form-group .col-12.col-md-6 input[name = "new_password2"]{
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        width: 100% !important;
+        outline: none !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 20px !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px;    
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .row.form-group .col-12.col-md-6 input[name = "new_password2"]{
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        width: 100% !important;
+        outline: none !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px;    
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .row.form-group .col-12.col-md-6 input[name = "new_password2"]{
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        width: 100% !important;
+        outline: none !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px;    
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .row.form-group .col-12.col-md-6 input[name = "new_password2"]{
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        width: 100% !important;
+        outline: none !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px;    
+        color: #154360 !important;
+    }
+}
+
+.col-12 > .card > .card-body .row{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 100% !important;
+}
+
+.row .submit-row.col-md-12.col-md-push-2{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .row .submit-row.col-md-12.col-md-push-2{
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;        
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .row .submit-row.col-md-12.col-md-push-2{
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;        
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .row .submit-row.col-md-12.col-md-push-2{
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;        
+    }
+}
+
+.row .submit-row.col-md-12.col-md-push-2 > input[type = "submit"]{
+    padding-left: 0.25rem !important;
+    padding-right: 0.25rem !important;
+    padding-top: 0.125rem !important;
+    padding-bottom: 0.125rem !important;
+    border-radius: 5px !important;
+    border: 1px solid #B2BEB5; 
+    outline: none !important;
+    float: right;
+    line-height: 1.5 !important;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    background-color: #698F3F !important;
+    color: #FFFFFF !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .row .submit-row.col-md-12.col-md-push-2 > input[type = "submit"]{
+        border: 1px solid #B2BEB5; 
+        outline: none !important;
+        float: unset;      
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        background-color: #698F3F !important;
+        color: #FFFFFF !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .row .submit-row.col-md-12.col-md-push-2 > input[type = "submit"]{
+        border: 1px solid #B2BEB5; 
+        outline: none !important;
+        float: unset;      
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        background-color: #698F3F !important;
+        color: #FFFFFF !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .row .submit-row.col-md-12.col-md-push-2 > input[type = "submit"]{
+        border: 1px solid #B2BEB5; 
+        outline: none !important;
+        float: unset;      
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        background-color: #698F3F !important;
+        color: #FFFFFF !important;
     }
 }
 
@@ -269,12 +722,13 @@ i.fas.fa-users{
     }
 }
 
-.leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar{
+.leaflet-control-zoom{
     border-radius: 5px;
-    border: 1px solid #B2BEB5 !important; 
+    border: 1px solid #B2BEB5 !important;
 }
 
-.leaflet-bar a, .leaflet-bar a{
+.leaflet-control-zoom a.leaflet-control-zoom-in{
+    border-bottom: 1px solid #B2BEB5 !important;
     background-color: #154360 !important;
     color: #FFFFFF !important;
     -webkit-user-select: none;
@@ -283,7 +737,8 @@ i.fas.fa-users{
     text-decoration: none !important;
 }
 
-.leaflet-bar a:hover, .leaflet-bar a:hover{
+.leaflet-control-zoom a.leaflet-control-zoom-in:hover{
+    border-bottom: 1px solid #B2BEB5 !important;
     background-color: #10354C !important;
     color: #B2BEB5 !important;
     -webkit-user-select: none;
@@ -292,19 +747,43 @@ i.fas.fa-users{
     text-decoration: none !important;
 }
 
-.leaflet-bar a.leaflet-disabled{
+.leaflet-control-zoom a.leaflet-control-zoom-in.leaflet-disabled{
+    border-bottom: 1px solid #B2BEB5 !important;
     background-color: #10354C !important;
+    color: #B2BEB5 !important;
+    cursor: default !important;
+}
+
+
+.leaflet-control-zoom a.leaflet-control-zoom-out{
+    border-top: none !important;
+    background-color: #698F3F !important;
+    color: #FFFFFF !important;
+    -webkit-user-select: none;
+    -ms-user-select: none; 
+    user-select: none; 
+    text-decoration: none !important;
+}
+
+.leaflet-control-zoom a.leaflet-control-zoom-out:hover{
+    border-top: none !important;
+    background-color: #557433 !important;
+    color: #FFFFFF !important;
+    -webkit-user-select: none;
+    -ms-user-select: none; 
+    user-select: none; 
+    text-decoration: none !important;
+}
+
+.leaflet-control-zoom a.leaflet-control-zoom-out.leaflet-disabled{
+    border-top: none !important;
+    background-color: #557433 !important;
     color: #B2BEB5 !important;
     cursor: default !important;
 }
 
 .leaflet-disabled span{
     color: #B2BEB5 !important;
-}
-
-.leaflet-touch .leaflet-control-attribution, .leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar {
-    border-radius: 5px;
-    border: 1px solid #B2BEB5; 
 }
 
 .leaflet-control-attribution a{
@@ -451,7 +930,7 @@ i.fas.fa-users{
     padding-top: 15px;
     padding-bottom: 15px;
     width: 100% !important;
-    background-color: #698F3F;
+    background-color: #154360;
 }
 
 .col-md-6.col-sm-12 .card-header > .m-0{
@@ -520,6 +999,7 @@ i.fas.fa-users{
     white-space: nowrap !important; 
     overflow: hidden !important;
     text-overflow: ellipsis !important; 
+    vertical-align: middle !important;
 }
 
 .col-md-6.col-sm-12 .card-body td a{
@@ -557,8 +1037,8 @@ i.fas.fa-users{
 }
 
 .col-md-6.col-sm-12 .btn-group{
-    border-radius: 5px;
-    border: 1px solid #B2BEB5; 
+    border-radius: 5px !important;
+    border: 1px solid #B2BEB5 !important; 
 }
 
 .col-md-6.col-sm-12 .card-body a.btn-success{
@@ -739,8 +1219,8 @@ i.fa.fa-clock{
 .timeline-item{
     margin-left: 55px !important;
     margin-right: 0px !important;
-    border-radius: 5px;
-    border: 1px solid #B2BEB5;
+    border-radius: 5px !important;
+    border: 1px solid #B2BEB5 !important;
 }
 
 .timeline > div > .timeline-item > .timeline-header{
@@ -864,7 +1344,7 @@ i.fas.fa-clock::before{
     font-family: "Overlock";
     font-weight: 400 !important;
     font-size: 18px;
-    background-color: #698F3F;
+    background-color: #154360;
     color: #FFFFFF;
     white-space: nowrap !important; 
     overflow: hidden !important;
@@ -882,7 +1362,7 @@ i.fas.fa-clock::before{
         font-family: "Overlock";
         font-weight: 400 !important;
         font-size: 16px;
-        background-color: #698F3F;
+        background-color: #154360;
         color: #FFFFFF;
         white-space: nowrap !important; 
         overflow: hidden !important;
@@ -901,7 +1381,7 @@ i.fas.fa-clock::before{
         font-family: "Overlock";
         font-weight: 400 !important;
         font-size: 14px;
-        background-color: #698F3F;
+        background-color: #154360;
         color: #FFFFFF;
         white-space: nowrap !important; 
         overflow: hidden !important;
@@ -920,7 +1400,7 @@ i.fas.fa-clock::before{
         font-family: "Overlock";
         font-weight: 400 !important;
         font-size: 12px;
-        background-color: #698F3F;
+        background-color: #154360;
         color: #FFFFFF;
         white-space: nowrap !important; 
         overflow: hidden !important;
