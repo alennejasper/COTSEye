@@ -266,6 +266,7 @@ i.fas.fa-users{
     padding-right: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
+    margin-bottom: 15px !important;
     align-items: center;
 }
 
@@ -360,6 +361,10 @@ i.fas.fa-users{
 .row.form-group .col-12.col-md-6 input[name = "old_password"]{
     margin-top: 0px !important;
     margin-bottom: 0px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
     width: 100% !important;
     outline: none !important;
     font-family: "Overlock";
@@ -439,6 +444,10 @@ i.fas.fa-users{
 }
 
 .row.form-group .col-12.col-md-6 input[name = "new_password1"]{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
     width: 100% !important;
     outline: none !important;
     border: 1px solid #B2BEB5;
@@ -515,6 +524,10 @@ i.fas.fa-users{
 }
 
 .row.form-group .col-12.col-md-6 input[name = "new_password2"]{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
     width: 100% !important;
     outline: none !important;
     border: 1px solid #B2BEB5;
@@ -677,6 +690,15 @@ i.fas.fa-users{
         background-color: #698F3F !important;
         color: #FFFFFF !important;
     }
+}
+
+
+.col-12.col-lg-9 > .card{
+    margin-right: 30px;
+}
+
+.col-12.col-lg-9 > .card > .card-body .form-group{
+    margin-bottom: 15px !important;
 }
 
 
@@ -1000,6 +1022,7 @@ i.fas.fa-users{
     overflow: hidden !important;
     text-overflow: ellipsis !important; 
     vertical-align: middle !important;
+    cursor: text !important;
 }
 
 .col-md-6.col-sm-12 .card-body td a{
@@ -1007,6 +1030,7 @@ i.fas.fa-users{
     font-weight: 400;
     font-size: 20px !important;
     color: #154360 !important;
+    pointer-events: none;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
@@ -1049,6 +1073,8 @@ i.fas.fa-users{
     font-size: 20px !important;
     background-color: #698F3F !important;
     color: #FFFFFF !important;
+    pointer-events: auto !important;
+    cursor: pointer;
 }
 
 .col-md-6.col-sm-12 .card-body a.btn-success:hover{
@@ -1100,6 +1126,8 @@ i.fas.fa-users{
     font-size: 20px !important;
     background-color: #154360 !important;
     color: #FFFFFF !important;
+    pointer-events: auto !important;
+    cursor: pointer;
 }
 
 .col-md-6.col-sm-12 .card-body a.btn-info:hover{
