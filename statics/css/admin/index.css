@@ -6,7 +6,26 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
+    scrollbar-width: thin !important;
+    scrollbar-color: #154360 #698F3F !important;
     transition: all 0.25s ease;
+}
+
+
+::-webkit-scrollbar{
+    width: 5px !important;
+}
+
+::-webkit-scrollbar-track{
+    background: #698F3F !important; 
+}
+
+::-webkit-scrollbar-thumb{
+    background: #154360 !important;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background: #10354C !important;
 }
 
 
@@ -231,6 +250,8 @@ i.fas.fa-users{
     margin-bottom: 0px !important;
     border-radius: 5px;
     border: 1px solid #B2BEB5; 
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
 }
 
 .col-12 > .card > .card-header{
@@ -272,7 +293,7 @@ i.fas.fa-users{
 
 .row.form-group .col-12.col-md-2{
     max-width: 100% !important;
-    flex: 0 0 20% !important;
+    flex: 0 0 25% !important;
 }
 
 @media screen and (min-width: 320px) and (max-width: 1318px){
@@ -345,7 +366,7 @@ i.fas.fa-users{
 
 .row.form-group .col-12.col-md-6{
     max-width: 100% !important;
-    flex: 0 0 80% !important;
+    flex: 0 0 75% !important;
 }
 
 @media screen and (min-width: 320px) and (max-width: 1318px){
@@ -367,7 +388,7 @@ i.fas.fa-users{
     padding-bottom: 5px !important;
     width: 100% !important;
     outline: none !important;
-    font-family: "Overlock";
+    font-family: "Philosopher";
     font-weight: 400;
     font-size: 20px !important;
     border: 1px solid #B2BEB5;
@@ -385,7 +406,7 @@ i.fas.fa-users{
         margin-bottom: 0px !important;
         width: 100% !important;
         outline: none !important;
-        font-family: "Overlock";
+        font-family: "Philosopher";
         font-weight: 400;
         font-size: 20px !important;
         border: 1px solid #B2BEB5;
@@ -400,7 +421,7 @@ i.fas.fa-users{
         margin-bottom: 0px !important;
         width: 100% !important;
         outline: none !important;
-        font-family: "Overlock";
+        font-family: "Philosopher";
         font-weight: 400;
         font-size: 18px !important;
         border: 1px solid #B2BEB5;
@@ -415,7 +436,7 @@ i.fas.fa-users{
         margin-bottom: 0px !important;
         width: 100% !important;
         outline: none !important;
-        font-family: "Overlock";
+        font-family: "Philosopher";
         font-weight: 400;
         font-size: 16px !important;
         border: 1px solid #B2BEB5;
@@ -430,7 +451,7 @@ i.fas.fa-users{
         margin-bottom: 0px !important;
         width: 100% !important;
         outline: none !important;
-        font-family: "Overlock";
+        font-family: "Philosopher";
         font-weight: 400;
         font-size: 14px !important;
         border: 1px solid #B2BEB5;
@@ -465,7 +486,7 @@ i.fas.fa-users{
         margin-bottom: 0px !important;
         width: 100% !important;
         outline: none !important;
-        font-family: "Overlock";
+        font-family: "Philosopher";
         font-weight: 400;
         font-size: 20px !important;
         border: 1px solid #B2BEB5;
@@ -480,7 +501,7 @@ i.fas.fa-users{
         margin-bottom: 0px !important;
         width: 100% !important;
         outline: none !important;
-        font-family: "Overlock";
+        font-family: "Philosopher";
         font-weight: 400;
         font-size: 18px !important;
         border: 1px solid #B2BEB5;
@@ -495,7 +516,7 @@ i.fas.fa-users{
         margin-bottom: 0px !important;
         width: 100% !important;
         outline: none !important;
-        font-family: "Overlock";
+        font-family: "Philosopher";
         font-weight: 400;
         font-size: 16px !important;
         border: 1px solid #B2BEB5;
@@ -510,7 +531,7 @@ i.fas.fa-users{
         margin-bottom: 0px !important;
         width: 100% !important;
         outline: none !important;
-        font-family: "Overlock";
+        font-family: "Philosopher";
         font-weight: 400;
         font-size: 14px !important;
         border: 1px solid #B2BEB5;
@@ -530,6 +551,9 @@ i.fas.fa-users{
     padding-bottom: 5px !important;
     width: 100% !important;
     outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 400;
+    font-size: 20px !important;
     border: 1px solid #B2BEB5;
     border-radius: 5px;     
     color: #154360 !important;
@@ -545,7 +569,7 @@ i.fas.fa-users{
         margin-bottom: 0px !important;
         width: 100% !important;
         outline: none !important;
-        font-family: "Overlock";
+        font-family: "Philosopher";
         font-weight: 400;
         font-size: 20px !important;
         border: 1px solid #B2BEB5;
@@ -560,7 +584,7 @@ i.fas.fa-users{
         margin-bottom: 0px !important;
         width: 100% !important;
         outline: none !important;
-        font-family: "Overlock";
+        font-family: "Philosopher";
         font-weight: 400;
         font-size: 18px !important;
         border: 1px solid #B2BEB5;
@@ -575,7 +599,7 @@ i.fas.fa-users{
         margin-bottom: 0px !important;
         width: 100% !important;
         outline: none !important;
-        font-family: "Overlock";
+        font-family: "Philosopher";
         font-weight: 400;
         font-size: 16px !important;
         border: 1px solid #B2BEB5;
@@ -590,7 +614,7 @@ i.fas.fa-users{
         margin-bottom: 0px !important;
         width: 100% !important;
         outline: none !important;
-        font-family: "Overlock";
+        font-family: "Philosopher";
         font-weight: 400;
         font-size: 14px !important;
         border: 1px solid #B2BEB5;
@@ -641,6 +665,7 @@ i.fas.fa-users{
     padding-right: 0.25rem !important;
     padding-top: 0.125rem !important;
     padding-bottom: 0.125rem !important;
+    height: 100% !important;
     border-radius: 5px !important;
     border: 1px solid #B2BEB5; 
     outline: none !important;
@@ -655,6 +680,7 @@ i.fas.fa-users{
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .row .submit-row.col-md-12.col-md-push-2 > input[type = "submit"]{
+        height: 100% !important;
         border: 1px solid #B2BEB5; 
         outline: none !important;
         float: unset;      
@@ -668,6 +694,7 @@ i.fas.fa-users{
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .row .submit-row.col-md-12.col-md-push-2 > input[type = "submit"]{
+        height: 100% !important;
         border: 1px solid #B2BEB5; 
         outline: none !important;
         float: unset;      
@@ -681,6 +708,7 @@ i.fas.fa-users{
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .row .submit-row.col-md-12.col-md-push-2 > input[type = "submit"]{
+        height: 100% !important;
         border: 1px solid #B2BEB5; 
         outline: none !important;
         float: unset;      
@@ -697,8 +725,1305 @@ i.fas.fa-users{
     margin-right: 30px;
 }
 
+@media screen and (min-width: 320px) and (max-width: 991px){
+    .col-12.col-lg-9 > .card{
+        margin-right: 0px !important;
+    }
+}
+
 .col-12.col-lg-9 > .card > .card-body .form-group{
     margin-bottom: 15px !important;
+}
+
+.form-group .col-sm-3{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    max-width: 100% !important;
+    height: 38px;
+    flex: 0 0 25% !important;
+    display: flex !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 1318px){
+    .form-group .col-sm-3{
+        flex: 0 0 100% !important;
+    }
+}
+
+.form-group .text-left{
+    padding-right: 10px !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    font-family: "Overlock";
+    font-weight: 400 !important;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 1318px){
+    .form-group .text-left{
+        padding-right: 10px !important;
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        justify-content: flex-start !important;
+        font-family: "Overlock";
+        font-weight: 400 !important;
+        font-size: 20px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .form-group .text-left{
+        padding-right: 10px !important;
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        justify-content: flex-start !important;
+        font-family: "Overlock";
+        font-weight: 400 !important;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .form-group .text-left{
+        padding-right: 10px !important;
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        justify-content: flex-start !important;
+        font-family: "Overlock";
+        font-weight: 400 !important;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .form-group .text-left{
+        padding-right: 10px !important;
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        justify-content: flex-start !important;
+        font-family: "Overlock";
+        font-weight: 400 !important;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.form-group .col-sm-7{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    max-width: 100% !important;
+    flex: 0 0 75% !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 1318px){
+    .form-group .col-sm-7{
+        flex: 0 0 100% !important;
+    }
+}
+
+.form-group input[type = "text"]{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100% !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 400 !important;
+    font-size: 20px !important;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px;    
+    color: #154360 !important;
+}
+
+.form-group input[type = "text"]:focus{
+    border-bottom-width: 2px !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 1318px){
+    .form-group input[type = "text"]{
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        width: 100% !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 400 !important;
+        font-size: 20px !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px;    
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .form-group input[type = "text"]{
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        width: 100% !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 400 !important;
+        font-size: 18px !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px;    
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .form-group input[type = "text"]{
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        width: 100% !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 400 !important;
+        font-size: 16px !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px;    
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .form-group input[type = "text"]{
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        width: 100% !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 400 !important;
+        font-size: 14px !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px;    
+        color: #154360 !important;
+    }
+}
+
+.form-group .help-block{
+    width: 100% !important;
+    font-family: "Overlock";
+    font-weight: 400 !important;
+    font-size: 14px !important;
+    color: #698F3F !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 1318px){
+    .form-group .help-block{
+        width: 100% !important;
+        font-family: "Overlock";
+        font-weight: 400 !important;
+        font-size: 14px !important;
+        color: #698F3F !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .form-group .help-block{
+        width: 100% !important;
+        font-family: "Overlock";
+        font-weight: 400 !important;
+        font-size: 12px !important;
+        color: #698F3F !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .form-group .help-block{
+        width: 100% !important;
+        font-family: "Overlock";
+        font-weight: 400 !important;
+        font-size: 11px !important;
+        color: #698F3F !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .form-group .help-block{
+        width: 100% !important;
+        font-family: "Overlock";
+        font-weight: 400 !important;
+        font-size: 10px !important;
+        color: #698F3F !important;
+    }
+}
+
+.form-group .select2-container{
+    min-width: 100% !important;
+}
+
+.form-group .select2-container--default .select2-selection--single{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100% !important;
+    font-family: "Philosopher";
+    font-weight: 400;
+    font-size: 20px !important;
+    border: 1px solid #B2BEB5 !important;
+    border-radius: 5px !important;
+    color: #154360 !important;
+}
+
+.form-group .select2-container--default .select2-selection--single:focus{
+    border-bottom-width: 2px !important;
+}
+
+.select2-container--default.select2-container--open.select2-container--below .select2-selection--single{
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 1318px){
+    .form-group .select2-container--default .select2-selection--single{
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        width: 100% !important;
+        font-family: "Philosopher";
+        font-weight: 400;
+        font-size: 20px !important;
+        border: 1px solid #B2BEB5 !important;
+        border-radius: 5px !important;    
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .form-group .select2-container--default .select2-selection--single{
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        width: 100% !important;
+        font-family: "Philosopher";
+        font-weight: 400;
+        font-size: 18px !important;
+        border: 1px solid #B2BEB5 !important;
+        border-radius: 5px !important;    
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .form-group .select2-container--default .select2-selection--single{
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        width: 100% !important;
+        font-family: "Philosopher";
+        font-weight: 400;
+        font-size: 16px !important;
+        border: 1px solid #B2BEB5 !important;
+        border-radius: 5px !important;    
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .form-group .select2-container--default .select2-selection--single{
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        width: 100% !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 400;
+        font-size: 14px !important;
+        border: 1px solid #B2BEB5 !important;
+        border-radius: 5px !important;    
+        color: #154360 !important;
+    }
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow b{
+    border-color: #B2BEB5 transparent !important;
+}
+.form-group.field-usertype .select2-container .select2-selection--single .select2-selection__rendered{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.select2-dropdown{
+    position: static !important;
+}
+
+.select2-dropdown--above{
+    margin-top: 336px !important;
+}
+
+.select2-search--dropdown{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+}
+
+.select2-container--default .select2-search--dropdown .select2-search__field{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100% !important;
+    font-family: "Philosopher";
+    font-weight: 400;
+    font-size: 20px !important;
+    border: 1px solid #B2BEB5 !important;
+    border-radius: 5px !important;    
+    color: #154360 !important; 
+}
+
+.select2-container--default .select2-search--dropdown .select2-search__field:focus{
+    border-bottom-width: 2px !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 1318px){
+    .select2-container--default .select2-search--dropdown .select2-search__field{
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        width: 100% !important;
+        font-family: "Philosopher";
+        font-weight: 400;
+        font-size: 20px !important;
+        border: 1px solid #B2BEB5 !important;
+        border-radius: 5px !important;    
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .select2-container--default .select2-search--dropdown .select2-search__field{
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        width: 100% !important;
+        font-family: "Philosopher";
+        font-weight: 400;
+        font-size: 18px !important;
+        border: 1px solid #B2BEB5 !important;
+        border-radius: 5px !important;    
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .select2-container--default .select2-search--dropdown .select2-search__field{
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        width: 100% !important;
+        font-family: "Philosopher";
+        font-weight: 400;
+        font-size: 16px !important;
+        border: 1px solid #B2BEB5 !important;
+        border-radius: 5px !important;    
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .select2-container--default .select2-search--dropdown .select2-search__field{
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        width: 100% !important;
+        font-family: "Philosopher";
+        font-weight: 400;
+        font-size: 14px !important;
+        border: 1px solid #B2BEB5 !important;
+        border-radius: 5px !important;    
+        color: #154360 !important;
+    }
+}
+
+#select2-id_usertype-results li.select2-results__option{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100% !important;
+    outline: none !important;
+    font-family: "Overlock" !important;
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important; 
+}
+
+.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable{
+    background-color: #B2BEB5 !important;
+    color: #10354C !important;
+}
+
+.select2-container--default .select2-results__option--selected{
+    background-color: #B2BEB5 !important;
+    color: #10354C !important;
+}
+
+.form-group a.change-related{
+    display: none;
+}
+
+.form-group a.add-related{
+    display: none;
+}
+
+.form-group a.delete-related{
+    display: none;
+}
+
+.form-group a.view-related{
+    display: none;
+}
+
+input[type = "checkbox"]{
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    width: 28px;
+    height: 28px;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    outline: none !important;
+    background-color: #FFFFFF;
+    color: #B2BEB5;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px;
+    display: grid;
+    place-content: center;
+}
+
+input[type = "checkbox"]::before{
+    content: "";
+    width: 16px;
+    height: 16px;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    background-color: #698F3F;
+    border-radius: 5px;
+}
+
+input[type = "checkbox"]:checked::before{
+    transform: scale(1);
+}
+
+.datetime{
+    margin-top: -23px;
+    margin-bottom: 0px;
+    visibility: collapse;
+    font-size: 15px;
+}
+
+.datetime input{
+    visibility: visible;
+}
+
+.datetime span{
+    visibility: visible;
+    font-weight: 400 !important;
+    font-size: 18px !important;
+    color: #154360 !important;
+}
+
+.datetime span a{
+    margin-right: 5px;
+    width: 100% !important;
+    visibility: visible;
+    font-family: "Overlock";
+    font-weight: 400 !important;
+    font-size: 18px !important;
+    color: #154360 !important;
+}
+
+.datetime span .date-icon::before{
+    margin-left: 5px;
+    visibility: visible;
+    font-size: 18px !important;
+    color: #154360 !important;
+}
+
+.datetime span .clock-icon::before{
+    margin-left: 5px;
+    visibility: visible;
+    font-size: 18px !important;
+    color: #154360 !important;
+}
+
+.datetime .help{
+    width: 100% !important;
+    visibility: visible;
+    font-family: "Overlock";
+    font-weight: 400 !important;
+    font-size: 14px !important;
+    color: #698F3F !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 1318px){
+    .datetime .help{
+        width: 100% !important;
+        font-family: "Overlock";
+        font-weight: 400 !important;
+        font-size: 14px !important;
+        color: #698F3F !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .datetime .help{
+        width: 100% !important;
+        font-family: "Overlock";
+        font-weight: 400 !important;
+        font-size: 12px !important;
+        color: #698F3F !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .datetime .help{
+        width: 100% !important;
+        font-family: "Overlock";
+        font-weight: 400 !important;
+        font-size: 11px !important;
+        color: #698F3F !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .datetime .help{
+        width: 100% !important;
+        font-family: "Overlock";
+        font-weight: 400 !important;
+        font-size: 10px !important;
+        color: #698F3F !important;
+    }
+}
+
+span.select2.select2-container.select2-container--default{
+    width: 100% !important;
+}
+
+.select2-selection.select2-selection--multiple{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100% !important;
+    height: 100% !important;
+    font-family: "Philosopher";
+    font-weight: 400;
+    font-size: 20px !important;
+    border: 1px solid #B2BEB5 !important;
+    border-radius: 5px !important;    
+    color: #154360 !important;
+}
+
+.select2-selection.select2-selection--multiple:focus{
+    border-bottom-width: 2px !important;
+}
+
+.select2-container--default.select2-container--open.select2-container--below .select2-selection--multiple{
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 1318px){
+    .select2-selection.select2-selection--multiple{
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        width: 100% !important;
+        height: 100% !important;
+        font-family: "Philosopher";
+        font-weight: 400;
+        font-size: 20px !important;
+        border: 1px solid #B2BEB5 !important;
+        border-radius: 5px !important; 
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .select2-selection.select2-selection--multiple{
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        width: 100% !important;
+        height: 100% !important;
+        font-family: "Philosopher";
+        font-weight: 400;
+        font-size: 18px !important;
+        border: 1px solid #B2BEB5 !important;
+        border-radius: 5px !important;  
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .select2-selection.select2-selection--multiple{
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        width: 100% !important;
+        height: 28px !important;
+        font-family: "Philosopher";
+        font-weight: 400;
+        font-size: 16px !important;
+        border: 1px solid #B2BEB5 !important;
+        border-radius: 5px !important;    
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .select2-selection.select2-selection--multiple{
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        width: 100% !important;
+        height: 28px !important;
+        font-family: "Philosopher";
+        font-weight: 400;
+        font-size: 14px !important;
+        border: 1px solid #B2BEB5 !important;
+        border-radius: 5px !important;    
+        color: #154360 !important;
+    }
+}
+
+.select2-search__field{
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100% !important;
+    height: 100% !important;
+    font-family: "Philosopher";
+    font-weight: 400;
+    font-size: 20px !important;
+    border: 1px solid #B2BEB5 !important;
+    border-radius: 5px !important;    
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 1318px){
+    .select2-search__field{
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100% !important;
+        height: 100% !important;
+        font-family: "Philosopher";
+        font-weight: 400;
+        font-size: 20px !important;
+        border: 1px solid #B2BEB5 !important;
+        border-radius: 5px !important;    
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .select2-search__field{
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100% !important;
+        height: 100% !important;
+        font-family: "Philosopher";
+        font-weight: 400;
+        font-size: 18px !important;
+        border: 1px solid #B2BEB5 !important;
+        border-radius: 5px !important;    
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .select2-search__field{
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100% !important;
+        height: 100% !important;
+        font-family: "Philosopher";
+        font-weight: 400;
+        font-size: 16px !important;
+        border: 1px solid #B2BEB5 !important;
+        border-radius: 5px !important;    
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .select2-search__field{
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100% !important;
+        height: 100% !important;
+        font-family: "Philosopher";
+        font-weight: 400;
+        font-size: 14px !important;
+        border: 1px solid #B2BEB5 !important;
+        border-radius: 5px !important;    
+        color: #154360 !important;
+    }
+}
+
+.select2-container--default .select2-results > .select2-results__options{
+    max-width: 100%;
+    max-height: 87px !important;
+}
+
+#select2-id_groups-results li.select2-results__option{
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100% !important;
+    height: 100% !important;
+    font-family: "Overlock" !important;
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important; 
+}
+
+@media screen and (min-width: 446px) and (max-width: 1318px){
+    #select2-id_groups-results li.select2-results__option{
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100% !important;
+        height: 100% !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 20px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    #select2-id_groups-results li.select2-results__option{
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100% !important;
+        height: 100% !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    #select2-id_groups-results li.select2-results__option{
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100% !important;
+        height: 100% !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    #select2-id_groups-results li.select2-results__option{
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100% !important;
+        height: 100% !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+#select2-id_user_permissions-results li.select2-results__option{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100% !important;
+    font-family: "Overlock" !important;
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important; 
+}
+
+@media screen and (min-width: 446px) and (max-width: 1318px){
+    #select2-id_user_permissions-results li.select2-results__option{
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100% !important;
+        font-family: "Overlock" !important;
+        font-weight: 400;
+        font-size: 20px !important;
+        color: #154360 !important; 
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    #select2-id_user_permissions-results li.select2-results__option{
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100% !important;
+        font-family: "Overlock" !important;
+        font-weight: 400;
+        font-size: 20px !important;
+        color: #154360 !important; 
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    #select2-id_user_permissions-results li.select2-results__option{
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100% !important;
+        font-family: "Overlock" !important;
+        font-weight: 400;
+        font-size: 20px !important;
+        color: #154360 !important; 
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    #select2-id_user_permissions-results li.select2-results__option{
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100% !important;
+        font-family: "Overlock" !important;
+        font-weight: 400;
+        font-size: 20px !important;
+        color: #154360 !important; 
+    }
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice{
+    margin-left: 0px !important;
+    margin-right: 0px;
+    margin-top: 0px !important;
+    margin-bottom: 5px;
+    width: 100% !important;
+    border: 1px solid #B2BEB5; 
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px #B2BEB5;
+    background-color: #36454F !important;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__display{
+    padding-left: 20px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove{
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    height: 100% !important;
+    border: 1px solid #B2BEB5; 
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 400 !important;
+    font-size: 20px !important;
+    background-color: #36454F !important;
+    color: #FFFFFF !important;
+    pointer-events: auto !important;
+    cursor: pointer;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove:hover, .select2-container--default .select2-selection--multiple .select2-selection__choice__remove:focus{
+    outline: none !important;
+    background-color: #2B373F !important;
+    color: #B2BEB5 !important;
+}
+
+.col-12.col-lg-3 > #jazzy-actions{
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 100% !important;
+    border: 1px solid #B2BEB5; 
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px #B2BEB5;
+    background-color: #FFFFFF !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 991px){
+    .col-12.col-lg-3 > #jazzy-actions{
+        margin-top: 30px;
+    }
+}
+
+#jazzy-actions .form-group{
+    border-radius: 5px !important;
+    border: 1px solid #B2BEB5 !important; 
+}
+
+#jazzy-actions .form-group input[name = "_save"]{
+    height: 100% !important;
+    border: 1px solid #B2BEB5; 
+    outline: none !important;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    background-color: #698F3F !important;
+    color: #FFFFFF !important;
+    pointer-events: auto !important;
+    cursor: pointer;
+}
+    
+#jazzy-actions .form-group input[name = "_save"]:hover{
+        background-color: #557433;
+        color: #B2BEB5 !important;
+}
+    
+@media screen and (min-width: 369px) and (max-width: 445px){
+    #jazzy-actions .form-group input[name = "_save"]{
+        height: 100% !important;
+        border: 1px solid #B2BEB5; 
+        outline: none !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        background-color: #698F3F !important;
+        color: #FFFFFF !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    #jazzy-actions .form-group input[name = "_save"]{
+        height: 100% !important;
+        border: 1px solid #B2BEB5; 
+        outline: none !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        background-color: #698F3F !important;
+        color: #FFFFFF !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    #jazzy-actions .form-group input[name = "_save"]{
+        height: 100% !important;
+        border: 1px solid #B2BEB5; 
+        outline: none !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        background-color: #698F3F !important;
+        color: #FFFFFF !important;
+    }
+}
+
+#jazzy-actions .form-group a.btn-danger{
+    height: 100% !important;
+    border: 1px solid #B2BEB5; 
+    outline: none !important;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    background-color: #C90016 !important;
+    color: #FFFFFF !important;
+    pointer-events: auto !important;
+    cursor: pointer;
+}
+
+#jazzy-actions .form-group a.btn-danger:hover{
+    background-color: #A00011;
+    color: #B2BEB5 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    #jazzy-actions .form-group a.btn-danger{
+        height: 100% !important;
+        border: 1px solid #B2BEB5; 
+        outline: none !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        background-color: #C90016 !important;
+        color: #FFFFFF !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    #jazzy-actions .form-group a.btn-danger{
+        height: 100% !important;
+        border: 1px solid #B2BEB5; 
+        outline: none !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        background-color: #C90016 !important;
+        color: #FFFFFF !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    #jazzy-actions .form-group a.btn-danger{
+        height: 100% !important;
+        border: 1px solid #B2BEB5; 
+        outline: none !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        background-color: #C90016 !important;
+        color: #FFFFFF !important;
+    }
+}
+
+#jazzy-actions .form-group input[name = "_addanother"]{
+    height: 100% !important;
+    border: 1px solid #B2BEB5; 
+    outline: none !important;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    background-color: #154360 !important;
+    color: #FFFFFF !important;
+    pointer-events: auto !important;
+    cursor: pointer;
+}
+    
+#jazzy-actions .form-group input[name = "_addanother"]:hover{
+        background-color: #10354C;
+        color: #B2BEB5 !important;
+}
+    
+@media screen and (min-width: 369px) and (max-width: 445px){
+    #jazzy-actions .form-group input[name = "_addanother"]{
+        height: 100% !important;
+        border: 1px solid #B2BEB5; 
+        outline: none !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        background-color: #154360 !important;
+        color: #FFFFFF !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    #jazzy-actions .form-group input[name = "_addanother"]{
+        height: 100% !important;
+        border: 1px solid #B2BEB5; 
+        outline: none !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        background-color: #154360 !important;
+        color: #FFFFFF !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    #jazzy-actions .form-group input[name = "_addanother"]{
+        height: 100% !important;
+        border: 1px solid #B2BEB5; 
+        outline: none !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        background-color: #154360 !important;
+        color: #FFFFFF !important;
+    }
+}
+
+#jazzy-actions .form-group input[name = "_continue"]{
+    height: 100% !important;
+    border: 1px solid #B2BEB5; 
+    outline: none !important;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    background-color: #154360 !important;
+    color: #FFFFFF !important;
+    pointer-events: auto !important;
+    cursor: pointer;
+}
+    
+#jazzy-actions .form-group input[name = "_continue"]:hover{
+        background-color: #10354C;
+        color: #B2BEB5 !important;
+}
+    
+@media screen and (min-width: 369px) and (max-width: 445px){
+    #jazzy-actions .form-group input[name = "_continue"]{
+        height: 100% !important;
+        border: 1px solid #B2BEB5; 
+        outline: none !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        background-color: #154360 !important;
+        color: #FFFFFF !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    #jazzy-actions .form-group input[name = "_continue"]{
+        height: 100% !important;
+        border: 1px solid #B2BEB5; 
+        outline: none !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        background-color: #154360 !important;
+        color: #FFFFFF !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    #jazzy-actions .form-group input[name = "_continue"]{
+        height: 100% !important;
+        border: 1px solid #B2BEB5; 
+        outline: none !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        background-color: #154360 !important;
+        color: #FFFFFF !important;
+    }
+}
+
+#jazzy-actions .object-tools a.btn-secondary{
+    height: 100% !important;
+    border: 1px solid #B2BEB5; 
+    outline: none !important;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    background-color: #36454F;
+    color: #FFFFFF !important;
+    pointer-events: auto !important;
+    cursor: pointer;
+}
+    
+#jazzy-actions .object-tools a.btn-secondary:hover{
+        background-color: #2B373F !important;
+        color: #B2BEB5 !important;
+}
+    
+@media screen and (min-width: 369px) and (max-width: 445px){
+    #jazzy-actions .object-tools a.btn-secondary{
+        height: 100% !important;
+        border: 1px solid #B2BEB5; 
+        outline: none !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        background-color: #36454F !important;
+        color: #FFFFFF !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    #jazzy-actions .object-tools a.btn-secondary{
+        height: 100% !important;
+        border: 1px solid #B2BEB5; 
+        outline: none !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        background-color: #36454F !important;
+        color: #FFFFFF !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    #jazzy-actions .object-tools a.btn-secondary{
+        height: 100% !important;
+        border: 1px solid #B2BEB5; 
+        outline: none !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        background-color: #36454F !important;
+        color: #FFFFFF !important;
+    }
 }
 
 
@@ -723,6 +2048,7 @@ i.fas.fa-users{
     height: 750px;
     border: 1px solid #B2BEB5;
     border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
     z-index: 1;
 }
 
@@ -929,7 +2255,9 @@ i.fas.fa-users{
     margin-right: 30px;
     margin-bottom: 30px;
     border-radius: 5px;
-    border: 1px solid #B2BEB5; 
+    border: 1px solid #B2BEB5;
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px #B2BEB5; 
 }
 
 @media screen and (min-width: 320px) and (max-width: 991px){
@@ -1022,7 +2350,7 @@ i.fas.fa-users{
     overflow: hidden !important;
     text-overflow: ellipsis !important; 
     vertical-align: middle !important;
-    cursor: text !important;
+    cursor: text;
 }
 
 .col-md-6.col-sm-12 .card-body td a{
@@ -1066,6 +2394,7 @@ i.fas.fa-users{
 }
 
 .col-md-6.col-sm-12 .card-body a.btn-success{
+    height: 100% !important;
     border: 1px solid #B2BEB5; 
     outline: none !important;
     font-family: "Overlock";
@@ -1084,6 +2413,7 @@ i.fas.fa-users{
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .col-md-6.col-sm-12 .card-body a.btn-success{
+        height: 100% !important;
         border: 1px solid #B2BEB5; 
         outline: none !important;
         font-family: "Overlock";
@@ -1096,6 +2426,7 @@ i.fas.fa-users{
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .col-md-6.col-sm-12 .card-body a.btn-success{
+        height: 100% !important;
         border: 1px solid #B2BEB5; 
         outline: none !important;
         font-family: "Overlock";
@@ -1108,6 +2439,7 @@ i.fas.fa-users{
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .col-md-6.col-sm-12 .card-body a.btn-success{
+        height: 100% !important;
         border: 1px solid #B2BEB5; 
         outline: none !important;
         font-family: "Overlock";
@@ -1137,6 +2469,7 @@ i.fas.fa-users{
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .col-md-6.col-sm-12 .card-body a.btn-info{
+        height: 100% !important;
         border: 1px solid #B2BEB5; 
         outline: none !important;
         font-family: "Overlock";
@@ -1149,6 +2482,7 @@ i.fas.fa-users{
 
 @media screen and (min-width: 320px) and (max-width: 368px){
     .col-md-6.col-sm-12 .card-body a.btn-info{
+        height: 100% !important;
         border: 1px solid #B2BEB5; 
         outline: none !important;
         font-family: "Overlock";
@@ -1161,6 +2495,7 @@ i.fas.fa-users{
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .col-md-6.col-sm-12 .card-body a.btn-info{
+        height: 100% !important;
         border: 1px solid #B2BEB5; 
         outline: none !important;
         font-family: "Overlock";
@@ -1247,8 +2582,9 @@ i.fa.fa-clock{
 .timeline-item{
     margin-left: 55px !important;
     margin-right: 0px !important;
-    border-radius: 5px !important;
     border: 1px solid #B2BEB5 !important;
+    border-radius: 5px !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
 }
 
 .timeline > div > .timeline-item > .timeline-header{
