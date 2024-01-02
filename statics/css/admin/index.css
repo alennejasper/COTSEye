@@ -7,7 +7,7 @@
     padding: 0px;
     box-sizing: border-box;
     scrollbar-width: thin !important;
-    scrollbar-color: #154360 #698F3F !important;
+    scrollbar-color: #698F3F #154360 !important;
     transition: all 0.25s ease;
 }
 
@@ -17,15 +17,15 @@
 }
 
 ::-webkit-scrollbar-track{
-    background: #698F3F !important; 
+    background: #10354C !important; 
 }
 
 ::-webkit-scrollbar-thumb{
-    background: #154360 !important;
+    background: #698F3F !important;
 }
 
 ::-webkit-scrollbar-thumb:hover{
-    background: #10354C !important;
+    background: #557433 !important;
 }
 
 
@@ -80,8 +80,8 @@ i.far.fa-user{
 }
 
 .dropdown-menu{
-    border-radius: 5px;
     border: 1px solid #B2BEB5; 
+    border-radius: 5px;
 }
 
 .dropdown-menu-lg{
@@ -158,8 +158,8 @@ i.fas.fa-users{
 }
 
 .dropdown-item:hover{
-    background-color: #B2BEB5;
-    color: #154360;
+    background-color: #B2BEB5 !important;
+    color: #154360 !important;
 }
 
 .dropdown-item.active{
@@ -208,7 +208,7 @@ i.fas.fa-users{
 }
 
 .dropdown-footer:hover{
-    background-color: #10354C;
+    background-color: #10354C !important;
     color: #B2BEB5 !important;
 }
 
@@ -248,7 +248,6 @@ i.fas.fa-users{
 
 .col-12 > .card{
     margin-bottom: 0px !important;
-    border-radius: 5px;
     border: 1px solid #B2BEB5; 
     border-radius: 5px;
     box-shadow: 0 0 0 1px #B2BEB5 !important;
@@ -287,7 +286,7 @@ i.fas.fa-users{
     padding-right: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
-    margin-bottom: 15px !important;
+    margin-bottom: 15px;
     align-items: center;
 }
 
@@ -387,12 +386,14 @@ i.fas.fa-users{
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100% !important;
+    border: 1px solid #B2BEB5;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    border-radius: 5px; 
     outline: none !important;
     font-family: "Philosopher";
-    font-weight: 400;
+    font-weight: 700;
     font-size: 20px !important;
-    border: 1px solid #B2BEB5;
-    border-radius: 5px;    
+   
     color: #154360 !important;
 }
 
@@ -405,12 +406,13 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px;
+        box-shadow: 0 0 0 1px #B2BEB5 !important;  
         outline: none !important;
         font-family: "Philosopher";
-        font-weight: 400;
-        font-size: 20px !important;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px;    
+        font-weight: 700;
+        font-size: 20px !important;  
         color: #154360 !important;
     }
 }
@@ -420,12 +422,13 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px;  
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
         font-family: "Philosopher";
-        font-weight: 400;
-        font-size: 18px !important;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px;    
+        font-weight: 700;
+        font-size: 18px !important; 
         color: #154360 !important;
     }
 }
@@ -435,12 +438,13 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
         font-family: "Philosopher";
-        font-weight: 400;
-        font-size: 16px !important;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px;    
+        font-weight: 700;
+        font-size: 16px !important;   
         color: #154360 !important;
     }
 }
@@ -450,12 +454,13 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px;  
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
         font-family: "Philosopher";
-        font-weight: 400;
-        font-size: 14px !important;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px;    
+        font-weight: 700;
+        font-size: 14px !important;  
         color: #154360 !important;
     }
 }
@@ -470,9 +475,10 @@ i.fas.fa-users{
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100% !important;
-    outline: none !important;
     border: 1px solid #B2BEB5;
-    border-radius: 5px;     
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;    
     color: #154360 !important;
 }
 
@@ -485,12 +491,13 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px;
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
         font-family: "Philosopher";
-        font-weight: 400;
-        font-size: 20px !important;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px;    
+        font-weight: 700;
+        font-size: 20px !important;    
         color: #154360 !important;
     }
 }
@@ -500,12 +507,13 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px;
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
         font-family: "Philosopher";
-        font-weight: 400;
-        font-size: 18px !important;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px;    
+        font-weight: 700;
+        font-size: 18px !important;    
         color: #154360 !important;
     }
 }
@@ -515,12 +523,13 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px;
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
         font-family: "Philosopher";
-        font-weight: 400;
-        font-size: 16px !important;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px;    
+        font-weight: 700;
+        font-size: 16px !important;    
         color: #154360 !important;
     }
 }
@@ -530,12 +539,13 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px;
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
         font-family: "Philosopher";
-        font-weight: 400;
-        font-size: 14px !important;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px;    
+        font-weight: 700;
+        font-size: 14px !important;    
         color: #154360 !important;
     }
 }
@@ -550,12 +560,13 @@ i.fas.fa-users{
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100% !important;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px;   
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
     font-family: "Philosopher";
-    font-weight: 400;
-    font-size: 20px !important;
-    border: 1px solid #B2BEB5;
-    border-radius: 5px;     
+    font-weight: 700;
+    font-size: 20px !important;  
     color: #154360 !important;
 }
 
@@ -563,17 +574,18 @@ i.fas.fa-users{
     border-bottom-width: 2px !important;
 }
 
-@media screen and (min-width: 320px) and (max-width: 1083px){
+@media screen and (min-width: 446px) and (max-width: 1318px){
     .row.form-group .col-12.col-md-6 input[name = "new_password2"]{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px;
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
         font-family: "Philosopher";
-        font-weight: 400;
+        font-weight: 700;
         font-size: 20px !important;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px;    
         color: #154360 !important;
     }
 }
@@ -583,12 +595,13 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px;
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
         font-family: "Philosopher";
-        font-weight: 400;
-        font-size: 18px !important;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px;    
+        font-weight: 700;
+        font-size: 18px !important;    
         color: #154360 !important;
     }
 }
@@ -598,12 +611,13 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px;
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
         font-family: "Philosopher";
-        font-weight: 400;
+        font-weight: 700;
         font-size: 16px !important;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px;    
         color: #154360 !important;
     }
 }
@@ -613,12 +627,13 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px;
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
         font-family: "Philosopher";
-        font-weight: 400;
-        font-size: 14px !important;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px;    
+        font-weight: 700;
+        font-size: 14px !important;    
         color: #154360 !important;
     }
 }
@@ -661,13 +676,14 @@ i.fas.fa-users{
 }
 
 .row .submit-row.col-md-12.col-md-push-2 > input[type = "submit"]{
-    padding-left: 0.25rem !important;
-    padding-right: 0.25rem !important;
-    padding-top: 0.125rem !important;
-    padding-bottom: 0.125rem !important;
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
     height: 100% !important;
-    border-radius: 5px !important;
     border: 1px solid #B2BEB5; 
+    border-radius: 5px !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
     float: right;
     line-height: 1.5 !important;
@@ -682,6 +698,7 @@ i.fas.fa-users{
     .row .submit-row.col-md-12.col-md-push-2 > input[type = "submit"]{
         height: 100% !important;
         border: 1px solid #B2BEB5; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
         float: unset;      
         font-family: "Overlock";
@@ -696,6 +713,7 @@ i.fas.fa-users{
     .row .submit-row.col-md-12.col-md-push-2 > input[type = "submit"]{
         height: 100% !important;
         border: 1px solid #B2BEB5; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
         float: unset;      
         font-family: "Overlock";
@@ -710,6 +728,7 @@ i.fas.fa-users{
     .row .submit-row.col-md-12.col-md-push-2 > input[type = "submit"]{
         height: 100% !important;
         border: 1px solid #B2BEB5; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
         float: unset;      
         font-family: "Overlock";
@@ -721,18 +740,30 @@ i.fas.fa-users{
 }
 
 
+@media screen and (min-width: 320px) and (max-width: 1318px){
+    .col-12.col-lg-9{
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+    }
+}
+
 .col-12.col-lg-9 > .card{
     margin-right: 30px;
 }
 
-@media screen and (min-width: 320px) and (max-width: 991px){
+@media screen and (min-width: 320px) and (max-width: 1318px){
     .col-12.col-lg-9 > .card{
         margin-right: 0px !important;
+        width: 100% !important;
     }
 }
 
 .col-12.col-lg-9 > .card > .card-body .form-group{
-    margin-bottom: 15px !important;
+    margin-bottom: 15px;
+}
+
+.col-12.col-lg-9 > .card > .card-body .form-group:last-child{
+    margin-bottom: 0px;
 }
 
 .form-group .col-sm-3{
@@ -835,12 +866,13 @@ i.fas.fa-users{
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100% !important;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
     font-family: "Philosopher";
-    font-weight: 400 !important;
-    font-size: 20px !important;
-    border: 1px solid #B2BEB5;
-    border-radius: 5px;    
+    font-weight: 700 !important;
+    font-size: 20px !important;   
     color: #154360 !important;
 }
 
@@ -853,12 +885,13 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
         font-family: "Philosopher";
-        font-weight: 400 !important;
+        font-weight: 700 !important;
         font-size: 20px !important;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px;    
         color: #154360 !important;
     }
 }
@@ -868,12 +901,13 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
         font-family: "Philosopher";
-        font-weight: 400 !important;
-        font-size: 18px !important;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px;    
+        font-weight: 700 !important;
+        font-size: 18px !important;  
         color: #154360 !important;
     }
 }
@@ -883,12 +917,13 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
         font-family: "Philosopher";
-        font-weight: 400 !important;
-        font-size: 16px !important;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px;    
+        font-weight: 700 !important;
+        font-size: 16px !important;    
         color: #154360 !important;
     }
 }
@@ -898,12 +933,13 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
         font-family: "Philosopher";
-        font-weight: 400 !important;
-        font-size: 14px !important;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px;    
+        font-weight: 700 !important;
+        font-size: 14px !important;   
         color: #154360 !important;
     }
 }
@@ -968,11 +1004,13 @@ i.fas.fa-users{
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100% !important;
-    font-family: "Philosopher";
-    font-weight: 400;
-    font-size: 20px !important;
     border: 1px solid #B2BEB5 !important;
     border-radius: 5px !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700;
+    font-size: 20px !important;
     color: #154360 !important;
 }
 
@@ -985,16 +1023,26 @@ i.fas.fa-users{
     border-bottom-right-radius: 0 !important;
 }
 
+.select2-container, .select2-dropdown, .select2-search, .select2-results{
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -ms-transition: none !important;
+    -o-transition: none !important;
+    transition: none !important;
+}
+
 @media screen and (min-width: 446px) and (max-width: 1318px){
     .form-group .select2-container--default .select2-selection--single{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
-        font-family: "Philosopher";
-        font-weight: 400;
-        font-size: 20px !important;
         border: 1px solid #B2BEB5 !important;
-        border-radius: 5px !important;    
+        border-radius: 5px !important;
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 20px !important;  
         color: #154360 !important;
     }
 }
@@ -1004,11 +1052,13 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
-        font-family: "Philosopher";
-        font-weight: 400;
-        font-size: 18px !important;
         border: 1px solid #B2BEB5 !important;
-        border-radius: 5px !important;    
+        border-radius: 5px !important;
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 18px !important;   
         color: #154360 !important;
     }
 }
@@ -1018,11 +1068,13 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
-        font-family: "Philosopher";
-        font-weight: 400;
-        font-size: 16px !important;
         border: 1px solid #B2BEB5 !important;
-        border-radius: 5px !important;    
+        border-radius: 5px !important;
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 16px !important;    
         color: #154360 !important;
     }
 }
@@ -1032,12 +1084,13 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
+        border: 1px solid #B2BEB5 !important;
+        border-radius: 5px !important;
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
         font-family: "Philosopher";
-        font-weight: 400;
-        font-size: 14px !important;
-        border: 1px solid #B2BEB5 !important;
-        border-radius: 5px !important;    
+        font-weight: 700;
+        font-size: 14px !important;    
         color: #154360 !important;
     }
 }
@@ -1048,14 +1101,6 @@ i.fas.fa-users{
 .form-group.field-usertype .select2-container .select2-selection--single .select2-selection__rendered{
     padding-left: 0px !important;
     padding-right: 0px !important;
-}
-
-.select2-dropdown{
-    position: static !important;
-}
-
-.select2-dropdown--above{
-    margin-top: 336px !important;
 }
 
 .select2-search--dropdown{
@@ -1073,11 +1118,13 @@ i.fas.fa-users{
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100% !important;
-    font-family: "Philosopher";
-    font-weight: 400;
-    font-size: 20px !important;
     border: 1px solid #B2BEB5 !important;
-    border-radius: 5px !important;    
+    border-radius: 5px !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700;
+    font-size: 20px !important;    
     color: #154360 !important; 
 }
 
@@ -1090,11 +1137,13 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
-        font-family: "Philosopher";
-        font-weight: 400;
-        font-size: 20px !important;
         border: 1px solid #B2BEB5 !important;
-        border-radius: 5px !important;    
+        border-radius: 5px !important;
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 20px !important;  
         color: #154360 !important;
     }
 }
@@ -1104,11 +1153,13 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
-        font-family: "Philosopher";
-        font-weight: 400;
-        font-size: 18px !important;
         border: 1px solid #B2BEB5 !important;
-        border-radius: 5px !important;    
+        border-radius: 5px !important;
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 18px !important;  
         color: #154360 !important;
     }
 }
@@ -1118,11 +1169,13 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
-        font-family: "Philosopher";
-        font-weight: 400;
-        font-size: 16px !important;
         border: 1px solid #B2BEB5 !important;
-        border-radius: 5px !important;    
+        border-radius: 5px !important;
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 16px !important;   
         color: #154360 !important;
     }
 }
@@ -1132,28 +1185,15 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
-        font-family: "Philosopher";
-        font-weight: 400;
-        font-size: 14px !important;
         border: 1px solid #B2BEB5 !important;
-        border-radius: 5px !important;    
+        border-radius: 5px !important;
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 14px !important;
         color: #154360 !important;
     }
-}
-
-#select2-id_usertype-results li.select2-results__option{
-    margin-top: 0px !important;
-    margin-bottom: 0px !important;
-    padding-left: 20px !important;
-    padding-right: 20px !important;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
-    width: 100% !important;
-    outline: none !important;
-    font-family: "Overlock" !important;
-    font-weight: 400;
-    font-size: 20px !important;
-    color: #154360 !important; 
 }
 
 .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable{
@@ -1187,16 +1227,18 @@ input[type = "checkbox"]{
     margin-right: 0px;
     margin-top: 0px;
     margin-bottom: 0px;
-    width: 28px;
-    height: 28px;
+    width: 38px;
+    height: 38px;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
     -webkit-appearance: none !important;
     -moz-appearance: none !important;
     appearance: none !important;
     outline: none !important;
     background-color: #FFFFFF;
     color: #B2BEB5;
-    border: 1px solid #B2BEB5;
-    border-radius: 5px;
+    cursor: pointer !important;
     display: grid;
     place-content: center;
 }
@@ -1205,10 +1247,10 @@ input[type = "checkbox"]::before{
     content: "";
     width: 16px;
     height: 16px;
+    border-radius: 5px;
     transform: scale(0);
     transition: 120ms transform ease-in-out;
     background-color: #698F3F;
-    border-radius: 5px;
 }
 
 input[type = "checkbox"]:checked::before{
@@ -1216,10 +1258,10 @@ input[type = "checkbox"]:checked::before{
 }
 
 .datetime{
-    margin-top: -23px;
+    margin-top: -27px;
     margin-bottom: 0px;
     visibility: collapse;
-    font-size: 15px;
+    font-size: 18px;
 }
 
 .datetime input{
@@ -1244,14 +1286,14 @@ input[type = "checkbox"]:checked::before{
 }
 
 .datetime span .date-icon::before{
-    margin-left: 5px;
+    margin-left: 5px !important;
     visibility: visible;
     font-size: 18px !important;
     color: #154360 !important;
 }
 
 .datetime span .clock-icon::before{
-    margin-left: 5px;
+    margin-left: 5px !important;
     visibility: visible;
     font-size: 18px !important;
     color: #154360 !important;
@@ -1318,12 +1360,14 @@ span.select2.select2-container.select2-container--default{
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100% !important;
+    border: 1px solid #B2BEB5 !important;
+    border-radius: 5px !important;   
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important; 
     height: 100% !important;
     font-family: "Philosopher";
-    font-weight: 400;
+    font-weight: 700;
     font-size: 20px !important;
-    border: 1px solid #B2BEB5 !important;
-    border-radius: 5px !important;    
     color: #154360 !important;
 }
 
@@ -1342,11 +1386,13 @@ span.select2.select2-container.select2-container--default{
         margin-bottom: 0px !important;
         width: 100% !important;
         height: 100% !important;
-        font-family: "Philosopher";
-        font-weight: 400;
-        font-size: 20px !important;
         border: 1px solid #B2BEB5 !important;
-        border-radius: 5px !important; 
+        border-radius: 5px !important;    
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 20px !important;
         color: #154360 !important;
     }
 }
@@ -1357,11 +1403,13 @@ span.select2.select2-container.select2-container--default{
         margin-bottom: 0px !important;
         width: 100% !important;
         height: 100% !important;
-        font-family: "Philosopher";
-        font-weight: 400;
-        font-size: 18px !important;
         border: 1px solid #B2BEB5 !important;
-        border-radius: 5px !important;  
+        border-radius: 5px !important;    
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 18px !important;
         color: #154360 !important;
     }
 }
@@ -1372,11 +1420,13 @@ span.select2.select2-container.select2-container--default{
         margin-bottom: 0px !important;
         width: 100% !important;
         height: 28px !important;
-        font-family: "Philosopher";
-        font-weight: 400;
-        font-size: 16px !important;
         border: 1px solid #B2BEB5 !important;
         border-radius: 5px !important;    
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 16px !important;  
         color: #154360 !important;
     }
 }
@@ -1387,11 +1437,13 @@ span.select2.select2-container.select2-container--default{
         margin-bottom: 0px !important;
         width: 100% !important;
         height: 28px !important;
-        font-family: "Philosopher";
-        font-weight: 400;
-        font-size: 14px !important;
         border: 1px solid #B2BEB5 !important;
-        border-radius: 5px !important;    
+        border-radius: 5px !important;  
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;  
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 14px !important;
         color: #154360 !important;
     }
 }
@@ -1407,11 +1459,13 @@ span.select2.select2-container.select2-container--default{
     padding-bottom: 5px !important;
     width: 100% !important;
     height: 100% !important;
-    font-family: "Philosopher";
-    font-weight: 400;
-    font-size: 20px !important;
     border: 1px solid #B2BEB5 !important;
     border-radius: 5px !important;    
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700;
+    font-size: 20px !important;   
     color: #154360 !important;
 }
 
@@ -1427,11 +1481,13 @@ span.select2.select2-container.select2-container--default{
         padding-bottom: 5px !important;
         width: 100% !important;
         height: 100% !important;
-        font-family: "Philosopher";
-        font-weight: 400;
-        font-size: 20px !important;
         border: 1px solid #B2BEB5 !important;
         border-radius: 5px !important;    
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 20px !important;    
         color: #154360 !important;
     }
 }
@@ -1448,11 +1504,13 @@ span.select2.select2-container.select2-container--default{
         padding-bottom: 5px !important;
         width: 100% !important;
         height: 100% !important;
-        font-family: "Philosopher";
-        font-weight: 400;
-        font-size: 18px !important;
         border: 1px solid #B2BEB5 !important;
         border-radius: 5px !important;    
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 18px !important;    
         color: #154360 !important;
     }
 }
@@ -1469,11 +1527,13 @@ span.select2.select2-container.select2-container--default{
         padding-bottom: 5px !important;
         width: 100% !important;
         height: 100% !important;
-        font-family: "Philosopher";
-        font-weight: 400;
-        font-size: 16px !important;
         border: 1px solid #B2BEB5 !important;
         border-radius: 5px !important;    
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 16px !important;   
         color: #154360 !important;
     }
 }
@@ -1490,11 +1550,13 @@ span.select2.select2-container.select2-container--default{
         padding-bottom: 5px !important;
         width: 100% !important;
         height: 100% !important;
-        font-family: "Philosopher";
-        font-weight: 400;
-        font-size: 14px !important;
         border: 1px solid #B2BEB5 !important;
         border-radius: 5px !important;    
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 14px !important;
         color: #154360 !important;
     }
 }
@@ -1504,7 +1566,7 @@ span.select2.select2-container.select2-container--default{
     max-height: 87px !important;
 }
 
-#select2-id_groups-results li.select2-results__option{
+li.select2-results__option{
     margin-left: 0px !important;
     margin-right: 0px !important;
     margin-top: 0px !important;
@@ -1522,7 +1584,7 @@ span.select2.select2-container.select2-container--default{
 }
 
 @media screen and (min-width: 446px) and (max-width: 1318px){
-    #select2-id_groups-results li.select2-results__option{
+    li.select2-results__option{
         margin-left: 0px !important;
         margin-right: 0px !important;
         margin-top: 0px !important;
@@ -1541,7 +1603,7 @@ span.select2.select2-container.select2-container--default{
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    #select2-id_groups-results li.select2-results__option{
+    li.select2-results__option{
         margin-left: 0px !important;
         margin-right: 0px !important;
         margin-top: 0px !important;
@@ -1560,7 +1622,7 @@ span.select2.select2-container.select2-container--default{
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    #select2-id_groups-results li.select2-results__option{
+    li.select2-results__option{
         margin-left: 0px !important;
         margin-right: 0px !important;
         margin-top: 0px !important;
@@ -1579,7 +1641,7 @@ span.select2.select2-container.select2-container--default{
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    #select2-id_groups-results li.select2-results__option{
+    li.select2-results__option{
         margin-left: 0px !important;
         margin-right: 0px !important;
         margin-top: 0px !important;
@@ -1597,84 +1659,6 @@ span.select2.select2-container.select2-container--default{
     }
 }
 
-#select2-id_user_permissions-results li.select2-results__option{
-    margin-top: 0px !important;
-    margin-bottom: 0px !important;
-    padding-left: 20px !important;
-    padding-right: 20px !important;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
-    width: 100% !important;
-    font-family: "Overlock" !important;
-    font-weight: 400;
-    font-size: 20px !important;
-    color: #154360 !important; 
-}
-
-@media screen and (min-width: 446px) and (max-width: 1318px){
-    #select2-id_user_permissions-results li.select2-results__option{
-        margin-top: 0px !important;
-        margin-bottom: 0px !important;
-        padding-left: 20px !important;
-        padding-right: 20px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100% !important;
-        font-family: "Overlock" !important;
-        font-weight: 400;
-        font-size: 20px !important;
-        color: #154360 !important; 
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    #select2-id_user_permissions-results li.select2-results__option{
-        margin-top: 0px !important;
-        margin-bottom: 0px !important;
-        padding-left: 20px !important;
-        padding-right: 20px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100% !important;
-        font-family: "Overlock" !important;
-        font-weight: 400;
-        font-size: 20px !important;
-        color: #154360 !important; 
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    #select2-id_user_permissions-results li.select2-results__option{
-        margin-top: 0px !important;
-        margin-bottom: 0px !important;
-        padding-left: 20px !important;
-        padding-right: 20px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100% !important;
-        font-family: "Overlock" !important;
-        font-weight: 400;
-        font-size: 20px !important;
-        color: #154360 !important; 
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    #select2-id_user_permissions-results li.select2-results__option{
-        margin-top: 0px !important;
-        margin-bottom: 0px !important;
-        padding-left: 20px !important;
-        padding-right: 20px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100% !important;
-        font-family: "Overlock" !important;
-        font-weight: 400;
-        font-size: 20px !important;
-        color: #154360 !important; 
-    }
-}
-
 .select2-container--default .select2-selection--multiple .select2-selection__choice{
     margin-left: 0px !important;
     margin-right: 0px;
@@ -1684,7 +1668,7 @@ span.select2.select2-container.select2-container--default{
     border: 1px solid #B2BEB5; 
     border-radius: 5px;
     box-shadow: 0 0 0 1px #B2BEB5;
-    background-color: #36454F !important;
+    background-color: #154360 !important;
 }
 
 .select2-container--default .select2-selection--multiple .select2-selection__choice__display{
@@ -1705,17 +1689,24 @@ span.select2.select2-container.select2-container--default{
     border: 1px solid #B2BEB5; 
     outline: none !important;
     font-family: "Philosopher";
-    font-weight: 400 !important;
+    font-weight: 700 !important;
     font-size: 20px !important;
-    background-color: #36454F !important;
+    background-color: #154360 !important;
     color: #FFFFFF !important;
     pointer-events: auto !important;
     cursor: pointer;
 }
 .select2-container--default .select2-selection--multiple .select2-selection__choice__remove:hover, .select2-container--default .select2-selection--multiple .select2-selection__choice__remove:focus{
     outline: none !important;
-    background-color: #2B373F !important;
+    background-color: #10354C !important;
     color: #B2BEB5 !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 1318px){
+    .col-12.col-lg-3{
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+    }
 }
 
 .col-12.col-lg-3 > #jazzy-actions{
@@ -1730,18 +1721,166 @@ span.select2.select2-container.select2-container--default{
     background-color: #FFFFFF !important;
 }
 
-@media screen and (min-width: 320px) and (max-width: 991px){
+@media screen and (min-width: 320px) and (max-width: 1318px){
     .col-12.col-lg-3 > #jazzy-actions{
         margin-top: 30px;
+        width: 100% !important;
     }
 }
 
 #jazzy-actions .form-group{
-    border-radius: 5px !important;
-    border: 1px solid #B2BEB5 !important; 
+    margin-bottom: 0px !important;
+}
+
+#jazzy-actions div:first-child > .btn{
+    border-top-left-radius: 5px !important;
+    border-top-right-radius: 5px !important;
+}
+
+#jazzy-actions div:last-child > .btn{
+    border-bottom-left-radius: 5px !important;
+    border-bottom-right-radius: 5px !important;
+}
+
+.btn{
+    border-radius: 0 !important;
 }
 
 #jazzy-actions .form-group input[name = "_save"]{
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+    height: 100% !important;
+    border: 1px solid #B2BEB5; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    background-color: #698F3F !important;
+    color: #FFFFFF !important;
+    pointer-events: auto !important;
+    cursor: pointer;
+}
+    
+#jazzy-actions .form-group input[name = "_save"]:hover{
+        background-color: #557433 !important;
+        color: #B2BEB5 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    #jazzy-actions .form-group input[name = "_save"]{
+        height: 100% !important;
+        border: 1px solid #B2BEB5;
+        box-shadow: 0 0 0 1px #B2BEB5 !important; 
+        outline: none !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        background-color: #698F3F !important;
+        color: #FFFFFF !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    #jazzy-actions .form-group input[name = "_save"]{
+        height: 100% !important;
+        border: 1px solid #B2BEB5;
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        background-color: #698F3F !important;
+        color: #FFFFFF !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    #jazzy-actions .form-group input[name = "_save"]{
+        height: 100% !important;
+        border: 1px solid #B2BEB5; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        background-color: #698F3F !important;
+        color: #FFFFFF !important;
+    }
+}
+
+#jazzy-actions .form-group a.btn-danger{
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+    height: 100% !important;
+    border: 1px solid #B2BEB5; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    background-color: #C90016 !important;
+    color: #FFFFFF !important;
+    pointer-events: auto !important;
+    cursor: pointer;
+}
+
+#jazzy-actions .form-group a.btn-danger:hover{
+    background-color: #A00011 !important;
+    color: #B2BEB5 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    #jazzy-actions .form-group a.btn-danger{
+        height: 100% !important;
+        border: 1px solid #B2BEB5; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        background-color: #C90016 !important;
+        color: #FFFFFF !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    #jazzy-actions .form-group a.btn-danger{
+        height: 100% !important;
+        border: 1px solid #B2BEB5; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        background-color: #C90016 !important;
+        color: #FFFFFF !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    #jazzy-actions .form-group a.btn-danger{
+        height: 100% !important;
+        border: 1px solid #B2BEB5; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        background-color: #C90016 !important;
+        color: #FFFFFF !important;
+    }
+}
+
+#jazzy-actions .form-group input[name = "_addanother"]{
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
     height: 100% !important;
     border: 1px solid #B2BEB5; 
     outline: none !important;
@@ -1754,122 +1893,8 @@ span.select2.select2-container.select2-container--default{
     cursor: pointer;
 }
     
-#jazzy-actions .form-group input[name = "_save"]:hover{
-        background-color: #557433;
-        color: #B2BEB5 !important;
-}
-    
-@media screen and (min-width: 369px) and (max-width: 445px){
-    #jazzy-actions .form-group input[name = "_save"]{
-        height: 100% !important;
-        border: 1px solid #B2BEB5; 
-        outline: none !important;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 18px !important;
-        background-color: #698F3F !important;
-        color: #FFFFFF !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    #jazzy-actions .form-group input[name = "_save"]{
-        height: 100% !important;
-        border: 1px solid #B2BEB5; 
-        outline: none !important;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 16px !important;
-        background-color: #698F3F !important;
-        color: #FFFFFF !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    #jazzy-actions .form-group input[name = "_save"]{
-        height: 100% !important;
-        border: 1px solid #B2BEB5; 
-        outline: none !important;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 14px !important;
-        background-color: #698F3F !important;
-        color: #FFFFFF !important;
-    }
-}
-
-#jazzy-actions .form-group a.btn-danger{
-    height: 100% !important;
-    border: 1px solid #B2BEB5; 
-    outline: none !important;
-    font-family: "Overlock";
-    font-weight: 400;
-    font-size: 20px !important;
-    background-color: #C90016 !important;
-    color: #FFFFFF !important;
-    pointer-events: auto !important;
-    cursor: pointer;
-}
-
-#jazzy-actions .form-group a.btn-danger:hover{
-    background-color: #A00011;
-    color: #B2BEB5 !important;
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    #jazzy-actions .form-group a.btn-danger{
-        height: 100% !important;
-        border: 1px solid #B2BEB5; 
-        outline: none !important;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 18px !important;
-        background-color: #C90016 !important;
-        color: #FFFFFF !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    #jazzy-actions .form-group a.btn-danger{
-        height: 100% !important;
-        border: 1px solid #B2BEB5; 
-        outline: none !important;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 16px !important;
-        background-color: #C90016 !important;
-        color: #FFFFFF !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    #jazzy-actions .form-group a.btn-danger{
-        height: 100% !important;
-        border: 1px solid #B2BEB5; 
-        outline: none !important;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 14px !important;
-        background-color: #C90016 !important;
-        color: #FFFFFF !important;
-    }
-}
-
-#jazzy-actions .form-group input[name = "_addanother"]{
-    height: 100% !important;
-    border: 1px solid #B2BEB5; 
-    outline: none !important;
-    font-family: "Overlock";
-    font-weight: 400;
-    font-size: 20px !important;
-    background-color: #154360 !important;
-    color: #FFFFFF !important;
-    pointer-events: auto !important;
-    cursor: pointer;
-}
-    
 #jazzy-actions .form-group input[name = "_addanother"]:hover{
-        background-color: #10354C;
+        background-color: #557433 !important;
         color: #B2BEB5 !important;
 }
     
@@ -1877,11 +1902,12 @@ span.select2.select2-container.select2-container--default{
     #jazzy-actions .form-group input[name = "_addanother"]{
         height: 100% !important;
         border: 1px solid #B2BEB5; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
         font-family: "Overlock";
         font-weight: 400;
         font-size: 18px !important;
-        background-color: #154360 !important;
+        background-color: #698F3F !important;
         color: #FFFFFF !important;
     }
 }
@@ -1890,11 +1916,12 @@ span.select2.select2-container.select2-container--default{
     #jazzy-actions .form-group input[name = "_addanother"]{
         height: 100% !important;
         border: 1px solid #B2BEB5; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
         font-family: "Overlock";
         font-weight: 400;
         font-size: 16px !important;
-        background-color: #154360 !important;
+        background-color: #698F3F !important;
         color: #FFFFFF !important;
     }
 }
@@ -1903,18 +1930,24 @@ span.select2.select2-container.select2-container--default{
     #jazzy-actions .form-group input[name = "_addanother"]{
         height: 100% !important;
         border: 1px solid #B2BEB5; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
         font-family: "Overlock";
         font-weight: 400;
         font-size: 14px !important;
-        background-color: #154360 !important;
+        background-color: #698F3F !important;
         color: #FFFFFF !important;
     }
 }
 
 #jazzy-actions .form-group input[name = "_continue"]{
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
     height: 100% !important;
     border: 1px solid #B2BEB5; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
     font-family: "Overlock";
     font-weight: 400;
@@ -1926,7 +1959,7 @@ span.select2.select2-container.select2-container--default{
 }
     
 #jazzy-actions .form-group input[name = "_continue"]:hover{
-        background-color: #10354C;
+        background-color: #10354C !important;
         color: #B2BEB5 !important;
 }
     
@@ -1934,6 +1967,7 @@ span.select2.select2-container.select2-container--default{
     #jazzy-actions .form-group input[name = "_continue"]{
         height: 100% !important;
         border: 1px solid #B2BEB5; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
         font-family: "Overlock";
         font-weight: 400;
@@ -1947,6 +1981,7 @@ span.select2.select2-container.select2-container--default{
     #jazzy-actions .form-group input[name = "_continue"]{
         height: 100% !important;
         border: 1px solid #B2BEB5; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
         font-family: "Overlock";
         font-weight: 400;
@@ -1960,6 +1995,7 @@ span.select2.select2-container.select2-container--default{
     #jazzy-actions .form-group input[name = "_continue"]{
         height: 100% !important;
         border: 1px solid #B2BEB5; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
         font-family: "Overlock";
         font-weight: 400;
@@ -1969,61 +2005,8 @@ span.select2.select2-container.select2-container--default{
     }
 }
 
-#jazzy-actions .object-tools a.btn-secondary{
-    height: 100% !important;
-    border: 1px solid #B2BEB5; 
-    outline: none !important;
-    font-family: "Overlock";
-    font-weight: 400;
-    font-size: 20px !important;
-    background-color: #36454F;
-    color: #FFFFFF !important;
-    pointer-events: auto !important;
-    cursor: pointer;
-}
-    
-#jazzy-actions .object-tools a.btn-secondary:hover{
-        background-color: #2B373F !important;
-        color: #B2BEB5 !important;
-}
-    
-@media screen and (min-width: 369px) and (max-width: 445px){
-    #jazzy-actions .object-tools a.btn-secondary{
-        height: 100% !important;
-        border: 1px solid #B2BEB5; 
-        outline: none !important;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 18px !important;
-        background-color: #36454F !important;
-        color: #FFFFFF !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    #jazzy-actions .object-tools a.btn-secondary{
-        height: 100% !important;
-        border: 1px solid #B2BEB5; 
-        outline: none !important;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 16px !important;
-        background-color: #36454F !important;
-        color: #FFFFFF !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    #jazzy-actions .object-tools a.btn-secondary{
-        height: 100% !important;
-        border: 1px solid #B2BEB5; 
-        outline: none !important;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 14px !important;
-        background-color: #36454F !important;
-        color: #FFFFFF !important;
-    }
+#jazzy-actions .object-tools{
+    display: none;
 }
 
 
@@ -2071,27 +2054,27 @@ span.select2.select2-container.select2-container--default{
 }
 
 .leaflet-control-zoom{
-    border-radius: 5px;
     border: 1px solid #B2BEB5 !important;
+    border-radius: 5px;
 }
 
 .leaflet-control-zoom a.leaflet-control-zoom-in{
     border-bottom: 1px solid #B2BEB5 !important;
-    background-color: #154360 !important;
-    color: #FFFFFF !important;
     -webkit-user-select: none;
     -ms-user-select: none; 
     user-select: none; 
+    background-color: #154360 !important;
+    color: #FFFFFF !important;
     text-decoration: none !important;
 }
 
 .leaflet-control-zoom a.leaflet-control-zoom-in:hover{
     border-bottom: 1px solid #B2BEB5 !important;
-    background-color: #10354C !important;
-    color: #B2BEB5 !important;
     -webkit-user-select: none;
     -ms-user-select: none; 
     user-select: none; 
+    background-color: #10354C !important;
+    color: #B2BEB5 !important;
     text-decoration: none !important;
 }
 
@@ -2105,21 +2088,21 @@ span.select2.select2-container.select2-container--default{
 
 .leaflet-control-zoom a.leaflet-control-zoom-out{
     border-top: none !important;
-    background-color: #698F3F !important;
-    color: #FFFFFF !important;
     -webkit-user-select: none;
     -ms-user-select: none; 
     user-select: none; 
+    background-color: #698F3F !important;
+    color: #FFFFFF !important;
     text-decoration: none !important;
 }
 
 .leaflet-control-zoom a.leaflet-control-zoom-out:hover{
     border-top: none !important;
-    background-color: #557433 !important;
-    color: #FFFFFF !important;
     -webkit-user-select: none;
     -ms-user-select: none; 
     user-select: none; 
+    background-color: #557433 !important;
+    color: #FFFFFF !important;
     text-decoration: none !important;
 }
 
@@ -2254,7 +2237,6 @@ span.select2.select2-container.select2-container--default{
 .col-md-6.col-sm-12 .card{
     margin-right: 30px;
     margin-bottom: 30px;
-    border-radius: 5px;
     border: 1px solid #B2BEB5;
     border-radius: 5px;
     box-shadow: 0 0 0 1px #B2BEB5; 
@@ -2388,14 +2370,11 @@ span.select2.select2-container.select2-container--default{
     }
 }
 
-.col-md-6.col-sm-12 .btn-group{
-    border-radius: 5px !important;
-    border: 1px solid #B2BEB5 !important; 
-}
-
 .col-md-6.col-sm-12 .card-body a.btn-success{
     height: 100% !important;
     border: 1px solid #B2BEB5; 
+    border-top-left-radius: 5px !important;
+    border-bottom-left-radius: 5px !important;    
     outline: none !important;
     font-family: "Overlock";
     font-weight: 400;
@@ -2407,7 +2386,7 @@ span.select2.select2-container.select2-container--default{
 }
 
 .col-md-6.col-sm-12 .card-body a.btn-success:hover{
-    background-color: #557433;
+    background-color: #557433 !important;
     color: #B2BEB5 !important;
 }
 
@@ -2415,6 +2394,8 @@ span.select2.select2-container.select2-container--default{
     .col-md-6.col-sm-12 .card-body a.btn-success{
         height: 100% !important;
         border: 1px solid #B2BEB5; 
+        border-top-left-radius: 5px !important;
+        border-bottom-left-radius: 5px !important;  
         outline: none !important;
         font-family: "Overlock";
         font-weight: 400;
@@ -2428,6 +2409,8 @@ span.select2.select2-container.select2-container--default{
     .col-md-6.col-sm-12 .card-body a.btn-success{
         height: 100% !important;
         border: 1px solid #B2BEB5; 
+        border-top-left-radius: 5px !important;
+        border-bottom-left-radius: 5px !important;  
         outline: none !important;
         font-family: "Overlock";
         font-weight: 400;
@@ -2441,6 +2424,8 @@ span.select2.select2-container.select2-container--default{
     .col-md-6.col-sm-12 .card-body a.btn-success{
         height: 100% !important;
         border: 1px solid #B2BEB5; 
+        border-top-left-radius: 5px !important;
+        border-bottom-left-radius: 5px !important;  
         outline: none !important;
         font-family: "Overlock";
         font-weight: 400;
@@ -2452,6 +2437,8 @@ span.select2.select2-container.select2-container--default{
 
 .col-md-6.col-sm-12 .card-body a.btn-info{
     border: 1px solid #B2BEB5; 
+    border-top-right-radius: 5px !important;
+    border-bottom-right-radius: 5px !important;
     outline: none !important;
     font-family: "Overlock";
     font-weight: 400;
@@ -2471,6 +2458,8 @@ span.select2.select2-container.select2-container--default{
     .col-md-6.col-sm-12 .card-body a.btn-info{
         height: 100% !important;
         border: 1px solid #B2BEB5; 
+        border-top-right-radius: 5px !important;
+        border-bottom-right-radius: 5px !important;
         outline: none !important;
         font-family: "Overlock";
         font-weight: 400;
@@ -2480,10 +2469,12 @@ span.select2.select2-container.select2-container--default{
     }
 }
 
-@media screen and (min-width: 320px) and (max-width: 368px){
+@media screen and (min-width: 348px) and (max-width: 368px){
     .col-md-6.col-sm-12 .card-body a.btn-info{
         height: 100% !important;
         border: 1px solid #B2BEB5; 
+        border-top-right-radius: 5px !important;
+        border-bottom-right-radius: 5px !important;
         outline: none !important;
         font-family: "Overlock";
         font-weight: 400;
@@ -2497,6 +2488,8 @@ span.select2.select2-container.select2-container--default{
     .col-md-6.col-sm-12 .card-body a.btn-info{
         height: 100% !important;
         border: 1px solid #B2BEB5; 
+        border-top-right-radius: 5px !important;
+        border-bottom-right-radius: 5px !important;
         outline: none !important;
         font-family: "Overlock";
         font-weight: 400;
@@ -2598,10 +2591,10 @@ i.fa.fa-clock{
     font-size: 20px;
     background-color: #698F3F;
     color: #FFFFFF !important;
+    text-align: center !important;
     white-space: nowrap !important; 
     overflow: hidden !important;
     text-overflow: ellipsis !important; 
-    text-align: center !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
@@ -2616,10 +2609,10 @@ i.fa.fa-clock{
         font-size: 18px;
         background-color: #698F3F;
         color: #FFFFFF !important;
+        text-align: center !important;
         white-space: nowrap !important; 
         overflow: hidden !important;
         text-overflow: ellipsis !important; 
-        text-align: center !important;
     }
 }
 
@@ -2635,10 +2628,10 @@ i.fa.fa-clock{
         font-size: 16px;
         background-color: #698F3F;
         color: #FFFFFF !important;
+        text-align: center !important;
         white-space: nowrap !important; 
         overflow: hidden !important;
         text-overflow: ellipsis !important; 
-        text-align: center !important;
     }
 }
 
@@ -2654,10 +2647,10 @@ i.fa.fa-clock{
         font-size: 14px;
         background-color: #698F3F;
         color: #FFFFFF !important;
+        text-align: center !important;
         white-space: nowrap !important; 
         overflow: hidden !important;
         text-overflow: ellipsis !important; 
-        text-align: center !important;
     }
 }
 
@@ -2710,10 +2703,10 @@ i.fas.fa-clock::before{
     font-size: 18px;
     background-color: #154360;
     color: #FFFFFF;
+    text-align: center !important;
     white-space: nowrap !important; 
     overflow: hidden !important;
     text-overflow: ellipsis !important; 
-    text-align: center;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
@@ -2728,10 +2721,10 @@ i.fas.fa-clock::before{
         font-size: 16px;
         background-color: #154360;
         color: #FFFFFF;
+        text-align: center !important;
         white-space: nowrap !important; 
         overflow: hidden !important;
         text-overflow: ellipsis !important; 
-        text-align: center;
     }
 }
 
@@ -2747,10 +2740,10 @@ i.fas.fa-clock::before{
         font-size: 14px;
         background-color: #154360;
         color: #FFFFFF;
+        text-align: center !important;
         white-space: nowrap !important; 
         overflow: hidden !important;
         text-overflow: ellipsis !important; 
-        text-align: center;
     }
 }
 
@@ -2766,10 +2759,10 @@ i.fas.fa-clock::before{
         font-size: 12px;
         background-color: #154360;
         color: #FFFFFF;
+        text-align: center !important;
         white-space: nowrap !important; 
         overflow: hidden !important;
         text-overflow: ellipsis !important; 
-        text-align: center;
     }
 }
 
@@ -2783,10 +2776,10 @@ i.fas.fa-clock::before{
     font-size: 20px !important;
     background-color: #FFFFFF;
     color: #154360 !important;
+    text-align: center !important;
     white-space: nowrap !important; 
     overflow: hidden !important;
     text-overflow: ellipsis !important; 
-    text-align: center;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
@@ -2800,10 +2793,10 @@ i.fas.fa-clock::before{
         font-size: 18px !important;
         background-color: #FFFFFF;
         color: #154360 !important;
+        text-align: center !important;
         white-space: nowrap !important; 
         overflow: hidden !important;
         text-overflow: ellipsis !important; 
-        text-align: center;
     }
 }
 
@@ -2818,10 +2811,10 @@ i.fas.fa-clock::before{
         font-size: 16px !important;
         background-color: #FFFFFF;
         color: #154360 !important;
+        text-align: center !important;
         white-space: nowrap !important; 
         overflow: hidden !important;
         text-overflow: ellipsis !important; 
-        text-align: center;
     }
 }
 
@@ -2836,10 +2829,10 @@ i.fas.fa-clock::before{
         font-size: 14px !important;
         background-color: #FFFFFF;
         color: #154360 !important;
+        text-align: center !important;
         white-space: nowrap !important; 
         overflow: hidden !important;
         text-overflow: ellipsis !important; 
-        text-align: center;
     }
 }
 
@@ -2857,7 +2850,7 @@ i.fas.fa-clock::before{
     font-family: "Overlock";
     font-weight: 400 !important;
     font-size: 22px;
-    background-color: #698F3F;
+    background-color: #154360;
     color: #FFFFFF;
 }
 
@@ -2870,7 +2863,7 @@ i.fas.fa-clock::before{
         font-family: "Overlock";
         font-weight: 400 !important;
         font-size: 20px;
-        background-color: #698F3F;
+        background-color: #154360;
         color: #FFFFFF;
         text-align: center;
     }
@@ -2885,7 +2878,7 @@ i.fas.fa-clock::before{
         font-family: "Overlock";
         font-weight: 400 !important;
         font-size: 16px;
-        background-color: #698F3F;
+        background-color: #154360;
         color: #FFFFFF;
         text-align: center;
     }
@@ -2900,7 +2893,7 @@ i.fas.fa-clock::before{
         font-family: "Overlock";
         font-weight: 400 !important;
         font-size: 14px;
-        background-color: #698F3F;
+        background-color: #154360;
         color: #FFFFFF;
         text-align: center;
     }
@@ -2915,7 +2908,7 @@ i.fas.fa-clock::before{
         font-family: "Overlock";
         font-weight: 400 !important;
         font-size: 12px;
-        background-color: #698F3F;
+        background-color: #154360;
         color: #FFFFFF;
         text-align: center;
     }
@@ -2985,5 +2978,689 @@ i.fas.fa-clock::before{
     .main-footer strong::after{
         content: "\a";
         white-space: pre;
+    }
+}
+
+
+.form-group input[type = "email"]{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100% !important;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.form-group input[type = "email"]:focus{
+    border-bottom-width: 2px !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 1318px){
+    .form-group input[type = "email"]{
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        width: 100% !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 20px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .form-group input[type = "email"]{
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        width: 100% !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;  
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .form-group input[type = "email"]{
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        width: 100% !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 400 !important;
+        font-size: 16px !important;    
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .form-group input[type = "email"]{
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        width: 100% !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.form-group input[type = "file"]{
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100% !important;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+    pointer-events: none;
+}
+
+.form-group input[type = "file"]:focus{
+    border-bottom-width: 2px !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 1318px){
+    .form-group input[type = "file"]{
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        width: 100% !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 20px !important;
+        color: #154360 !important;
+        pointer-events: none;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .form-group input[type = "file"]{
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        width: 100% !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;  
+        color: #154360 !important;
+        pointer-events: none;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .form-group input[type = "file"]{
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        width: 100% !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 400 !important;
+        font-size: 16px !important;    
+        color: #154360 !important;
+        pointer-events: none;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .form-group input[type = "file"]{
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        width: 100% !important;
+        border: 1px solid #B2BEB5;
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        border-radius: 5px; 
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+        pointer-events: none;
+    }
+}
+
+.form-group input[type = "file"]::-webkit-file-upload-button{
+    display: none;
+}
+
+.form-group input[type = "file"]::before{
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+    margin-right: 10px;
+    border: 1px solid #B2BEB5 !important;
+    border-radius: 5px !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    -webkit-user-select: none;
+    -ms-user-select: none; 
+    user-select: none;
+    outline: none;
+    content: "Choose file";
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    background-color: #698F3F;
+    color: #FFFFFF !important;
+    pointer-events: auto !important;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.form-group input[type = "file"]:hover::before{
+    background-color: #557433 !important;
+    color: #B2BEB5 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .form-group input[type = "file"]::before{
+        padding-left: 4px !important;
+        padding-right: 4px !important;
+        padding-top: 2px !important;
+        padding-bottom: 2px !important;
+        margin-right: 10px;
+        border: 1px solid #B2BEB5 !important;
+        border-radius: 5px !important;
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        -webkit-user-select: none;
+        -ms-user-select: none; 
+        user-select: none;
+        outline: none;
+        content: "Choose file";
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        background-color: #698F3F;
+        color: #FFFFFF !important;
+        pointer-events: auto !important;
+        cursor: pointer;
+        display: inline-block;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .form-group input[type = "file"]::before{
+        padding-left: 4px !important;
+        padding-right: 4px !important;
+        padding-top: 2px !important;
+        padding-bottom: 2px !important;
+        margin-right: 10px;
+        border: 1px solid #B2BEB5 !important;
+        border-radius: 5px !important;
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        -webkit-user-select: none;
+        -ms-user-select: none; 
+        user-select: none;
+        outline: none;
+        content: "Choose file";
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        background-color: #698F3F;
+        color: #FFFFFF !important;
+        pointer-events: auto !important;
+        cursor: pointer;
+        display: inline-block;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .form-group input[type = "file"]::before{
+        padding-left: 4px !important;
+        padding-right: 4px !important;
+        padding-top: 2px !important;
+        padding-bottom: 2px !important;
+        margin-right: 10px;
+        border: 1px solid #B2BEB5 !important;
+        border-radius: 5px !important;
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        -webkit-user-select: none;
+        -ms-user-select: none; 
+        user-select: none;
+        outline: none;
+        content: "Choose file";
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        background-color: #698F3F;
+        color: #FFFFFF !important;
+        cursor: pointer;
+        display: inline-block;
+    }
+}
+
+p.file-upload{
+    margin-top: -12px !important;
+    margin-bottom: 0px !important;
+    visibility: collapse;
+    font-size: 8px;
+    cursor: text !important;
+}
+
+p.file-upload input{
+    visibility: visible;
+}
+
+p.file-upload label{
+    margin-bottom: 15px !important;
+    width: 100% !important;
+    visibility: hidden;
+    font-family: "Overlock";
+    font-weight: 400 !important;
+    font-style: italic;
+    font-size: 14px !important;
+    color: #698F3F !important;
+}
+
+p.file-upload label::before{
+    content: "Designates whether the profile photo should be cleared out or not.";
+    visibility: visible;
+}
+
+@media screen and (min-width: 446px) and (max-width: 1318px){
+    p.file-upload label{
+        margin-bottom: 15px !important;
+        width: 100% !important;
+        visibility: visible;
+        font-family: "Overlock";
+        font-weight: 400 !important;
+        font-style: italic;
+        font-size: 14px !important;
+        color: #698F3F !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    p.file-upload label{
+        margin-bottom: 15px !important;
+        width: 100% !important;
+        visibility: visible;
+        font-family: "Overlock";
+        font-weight: 400 !important;
+        font-style: italic;
+        font-size: 12px !important;
+        color: #698F3F !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    p.file-upload label{
+        margin-bottom: 15px !important;
+        width: 100% !important;
+        visibility: visible;
+        font-family: "Overlock";
+        font-weight: 400 !important;
+        font-style: italic;
+        font-size: 11px !important;
+        color: #698F3F !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    p.file-upload label{
+        margin-bottom: 15px !important;
+        width: 100% !important;
+        visibility: visible;
+        font-family: "Overlock";
+        font-weight: 400 !important;
+        font-style: italic;
+        font-size: 10px !important;
+        color: #698F3F !important;
+    }
+}
+
+p.file-upload .help-block{
+    visibility: visible;
+}
+
+textarea.vLargeTextField{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100% !important;
+    resize: none !important;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+    text-align: justify !important;
+    white-space: normal;
+}
+
+textarea.vLargeTextField:focus{
+    border-bottom-width: 2px !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 1318px){
+    textarea.vLargeTextField{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100% !important;
+        resize: none !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 20px !important;   
+        color: #154360 !important;
+        text-align: justify !important;
+        white-space: normal;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    textarea.vLargeTextField{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100% !important;
+        resize: none !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+        text-align: justify !important;
+        white-space: normal;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    textarea.vLargeTextField{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100% !important;
+        resize: none !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+        text-align: justify !important;
+        white-space: normal;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    textarea.vLargeTextField{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100% !important;
+        resize: none !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+        text-align: justify !important;
+        white-space: normal;
+    }
+}
+
+.form-group input[type = "number"]{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100% !important;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    -moz-appearance: textfield;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.form-group input[type = "number"]:focus{
+    border-bottom-width: 2px !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 1318px){
+    .form-group input[type = "number"]{
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        width: 100% !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        -moz-appearance: textfield;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 20px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .form-group input[type = "number"]{
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        width: 100% !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        -moz-appearance: textfield;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;  
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .form-group input[type = "number"]{
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        width: 100% !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px;
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        -moz-appearance: textfield;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 400 !important;
+        font-size: 16px !important;    
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .form-group input[type = "number"]{
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        width: 100% !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        -moz-appearance: textfield;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+textarea{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100% !important;
+    resize: none !important;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+    text-align: justify !important;
+    white-space: normal;
+}
+
+textarea:focus{
+    border-bottom-width: 2px !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 1318px){
+    textarea{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100% !important;
+        resize: none !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 20px !important;   
+        color: #154360 !important;
+        text-align: justify !important;
+        white-space: normal;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    textarea{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100% !important;
+        resize: none !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+        text-align: justify !important;
+        white-space: normal;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    textarea{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100% !important;
+        resize: none !important;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+        text-align: justify !important;
+        white-space: normal;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    textarea{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100% !important;
+        resize: none !important;
+        border: 1px solid #B2BEB5;
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        border-radius: 5px; 
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+        text-align: justify !important;
+        white-space: normal;
     }
 }
