@@ -14,6 +14,7 @@
 
 ::-webkit-scrollbar{
     width: 5px !important;
+    height: 5px !important;
 }
 
 ::-webkit-scrollbar-track{
@@ -82,6 +83,7 @@ i.far.fa-user{
 .dropdown-menu{
     border: 1px solid #B2BEB5; 
     border-radius: 5px;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
 }
 
 .dropdown-menu-lg{
@@ -91,6 +93,7 @@ i.far.fa-user{
 .dropdown-divider{
     border-radius: 5px;
     border: 1px solid #B2BEB5; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
 }
 
 .dropdown-header{
@@ -262,6 +265,10 @@ i.fas.fa-users{
     background-color: #154360;
 }
 
+.card-title{
+    width: 100%;
+}
+
 .card-title p{
     margin-bottom: 0px !important;
     font-family: "Philosopher" !important;
@@ -269,8 +276,40 @@ i.fas.fa-users{
     font-size: 22px !important;
     color: #FFFFFF !important;
     white-space: nowrap !important; 
-    overflow: hidden !important;
-    text-overflow: ellipsis !important; 
+    overflow: auto !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .card-title p{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 20px !important;
+        color: #FFFFFF;
+        white-space: nowrap !important; 
+        overflow: auto !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .card-title p{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 18px !important;
+        color: #FFFFFF;
+        white-space: nowrap !important; 
+        overflow: auto !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .card-title p{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 16px !important;
+        color: #FFFFFF;
+        white-space: nowrap !important; 
+        overflow: auto !important;
+    }
 }
 
 .col-12 > .card > .card-body{
@@ -1262,7 +1301,7 @@ input[type = "checkbox"]:checked::before{
     margin-top: -27px;
     margin-bottom: 0px;
     visibility: collapse;
-    font-size: 18px;
+    font-size: 15px;
 }
 
 .datetime input{
@@ -1276,8 +1315,44 @@ input[type = "checkbox"]:checked::before{
 .datetime span{
     visibility: visible;
     font-weight: 400 !important;
-    font-size: 18px !important;
+    font-size: 20px !important;
     color: #154360 !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 1318px){
+    .datetime span{
+        visibility: visible;
+        font-weight: 400 !important;
+        font-size: 20px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .datetime span{
+        visibility: visible;
+        font-weight: 400 !important;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .datetime span{
+        visibility: visible;
+        font-weight: 400 !important;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .datetime span{
+        visibility: visible;
+        font-weight: 400 !important;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
 }
 
 .datetime span a{
@@ -1286,22 +1361,142 @@ input[type = "checkbox"]:checked::before{
     visibility: visible;
     font-family: "Overlock";
     font-weight: 400 !important;
-    font-size: 18px !important;
+    font-size: 20px !important;
     color: #154360 !important;
+}
+
+.datetime span a:hover{
+    color: #10354C !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 1318px){
+    .datetime span a{
+        visibility: visible;
+        font-weight: 400 !important;
+        font-size: 20px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .datetime span a{
+        visibility: visible;
+        font-weight: 400 !important;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .datetime span a{
+        visibility: visible;
+        font-weight: 400 !important;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .datetime span a{
+        visibility: visible;
+        font-weight: 400 !important;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
 }
 
 .datetime span .date-icon::before{
     margin-left: 5px !important;
     visibility: visible;
-    font-size: 18px !important;
+    font-size: 20px !important;
     color: #154360 !important;
+}
+
+.datetime span .date-icon::before:hover{
+    color: #10354C !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 1318px){
+    .datetime span .date-icon::before{
+        margin-left: 5px !important;
+        visibility: visible;
+        font-size: 20px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .datetime span .date-icon::before{
+        margin-left: 5px !important;
+        visibility: visible;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .datetime span .date-icon::before{
+        margin-left: 5px !important;
+        visibility: visible;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .datetime span .date-icon::before{
+        margin-left: 5px !important;
+        visibility: visible;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
 }
 
 .datetime span .clock-icon::before{
     margin-left: 5px !important;
     visibility: visible;
-    font-size: 18px !important;
+    font-size: 20px !important;
     color: #154360 !important;
+}
+
+.datetime span .clock-icon::before:hover{
+    color: #10354C !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 1318px){
+    .datetime span .clock-icon::before{
+        margin-left: 5px !important;
+        visibility: visible;
+        font-size: 20px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .datetime span .clock-icon::before{
+        margin-left: 5px !important;
+        visibility: visible;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .datetime span .clock-icon::before{
+        margin-left: 5px !important;
+        visibility: visible;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .datetime span .clock-icon::before{
+        margin-left: 5px !important;
+        visibility: visible;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
 }
 
 .datetime .help{
@@ -1884,6 +2079,7 @@ li.select2-results__option{
     padding-bottom: 2px !important;
     height: 100% !important;
     border: 1px solid #B2BEB5; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
     font-family: "Overlock";
     font-weight: 400;
@@ -2036,11 +2232,12 @@ li.select2-results__option{
     z-index: 1;
 }
 
-@media screen and (min-width: 320px) and (max-width: 991px){
+@media screen and (min-width: 320px) and (max-width: 767px){
     #admin-map{
         height: 500px;
         border: 1px solid #B2BEB5;
         border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
         z-index: 1;
     }
 }
@@ -2050,6 +2247,7 @@ li.select2-results__option{
         height: 250px;
         border: 1px solid #B2BEB5;
         border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
         z-index: 1;
     }
 }
@@ -2057,10 +2255,12 @@ li.select2-results__option{
 .leaflet-control-zoom{
     border: 1px solid #B2BEB5 !important;
     border-radius: 5px;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
 }
 
 .leaflet-control-zoom a.leaflet-control-zoom-in{
     border-bottom: 1px solid #B2BEB5 !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
     -webkit-user-select: none;
     -ms-user-select: none; 
     user-select: none; 
@@ -2071,6 +2271,7 @@ li.select2-results__option{
 
 .leaflet-control-zoom a.leaflet-control-zoom-in:hover{
     border-bottom: 1px solid #B2BEB5 !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
     -webkit-user-select: none;
     -ms-user-select: none; 
     user-select: none; 
@@ -2081,6 +2282,7 @@ li.select2-results__option{
 
 .leaflet-control-zoom a.leaflet-control-zoom-in.leaflet-disabled{
     border-bottom: 1px solid #B2BEB5 !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
     background-color: #10354C !important;
     color: #B2BEB5 !important;
     cursor: default !important;
@@ -2089,6 +2291,7 @@ li.select2-results__option{
 
 .leaflet-control-zoom a.leaflet-control-zoom-out{
     border-top: none !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
     -webkit-user-select: none;
     -ms-user-select: none; 
     user-select: none; 
@@ -2099,6 +2302,7 @@ li.select2-results__option{
 
 .leaflet-control-zoom a.leaflet-control-zoom-out:hover{
     border-top: none !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
     -webkit-user-select: none;
     -ms-user-select: none; 
     user-select: none; 
@@ -2109,6 +2313,7 @@ li.select2-results__option{
 
 .leaflet-control-zoom a.leaflet-control-zoom-out.leaflet-disabled{
     border-top: none !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
     background-color: #557433 !important;
     color: #B2BEB5 !important;
     cursor: default !important;
@@ -2243,7 +2448,7 @@ li.select2-results__option{
     box-shadow: 0 0 0 1px #B2BEB5; 
 }
 
-@media screen and (min-width: 320px) and (max-width: 991px){
+@media screen and (min-width: 320px) and (max-width: 1318px){
     .col-md-6.col-sm-12:nth-child(2) .card{
         margin-right: 0px;
         margin-bottom: 30px;
@@ -2272,8 +2477,7 @@ li.select2-results__option{
     font-size: 22px !important;
     color: #FFFFFF;
     white-space: nowrap !important; 
-    overflow: hidden !important;
-    text-overflow: ellipsis !important; 
+    overflow: auto !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
@@ -2283,8 +2487,7 @@ li.select2-results__option{
         font-size: 20px !important;
         color: #FFFFFF;
         white-space: nowrap !important; 
-        overflow: hidden !important;
-        text-overflow: ellipsis !important; 
+        overflow: auto !important;
     }
 }
 
@@ -2295,8 +2498,7 @@ li.select2-results__option{
         font-size: 18px !important;
         color: #FFFFFF;
         white-space: nowrap !important; 
-        overflow: hidden !important;
-        text-overflow: ellipsis !important; 
+        overflow: auto !important;
     }
 }
 
@@ -2307,8 +2509,7 @@ li.select2-results__option{
         font-size: 16px !important;
         color: #FFFFFF;
         white-space: nowrap !important; 
-        overflow: hidden !important;
-        text-overflow: ellipsis !important; 
+        overflow: auto !important;
     }
 }
 
@@ -2321,7 +2522,10 @@ li.select2-results__option{
 }
 
 .col-md-6.col-sm-12 .card-body > .table{
+    width: 100%;
     table-layout: fixed !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
 }
 
 .col-md-6.col-sm-12 .card-body td{
@@ -2330,8 +2534,7 @@ li.select2-results__option{
     padding-top: 5px;
     padding-bottom: 5px;
     white-space: nowrap !important; 
-    overflow: hidden !important;
-    text-overflow: ellipsis !important; 
+    overflow: auto !important;
     vertical-align: middle !important;
     cursor: text;
 }
@@ -2376,6 +2579,7 @@ li.select2-results__option{
     border: 1px solid #B2BEB5; 
     border-top-left-radius: 5px !important;
     border-bottom-left-radius: 5px !important;    
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
     font-family: "Overlock";
     font-weight: 400;
@@ -2397,6 +2601,7 @@ li.select2-results__option{
         border: 1px solid #B2BEB5; 
         border-top-left-radius: 5px !important;
         border-bottom-left-radius: 5px !important;  
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
         font-family: "Overlock";
         font-weight: 400;
@@ -2412,6 +2617,7 @@ li.select2-results__option{
         border: 1px solid #B2BEB5; 
         border-top-left-radius: 5px !important;
         border-bottom-left-radius: 5px !important;  
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
         font-family: "Overlock";
         font-weight: 400;
@@ -2427,6 +2633,7 @@ li.select2-results__option{
         border: 1px solid #B2BEB5; 
         border-top-left-radius: 5px !important;
         border-bottom-left-radius: 5px !important;  
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
         font-family: "Overlock";
         font-weight: 400;
@@ -2440,6 +2647,7 @@ li.select2-results__option{
     border: 1px solid #B2BEB5; 
     border-top-right-radius: 5px !important;
     border-bottom-right-radius: 5px !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
     font-family: "Overlock";
     font-weight: 400;
@@ -2461,6 +2669,7 @@ li.select2-results__option{
         border: 1px solid #B2BEB5; 
         border-top-right-radius: 5px !important;
         border-bottom-right-radius: 5px !important;
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
         font-family: "Overlock";
         font-weight: 400;
@@ -2476,6 +2685,7 @@ li.select2-results__option{
         border: 1px solid #B2BEB5; 
         border-top-right-radius: 5px !important;
         border-bottom-right-radius: 5px !important;
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
         font-family: "Overlock";
         font-weight: 400;
@@ -2491,6 +2701,7 @@ li.select2-results__option{
         border: 1px solid #B2BEB5; 
         border-top-right-radius: 5px !important;
         border-bottom-right-radius: 5px !important;
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
         font-family: "Overlock";
         font-weight: 400;
@@ -2596,13 +2807,12 @@ i.fa.fa-clock{
     width: 100%;
     font-family: "Philosopher";
     font-weight: 700;
-    font-size: 20px;
+    font-size: 16px;
     background-color: #698F3F;
     color: #FFFFFF !important;
     text-align: center !important;
     white-space: nowrap !important; 
-    overflow: hidden !important;
-    text-overflow: ellipsis !important; 
+    overflow: auto !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
@@ -2614,13 +2824,12 @@ i.fa.fa-clock{
         width: 100%;
         font-family: "Philosopher";
         font-weight: 700;
-        font-size: 18px;
+        font-size: 14px;
         background-color: #698F3F;
         color: #FFFFFF !important;
         text-align: center !important;
         white-space: nowrap !important; 
-        overflow: hidden !important;
-        text-overflow: ellipsis !important; 
+        overflow: auto !important;
     }
 }
 
@@ -2633,13 +2842,12 @@ i.fa.fa-clock{
         width: 100%;
         font-family: "Philosopher";
         font-weight: 700;
-        font-size: 16px;
+        font-size: 12px;
         background-color: #698F3F;
         color: #FFFFFF !important;
         text-align: center !important;
         white-space: nowrap !important; 
-        overflow: hidden !important;
-        text-overflow: ellipsis !important; 
+        overflow: auto !important;
     }
 }
 
@@ -2652,20 +2860,19 @@ i.fa.fa-clock{
         width: 100%;
         font-family: "Philosopher";
         font-weight: 700;
-        font-size: 14px;
+        font-size: 10px;
         background-color: #698F3F;
         color: #FFFFFF !important;
         text-align: center !important;
         white-space: nowrap !important; 
-        overflow: hidden !important;
-        text-overflow: ellipsis !important; 
+        overflow: auto !important;
     }
 }
 
 .timeline > div > .timeline-item > .timeline-header > a{
     font-family: "Philosopher";
     font-weight: 700;
-    font-size: 20px;
+    font-size: 16px;
     color: #FFFFFF !important;
 }
 
@@ -2673,7 +2880,7 @@ i.fa.fa-clock{
     .timeline > div > .timeline-item > .timeline-header > a{
         font-family: "Philosopher";
         font-weight: 700;
-        font-size: 18px;
+        font-size: 14px;
         color: #FFFFFF !important;
     }
 }
@@ -2682,7 +2889,7 @@ i.fa.fa-clock{
     .timeline > div > .timeline-item > .timeline-header > a{
         font-family: "Philosopher";
         font-weight: 700;
-        font-size: 16px;
+        font-size: 12px;
         color: #FFFFFF !important;
     }
 }
@@ -2691,7 +2898,7 @@ i.fa.fa-clock{
     .timeline > div > .timeline-item > .timeline-header > a{
         font-family: "Philosopher";
         font-weight: 700;
-        font-size: 14px;
+        font-size: 10px;
         color: #FFFFFF !important;
     }
 }
@@ -2708,35 +2915,15 @@ i.fas.fa-clock::before{
     width: 100%;
     font-family: "Overlock";
     font-weight: 400 !important;
-    font-size: 18px;
+    font-size: 16px;
     background-color: #154360;
     color: #FFFFFF;
     text-align: center !important;
     white-space: nowrap !important; 
-    overflow: hidden !important;
-    text-overflow: ellipsis !important; 
+    overflow: auto !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .timeline > div > .timeline-item > .time{
-        padding-left: 30px !important;
-        padding-right: 30px !important;
-        padding-top: 15px !important;
-        padding-bottom: 15px !important;
-        width: 100%;
-        font-family: "Overlock";
-        font-weight: 400 !important;
-        font-size: 16px;
-        background-color: #154360;
-        color: #FFFFFF;
-        text-align: center !important;
-        white-space: nowrap !important; 
-        overflow: hidden !important;
-        text-overflow: ellipsis !important; 
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 368px){
     .timeline > div > .timeline-item > .time{
         padding-left: 30px !important;
         padding-right: 30px !important;
@@ -2750,12 +2937,11 @@ i.fas.fa-clock::before{
         color: #FFFFFF;
         text-align: center !important;
         white-space: nowrap !important; 
-        overflow: hidden !important;
-        text-overflow: ellipsis !important; 
+        overflow: auto !important;
     }
 }
 
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 368px){
     .timeline > div > .timeline-item > .time{
         padding-left: 30px !important;
         padding-right: 30px !important;
@@ -2769,8 +2955,25 @@ i.fas.fa-clock::before{
         color: #FFFFFF;
         text-align: center !important;
         white-space: nowrap !important; 
-        overflow: hidden !important;
-        text-overflow: ellipsis !important; 
+        overflow: auto !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .timeline > div > .timeline-item > .time{
+        padding-left: 30px !important;
+        padding-right: 30px !important;
+        padding-top: 15px !important;
+        padding-bottom: 15px !important;
+        width: 100%;
+        font-family: "Overlock";
+        font-weight: 400 !important;
+        font-size: 10px;
+        background-color: #154360;
+        color: #FFFFFF;
+        text-align: center !important;
+        white-space: nowrap !important; 
+        overflow: auto !important;
     }
 }
 
@@ -2781,52 +2984,15 @@ i.fas.fa-clock::before{
     padding-bottom: 15px !important;
     font-family: "Overlock";
     font-weight: 400;
-    font-size: 20px !important;
+    font-size: 16px !important;
     background-color: #FFFFFF;
     color: #154360 !important;
     text-align: center !important;
     white-space: nowrap !important; 
-    overflow: hidden !important;
-    text-overflow: ellipsis !important; 
+    overflow: auto !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .timeline-body{
-        padding-left: 30px !important;
-        padding-right: 30px !important;
-        padding-top: 15px !important;
-        padding-bottom: 15px !important;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 18px !important;
-        background-color: #FFFFFF;
-        color: #154360 !important;
-        text-align: center !important;
-        white-space: nowrap !important; 
-        overflow: hidden !important;
-        text-overflow: ellipsis !important; 
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 368px){
-    .timeline-body{
-        padding-left: 30px !important;
-        padding-right: 30px !important;
-        padding-top: 15px !important;
-        padding-bottom: 15px !important;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 16px !important;
-        background-color: #FFFFFF;
-        color: #154360 !important;
-        text-align: center !important;
-        white-space: nowrap !important; 
-        overflow: hidden !important;
-        text-overflow: ellipsis !important; 
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
     .timeline-body{
         padding-left: 30px !important;
         padding-right: 30px !important;
@@ -2839,15 +3005,47 @@ i.fas.fa-clock::before{
         color: #154360 !important;
         text-align: center !important;
         white-space: nowrap !important; 
-        overflow: hidden !important;
-        text-overflow: ellipsis !important; 
+        overflow: auto !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 368px){
+    .timeline-body{
+        padding-left: 30px !important;
+        padding-right: 30px !important;
+        padding-top: 15px !important;
+        padding-bottom: 15px !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 12px !important;
+        background-color: #FFFFFF;
+        color: #154360 !important;
+        text-align: center !important;
+        white-space: nowrap !important; 
+        overflow: auto !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .timeline-body{
+        padding-left: 30px !important;
+        padding-right: 30px !important;
+        padding-top: 15px !important;
+        padding-bottom: 15px !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 10px !important;
+        background-color: #FFFFFF;
+        color: #154360 !important;
+        text-align: center !important;
+        white-space: nowrap !important; 
+        overflow: auto !important;
     }
 }
 
 .timeline-body li{
     white-space: nowrap !important; 
-    overflow: hidden !important;
-    text-overflow: ellipsis !important; 
+    overflow: auto !important;
 }
 
 .main-footer{
@@ -2862,7 +3060,7 @@ i.fas.fa-clock::before{
     color: #FFFFFF;
 }
 
-@media screen and (min-width: 445px) and (max-width: 991px){
+@media screen and (min-width: 446px) and (max-width: 991px){
     .main-footer{
         padding-left: 30px;
         padding-right: 30px;
@@ -2929,8 +3127,32 @@ i.fas.fa-clock::before{
     color: #FFFFFF;
 }
 
-@media screen and (min-width: 445px) and (max-width: 991px){
-    .main-footer b, .main-footer strong{
+@media screen and (min-width: 446px) and (max-width: 991px){
+    .main-footer .float-right{
+        display: none !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .main-footer .float-right{
+        display: none;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .main-footer .float-right{
+        display: none;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .main-footer .float-right{
+        display: none;
+    }
+}
+
+@media screen and (min-width: 446px) and (max-width: 991px){
+    .main-footer strong{
         font-family: "Philosopher";
         font-weight: 700;
         font-size: 22px;
@@ -2939,7 +3161,7 @@ i.fas.fa-clock::before{
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .main-footer b, .main-footer strong{
+    .main-footer strong{
         font-family: "Philosopher";
         font-weight: 700;
         font-size: 18px;
@@ -2948,20 +3170,30 @@ i.fas.fa-clock::before{
     }
 }
 
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .main-footer strong::after{
-        content: "\a";
-        white-space: pre;
-    }
-}
-
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .main-footer b, .main-footer strong{
+    .main-footer strong{
         font-family: "Philosopher";
         font-weight: 700;
         font-size: 16px;
         color: #FFFFFF;
         text-align: center;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .main-footer strong{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 14px;
+        color: #FFFFFF;
+        text-align: center;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 991px){
+    .main-footer strong::after{
+        content: "\a";
+        white-space: pre;
     }
 }
 
@@ -2973,12 +3205,9 @@ i.fas.fa-clock::before{
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .main-footer b, .main-footer strong{
-        font-family: "Philosopher";
-        font-weight: 700;
-        font-size: 14px;
-        color: #FFFFFF;
-        text-align: center;
+    .main-footer strong::after{
+        content: "\a";
+        white-space: pre;
     }
 }
 
@@ -3787,7 +4016,7 @@ table#result_list tr th:nth-child(2){
     width: fit-content !important;
     font-family: "Philosopher";
     font-weight: 700;
-    font-size: 20px !important;
+    font-size: 22px !important;
     color: #FFFFFF !important;
     display: flex !important;
 }
@@ -3801,7 +4030,7 @@ table#result_list tr th:nth-child(2){
         width: fit-content !important;
         font-family: "Philosopher" !important;
         font-weight: 700;
-        font-size: 20px !important;
+        font-size: 22px !important;
         color: #FFFFFF !important;
         display: flex !important;
     }
@@ -3815,7 +4044,7 @@ table#result_list tr th:nth-child(2){
         outline: none !important;
         font-family: "Philosopher";
         font-weight: 700;
-        font-size: 18px !important; 
+        font-size: 20px !important; 
         color: #FFFFFF !important;
         display: flex !important;
     }
@@ -3830,7 +4059,7 @@ table#result_list tr th:nth-child(2){
         width: fit-content !important;
         font-family: "Philosopher";
         font-weight: 700;
-        font-size: 20px !important;
+        font-size: 18px !important;
         color: #FFFFFF !important;
         display: flex !important;
     }
@@ -3845,7 +4074,7 @@ table#result_list tr th:nth-child(2){
         width: fit-content !important;
         font-family: "Philosopher";
         font-weight: 700;
-        font-size: 20px !important;
+        font-size: 16px !important;
         color: #FFFFFF !important;
         display: flex !important;
     }
@@ -3945,7 +4174,7 @@ table#result_list th a{
         font-weight: 400;
         font-size: 14px !important;
         display: flex !important;
-        color: #154360 !important;    
+        color: #154360 !important;   
     }
 }
 
@@ -3968,7 +4197,7 @@ table#result_list tr th.sorting_asc a{
     width: fit-content !important;
     font-family: "Philosopher";
     font-weight: 700;
-    font-size: 20px !important;
+    font-size: 22px !important;
     color: #FFFFFF !important;
     display: flex !important;
 }
@@ -3982,7 +4211,7 @@ table#result_list tr th.sorting_asc a{
         width: fit-content !important;
         font-family: "Philosopher" !important;
         font-weight: 700;
-        font-size: 20px !important;
+        font-size: 22px !important;
         color: #FFFFFF !important;
         display: flex !important;
     }
@@ -3996,7 +4225,7 @@ table#result_list tr th.sorting_asc a{
         outline: none !important;
         font-family: "Philosopher";
         font-weight: 700;
-        font-size: 18px !important; 
+        font-size: 20px !important; 
         color: #FFFFFF !important;
         display: flex !important;
     }
@@ -4011,7 +4240,7 @@ table#result_list tr th.sorting_asc a{
         width: fit-content !important;
         font-family: "Philosopher";
         font-weight: 700;
-        font-size: 20px !important;
+        font-size: 18px !important;
         color: #FFFFFF !important;
         display: flex !important;
     }
@@ -4026,7 +4255,7 @@ table#result_list tr th.sorting_asc a{
         width: fit-content !important;
         font-family: "Philosopher";
         font-weight: 700;
-        font-size: 20px !important;
+        font-size: 16px !important;
         color: #FFFFFF !important;
         display: flex !important;
     }
@@ -4055,7 +4284,7 @@ table#result_list tr th.sorting a{
     width: fit-content !important;
     font-family: "Philosopher";
     font-weight: 700;
-    font-size: 20px !important;
+    font-size: 22px !important;
     color: #FFFFFF !important;
     display: flex !important;
 }
@@ -4069,7 +4298,7 @@ table#result_list tr th.sorting a{
         width: fit-content !important;
         font-family: "Philosopher" !important;
         font-weight: 700;
-        font-size: 20px !important;
+        font-size: 22px !important;
         color: #FFFFFF !important;
         display: flex !important;
     }
@@ -4083,7 +4312,7 @@ table#result_list tr th.sorting a{
         outline: none !important;
         font-family: "Philosopher";
         font-weight: 700;
-        font-size: 18px !important; 
+        font-size: 20px !important; 
         color: #FFFFFF !important;
         display: flex !important;
     }
@@ -4098,7 +4327,7 @@ table#result_list tr th.sorting a{
         width: fit-content !important;
         font-family: "Philosopher";
         font-weight: 700;
-        font-size: 20px !important;
+        font-size: 18px !important;
         color: #FFFFFF !important;
         display: flex !important;
     }
@@ -4113,8 +4342,617 @@ table#result_list tr th.sorting a{
         width: fit-content !important;
         font-family: "Philosopher";
         font-weight: 700;
-        font-size: 20px !important;
-        color: #FFFFFF !important;
+        font-size: 16px !important;
+        color: #FFFFFF !important; 
         display: flex !important;
+    }
+}
+
+.table-responsive{
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+}
+
+
+.col-12 .card-danger h4.card-title{
+    font-family: "Philosopher" !important;
+    font-weight: 700 !important; 
+    font-size: 22px !important;
+    color: #FFFFFF;
+    white-space: nowrap !important; 
+    overflow: auto !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .col-12 .card-danger h4.card-title{
+        font-family: "Philosopher" !important;
+        font-weight: 700 !important;
+        font-size: 20px !important;
+        color: #FFFFFF;
+        white-space: nowrap !important; 
+        overflow: auto !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .col-12 .card-danger h4.card-title{
+        font-family: "Philosopher" !important;
+        font-weight: 700 !important;
+        font-size: 18px !important;
+        color: #FFFFFF;
+        white-space: nowrap !important; 
+        overflow: auto !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .col-12 .card-danger h4.card-title{
+        font-family: "Philosopher" !important;
+        font-weight: 700 !important;
+        font-size: 16px !important;
+        color: #FFFFFF;
+        white-space: nowrap !important; 
+        overflow: auto !important;
+    }
+}
+
+
+.col-12 .card-danger .card-body p{
+    display: none;
+}
+
+.col-12 .card-danger .card-body .row{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-column-gap: 30px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px){
+    .col-12 .card-danger .card-body .row{
+        width: 100% !important;
+        display: grid;
+        grid-template-columns: 100%;
+        grid-row-gap: 15px;
+    }
+}
+
+.col-12 .card-danger .card-body .col-sm-9{
+    max-width: 100%;
+    border-radius: 5px;
+    border: 1px solid #B2BEB5; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px){
+    .col-12 .card-danger .card-body .col-sm-9{
+        padding-right: 0px !important;
+        flex: 0 0 100% !important;
+    }
+}
+
+.col-12 .card-danger .card-body .col-sm-9 h4{
+    margin-bottom: 0px !important;
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+    width: 100%;
+    font-family: "Overlock";
+    font-weight: 400 !important;
+    font-size: 20px;
+    background-color: #698F3F;
+    color: #FFFFFF;
+    white-space: nowrap !important; 
+    overflow: auto !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .col-12 .card-danger .card-body .col-sm-9 h4{
+        margin-bottom: 0px !important;
+        padding-left: 30px !important;
+        padding-right: 30px !important;
+        padding-top: 15px !important;
+        padding-bottom: 15px !important;
+        width: 100%;
+        font-family: "Overlock";
+        font-weight: 400 !important;
+        font-size: 18px;
+        background-color: #698F3F;
+        color: #FFFFFF;
+        white-space: nowrap !important; 
+        overflow: auto !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 368px){
+    .col-12 .card-danger .card-body .col-sm-9 h4{
+        margin-bottom: 0px !important;
+        padding-left: 30px !important;
+        padding-right: 30px !important;
+        padding-top: 15px !important;
+        padding-bottom: 15px !important;
+        width: 100%;
+        font-family: "Overlock";
+        font-weight: 400 !important;
+        font-size: 16px;
+        background-color: #698F3F;
+        color: #FFFFFF;
+        white-space: nowrap !important; 
+        overflow: auto !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .col-12 .card-danger .card-body .col-sm-9 h4{
+        margin-bottom: 0px !important;
+        padding-left: 30px !important;
+        padding-right: 30px !important;
+        padding-top: 15px !important;
+        padding-bottom: 15px !important;
+        width: 100%;
+        font-family: "Overlock";
+        font-weight: 400 !important;
+        font-size: 14px;
+        background-color: #698F3F;
+        color: #FFFFFF;
+        white-space: nowrap !important; 
+        overflow: auto !important;
+    }
+}
+
+.col-12 .card-danger .card-body .col-sm-9 ol{
+    margin-bottom: 0px !important;
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+}
+
+.col-12 .card-danger .card-body .col-sm-9 li{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    border-bottom: 1px solid #B2BEB5;
+    width: 100% !important;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 18px !important;
+    color: #154360 !important;
+    white-space: nowrap;
+    overflow-x: auto;
+    list-style-type: none;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .col-12 .card-danger .card-body .col-sm-9 li{
+        width: 100% !important;
+        border-bottom: 0px !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+        white-space: nowrap;
+        overflow-x: auto;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .col-12 .card-danger .card-body .col-sm-9 li{
+        width: 100% !important;
+        border-bottom: 0px !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+        white-space: nowrap;
+        overflow-x: auto;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .col-12 .card-danger .card-body .col-sm-9 li{
+        width: 100% !important;
+        border-bottom: 0px !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 12px !important;
+        color: #154360 !important;
+        white-space: nowrap;
+        overflow-x: auto;    
+    }
+}
+
+.col-12 .card-danger .card-body .col-sm-9 li a{
+    float: right;
+    font-family: "Philosopher" !important;
+    font-weight: 700 !important; 
+    font-size: 18px !important;
+    color: #154360 !important;
+}
+
+.col-12 .card-danger .card-body .col-sm-9 li a:hover{
+    color: #10354C !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .col-12 .card-danger .card-body .col-sm-9 li a{
+        display: block;        
+        float: unset;        
+        font-family: "Philosopher" !important;
+        font-weight: 700 !important; 
+        font-size: 16px !important;
+        color: #154360 !important;   
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .col-12 .card-danger .card-body .col-sm-9 li a{
+        display: block;        
+        float: unset;        
+        font-family: "Philosopher" !important;
+        font-weight: 700 !important; 
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .col-12 .card-danger .card-body .col-sm-9 li a{
+        display: block;        
+        float: unset;        
+        font-family: "Philosopher" !important;
+        font-weight: 700 !important; 
+        font-size: 12px !important;
+        color: #154360 !important;
+    }
+}
+
+.col-12 .card-danger .card-body .col-sm-3{
+    max-width: 100%;
+    border-radius: 5px;
+    border: 1px solid #B2BEB5; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+}
+
+.col-12 .card-danger .card-body .col-sm-3 h4{
+    margin-bottom: 0px !important;
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+    width: 100%;
+    font-family: "Overlock";
+    font-weight: 400 !important;
+    font-size: 20px;
+    background-color: #698F3F;
+    color: #FFFFFF;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .col-12 .card-danger .card-body .col-sm-3 h4{
+        margin-bottom: 0px !important;
+        padding-left: 30px !important;
+        padding-right: 30px !important;
+        padding-top: 15px !important;
+        padding-bottom: 15px !important;
+        width: 100%;
+        font-family: "Overlock";
+        font-weight: 400 !important;
+        font-size: 18px;
+        background-color: #698F3F;
+        color: #FFFFFF;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 368px){
+    .col-12 .card-danger .card-body .col-sm-3 h4{
+        margin-bottom: 0px !important;
+        padding-left: 30px !important;
+        padding-right: 30px !important;
+        padding-top: 15px !important;
+        padding-bottom: 15px !important;
+        width: 100%;
+        font-family: "Overlock";
+        font-weight: 400 !important;
+        font-size: 16px;
+        background-color: #698F3F;
+        color: #FFFFFF;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .col-12 .card-danger .card-body .col-sm-3 h4{
+        margin-bottom: 0px !important;
+        padding-left: 30px !important;
+        padding-right: 30px !important;
+        padding-top: 15px !important;
+        padding-bottom: 15px !important;
+        width: 100%;
+        font-family: "Overlock";
+        font-weight: 400 !important;
+        font-size: 14px;
+        background-color: #698F3F;
+        color: #FFFFFF;
+    }
+}
+
+.col-12 .card-danger .card-body .col-sm-3 .table{
+    margin-bottom: 0px !important;
+    max-width: 100% !important;
+    border-collapse: collapse !important;
+    table-layout: fixed !important;
+}
+
+.col-12 .card-danger .card-body .col-sm-3 .table td{
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+    border-bottom: 2px solid #B2BEB5 !important; 
+    text-align: center !important;
+    white-space: nowrap;
+    overflow-x: auto;
+}
+
+.col-12 .card-danger .card-body .col-sm-3 .table td:nth-child(1){
+    width: 75% !important;
+    border-right: 2px solid #B2BEB5 !important; 
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 18px !important;
+    color: #154360 !important;
+    white-space: nowrap;
+    overflow-x: auto;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .col-12 .card-danger .card-body .col-sm-3 .table td:nth-child(1){
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+        white-space: nowrap;
+        overflow-x: auto;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .col-12 .card-danger .card-body .col-sm-3 .table td:nth-child(1){
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+        white-space: nowrap;
+        overflow-x: auto;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .col-12 .card-danger .card-body .col-sm-3 .table td:nth-child(1){
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 12px !important;
+        color: #154360 !important;
+        white-space: nowrap;
+        overflow-x: auto;
+    }
+}
+
+.col-12 .card-danger .card-body .col-sm-3 .table td:nth-child(2){
+    width: 25% !important;
+    border-left: 2px solid #B2BEB5 !important; 
+    font-family: "Philosopher" !important;
+    font-weight: 700 !important; 
+    font-size: 18px !important;
+    color: #154360 !important;
+    white-space: nowrap;
+    overflow-x: auto;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .col-12 .card-danger .card-body .col-sm-3 .table td:nth-child(2){       
+        font-family: "Philosopher" !important;
+        font-weight: 700 !important; 
+        font-size: 16px !important;
+        color: #154360 !important;
+        white-space: nowrap;
+        overflow-x: auto;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .col-12 .card-danger .card-body .col-sm-3 .table td:nth-child(2){  
+        font-family: "Philosopher" !important;
+        font-weight: 700 !important; 
+        font-size: 14px !important;
+        color: #154360 !important;
+        white-space: nowrap;
+        overflow-x: auto;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .col-12 .card-danger .card-body .col-sm-3 .table td:nth-child(2){   
+        font-family: "Philosopher" !important;
+        font-weight: 700 !important; 
+        font-size: 12px !important;
+        color: #154360 !important;
+        white-space: nowrap;
+        overflow-x: auto;
+    }
+}
+
+.col-12 .card-danger .card-body .col-sm-3 .table tbody tr:nth-of-type(even){
+    background-color: #698F3F !important;
+    color: #FFFFFF !important;
+}
+
+
+.col-12 .card-danger .card-body .col-sm-3 .table tbody tr:nth-of-type(odd){
+    background-color: #FFFFFF !important;
+    color: #154360 !important;
+}
+
+.col-12 .card-danger .card-body .col-sm-3 hr{
+    display: none;
+}
+
+.col-12 .card-danger .card-body .col-sm-3 form{
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 100% !important;
+}
+
+.col-12 .card-danger .card-body .col-sm-3 form .form-group{
+    margin-bottom: 0px !important;
+}
+
+.col-12 .card-danger .card-body .col-sm-3 form input{
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+    height: 100% !important;
+    border: 1px solid #B2BEB5; 
+    border-radius: 5px;
+    border-top-left-radius: 5px !important;
+    border-top-right-radius: 5px !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    background-color: #C90016 !important;
+    color: #FFFFFF !important;
+    pointer-events: auto !important;
+    cursor: pointer;
+}
+
+.col-12 .card-danger .card-body .col-sm-3 form input:hover{
+    background-color: #A00011 !important;
+    color: #B2BEB5 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .col-12 .card-danger .card-body .col-sm-3 form input{
+        height: 100% !important;
+        border: 1px solid #B2BEB5; 
+        border-top-left-radius: 5px !important;
+        border-top-right-radius: 5px !important;
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        background-color: #C90016 !important;
+        color: #FFFFFF !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .col-12 .card-danger .card-body .col-sm-3 form input{
+        height: 100% !important;
+        border: 1px solid #B2BEB5; 
+        border-top-left-radius: 5px !important;
+        border-top-right-radius: 5px !important;
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        background-color: #C90016 !important;
+        color: #FFFFFF !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .col-12 .card-danger .card-body .col-sm-3 form input{
+        height: 100% !important;
+        border: 1px solid #B2BEB5; 
+        border-top-left-radius: 5px !important;
+        border-top-right-radius: 5px !important;
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        background-color: #C90016 !important;
+        color: #FFFFFF !important;
+    }
+}
+
+.col-12 .card-danger .card-body .col-sm-3 form a{
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+    height: 100% !important;
+    border: 1px solid #B2BEB5; 
+    border-bottom-left-radius: 5px !important;
+    border-bottom-right-radius: 5px !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    background-color: #C90016 !important;
+    color: #FFFFFF !important;
+    pointer-events: auto !important;
+    cursor: pointer;
+}
+
+.col-12 .card-danger .card-body .col-sm-3 form a:hover{
+    background-color: #A00011 !important;
+    color: #B2BEB5 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .col-12 .card-danger .card-body .col-sm-3 form a{
+        height: 100% !important;
+        border: 1px solid #B2BEB5; 
+        border-bottom-left-radius: 5px !important;
+        border-bottom-right-radius: 5px !important;
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        background-color: #C90016 !important;
+        color: #FFFFFF !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .col-12 .card-danger .card-body .col-sm-3 form a{
+        height: 100% !important;
+        border: 1px solid #B2BEB5; 
+        border-bottom-left-radius: 5px !important;
+        border-bottom-right-radius: 5px !important;
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        background-color: #C90016 !important;
+        color: #FFFFFF !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .col-12 .card-danger .card-body .col-sm-3 form a{
+        height: 100% !important;
+        border: 1px solid #B2BEB5; 
+        border-bottom-left-radius: 5px !important;
+        border-bottom-right-radius: 5px !important;
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        background-color: #C90016 !important;
+        color: #FFFFFF !important;
     }
 }
