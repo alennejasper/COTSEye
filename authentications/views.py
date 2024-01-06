@@ -53,7 +53,7 @@ def ContributorSignup(request):
                 
                 username = account.username
                 messages.success(request, username + ", " + "your information input was recorded for COTSEye.")
-                return redirect("Contributor Signin")
+                return redirect("Contributor Login")
         
         else:
             messages.error(request, "Username exists or is not valid, or passwords are short, entirely numeric, or do not match.")
@@ -67,7 +67,7 @@ def ContributorSignup(request):
     return render(request, "contributor/signup.html", context)
 
 
-def ContributorSignin(request):
+def ContributorLogin(request):
     @receiver(social_account_updated)
     def UpdateUser(sender, request, sociallogin, **kwargs):
         if sociallogin.account.provider == "google":
@@ -75,7 +75,7 @@ def ContributorSignin(request):
                 messages.error(request, "Username or password is not valid.")
                 sociallogin.state["process"] = "disconnect"
                 sociallogin.state["save"] = False
-                return redirect("Contributor Signin")
+                return redirect("Contributor Login")
             
             else:
                 if sociallogin.account.provider == "google":
@@ -102,7 +102,7 @@ def ContributorSignin(request):
                 messages.error(request, "Username or password is not valid.")
                 sociallogin.state["process"] = "disconnect"
                 sociallogin.state["save"] = False
-                return redirect("Contributor Signin")
+                return redirect("Contributor Login")
             
             else:
                 if sociallogin.account.provider == "facebook":
@@ -144,7 +144,51 @@ def ContributorSignin(request):
             messages.error(request, "Username or password is not valid.")
 
     context = {}
-    return render(request, "contributor/signin.html", context)
+    return render(request, "contributor/login/login.html", context)
+
+
+def ContributorLoginFacebook(request):
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password1")
+        
+        account = authenticate(request, username = username, password = password)
+
+        if account:
+            if account.usertype_id == 1:
+                login(request, account)
+                return redirect("admin:index")
+            
+            else:
+                messages.error(request, "Username or password is not valid.")
+        
+        else:
+            messages.error(request, "Username or password is not valid.")
+
+    context = {}
+    return render(request, "contributor/login/facebook.html", context)
+
+
+def ContributorLoginGoogle(request):
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password1")
+        
+        account = authenticate(request, username = username, password = password)
+
+        if account:
+            if account.usertype_id == 1:
+                login(request, account)
+                return redirect("admin:index")
+            
+            else:
+                messages.error(request, "Username or password is not valid.")
+        
+        else:
+            messages.error(request, "Username or password is not valid.")
+
+    context = {}
+    return render(request, "contributor/login/google.html", context)
 
 
 def ContributorCheck(account):
@@ -155,8 +199,8 @@ def ContributorCheck(account):
             return False
 
 
-@login_required(login_url = "Contributor Signin")
-@user_passes_test(ContributorCheck, login_url = "Contributor Signin")
+@login_required(login_url = "Contributor Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorHome(request):
     username = request.user.username
 
@@ -169,8 +213,8 @@ def ContributorHome(request):
     return render(request, "contributor/home.html", context)
 
 
-@login_required(login_url = "Contributor Signin")
-@user_passes_test(ContributorCheck, login_url = "Contributor Signin")
+@login_required(login_url = "Contributor Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorProfile(request):
     user = User.objects.get(account = request.user)
 
@@ -178,8 +222,8 @@ def ContributorProfile(request):
     return render(request, "contributor/profile.html", context)
 
 
-@login_required(login_url = "Contributor Signin")
-@user_passes_test(ContributorCheck, login_url = "Contributor Signin")
+@login_required(login_url = "Contributor Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorProfileUpdate(request):
     users = User.objects.get(account = request.user)
 
@@ -199,9 +243,9 @@ def ContributorProfileUpdate(request):
     return render(request, "contributor/update.html", context)
 
 
-@login_required(login_url = "Contributor Signin")
-@user_passes_test(ContributorCheck, login_url = "Contributor Signin")
-def ContributorSignout(request):
+@login_required(login_url = "Contributor Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Login")
+def ContributorLogout(request):
     username = request.user.username
 
     logout(request)
@@ -228,7 +272,7 @@ def OfficerSignup(request):
                 
                 username = account.username
                 messages.success(request, username + ", " + "your information input was recorded for COTSEye.")
-                return redirect("Officer Signin")
+                return redirect("Officer Login")
         
         else:
             messages.error(request, "Username exists or is not valid, or passwords are short, entirely numeric, or do not match.")
@@ -242,7 +286,7 @@ def OfficerSignup(request):
     return render(request, "officer/signup.html", context)
 
 
-def OfficerSignin(request):
+def OfficerLogin(request):
     @receiver(social_account_updated)
     def UpdateUser(sender, request, sociallogin, **kwargs):
         if sociallogin.account.provider == "google":
@@ -250,7 +294,7 @@ def OfficerSignin(request):
                 messages.error(request, "Username or password is not valid.")
                 sociallogin.state["process"] = "disconnect"
                 sociallogin.state["save"] = False
-                return redirect("Contributor Signin")
+                return redirect("Officer Login")
             
             else:
                 if sociallogin.account.provider == "google":
@@ -277,7 +321,7 @@ def OfficerSignin(request):
                 messages.error(request, "Username or password is not valid.")
                 sociallogin.state["process"] = "disconnect"
                 sociallogin.state["save"] = False
-                return redirect("Contributor Signin")
+                return redirect("Officer Login")
             
             else:
                 if sociallogin.account.provider == "facebook":
@@ -319,19 +363,63 @@ def OfficerSignin(request):
             messages.error(request, "Username or password is not valid.")
 
     context = {}
-    return render(request, "officer/signin.html", context)
+    return render(request, "officer/login/login.html", context)
 
 
-@login_required(login_url = "Officer Signin")
-def OfficerSignout(request):
+def OfficerLoginFacebook(request):
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password1")
+        
+        account = authenticate(request, username = username, password = password)
+
+        if account:
+            if account.usertype_id == 2:
+                login(request, account)
+                return redirect("admin:index")
+            
+            else:
+                messages.error(request, "Username or password is not valid.")
+        
+        else:
+            messages.error(request, "Username or password is not valid.")
+
+    context = {}
+    return render(request, "officer/login/facebook.html", context)
+
+
+def OfficerLoginGoogle(request):
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password1")
+        
+        account = authenticate(request, username = username, password = password)
+
+        if account:
+            if account.usertype_id == 2:
+                login(request, account)
+                return redirect("admin:index")
+            
+            else:
+                messages.error(request, "Username or password is not valid.")
+        
+        else:
+            messages.error(request, "Username or password is not valid.")
+
+    context = {}
+    return render(request, "officer/login/google.html", context)
+
+
+@login_required(login_url = "Officer Login")
+def OfficerLogout(request):
     username = request.user.username
 
     logout(request)
     messages.success(request, username + ", " + "your account used just now was signed out of COTSEye.")
-    return redirect("Officer Signin")
+    return redirect("Officer Login")
 
 
-def AdministratorSignin(request):
+def AdministratorLogin(request):
     @receiver(social_account_updated)
     def UpdateUser(sender, request, sociallogin, **kwargs):
         if sociallogin.account.provider == "google":
@@ -339,7 +427,7 @@ def AdministratorSignin(request):
                 messages.error(request, "Username or password is not valid.")
                 sociallogin.state["process"] = "disconnect"
                 sociallogin.state["save"] = False
-                return redirect("Contributor Signin")
+                return redirect("Administrator Login")
             
             else:
                 if sociallogin.account.provider == "google":
@@ -366,7 +454,7 @@ def AdministratorSignin(request):
                 messages.error(request, "Username or password is not valid.")
                 sociallogin.state["process"] = "disconnect"
                 sociallogin.state["save"] = False
-                return redirect("Contributor Signin")
+                return redirect("Administrator Login")
             
             else:
                 if sociallogin.account.provider == "facebook":
@@ -408,20 +496,20 @@ def AdministratorSignin(request):
             messages.error(request, "Username or password is not valid.")
 
     context = {}
-    return render(request, "admin/signin.html", context)
+    return render(request, "admin/login/login.html", context)
 
 
-@login_required(login_url = "Administrator Signin")
-def AdministratorSignout(request):
+@login_required(login_url = "Administrator Login")
+def AdministratorLogout(request):
     user = request.user
     username = request.user.username
 
     if user.usertype_id == 1:
         logout(request)
         messages.success(request, username + ", " + "your account used just now was signed out of COTSEye.")
-        return redirect("Administrator Signin")
+        return redirect("Administrator Login")
     
     elif user.usertype_id == 2:
         logout(request)
         messages.success(request, username + ", " + "your account used just now was signed out of COTSEye.")
-        return redirect("Officer Signout")
+        return redirect("Officer Logout")

@@ -12,46 +12,43 @@
 
         <link rel = "icon" type = "image/x-icon" href = "{% static 'assets/icons/logo.png' %}">
                         
-        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/core.css' %}">
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/admin/login/login.css' %}">
                     
-        <link href = "https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel = "stylesheet">         
+        <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">          
         
-        <title>Signin | COTSEye</title>
+        <title>Login | COTSEye</title>
     </head>
 
     <body>
-        <div class = "container-signin contributor forms">
-            <div class = "form signin" id = "form-signin">
+        <div class = "content">
+            <div class = "login">
+                <div class = "card-header">
+                    <header>Login</header>
+                </div>
 
-                <div class = "form-content">
-                    <header class = "prevent-select">Signin</header>
-
-                    <form method = "POST" action = "">
+                <div class = "card-body">
+                    <form action = "" method = "POST">
                         {% csrf_token %}
-                        
-                        <div class = "field input-field">
-                            <label for = "username">Username</label>
 
-                            <input type = "text" placeholder = "Username" class = "input" id = "username" name = "username" data-initial-value = "cotseye/" oninput = "retainValue(this);" required>
+                        <label for = "username">Username</label>
 
-                            <i class = "bx bx-user field-icon"></i>
+                        <div class = "username">
+                            <input type = "text" id = "username" name = "username" data-initial-value = "cotseye/" oninput = "retainValue(this);" required>
                         </div>
-                    
-                        <div class = "field input-field">
-                            <label for = "password">Password</label>
+                
+                        <label for = "password">Password</label>
 
-                            <input type = "password" placeholder = "Password" class = "password" id = "password1" name = "password1" required>
+                        <div class = "password">
+                            <input type = "password" id = "password1" name = "password1" required>
 
-                            <i class = "bx bx-hide toggle-icon" id = "toggle-password1"></i>
+                            <i class = "fa-solid fa-eye" id = "toggle-password1"></i>
                         </div>
 
                         <div class = "g-recaptcha" data-sitekey = "6LfYwRMnAAAAAG8B0ZyMeD-NNV1pnVFlXS_A0-yV" data-error-callback = "recaptchaError"></div>
-                    
-                        <div class = "field button-field">
-                            <button type = "submit" onclick = "alertRemove()">Signin</button>
-                        </div>
+
+                        <button type = "submit">Login</button>
                     </form>
-                    
+
                     {% if messages %}
                         {% for message in messages %}
                             <script src = "https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -61,26 +58,6 @@
                             {% endif %}    
                         {% endfor %}
                     {% endif %}
-                    
-                    <div class = "form-link prevent-select">
-                        <span>Do not have an account? <a href = "{% url 'Contributor Signup' %}" class = "link signup-link">Signup</a></span>
-                    </div>
-                </div>
-
-                <div class = "line"></div>
-                    <div class = "media-options">
-                        <a href = "{% provider_login_url 'facebook' %}?next=/contributor/home" class = "field facebook" onclick = "alertRemove()">
-                            <i class = "bx bxl-facebook facebook-icon"></i>
-                            <span>Signin with Facebook</span>
-                        </a>
-                    </div>
-
-                    <div class = "media-options">
-                        <a href = "{% provider_login_url 'google' %}?next=/contributor/home" class = "field google" onclick = "alertRemove()">
-                            <img src = "{% static 'assets/icons/google.svg' %}" class = "google-img">
-                            <span>Signin with Google</span>
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>
@@ -110,25 +87,25 @@
 
     <script>
         const togglePassword1 = document.querySelector("#toggle-password1");
+
         const password1 = document.querySelector("#password1");
 
         togglePassword1.addEventListener("click", function(){
             const type = password1.getAttribute("type") === "password" ? "text" : "password";
+
             password1.setAttribute("type", type);
-            this.classList.toggle("bx-show");
+
+            this.classList.toggle("fa-eye");
+
+            this.classList.toggle("fa-eye-slash");
         });
 	</script>
-
-    <script>
-        function alertRemove(){
-            sessionStorage.removeItem("alertShown");
-        };
-    </script>
 
     <script>
         function retainValue(input){
             if (input.value.length <= "cotseye/".length){
                 input.value = "cotseye/";
+                
                 input.selectionStart = "cotseye/".length;
             }
         }
@@ -136,8 +113,10 @@
 
     <script>
         document.getElementById("username").addEventListener("click", function(){
-            this.style.color = "#154659";
+            this.style.color = "#154360";
+
             this.value = this.dataset.initialValue;
+
             this.focus();
         });
     </script>

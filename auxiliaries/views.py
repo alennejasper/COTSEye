@@ -18,8 +18,8 @@ def PublicAnnouncementRead(request, id):
     return render(request, "public/read.html", context)
 
 
-@login_required(login_url = "Contributor Signin")
-@user_passes_test(ContributorCheck, login_url = "Contributor Signin")
+@login_required(login_url = "Contributor Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorAnnouncement(request):
     announcements = Announcement.objects.all()
 
@@ -27,8 +27,8 @@ def ContributorAnnouncement(request):
     return render(request, "contributor/announcement.html", context)
 
 
-@login_required(login_url = "Contributor Signin")
-@user_passes_test(ContributorCheck, login_url = "Contributor Signin")
+@login_required(login_url = "Contributor Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorAnnouncementRead(request, id): 
     announcements = Announcement.objects.filter(id = id)
 

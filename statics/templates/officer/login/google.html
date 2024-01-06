@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+{% load static %}
+{% load socialaccount %}
+
+<html lang = "en">
+    <head>
+        <meta charset = "UTF-8">
+            
+        <meta http-equiv = "X-UA-Compatible" content = "IE=edge">
+            
+        <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+
+        <link rel = "icon" type = "image/x-icon" href = "{% static 'assets/icons/logo.png' %}">
+                        
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/officer/login/google.css' %}">
+                    
+        <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">          
+        
+        <title>Login | COTSEye</title>
+    </head>
+
+    <body>
+        <div class = "content">
+            <div class = "login">
+                <div class = "card-header">
+                    <header>Login</header>
+                </div>
+    
+                <div class = "card-body">
+                    <div class = "socials">
+                        <button class = "google">
+                            <a href = "{% provider_login_url 'google' %}?next=/admin/" onclick = "alertRemove()">
+                                <i class = "fa-brands fa-google"></i> 
+                                
+                                <span>Login with Google</span>
+                            </a>
+                        </button>
+                    </div>
+    
+                    {% if messages %}
+                        {% for message in messages %}
+                            <script src = "https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                            {% if message.tags == "info" %}<script>Swal.fire({title: "Hey!", text: "{{message}}", icon: "warning", iconColor: "#3B5998", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#3B5998"})</script>
+                            {% elif message.tags == "success" %}<script>Swal.fire({title: "Yay!", text: "{{message}}", icon: "success", iconColor: "#2ECC71", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#2ECC71"})</script>
+                            {% else %}<script>Swal.fire({title: "Oops!", text: "{{message}}", icon: "error", iconColor: "#E74C3C", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#E74C3C"})</script>
+                            {% endif %}    
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </body>
+
+    <script type = "text/javascript">if(window.location.hash && window.location.hash === "#_=_"){ window.location.hash = ""; history.pushState("", document.title, window.location.pathname);}</script>
+
+    <script src = "https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        function alertRemove(){
+            sessionStorage.removeItem("alertShown");
+        };
+    </script>
+</html>

@@ -7,8 +7,8 @@ from authentications.views import ContributorCheck
 
 
 # Create your views here.
-@login_required(login_url = "Contributor Signin")
-@user_passes_test(ContributorCheck, login_url = "Contributor Signin")
+@login_required(login_url = "Contributor Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorCreate(request):
     coordinates_form = CoordinatesForm()
     postobservations_form = PostObservationsForm()
@@ -48,8 +48,8 @@ def ContributorCreate(request):
     return render(request, "contributor/create.html", context)
 
 
-@login_required(login_url = "Contributor Signin")
-@user_passes_test(ContributorCheck, login_url = "Contributor Signin")
+@login_required(login_url = "Contributor Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorPost(request):
     uncertain_posts = Post.objects.filter(user = request.user.user, post_status = 3)
 
@@ -79,8 +79,8 @@ def ContributorPost(request):
     return render(request, "contributor/post.html", context)
 
 
-@login_required(login_url = "Contributor Signin")
-@user_passes_test(ContributorCheck, login_url = "Contributor Signin")
+@login_required(login_url = "Contributor Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorUncertain(request):
     uncertain_posts = Post.objects.filter(user = request.user.user, post_status = 3)
     
@@ -88,8 +88,8 @@ def ContributorUncertain(request):
     return render(request, "contributor/uncertain.html", context)
 
 
-@login_required(login_url = "Contributor Signin")
-@user_passes_test(ContributorCheck, login_url = "Contributor Signin")
+@login_required(login_url = "Contributor Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorUncertainRead(request, id):
     uncertain_posts = Post.objects.filter(id = id, user = request.user.user, post_status = 3)
     
@@ -97,8 +97,8 @@ def ContributorUncertainRead(request, id):
     return render(request, "contributor/read.html", context)
 
 
-@login_required(login_url = "Contributor Signin")
-@user_passes_test(ContributorCheck, login_url = "Contributor Signin")
+@login_required(login_url = "Contributor Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorUncertainUpdate(request, id):
     uncertain_posts = Post.objects.get(id = id, post_status = 3)   
 
@@ -124,8 +124,8 @@ def ContributorUncertainUpdate(request, id):
     return render(request, "contributor/update.html", context)
 
 
-@login_required(login_url = "Contributor Signin")
-@user_passes_test(ContributorCheck, login_url = "Contributor Signin")
+@login_required(login_url = "Contributor Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorValid(request):
     valid_posts = Post.objects.filter(user = request.user.user, post_status = 1)
     
@@ -133,8 +133,8 @@ def ContributorValid(request):
     return render(request, "contributor/valid.html", context)
 
 
-@login_required(login_url = "Contributor Signin")
-@user_passes_test(ContributorCheck, login_url = "Contributor Signin")
+@login_required(login_url = "Contributor Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorValidRead(request, id):
     valid_posts = Post.objects.filter(id = id, user = request.user.user, post_status = 1)
     
@@ -142,8 +142,8 @@ def ContributorValidRead(request, id):
     return render(request, "contributor/read.html", context)
 
 
-@login_required(login_url = "Contributor Signin")
-@user_passes_test(ContributorCheck, login_url = "Contributor Signin")
+@login_required(login_url = "Contributor Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorInvalid(request):
     invalid_posts = Post.objects.filter(user = request.user.user, post_status = 2)
     
@@ -151,8 +151,8 @@ def ContributorInvalid(request):
     return render(request, "contributor/invalid.html", context)
 
 
-@login_required(login_url = "Contributor Signin")
-@user_passes_test(ContributorCheck, login_url = "Contributor Signin")
+@login_required(login_url = "Contributor Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorInvalidRead(request, id):
     invalid_posts = Post.objects.filter(id = id, user = request.user.user, post_status = 2)
     
@@ -160,8 +160,8 @@ def ContributorInvalidRead(request, id):
     return render(request, "contributor/read.html", context)
 
 
-@login_required(login_url = "Contributor Signin")
-@user_passes_test(ContributorCheck, login_url = "Contributor Signin")
+@login_required(login_url = "Contributor Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorInvalidDelete(request, id):
     invalid_posts = Post.objects.get(id = id, post_status = 2)
 

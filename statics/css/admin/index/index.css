@@ -18,10 +18,16 @@
 }
 
 ::-webkit-scrollbar-track{
+    border: 1px solid #B2BEB5; 
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
     background: #10354C !important; 
 }
 
 ::-webkit-scrollbar-thumb{
+    border: 1px solid #B2BEB5; 
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
     background: #698F3F !important;
 }
 
@@ -714,10 +720,10 @@ i.fas.fa-users{
 }
 
 .row .submit-row.col-md-12.col-md-push-2 > input[type = "submit"]{
-    padding-left: 4px !important;
-    padding-right: 4px !important;
-    padding-top: 2px !important;
-    padding-bottom: 2px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
     height: 100% !important;
     border: 1px solid #B2BEB5; 
     border-radius: 5px !important;
@@ -1943,10 +1949,10 @@ li.select2-results__option{
 }
 
 #jazzy-actions .form-group input[name = "_save"]{
-    padding-left: 4px !important;
-    padding-right: 4px !important;
-    padding-top: 2px !important;
-    padding-bottom: 2px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
     height: 100% !important;
     border: 1px solid #B2BEB5; 
     box-shadow: 0 0 0 1px #B2BEB5 !important;
@@ -2008,10 +2014,10 @@ li.select2-results__option{
 }
 
 #jazzy-actions .form-group a.btn-danger{
-    padding-left: 4px !important;
-    padding-right: 4px !important;
-    padding-top: 2px !important;
-    padding-bottom: 2px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
     height: 100% !important;
     border: 1px solid #B2BEB5; 
     box-shadow: 0 0 0 1px #B2BEB5 !important;
@@ -2073,10 +2079,10 @@ li.select2-results__option{
 }
 
 #jazzy-actions .form-group input[name = "_addanother"]{
-    padding-left: 4px !important;
-    padding-right: 4px !important;
-    padding-top: 2px !important;
-    padding-bottom: 2px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
     height: 100% !important;
     border: 1px solid #B2BEB5; 
     box-shadow: 0 0 0 1px #B2BEB5 !important;
@@ -2138,10 +2144,10 @@ li.select2-results__option{
 }
 
 #jazzy-actions .form-group input[name = "_continue"]{
-    padding-left: 4px !important;
-    padding-right: 4px !important;
-    padding-top: 2px !important;
-    padding-bottom: 2px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
     height: 100% !important;
     border: 1px solid #B2BEB5; 
     box-shadow: 0 0 0 1px #B2BEB5 !important;
@@ -3049,173 +3055,7 @@ i.fas.fa-clock::before{
 }
 
 .main-footer{
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 20.5px;
-    padding-bottom: 20.5px;
-    font-family: "Overlock";
-    font-weight: 400 !important;
-    font-size: 22px;
-    background-color: #154360;
-    color: #FFFFFF;
-}
-
-@media screen and (min-width: 446px) and (max-width: 991px){
-    .main-footer{
-        padding-left: 30px;
-        padding-right: 30px;
-        padding-top: 20.5px;
-        padding-bottom: 20.5px;
-        font-family: "Overlock";
-        font-weight: 400 !important;
-        font-size: 20px;
-        background-color: #154360;
-        color: #FFFFFF;
-        text-align: center;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .main-footer{
-        padding-left: 30px;
-        padding-right: 30px;
-        padding-top: 20.5px;
-        padding-bottom: 20.5px;
-        font-family: "Overlock";
-        font-weight: 400 !important;
-        font-size: 16px;
-        background-color: #154360;
-        color: #FFFFFF;
-        text-align: center;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .main-footer{
-        padding-left: 30px;
-        padding-right: 30px;
-        padding-top: 20.5px;
-        padding-bottom: 20.5px;
-        font-family: "Overlock";
-        font-weight: 400 !important;
-        font-size: 14px;
-        background-color: #154360;
-        color: #FFFFFF;
-        text-align: center;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .main-footer{
-        padding-left: 30px;
-        padding-right: 30px;
-        padding-top: 20.5px;
-        padding-bottom: 20.5px;
-        font-family: "Overlock";
-        font-weight: 400 !important;
-        font-size: 12px;
-        background-color: #154360;
-        color: #FFFFFF;
-        text-align: center;
-    }
-}
-
-.main-footer b, .main-footer strong{
-    font-family: "Philosopher";
-    font-weight: 700;
-    font-size: 24px;
-    color: #FFFFFF;
-}
-
-@media screen and (min-width: 446px) and (max-width: 991px){
-    .main-footer .float-right{
-        display: none !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .main-footer .float-right{
-        display: none;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .main-footer .float-right{
-        display: none;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .main-footer .float-right{
-        display: none;
-    }
-}
-
-@media screen and (min-width: 446px) and (max-width: 991px){
-    .main-footer strong{
-        font-family: "Philosopher";
-        font-weight: 700;
-        font-size: 22px;
-        color: #FFFFFF;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .main-footer strong{
-        font-family: "Philosopher";
-        font-weight: 700;
-        font-size: 18px;
-        color: #FFFFFF;
-        text-align: center;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .main-footer strong{
-        font-family: "Philosopher";
-        font-weight: 700;
-        font-size: 16px;
-        color: #FFFFFF;
-        text-align: center;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .main-footer strong{
-        font-family: "Philosopher";
-        font-weight: 700;
-        font-size: 14px;
-        color: #FFFFFF;
-        text-align: center;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 991px){
-    .main-footer strong::after{
-        content: "\a";
-        white-space: pre;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .main-footer strong::after{
-        content: "\a";
-        white-space: pre;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .main-footer strong::after{
-        content: "\a";
-        white-space: pre;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .main-footer strong::after{
-        content: "\a";
-        white-space: pre;
-    }
+    display: none;
 }
 
 
@@ -3403,10 +3243,10 @@ i.fas.fa-clock::before{
 }
 
 .form-group input[type = "file"]::before{
-    padding-left: 4px !important;
-    padding-right: 4px !important;
-    padding-top: 2px !important;
-    padding-bottom: 2px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
     margin-right: 10px;
     display: inline-block;
     border: 1px solid #B2BEB5 !important;
@@ -3938,10 +3778,10 @@ textarea:focus{
 }
 
 .col-12 .change-list-actions .actions button{
-    padding-left: 4px !important;
-    padding-right: 4px !important;
-    padding-top: 2px !important;
-    padding-bottom: 2px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
     margin-left: 0px !important;
     margin-right: 0px !important;
     margin-bottom: 0px !important;
@@ -4811,10 +4651,10 @@ table#result_list tr th.sorting a{
 }
 
 .col-12 .card-danger .card-body .col-sm-3 form input{
-    padding-left: 4px !important;
-    padding-right: 4px !important;
-    padding-top: 2px !important;
-    padding-bottom: 2px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
     height: 100% !important;
     border: 1px solid #B2BEB5; 
     border-radius: 5px;
@@ -4885,10 +4725,10 @@ table#result_list tr th.sorting a{
 }
 
 .col-12 .card-danger .card-body .col-sm-3 form a{
-    padding-left: 4px !important;
-    padding-right: 4px !important;
-    padding-top: 2px !important;
-    padding-bottom: 2px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
     height: 100% !important;
     border: 1px solid #B2BEB5; 
     border-bottom-left-radius: 5px !important;
