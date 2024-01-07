@@ -34,7 +34,7 @@ def PublicHome(request):
     return render(request, "public/home.html", context)
 
 
-def ContributorSignup(request):
+def ContributorRegister(request):
     account_form = AccountForm()
     user_form = UserForm()
 
@@ -64,7 +64,7 @@ def ContributorSignup(request):
         user_form = UserForm()
 
     context = {"account_form": account_form, "user_form": user_form}
-    return render(request, "contributor/signup.html", context)
+    return render(request, "contributor/register/register.html", context)
 
 
 def ContributorLogin(request):
@@ -253,7 +253,7 @@ def ContributorLogout(request):
     return redirect("Public Home")
 
 
-def OfficerSignup(request):
+def OfficerRegister(request):
     account_form = AccountForm()
     user_form = UserForm()
 
@@ -283,7 +283,7 @@ def OfficerSignup(request):
         user_form = UserForm()
 
     context = {"account_form": account_form, "user_form": user_form}
-    return render(request, "officer/signup.html", context)
+    return render(request, "officer/register/register.html", context)
 
 
 def OfficerLogin(request):

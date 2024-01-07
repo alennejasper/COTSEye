@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 {% load static %}
-{% load socialaccount %}
 
 <html lang = "en">
     <head>
@@ -12,22 +11,22 @@
 
         <link rel = "icon" type = "image/x-icon" href = "{% static 'assets/icons/logo.png' %}">
                         
-        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/officer/login/login.css' %}">
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/officer/register/register.css' %}">
                     
         <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">          
         
-        <title>Login | COTSEye</title>
+        <title>Register | COTSEye</title>
     </head>
 
     <body>
         <div class = "content">
-            <div class = "login">
+            <div class = "register">
                 <div class = "card-header">
-                    <header>Login</header>
+                    <header>Register</header>
                 </div>
 
                 <div class = "card-body">
-                    <form action = "" method = "POST">
+                    <form method = "POST" action = "">
                         {% csrf_token %}
 
                         <div class = "field">
@@ -39,22 +38,56 @@
                                 
                                     <i class = "fa-solid fa-user"></i>
                                 </div>
-                        
-                                <label for = "password1">Password</label>
 
-                                <div class = "password1">
+                                <label for = "first-name">First Name</label>
+
+                                <div class = "first-name">
+                                    <input type = "text" id = "first-name" name = "first_name" required>
+
+                                    <i class = "fa-solid fa-id-card"></i>
+                                </div>
+
+                                <label for = "password1">Create Password</label>
+
+                                <div class = "password1">        
                                     <input type = "password" id = "password1" name = "password1" required>
-
+        
                                     <i class = "fa-solid fa-eye" id = "toggle-password1"></i>
+                                </div>
+                            </div>
+
+                            <div class = "column">
+                                <label for = "email">Email</label>
+
+                                <div class = "email">
+                                    <input type = "email" id = "email" name = "email" required>
+
+                                    <i class = "fa-solid fa-envelope"></i>
+                                </div>
+
+                                <label for = "last-name">Last Name</label>
+
+                                <div class = "last-name">
+                                    <input type = "text" id = "last-name" name = "last_name" required>
+
+                                    <i class = "fa-solid fa-id-card"></i>
+                                </div>
+
+                                <label for = "password2">Confirm Password</label>
+
+                                <div class = "password2">
+                                    <input type = "password" id = "password2" name = "password2" required>
+
+                                    <i class = "fa-solid fa-eye" id = "toggle-password2"></i>
                                 </div>
                             </div>
                         </div>
 
                         <div class = "g-recaptcha" data-sitekey = "6LfYwRMnAAAAAG8B0ZyMeD-NNV1pnVFlXS_A0-yV" data-error-callback = "recaptchaError"></div>
 
-                        <button type = "submit" onclick = "alertRemove()">Login</button>
+                        <button type = "submit">Register</button>
                     </form>
-                    
+
                     {% if messages %}
                         {% for message in messages %}
                             <script src = "https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -64,40 +97,16 @@
                             {% endif %}    
                         {% endfor %}
                     {% endif %}
-                    
-                    <div class = "register">
-                        <span>Do not have an account? <a href = "{% url 'Officer Register' %}">Register</a></span>
-                    </div>
 
-                    <div class = "line"></div>
-
-                    <div class = "socials">
-                        <button class = "facebook">
-                            <a href = "{% provider_login_url 'facebook' %}?next=/officer/login/facebook/">
-                                <i class = "fa-brands fa-facebook-f"></i> 
-                            
-                                <span>Connect with Facebook</span>
-                            </a>
-                        </button>
-
-                        <button class = "google">
-                            <a href = "{% provider_login_url 'google' %}?next=/officer/login/google/">
-                                <i class = "fa-brands fa-google"></i> 
-                            
-                                <span>Connect with Google</span>
-                            </a>
-                        </button>
+                    <div class = "login">
+                        <span>Already have an account? <a href = "{% url 'Officer Login' %}">Login</a></span>
                     </div>
                 </div>
             </div>
         </div>
     </body>
 
-    <script type = "text/javascript">if(window.location.hash && window.location.hash === "#_=_"){ window.location.hash = ""; history.pushState("", document.title, window.location.pathname);}</script>
-
     <script src = "https://www.google.com/recaptcha/api.js" async defer></script>
-
-    <script src = "https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script> 
 		window.onload = function(){
@@ -116,14 +125,14 @@
     </script>
 
     <script>
-        const togglePassword1 = document.querySelector("#toggle-password1");
+		const togglePassword1 = document.querySelector("#toggle-password1");
 
-        const password1 = document.querySelector("#password1");
+		const password1 = document.querySelector("#password1");
 
-        togglePassword1.addEventListener("click", function(){
-            const type = password1.getAttribute("type") === "password" ? "text" : "password";
+		togglePassword1.addEventListener("click", function(){
+			const type = password1.getAttribute("type") === "password" ? "text" : "password";
 
-            password1.setAttribute("type", type);
+			password1.setAttribute("type", type);
 
             this.classList.toggle("fa-eye");
 
@@ -131,15 +140,35 @@
         });
 	</script>
 
+	<script>
+		const togglePassword2 = document.querySelector("#toggle-password2");
+
+		const password2 = document.querySelector("#password2");
+
+		togglePassword2.addEventListener("click", function(){
+			const type = password2.getAttribute("type") === "password" ? "text" : "password";
+
+			password2.setAttribute("type", type);
+
+            this.classList.toggle("fa-eye");
+
+            this.classList.toggle("fa-eye-slash");		
+        });
+	</script>
+
     <script>
-        function alertRemove(){
-            sessionStorage.removeItem("alertShown");
-        };
+        var checkboxes = $("input[type='checkbox']"),
+            submit = $("button[type='submit']");
+
+        checkboxes.click(function(){
+            submit.attr("required", !checkboxes.is(":checked"));
+        });
     </script>
 
     <script>
         function retainValue(input){
             if (input.value.length <= "cotseye/".length){
+
                 input.value = "cotseye/";
 
                 input.selectionStart = "cotseye/".length;
@@ -149,8 +178,9 @@
 
     <script>
         document.getElementById("username").addEventListener("click", function(){
+
             this.style.color = "#154360";
-            
+
             this.value = this.dataset.initialValue;
 
             this.focus();

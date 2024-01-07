@@ -57,6 +57,11 @@ body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .content-w
     margin: 0px !important;
     height: 30px;
     width: 30px;
+    opacity: unset !important;
+}
+
+.brand-image:hover{
+    opacity: 0.5 !important;
 }
 
 .nav-link{
@@ -168,7 +173,7 @@ i.fas.fa-users{
 
 .dropdown-item:hover{
     background-color: #B2BEB5 !important;
-    color: #154360 !important;
+    color: #10354C !important;
 }
 
 .dropdown-item.active{
@@ -2270,7 +2275,7 @@ li.select2-results__option{
     -webkit-user-select: none;
     -ms-user-select: none; 
     user-select: none; 
-    background-color: #154360 !important;
+    background-color: #698F3F !important;
     color: #FFFFFF !important;
     text-decoration: none !important;
 }
@@ -2281,7 +2286,7 @@ li.select2-results__option{
     -webkit-user-select: none;
     -ms-user-select: none; 
     user-select: none; 
-    background-color: #10354C !important;
+    background-color: #557433 !important;
     color: #B2BEB5 !important;
     text-decoration: none !important;
 }
@@ -2289,7 +2294,7 @@ li.select2-results__option{
 .leaflet-control-zoom a.leaflet-control-zoom-in.leaflet-disabled{
     border-bottom: 1px solid #B2BEB5 !important;
     box-shadow: 0 0 0 1px #B2BEB5 !important;
-    background-color: #10354C !important;
+    background-color: #557433 !important;
     color: #B2BEB5 !important;
     cursor: default !important;
 }
@@ -2301,7 +2306,7 @@ li.select2-results__option{
     -webkit-user-select: none;
     -ms-user-select: none; 
     user-select: none; 
-    background-color: #698F3F !important;
+    background-color: #C90016 !important;
     color: #FFFFFF !important;
     text-decoration: none !important;
 }
@@ -2312,7 +2317,7 @@ li.select2-results__option{
     -webkit-user-select: none;
     -ms-user-select: none; 
     user-select: none; 
-    background-color: #557433 !important;
+    background-color: #A00011 !important;
     color: #FFFFFF !important;
     text-decoration: none !important;
 }
@@ -2320,7 +2325,7 @@ li.select2-results__option{
 .leaflet-control-zoom a.leaflet-control-zoom-out.leaflet-disabled{
     border-top: none !important;
     box-shadow: 0 0 0 1px #B2BEB5 !important;
-    background-color: #557433 !important;
+    background-color: #A00011 !important;
     color: #B2BEB5 !important;
     cursor: default !important;
 }
@@ -4795,4 +4800,15 @@ table#result_list tr th.sorting a{
         background-color: #C90016 !important;
         color: #FFFFFF !important;
     }
+}
+
+
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus input:-webkit-autofill, textarea:-webkit-autofill, textarea:-webkit-autofill:hover textarea:-webkit-autofill:focus, select:-webkit-autofill, select:-webkit-autofill:hover, select:-webkit-autofill:focus{
+    -webkit-text-fill-color: #154360;
+    -webkit-box-shadow: 0 0 0px 1000px #FFFFFF inset;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+input:autofill{
+    background: #FFFFFF !important;
 }

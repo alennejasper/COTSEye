@@ -30,18 +30,24 @@
                     <form action = "" method = "POST">
                         {% csrf_token %}
 
-                        <label for = "username">Username</label>
+                        <div class = "field">
+                            <div class = "column">
+                                <label for = "username">Username</label>
 
-                        <div class = "username">
-                            <input type = "text" id = "username" name = "username" data-initial-value = "cotseye/" oninput = "retainValue(this);" required>
-                        </div>
-                
-                        <label for = "password">Password</label>
+                                <div class = "username">
+                                    <input type = "text" id = "username" name = "username" data-initial-value = "cotseye/" oninput = "retainValue(this);" required>
+                                
+                                    <i class = "fa-solid fa-user"></i>
+                                </div>
+                        
+                                <label for = "password1">Password</label>
 
-                        <div class = "password">
-                            <input type = "password" id = "password1" name = "password1" required>
+                                <div class = "password1">
+                                    <input type = "password" id = "password1" name = "password1" required>
 
-                            <i class = "fa-solid fa-eye" id = "toggle-password1"></i>
+                                    <i class = "fa-solid fa-eye" id = "toggle-password1"></i>
+                                </div>
+                            </div>
                         </div>
 
                         <div class = "g-recaptcha" data-sitekey = "6LfYwRMnAAAAAG8B0ZyMeD-NNV1pnVFlXS_A0-yV" data-error-callback = "recaptchaError"></div>
@@ -74,7 +80,7 @@
 			var $recaptcha = document.querySelector("#g-recaptcha-response");
 	
 			if ($recaptcha){
-			$recaptcha.setAttribute("required", "required");
+			    $recaptcha.setAttribute("required", "required");
 			}
 		};
 	</script>
