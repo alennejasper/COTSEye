@@ -52,7 +52,7 @@
 
                         <div class = "g-recaptcha" data-sitekey = "6LfYwRMnAAAAAG8B0ZyMeD-NNV1pnVFlXS_A0-yV" data-error-callback = "recaptchaError"></div>
 
-                        <button type = "submit" onclick = "alertRemove()">Login</button>
+                        <button type = "submit">Login</button>
                     </form>
                     
                     {% if messages %}
@@ -132,12 +132,6 @@
 	</script>
 
     <script>
-        function alertRemove(){
-            sessionStorage.removeItem("alertShown");
-        };
-    </script>
-
-    <script>
         function retainValue(input){
             if (input.value.length <= "cotseye/".length){
                 input.value = "cotseye/";
@@ -158,11 +152,8 @@
     </script>
 
     <style>
-        div:where(.swal2-container) div:where(.swal2-popup){
-            padding: 0em 0em 15px !important;
-        }
-
         .swal2-popup{
+            padding-bottom: 15px !important;
             border-radius: 5px !important;
             border: 1px solid #B2BEB5 !important; 
             box-shadow: 0 0 0 1px #B2BEB5 !important;
@@ -173,7 +164,7 @@
         }
 
         div:where(.swal2-container) .swal2-html-container{
-            padding: 15px 3em 0em 3em !important;
+            padding: 10px 30px 0em 30px !important;
             margin: 0px !important;
             font-family: "Overlock" !important;
             font-weight: 400 !important;
@@ -183,7 +174,7 @@
 
         @media screen and (min-width: 369px) and (max-width: 445px){
             div:where(.swal2-container) .swal2-html-container{
-                padding: 15px 3em 0em 3em !important;
+                padding: 10px 30px 0em 30px !important;
                 margin: 0px !important;
                 font-family: "Overlock" !important;
                 font-weight: 400 !important;
@@ -194,7 +185,7 @@
 
         @media screen and (min-width: 349px) and (max-width: 368px){
             div:where(.swal2-container) .swal2-html-container{
-                padding: 15px 3em 0em 3em !important;
+                padding: 10px 30px 0em 30px !important;
                 margin: 0px !important;
                 font-family: "Overlock" !important;
                 font-weight: 400 !important;
@@ -205,7 +196,7 @@
 
         @media screen and (min-width: 320px) and (max-width: 348px){
             div:where(.swal2-container) .swal2-html-container{
-                padding: 15px 3em 0em 3em !important;
+                padding: 10px 30px 0em 30px !important;
                 margin: 0px !important;
                 font-family: "Overlock" !important;
                 font-weight: 400 !important;
@@ -218,12 +209,20 @@
             margin: 15px auto 0em auto !important;
         }
 
+        div:where(.swal2-icon).swal2-success .swal2-success-ring{
+            border: 0.25em solid #698F3F !important;
+        }
+
+        div:where(.swal2-icon).swal2-success [class ^= swal2-success-line]{
+            background-color: #698F3F !important;
+        }
+
         div:where(.swal2-icon).swal2-error [class ^= swal2-x-mark-line]{
             background-color: #C90016 !important;
         }
 
         div:where(.swal2-container) h2:where(.swal2-title){
-            padding: 15px 3em 0em 3em !important;
+            padding: 15px 30px 0em 30px !important;
         }
 
         .title{
@@ -269,8 +268,9 @@
         }
 
         .swal2-actions{
-            padding-bottom: 15px !important;
-            height: 100% !important;
+            padding-top: 5px !important;
+            padding-bottom: 5px !important;
+            height: fit-content !important;
         }
 
         .info-button{

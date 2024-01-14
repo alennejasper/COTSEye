@@ -50,7 +50,7 @@ body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .content-w
 }
 
 .brand-link{
-    padding: 0px;
+    padding: 0px !important;
 }
 
 .brand-image{
@@ -64,19 +64,25 @@ body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .content-w
     opacity: 0.5 !important;
 }
 
+.brand-image:focus{
+    opacity: 0.5 !important;
+}
+
+.brand-image:active{
+    opacity: 0.5 !important;
+}
+
 .nav-link{
     padding-left: 0px !important;
     padding-right: 0px !important;
     padding-top: 0px !important;
     padding-bottom: 0px !important;
-    height: auto !important;
-    font-size: 30px !important;
+    height: 30px !important;
     color: #FFFFFF !important;
 }
 
 i.far.fa-user{
-    height: 30px;
-    width: 30px;
+    font-size: 30px;
 }
 
 .nav-link:hover{
@@ -108,23 +114,37 @@ i.far.fa-user{
 }
 
 .dropdown-header{
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+    padding-top: 7px !important;
+    padding-bottom: 7px !important;
     font-family: "Philosopher";
     font-weight: 700;
-    font-size: 18px;
+    font-size: 20px;
     background-color: #154360;
     color: #FFFFFF;
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .dropdown-header{
-        padding-left: 10px;
-        padding-right: 10px;
-        padding-top: 5px;
-        padding-bottom: 5px;
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+        padding-top: 7px !important;
+        padding-bottom: 7px !important;
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 18px;
+        background-color: #154360;
+        color: #FFFFFF;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .dropdown-header{
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+        padding-top: 7px !important;
+        padding-bottom: 7px !important;
         font-family: "Philosopher";
         font-weight: 700;
         font-size: 16px;
@@ -133,42 +153,26 @@ i.far.fa-user{
     }
 }
 
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .dropdown-header{
-        padding-left: 10px;
-        padding-right: 10px;
-        padding-top: 5px;
-        padding-bottom: 5px;
-        font-family: "Philosopher";
-        font-weight: 700;
-        font-size: 14px;
-        background-color: #154360;
-        color: #FFFFFF;
-    }
-}
-
 .dropdown-item{
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
     font-family: "Overlock";
     font-weight: 400;
-    font-size: 16px;
+    font-size: 18px;
     background-color: #FFFFFF;
     color: #154360;
 }
 
 i.fas.fa-key{
     margin-right: 10px !important;
-    height: 16px;
-    width: 16px;
+    font-size: 16px;
 }
 
 i.fas.fa-users{
     margin-right: 10px !important;
-    height: 16px;
-    width: 16px;
+    font-size: 16px;
 }
 
 .dropdown-item:hover{
@@ -183,10 +187,24 @@ i.fas.fa-users{
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .dropdown-item{
-        padding-left: 10px;
-        padding-right: 10px;
-        padding-top: 5px;
-        padding-bottom: 5px;
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px;
+        background-color: #FFFFFF;
+        color: #154360;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .dropdown-item{
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
         font-family: "Overlock";
         font-weight: 400;
         font-size: 14px;
@@ -195,28 +213,14 @@ i.fas.fa-users{
     }
 }
 
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .dropdown-item{
-        padding-left: 10px;
-        padding-right: 10px;
-        padding-top: 5px;
-        padding-bottom: 5px;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 12px;
-        background-color: #FFFFFF;
-        color: #154360;
-    }
-}
-
 .dropdown-footer{
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+    padding-top: 7px !important;
+    padding-bottom: 7px !important;
     font-family: "Philosopher";
     font-weight: 700;
-    font-size: 18px;
+    font-size: 20px;
     background-color: #154360;
     color: #FFFFFF;
 }
@@ -233,13 +237,13 @@ i.fas.fa-users{
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .dropdown-footer{
-        padding-left: 10px;
-        padding-right: 10px;
-        padding-top: 5px;
-        padding-bottom: 5px;
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+        padding-top: 7px !important;
+        padding-bottom: 7px !important;
         font-family: "Philosopher";
         font-weight: 700;
-        font-size: 16px;
+        font-size: 18px;
         background-color: #154360;
         color: #FFFFFF;
     }
@@ -247,13 +251,13 @@ i.fas.fa-users{
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .dropdown-footer{
-        padding-left: 10px;
-        padding-right: 10px;
-        padding-top: 5px;
-        padding-bottom: 5px;
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+        padding-top: 7px !important;
+        padding-bottom: 7px !important;
         font-family: "Philosopher";
         font-weight: 700;
-        font-size: 14px;
+        font-size: 16px;
         background-color: #154360;
         color: #FFFFFF;
     }
@@ -2243,7 +2247,7 @@ li.select2-results__option{
     z-index: 1;
 }
 
-@media screen and (min-width: 320px) and (max-width: 767px){
+@media screen and (min-width: 320px) and (max-width: 775px){
     #admin-map{
         height: 500px;
         border: 1px solid #B2BEB5;
@@ -2253,7 +2257,7 @@ li.select2-results__option{
     }
 }
 
-@media screen and (min-width: 320px) and (max-width: 767px){
+@media screen and (min-width: 320px) and (max-width: 775px){
     #admin-map{
         height: 250px;
         border: 1px solid #B2BEB5;
@@ -2466,7 +2470,7 @@ li.select2-results__option{
     }
 }
 
-@media screen and (min-width: 320px) and (max-width: 767px){
+@media screen and (min-width: 320px) and (max-width: 775px){
     .col-md-6.col-sm-12:nth-child(1) .card{
         margin-right: 0px;
         margin-bottom: 30px;
@@ -4252,7 +4256,7 @@ table#result_list tr th.sorting a{
     grid-column-gap: 30px;
 }
 
-@media screen and (min-width: 320px) and (max-width: 767px){
+@media screen and (min-width: 320px) and (max-width: 775px){
     .col-12 .card-danger .card-body .row{
         width: 100% !important;
         display: grid;
@@ -4268,7 +4272,7 @@ table#result_list tr th.sorting a{
     box-shadow: 0 0 0 1px #B2BEB5 !important;
 }
 
-@media screen and (min-width: 320px) and (max-width: 767px){
+@media screen and (min-width: 320px) and (max-width: 775px){
     .col-12 .card-danger .card-body .col-sm-9{
         padding-right: 0px !important;
         flex: 0 0 100% !important;
