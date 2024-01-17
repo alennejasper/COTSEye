@@ -31,7 +31,7 @@ def PublicHome(request):
         messages.info(request, username + ", " + "kindly see announcements within the menu of COTSEye to check for updates today.")
 
     context = {"posts": posts}
-    return render(request, "public/home.html", context)
+    return render(request, "public/home/home.html", context)
 
 
 def ContributorRegister(request):
@@ -210,7 +210,7 @@ def ContributorHome(request):
         messages.info(request, username + ", " + "see announcements page within the menu of COTSEye to check for updates today.")
 
     context = {"posts": posts}
-    return render(request, "contributor/home.html", context)
+    return render(request, "contributor/home/home.html", context)
 
 
 @login_required(login_url = "Contributor Login")

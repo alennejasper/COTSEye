@@ -1,0 +1,221 @@
+@import url("https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Overlock:wght@400;700;900&display=swap");
+
+
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    scrollbar-width: thin !important;
+    scrollbar-color: #698F3F #154360 !important;
+    transition: all 0.25s ease;
+}
+
+
+::-webkit-scrollbar{
+    width: 5px !important;
+    height: 5px !important;
+}
+
+::-webkit-scrollbar-track{
+    border: 1px solid #B2BEB5; 
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    background: #10354C !important; 
+}
+
+::-webkit-scrollbar-thumb{
+    border: 1px solid #B2BEB5; 
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    background: #698F3F !important;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background: #557433 !important;
+}
+
+.map{ 
+    width: 100%;
+    height: 100%;
+}
+
+#contributor-map{
+    min-width: 100vh;
+    min-height: 100vh;
+    z-index: 1;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    #contributor-map{
+        min-width: 100vh;
+        min-height: 100vh;
+        z-index: 1;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    #contributor-map{
+        min-width: 100vh;
+        min-height: 100vh;
+        z-index: 1;
+    }
+}
+
+.leaflet-control-zoom{
+    border: 1px solid #B2BEB5 !important;
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+}
+
+.leaflet-control-zoom a.leaflet-control-zoom-in{
+    border-bottom: 1px solid #B2BEB5 !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    -webkit-user-select: none;
+    -ms-user-select: none; 
+    user-select: none; 
+    background-color: #698F3F !important;
+    color: #FFFFFF !important;
+    text-decoration: none !important;
+}
+
+.leaflet-control-zoom a.leaflet-control-zoom-in:hover{
+    border-bottom: 1px solid #B2BEB5 !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    -webkit-user-select: none;
+    -ms-user-select: none; 
+    user-select: none; 
+    background-color: #557433 !important;
+    color: #B2BEB5 !important;
+    text-decoration: none !important;
+}
+
+.leaflet-control-zoom a.leaflet-control-zoom-in.leaflet-disabled{
+    border-bottom: 1px solid #B2BEB5 !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    background-color: #557433 !important;
+    color: #B2BEB5 !important;
+    cursor: default !important;
+}
+
+
+.leaflet-control-zoom a.leaflet-control-zoom-out{
+    border-top: none !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    -webkit-user-select: none;
+    -ms-user-select: none; 
+    user-select: none; 
+    background-color: #C90016 !important;
+    color: #FFFFFF !important;
+    text-decoration: none !important;
+}
+
+.leaflet-control-zoom a.leaflet-control-zoom-out:hover{
+    border-top: none !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    -webkit-user-select: none;
+    -ms-user-select: none; 
+    user-select: none; 
+    background-color: #A00011 !important;
+    color: #FFFFFF !important;
+    text-decoration: none !important;
+}
+
+.leaflet-control-zoom a.leaflet-control-zoom-out.leaflet-disabled{
+    border-top: none !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    background-color: #A00011 !important;
+    color: #B2BEB5 !important;
+    cursor: default !important;
+}
+
+.leaflet-disabled span{
+    color: #B2BEB5 !important;
+}
+
+.leaflet-control-attribution a{
+    font-family: "Philosopher";
+    font-weight: 700;
+    font-size: 18px !important;
+    background-color: #698F3F !important;
+    color: #FFFFFF !important;
+    text-align: center;
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .leaflet-control-attribution a{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 16px !important;
+        background-color: #698F3F !important;
+        color: #FFFFFF !important;
+        text-align: center;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .leaflet-control-attribution a{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 14px !important;
+        background-color: #698F3F !important;
+        color: #FFFFFF !important;
+        text-align: center;
+    }
+}
+
+.leaflet-control-attribution span{
+    font-size: 20px !important;
+    background-color: #698F3F !important;
+    color: #FFFFFF !important;
+    text-align: center;
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .leaflet-control-attribution span{
+        font-size: 18px !important;
+        background-color: #698F3F !important;
+        color: #FFFFFF !important;
+        text-align: center;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .leaflet-control-attribution span{
+        font-size: 16px !important;
+        background-color: #698F3F !important;
+        color: #FFFFFF !important;
+        text-align: center;
+    }
+}
+
+.leaflet-control-attribution{
+    font-family: "Overlook";
+    font-weight: 400;
+    font-size: 16px !important;
+    background-color: #698F3F !important;
+    color: #FFFFFF !important;
+    text-align: center;
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .leaflet-control-attribution{
+        font-family: "Overlook";
+        font-weight: 400;
+        font-size: 14px !important;
+        background-color: #698F3F !important;
+        color: #FFFFFF !important;
+        text-align: center;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .leaflet-control-attribution{
+        font-family: "Overlook";
+        font-weight: 400;
+        font-size: 12px !important;
+        background-color: #698F3F !important;
+        color: #FFFFFF !important;
+        text-align: center;
+    }
+}

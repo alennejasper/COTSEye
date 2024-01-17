@@ -14,28 +14,14 @@
         var map;
 
         function revealMap(){
-            map = L.map("admin-map", {
-                zoomControl: true,
-                scrollWheelZoom: false, 
-                dragging: true,
-                maxBounds: [[5.3, 124.3],[6.3, 126.3]],
-            }).setView([5.9656, 125.1929], 11);
+            map = L.map("admin-map", {zoomControl: true, scrollWheelZoom: false, dragging: true, maxBounds: [[5.3, 124.3],[6.3, 126.3]]}).setView([5.9656, 125.1929], 11);
 
-            L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
-                minZoom: 11,
-                attribution: "ESRI",
-            }).addTo(map);
+            L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {minZoom: 11, attribution: "ESRI"}).addTo(map);
 
-            var starfish = L.icon({
-                iconUrl: "{% static 'assets/icons/marker.png' %}",
-                iconSize: [30, 30],          
-                iconAnchor: [15, 15],     
-            });
+            var starfish = L.icon({iconUrl: "{% static 'assets/icons/marker.png' %}", iconSize: [30, 30], iconAnchor: [15, 15]});
 
             {% for post in posts %}
-                L.marker([{{post.coordinates.latitude}}, {{post.coordinates.longitude}}], {
-                    icon: starfish,
-                }).addTo(map);
+                L.marker([{{post.coordinates.latitude}}, {{post.coordinates.longitude}}], {icon: starfish}).addTo(map);
             {% endfor %}
         }
 

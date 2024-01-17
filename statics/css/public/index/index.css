@@ -196,8 +196,6 @@ nav .navigation-bar .navigation-sidelinks{
 
 @media screen and (min-width: 320px) and (max-width: 935px){
     nav .navigation-bar .navigation-sidelinks{
-        margin-top: 15px;    
-        margin-bottom: 15px;    
         display: flex;
         align-items: flex-start;        
         flex-direction: column;
@@ -240,7 +238,7 @@ nav .navigation-bar .navigation-sidelinks{
 
 @media screen and (min-width: 320px) and (max-width: 935px){
     .navigation-sidelinks li a{
-        margin-top: 15px;
+        margin-top: 30px;
         position: relative;
         font-family: "Philosopher";
         font-weight: 700;
