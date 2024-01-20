@@ -8,4 +8,5 @@ def coordinates(request):
         posts = None
 
     context = {"posts": posts}
+    
     return (context)

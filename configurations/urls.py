@@ -31,10 +31,16 @@ admin.site.index_template = "admin/index/index.html"
 
 urlpatterns = [
     path("admin/login/", views.AdministratorLogin),
+    
     path("admin/logout/", views.AdministratorLogout),
+    
     path("admin/", admin.site.urls),
+    
     path("", include("allauth.urls")),
+    
     path("", include("authentications.urls")),
+    
     path("", include("reports.urls")),
+    
     path("", include("auxiliaries.urls"))
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

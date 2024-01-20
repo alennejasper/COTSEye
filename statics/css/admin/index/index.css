@@ -2164,14 +2164,14 @@ li.select2-results__option{
     font-family: "Overlock";
     font-weight: 400;
     font-size: 20px !important;
-    background-color: #154360 !important;
+    background-color: #698F3F !important;
     color: #FFFFFF !important;
     pointer-events: auto !important;
     cursor: pointer;
 }
     
 #jazzy-actions .form-group input[name = "_continue"]:hover{
-        background-color: #10354C !important;
+        background-color: #557433 !important;
         color: #B2BEB5 !important;
 }
     
@@ -2761,6 +2761,44 @@ li.select2-results__option{
         font-family: "Philosopher";
         font-weight: 700;
         font-size: 16px;
+        color: #154360;
+    }
+}
+
+#recent-actions-module > p{
+    margin-bottom: 0px !important;
+    font-family: "Overlock";
+    font-weight: 400 !important;
+    font-size: 20px;
+    color: #154360;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    #recent-actions-module > p{
+        margin-bottom: 0px !important;
+        font-family: "Overlock";
+        font-weight: 400 !important;
+        font-size: 18px;
+        color: #154360;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 368px){
+    #recent-actions-module > p{
+        margin-bottom: 0px !important;
+        font-family: "Overlock";
+        font-weight: 400 !important;
+        font-size: 16px;
+        color: #154360;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    #recent-actions-module > p{
+        margin-bottom: 0px !important;
+        font-family: "Overlock";
+        font-weight: 400 !important;
+        font-size: 14px;
         color: #154360;
     }
 }
@@ -3740,8 +3778,8 @@ textarea:focus{
         width: 100% !important;
         resize: none !important;
         border: 1px solid #B2BEB5;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
         font-family: "Philosopher";
         font-weight: 700 !important;

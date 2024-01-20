@@ -1,0 +1,40 @@
+{% extends "public/index/index.html" %}
+{% load static %}
+
+{% block content %}
+{% for announcement in announcements %}
+<div class = "announcement">
+    <div class = "card-header">
+        <header>{{announcement.title | default:'nonexistent'}}</header>
+    </div>
+
+    <div class = "card-body">
+        <div class = "field">
+            <div class = "column">
+                <label for = "release-date">Release Date</label> 
+                    
+                <div class = "release-date">
+                    <input type = "text" placeholder = "{{announcement.release_date | default:'nonexistent'}}" id = "release-date" name = "release_date" readonly>
+                        
+                    <i class = "fa-solid fa-calendar-check"></i>
+                </div>
+            </div>
+
+            <div class = "column">
+                <label for = "user">Place</label> 
+
+                <div class = "user">
+                    <input type = "text" placeholder = "{{announcement.place | default:'nonexistent'}}" id = "user" name = "user" readonly>
+
+                    <i class = "fa-solid fa-location-dot"></i>      
+                </div>  
+            </div>
+        </div>
+
+        <div class = "button">
+            <a class = "read-announcement" href = "{% url 'Public Announcement Read' announcement.id %}">Read</a>
+        </div>    
+    </div>
+</div>
+{% endfor %}
+{% endblock content %}

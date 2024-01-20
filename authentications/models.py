@@ -10,8 +10,11 @@ import datetime
 class AccountManager(BaseUserManager):
     def create_user(self, username, password, **other_fields):
         username = username
+
         user = self.model(username = username, **other_fields)
+
         user.set_password(password)
+
         user.save()
 
         return user
@@ -87,9 +90,9 @@ class User(models.Model):
     email = models.EmailField(max_length = 65, null = True, help_text = "Designates the email of the user.", verbose_name = "Email")
     phone_number = models.CharField(max_length = 10, null = True, blank = True, help_text = "Designates the phone number of the user.", verbose_name = "Phone Number")
     profile_photo = models.ImageField(default = "profiles/default.png", null = True, blank = True, upload_to = "profiles", help_text = "Designates the profile photo of the user.", verbose_name = "Profile Photo")
-    date_joined = models.DateTimeField(auto_now_add = True, help_text = "Designates the date and time of the date joined by the user.", verbose_name = "Date Joined")
+    joined_date = models.DateTimeField(auto_now_add = True, help_text = "Designates the joined date and time of the user.", verbose_name = "Joined Date")
     
-    date_joined.editable = True
+    joined_date.editable = True
 
     class Meta:
         db_table = "localaccount_user"
@@ -103,10 +106,8 @@ class User(models.Model):
 class Site2(Site):
     Site._meta.get_field("domain").help_text = "Designates the domain name of the site."
     Site._meta.get_field("domain").verbose_name = "Domain Name"
-    
     Site._meta.get_field("name").help_text = "Designates the display name of the site."
     Site._meta.get_field("name").verbose_name = "Display Name"
-
     Site._meta.verbose_name = "Site"
     Site._meta.verbose_name_plural = "Sites"
 
@@ -124,16 +125,12 @@ class Site2(Site):
 class SocialAccount2(SocialAccount):
     SocialAccount._meta.get_field("user").help_text = "Designates the username of the social account."
     SocialAccount._meta.get_field("user").verbose_name = "Username"
-    
     SocialAccount._meta.get_field("provider").help_text = "Designates the provider name of the social account."
     SocialAccount._meta.get_field("provider").verbose_name = "Provider Name"
-
     SocialAccount._meta.get_field("uid").help_text = "Designates the unique identifier for the social account."
     SocialAccount._meta.get_field("uid").verbose_name = "User Identifier"
-
     SocialAccount._meta.get_field("extra_data").help_text = "Designates the extra information for the social account."
     SocialAccount._meta.get_field("extra_data").verbose_name = "Extra Information"
-
     SocialAccount._meta.verbose_name = "Account"
     SocialAccount._meta.verbose_name_plural = "Accounts"
     
@@ -147,18 +144,13 @@ class SocialAccount2(SocialAccount):
 class SocialToken2(SocialToken):
     SocialToken._meta.get_field("app").help_text = "Designates the social application name for the token."
     SocialToken._meta.get_field("app").verbose_name = "Social Application"
-    
     SocialToken._meta.get_field("account").help_text = "Designates the social account for the token."
     SocialToken._meta.get_field("account").verbose_name = "Social Account"
-
     SocialToken._meta.get_field("token").help_text = "Designates the token for the social account."
     SocialToken._meta.get_field("token").verbose_name = "Token"
-
     SocialToken._meta.get_field("token_secret").help_text = "Designates the encrpyted token for the social account."
     SocialToken._meta.get_field("token_secret").verbose_name = "Secret Token"
-
     SocialToken._meta.get_field("expires_at").verbose_name = "Expiration Date"
-
     SocialToken._meta.verbose_name = "Social Token"
     SocialToken._meta.verbose_name_plural = "Social Tokens"
 
@@ -172,25 +164,18 @@ class SocialToken2(SocialToken):
 class SocialApp2(SocialApp):
     SocialApp._meta.get_field("provider").help_text = "Designates the provider name of the social account."
     SocialApp._meta.get_field("provider").verbose_name = "Provider Name"
-
     SocialApp._meta.get_field("provider_id").help_text = "Designates the unique identifier of the social account provider."
     SocialApp._meta.get_field("provider_id").verbose_name = "Provider ID"
-    
     SocialApp._meta.get_field("name").help_text = "Designates the name of the social application."
     SocialApp._meta.get_field("name").verbose_name = "Social Application"
-
     SocialApp._meta.get_field("client_id").help_text = "Designates the unique identifier for the social application client."
     SocialApp._meta.get_field("client_id").verbose_name = "Client Identifier"
-
     SocialApp._meta.get_field("secret").help_text = "Designates the encrpyted key for the social application."
     SocialApp._meta.get_field("secret").verbose_name = "Secret Key"
-
     SocialApp._meta.get_field("key").help_text = "Designates the key for the social application."
     SocialApp._meta.get_field("key").verbose_name = "Key"
-
     SocialApp._meta.get_field("settings").help_text = "Designates the settings for the social application."
     SocialApp._meta.get_field("settings").verbose_name = "Settings"
-
     SocialApp._meta.verbose_name = "Social Application"
     SocialApp._meta.verbose_name_plural = "Social Applications"
 

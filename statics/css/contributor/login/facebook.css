@@ -164,13 +164,9 @@
     cursor: pointer;
 }
 
-.login .card-body .socials button.facebook:hover{
+.login .card-body .socials button.facebook:hover, .login .card-body .socials button.facebook span:hover{
     background-color: #10354C;
     color: #B2BEB5;
-}
-
-.login .card-body .socials button.facebook a{
-    text-decoration: none;
 }
 
 .login .card-body .socials button.facebook i{

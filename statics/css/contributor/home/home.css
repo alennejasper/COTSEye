@@ -41,8 +41,11 @@
 }
 
 #contributor-map{
-    min-width: 100vh;
+    min-width: 100%;
     min-height: 100vh;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;    
     z-index: 1;
 }
 

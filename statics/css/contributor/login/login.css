@@ -784,13 +784,9 @@
     cursor: pointer;
 }
 
-.login .card-body .socials button.facebook:hover{
+.login .card-body .socials button.facebook:hover, .login .card-body .socials button.facebook span:hover{
     background-color: #10354C;
     color: #B2BEB5;
-}
-
-.login .card-body .socials button.facebook a{
-    text-decoration: none;
 }
 
 .login .card-body .socials button.facebook i{
@@ -889,13 +885,13 @@
     cursor: pointer;
 }
 
-.login .card-body .socials button.google:hover{
-    background-color: #B2BEB5;
-    color: #10354C;
-}
-
 .login .card-body .socials button.google a{
     text-decoration: none;
+}
+
+.login .card-body .socials button.google:hover, .login .card-body .socials button.google a:hover{
+    background-color: #B2BEB5;
+    color: #10354C;
 }
 
 .login .card-body .socials button.google i{

@@ -8,9 +8,10 @@ class Announcement(models.Model):
     title = models.CharField(max_length = 150, help_text = "Designates the title of the announcement.", verbose_name = "Title")
     context = models.TextField(max_length = 5000, null = True, help_text = "Designates the context of the announcement.", verbose_name = "Context")
     place = models.CharField(max_length = 150, help_text = "Designates the place of the announcement.", verbose_name = "Place")
-    date = models.DateTimeField(auto_now_add = True, help_text = "Designates the date and time of the post.", verbose_name = "Date")
+    release_date = models.DateTimeField(auto_now_add = True, help_text = "Designates the release date and time of the announcement.", verbose_name = "Release Date")
+    announcement_photo = models.ImageField(default = "announcements/default.png", null = True, blank = True, upload_to = "announcements", help_text = "Designates the photo of the announcement.", verbose_name = "Announcement Photo")
 
-    date.editable = True
+    release_date.editable = True
 
     class Meta:
             db_table = "auxiliaries_announcement"

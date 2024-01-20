@@ -495,3 +495,13 @@ i.fa-solid.fa-users{
 .show{
     display: block;
 }
+
+
+.content{
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    display: grid;
+    grid-template-columns: 100%;
+}
