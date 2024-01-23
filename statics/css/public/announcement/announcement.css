@@ -62,6 +62,7 @@
     font-weight: 700;
     font-size: 22px !important;
     color: #FFFFFF;
+    text-align: center !important;
     white-space: nowrap !important; 
     overflow: auto !important;
 }

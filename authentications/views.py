@@ -258,7 +258,7 @@ def ContributorProfile(request):
 
     context = {"user": user}
 
-    return render(request, "contributor/profile.html", context)
+    return render(request, "contributor/profile/profile.html", context)
 
 
 @login_required(login_url = "Contributor Login")
