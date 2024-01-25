@@ -62,7 +62,6 @@
     font-weight: 700;
     font-size: 22px !important;
     color: #FFFFFF;
-    text-align: center !important;
     white-space: nowrap !important; 
     overflow: auto !important;
 }
@@ -116,6 +115,13 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .announcement .card-body .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
@@ -187,7 +193,7 @@
 
 .announcement .card-body .field .column .release-date input{
     padding-left: 10px !important;
-    padding-right: 10px !important;
+    padding-right: 45px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -208,7 +214,7 @@
 @media screen and (min-width: 369px) and (max-width: 445px){
     .announcement .card-body .field .column .release-date input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -226,7 +232,7 @@
 @media screen and (min-width: 349px) and (max-width: 368px){
     .announcement .card-body .field .column .release-date input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -244,7 +250,7 @@
 @media screen and (min-width: 320px) and (max-width: 348px){
     .announcement .card-body .field .column .release-date input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -309,8 +315,8 @@
     }
 }
 
-.announcement .card-body .field .column label[for = "user"]{
-    margin-top: 0px;
+.announcement .card-body .field .column label[for = "place"]{
+    margin-top: 15px;
     display: inline-block;
     font-family: "Overlock";
     font-weight: 400;
@@ -319,7 +325,7 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .announcement .card-body .field .column label[for = "user"]{
+    .announcement .card-body .field .column label[for = "place"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -330,7 +336,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .announcement .card-body .field .column label[for = "user"]{
+    .announcement .card-body .field .column label[for = "place"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -341,7 +347,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .announcement .card-body .field .column label[for = "user"]{
+    .announcement .card-body .field .column label[for = "place"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -351,13 +357,13 @@
     }
 }
 
-.announcement .card-body .field .column .user{
+.announcement .card-body .field .column .place{
     position: relative;
 }
 
-.announcement .card-body .field .column .user input{
+.announcement .card-body .field .column .place input{
     padding-left: 10px !important;
-    padding-right: 10px !important;
+    padding-right: 45px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -371,14 +377,14 @@
     color: #154360 !important;
 }
 
-.announcement .card-body .field .column .user input:focus{
+.announcement .card-body .field .column .place input:focus{
     border-bottom-width: 2px !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .announcement .card-body .field .column .user input{
+    .announcement .card-body .field .column .place input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -394,9 +400,9 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .announcement .card-body .field .column .user input{
+    .announcement .card-body .field .column .place input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -412,9 +418,9 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .announcement .card-body .field .column .user input{
+    .announcement .card-body .field .column .place input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -429,7 +435,7 @@
     }
 }
 
-.announcement .card-body .field .column .user i{
+.announcement .card-body .field .column .place i{
     right: 10px;
     top: 50%;
     position: absolute;
@@ -441,7 +447,7 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .announcement .card-body .field .column .user i{
+    .announcement .card-body .field .column .place i{
         right: 10px;
         top: 50%;
         position: absolute;
@@ -454,7 +460,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .announcement .card-body .field .column .user i{
+    .announcement .card-body .field .column .place i{
         right: 10px;
         top: 50%;
         position: absolute;
@@ -467,7 +473,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .announcement .card-body .field .column .user i{
+    .announcement .card-body .field .column .place i{
         right: 10px;
         top: 50%;
         position: absolute;

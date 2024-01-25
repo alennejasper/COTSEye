@@ -193,7 +193,7 @@
 
 .login .card-body form .field .column .username input{
     padding-left: 10px !important;
-    padding-right: 10px !important;
+    padding-right: 45px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -214,7 +214,7 @@
 @media screen and (min-width: 369px) and (max-width: 445px){
     .login .card-body form .field .column .username input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -232,7 +232,7 @@
 @media screen and (min-width: 349px) and (max-width: 368px){
     .login .card-body form .field .column .username input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -250,7 +250,7 @@
 @media screen and (min-width: 320px) and (max-width: 348px){
     .login .card-body form .field .column .username input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -363,7 +363,7 @@
 
 .login .card-body form .field .column .password1 input{
     padding-left: 10px !important;
-    padding-right: 10px !important;
+    padding-right: 45px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -384,7 +384,7 @@
 @media screen and (min-width: 369px) and (max-width: 445px){
     .login .card-body form .field .column .password1 input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -402,7 +402,7 @@
 @media screen and (min-width: 349px) and (max-width: 368px){
     .login .card-body form .field .column .password1 input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -420,7 +420,7 @@
 @media screen and (min-width: 320px) and (max-width: 348px){
     .login .card-body form .field .column .password1 input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;

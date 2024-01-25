@@ -283,7 +283,7 @@ def ContributorProfileUpdate(request):
 
     context = {"users": users, "profile_form": profile_form}
     
-    return render(request, "contributor/update.html", context)
+    return render(request, "contributor/profile/update.html", context)
 
 
 @login_required(login_url = "Contributor Login")

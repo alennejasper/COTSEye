@@ -41,9 +41,6 @@
     width: 100%;
     display: grid;
     grid-column: 1;
-    border: 1px solid #B2BEB5;
-    border-radius: 5px !important;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
 }
 
 .profile .card-body{
@@ -51,22 +48,22 @@
     padding-right: 30px;
     padding-top: 15px;
     padding-bottom: 15px;
-    width: 100%;
-    border-bottom-left-radius: 5px !important;
-    border-bottom-right-radius: 5px !important;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
     display: grid;
     gap: 15px;
     background-color: #FFFFFF;
 }
 
 .profile .card-body p{
-    width: 100%;
     font-family: "Philosopher";
     font-weight: 700;
     font-size: 48px;
     color: #154360 !important;
     text-align: center;
     white-space: normal;
+    overflow: auto;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
@@ -77,6 +74,7 @@
         color: #154360;
         text-align: center;
         white-space: normal; 
+        overflow: auto;
     }
 }
 
@@ -88,6 +86,7 @@
         color: #154360;
         text-align: center;
         white-space: normal; 
+        overflow: auto;
     }
 }
 
@@ -99,6 +98,7 @@
         color: #154360;
         text-align: center;
         white-space: normal; 
+        overflow: auto;
     }
 }
 
@@ -118,6 +118,13 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .profile .card-body .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
@@ -189,7 +196,7 @@
 
 .profile .card-body .field .column .user-id input{
     padding-left: 10px !important;
-    padding-right: 10px !important;
+    padding-right: 45px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -210,7 +217,7 @@
 @media screen and (min-width: 369px) and (max-width: 445px){
     .profile .card-body .field .column .user-id input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -228,7 +235,7 @@
 @media screen and (min-width: 349px) and (max-width: 368px){
     .profile .card-body .field .column .user-id input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -246,7 +253,7 @@
 @media screen and (min-width: 320px) and (max-width: 348px){
     .profile .card-body .field .column .user-id input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -359,7 +366,7 @@
 
 .profile .card-body .field .column .usertype input{
     padding-left: 10px !important;
-    padding-right: 10px !important;
+    padding-right: 45px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -380,7 +387,7 @@
 @media screen and (min-width: 369px) and (max-width: 445px){
     .profile .card-body .field .column .usertype input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -398,7 +405,7 @@
 @media screen and (min-width: 349px) and (max-width: 368px){
     .profile .card-body .field .column .usertype input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -416,7 +423,7 @@
 @media screen and (min-width: 320px) and (max-width: 348px){
     .profile .card-body .field .column .usertype input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -529,7 +536,7 @@
 
 .profile .card-body .field .column .is-active input{
     padding-left: 10px !important;
-    padding-right: 10px !important;
+    padding-right: 45px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -550,7 +557,7 @@
 @media screen and (min-width: 369px) and (max-width: 445px){
     .profile .card-body .field .column .is-active input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -568,7 +575,7 @@
 @media screen and (min-width: 349px) and (max-width: 368px){
     .profile .card-body .field .column .is-active input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -586,7 +593,7 @@
 @media screen and (min-width: 320px) and (max-width: 348px){
     .profile .card-body .field .column .is-active input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -699,7 +706,7 @@
 
 .profile .card-body .field .column .first-name input{
     padding-left: 10px !important;
-    padding-right: 10px !important;
+    padding-right: 45px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -720,7 +727,7 @@
 @media screen and (min-width: 369px) and (max-width: 445px){
     .profile .card-body .field .column .first-name input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -738,7 +745,7 @@
 @media screen and (min-width: 349px) and (max-width: 368px){
     .profile .card-body .field .column .first-name input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -756,7 +763,7 @@
 @media screen and (min-width: 320px) and (max-width: 348px){
     .profile .card-body .field .column .first-name input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -869,7 +876,7 @@
 
 .profile .card-body .field .column .last-name input{
     padding-left: 10px !important;
-    padding-right: 10px !important;
+    padding-right: 45px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -890,7 +897,7 @@
 @media screen and (min-width: 369px) and (max-width: 445px){
     .profile .card-body .field .column .last-name input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -908,7 +915,7 @@
 @media screen and (min-width: 349px) and (max-width: 368px){
     .profile .card-body .field .column .last-name input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -926,7 +933,7 @@
 @media screen and (min-width: 320px) and (max-width: 348px){
     .profile .card-body .field .column .last-name input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1039,7 +1046,7 @@
 
 .profile .card-body .field .column .email input{
     padding-left: 10px !important;
-    padding-right: 10px !important;
+    padding-right: 45px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -1060,7 +1067,7 @@
 @media screen and (min-width: 369px) and (max-width: 445px){
     .profile .card-body .field .column .email input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1078,7 +1085,7 @@
 @media screen and (min-width: 349px) and (max-width: 368px){
     .profile .card-body .field .column .email input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1096,7 +1103,7 @@
 @media screen and (min-width: 320px) and (max-width: 348px){
     .profile .card-body .field .column .email input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1209,7 +1216,7 @@
 
 .profile .card-body .field .column .phone-number input{
     padding-left: 10px !important;
-    padding-right: 10px !important;
+    padding-right: 45px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -1230,7 +1237,7 @@
 @media screen and (min-width: 369px) and (max-width: 445px){
     .profile .card-body .field .column .phone-number input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1248,7 +1255,7 @@
 @media screen and (min-width: 349px) and (max-width: 368px){
     .profile .card-body .field .column .phone-number input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1266,7 +1273,7 @@
 @media screen and (min-width: 320px) and (max-width: 348px){
     .profile .card-body .field .column .phone-number input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1379,7 +1386,7 @@
 
 .profile .card-body .field .column .joined-date input{
     padding-left: 10px !important;
-    padding-right: 10px !important;
+    padding-right: 45px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -1400,7 +1407,7 @@
 @media screen and (min-width: 369px) and (max-width: 445px){
     .profile .card-body .field .column .joined-date input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1418,7 +1425,7 @@
 @media screen and (min-width: 349px) and (max-width: 368px){
     .profile .card-body .field .column .joined-date input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1436,7 +1443,7 @@
 @media screen and (min-width: 320px) and (max-width: 348px){
     .profile .card-body .field .column .joined-date input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1549,7 +1556,7 @@
 
 .profile .card-body .field .column .last-login input{
     padding-left: 10px !important;
-    padding-right: 10px !important;
+    padding-right: 45px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -1570,7 +1577,7 @@
 @media screen and (min-width: 369px) and (max-width: 445px){
     .profile .card-body .field .column .last-login input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1588,7 +1595,7 @@
 @media screen and (min-width: 349px) and (max-width: 368px){
     .profile .card-body .field .column .last-login input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1606,7 +1613,7 @@
 @media screen and (min-width: 320px) and (max-width: 348px){
     .profile .card-body .field .column .last-login input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;

@@ -49,30 +49,12 @@
 }
 
 .register{
-    width: 800px;
+    width: 100%;
     display: grid;
     grid-column: 1;
     border: 1px solid #B2BEB5;
     border-radius: 5px !important;
     box-shadow: 0 0 0 1px #B2BEB5 !important;
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .register{
-        width: 309px;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .register{
-        width: 289px;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .register{
-        width: 260px;
-    }
 }
 
 .register .card-header{
@@ -151,6 +133,13 @@
     gap: 30px;
 }
 
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .register .card-body .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
+}
+
 @media screen and (min-width: 369px) and (max-width: 445px){
     .register .card-body form .field{        
         grid-template-columns: 100%;
@@ -220,7 +209,7 @@
 
 .register .card-body form .field .column .username input{
     padding-left: 10px !important;
-    padding-right: 10px !important;
+    padding-right: 45px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -241,7 +230,7 @@
 @media screen and (min-width: 369px) and (max-width: 445px){
     .register .card-body form .field .column .username input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -259,7 +248,7 @@
 @media screen and (min-width: 349px) and (max-width: 368px){
     .register .card-body form .field .column .username input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -277,7 +266,7 @@
 @media screen and (min-width: 320px) and (max-width: 348px){
     .register .card-body form .field .column .username input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -390,7 +379,7 @@
 
 .register .card-body form .field .column .first-name input{
     padding-left: 10px !important;
-    padding-right: 10px !important;
+    padding-right: 45px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -411,7 +400,7 @@
 @media screen and (min-width: 369px) and (max-width: 445px){
     .register .card-body form .field .column .first-name input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -429,7 +418,7 @@
 @media screen and (min-width: 349px) and (max-width: 368px){
     .register .card-body form .field .column .first-name input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -447,7 +436,7 @@
 @media screen and (min-width: 320px) and (max-width: 348px){
     .register .card-body form .field .column .first-name input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -560,7 +549,7 @@
 
 .register .card-body form .field .column .password1 input{
     padding-left: 10px !important;
-    padding-right: 10px !important;
+    padding-right: 45px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -581,7 +570,7 @@
 @media screen and (min-width: 369px) and (max-width: 445px){
     .register .card-body form .field .column .password1 input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -599,7 +588,7 @@
 @media screen and (min-width: 349px) and (max-width: 368px){
     .register .card-body form .field .column .password1 input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -617,7 +606,7 @@
 @media screen and (min-width: 320px) and (max-width: 348px){
     .register .card-body form .field .column .password1 input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -738,7 +727,7 @@
 
 .register .card-body form .field .column .email input{
     padding-left: 10px !important;
-    padding-right: 10px !important;
+    padding-right: 45px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -759,7 +748,7 @@
 @media screen and (min-width: 369px) and (max-width: 445px){
     .register .card-body form .field .column .email input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -777,7 +766,7 @@
 @media screen and (min-width: 349px) and (max-width: 368px){
     .register .card-body form .field .column .email input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -795,7 +784,7 @@
 @media screen and (min-width: 320px) and (max-width: 348px){
     .register .card-body form .field .column .email input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -908,7 +897,7 @@
 
 .register .card-body form .field .column .last-name input{
     padding-left: 10px !important;
-    padding-right: 10px !important;
+    padding-right: 45px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -929,7 +918,7 @@
 @media screen and (min-width: 369px) and (max-width: 445px){
     .register .card-body form .field .column .last-name input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -947,7 +936,7 @@
 @media screen and (min-width: 349px) and (max-width: 368px){
     .register .card-body form .field .column .last-name input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -965,7 +954,7 @@
 @media screen and (min-width: 320px) and (max-width: 348px){
     .register .card-body form .field .column .last-name input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1078,7 +1067,7 @@
 
 .register .card-body form .field .column .password2 input{
     padding-left: 10px !important;
-    padding-right: 10px !important;
+    padding-right: 45px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -1099,7 +1088,7 @@
 @media screen and (min-width: 369px) and (max-width: 445px){
     .register .card-body form .field .column .password2 input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1117,7 +1106,7 @@
 @media screen and (min-width: 349px) and (max-width: 368px){
     .register .card-body form .field .column .password2 input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1135,7 +1124,7 @@
 @media screen and (min-width: 320px) and (max-width: 348px){
     .register .card-body form .field .column .password2 input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 45px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1419,4 +1408,3 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 input:autofill{
     background: #FFFFFF !important;
 }
-
