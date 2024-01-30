@@ -35,6 +35,16 @@
     background: #557433 !important;
 }
 
+::-webkit-scrollbar-button{
+    width: 0px !important;
+    display: none !important;
+}
+
+::-moz-scrollbar-button{
+    width: 0px !important;
+    display: none !important;
+}
+
 
 body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .content-wrapper, body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .main-footer, body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .main-header{
     margin-left: 0px !important;
@@ -452,7 +462,7 @@ i.fas.fa-users{
 }
 
 .row.form-group .col-12.col-md-6 input[name = "old_password"]:focus{
-    border-bottom-width: 2px !important;
+    border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 446px) and (max-width: 1318px){
@@ -537,7 +547,7 @@ i.fas.fa-users{
 }
 
 .row.form-group .col-12.col-md-6 input[name = "new_password1"]:focus{
-    border-bottom-width: 2px !important;
+    border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 446px) and (max-width: 1318px){
@@ -625,7 +635,7 @@ i.fas.fa-users{
 }
 
 .row.form-group .col-12.col-md-6 input[name = "new_password2"]:focus{
-    border-bottom-width: 2px !important;
+    border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 446px) and (max-width: 1318px){
@@ -931,7 +941,7 @@ i.fas.fa-users{
 }
 
 .form-group input[type = "text"]:focus{
-    border-bottom-width: 2px !important;
+    border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 446px) and (max-width: 1318px){
@@ -1185,7 +1195,7 @@ i.fas.fa-users{
 }
 
 .select2-container--default .select2-search--dropdown .select2-search__field:focus{
-    border-bottom-width: 2px !important;
+    border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 446px) and (max-width: 1318px){
@@ -2240,7 +2250,7 @@ li.select2-results__option{
     height: 100%;
 }
 
-#admin-map{
+.admin-map{
     height: 750px;
     border: 1px solid #B2BEB5;
     border-radius: 5px; 
@@ -2249,7 +2259,7 @@ li.select2-results__option{
 }
 
 @media screen and (min-width: 320px) and (max-width: 775px){
-    #admin-map{
+    .admin-map{
         height: 500px;
         border: 1px solid #B2BEB5;
         border-radius: 5px; 
@@ -2259,7 +2269,7 @@ li.select2-results__option{
 }
 
 @media screen and (min-width: 320px) and (max-width: 775px){
-    #admin-map{
+    .admin-map{
         height: 250px;
         border: 1px solid #B2BEB5;
         border-radius: 5px; 
@@ -3129,7 +3139,7 @@ i.fas.fa-clock::before{
 }
 
 .form-group input[type = "email"]:focus{
-    border-bottom-width: 2px !important;
+    border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 446px) and (max-width: 1318px){
@@ -3218,7 +3228,7 @@ i.fas.fa-clock::before{
 }
 
 .form-group input[type = "file"]:focus{
-    border-bottom-width: 2px !important;
+    border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 446px) and (max-width: 1318px){
@@ -3503,7 +3513,7 @@ textarea.vLargeTextField{
 }
 
 textarea.vLargeTextField:focus{
-    border-bottom-width: 2px !important;
+    border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 446px) and (max-width: 1318px){
@@ -3610,7 +3620,7 @@ textarea.vLargeTextField:focus{
 }
 
 .form-group input[type = "number"]:focus{
-    border-bottom-width: 2px !important;
+    border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 446px) and (max-width: 1318px){
@@ -3706,7 +3716,7 @@ textarea{
 }
 
 textarea:focus{
-    border-bottom-width: 2px !important;
+    border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 446px) and (max-width: 1318px){

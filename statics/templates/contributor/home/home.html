@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class = "map">
-    <div id = "contributor-map">
+    <div class = "contributor-map">
     </div>
 </div>
 
@@ -25,7 +25,9 @@
     var map;
 
     function revealMap(){
-        map = L.map("contributor-map", {zoomControl: true, scrollWheelZoom: false, dragging: true, maxBounds: [[5.3, 124.3],[6.3, 126.3]]}).setView([5.9656, 125.1929], 11);
+        var contributorMap = document.getElementsByClassName("contributor-map")[0];
+
+        map = L.map(contributorMap, {zoomControl: true, scrollWheelZoom: false, dragging: true, maxBounds: [[5.3, 124.3],[6.3, 126.3]]}).setView([5.9656, 125.1929], 11);
 
         L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {minZoom: 11, attribution: "ESRI"}).addTo(map);
 

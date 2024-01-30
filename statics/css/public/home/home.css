@@ -35,6 +35,16 @@
     background: #557433 !important;
 }
 
+::-webkit-scrollbar-button{
+    width: 0px !important;
+    display: none !important;
+}
+
+::-moz-scrollbar-button{
+    width: 0px !important;
+    display: none !important;
+}
+
 body{
     padding-right: 0px !important;
 }
@@ -44,7 +54,7 @@ body{
     min-height: 100vh;
 }
 
-#public-map{
+.public-map{
     min-width: 100%;
     min-height: 100vh;
     border: 1px solid #B2BEB5;
@@ -54,7 +64,7 @@ body{
 }
 
 @media screen and (min-width: 320px) and (max-width: 775px){
-    #public-map{
+    .public-map{
         min-width: 100%;
         min-height: 100%;
         border: 1px solid #B2BEB5;
@@ -65,7 +75,7 @@ body{
 }
 
 @media screen and (min-width: 320px) and (max-width: 775px){
-    #public-map{
+    .public-map{
         min-width: 100%;
         min-height: 100%;
         border: 1px solid #B2BEB5;

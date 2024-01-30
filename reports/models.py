@@ -52,13 +52,13 @@ class PostObservations(models.Model):
         return "OBSV " + str(self.id)
     
 class Post(models.Model):
-    user = models.ForeignKey(User, on_delete = models.CASCADE, null = True, blank = True, help_text = "Designates the foreign field of the User model.", verbose_name = "User")
+    user = models.ForeignKey(User, on_delete = models.CASCADE, null = True, blank = True, help_text = "Designates the foreign key of the User model.", verbose_name = "User")
     description = models.TextField(max_length = 1500, null = True, blank = True, help_text = "Designates the description of the post.", verbose_name = "Description")
     capture_date = models.DateTimeField(default = datetime.datetime.now(), help_text = "Designates the capture date and time of the post.", verbose_name = "Capture Date")
     post_photo = models.ImageField(default = "posts/default.png", null = True, blank = True, upload_to = "posts", help_text = "Designates the photo of the post.", verbose_name = "Post Photo")
-    coordinates = models.ForeignKey(Coordinates, on_delete = models.CASCADE, null = True, blank = True, help_text = "Designates the foreign field of the Coordinates model.", verbose_name = "Coordinates")
-    post_status = models.ForeignKey(PostStatus, on_delete = models.CASCADE, default = 1, null = True, blank = True, help_text = "Designates the foreign field of the Post Status model.", verbose_name = "Post Status")
-    post_observations = models.ForeignKey(PostObservations, on_delete = models.CASCADE, null = True, blank = True, help_text = "Designates the foreign field of the Post Observations model.", verbose_name = "Post Observations")
+    coordinates = models.ForeignKey(Coordinates, on_delete = models.CASCADE, null = True, blank = True, help_text = "Designates the foreign key of the Coordinates model.", verbose_name = "Coordinates")
+    post_status = models.ForeignKey(PostStatus, on_delete = models.CASCADE, default = 1, null = True, blank = True, help_text = "Designates the foreign key of the Post Status model.", verbose_name = "Post Status")
+    post_observations = models.ForeignKey(PostObservations, on_delete = models.CASCADE, null = True, blank = True, help_text = "Designates the foreign key of the Post Observations model.", verbose_name = "Post Observations")
 
     class Meta:
         db_table = "reports_post"

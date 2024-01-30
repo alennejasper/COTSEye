@@ -35,6 +35,16 @@
     background: #557433 !important;
 }
 
+::-webkit-scrollbar-button{
+    width: 0px !important;
+    display: none !important;
+}
+
+::-moz-scrollbar-button{
+    width: 0px !important;
+    display: none !important;
+}
+
 
 .content{
     padding-left: 30px;
@@ -208,7 +218,7 @@
 }
 
 .login .card-body form .field .column .username input:focus{
-    border-bottom-width: 2px !important;
+    border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
@@ -378,7 +388,7 @@
 }
 
 .login .card-body form .field .column .password1 input:focus{
-    border-bottom-width: 2px !important;
+    border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){

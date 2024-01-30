@@ -444,7 +444,7 @@ body.theme-default .select2-container .select2-selection--single .select2-select
 }
 
 body.theme-default span.select2-selection--multiple[aria-expanded = true]{
-    border-bottom-width: 2px !important;
+    border-bottom-width: 2.5px !important;
 }
 
 body.theme-default span.action-counter{
@@ -572,7 +572,7 @@ body.theme-default input[type = "checkbox"]:checked{
 }
 
 body.theme-default input[type = "checkbox"]:focus{
-    border-bottom-width: 2px;
+    border-bottom-width: 2.5px;
 }
 
 body.theme-default input[type = "file"]{
@@ -596,7 +596,7 @@ body.theme-default input{
 }
 
 body.theme-default input:focus{
-    border-bottom-width: 2px !important;
+    border-bottom-width: 2.5px !important;
 }
 
 body.them-default input.select2-search__field{
@@ -606,7 +606,7 @@ body.them-default input.select2-search__field{
 }
 
 body.them-default input.select2-search__field:focus{
-    border-bottom-width: 2px !important;
+    border-bottom-width: 2.5px !important;
 }
 
 
@@ -689,7 +689,7 @@ body.theme-default .vLargeTextField{
 }
 
 body.theme-default textarea.vLargeTextField:focus{
-    border-bottom-width: 2px !important;
+    border-bottom-width: 2.5px !important;
 }
 
 body.theme-default textarea{
@@ -700,7 +700,7 @@ body.theme-default textarea{
 }
 
 body.theme-default textarea:focus{
-    border-bottom-width: 2px !important;
+    border-bottom-width: 2.5px !important;
 }
 
 body.theme-default .select2-container .select2-search--inline .select2-search__field{
@@ -994,15 +994,15 @@ input::-webkit-datetime-edit-day-field:focus, input::-webkit-datetime-edit-month
 }
 
 .field.input-field input:focus{
-    border-bottom-width: 2px;
+    border-bottom-width: 2.5px;
 }
 
 .field.input-field textarea:focus{
-    border-bottom-width: 2px;
+    border-bottom-width: 2.5px;
 }
 
 .field.input-field input#date:focus{
-    border-bottom-width: 2px !important;
+    border-bottom-width: 2.5px !important;
 }
 
 .field.checkbox-field .text{
@@ -1030,7 +1030,7 @@ input::-webkit-datetime-edit-day-field:focus, input::-webkit-datetime-edit-month
 }
 
 .field.check-box input:focus{
-    border-bottom-width: 2px;
+    border-bottom-width: 2.5px;
 }
 
 .field-icon{
@@ -1351,7 +1351,7 @@ ul{
     margin: 0 10px;
 }
 
-.fa.fa-camera{
+.fa.fa-square-plus{
     line-height: 2 !important;
 }
 

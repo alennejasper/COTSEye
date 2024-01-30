@@ -4,7 +4,7 @@ from authentications.models import User
 
 # Create your models here.
 class Announcement(models.Model):
-    user = models.ForeignKey(User, on_delete = models.CASCADE, null = True, blank = True, help_text = "Designates the foreign field of the User model.", verbose_name = "User")
+    user = models.ForeignKey(User, on_delete = models.CASCADE, null = True, blank = True, help_text = "Designates the foreign key of the User model.", verbose_name = "User")
     title = models.CharField(max_length = 150, help_text = "Designates the title of the announcement.", verbose_name = "Title")
     context = models.TextField(max_length = 5000, null = True, help_text = "Designates the context of the announcement.", verbose_name = "Context")
     place = models.CharField(max_length = 150, help_text = "Designates the place of the announcement.", verbose_name = "Place")

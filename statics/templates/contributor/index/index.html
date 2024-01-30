@@ -23,6 +23,8 @@
 
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/profile/update.css' %}">
 
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/post/create.css' %}">
+
         <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">          
         
         <link rel = "stylesheet" href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity = "sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin = ""/>    
@@ -45,7 +47,7 @@
                     </div>
 
                     <ul class = "navigation-sidelinks">
-                        <li><a href = "{% url 'Contributor Create' %}"><i class = "fa-solid fa-square-plus"></i>Create report</a></li>
+                        <li><a href = "{% url 'Contributor Post Create' %}"><i class = "fa-solid fa-square-plus"></i>Create report</a></li>
 
                         <li><a href = "{% url 'Contributor Post' %}"><i class = "fa-solid fa-images"></i>My posts</a></li>
 
@@ -70,7 +72,7 @@
 
                 <div class = "others">
                     <div class = "create-icon">
-                        <a href = "{% url 'Contributor Create' %}"><i class = "fa-solid fa-camera"></i></a>
+                        <a href = "{% url 'Contributor Post Create' %}"><i class = "fa-solid fa-square-plus"></i></a>
                     </div>
 
                     <div class = "dropdown">

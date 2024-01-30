@@ -35,6 +35,16 @@
     background: #557433 !important;
 }
 
+::-webkit-scrollbar-button{
+    width: 0px !important;
+    display: none !important;
+}
+
+::-moz-scrollbar-button{
+    width: 0px !important;
+    display: none !important;
+}
+
 
 .update{
     margin-bottom: 30px;
@@ -216,7 +226,7 @@
 }
 
 .update .card-body .field .column .first-name input:focus{
-    border-bottom-width: 2px !important;
+    border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
@@ -386,7 +396,7 @@
 }
 
 .update .card-body .field .column .last-name input:focus{
-    border-bottom-width: 2px !important;
+    border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
@@ -556,7 +566,7 @@
 }
 
 .update .card-body .field .column .email input:focus{
-    border-bottom-width: 2px !important;
+    border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
@@ -726,7 +736,7 @@
 }
 
 .update .card-body .field .column .phone-number input:focus{
-    border-bottom-width: 2px !important;
+    border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){

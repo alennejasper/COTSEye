@@ -264,7 +264,7 @@ def ContributorProfile(request):
 @login_required(login_url = "Contributor Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorProfileUpdate(request):
-    users = User.objects.get(account = request.user)
+    user = User.objects.get(account = request.user)
 
     if request.method == "POST":
         profile_form = ProfileForm(request.POST, request.FILES, instance = request.user.user)
@@ -281,7 +281,7 @@ def ContributorProfileUpdate(request):
     else:
         profile_form = ProfileForm(request.user.user)
 
-    context = {"users": users, "profile_form": profile_form}
+    context = {"user": user, "profile_form": profile_form}
     
     return render(request, "contributor/profile/update.html", context)
 

@@ -3,7 +3,7 @@ from reports import views
 
 # Create your URL configuration here.
 urlpatterns = [
-    path("contributor/create/", views.ContributorCreate, name = "Contributor Create"),
+    path("contributor/post/create/", views.ContributorPostCreate, name = "Contributor Post Create"),
     
     path("contributor/post/", views.ContributorPost, name = "Contributor Post"),
    

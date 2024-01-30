@@ -9,7 +9,7 @@ from authentications.views import ContributorCheck
 # Create your views here.
 @login_required(login_url = "Contributor Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Login")
-def ContributorCreate(request):
+def ContributorPostCreate(request):
     coordinates_form = CoordinatesForm()
 
     postobservations_form = PostObservationsForm()
@@ -61,7 +61,7 @@ def ContributorCreate(request):
 
     context = {"coordinates_form": coordinates_form, "postobservations_form": postobservations_form, "post_form": post_form}
     
-    return render(request, "contributor/create.html", context)
+    return render(request, "contributor/post/create.html", context)
 
 
 @login_required(login_url = "Contributor Login")

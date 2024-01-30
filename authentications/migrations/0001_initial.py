@@ -39,7 +39,7 @@ class Migration(migrations.Migration):
                 ('last_login', models.DateTimeField(default=datetime.datetime.now, verbose_name='Last Signin')),
                 ('groups', models.ManyToManyField(blank=True, to='auth.group', verbose_name='Groups')),
                 ('user_permissions', models.ManyToManyField(blank=True, to='auth.permission', verbose_name='User Permissions')),
-                ('usertype', models.ForeignKey(blank=True, help_text='Designates the foreign field of the User Type model.', null=True, on_delete=django.db.models.deletion.SET_NULL, to='authentications.usertype', verbose_name='User Type')),
+                ('usertype', models.ForeignKey(blank=True, help_text='Designates the foreign key of the User Type model.', null=True, on_delete=django.db.models.deletion.SET_NULL, to='authentications.usertype', verbose_name='User Type')),
             ],
             options={
                 'verbose_name': 'Account',
@@ -57,7 +57,7 @@ class Migration(migrations.Migration):
                 ('phone_number', models.CharField(blank=True, help_text='Designates the phone number of the user.', max_length=10, null=True, verbose_name='Phone Number')),
                 ('profile_photo', models.ImageField(blank=True, default='profiles/default.png', help_text='Designates the profile photo of the user.', null=True, upload_to='profiles', verbose_name='Profile Photo')),
                 ('joined_date', models.DateTimeField(auto_now_add=True, help_text='Designates the joined date and time of the user.', verbose_name='Joined Date')),
-                ('account', models.OneToOneField(blank=True, help_text='Designates the foreign field of the Account model.', null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='Account')),
+                ('account', models.OneToOneField(blank=True, help_text='Designates the foreign key of the Account model.', null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='Account')),
             ],
             options={
                 'verbose_name': 'User',

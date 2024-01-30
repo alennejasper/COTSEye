@@ -26,9 +26,9 @@ class AccountManager(BaseUserManager):
 
 
 class UserType(models.Model):
-    is_superuser = models.BooleanField(default = False, help_text = "Designates that the user can log into the administrator site.", verbose_name = "Administrator Status")
-    is_staff = models.BooleanField(default = False, help_text = "Designates whether the user can log into the officers site.", verbose_name = "Officer Status")
-    is_contributor = models.BooleanField(default = False, help_text = "Designates whether the user can log into the contributors site.", verbose_name = "Contributor Status")
+    is_superuser = models.BooleanField(default = False, help_text = "Designates that the user has all permissions.", verbose_name = "Administrator Status")
+    is_staff = models.BooleanField(default = False, help_text = "Designates whether the user can log into the officers site or not.", verbose_name = "Officer Status")
+    is_contributor = models.BooleanField(default = False, help_text = "Designates whether the user can log into the contributors site or not.", verbose_name = "Contributor Status")
 
     class Meta:
         db_table = "auth_user_type"
@@ -49,7 +49,7 @@ class UserType(models.Model):
 class Account(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length = 150, unique = True, help_text = "Designates the name of the user.", verbose_name = "Username")
     password = models.CharField(max_length = 150, help_text = "Designates the password of the user.", verbose_name = "Password")
-    usertype = models.ForeignKey(UserType, on_delete = models.SET_NULL, blank = True, null = True, help_text = "Designates the foreign field of the User Type model.", verbose_name = "User Type")
+    usertype = models.ForeignKey(UserType, on_delete = models.SET_NULL, blank = True, null = True, help_text = "Designates the foreign key of the User Type model.", verbose_name = "User Type")
     is_active = models.BooleanField(default = True, help_text = "Designates whether the user should be considered active or not.", verbose_name = "Active Status")
     last_login = models.DateTimeField(default = datetime.datetime.now, verbose_name = "Last Signin")
     groups = models.ManyToManyField(Group, blank = True, verbose_name = "Groups")
@@ -84,7 +84,7 @@ class Account(AbstractBaseUser, PermissionsMixin):
 
 
 class User(models.Model):
-    account = models.OneToOneField(Account, on_delete = models.CASCADE, null = True, blank = True, help_text = "Designates the foreign field of the Account model.", verbose_name = "Account")
+    account = models.OneToOneField(Account, on_delete = models.CASCADE, null = True, blank = True, help_text = "Designates the foreign key of the Account model.", verbose_name = "Account")
     first_name = models.CharField(max_length = 65, null = True, blank = True, help_text = "Designates the first name of the user.", verbose_name = "First Name")
     last_name = models.CharField(max_length = 65, null = True, blank = True, help_text = "Designates the last name of the user.", verbose_name = "Last Name")
     email = models.EmailField(max_length = 65, null = True, help_text = "Designates the email of the user.", verbose_name = "Email")

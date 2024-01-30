@@ -35,6 +35,16 @@
     background: #557433 !important;
 }
 
+::-webkit-scrollbar-button{
+    width: 0px !important;
+    display: none !important;
+}
+
+::-moz-scrollbar-button{
+    width: 0px !important;
+    display: none !important;
+}
+
 
 nav{
     width: 100%;

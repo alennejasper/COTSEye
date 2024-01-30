@@ -2,12 +2,13 @@
 {% load static %}
 
 {% block content %}
-{% if users %}
+{% if user %}
 <div class = "update">
     <form action = "" method = "POST" enctype = "multipart/form-data">
         {% csrf_token %}
+        
         <div class = "card-body">
-            <img class = "profile-photo" src = "{{users.profile_photo.url}}">        
+            <img class = "profile-photo" src = "{{user.profile_photo.url}}">        
                 
             <input type = "file" class = "browse-photo" accept = "image">
                     

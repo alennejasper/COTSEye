@@ -22,8 +22,8 @@ class Migration(migrations.Migration):
                 ('place', models.CharField(help_text='Designates the place of the announcement.', max_length=150, verbose_name='Place')),
                 ('release_date', models.DateTimeField(auto_now_add=True, help_text='Designates the release date and time of the announcement.', verbose_name='Release Date')),
                 ('announcement_photo', models.ImageField(blank=True, default='announcements/default.png', help_text='Designates the photo of the announcement.', null=True, upload_to='announcements', verbose_name='Announcement Photo')),
-                ('user', models.ForeignKey(blank=True, help_text='Designates the foreign field of the User model.', null=True, on_delete=django.db.models.deletion.CASCADE, to='authentications.user', verbose_name='User')),
-                ('announcement_status', models.ForeignKey(blank=True, default=1, help_text='Designates the foreign field of the Announcement Status model.', null=True, on_delete=django.db.models.deletion.CASCADE, to='auxiliaries.announcementstatus', verbose_name='Announcement Status')),
+                ('user', models.ForeignKey(blank=True, help_text='Designates the foreign key of the User model.', null=True, on_delete=django.db.models.deletion.CASCADE, to='authentications.user', verbose_name='User')),
+                ('announcement_status', models.ForeignKey(blank=True, default=1, help_text='Designates the foreign key of the Announcement Status model.', null=True, on_delete=django.db.models.deletion.CASCADE, to='auxiliaries.announcementstatus', verbose_name='Announcement Status')),
             ],
             options={
                 'verbose_name': 'Announcement',

@@ -35,6 +35,16 @@
     background: #557433 !important;
 }
 
+::-webkit-scrollbar-button{
+    width: 0px !important;
+    display: none !important;
+}
+
+::-moz-scrollbar-button{
+    width: 0px !important;
+    display: none !important;
+}
+
 
 nav{
     width: 100%;
@@ -303,20 +313,20 @@ nav .navigation-bar .create-icon{
     }
 }
 
-.create-icon i.fa-solid.fa-camera{
+.create-icon i.fa-solid.fa-square-plus{
     font-size: 30px !important;
     color: #FFFFFF;
 }
 
-.create-icon i.fa-solid.fa-camera:hover{
+.create-icon i.fa-solid.fa-square-plus:hover{
     color: #B2BEB5 !important;
 }
 
-.create-icon i.fa-solid.fa-camera:focus{
+.create-icon i.fa-solid.fa-square-plus:focus{
     color: #B2BEB5 !important;
 }
 
-.create-icon i.fa-solid.fa-camera:active{
+.create-icon i.fa-solid.fa-square-plus:active{
     color: #B2BEB5 !important;
 }
 

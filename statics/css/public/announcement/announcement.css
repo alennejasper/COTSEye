@@ -35,6 +35,16 @@
     background: #557433 !important;
 }
 
+::-webkit-scrollbar-button{
+    width: 0px !important;
+    display: none !important;
+}
+
+::-moz-scrollbar-button{
+    width: 0px !important;
+    display: none !important;
+}
+
 
 .announcement{
     margin-bottom: 30px;
@@ -208,7 +218,7 @@
 }
 
 .announcement .card-body .field .column .release-date input:focus{
-    border-bottom-width: 2px !important;
+    border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
@@ -378,7 +388,7 @@
 }
 
 .announcement .card-body .field .column .place input:focus{
-    border-bottom-width: 2px !important;
+    border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
