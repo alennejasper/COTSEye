@@ -107,7 +107,7 @@
                         <i class = "bx bxs-caret-down-circle last field-icon" onclick = "scrollTextarea(30)"></i>
                     </div>
 
-                    <a id = "update" href = "{% url 'Contributor Uncertain Update' post.id %}" class = "btn btn-success">Update</a>
+                    <a id = "update" href = "{% url 'Contributor Post Uncertain Update' post.id %}" class = "btn btn-success">Update</a>
                 </div>
             </div>
         </div>
@@ -193,7 +193,7 @@
 </div>
 {% endfor %}
 
-{% for post in valid_posts %}
+{% for post in valid_postss %}
 <div id = "posts-box">
     <div class = "posts">
         <div class = "details">
@@ -291,7 +291,7 @@
 </div>
 {% endfor %}
 
-{% for post in invalid_posts %}
+{% for post in invalid_postss %}
 <div id = "posts-box">
     <div class = "posts">
         <div class = "details">
@@ -311,7 +311,7 @@
                         <i class = "bx bxs-caret-down-circle last field-icon" onclick = "scrollTextarea(30)"></i>
                     </div>
 
-                    <a id = "delete" href = "{% url 'Contributor Invalid Delete' post.id %}" class = "btn btn-warning">Delete</a>
+                    <a id = "delete" href = "{% url 'Contributor Post Invalid Delete' post.id %}" class = "btn btn-warning">Delete</a>
                 </div>
             </div>
         </div>

@@ -29,6 +29,7 @@ def PublicHome(request):
         except:
             posts = None
 
+    if not any(message.level in [messages.INFO, messages.SUCCESS, messages.ERROR] for message in messages.get_messages(request)):
         messages.info(request, username + ", " + "kindly see announcements within the menu of COTSEye to check for updates today.")
 
     context = {"posts": posts}
@@ -239,12 +240,7 @@ def ContributorCheck(account):
 @login_required(login_url = "Contributor Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorHome(request):
-    username = request.user.username
-
     posts = Post.objects.filter(id = 1)
-
-    if request.user.is_authenticated:
-        messages.info(request, username + ", " + "see announcements page within the menu of COTSEye to check for updates today.")
 
     context = {"posts": posts}
 

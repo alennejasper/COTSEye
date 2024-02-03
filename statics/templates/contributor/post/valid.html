@@ -2,32 +2,32 @@
 {% load static %}
 
 {% block content %}
-{% for post in invalid_posts %}
+{% for post in valid_posts %}
 <div class = "post">
     <div class = "card-header">
-        <header>{{post.description}}</header>
+        <header class = "preview">{{post.description}}</header>
     </div>
 
     <div class = "card-body">
         <div class = "field">
             <div class = "column">
-                <label for = "valid-posts">Post Count</label> 
-                    
-                <div class = "valid-posts">
-                    <input type = "text" placeholder = "{{post.coordinates.latitude | default:'0'}}° N, {{post.coordinates.longitude | default:'0'}}° E" id = "valid-posts" name = "valid_posts" readonly>
-                        
-                    <i class = "fa-solid fa-arrow-up-wide-short"></i>
-                </div>
-            </div>
+                <label for = "capture-date">Capture Date</label> 
 
-            <div class = "column">
-                <label for = "valid-date">Newest Date</label> 
-
-                <div class = "valid-date">
-                    <input type = "text" placeholder = "{{post.capture_date | default:'nonexistent'}}" id = "valid-date" name = "valid-date" readonly>
+                <div class = "capture-date">
+                    <input type = "text" placeholder = "{{post.capture_date | default:'nonexistent'}}" id = "capture-date" name = "capture-date" readonly>
 
                     <i class = "fa-solid fa-calendar-plus"></i>
                 </div>  
+            </div>
+
+            <div class = "column">
+                <label for = "coordinates">Coordinates</label> 
+                    
+                <div class = "coordinates">
+                    <input type = "text" placeholder = "{{post.coordinates.latitude | default:'0'}}° N, {{post.coordinates.longitude | default:'0'}}° E" id = "coordinates" name = "coordinates" readonly>
+                        
+                    <i class = "fa-solid fa-arrow-up-wide-short"></i>
+                </div>
             </div>
         </div>
 

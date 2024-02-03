@@ -2,10 +2,10 @@
 {% load static %}
 
 {% block content %}
-{% for announcement in announcement %}
+{% for post in uncertain_posts %}
 <div class = "announcement">
     <div class = "card-body">
-        <header>{{announcement.title | default:'nonexistent'}}</header>
+        <header>{{post.description}}</header>
 
         <p><i class = "fa-solid fa-feather"></i>{{announcement.user | default:'nonexistent'}}</p>
 

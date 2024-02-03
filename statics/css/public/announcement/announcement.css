@@ -326,7 +326,7 @@
 }
 
 .announcement .card-body .field .column label[for = "place"]{
-    margin-top: 15px;
+    margin-top: 0px;
     display: inline-block;
     font-family: "Overlock";
     font-weight: 400;
@@ -336,7 +336,7 @@
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .announcement .card-body .field .column label[for = "place"]{
-        margin-top: 15px;
+        margin-top: 0px;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
@@ -347,7 +347,7 @@
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .announcement .card-body .field .column label[for = "place"]{
-        margin-top: 15px;
+        margin-top: 0px;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
@@ -358,7 +358,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .announcement .card-body .field .column label[for = "place"]{
-        margin-top: 15px;
+        margin-top: 0px;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;

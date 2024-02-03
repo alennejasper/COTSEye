@@ -1,4 +1,4 @@
-{% extends "contributor/index.html" %}
+{% extends "contributor/index/index.html" %}
 {% load static %}
 
 {% block content %}
@@ -31,7 +31,7 @@
                         </div>
                     </div>
 
-                    {% if uncertain_posts.count > 0 %}<a id = "browse" href = "{% url 'Contributor Uncertain' %}" class = "btn btn-primary">Browse</a>
+                    {% if uncertain_posts.count > 0 %}<a id = "browse" href = "{% url 'Contributor Post Uncertain' %}" class = "btn btn-primary">Browse</a>
                     {% else %}
                     {% endif %}
                 </div>
@@ -51,7 +51,7 @@
                         <div class = "field first input-field">
                             <label for = "post-count">Posts Count</label> 
                             
-                            <input type = "text" placeholder = "{{valid_posts.count}}" id = "post-count" name = "post_count" readonly>
+                            <input type = "text" placeholder = "{{valid_postss.count}}" id = "post-count" name = "post_count" readonly>
                             
                             <i class = "bx bxs-user-account field-icon"></i>
                         </div>
@@ -67,7 +67,7 @@
                         </div>
                     </div>
 
-                    {% if valid_posts.count > 0 %}<a id = "browse" href = "{% url 'Contributor Valid' %}" class = "btn btn-primary">Browse</a>
+                    {% if valid_postss.count > 0 %}<a id = "browse" href = "{% url 'Contributor Post Valid' %}" class = "btn btn-primary">Browse</a>
                     {% else %}
                     {% endif %}
                 </div>
@@ -87,7 +87,7 @@
                         <div class = "field first input-field">
                             <label for = "post-count">Posts Count</label> 
                             
-                            <input type = "text" placeholder = "{{invalid_posts.count}}" id = "post-count" name = "post_count" readonly>
+                            <input type = "text" placeholder = "{{invalid_postss.count}}" id = "post-count" name = "post_count" readonly>
                             
                             <i class = "bx bxs-user-account field-icon"></i>
                         </div>
@@ -103,7 +103,7 @@
                         </div>
                     </div>
 
-                    {% if invalid_posts.count > 0 %}<a id = "browse" href = "{% url 'Contributor Invalid' %}" class = "btn btn-primary">Browse</a>
+                    {% if invalid_postss.count > 0 %}<a id = "browse" href = "{% url 'Contributor Post Invalid' %}" class = "btn btn-primary">Browse</a>
                     {% else %}
                     {% endif %}
                 </div>

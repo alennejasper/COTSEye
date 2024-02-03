@@ -2503,7 +2503,6 @@ li.select2-results__option{
     font-weight: 700;
     font-size: 22px !important;
     color: #FFFFFF;
-    text-align: center !important;
     white-space: nowrap !important; 
     overflow: auto !important;
 }
@@ -2745,7 +2744,6 @@ li.select2-results__option{
     font-weight: 700;
     font-size: 22px;
     color: #154360;
-    text-align: center !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){

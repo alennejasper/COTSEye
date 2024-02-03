@@ -3,7 +3,7 @@
 
 {% block content %}
 <div id = "posts-box">
-    {% for post in invalid_posts %}
+    {% for post in invalid_postss %}
     <div class = "posts">
         <div class = "details">
             <div id = "column">
@@ -32,7 +32,7 @@
                         </div>
                     </div>
 
-                    <a id = "read" href = "{% url 'Contributor Invalid Read' post.id %}" class = "btn btn-primary">Read</a>
+                    <a id = "read" href = "{% url 'Contributor Post Invalid Read' post.id %}" class = "btn btn-primary">Read</a>
                 </div>
             </div>
         </div>

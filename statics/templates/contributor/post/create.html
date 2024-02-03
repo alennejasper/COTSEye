@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class = "post">
-    <form action = "" method = "POST" enctype = "multipart/form-data">
+    <form action = "" class = "post-form" method = "POST" enctype = "multipart/form-data">
         {% csrf_token %}
 
         <div class = "card-header">
@@ -32,13 +32,13 @@
             </div>
 
             <div class = "post-gallery">
-                <img class = "post-photo" src = "{% static 'assets/posts/default.png' %}"> 
+                <img class = "gallery-photo" src = "{% static 'assets/posts/default.png' %}"> 
             </div>
 
             <div class = "button">
-                <label for = "browse-photo" class = "browse-label">Browse</label> 
+                <label for = "post-photo" class = "browse-photo">Browse</label> 
                 
-                <input type = "file" class = "browse-photo" accept = "photo" multiple>
+                <input type = "file" class = "post-photo" name = "post_photo" accept = "photo" multiple>
             </div>
 
             <div class = "field">
@@ -140,7 +140,7 @@
 {% endif %}
 
 <script>
-    const browsePhoto = document.querySelector(".browse-photo");
+    const browsePhoto = document.querySelector(".post-photo");
     
     const postGallery = document.querySelector(".post-gallery");
 
@@ -154,7 +154,7 @@
 
             const photoElement = document.createElement("img");
             
-            photoElement.classList.add("post-photo");
+            photoElement.classList.add("gallery-photo");
             
             photoElement.src = URL.createObjectURL(photoObject);
             
@@ -164,25 +164,27 @@
 </script>
 
 <script>
-    document.querySelector(".browse-label").addEventListener("click", function(){
-        document.querySelector(".browse-photo").click();
+    document.querySelector(".browse-photo").addEventListener("click", function(){
+        document.querySelector(".post-photo").click();
     });
 </script>
 
 <script>
-    document.querySelector(".browse-photo").addEventListener("change", function(){
+    document.querySelector(".post-photo").addEventListener("change", function(){
         for (var i = 0; i < this.files.length; i++){
             var postFile = this.files[i];
 
             var modifiedDate = postFile.lastModifiedDate;
 
-            if (modifiedDate){
-                var formattedDate = modifiedDate.toISOString().split("T")[0];
+            var formattedDate = modifiedDate.toISOString().split("T")[0];
 
-                document.getElementById("capture-date").value = formattedDate;
-            }
+            document.getElementById("capture-date").value = formattedDate;
         }
     });
+</script>
+
+<script>
+    date.value = new Date().toJSON().split("T")[0]
 </script>
 
 <link rel = "stylesheet" href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity = "sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin = ""/>    
@@ -258,7 +260,7 @@
 <script>
     let postPhoto;
 
-    document.querySelector(".browse-photo").addEventListener("change", function(e){
+    document.querySelector(".post-photo").addEventListener("change", function(e){
         const postFile = e.target.files[0];
         const photo = new Image();
 
@@ -285,7 +287,7 @@
                     } else {
                         Swal.fire({title: "Oops!", text: "The photo given to COTSEye incorporated coordinates out of bounds.", icon: "error", iconColor: "#E74C3C", confirmButtonColor: "#E74C3C"});
                         
-                        document.querySelector(".post-photo").src = "{% static 'assets/posts/default.png' %}";
+                        document.querySelector(".gallery-photo").src = "{% static 'assets/posts/default.png' %}";
                     }
 
                 } else {
@@ -313,6 +315,12 @@
         
             longitude <= maximumLongitude
         );
+    }
+</script>
+
+<script>
+    document.querySelector(".save-post").onclick = function() {
+        document.querySelector(".post-form").submit();
     }
 </script>
 {% endblock content %}
