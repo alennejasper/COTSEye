@@ -220,13 +220,13 @@
     font-weight: 400;
     font-size: 20px;
     color: #FFFFFF !important;
-    background-color: #698F3F !important;
+    background-color: #154360 !important;
     text-decoration: none;
     cursor: pointer;
 }
 
 .announcement .card-body .buttons a.share-announcement:hover{
-    background-color: #557433 !important;
+    background-color: #10354C !important;
     color: #B2BEB5 !important;
 }
 

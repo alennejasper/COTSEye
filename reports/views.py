@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.db.models import Q
 from reports.models import *
 from reports.forms import CoordinatesForm, PostObservationsForm, PostForm
 from authentications.views import ContributorCheck
@@ -70,7 +71,7 @@ def ContributorPostCreate(request):
 @login_required(login_url = "Contributor Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorPost(request):
-    valid_posts = Post.objects.filter(user = request.user.user, post_status = 1)
+    valid_posts = Post.objects.filter(user = request.user.user, post_status = 1).distinct("description", "coordinates")
 
     try:
         valid_dates = Post.objects.filter(user = request.user.user, post_status = 1).latest("capture_date")
@@ -78,7 +79,7 @@ def ContributorPost(request):
     except:
         valid_dates = None
 
-    invalid_posts = Post.objects.filter(user = request.user.user, post_status = 2)
+    invalid_posts = Post.objects.filter(user = request.user.user, post_status = 2).distinct("description", "coordinates")
 
     try:
         invalid_dates = Post.objects.filter(user = request.user.user, post_status = 2).latest("capture_date")
@@ -86,7 +87,7 @@ def ContributorPost(request):
     except:
         invalid_dates = None
 
-    uncertain_posts = Post.objects.filter(user = request.user.user, post_status = 3)
+    uncertain_posts = Post.objects.filter(user = request.user.user, post_status = 3).distinct("description", "coordinates")
 
     try:
         uncertain_dates = Post.objects.filter(user = request.user.user, post_status = 3).latest("capture_date")
@@ -101,7 +102,7 @@ def ContributorPost(request):
 @login_required(login_url = "Contributor Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorPostValid(request):
-    valid_posts = Post.objects.filter(user = request.user.user, post_status = 1)
+    valid_posts = Post.objects.filter(user = request.user.user, post_status = 1).distinct("description", "coordinates")
     
     context = {"valid_posts": valid_posts}
     
@@ -121,7 +122,7 @@ def ContributorPostValidRead(request, id):
 @login_required(login_url = "Contributor Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorPostInvalid(request):
-    invalid_posts = Post.objects.filter(user = request.user.user, post_status = 2)
+    invalid_posts = Post.objects.filter(user = request.user.user, post_status = 2).distinct("description", "coordinates")
     
     context = {"invalid_posts": invalid_posts}
     
@@ -131,9 +132,11 @@ def ContributorPostInvalid(request):
 @login_required(login_url = "Contributor Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorPostInvalidRead(request, id):
-    invalid_posts = Post.objects.filter(id = id, user = request.user.user, post_status = 2)
+    post = Post.objects.get(id = id, user = request.user.user, post_status = 2)
+
+    invalid_post = Post.objects.filter(description = post.description, user = request.user.user, post_status = 2)
     
-    context = {"invalid_posts": invalid_posts}
+    context = {"post": post, "invalid_post": invalid_post}
     
     return render(request, "contributor/post/read.html", context)
 
@@ -141,28 +144,27 @@ def ContributorPostInvalidRead(request, id):
 @login_required(login_url = "Contributor Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorPostInvalidDelete(request, id):
-    invalid_posts = Post.objects.get(id = id, post_status = 2)
+    invalid_post = Post.objects.get(id = id, post_status = 2)
 
-    if invalid_posts.user == request.user.user:
-        invalid_posts.coordinates.delete()
+    if invalid_post.user == request.user.user:
+        description = invalid_post.description
+
+        coordinates = invalid_post.coordinates
+
+        delete_post = Post.objects.filter(Q(description = description) & Q(coordinates = coordinates) & Q(post_status = 2))
+
+        for invalid_post in delete_post:
+            invalid_post.coordinates.delete()
         
-        invalid_posts.post_observations.delete()
+            invalid_post.post_observations.delete()
         
-        invalid_posts.delete()
+            invalid_post.delete()
 
         username = request.user.username
-
-        invalid_posts = Post.objects.filter(post_status = 2).count()
         
-        if invalid_posts == 0:
-            messages.success(request, username + ", " + "your information input was vanished from COTSEye.")
+        messages.success(request, username + ", " + "your information input was vanished from COTSEye.")
             
-            return redirect("Contributor Post")
-        
-        elif invalid_posts >= 1:
-            messages.success(request, username + ", " + "your information input was vanished from COTSEye.")
-            
-            return redirect("Contributor Post Invalid")
+        return redirect("Contributor Post Invalid")
 
     else:
         messages.error(request, "Information input may not be vanished.")
@@ -170,7 +172,7 @@ def ContributorPostInvalidDelete(request, id):
 @login_required(login_url = "Contributor Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorPostUncertain(request):
-    uncertain_posts = Post.objects.filter(user = request.user.user, post_status = 3)
+    uncertain_posts = Post.objects.filter(user = request.user.user, post_status = 3).distinct("description", "coordinates")
     
     context = {"uncertain_posts": uncertain_posts}
     
@@ -180,9 +182,11 @@ def ContributorPostUncertain(request):
 @login_required(login_url = "Contributor Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorPostUncertainRead(request, id):
-    uncertain_posts = Post.objects.filter(id = id, user = request.user.user, post_status = 3)
+    post = Post.objects.get(id = id, user = request.user.user, post_status = 3)
+
+    uncertain_post = Post.objects.filter(description = post.description, user = request.user.user, post_status = 3)
     
-    context = {"uncertain_posts": uncertain_posts}
+    context = {"post": post, "uncertain_post": uncertain_post}
     
     return render(request, "contributor/post/read.html", context)
 
@@ -190,14 +194,14 @@ def ContributorPostUncertainRead(request, id):
 @login_required(login_url = "Contributor Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorPostUncertainUpdate(request, id):
-    uncertain_posts = Post.objects.get(id = id, post_status = 3)   
+    uncertain_post = Post.objects.get(id = id, post_status = 3)   
 
     if request.method == "POST":
-        coordinates_form = CoordinatesForm(request.POST, instance = uncertain_posts.coordinates)
+        coordinates_form = CoordinatesForm(request.POST, instance = uncertain_post.coordinates)
         
-        postobservations_form = PostObservationsForm(request.POST, instance = uncertain_posts.post_observations)
+        postobservations_form = PostObservationsForm(request.POST, instance = uncertain_post.post_observations)
         
-        post_form =  PostForm(request.POST, request.FILES, instance = uncertain_posts)
+        post_form =  PostForm(request.POST, request.FILES, instance = uncertain_post)
 
         if coordinates_form.is_valid() and postobservations_form.is_valid() and post_form.is_valid():
             coordinates_form.save()
@@ -205,20 +209,38 @@ def ContributorPostUncertainUpdate(request, id):
             postobservations_form.save()
            
             post_form.save()
+
+            description = uncertain_post.description
+
+            coordinates = uncertain_post.coordinates
+
+            update_post = Post.objects.filter(Q(description = description) & Q(coordinates = coordinates))
             
+            for uncertain_post in update_post.exclude(id = id):
+                uncertain_post.coordinates = uncertain_post.coordinates
+
+                uncertain_post.post_observations = uncertain_post.post_observations
+
+                uncertain_post.save()
+
             username = request.user.username
             
             messages.success(request, username + ", " + "your information input was recorded for COTSEye.")
             
             return redirect("Contributor Post Uncertain")
+
+        else:
+            messages.error(request, "Information input is not valid.")
+            
+            messages.error(request, coordinates_form.errors, postobservations_form.errors, post_form.errors)
         
     else:
-        coordinates_form = CoordinatesForm(instance = uncertain_posts.coordinates)
+        coordinates_form = CoordinatesForm(instance = uncertain_post.coordinates)
         
-        postobservations_form = PostObservationsForm(instance = uncertain_posts.post_observations)
+        postobservations_form = PostObservationsForm(instance = uncertain_post.post_observations)
         
-        post_form = PostForm(instance = uncertain_posts)       
+        post_form = PostForm(instance = uncertain_post)       
 
-    context = {"uncertain_posts": uncertain_posts, "coordinates_form": coordinates_form, "postobservations_form": postobservations_form, "post_form": post_form}
+    context = {"uncertain_post": uncertain_post, "coordinates_form": coordinates_form, "postobservations_form": postobservations_form, "post_form": post_form}
     
     return render(request, "contributor/post/update.html", context)

@@ -16,7 +16,7 @@
                     <label for = "capture-date">Capture Date</label> 
                         
                     <div class = "capture-date">
-                        <input type = "date" placeholder = "" id = "capture-date" name = "capture_date">                            
+                        <input type = "date" placeholder = "" id = "capture-date" name = "capture_date" required>                            
                     </div>
                 </div>
 
@@ -24,7 +24,7 @@
                     <label for = "description">Description</label> 
                         
                     <div class = "description">
-                        <input type = "text" placeholder = "" id = "description" name = "description">
+                        <input type = "text" placeholder = "" id = "description" name = "description" required>
                             
                         <i class = "fa-solid fa-comments"></i>
                     </div>
@@ -38,7 +38,7 @@
             <div class = "button">
                 <label for = "post-photo" class = "browse-photo">Browse</label> 
                 
-                <input type = "file" class = "post-photo" name = "post_photo" accept = "photo" multiple>
+                <input type = "file" class = "post-photo" name = "post_photo" accept = "photo" multiple required>
             </div>
 
             <div class = "field">
@@ -72,11 +72,10 @@
                 <a class = "refresh-map" onclick = "refreshMap()">Refresh</a>
             </div>
         </div> 
-    </form>
 </div>
 
 <div class = "post">
-    <form action = "" method = "POST" enctype = "multipart/form-data">
+    <form action = "" class = "post-form" method = "POST" enctype = "multipart/form-data">
         {% csrf_token %}
 
         <div class = "card-header">

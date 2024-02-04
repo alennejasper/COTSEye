@@ -1,0 +1,418 @@
+@import url("https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Overlock:wght@400;700;900&display=swap");
+
+
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    scrollbar-width: thin !important;
+    scrollbar-color: #698F3F #154360 !important;
+    transition: all 0.25s ease;
+}
+
+
+::-webkit-scrollbar{
+    width: 5px !important;
+    height: 5px !important;
+}
+
+::-webkit-scrollbar-track{
+    border-radius: 5px;
+    border: 1px solid #B2BEB5; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    background: #10354C !important; 
+}
+
+::-webkit-scrollbar-thumb{
+    border-radius: 5px;
+    border: 1px solid #B2BEB5; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    background: #698F3F !important;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background: #557433 !important;
+}
+
+::-webkit-scrollbar-button{
+    width: 0px !important;
+    display: none !important;
+}
+
+::-moz-scrollbar-button{
+    width: 0px !important;
+    display: none !important;
+}
+
+
+.post{
+    margin-bottom: 30px;
+    width: 100%;
+    display: grid;
+    grid-column: 1;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+}
+
+.post .card-body{
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 100%;
+    border-bottom-left-radius: 5px !important;
+    border-bottom-right-radius: 5px !important;
+    display: grid;
+    gap: 15px;
+    background-color: #FFFFFF;
+}
+
+.post .card-body p i{
+    margin-right: 10px;
+    font-size: 20px;
+    color: #154360;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body p i{
+        margin-right: 10px;
+        font-size: 18px;
+        color: #154360;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body p i{
+        margin-right: 10px;
+        font-size: 16px;
+        color: #154360;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body p i{
+        margin-right: 10px;
+        font-size: 14px;
+        color: #154360;
+    }
+}
+
+.post .card-body .post-gallery{
+    margin-top: 0px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    max-height: 100vh;
+    background-color: #698F3F;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    white-space: nowrap;
+}
+
+.post .card-body img{
+    margin-right: 30px;
+    width: 100%;
+    height: 100%;
+    place-items: center;
+    object-fit: cover;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+}
+
+.post .card-body img:last-child{
+    margin-right: 0px !important;
+}
+
+.post .card-body p{
+    width: 100%;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    color: #154360 !important;
+    text-align: justify;
+    white-space: normal;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body p{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 30px;
+        color: #154360;
+        text-align: justify;
+        white-space: normal; 
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body p{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 30px;
+        color: #154360;
+        text-align: justify;
+        white-space: normal; 
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body p{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 30px;
+        color: #154360;
+        text-align: justify;
+        white-space: normal; 
+    }
+}
+
+.post .card-body table caption{
+    font-family: "Philosopher";
+    font-weight: 700;
+    font-size: 48px !important;
+    color: #154360;
+    text-align: justify;
+    white-space: normal !important; 
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body table caption{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 36px !important;
+        color: #154360;
+        text-align: justify;
+        white-space: normal !important; 
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body table caption{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 28px !important;
+        color: #154360;
+        text-align: justify;
+        white-space: normal !important; 
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body table caption{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 26px !important;
+        color: #154360;
+        text-align: justify;
+        white-space: normal !important; 
+    }
+}
+
+.post .card-body table{
+    border: 2px solid #B2BEB5; 
+    border-radius: 5px;
+    border-collapse: collapse;
+}
+
+.post .card-body table tr{
+    border: 2px solid #B2BEB5; 
+    border-radius: 0px;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+}
+
+.post .card-body table td{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    border: 2px solid #B2BEB5; 
+    border-radius: 0px;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body table td{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body table td{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body table td{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px;
+        color: #154360 !important;
+    }
+}
+
+.post .card-body table td:last-child{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    border: 1px solid #B2BEB5; 
+    border-radius: 0px;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body table td:last-child{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body table td:last-child{
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body table td:last-child{
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.post .card-body .button{
+    margin-left: auto;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: fit-content;
+    height: 100% !important;
+}
+
+.post .card-body .button a.share-post{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    border: 1px solid #B2BEB5; 
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px;
+    color: #FFFFFF !important;
+    background-color: #154360 !important;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.post .card-body .button a.share-post:hover{
+    background-color: #10354C !important;
+    color: #B2BEB5 !important;
+}
+
+.post .card-body .button a.delete-post{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    border: 1px solid #B2BEB5; 
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px;
+    color: #FFFFFF !important;
+    background-color: #C90016 !important;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.post .card-body .button a.delete-post:hover{
+    background-color: #A00011 !important;
+    color: #B2BEB5 !important;
+}
+
+.post .card-body .button a.update-post{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    border: 1px solid #B2BEB5; 
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px;
+    color: #FFFFFF !important;
+    background-color: #698F3F !important;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.post .card-body .button a.update-post:hover{
+    background-color: #557433 !important;
+    color: #B2BEB5 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body .button a{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #FFFFFF !important;
+        text-decoration: none;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body .button a{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #FFFFFF !important;
+        text-decoration: none;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body .button a{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #FFFFFF !important;
+        text-decoration: none;
+    }
+}

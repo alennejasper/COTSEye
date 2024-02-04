@@ -2,25 +2,159 @@
 {% load static %}
 
 {% block content %}
-{% for post in uncertain_posts %}
-<div class = "announcement">
+{% if valid_post %}
+<div class = "post">
     <div class = "card-body">
-        <header>{{post.description}}</header>
+        <p><i class = "fa-solid fa-flag"></i>Valid</p>
 
-        <p><i class = "fa-solid fa-feather"></i>{{announcement.user | default:'nonexistent'}}</p>
+        <p><i class = "fa-solid fa-calendar-check"></i>{{valid_post.0.capture_date | default:'nonexistent'}}</p>
 
-        <p><i class = "fa-solid fa-calendar-check"></i>{{announcement.release_date | default:'nonexistent'}}</p>
+        <p><i class = "fa-solid fa-location-dot"></i>{{valid_post.0.coordinates.latitude | default:'0'}}° N, {{invalid_post.0.coordinates.longitude | default:'0'}}° E</p>
 
-        <p><i class = "fa-solid fa-location-dot"></i>{{announcement.place | default:'nonexistent'}}</p>
+        <div class = "post-gallery">
+            {% for valid_post in valid_post %}
+                <img class = "gallery-photo" src = "{{valid_post.post_photo.url}}">
+            {% endfor %}
+        </div>
 
-        <img src = "{{announcement.announcement_photo.url}}">
+        <p>{{valid_post.0.description | default:'nonexistent'}}</p>
 
-        <p>{{announcement.context | default:'nonexistent'}}</p>
+        <table>
+            <caption>Post observations</caption>
 
-        <div class = "buttons">
-            <a class = "share-announcement" href = "">Share</a>
+            <tr>
+                <td>Size</td>
+
+                <td>{{valid_post.0.post_observations.size | default:'0'}}</td>
+            </tr>
+
+            <tr>
+              <td>Depth</td>
+
+              <td>{{valid_post.0.post_observations.depth | default:'0'}}</td>
+            </tr>
+
+            <tr>
+                <td>Density</td>
+  
+                <td>{{valid_post.0.post_observations.density | default:'0'}}</td>
+            </tr>
+
+            <tr>
+                <td>Weather</td>
+  
+                <td>{{valid_post.0.post_observations.weather | default:'nonexistent'}}</td>
+            </tr>
+        </table>
+
+        <div class = "button">
+            <a class = "share-post" href = "">Share</a>
         </div>
     </div>
 </div>
-{% endfor %}
+{% endif %}
+
+{% if invalid_post %}
+<div class = "post">
+    <div class = "card-body">
+        <p><i class = "fa-solid fa-flag"></i>Invalid</p>
+
+        <p><i class = "fa-solid fa-calendar-check"></i>{{invalid_post.0.capture_date | default:'nonexistent'}}</p>
+
+        <p><i class = "fa-solid fa-location-dot"></i>{{invalid_post.0.coordinates.latitude | default:'0'}}° N, {{invalid_post.0.coordinates.longitude | default:'0'}}° E</p>
+
+        <div class = "post-gallery">
+            {% for invalid_post in invalid_post %}
+                <img class = "gallery-photo" src = "{{invalid_post.post_photo.url}}">
+            {% endfor %}
+        </div>
+
+        <p>{{invalid_post.0.description | default:'nonexistent'}}</p>
+
+        <table>
+            <caption>Post observations</caption>
+
+            <tr>
+                <td>Size</td>
+
+                <td>{{invalid_post.0.post_observations.size | default:'0'}}</td>
+            </tr>
+
+            <tr>
+              <td>Depth</td>
+
+              <td>{{invalid_post.0.post_observations.depth | default:'0'}}</td>
+            </tr>
+
+            <tr>
+                <td>Density</td>
+  
+                <td>{{invalid_post.0.post_observations.density | default:'0'}}</td>
+            </tr>
+
+            <tr>
+                <td>Weather</td>
+  
+                <td>{{invalid_post.0.post_observations.weather | default:'nonexistent'}}</td>
+            </tr>
+        </table>
+
+        <div class = "button">
+            <a class = "delete-post" href = "{% url 'Contributor Post Invalid Delete' post.id %}">Delete</a>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% if uncertain_post %}
+<div class = "post">
+    <div class = "card-body">
+        <p><i class = "fa-solid fa-flag"></i>Uncertain</p>
+
+        <p><i class = "fa-solid fa-calendar-check"></i>{{uncertain_post.0.capture_date | default:'nonexistent'}}</p>
+
+        <p><i class = "fa-solid fa-location-dot"></i>{{uncertain_post.0.coordinates.latitude | default:'0'}}° N, {{uncertain_post.0.coordinates.longitude | default:'0'}}° E</p>
+
+        <div class = "post-gallery">
+            {% for uncertain_post in uncertain_post %}
+                <img class = "gallery-photo" src = "{{uncertain_post.post_photo.url}}">
+            {% endfor %}
+        </div>
+
+        <p>{{uncertain_post.0.description | default:'nonexistent'}}</p>
+
+        <table>
+            <caption>Post observations</caption>
+
+            <tr>
+                <td>Size</td>
+
+                <td>{{uncertain_post.0.post_observations.size | default:'0'}}</td>
+            </tr>
+
+            <tr>
+              <td>Depth</td>
+
+              <td>{{uncertain_post.0.post_observations.depth | default:'0'}}</td>
+            </tr>
+
+            <tr>
+                <td>Density</td>
+  
+                <td>{{uncertain_post.0.post_observations.density | default:'0'}}</td>
+            </tr>
+
+            <tr>
+                <td>Weather</td>
+  
+                <td>{{uncertain_post.0.post_observations.weather | default:'nonexistent'}}</td>
+            </tr>
+        </table>
+
+        <div class = "button">
+            <a class = "update-post" href = "{% url 'Contributor Post Uncertain Update' post.id %}">Update</a>
+        </div>
+    </div>
+</div>
+{% endif %}
 {% endblock content %}

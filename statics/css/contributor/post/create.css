@@ -490,7 +490,7 @@
 }
 
 .post .card-body .post-gallery{
-    margin-top: 15px;
+    margin-top: 0px;
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 15px;
@@ -519,7 +519,7 @@
 
 .post .card-body .button{
     margin-left: auto;
-    margin-top: 15px;
+    margin-top: 0px;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: fit-content;
@@ -584,7 +584,7 @@
 }
 
 .post .card-body .field .column label[for = "latitude"]{
-    margin-top: 15px;
+    margin-top: 0px;
     display: inline-block;
     font-family: "Overlock";
     font-weight: 400;
@@ -594,7 +594,7 @@
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .post .card-body .field .column label[for = "latitude"]{
-        margin-top: 15px;
+        margin-top: 0px;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
@@ -605,7 +605,7 @@
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .post .card-body .field .column label[for = "latitude"]{
-        margin-top: 15px;
+        margin-top: 0px;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
@@ -616,7 +616,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .post .card-body .field .column label[for = "latitude"]{
-        margin-top: 15px;
+        margin-top: 0px;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
@@ -755,7 +755,7 @@
 }
 
 .post .card-body .field .column label[for = "longitude"]{
-    margin-top: 15px;
+    margin-top: 0px;
     display: inline-block;
     font-family: "Overlock";
     font-weight: 400;
@@ -765,7 +765,7 @@
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .post .card-body .field .column label[for = "longitude"]{
-        margin-top: 15px;
+        margin-top: 0px;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
@@ -776,7 +776,7 @@
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .post .card-body .field .column label[for = "longitude"]{
-        margin-top: 15px;
+        margin-top: 0px;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
@@ -787,7 +787,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .post .card-body .field .column label[for = "longitude"]{
-        margin-top: 15px;
+        margin-top: 0px;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
@@ -976,15 +976,6 @@
         color: #FFFFFF !important;
         text-decoration: none;
     }
-}
-
-.post .card-body .field .column label[for = "latitude"]{
-    margin-top: 15px;
-    display: inline-block;
-    font-family: "Overlock";
-    font-weight: 400;
-    font-size: 20px !important;
-    color: #154360 !important;
 }
 
 .post .card-body .field .column label[for = "size"]{
@@ -1673,7 +1664,7 @@
 }
 
 .post-map{
-    margin-top: 15px;
+    margin-top: 0px;
     min-width: 100%;
     min-height: 100vh;
     border: 1px solid #B2BEB5;
