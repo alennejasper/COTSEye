@@ -1,0 +1,16 @@
+{
+    "name": "COTSEye",
+    "short_name": "COTSEye",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#FFFFFF",
+    "theme_color": "#154360",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "/statics/assets/icons/logo (144 x 144).png",
+            "type": "image/png",
+            "sizes": "144x144"
+        }
+    ]
+}

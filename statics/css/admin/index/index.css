@@ -35,16 +35,6 @@
     background: #557433 !important;
 }
 
-::-webkit-scrollbar-button{
-    width: 0px !important;
-    display: none !important;
-}
-
-::-moz-scrollbar-button{
-    width: 0px !important;
-    display: none !important;
-}
-
 
 body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .content-wrapper, body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .main-footer, body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .main-header{
     margin-left: 0px !important;

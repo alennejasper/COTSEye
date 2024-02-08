@@ -21,7 +21,7 @@
     border-radius: 5px;
     border: 1px solid #B2BEB5; 
     box-shadow: 0 0 0 1px #B2BEB5 !important;
-    background: #10354C !important; 
+    background: #154360 !important; 
 }
 
 ::-webkit-scrollbar-thumb{
@@ -33,16 +33,6 @@
 
 ::-webkit-scrollbar-thumb:hover{
     background: #557433 !important;
-}
-
-::-webkit-scrollbar-button{
-    width: 0px !important;
-    display: none !important;
-}
-
-::-moz-scrollbar-button{
-    width: 0px !important;
-    display: none !important;
 }
 
 
