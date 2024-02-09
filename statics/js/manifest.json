@@ -1,16 +1,77 @@
 {
     "name": "COTSEye",
+
     "short_name": "COTSEye",
+
     "start_url": "/",
+
     "display": "standalone",
+
     "background_color": "#FFFFFF",
+
     "theme_color": "#154360",
+
     "orientation": "portrait",
+
     "icons": [
+        {
+            "src": "/statics/assets/icons/logo (72 x 72).png",
+            "type": "image/png",
+            "sizes": "72x72"
+        },
+
+        {
+            "src": "/statics/assets/icons/logo (96 x 96).png",
+            "type": "image/png",
+            "sizes": "96x96"
+        },
+
+        {
+            "src": "/statics/assets/icons/logo (120 x 120).png",
+            "type": "image/png",
+            "sizes": "120x120"
+        },
+
+        {
+            "src": "/statics/assets/icons/logo (128 x 128).png",
+            "type": "image/png",
+            "sizes": "128x128"
+        },
+
         {
             "src": "/statics/assets/icons/logo (144 x 144).png",
             "type": "image/png",
             "sizes": "144x144"
+        },
+
+        {
+            "src": "/statics/assets/icons/logo (152 x 152).png",
+            "type": "image/png",
+            "sizes": "152x152"
+        },
+
+        {
+            "src": "/statics/assets/icons/logo (180 x 180).png",
+            "type": "image/png",
+            "sizes": "180x180"
+        },
+
+        {
+            "src": "/statics/assets/icons/logo (192 x 192).png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+
+        {
+            "src": "/statics/assets/icons/logo (384 x 384).png",
+            "type": "image/png",
+            "sizes": "384x384"
+        },
+
+        {
+            "src": "/statics/assets/icons/logo (512 x 512).png",
+            "type": "image/png",
+            "sizes": "512x512"
         }
     ]
 }

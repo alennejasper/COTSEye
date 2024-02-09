@@ -10,6 +10,12 @@
             
         <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
 
+        <link rel = "manifest" href = "{% static 'js/manifest.json' %}">
+
+        <link rel = "apple-touch-icon" href = "{% static 'assets/icons/logo (180 x 180).png' %}">
+
+        <meta name = "apple-mobile-web-app-status-bar" content = "#154360">
+
         <link rel = "icon" type = "image/x-icon" href = "{% static 'assets/icons/logo.png' %}">
                         
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/login/google.css' %}">
@@ -51,5 +57,5 @@
         </div>
     </body>
 
-    <script type = "text/javascript">if(window.location.hash && window.location.hash === "#_=_"){ window.location.hash = ""; history.pushState("", document.title, window.location.pathname);}</script>
+    <script type = "text/javascript">if (window.location.hash && window.location.hash === "#_=_"){ window.location.hash = ""; history.pushState("", document.title, window.location.pathname);}</script>
 </html>
