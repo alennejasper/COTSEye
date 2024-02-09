@@ -21,7 +21,8 @@ Including another URLconf
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-from django.urls import path, include
+from django.urls import path, re_path, include
+from django.views.generic import TemplateView
 from authentications import views
 
 
@@ -42,5 +43,7 @@ urlpatterns = [
     
     path("", include("reports.urls")),
     
-    path("", include("auxiliaries.urls"))
+    path("", include("auxiliaries.urls")),
+
+    path("cache.js", (TemplateView.as_view(template_name = "webwares/cache.js", content_type = "application/javascript")), name = "cache.js")
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

@@ -9,7 +9,9 @@
             
         <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
 
-        <link rel = "manifest" href = "{% static 'js/manifest.json' %}">
+        <link rel = "manifest" href = "{% static 'templates/webwares/manifest.json' %}">
+
+        <meta name = "theme-color" content = "#154360">
 
         <link rel = "apple-touch-icon" href = "{% static 'assets/icons/logo (180 x 180).png' %}">
 
@@ -111,6 +113,8 @@
             </div>
         </div>
     </body>
+
+    <script src = "{% static 'templates/webwares/application.js' %}"></script>
 
     <script src = "https://www.google.com/recaptcha/api.js" async defer></script>
 
