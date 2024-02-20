@@ -24,7 +24,7 @@ def PublicHome(request):
     
     else:
         try:
-            posts = Post.objects.filter(id = 1)
+            posts = Post.objects.filter(post_status = 1)
     
         except:
             posts = None
@@ -240,7 +240,7 @@ def ContributorCheck(account):
 @login_required(login_url = "Contributor Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorHome(request):
-    posts = Post.objects.filter(id = 1)
+    posts = Post.objects.filter(post_status = 1)
 
     context = {"posts": posts}
 

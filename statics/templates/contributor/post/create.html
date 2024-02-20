@@ -191,23 +191,21 @@
 <script src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity = "sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin = ""></script>
 
 <script>
-    var map;
-
     function revealMap(){
-        var postMap = document.getElementsByClassName("post-map")[0];
-
-        var map = L.map(postMap, {zoomControl: true, scrollWheelZoom: false, dragging: true, maxBounds: [[5.3, 124.3],[6.3, 126.3]]}).setView([5.9656, 125.1929], 11);
-        
-        L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {minZoom: 11, attribution: "ESRI"}).addTo(map);
-
         var starfish = L.icon({iconUrl: "{% static 'assets/icons/marker.png' %}", iconSize: [30, 30], iconAnchor: [15, 15]});
 
-        var marker = L.marker([5.9656, 125.1929], {draggable: true, icon: starfish}).addTo(map);
+        var post = L.marker([5.9656, 125.1929], {draggable: true, icon: starfish});
+
+        var postMap = document.getElementsByClassName("post-map")[0];
+        
+        var background = L.tileLayer("http://{s}.google.com/vt?lyrs=s,h&x={x}&y={y}&z={z}", {minZoom: 11, subdomains:["mt0","mt1","mt2","mt3"], attribution: "Google"});
+
+        var map = L.map(postMap, {zoomControl: true, scrollWheelZoom: false, dragging: true, maxBounds: [[5.3, 124.3],[6.3, 126.3]], layers: [background, post]}).setView([5.9656, 125.1929], 11);
 
         function updateCoordinates(){
-            var latitude = marker.getLatLng().lat.toFixed(6);
+            var latitude = post.getLatLng().lat.toFixed(6);
 
-            var longitude = marker.getLatLng().lng.toFixed(6);
+            var longitude = post.getLatLng().lng.toFixed(6);
 
             document.getElementById("latitude").value = latitude;
             
@@ -216,10 +214,10 @@
 
         updateCoordinates();
 
-        marker.on("drag", updateCoordinates);
+        post.on("drag", updateCoordinates);
 
-        marker.on("dragend", function (e){
-            var position = marker.getLatLng();
+        post.on("dragend", function (e){
+            var position = post.getLatLng();
 
             document.getElementById("latitude").value = position.lat.toFixed(6);
             
@@ -229,13 +227,13 @@
         document.getElementById("latitude").addEventListener("input", function (){
             var lat = parseFloat(this.value);
 
-            marker.setLatLng([lat, marker.getLatLng().lng]);
+            post.setLatLng([lat, post.getLatLng().lng]);
         });
 
         document.getElementById("longitude").addEventListener("input", function (){
             var lng = parseFloat(this.value);
 
-            marker.setLatLng([marker.getLatLng().lat, lng]);
+            post.setLatLng([post.getLatLng().lat, lng]);
         });
     }
 

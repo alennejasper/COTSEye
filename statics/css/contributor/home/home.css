@@ -228,6 +228,48 @@ body{
     }
 }
 
+.leaflet-touch .leaflet-control-layers-toggle{
+    border-radius: 5px !important;
+    border: 1px solid #B2BEB5 !important; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    background-color: #154360 !important;
+}
+
+.leaflet-control-layers-expanded{
+    border-radius: 5px !important;
+    border: 1px solid #B2BEB5 !important; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    background-color: #154360 !important;
+}
+
+.leaflet-control-layers-list{
+    font-family: "Philosopher";
+    font-weight: 700;
+    font-size: 18px !important;
+    color: #FFFFFF !important;
+    text-align: left;
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .leaflet-control-layers-list{
+        font-family: "Overlook";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #FFFFFF !important;
+        text-align: center;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .leaflet-control-layers-list{
+        font-family: "Overlook";
+        font-weight: 400;
+        font-size: 12px !important;
+        color: #FFFFFF !important;
+        text-align: center;
+    }
+}
+
 
 .swal2-popup{
     padding-bottom: 15px !important;
