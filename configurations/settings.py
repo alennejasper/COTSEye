@@ -60,6 +60,8 @@ INSTALLED_APPS = [
     "authentications",
     
     "reports",
+
+    "managements",
     
     "auxiliaries"
 ]

@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django.forms.widgets import FileInput
-from .models import Coordinates, PostObservations, Post
+from .models import Coordinates, PostObservation, Post
 
 
 class CoordinatesForm(ModelForm):
@@ -9,9 +9,9 @@ class CoordinatesForm(ModelForm):
         fields = "__all__"
 
 
-class PostObservationsForm(ModelForm):
+class PostObservationForm(ModelForm):
     class Meta:
-        model = PostObservations
+        model = PostObservation
         fields = "__all__"
 
 
@@ -19,5 +19,5 @@ class PostForm(ModelForm):
     class Meta:
         model = Post
         fields = "__all__"
-        exclude = ["user", "coordinates", "post_status", "post_observations"]
+        exclude = ["user", "coordinates", "post_status", "post_observation"]
         widgets = {"post_photo": FileInput()}

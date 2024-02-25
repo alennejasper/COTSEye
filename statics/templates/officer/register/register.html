@@ -22,7 +22,11 @@
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/officer/register/register.css' %}">
                     
         <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">          
-        
+
+        <script src = "https://www.google.com/recaptcha/api.js" async defer></script>
+
+        <script src = "https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
         <title>Register | COTSEye</title>
     </head>
 
@@ -98,7 +102,6 @@
 
                     {% if messages %}
                         {% for message in messages %}
-                            <script src = "https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
                             {% if message.tags == "info" %}<script>Swal.fire({title: "Hey!", text: "{{message}}", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}})</script>
                             {% elif message.tags == "success" %}<script>Swal.fire({title: "Yay!", text: "{{message}}", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}})</script>
                             {% else %}<script>Swal.fire({title: "Oops!", text: "{{message}}", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}})</script>
@@ -115,8 +118,6 @@
     </body>
 
     <script src = "{% static 'templates/webwares/application.js' %}"></script>
-
-    <script src = "https://www.google.com/recaptcha/api.js" async defer></script>
 
     <script> 
 		window.onload = function(){

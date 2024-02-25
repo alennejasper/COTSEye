@@ -26,9 +26,9 @@ class AccountManager(BaseUserManager):
 
 
 class UserType(models.Model):
-    is_superuser = models.BooleanField(default = False, help_text = "Designates that the user has all permissions.", verbose_name = "Administrator Status")
-    is_staff = models.BooleanField(default = False, help_text = "Designates whether the user can log into the officers site or not.", verbose_name = "Officer Status")
-    is_contributor = models.BooleanField(default = False, help_text = "Designates whether the user can log into the contributors site or not.", verbose_name = "Contributor Status")
+    is_superuser = models.BooleanField(default = False, help_text = "Designates that the user has all permissions.", verbose_name = "Administrator")
+    is_staff = models.BooleanField(default = False, help_text = "Designates whether the user can log into the officers site or not.", verbose_name = "Officer")
+    is_contributor = models.BooleanField(default = False, help_text = "Designates whether the user can log into the contributors site or not.", verbose_name = "Contributor")
 
     class Meta:
         db_table = "auth_user_type"
@@ -51,9 +51,9 @@ class Account(AbstractBaseUser, PermissionsMixin):
     password = models.CharField(max_length = 150, help_text = "Designates the password of the user.", verbose_name = "Password")
     usertype = models.ForeignKey(UserType, on_delete = models.SET_NULL, blank = True, null = True, help_text = "Designates the foreign key of the User Type model.", verbose_name = "User Type")
     is_active = models.BooleanField(default = True, help_text = "Designates whether the user should be considered active or not.", verbose_name = "Active Status")
-    last_login = models.DateTimeField(default = datetime.datetime.now, verbose_name = "Last Signin")
-    groups = models.ManyToManyField(Group, blank = True, verbose_name = "Groups")
-    user_permissions = models.ManyToManyField(Permission, blank = True, verbose_name = "User Permissions")
+    last_login = models.DateTimeField(default = datetime.datetime.now, help_text = "Designates the last login date and time of the user.", verbose_name = "Last Signin")
+    groups = models.ManyToManyField(Group, blank = True, help_text = "Designates the foreign key of the Group model.", verbose_name = "Groups")
+    user_permissions = models.ManyToManyField(Permission, blank = True, help_text = "Designates the foreign key of the Permission model.", verbose_name = "User Permissions")
 
     objects = AccountManager()
     USERNAME_FIELD = "username"
@@ -151,6 +151,7 @@ class SocialToken2(SocialToken):
     SocialToken._meta.get_field("token_secret").help_text = "Designates the encrpyted token for the social account."
     SocialToken._meta.get_field("token_secret").verbose_name = "Secret Token"
     SocialToken._meta.get_field("expires_at").verbose_name = "Expiration Date"
+    SocialToken._meta.get_field("expires_at").help_text = "Designates the expiration date of the token."
     SocialToken._meta.verbose_name = "Social Token"
     SocialToken._meta.verbose_name_plural = "Social Tokens"
 

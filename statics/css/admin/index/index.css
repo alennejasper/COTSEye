@@ -2305,7 +2305,6 @@ li.select2-results__option{
     cursor: default !important;
 }
 
-
 .leaflet-control-zoom a.leaflet-control-zoom-out{
     border-top: none !important;
     box-shadow: 0 0 0 1px #B2BEB5 !important;
@@ -2397,6 +2396,10 @@ li.select2-results__option{
 }
 
 .leaflet-control-attribution{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
     font-family: "Overlook";
     font-weight: 400;
     font-size: 16px !important;
@@ -2442,30 +2445,143 @@ li.select2-results__option{
 }
 
 .leaflet-control-layers-list{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
     font-family: "Philosopher";
     font-weight: 700;
     font-size: 18px !important;
     color: #FFFFFF !important;
-    text-align: left;
+    text-align: justify;
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .leaflet-control-layers-list{
-        font-family: "Overlook";
-        font-weight: 400;
-        font-size: 14px !important;
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 16px !important;
         color: #FFFFFF !important;
-        text-align: center;
+        text-align: justify;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .leaflet-control-layers-list{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 14px !important;
+        color: #FFFFFF !important;
+        text-align: justify;
+    }
+}
+
+.leaflet-control-layers-list input[type = "checkbox"]{
+    margin-top: 2.5px;
+    margin-right: 10px !important;
+    width: 18px;
+    height: 18px;
+    float: left !important;
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .leaflet-control-layers-list input[type = "checkbox"]{
+        width: 16px;
+        height: 16px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .leaflet-control-layers-list input[type = "checkbox"]{
+        width: 14px;
+        height: 14px;
+    }
+}
+
+.leaflet-control-layers-list input[type = "checkbox"]::before{
+    width: 10px;
+    height: 10px;
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .leaflet-control-layers-list input[type = "checkbox"]::before{
+        width: 8px;
+        height: 8px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .leaflet-control-layers-list input[type = "checkbox"]::before{
+        width: 6px;
+        height: 6px;
+    }
+}
+
+.datum{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    border: 1px solid #B2BEB5 !important; 
+    border-radius: 5px !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    font-family: "Overlook";
+    font-weight: 400;
+    font-size: 16px !important;
+    color: #FFFFFF !important;
+    background-color: #154360;
+    text-align: justify;
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .datum{
+        font-family: "Overlook";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #FFFFFF !important;
+        text-align: justify;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .datum{
         font-family: "Overlook";
         font-weight: 400;
         font-size: 12px !important;
         color: #FFFFFF !important;
-        text-align: center;
+        text-align: justify;
+    }
+}
+
+.datum p{
+    margin-bottom: 0px !important;
+}
+
+.datum header{
+    font-family: "Philosopher";
+    font-weight: 700;
+    font-size: 18px !important;
+    color: #FFFFFF !important;
+    text-align: justify;
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .datum header{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 16px !important;
+        color: #FFFFFF !important;
+        text-align: justify;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .datum header{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 14px !important;
+        color: #FFFFFF !important;
+        text-align: justify;
     }
 }
 

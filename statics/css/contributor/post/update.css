@@ -1150,7 +1150,7 @@
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .post .card-body .field .column label[for = "density"]{
-        margin-top: 0px;
+        margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
@@ -1161,7 +1161,7 @@
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .post .card-body .field .column label[for = "density"]{
-        margin-top: 0px;
+        margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
@@ -1172,7 +1172,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .post .card-body .field .column label[for = "density"]{
-        margin-top: 0px;
+        margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
@@ -1355,7 +1355,7 @@
     position: relative;
 }
 
-.post .card-body .field .column .depth input{
+.post .card-body .field .column select[name = "depth"]{
     padding-left: 10px !important;
     padding-right: 45px !important;
     padding-top: 5px !important;
@@ -1364,19 +1364,25 @@
     border: 1px solid #B2BEB5;
     border-radius: 5px; 
     box-shadow: 0 0 0 1px #B2BEB5 !important;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
     outline: none !important;
     font-family: "Philosopher";
     font-weight: 700 !important;
     font-size: 20px !important;   
     color: #154360 !important;
+    background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '20' height = '20' viewBox = '0 0 576 512' fill = '%23154360'> <path d = 'M151.6 469.6C145.5 476.2 137 480 128 480s-17.5-3.8-23.6-10.4l-88-96c-11.9-13-11.1-33.3 2-45.2s33.3-11.1 45.2 2L96 365.7V64c0-17.7 14.3-32 32-32s32 14.3 32 32V365.7l32.4-35.4c11.9-13 32.2-13.9 45.2-2s13.9 32.2 2 45.2l-88 96zM320 480c-17.7 0-32-14.3-32-32s14.3-32 32-32h32c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32H544c17.7 0 32 14.3 32 32s-14.3 32-32 32H320z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center; 
 }
 
-.post .card-body .field .column .depth input:focus{
+.post .card-body .field .column select[name = "depth"]:focus{
     border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column .depth input{
+    .post .card-body .field .column select[name = "depth"]{
         padding-left: 10px !important;
         padding-right: 45px !important;
         padding-top: 5px !important;
@@ -1390,11 +1396,14 @@
         font-weight: 700 !important;
         font-size: 18px !important;   
         color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '18' height = '18' viewBox = '0 0 576 512' fill = '%23154360'> <path d = 'M151.6 469.6C145.5 476.2 137 480 128 480s-17.5-3.8-23.6-10.4l-88-96c-11.9-13-11.1-33.3 2-45.2s33.3-11.1 45.2 2L96 365.7V64c0-17.7 14.3-32 32-32s32 14.3 32 32V365.7l32.4-35.4c11.9-13 32.2-13.9 45.2-2s13.9 32.2 2 45.2l-88 96zM320 480c-17.7 0-32-14.3-32-32s14.3-32 32-32h32c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32H544c17.7 0 32 14.3 32 32s-14.3 32-32 32H320z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column .depth input{
+    .post .card-body .field .column select[name = "depth"]{
         padding-left: 10px !important;
         padding-right: 45px !important;
         padding-top: 5px !important;
@@ -1408,11 +1417,14 @@
         font-weight: 700 !important;
         font-size: 16px !important;   
         color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '16' height = '16' viewBox = '0 0 576 512' fill = '%23154360'> <path d = 'M151.6 469.6C145.5 476.2 137 480 128 480s-17.5-3.8-23.6-10.4l-88-96c-11.9-13-11.1-33.3 2-45.2s33.3-11.1 45.2 2L96 365.7V64c0-17.7 14.3-32 32-32s32 14.3 32 32V365.7l32.4-35.4c11.9-13 32.2-13.9 45.2-2s13.9 32.2 2 45.2l-88 96zM320 480c-17.7 0-32-14.3-32-32s14.3-32 32-32h32c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32H544c17.7 0 32 14.3 32 32s-14.3 32-32 32H320z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column .depth input{
+    .post .card-body .field .column select[name = "depth"]{
         padding-left: 10px !important;
         padding-right: 45px !important;
         padding-top: 5px !important;
@@ -1426,10 +1438,18 @@
         font-weight: 700 !important;
         font-size: 14px !important;   
         color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '14' height = '14' viewBox = '0 0 576 512' fill = '%23154360'> <path d = 'M151.6 469.6C145.5 476.2 137 480 128 480s-17.5-3.8-23.6-10.4l-88-96c-11.9-13-11.1-33.3 2-45.2s33.3-11.1 45.2 2L96 365.7V64c0-17.7 14.3-32 32-32s32 14.3 32 32V365.7l32.4-35.4c11.9-13 32.2-13.9 45.2-2s13.9 32.2 2 45.2l-88 96zM320 480c-17.7 0-32-14.3-32-32s14.3-32 32-32h32c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32H544c17.7 0 32 14.3 32 32s-14.3 32-32 32H320z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
     }
 }
 
-.post .card-body .field .column .depth i{
+.post .card-body .field .column select[name = "depth"]::selection{
+    color: #FFFFFF !important;
+    background-color: #154360 !important;
+}
+
+/* .post .card-body .field .column .depth i{
     right: 10px;
     top: 50%;
     position: absolute;
@@ -1477,7 +1497,7 @@
         color: #154360;
         transform: translateY(-50%);
     }
-}
+} */
 
 .post .card-body .field .column label[for = "weather"]{
     margin-top: 15px;
@@ -1525,7 +1545,7 @@
     position: relative;
 }
 
-.post .card-body .field .column .weather input{
+.post .card-body .field .column select[name = "weather"]{
     padding-left: 10px !important;
     padding-right: 45px !important;
     padding-top: 5px !important;
@@ -1534,19 +1554,25 @@
     border: 1px solid #B2BEB5;
     border-radius: 5px; 
     box-shadow: 0 0 0 1px #B2BEB5 !important;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
     outline: none !important;
     font-family: "Philosopher";
     font-weight: 700 !important;
     font-size: 20px !important;   
     color: #154360 !important;
+    background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '20' height = '20' viewBox = '0 0 512 512' fill = '%23154360'> <path d = 'M416 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64zm0 128A96 96 0 1 0 416 0a96 96 0 1 0 0 192zM96 112c0-26.5 21.5-48 48-48s48 21.5 48 48V276.5c0 17.3 7.1 31.9 15.3 42.5C217.8 332.6 224 349.5 224 368c0 44.2-35.8 80-80 80s-80-35.8-80-80c0-18.5 6.2-35.4 16.7-48.9C88.9 308.4 96 293.8 96 276.5V112zM144 0C82.1 0 32 50.2 32 112V276.5c0 .1-.1 .3-.2 .6c-.2 .6-.8 1.6-1.7 2.8C11.2 304.2 0 334.8 0 368c0 79.5 64.5 144 144 144s144-64.5 144-144c0-33.2-11.2-63.8-30.1-88.1c-.9-1.2-1.5-2.2-1.7-2.8c-.1-.3-.2-.5-.2-.6V112C256 50.2 205.9 0 144 0zm0 416c26.5 0 48-21.5 48-48c0-20.9-13.4-38.7-32-45.3V112c0-8.8-7.2-16-16-16s-16 7.2-16 16V322.7c-18.6 6.6-32 24.4-32 45.3c0 26.5 21.5 48 48 48z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center; 
 }
 
-.post .card-body .field .column .weather input:focus{
+.post .card-body .field .column select[name = "weather"]:focus{
     border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column .weather input{
+    .post .card-body .field .column select[name = "weather"]{
         padding-left: 10px !important;
         padding-right: 45px !important;
         padding-top: 5px !important;
@@ -1560,11 +1586,14 @@
         font-weight: 700 !important;
         font-size: 18px !important;   
         color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '18' height = '18' viewBox = '0 0 512 512' fill = '%23154360'> <path d = 'M416 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64zm0 128A96 96 0 1 0 416 0a96 96 0 1 0 0 192zM96 112c0-26.5 21.5-48 48-48s48 21.5 48 48V276.5c0 17.3 7.1 31.9 15.3 42.5C217.8 332.6 224 349.5 224 368c0 44.2-35.8 80-80 80s-80-35.8-80-80c0-18.5 6.2-35.4 16.7-48.9C88.9 308.4 96 293.8 96 276.5V112zM144 0C82.1 0 32 50.2 32 112V276.5c0 .1-.1 .3-.2 .6c-.2 .6-.8 1.6-1.7 2.8C11.2 304.2 0 334.8 0 368c0 79.5 64.5 144 144 144s144-64.5 144-144c0-33.2-11.2-63.8-30.1-88.1c-.9-1.2-1.5-2.2-1.7-2.8c-.1-.3-.2-.5-.2-.6V112C256 50.2 205.9 0 144 0zm0 416c26.5 0 48-21.5 48-48c0-20.9-13.4-38.7-32-45.3V112c0-8.8-7.2-16-16-16s-16 7.2-16 16V322.7c-18.6 6.6-32 24.4-32 45.3c0 26.5 21.5 48 48 48z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column .weather input{
+    .post .card-body .field .column select[name = "weather"]{
         padding-left: 10px !important;
         padding-right: 45px !important;
         padding-top: 5px !important;
@@ -1578,11 +1607,14 @@
         font-weight: 700 !important;
         font-size: 16px !important;   
         color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '16' height = '16' viewBox = '0 0 512 512' fill = '%23154360'> <path d = 'M416 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64zm0 128A96 96 0 1 0 416 0a96 96 0 1 0 0 192zM96 112c0-26.5 21.5-48 48-48s48 21.5 48 48V276.5c0 17.3 7.1 31.9 15.3 42.5C217.8 332.6 224 349.5 224 368c0 44.2-35.8 80-80 80s-80-35.8-80-80c0-18.5 6.2-35.4 16.7-48.9C88.9 308.4 96 293.8 96 276.5V112zM144 0C82.1 0 32 50.2 32 112V276.5c0 .1-.1 .3-.2 .6c-.2 .6-.8 1.6-1.7 2.8C11.2 304.2 0 334.8 0 368c0 79.5 64.5 144 144 144s144-64.5 144-144c0-33.2-11.2-63.8-30.1-88.1c-.9-1.2-1.5-2.2-1.7-2.8c-.1-.3-.2-.5-.2-.6V112C256 50.2 205.9 0 144 0zm0 416c26.5 0 48-21.5 48-48c0-20.9-13.4-38.7-32-45.3V112c0-8.8-7.2-16-16-16s-16 7.2-16 16V322.7c-18.6 6.6-32 24.4-32 45.3c0 26.5 21.5 48 48 48z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column .weather input{
+    .post .card-body .field .column select[name = "weather"]{
         padding-left: 10px !important;
         padding-right: 45px !important;
         padding-top: 5px !important;
@@ -1596,10 +1628,13 @@
         font-weight: 700 !important;
         font-size: 14px !important;   
         color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '14' height = '14' viewBox = '0 0 512 512' fill = '%23154360'> <path d = 'M416 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64zm0 128A96 96 0 1 0 416 0a96 96 0 1 0 0 192zM96 112c0-26.5 21.5-48 48-48s48 21.5 48 48V276.5c0 17.3 7.1 31.9 15.3 42.5C217.8 332.6 224 349.5 224 368c0 44.2-35.8 80-80 80s-80-35.8-80-80c0-18.5 6.2-35.4 16.7-48.9C88.9 308.4 96 293.8 96 276.5V112zM144 0C82.1 0 32 50.2 32 112V276.5c0 .1-.1 .3-.2 .6c-.2 .6-.8 1.6-1.7 2.8C11.2 304.2 0 334.8 0 368c0 79.5 64.5 144 144 144s144-64.5 144-144c0-33.2-11.2-63.8-30.1-88.1c-.9-1.2-1.5-2.2-1.7-2.8c-.1-.3-.2-.5-.2-.6V112C256 50.2 205.9 0 144 0zm0 416c26.5 0 48-21.5 48-48c0-20.9-13.4-38.7-32-45.3V112c0-8.8-7.2-16-16-16s-16 7.2-16 16V322.7c-18.6 6.6-32 24.4-32 45.3c0 26.5 21.5 48 48 48z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
     }
 }
 
-.post .card-body .field .column .weather i{
+/* .post .card-body .field .column .weather i{
     right: 10px;
     top: 50%;
     position: absolute;
@@ -1647,7 +1682,7 @@
         color: #154360;
         transform: translateY(-50%);
     }
-}
+} */
 
 .map{ 
     width: 100%;

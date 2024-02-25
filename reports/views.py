@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.db.models import Q
 from reports.models import *
-from reports.forms import CoordinatesForm, PostObservationsForm, PostForm
+from reports.forms import CoordinatesForm, PostObservationForm, PostForm
 from authentications.views import ContributorCheck
 
 
@@ -13,21 +13,25 @@ from authentications.views import ContributorCheck
 def ContributorPostCreate(request):
     coordinates_form = CoordinatesForm()
 
-    postobservations_form = PostObservationsForm()
+    postobservation_form = PostObservationForm()
+
+    depths = Depth.objects.all()
+
+    weathers = Weather.objects.all()
 
     post_form = PostForm()
     
     if request.method == "POST":
         coordinates_form = CoordinatesForm(request.POST)
 
-        postobservations_form = PostObservationsForm(request.POST)
+        postobservation_form = PostObservationForm(request.POST)
 
         post_form =  PostForm(request.POST)
 
-        if coordinates_form.is_valid() and postobservations_form.is_valid() and post_form.is_valid():
+        if coordinates_form.is_valid() and postobservation_form.is_valid() and post_form.is_valid():
             coordinates = coordinates_form.save(commit = False)
 
-            post_observations = postobservations_form.save(commit = False)
+            post_observation = postobservation_form.save(commit = False)
 
             post = post_form.save(commit = False)
 
@@ -37,13 +41,21 @@ def ContributorPostCreate(request):
 
             coordinates = Coordinates.objects.create(latitude = coordinates.latitude, longitude = coordinates.longitude)
             
-            post_observations = PostObservations.objects.create(size = post_observations.size, depth = post_observations.depth, density = post_observations.density, weather = post_observations.weather)
+            depth = request.POST.get("depth")
+
+            post_observation.depth = Weather.objects.get(id = depth)
+
+            weather = request.POST.get("weather")
+
+            post_observation.weather = Weather.objects.get(id = weather)
+
+            post_observation = PostObservation.objects.create(size = post_observation.size, depth = post_observation.depth, density = post_observation.density, weather = post_observation.weather)
             
-            if Coordinates.objects.filter(latitude = coordinates.latitude, longitude = coordinates.longitude).exists() and PostObservations.objects.filter(size = post_observations.size, depth = post_observations.depth, density = post_observations.density, weather = post_observations.weather).exists():
+            if Coordinates.objects.filter(latitude = coordinates.latitude, longitude = coordinates.longitude).exists() and PostObservation.objects.filter(size = post_observation.size, depth = post_observation.depth, density = post_observation.density, weather = post_observation.weather).exists():
                 post_photos = request.FILES.getlist("post_photo")
 
                 for post_photo in post_photos:
-                    Post.objects.create(user = user, description = post.description, capture_date = post.capture_date, post_photo = post_photo, coordinates = coordinates, post_status = post_status, post_observations = post_observations)
+                    Post.objects.create(user = user, description = post.description, capture_date = post.capture_date, post_photo = post_photo, coordinates = coordinates, post_status = post_status, post_observation = post_observation)
 
                 username = request.user.username
                 
@@ -54,16 +66,16 @@ def ContributorPostCreate(request):
         else:
             messages.error(request, "Information input is not valid.")
             
-            messages.error(request, coordinates_form.errors, postobservations_form.errors, post_form.errors)
+            messages.error(request, coordinates_form.errors, postobservation_form.errors, post_form.errors)
 
     else:
         coordinates_form = CoordinatesForm()
         
-        postobservations_form = PostObservationsForm()
+        postobservation_form = PostObservationForm()
         
         post_form = PostForm() 
 
-    context = {"coordinates_form": coordinates_form, "postobservations_form": postobservations_form, "post_form": post_form}
+    context = {"coordinates_form": coordinates_form, "depths": depths, "weathers": weathers, "postobservation_form": postobservation_form, "post_form": post_form}
     
     return render(request, "contributor/post/create.html", context)
 
@@ -156,7 +168,7 @@ def ContributorPostInvalidDelete(request, id):
         for invalid_post in delete_post:
             invalid_post.coordinates.delete()
         
-            invalid_post.post_observations.delete()
+            invalid_post.post_observation.delete()
         
             invalid_post.delete()
 
@@ -196,17 +208,21 @@ def ContributorPostUncertainRead(request, id):
 def ContributorPostUncertainUpdate(request, id):
     uncertain_post = Post.objects.get(id = id, post_status = 3)   
 
+    depths = Depth.objects.all()
+
+    weathers = Weather.objects.all()
+
     if request.method == "POST":
         coordinates_form = CoordinatesForm(request.POST, instance = uncertain_post.coordinates)
         
-        postobservations_form = PostObservationsForm(request.POST, instance = uncertain_post.post_observations)
+        postobservation_form = PostObservationForm(request.POST, instance = uncertain_post.post_observation)
         
         post_form =  PostForm(request.POST, request.FILES, instance = uncertain_post)
 
-        if coordinates_form.is_valid() and postobservations_form.is_valid() and post_form.is_valid():
+        if coordinates_form.is_valid() and postobservation_form.is_valid() and post_form.is_valid():
             coordinates_form.save()
             
-            postobservations_form.save()
+            postobservation_form.save()
            
             post_form.save()
 
@@ -219,28 +235,28 @@ def ContributorPostUncertainUpdate(request, id):
             for uncertain_post in update_post.exclude(id = id):
                 uncertain_post.coordinates = uncertain_post.coordinates
 
-                uncertain_post.post_observations = uncertain_post.post_observations
+                uncertain_post.post_observation = uncertain_post.post_observation
 
                 uncertain_post.save()
 
             username = request.user.username
             
-            messages.success(request, username + ", " + "your information input was recorded for COTSEye.")
+            messages.success(request, username + ", " + "your information input was updated for COTSEye.")
             
             return redirect("Contributor Post Uncertain")
 
         else:
             messages.error(request, "Information input is not valid.")
             
-            messages.error(request, coordinates_form.errors, postobservations_form.errors, post_form.errors)
+            messages.error(request, coordinates_form.errors, postobservation_form.errors, post_form.errors)
         
     else:
         coordinates_form = CoordinatesForm(instance = uncertain_post.coordinates)
         
-        postobservations_form = PostObservationsForm(instance = uncertain_post.post_observations)
+        postobservation_form = PostObservationForm(instance = uncertain_post.post_observation)
         
         post_form = PostForm(instance = uncertain_post)       
 
-    context = {"uncertain_post": uncertain_post, "coordinates_form": coordinates_form, "postobservations_form": postobservations_form, "post_form": post_form}
+    context = {"uncertain_post": uncertain_post, "coordinates_form": coordinates_form, "depths": depths, "weathers": weathers, "postobservation_form": postobservation_form, "post_form": post_form}
     
     return render(request, "contributor/post/update.html", context)

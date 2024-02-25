@@ -95,11 +95,20 @@
 
                     <label for = "depth">Depth</label> 
                         
-                    <div class = "depth">
+                    <!-- <div class = "depth">
                         <input type = "text" placeholder = "" id = "depth" name = "depth">
                             
                         <i class = "fa-solid fa-arrow-down-wide-short"></i>
-                    </div>
+                    </div> -->
+
+                    <select name = "depth" id = "depth">
+                        {% for depth in depths %}
+
+                        <option value="{{depth.id}}">{{depth}}</option>
+                        
+                        {% endfor %}
+                    </select>
+
                 </div>
 
                 <div class = "column">
@@ -113,11 +122,19 @@
 
                     <label for = "weather">Weather</label> 
                         
-                    <div class = "weather">
+                    <!-- <div class = "weather">
                         <input type = "text" placeholder = "" id = "weather" name = "weather">
                             
                         <i class = "fa-solid fa-temperature-high"></i>
-                    </div>
+                    </div> -->
+
+                    <select name = "weather" id = "weather">
+                        {% for weather in weathers %}
+
+                        <option value="{{weather.id}}">{{weather}}</option>
+                        
+                        {% endfor %}
+                    </select>
                 </div>
             </div>
 
@@ -130,7 +147,6 @@
 
 {% if messages %}
     {% for message in messages %}
-        <script src = "https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         {% if message.tags == "info" %}<script>Swal.fire({title: "Hey!", text: "{{message}}", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}})</script>
         {% elif message.tags == "success" %}<script>Swal.fire({title: "Yay!", text: "{{message}}", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}})</script>
         {% else %}<script>Swal.fire({title: "Oops!", text: "{{message}}", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}})</script>
@@ -185,10 +201,6 @@
 <script>
     date.value = new Date().toJSON().split("T")[0]
 </script>
-
-<link rel = "stylesheet" href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity = "sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin = ""/>    
-
-<script src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity = "sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin = ""></script>
 
 <script>
     function revealMap(){
@@ -249,10 +261,6 @@
 
     document.getElementById("refresh").addEventListener("click", refreshMap);
 </script>
-
-<script src = "https://cdnjs.cloudflare.com/ajax/libs/exif-webwares/2.3.0/exif.js"></script>
-
-<script src = "https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
     let postPhoto;
