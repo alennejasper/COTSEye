@@ -5,17 +5,17 @@ import datetime
 
 # Create your models here.
 class Location(models.Model):
-    purok = models.CharField(max_length = 65, null = True, blank = True, help_text = "Designates the name of the purok.", verbose_name = "Purok")
     barangay = models.CharField(max_length = 65, null = True, blank = True, help_text = "Designates the name of the barangay.", verbose_name = "Barangay")
     municipality = models.CharField(max_length = 65, null = True, blank = True, help_text = "Designates the name of the municipality.", verbose_name = "Municipality")
-
+    perimeters = models.TextField(max_length = 15000, null = True, blank = True, help_text = "Designates the perimeters of the location.", verbose_name = "Perimeters")
+    
     class Meta:
         db_table = "managements_location"
         verbose_name = "Location"
         verbose_name_plural = "Locations"
     
     def __str__(self):
-        return "Purok " + str(self.purok) + ", " + "Barangay " + str(self.barangay) + ", " + str(self.municipality)
+        return "Barangay " + str(self.barangay) + ", " + str(self.municipality)
 
 
 class StatusType(models.Model):
@@ -41,8 +41,7 @@ class StatusType(models.Model):
 class Status(models.Model):
     location = models.ForeignKey(Location, on_delete = models.CASCADE, null = True, blank = True, help_text = "Designates the foreign key of the Location model.", verbose_name = "Location")
     statustype = models.ForeignKey(StatusType, on_delete = models.SET_NULL, blank = True, null = True, help_text = "Designates the foreign key of the Status Type model.", verbose_name = "Status Type")
-    description = models.TextField(max_length = 1500, null = True, blank = True, help_text = "Designates the description of the COTS status.", verbose_name = "Description")
-    onset_date = models.DateTimeField(default = datetime.datetime.now(), help_text = "Designates the onset date of the outbreak status.", verbose_name = "Status Date")
+    onset_date = models.DateField(default = datetime.date.today(), help_text = "Designates the onset date of the outbreak status.", verbose_name = "Status Date")
 
     class Meta:
         db_table = "managements_status"

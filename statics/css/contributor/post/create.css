@@ -1259,6 +1259,15 @@
     }
 }
 
+.post .card-body .field .column .density input::-webkit-outer-spin-button, .post .card-body .field .column .density input::-webkit-inner-spin-button {
+    margin: 0;
+    -webkit-appearance: none;
+}
+
+.post .card-body .field .column .density input[type = "number"]{
+    -moz-appearance: textfield;
+}
+
 .post .card-body .field .column .density i{
     right: 10px;
     top: 50%;

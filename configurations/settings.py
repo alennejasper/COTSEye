@@ -110,7 +110,7 @@ TEMPLATES = [
                 
                 "django.contrib.messages.context_processors.messages",
                 
-                "reports.processors.coordinates",
+                "authentications.processors.coordinates",
             ],
             
         },

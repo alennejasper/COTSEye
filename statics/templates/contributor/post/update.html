@@ -102,6 +102,8 @@
                     </div> -->
 
                     <select name = "depth" id = "depth">
+                        <option disabled selected value>Choose depth</option>
+
                         {% for depth in depths %}
 
                         <option value="{{depth.id}}">{{depth}}</option>
@@ -128,6 +130,8 @@
                     </div> -->
 
                     <select name = "weather" id = "weather">
+                        <option disabled selected value>Choose weather</option>
+
                         {% for weather in weathers %}
 
                         <option value="{{weather.id}}">{{weather}}</option>
@@ -212,6 +216,8 @@
         var background = L.tileLayer("http://{s}.google.com/vt?lyrs=s,h&x={x}&y={y}&z={z}", {minZoom: 11, subdomains:["mt0","mt1","mt2","mt3"], attribution: "Google"});
 
         var map = L.map(postMap, {zoomControl: true, scrollWheelZoom: false, dragging: true, maxBounds: [[5.3, 124.3],[6.3, 126.3]], layers: [background, post]}).setView([5.9656, 125.1929], 11);
+
+        map.attributionControl.setPosition("bottomleft");
 
         function updateCoordinates(){
             var latitude = post.getLatLng().lat.toFixed(6);

@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from allauth.socialaccount.signals import social_account_updated
 from authentications.forms import AccountForm, UserForm, ProfileForm
 from authentications.models import *
+from managements.models import Status
 from reports.models import Post
 
 
@@ -25,14 +26,18 @@ def PublicHome(request):
     else:
         try:
             posts = Post.objects.filter(post_status = 1)
+
+            statuses = Status.objects.all()
     
         except:
             posts = None
 
+            statuses = None
+
     if not any(message.level in [messages.INFO, messages.SUCCESS, messages.ERROR] for message in messages.get_messages(request)):
         messages.info(request, username + ", " + "kindly see announcements within the menu of COTSEye to check for updates today.")
 
-    context = {"posts": posts}
+    context = {"posts": posts, "statuses": statuses}
     
     return render(request, "public/home/home.html", context)
 
@@ -240,9 +245,17 @@ def ContributorCheck(account):
 @login_required(login_url = "Contributor Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorHome(request):
-    posts = Post.objects.filter(post_status = 1)
+    try:
+        posts = Post.objects.filter(post_status = 1)
 
-    context = {"posts": posts}
+        statuses = Status.objects.all()
+
+    except:
+        posts = None
+
+        statuses = None
+        
+    context = {"posts": posts, "statuses": statuses}
 
     return render(request, "contributor/home/home.html", context)
 

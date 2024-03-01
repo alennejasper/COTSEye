@@ -90,10 +90,8 @@ class User(models.Model):
     email = models.EmailField(max_length = 65, null = True, help_text = "Designates the email of the user.", verbose_name = "Email")
     phone_number = models.CharField(max_length = 10, null = True, blank = True, help_text = "Designates the phone number of the user.", verbose_name = "Phone Number")
     profile_photo = models.ImageField(default = "profiles/default.png", null = True, blank = True, upload_to = "profiles", help_text = "Designates the profile photo of the user.", verbose_name = "Profile Photo")
-    joined_date = models.DateTimeField(auto_now_add = True, help_text = "Designates the joined date and time of the user.", verbose_name = "Joined Date")
+    joined_date = models.DateTimeField(default = datetime.datetime.now(), help_text = "Designates the joined date and time of the user.", verbose_name = "Joined Date")
     
-    joined_date.editable = True
-
     class Meta:
         db_table = "localaccount_user"
         verbose_name = "User"

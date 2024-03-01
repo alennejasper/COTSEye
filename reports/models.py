@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MinValueValidator
 from authentications.models import User
 
 import datetime
@@ -88,7 +89,7 @@ class Weather(models.Model):
 class PostObservation(models.Model):
     size = models.CharField(max_length = 65, null = True, blank = True, help_text = "Designates the size of the Crown-of-Thorns Starfish at the moment the post taken.", verbose_name = "Size")
     depth = models.ForeignKey(Depth, on_delete = models.CASCADE, null = True, blank = True, help_text = "Designates the foreign key of the Depth model.", verbose_name = "Depth")
-    density = models.CharField(max_length = 65, null = True, blank = True, help_text = "Designates the density of the Crown-of-Thorns Starfish at the moment the post taken.", verbose_name = "Density")
+    density = models.IntegerField(validators = [MinValueValidator(0)], null = True, blank = True, help_text = "Designates the density of the Crown-of-Thorns Starfish at the moment the post taken.", verbose_name = "Density")
     weather = models.ForeignKey(Weather, on_delete = models.CASCADE, null = True, blank = True, help_text = "Designates the foreign key of the Weather model.", verbose_name = "Weather")
 
     class Meta:

@@ -2477,7 +2477,7 @@ li.select2-results__option{
 }
 
 .leaflet-control-layers-list input[type = "checkbox"]{
-    margin-top: 2.5px;
+    margin-top: 5px;
     margin-right: 10px !important;
     width: 18px;
     height: 18px;
@@ -2486,6 +2486,7 @@ li.select2-results__option{
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .leaflet-control-layers-list input[type = "checkbox"]{
+        margin-top: 2.5px;
         width: 16px;
         height: 16px;
     }
@@ -2493,6 +2494,7 @@ li.select2-results__option{
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .leaflet-control-layers-list input[type = "checkbox"]{
+        margin-top: 2.5px;
         width: 14px;
         height: 14px;
     }
