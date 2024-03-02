@@ -46,7 +46,29 @@
     box-shadow: 0 0 0 1px #B2BEB5 !important;
 }
 
-.post .card-header{
+.post#valid .card-header{
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-top-left-radius: 5px !important;
+    border-top-right-radius: 5px !important;
+    background-color: #698F3F;
+    display: grid;
+}
+
+.post#invalid .card-header{
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-top-left-radius: 5px !important;
+    border-top-right-radius: 5px !important;
+    background-color: #C90016;
+    display: grid;
+}
+
+.post#uncertain .card-header{
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 15px;

@@ -1,0 +1,337 @@
+{% extends "contributor/index/index.html" %}
+{% load static %}
+
+{% block content %}
+<div class = "post">
+    <form action = "" class = "post-form" method = "POST" enctype = "multipart/form-data">
+        {% csrf_token %}
+
+        <div class = "card-header">
+            <header>Add required information</header>
+        </div>
+
+        <div class = "card-body">
+            <div class = "field">
+                <div class = "column">
+                    <label for = "capture-date">Capture Date</label> 
+                        
+                    <div class = "capture-date">
+                        <input type = "date" placeholder = "" id = "capture-date" name = "capture_date" required>                            
+                    </div>
+                </div>
+
+                <div class = "column">
+                    <label for = "description">Description</label> 
+                        
+                    <div class = "description">
+                        <input type = "text" placeholder = "" id = "description" name = "description" required>
+                            
+                        <i class = "fa-solid fa-comments"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class = "post-gallery">
+                <img class = "gallery-photo" src = "{% static 'assets/posts/default.png' %}"> 
+            </div>
+
+            <div class = "button">
+                <label for = "post-photo" class = "browse-photo">Capture</label> 
+                
+                <input type = "file" class = "post-photo" name = "post_photo" accept = "image/*" capture = "environment" required>
+            </div>
+
+            <div class = "field">
+                <div class = "column">
+                    <label for = "latitude">Latitude</label> 
+                        
+                    <div class = "latitude">
+                        <input type = "text" placeholder = "" id = "latitude" name = "latitude">
+                            
+                        <i class = "fa-solid fa-map-location-dot"></i>
+                    </div>
+                </div>
+
+                <div class = "column">
+                    <label for = "longitude">Longitude</label> 
+                        
+                    <div class = "longitude">
+                        <input type = "text" placeholder = "" id = "longitude" name = "longitude">
+                            
+                        <i class = "fa-solid fa-map-location-dot"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class = "map">
+                <div class = "post-map">
+                </div>
+            </div>
+
+            <div class = "button">
+                <a class = "refresh-map" onclick = "refreshMap()">Refresh</a>
+            </div>
+        </div> 
+</div>
+
+<div class = "post">
+    <form action = "" class = "post-form" method = "POST" enctype = "multipart/form-data">
+        {% csrf_token %}
+
+        <div class = "card-header">
+            <header>Add optional information</header>
+        </div>
+
+        <div class = "card-body">
+            <div class = "field">
+                <div class = "column">
+                    <label for = "size">Size</label> 
+                        
+                    <div class = "size">
+                        <input type = "text" placeholder = "" id = "size" name = "size">
+                            
+                        <i class = "fa-solid fa-draw-polygon"></i>
+                    </div>
+
+                    <label for = "depth">Depth</label> 
+                        
+                    <!-- <div class = "depth">
+                        <input type = "text" placeholder = "" id = "depth" name = "depth">
+                            
+                        <i class = "fa-solid fa-arrow-down-wide-short"></i>
+                    </div> -->
+
+                    <select name = "depth" id = "depth">
+                        <option disabled selected value>Choose depth</option>
+
+                        {% for depth in depths %}
+
+                        <option value="{{depth.id}}">{{depth}}</option>
+                        
+                        {% endfor %}
+                    </select>
+
+                </div>
+
+                <div class = "column">
+                    <label for = "density">Density</label> 
+                        
+                    <div class = "density">
+                        <input type = "number" placeholder = "" id = "density" name = "density">
+                            
+                        <i class = "fa-solid fa-braille"></i>
+                    </div>
+
+                    <label for = "weather">Weather</label> 
+                        
+                    <!-- <div class = "weather">
+                        <input type = "text" placeholder = "" id = "weather" name = "weather">
+                            
+                        <i class = "fa-solid fa-temperature-high"></i>
+                    </div> -->
+
+                    <select name = "weather" id = "weather">
+                        <option disabled selected value>Choose weather</option>
+
+                        {% for weather in weathers %}
+
+                        <option value="{{weather.id}}">{{weather}}</option>
+                        
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class = "button">
+                <a class = "save-post" type = "submit">Save</a>
+            </div>   
+        </div>
+    </form>
+</div>
+
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags == "info" %}<script>Swal.fire({title: "Hey!", text: "{{message}}", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}})</script>
+        {% elif message.tags == "success" %}<script>Swal.fire({title: "Yay!", text: "{{message}}", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}})</script>
+        {% else %}<script>Swal.fire({title: "Oops!", text: "{{message}}", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}})</script>
+        {% endif %}    
+    {% endfor %}
+{% endif %}
+
+<script>
+    const browsePhoto = document.querySelector(".post-photo");
+    
+    const postGallery = document.querySelector(".post-gallery");
+
+    browsePhoto.addEventListener("change", (event) => {
+        const postFiles = event.target.files;
+
+        postGallery.innerHTML = "";
+
+        for (let i = 0; i < postFiles.length; i++) {
+            const photoObject = postFiles[i];
+
+            const photoElement = document.createElement("img");
+            
+            photoElement.classList.add("gallery-photo");
+            
+            photoElement.src = URL.createObjectURL(photoObject);
+            
+            postGallery.appendChild(photoElement);
+        }
+    });
+</script>
+
+<script>
+    document.querySelector(".browse-photo").addEventListener("click", function(){
+        document.querySelector(".post-photo").click();
+    });
+</script>
+
+<script>
+    document.querySelector(".post-photo").addEventListener("change", function(){
+        for (var i = 0; i < this.files.length; i++){
+            var postFile = this.files[i];
+
+            var modifiedDate = postFile.lastModifiedDate;
+
+            var formattedDate = modifiedDate.toISOString().split("T")[0];
+
+            document.getElementById("capture-date").value = formattedDate;
+        }
+    });
+</script>
+
+<script>
+    date.value = new Date().toJSON().split("T")[0]
+</script>
+
+<script>
+    function revealMap(){
+        var starfish = L.icon({iconUrl: "{% static 'assets/icons/marker.png' %}", iconSize: [30, 30], iconAnchor: [15, 15]});
+
+        var post = L.marker([5.9656, 125.1929], {draggable: true, icon: starfish});
+
+        var postMap = document.getElementsByClassName("post-map")[0];
+        
+        var background = L.tileLayer("http://{s}.google.com/vt?lyrs=s,h&x={x}&y={y}&z={z}", {minZoom: 11, subdomains:["mt0", "mt1", "mt2", "mt3"], attribution: "Google"});
+
+        var map = L.map(postMap, {zoomControl: true, scrollWheelZoom: false, dragging: true, maxBounds: [[5.3, 124.3],[6.3, 126.3]], layers: [background, post]}).setView([5.9656, 125.1929], 11);
+
+        map.attributionControl.setPosition("bottomleft");
+
+        function updateCoordinates(){
+            var latitude = post.getLatLng().lat.toFixed(6);
+
+            var longitude = post.getLatLng().lng.toFixed(6);
+
+            document.getElementById("latitude").value = latitude;
+            
+            document.getElementById("longitude").value = longitude;
+        }
+
+        updateCoordinates();
+
+        post.on("drag", updateCoordinates);
+
+        post.on("dragend", function (e){
+            var position = post.getLatLng();
+
+            document.getElementById("latitude").value = position.lat.toFixed(6);
+            
+            document.getElementById("longitude").value = position.lng.toFixed(6);
+        });
+
+        document.getElementById("latitude").addEventListener("input", function (){
+            var lat = parseFloat(this.value);
+
+            post.setLatLng([lat, post.getLatLng().lng]);
+        });
+
+        document.getElementById("longitude").addEventListener("input", function (){
+            var lng = parseFloat(this.value);
+
+            post.setLatLng([post.getLatLng().lat, lng]);
+        });
+    }
+
+    window.addEventListener("load", function (){
+        revealMap();
+    });
+</script>
+
+<script>
+    function refreshMap(){
+        map.setView([5.9656, 125.1929], 11);
+    }
+
+    document.getElementById("refresh").addEventListener("click", refreshMap);
+</script>
+
+<script>
+    let postPhoto;
+
+    document.querySelector(".post-photo").addEventListener("change", function(e){
+        const postFile = e.target.files[0];
+        const photo = new Image();
+
+        photo.src = URL.createObjectURL(postFile);
+
+        photo.onload = function(){
+            EXIF.getData(photo, function(){
+                const latitude = EXIF.getTag(this, "GPSLatitude");
+
+                const longitude = EXIF.getTag(this, "GPSLongitude");
+
+                if (latitude && longitude){
+                    const roundLatitude = parseFloat(latitude).toFixed(6);
+
+                    const roundLongitude = parseFloat(longitude).toFixed(6);
+                    
+                    if (checkCoordinates(roundLatitude, roundLongitude)){
+                        document.getElementById("latitude").value = roundLatitude;
+
+                        document.getElementById("longitude").value = roundLongitude;
+                        
+                        postPhoto = photo;
+
+                    } else {
+                        Swal.fire({title: "Oops!", text: "The photo given to COTSEye incorporated coordinates out of bounds.", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}});
+                        
+                        document.querySelector(".gallery-photo").src = "{% static 'assets/posts/default.png' %}";
+                    }
+
+                } else {
+                    Swal.fire({title: "Hey!", text: "The photo given to COTSEye did not incorporate any coordinates.", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}});
+                }
+            });
+        };
+    });
+
+    function checkCoordinates(latitude, longitude){
+        const maximumLatitude = 6.3;
+
+        const minimumLatitude = 5.3;
+        
+        const maximumLongitude = 126.3;
+        
+        const minimumLongitude = 124.3;
+
+        return (
+            latitude >= minimumLatitude &&
+        
+            latitude <= maximumLatitude &&
+        
+            longitude >= minimumLongitude &&
+        
+            longitude <= maximumLongitude
+        );
+    }
+</script>
+
+<script>
+    document.querySelector(".save-post").onclick = function() {
+        document.querySelector(".post-form").submit();
+    }
+</script>
+{% endblock content %}

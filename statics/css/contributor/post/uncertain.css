@@ -46,7 +46,7 @@
     box-shadow: 0 0 0 1px #B2BEB5 !important;
 }
 
-.post .card-header{
+.post#uncertain .card-header{
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 15px;

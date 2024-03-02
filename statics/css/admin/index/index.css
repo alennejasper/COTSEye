@@ -1046,6 +1046,15 @@ i.fas.fa-users{
     }
 }
 
+.form-group .help-block ul{
+    margin-left: 0px !important;
+    margin-top: 15px !important;
+}
+
+.form-group .help-block li{
+    list-style-type: none !important;
+}
+
 .select2-container{
     min-width: 100% !important;
 }
@@ -2438,6 +2447,10 @@ li.select2-results__option{
 }
 
 .leaflet-control-layers-expanded{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
     border-radius: 5px !important;
     border: 1px solid #B2BEB5 !important; 
     box-shadow: 0 0 0 1px #B2BEB5 !important;
@@ -3466,7 +3479,7 @@ i.fas.fa-clock::before{
     -ms-user-select: none; 
     user-select: none;
     outline: none;
-    content: "Choose file";
+    content: "Choose a file";
     font-family: "Overlock";
     font-weight: 400;
     font-size: 20px !important;
