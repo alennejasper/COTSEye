@@ -30,13 +30,13 @@ class PostStatus(models.Model):
     
     def __str__(self):
         if self.is_valid == True:
-            return "Valid Status"
+            return "Valid"
         
         elif self.is_invalid == True:
-            return "Invalid Status"
+            return "Invalid"
         
         elif self.is_uncertain == True:
-            return "Uncertain Status"
+            return "Uncertain"
 
 
 class Depth(models.Model):

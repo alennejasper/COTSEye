@@ -72,6 +72,7 @@
                 <a class = "refresh-map" onclick = "refreshMap()">Refresh</a>
             </div>
         </div> 
+    </form>
 </div>
 
 <div class = "post">
@@ -105,12 +106,9 @@
                         <option disabled selected value>Choose depth</option>
 
                         {% for depth in depths %}
-
-                        <option value="{{depth.id}}">{{depth}}</option>
-                        
+                            <option value="{{depth.id}}">{{depth}}</option>
                         {% endfor %}
                     </select>
-
                 </div>
 
                 <div class = "column">
@@ -134,9 +132,7 @@
                         <option disabled selected value>Choose weather</option>
 
                         {% for weather in weathers %}
-
-                        <option value="{{weather.id}}">{{weather}}</option>
-                        
+                            <option value="{{weather.id}}">{{weather}}</option>
                         {% endfor %}
                     </select>
                 </div>

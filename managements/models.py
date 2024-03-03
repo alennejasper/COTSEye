@@ -1,7 +1,6 @@
 from django.db import models
 
 import datetime
-import uuid
 
 
 # Create your models here.
@@ -50,4 +49,4 @@ class Status(models.Model):
         verbose_name_plural = "Statuses"
     
     def __str__(self):
-        return "STATUS " + str(self.id) + " | " + str(self.onset_date)
+        return "STATUS " + str(self.id) + " | " + self.onset_date.strftime("%B %d, %Y")

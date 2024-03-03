@@ -110,7 +110,6 @@
                         
                         {% endfor %}
                     </select>
-
                 </div>
 
                 <div class = "column">
@@ -134,9 +133,7 @@
                         <option disabled selected value>Choose weather</option>
 
                         {% for weather in weathers %}
-
-                        <option value="{{weather.id}}">{{weather}}</option>
-                        
+                            <option value="{{weather.id}}">{{weather}}</option>
                         {% endfor %}
                     </select>
                 </div>

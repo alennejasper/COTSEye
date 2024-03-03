@@ -44,6 +44,31 @@ def ContributorPost(request):
 def ContributorPostValid(request):
     valid_posts = Post.objects.filter(user = request.user.user, post_status = 1).distinct("description", "coordinates")
     
+    if request.method == "GET":
+        from_date = request.GET.get("from_date")
+        
+        to_date = request.GET.get("to_date")
+
+        if "from_date" in request.GET or "to_date" in request.GET:
+            if from_date and to_date:
+                valid_posts = Post.objects.filter(user = request.user.user, post_status = 1, capture_date__range = [from_date, to_date]).distinct("description", "coordinates")
+
+                if not valid_posts:
+                    username = request.user.username
+
+                    messages.error(request, username + ", " + "information input cannot be found within COTSEye.")
+
+            elif not from_date and not to_date:
+                messages.error(request, "Range is not valid.")
+
+            elif not from_date or not to_date:
+                messages.error(request, "Range is not valid.")
+
+        elif not valid_posts:
+            username = request.user.username
+
+            messages.error(request, username + ", " + "your information input is empty within COTSEye.")
+
     context = {"valid_posts": valid_posts}
     
     return render(request, "contributor/post/valid.html", context)
@@ -61,9 +86,39 @@ def ContributorPostValidRead(request, id):
 
 @login_required(login_url = "Contributor Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Login")
-def ContributorPostInvalid(request):
+def ContributorPostInvalid(request):    
     invalid_posts = Post.objects.filter(user = request.user.user, post_status = 2).distinct("description", "coordinates")
     
+    if request.method == "GET":
+        from_date = request.GET.get("from_date")
+        
+        to_date = request.GET.get("to_date")
+
+        if "from_date" in request.GET or "to_date" in request.GET:
+            if from_date and to_date:
+                invalid_posts = Post.objects.filter(user = request.user.user, post_status = 2, capture_date__range = [from_date, to_date]).distinct("description", "coordinates")
+            
+                if not invalid_posts:
+                    username = request.user.username
+
+                    messages.error(request, username + ", " + "information input cannot be found within COTSEye.")
+
+            elif not from_date and not to_date:
+                messages.error(request, "Range is not valid.")
+
+            elif not from_date or not to_date:
+                messages.error(request, "Range is not valid.")
+            
+            if not invalid_posts:
+                username = request.user.username
+
+                messages.error(request, username + ", " + "information input cannot be found within COTSEye.")
+
+        elif not invalid_posts:
+            username = request.user.username
+
+            messages.error(request, username + ", " + "your information input is empty within COTSEye.")
+
     context = {"invalid_posts": invalid_posts}
     
     return render(request, "contributor/post/invalid.html", context)
@@ -114,6 +169,31 @@ def ContributorPostInvalidDelete(request, id):
 def ContributorPostUncertain(request):
     uncertain_posts = Post.objects.filter(user = request.user.user, post_status = 3).distinct("description", "coordinates")
     
+    if request.method == "GET":
+        from_date = request.GET.get("from_date")
+        
+        to_date = request.GET.get("to_date")
+
+        if "from_date" in request.GET or "to_date" in request.GET:
+            if from_date and to_date:
+                uncertain_posts = Post.objects.filter(user = request.user.user, post_status = 3, capture_date__range = [from_date, to_date]).distinct("description", "coordinates")
+            
+                if not uncertain_posts:
+                    username = request.user.username
+
+                    messages.error(request, username + ", " + "information input cannot be found within COTSEye.")
+
+            elif not from_date and not to_date:
+                messages.error(request, "Range is not valid.")
+
+            elif not from_date or not to_date:
+                messages.error(request, "Range is not valid.")
+        
+        elif not uncertain_posts:
+            username = request.user.username
+
+            messages.error(request, username + ", " + "your information input is empty within COTSEye.")
+
     context = {"uncertain_posts": uncertain_posts}
     
     return render(request, "contributor/post/uncertain.html", context)

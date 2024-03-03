@@ -1,13 +1,13 @@
-{% extends "contributor/index/index.html" %}
+{% extends "public/index/index.html" %}
 {% load static %}
 
 {% block content %}
-<div class = "announcement" id = "announcement-filter">
-    <form action = "" class = "announcement-form" method = "GET">
+<div class = "status" id = "status-filter">
+    <form action = "" class = "status-form" method = "GET">
         {% csrf_token %}
 
         <div class = "card-header">
-            <header>Filter announcements</header>
+            <header>Filter status</header>
         </div>
 
         <div class = "card-body">
@@ -18,6 +18,16 @@
                     <div class = "from-date">
                         <input type = "date" placeholder = "" id = "from-date" name = "from_date" required>                            
                     </div>
+
+                    <label for = "barangay">Barangay</label> 
+
+                    <select name = "barangay" id = "barangay">
+                        <option disabled selected value>Choose barangay</option>
+
+                        {% for status in statuses %}
+                            <option value="{{status.location.id}}">{{status.location.barangay}}</option>
+                        {% endfor %}
+                    </select>
                 </div>
 
                 <div class = "column">
@@ -26,11 +36,21 @@
                     <div class = "to-date">
                         <input type = "date" placeholder = "" id = "to-date" name = "to_date" required>                            
                     </div>  
+
+                    <label for = "municipality">Municipality</label> 
+
+                    <select name = "municipality" id = "municipality">
+                        <option disabled selected value>Choose municipality</option>
+
+                        {% for status in statuses %}
+                            <option value="{{status.location.id}}">{{status.location.municipality}}</option>
+                        {% endfor %}
+                    </select>
                 </div>
             </div>
 
             <div class = "button">
-                <a class = "filter-announcement" type = "submit">Filter</a>
+                <a class = "filter-status" type = "submit">Filter</a>
             </div>    
         </div>
     </form>
@@ -46,45 +66,41 @@
 {% endif %}
 
 <script>
-    document.querySelector(".filter-announcement").onclick = function() {
-        document.querySelector(".announcement-form").submit();
+    document.querySelector(".filter-status").onclick = function() {
+        document.querySelector(".status-form").submit();
     }
 </script>
 
 <div class = "line"></div>
 
-{% for announcement in announcements %}
-<div class = "announcement">
-    <div class = "card-header">
-        <header>{{announcement.title | default:'nonexistent'}}</header>
+{% for status in statuses %}
+<div class = "status">
+    <div class = "card-header" {% if status.statustype.is_critical == True %} id = "critical-status" {% elif status.statustype.is_moderate == True %} id = "moderate-status" {% elif status.statustype.is_low == True %} id = "low-status" {% endif %}>
+        <header>{{status.statustype | default:'nonexistent'}}</header>
     </div>
 
     <div class = "card-body">
         <div class = "field">
             <div class = "column">
-                <label for = "release-date">Release Date</label> 
+                <label for = "onset-date">Onset Date</label> 
                     
-                <div class = "release-date">
-                    <input type = "text" placeholder = "{{announcement.release_date | default:'nonexistent'}}" id = "release-date" name = "release_date" readonly>
+                <div class = "onset-date">
+                    <input type = "text" placeholder = "{{status.onset_date | default:'nonexistent'}}" id = "onset-date" name = "onset_date" readonly>
                         
                     <i class = "fa-solid fa-calendar-check"></i>
                 </div>
             </div>
 
             <div class = "column">
-                <label for = "place">Place</label> 
+                <label for = "location">Location</label> 
 
-                <div class = "place">
-                    <input type = "text" placeholder = "{{announcement.place | default:'nonexistent'}}" id = "place" name = "place" readonly>
+                <div class = "location">
+                    <input type = "text" placeholder = "{{status.location | default:'nonexistent'}}" id = "location" name = "location" readonly>
 
                     <i class = "fa-solid fa-location-dot"></i>      
                 </div>  
             </div>
-        </div>
-
-        <div class = "button">
-            <a class = "read-announcement" href = "{% url 'Contributor Announcement Read' announcement.id %}">Read</a>
-        </div>    
+        </div>   
     </div>
 </div>
 {% endfor %}

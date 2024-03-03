@@ -2,8 +2,59 @@
 {% load static %}
 
 {% block content %}
+<div class = "post" id = "valid-filter">
+    <form action = "" class = "post-form" method = "GET">
+        {% csrf_token %}
+
+        <div class = "card-header">
+            <header>Filter valid posts</header>
+        </div>
+
+        <div class = "card-body">
+            <div class = "field">
+                <div class = "column">
+                    <label for = "from-date">From</label> 
+                        
+                    <div class = "from-date">
+                        <input type = "date" placeholder = "" id = "from-date" name = "from_date" required>                            
+                    </div>
+                </div>
+
+                <div class = "column">
+                    <label for = "to-date">To</label> 
+
+                    <div class = "to-date">
+                        <input type = "date" placeholder = "" id = "to-date" name = "to_date" required>                            
+                    </div>  
+                </div>
+            </div>
+
+            <div class = "button">
+                <a class = "filter-post" type = "submit">Filter</a>
+            </div>    
+        </div>
+    </form>
+</div>
+
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags == "info" %}<script>Swal.fire({title: "Hey!", text: "{{message}}", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}})</script>
+        {% elif message.tags == "success" %}<script>Swal.fire({title: "Yay!", text: "{{message}}", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}})</script>
+        {% else %}<script>Swal.fire({title: "Oops!", text: "{{message}}", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}})</script>
+        {% endif %}    
+    {% endfor %}
+{% endif %}
+
+<script>
+    document.querySelector(".filter-post").onclick = function() {
+        document.querySelector(".post-form").submit();
+    }
+</script>
+
+<div class = "line"></div>
+
 {% for post in valid_posts %}
-<div class = "post" id = "valid">
+<div class = "post">
     <div class = "card-header">
         <header class = "preview">{{post.description}}</header>
     </div>

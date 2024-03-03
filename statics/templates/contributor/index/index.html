@@ -49,6 +49,8 @@
 
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/post/read.css' %}">
 
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/status/status.css' %}">
+
         <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">          
 
         <script src = "https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -81,7 +83,7 @@
 
                         <li><a href = "{% url 'Contributor Post' %}"><i class = "fa-solid fa-images"></i>My posts</a></li>
 
-                        <li><a href = "#"><i class = "fa-solid fa-square-poll-vertical"></i>Statuses</a></li>
+                        <li><a href = "{% url 'Contributor Status' %}"><i class = "fa-solid fa-square-poll-vertical"></i>Statuses</a></li>
 
                         <li><a href = "#"><i class = "fa-solid fa-calendar-day"></i>Intervention programs</a></li>
 
@@ -92,7 +94,7 @@
                     <ul class = "navigation-links">
                         <li><a href = "{% url 'Contributor Post' %}">My posts</a></li>
 
-                        <li><a href = "#">Statuses</a></li>
+                        <li><a href = "{% url 'Contributor Status' %}">Statuses</a></li>
 
                         <li><a href = "#">Intervention programs</a></li>
 
