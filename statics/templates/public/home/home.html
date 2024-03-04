@@ -142,7 +142,7 @@
             if (map.hasLayer(statuses)){
                 this._div.style.display = "block";
 
-                this._div.innerHTML = (property ? "<header>" + property.statustype + " Status" + "</header>" + "<p>" + "Barangay " + property.barangay + ", " + property.municipality + "</p>" + "<p>" + property.density + " COTS / mi" + "<sup>" + "2" + "</sup>" + "</p>" : "<header>" + "Current Status" + "</header>" + "<p>" + "Hover to a coastal barangay." + "</p>");
+                this._div.innerHTML = (property ? "<header>" + property.statustype + " Status" + "</header>" + "<p>" + "Barangay " + property.barangay + ", " + property.municipality + "</p>" + "<p>" + property.density + " COTS overall." + "</p>" : "<header>" + "Current Status" + "</header>" + "<p>" + "Hover to a coastal barangay." + "</p>");
 
                 var status = property ? property.statustype : null;
 

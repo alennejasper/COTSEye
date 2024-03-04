@@ -41,7 +41,7 @@ class StatusType(models.Model):
 class Status(models.Model):
     location = models.ForeignKey(Location, on_delete = models.CASCADE, null = True, blank = True, help_text = "Designates the foreign key of the Location model.", verbose_name = "Location")
     statustype = models.ForeignKey(StatusType, on_delete = models.SET_NULL, blank = True, null = True, help_text = "Designates the foreign key of the Status Type model.", verbose_name = "Status Type")
-    onset_date = models.DateField(default = datetime.date.today(), help_text = "Designates the onset date of the outbreak status.", verbose_name = "Status Date")
+    onset_date = models.DateField(default = datetime.date.today(), help_text = "Designates the onset date of the outbreak status.", verbose_name = "Onset Date")
 
     class Meta:
         db_table = "managements_status"
@@ -49,4 +49,4 @@ class Status(models.Model):
         verbose_name_plural = "Statuses"
     
     def __str__(self):
-        return "STATUS " + str(self.id) + " | " + self.onset_date.strftime("%B %d, %Y")
+        return "STATUS " + str(self.id) + " | " +  str(self.location)

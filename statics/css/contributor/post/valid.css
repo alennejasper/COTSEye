@@ -546,7 +546,7 @@
     top: 50%;
     left: 50%;
     position: absolute;
-    content: "RESULTS";
+    content: "RECORDS";
     font-family: "Overlock";
     font-weight: 400;
     font-size: 20px;
@@ -560,7 +560,7 @@
         top: 50%;
         left: 50%;
         position: absolute;
-        content: "OR";
+        content: "RECORDS";
         font-family: "Overlock";
         font-weight: 400;
         font-size: 18px;
@@ -575,7 +575,7 @@
         top: 50%;
         left: 50%;
         position: absolute;
-        content: "OR";
+        content: "RECORDS";
         font-family: "Overlock";
         font-weight: 400;
         font-size: 16px;
@@ -590,7 +590,7 @@
         top: 50%;
         left: 50%;
         position: absolute;
-        content: "OR";
+        content: "RECORDS";
         font-family: "Overlock";
         font-weight: 400;
         font-size: 14px;
@@ -1601,7 +1601,7 @@
 
 .post .card-body .field .column .capture-date input{
     padding-left: 10px !important;
-    padding-right: 10px !important;
+    padding-right: 5px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -1622,7 +1622,7 @@
 @media screen and (min-width: 369px) and (max-width: 445px){
     .post .card-body .field .column .capture-date input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 5px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1640,7 +1640,7 @@
 @media screen and (min-width: 349px) and (max-width: 368px){
     .post .card-body .field .column .capture-date input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 5px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1658,7 +1658,7 @@
 @media screen and (min-width: 320px) and (max-width: 348px){
     .post .card-body .field .column .capture-date input{
         padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-right: 5px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;

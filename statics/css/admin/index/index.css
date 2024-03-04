@@ -2489,6 +2489,10 @@ li.select2-results__option{
     }
 }
 
+.leaflet-control-layers-list label{
+    margin-bottom: 0px !important;
+}
+
 .leaflet-control-layers-list input[type = "checkbox"]{
     margin-top: 5px;
     margin-right: 10px !important;
