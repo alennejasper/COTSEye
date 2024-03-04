@@ -25,9 +25,9 @@ urlpatterns = [
 
     path("contributor/post/uncertain/read/<int:id>", views.ContributorPostUncertainRead, name = "Contributor Post Uncertain Read"),
 
-    path("contributor/post/uncertain/update/", views.ContributorPostUncertainUpdate, name = "Contributor Post Uncertain Update"),
+    path("contributor/post/uncertain/read/<int:id>/update/", views.ContributorPostUncertainUpdate, name = "Contributor Post Uncertain Update"),
         
-    path("contributor/post/uncertain/update/capture/<int:id>", views.ContributorPostUncertainUpdate, name = "Contributor Post Uncertain Update Capture"),
+    path("contributor/post/uncertain/read/<int:id>/update/capture/", views.ContributorPostUncertainUpdateCapture, name = "Contributor Post Uncertain Update Capture"),
 
-    path("contributor/post/uncertain/update/choose/<int:id>", views.ContributorPostUncertainUpdate, name = "Contributor Post Uncertain Update Choose"),
+    path("contributor/post/uncertain/read/<int:id>/update/choose/", views.ContributorPostUncertainUpdateChoose, name = "Contributor Post Uncertain Update Choose"),
 ]

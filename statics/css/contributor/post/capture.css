@@ -36,6 +36,10 @@
 }
 
 
+form{
+    width: 100%;
+}
+
 .post{
     margin-bottom: 30px;
     width: 100%;
@@ -320,7 +324,7 @@
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .post .card-body .field .column label[for = "description"]{
-        margin-top: 0px;
+        margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
@@ -331,7 +335,7 @@
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .post .card-body .field .column label[for = "description"]{
-        margin-top: 0px;
+        margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
@@ -342,7 +346,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .post .card-body .field .column label[for = "description"]{
-        margin-top: 0px;
+        margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
@@ -756,7 +760,7 @@
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .post .card-body .field .column label[for = "longitude"]{
-        margin-top: 0px;
+        margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
@@ -767,7 +771,7 @@
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .post .card-body .field .column label[for = "longitude"]{
-        margin-top: 0px;
+        margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
@@ -778,7 +782,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .post .card-body .field .column label[for = "longitude"]{
-        margin-top: 0px;
+        margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;

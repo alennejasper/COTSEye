@@ -11,7 +11,7 @@ from authentications.views import ContributorCheck
 @login_required(login_url = "Contributor Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorPost(request):
-    valid_posts = Post.objects.filter(user = request.user.user, post_status = 1).distinct("description", "coordinates")
+    valid_posts = Post.objects.filter(user = request.user.user, post_status = 1)
 
     try:
         valid_dates = Post.objects.filter(user = request.user.user, post_status = 1).latest("capture_date")
@@ -19,7 +19,7 @@ def ContributorPost(request):
     except:
         valid_dates = None
 
-    invalid_posts = Post.objects.filter(user = request.user.user, post_status = 2).distinct("description", "coordinates")
+    invalid_posts = Post.objects.filter(user = request.user.user, post_status = 2)
 
     try:
         invalid_dates = Post.objects.filter(user = request.user.user, post_status = 2).latest("capture_date")
@@ -27,7 +27,7 @@ def ContributorPost(request):
     except:
         invalid_dates = None
 
-    uncertain_posts = Post.objects.filter(user = request.user.user, post_status = 3).distinct("description", "coordinates")
+    uncertain_posts = Post.objects.filter(user = request.user.user, post_status = 3)
 
     try:
         uncertain_dates = Post.objects.filter(user = request.user.user, post_status = 3).latest("capture_date")
@@ -42,7 +42,7 @@ def ContributorPost(request):
 @login_required(login_url = "Contributor Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorPostValid(request):
-    valid_posts = Post.objects.filter(user = request.user.user, post_status = 1).distinct("description", "coordinates")
+    valid_posts = Post.objects.filter(user = request.user.user, post_status = 1)
     
     if request.method == "GET":
         from_date = request.GET.get("from_date")
@@ -51,7 +51,7 @@ def ContributorPostValid(request):
 
         if "from_date" in request.GET or "to_date" in request.GET:
             if from_date and to_date:
-                valid_posts = Post.objects.filter(user = request.user.user, post_status = 1, capture_date__range = [from_date, to_date]).distinct("description", "coordinates")
+                valid_posts = Post.objects.filter(user = request.user.user, post_status = 1, capture_date__range = [from_date, to_date])
 
                 if not valid_posts:
                     username = request.user.username
@@ -77,9 +77,9 @@ def ContributorPostValid(request):
 @login_required(login_url = "Contributor Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorPostValidRead(request, id):
-    valid_postss = Post.objects.filter(id = id, user = request.user.user, post_status = 1)
+    valid_posts = Post.objects.filter(id = id, user = request.user.user, post_status = 1)
     
-    context = {"valid_posts": valid_postss}
+    context = {"valid_posts": valid_posts}
     
     return render(request, "contributor/read.html", context)
 
@@ -87,7 +87,7 @@ def ContributorPostValidRead(request, id):
 @login_required(login_url = "Contributor Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorPostInvalid(request):    
-    invalid_posts = Post.objects.filter(user = request.user.user, post_status = 2).distinct("description", "coordinates")
+    invalid_posts = Post.objects.filter(user = request.user.user, post_status = 2)
     
     if request.method == "GET":
         from_date = request.GET.get("from_date")
@@ -96,7 +96,7 @@ def ContributorPostInvalid(request):
 
         if "from_date" in request.GET or "to_date" in request.GET:
             if from_date and to_date:
-                invalid_posts = Post.objects.filter(user = request.user.user, post_status = 2, capture_date__range = [from_date, to_date]).distinct("description", "coordinates")
+                invalid_posts = Post.objects.filter(user = request.user.user, post_status = 2, capture_date__range = [from_date, to_date])
             
                 if not invalid_posts:
                     username = request.user.username
@@ -127,11 +127,9 @@ def ContributorPostInvalid(request):
 @login_required(login_url = "Contributor Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorPostInvalidRead(request, id):
-    post = Post.objects.get(id = id, user = request.user.user, post_status = 2)
-
-    invalid_post = Post.objects.filter(description = post.description, user = request.user.user, post_status = 2)
+    invalid_post = Post.objects.get(id = id, user = request.user.user, post_status = 2)
     
-    context = {"post": post, "invalid_post": invalid_post}
+    context = {"invalid_post": invalid_post}
     
     return render(request, "contributor/post/read.html", context)
 
@@ -167,7 +165,7 @@ def ContributorPostInvalidDelete(request, id):
 @login_required(login_url = "Contributor Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorPostUncertain(request):
-    uncertain_posts = Post.objects.filter(user = request.user.user, post_status = 3).distinct("description", "coordinates")
+    uncertain_posts = Post.objects.filter(user = request.user.user, post_status = 3)
     
     if request.method == "GET":
         from_date = request.GET.get("from_date")
@@ -176,7 +174,7 @@ def ContributorPostUncertain(request):
 
         if "from_date" in request.GET or "to_date" in request.GET:
             if from_date and to_date:
-                uncertain_posts = Post.objects.filter(user = request.user.user, post_status = 3, capture_date__range = [from_date, to_date]).distinct("description", "coordinates")
+                uncertain_posts = Post.objects.filter(user = request.user.user, post_status = 3, capture_date__range = [from_date, to_date])
             
                 if not uncertain_posts:
                     username = request.user.username
@@ -314,7 +312,7 @@ def ContributorPostUncertainCreateChoose(request):
             
             depth = request.POST.get("depth")
 
-            post_observation.depth = Weather.objects.get(id = depth)
+            post_observation.depth = Depth.objects.get(id = depth)
 
             weather = request.POST.get("weather")
 
@@ -354,17 +352,17 @@ def ContributorPostUncertainCreateChoose(request):
 @login_required(login_url = "Contributor Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorPostUncertainRead(request, id):
-    post = Post.objects.get(id = id, user = request.user.user, post_status = 3)
-
-    uncertain_post = Post.objects.filter(description = post.description, user = request.user.user, post_status = 3)
+    uncertain_post = Post.objects.get(id = id, user = request.user.user, post_status = 3)
     
-    context = {"post": post, "uncertain_post": uncertain_post}
+    context = {"uncertain_post": uncertain_post}
     
     return render(request, "contributor/post/read.html", context)
 
 
-def ContributorPostUncertainUpdate(request):
-    context = {}
+def ContributorPostUncertainUpdate(request, id):
+    uncertain_post = Post.objects.get(id = id, user = request.user.user, post_status = 3)
+    
+    context = {"uncertain_post": uncertain_post}
     
     return render(request, "contributor/post/update.html", context)
 

@@ -2,12 +2,13 @@
 {% load static %}
 
 {% block content %}
-<div class = "post">
-    <form action = "" class = "post-form" method = "POST" enctype = "multipart/form-data">
-        {% csrf_token %}
+<form action = "" class = "post-form" method = "POST" enctype = "multipart/form-data">
+    {% csrf_token %}
+
+    <div class = "post">
 
         <div class = "card-header">
-            <header>Add required information</header>
+            <header>Create report</header>
         </div>
 
         <div class = "card-body">
@@ -36,9 +37,9 @@
             </div>
 
             <div class = "button">
-                <label for = "post-photo" class = "browse-photo">Capture</label> 
+                <label for = "post-photo" class = "browse-photo">Browse</label> 
                 
-                <input type = "file" class = "post-photo" name = "post_photo" accept = "image/*" capture = "environment" required>
+                <input type = "file" class = "post-photo" name = "post_photo" accept = "photo" multiple required>
             </div>
 
             <div class = "field">
@@ -72,15 +73,11 @@
                 <a class = "refresh-map" onclick = "refreshMap()">Refresh</a>
             </div>
         </div> 
-    </form>
-</div>
+    </div>
 
-<div class = "post">
-    <form action = "" class = "post-form" method = "POST" enctype = "multipart/form-data">
-        {% csrf_token %}
-
+    <div class = "post">
         <div class = "card-header">
-            <header>Add optional information</header>
+            <header>Add information</header>
         </div>
 
         <div class = "card-body">
@@ -106,7 +103,9 @@
                         <option disabled selected value>Choose depth</option>
 
                         {% for depth in depths %}
-                            <option value="{{depth.id}}">{{depth}}</option>
+
+                        <option value="{{depth.id}}">{{depth}}</option>
+                        
                         {% endfor %}
                     </select>
                 </div>
@@ -115,7 +114,7 @@
                     <label for = "density">Density</label> 
                         
                     <div class = "density">
-                        <input type = "number" placeholder = "" id = "density" name = "density">
+                        <input type = "text" placeholder = "" id = "density" name = "density">
                             
                         <i class = "fa-solid fa-braille"></i>
                     </div>
@@ -132,7 +131,9 @@
                         <option disabled selected value>Choose weather</option>
 
                         {% for weather in weathers %}
-                            <option value="{{weather.id}}">{{weather}}</option>
+
+                        <option value="{{weather.id}}">{{weather}}</option>
+                        
                         {% endfor %}
                     </select>
                 </div>
@@ -142,8 +143,8 @@
                 <a class = "save-post" type = "submit">Save</a>
             </div>   
         </div>
-    </form>
-</div>
+    </div>
+</form>
 
 {% if messages %}
     {% for message in messages %}
@@ -210,7 +211,7 @@
 
         var postMap = document.getElementsByClassName("post-map")[0];
         
-        var background = L.tileLayer("http://{s}.google.com/vt?lyrs=s,h&x={x}&y={y}&z={z}", {minZoom: 11, subdomains:["mt0", "mt1", "mt2", "mt3"], attribution: "Google"});
+        var background = L.tileLayer("http://{s}.google.com/vt?lyrs=s,h&x={x}&y={y}&z={z}", {minZoom: 11, subdomains:["mt0","mt1","mt2","mt3"], attribution: "Google"});
 
         var map = L.map(postMap, {zoomControl: true, scrollWheelZoom: false, dragging: true, maxBounds: [[5.3, 124.3],[6.3, 126.3]], layers: [background, post]}).setView([5.9656, 125.1929], 11);
 
@@ -292,13 +293,13 @@
                         postPhoto = photo;
 
                     } else {
-                        Swal.fire({title: "Oops!", text: "The photo given to COTSEye incorporated coordinates out of bounds.", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}});
+                        Swal.fire({title: "Oops!", text: "The photo given to COTSEye incorporated coordinates out of bounds.", icon: "error", iconColor: "#E74C3C", confirmButtonColor: "#E74C3C"});
                         
                         document.querySelector(".gallery-photo").src = "{% static 'assets/posts/default.png' %}";
                     }
 
                 } else {
-                    Swal.fire({title: "Hey!", text: "The photo given to COTSEye did not incorporate any coordinates.", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}});
+                    Swal.fire({title: "Hey!", text: "The photo given to COTSEye did not incorporate any coordinates.", icon: "warning", iconColor: "#3B5998", confirmButtonColor: "#3B5998"});
                 }
             });
         };
