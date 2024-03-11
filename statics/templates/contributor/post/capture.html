@@ -16,7 +16,7 @@
                     <label for = "capture-date">Capture Date</label> 
                         
                     <div class = "capture-date">
-                        <input type = "date" placeholder = "" id = "capture-date" name = "capture_date" required>                            
+                        <input type = "date" value = "" id = "capture-date" name = "capture_date" required>                            
                     </div>
                 </div>
 
@@ -24,7 +24,7 @@
                     <label for = "description">Description</label> 
                         
                     <div class = "description">
-                        <input type = "text" placeholder = "" id = "description" name = "description" required>
+                        <input type = "text" value = "" id = "description" name = "description" required>
                             
                         <i class = "fa-solid fa-comments"></i>
                     </div>
@@ -46,7 +46,7 @@
                     <label for = "latitude">Latitude</label> 
                         
                     <div class = "latitude">
-                        <input type = "text" placeholder = "" id = "latitude" name = "latitude">
+                        <input type = "text" value = "" id = "latitude" name = "latitude">
                             
                         <i class = "fa-solid fa-map-location-dot"></i>
                     </div>
@@ -56,7 +56,7 @@
                     <label for = "longitude">Longitude</label> 
                         
                     <div class = "longitude">
-                        <input type = "text" placeholder = "" id = "longitude" name = "longitude">
+                        <input type = "text" value = "" id = "longitude" name = "longitude">
                             
                         <i class = "fa-solid fa-map-location-dot"></i>
                     </div>
@@ -85,7 +85,7 @@
                     <label for = "size">Size</label> 
                         
                     <div class = "size">
-                        <input type = "text" placeholder = "" id = "size" name = "size">
+                        <input type = "text" value = "" id = "size" name = "size">
                             
                         <i class = "fa-solid fa-draw-polygon"></i>
                     </div>
@@ -93,7 +93,7 @@
                     <label for = "depth">Depth</label> 
                         
                     <!-- <div class = "depth">
-                        <input type = "text" placeholder = "" id = "depth" name = "depth">
+                        <input type = "text" value = "" id = "depth" name = "depth">
                             
                         <i class = "fa-solid fa-arrow-down-wide-short"></i>
                     </div> -->
@@ -113,7 +113,7 @@
                     <label for = "density">Density</label> 
                         
                     <div class = "density">
-                        <input type = "number" placeholder = "" id = "density" name = "density">
+                        <input type = "number" value = "" id = "density" name = "density">
                             
                         <i class = "fa-solid fa-braille"></i>
                     </div>
@@ -121,7 +121,7 @@
                     <label for = "weather">Weather</label> 
                         
                     <!-- <div class = "weather">
-                        <input type = "text" placeholder = "" id = "weather" name = "weather">
+                        <input type = "text" value = "" id = "weather" name = "weather">
                             
                         <i class = "fa-solid fa-temperature-high"></i>
                     </div> -->
@@ -202,12 +202,12 @@
 
 <script>
     var map; 
-    
+
     var post;
 
     function revealMap(){
         var postMap = document.getElementsByClassName("post-map")[0];
-        
+
         var background = L.tileLayer("http://{s}.google.com/vt?lyrs=s,h&x={x}&y={y}&z={z}", {minZoom: 11, subdomains:["mt0", "mt1", "mt2", "mt3"], attribution: "Google"});
 
         map = L.map(postMap, {zoomControl: true, scrollWheelZoom: false, dragging: true, maxBounds: [[5.3, 124.3],[6.3, 126.3]], layers: [background]}).setView([5.9656, 125.1929], 11);
@@ -218,9 +218,17 @@
         
         post = L.marker([5.9656, 125.1929], {draggable: true, icon: starfish}).addTo(map);
 
-        post.on("drag", updateCoordinates);
+        post.on("drag", function(event){
+            var position = event.target.getLatLng();
+            
+            updateCoordinates(position.lat, position.lng);
+        });
 
-        post.on("dragend", updateCoordinates);
+        post.on("dragend", function(event){
+            var position = event.target.getLatLng();
+            
+            updateCoordinates(position.lat, position.lng);
+        });
 
         var defaultLatitude = post.getLatLng().lat;
 
@@ -229,12 +237,14 @@
         updateCoordinates(defaultLatitude, defaultLongitude);
     }
 
-    function updateCoordinates(){
-        var position = post.getLatLng();
+    function updateCoordinates(latitude, longitude){
+        var latitudeInput = document.getElementById("latitude");
 
-        document.getElementById("latitude").value = position.lat.toFixed(6);
+        var longitudeInput = document.getElementById("longitude");
+
+        latitudeInput.value = latitude.toFixed(6);
         
-        document.getElementById("longitude").value = position.lng.toFixed(6);
+        longitudeInput.value = longitude.toFixed(6);
     }
 </script>
 
@@ -250,7 +260,7 @@
     function fetchLocation(){
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(checkPosition);
-        
+
         } else{
             Swal.fire({title: "Oops!", text: "The location is not supported and cannot be given to COTSEye.", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}});
         }
@@ -269,26 +279,16 @@
         
         const longitude = position.coords.longitude;
 
-        if (latitude < minimumLatitude || latitude > maximumLatitude || longitude < minimumLongitude || longitude > maximumLongitude) {
+        if (latitude < minimumLatitude || latitude > maximumLatitude || longitude < minimumLongitude || longitude > maximumLongitude){
             Swal.fire({title: "Oops!", text: "The location given to COTSEye incorporated coordinates out of bounds.", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}});
         
         } else{
             updateCoordinates(latitude, longitude);
-            
+
             post.setLatLng([latitude, longitude]);
             
             map.setView([latitude, longitude], 11);
         }
-    }
-
-    function updateCoordinates(latitude, longitude){
-        const latitudeInput = document.getElementById("latitude");
-        
-        const longitudeInput = document.getElementById("longitude");
-
-        latitudeInput.value = latitude.toFixed(6);
-        
-        longitudeInput.value = longitude.toFixed(6);
     }
 
     document.addEventListener("DOMContentLoaded", function (){
@@ -301,12 +301,13 @@
                 if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
                     Swal.fire({title: "Oops!", text: "The camera is not supported and cannot be given to COTSEye.", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}});
                 }
-                
+
                 fetchLocation();
             });
         }
     });
 </script>
+
 
 <script>
     document.querySelector(".save-post").onclick = function(){

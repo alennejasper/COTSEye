@@ -321,7 +321,7 @@
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .announcement#announcement-filter .card-body .field .column label[for = "to-date"]{
-        margin-top: 0px;
+        margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
@@ -332,7 +332,7 @@
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .announcement#announcement-filter .card-body .field .column label[for = "to-date"]{
-        margin-top: 0px;
+        margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
@@ -343,7 +343,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .announcement#announcement-filter .card-body .field .column label[for = "to-date"]{
-        margin-top: 0px;
+        margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;

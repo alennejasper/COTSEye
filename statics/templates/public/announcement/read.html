@@ -9,7 +9,7 @@
 
         <p><i class = "fa-solid fa-feather"></i>{{announcement.user | default:'nonexistent'}}</p>
 
-        <p><i class = "fa-solid fa-calendar-check"></i>{{announcement.release_date | default:'nonexistent'}}</p>
+        <p><i class = "fa-solid fa-calendar-check"></i>{{announcement.release_date | date:'M. j, Y g:i a' | default:'nonexistent'}}</p>
 
         <p><i class = "fa-solid fa-location-dot"></i>{{announcement.place | default:'nonexistent'}}</p>
 

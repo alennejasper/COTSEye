@@ -3590,7 +3590,7 @@ p.file-upload input{
 p.file-upload label{
     margin-bottom: 15px !important;
     width: 100% !important;
-    visibility: hidden;
+    visibility: hidden !important;
     font-family: "Overlock";
     font-weight: 400 !important;
     font-style: italic;

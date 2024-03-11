@@ -2,12 +2,12 @@
 {% load static %}
 
 {% block content %}
-<div class = "post" id = "invalid-filter">
-    <form action = "" class = "post-form" method = "GET">
+<div class = "intervention" id = "intervention-filter">
+    <form action = "" class = "intervention-form" method = "GET">
         {% csrf_token %}
 
         <div class = "card-header">
-            <header>Filter invalid posts</header>
+            <header>Filter interventions</header>
         </div>
 
         <div class = "card-body">
@@ -30,7 +30,7 @@
             </div>
 
             <div class = "button">
-                <a class = "filter-post" type = "submit">Filter</a>
+                <a class = "filter-intervention" type = "submit">Filter</a>
             </div>    
         </div>
     </form>
@@ -46,55 +46,46 @@
 {% endif %}
 
 <script>
-    document.querySelector(".filter-post").onclick = function() {
-        document.querySelector(".post-form").submit();
+    document.querySelector(".filter-intervention").onclick = function() {
+        document.querySelector(".intervention-form").submit();
     }
 </script>
 
 <div class = "line"></div>
 
-{% for post in invalid_posts %}
-<div class = "post">
+{% for intervention in interventions %}
+<div class = "intervention">
     <div class = "card-header">
-        <header class = "preview">{{post.description}}</header>
+        <header>{{intervention.title | default:'nonexistent'}}</header>
     </div>
 
     <div class = "card-body">
         <div class = "field">
             <div class = "column">
-                <label for = "capture-date">Capture Date</label> 
-
-                <div class = "capture-date">
-                    <input type = "text" value = "{{post.capture_date | date:'M. j, Y g:i a' | default:'nonexistent'}}" id = "capture-date" name = "capture-date" readonly>
-
-                    <i class = "fa-solid fa-calendar-plus"></i>
-                </div>  
+                <label for = "intervention-date">Intervention Date</label> 
+                    
+                <div class = "intervention-date">
+                    <input type = "text" value = "{{intervention.intervention_date | date:'M. j, Y' | default:'nonexistent'}}" id = "intervention-date" name = "intervention_date" readonly>
+                        
+                    <i class = "fa-solid fa-calendar-check"></i>
+                </div>
             </div>
 
             <div class = "column">
-                <label for = "coordinates">Coordinates</label> 
-                    
-                <div class = "coordinates">
-                    <input type = "text" value = "{{post.coordinates.latitude | default:'0'}}° N, {{post.coordinates.longitude | default:'0'}}° E" id = "coordinates" name = "coordinates" readonly>
-                        
-                    <i class = "fa-solid fa-arrow-up-wide-short"></i>
-                </div>
+                <label for = "location">Location</label> 
+
+                <div class = "location">
+                    <input type = "text" value = "{{intervention.location | default:'nonexistent'}}" id = "location" name = "location" readonly>
+
+                    <i class = "fa-solid fa-location-dot"></i>      
+                </div>  
             </div>
         </div>
 
         <div class = "button">
-            <a class = "read-post" href = "{% url 'Contributor Post Invalid Read' post.id %}">Read</a>
+            <a class = "read-intervention" href = "{% url 'Contributor Intervention Read' intervention.id %}">Read</a>
         </div>    
     </div>
 </div>
 {% endfor %}
-
-{% if messages %}
-    {% for message in messages %}
-        {% if message.tags == "info" %}<script>Swal.fire({title: "Hey!", text: "{{message}}", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}})</script>
-        {% elif message.tags == "success" %}<script>Swal.fire({title: "Yay!", text: "{{message}}", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}})</script>
-        {% else %}<script>Swal.fire({title: "Oops!", text: "{{message}}", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}})</script>
-        {% endif %}    
-    {% endfor %}
-{% endif %}
 {% endblock content %}

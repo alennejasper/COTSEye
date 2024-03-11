@@ -16,7 +16,7 @@
                     <label for = "from-date">From</label> 
                         
                     <div class = "from-date">
-                        <input type = "date" placeholder = "" id = "from-date" name = "from_date" required>                            
+                        <input type = "date" value = "" id = "from-date" name = "from_date" required>                            
                     </div>
 
                     <label for = "barangay">Barangay</label> 
@@ -34,7 +34,7 @@
                     <label for = "to-date">To</label> 
 
                     <div class = "to-date">
-                        <input type = "date" placeholder = "" id = "to-date" name = "to_date" required>                            
+                        <input type = "date" value = "" id = "to-date" name = "to_date" required>                            
                     </div>  
 
                     <label for = "municipality">Municipality</label> 
@@ -85,7 +85,7 @@
                 <label for = "onset-date">Onset Date</label> 
                     
                 <div class = "onset-date">
-                    <input type = "text" placeholder = "{{status.onset_date | default:'nonexistent'}}" id = "onset-date" name = "onset_date" readonly>
+                    <input type = "text" value = "{{status.onset_date | date:'M. j, Y' | default:'nonexistent'}}" id = "onset-date" name = "onset_date" readonly>
                         
                     <i class = "fa-solid fa-calendar-check"></i>
                 </div>
@@ -95,7 +95,7 @@
                 <label for = "location">Location</label> 
 
                 <div class = "location">
-                    <input type = "text" placeholder = "{{status.location | default:'nonexistent'}}" id = "location" name = "location" readonly>
+                    <input type = "text" value = "{{status.location | default:'nonexistent'}}" id = "location" name = "location" readonly>
 
                     <i class = "fa-solid fa-location-dot"></i>      
                 </div>  

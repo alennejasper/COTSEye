@@ -13,7 +13,7 @@
                 <label for = "user-id">User ID</label>
                 
                 <div class = "user-id">
-                    <input type = "text" placeholder = "{{user.account.id}}" id = "user-id" name = "user_id" readonly>
+                    <input type = "text" value = "{{user.account.id}}" id = "user-id" name = "user_id" readonly>
                 
                     <i class = "fa-solid fa-user-tag"></i>
                 </div>
@@ -21,7 +21,7 @@
                 <label for = "usertype">User Type</label>
 
                 <div class = "usertype">                    
-                    <input type = "text" placeholder = "{{user.account.usertype}}" id = "usertype" name = "usertype" readonly>
+                    <input type = "text" value = "{{user.account.usertype}}" id = "usertype" name = "usertype" readonly>
                 
                     <i class = "fa-solid fa-user-group"></i>
                 </div>
@@ -29,7 +29,7 @@
                 <label for = "first-name">First Name</label>
 
                 <div class = "first-name">
-                    <input type = "text" placeholder = "{{user.first_name | default:'nonexistent'}}" id = "first-name" name = "first_name" readonly>
+                    <input type = "text" value = "{{user.first_name | default:'nonexistent'}}" id = "first-name" name = "first_name" readonly>
 
                     <i class = "fa-solid fa-id-card"></i>
                 </div>
@@ -37,7 +37,7 @@
                 <label for = "last-name">Last Name</label>
 
                 <div class = "last-name">
-                    <input type = "text" placeholder = "{{user.last_name | default:'nonexistent'}}" id = "last-name" name = "last_name" readonly>
+                    <input type = "text" value = "{{user.last_name | default:'nonexistent'}}" id = "last-name" name = "last_name" readonly>
 
                     <i class = "fa-solid fa-id-card"></i>
                 </div>
@@ -47,7 +47,7 @@
                 <label for = "email">Email</label>
 
                 <div class = "email">
-                    <input type = "email" placeholder = "{{user.email | default:'nonexistent'}}" id = "email" name = "email" readonly>
+                    <input type = "email" value = "{{user.email | default:'nonexistent'}}" id = "email" name = "email" readonly>
 
                     <i class = "fa-solid fa-envelope"></i>
                 </div>
@@ -55,7 +55,7 @@
                 <label for = "phone-number">Phone Number</label>
 
                 <div class = "phone-number">
-                    <input type = "text" placeholder = "{{user.phone_number | default:'nonexistent'}}" id = "phone-number" name = "phone_number" readonly>
+                    <input type = "text" value = "{{user.phone_number | default:'nonexistent'}}" id = "phone-number" name = "phone_number" readonly>
 
                     <i class = "fa-solid fa-phone"></i>
                 </div>
@@ -63,7 +63,7 @@
                 <label for = "joined-date">Joined Date</label>
 
                 <div class = "joined-date">
-                    <input type = "text" placeholder = "{{user.joined_date}}" id = "joined-date" name = "joined_date" readonly>
+                    <input type = "text" value = "{{user.joined_date | date:'M. j, Y g:i a'}}" id = "joined-date" name = "joined_date" readonly>
 
                     <i class = "fa-solid fa-calendar-check"></i>
                 </div>
@@ -71,7 +71,7 @@
                 <label for = "last-login">Last Login</label>
 
                 <div class = "last-login">
-                    <input type = "text" placeholder = "{{user.account.last_login}}" id = "last-login" name = "last_login" readonly>
+                    <input type = "text" value = "{{user.account.last_login}}" id = "last-login" name = "last_login" readonly>
 
                     <i class = "fa-solid fa-right-to-bracket"></i>
                 </div>

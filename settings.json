@@ -1,4 +1,8 @@
 {
+    "editor.tabSize": 4,
+
+    "editor.insertSpaces": true,
+
     "python.terminal.activateEnvironment": false,
     
     "python.terminal.activateEnvInCurrentTerminal": false

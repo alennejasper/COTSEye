@@ -240,7 +240,7 @@ def ContributorPostUncertainCreateCapture(request):
             
             depth = request.POST.get("depth")
 
-            post_observation.depth = Weather.objects.get(id = depth)
+            post_observation.depth = Depth.objects.get(id = depth)
 
             weather = request.POST.get("weather")
 
@@ -249,10 +249,14 @@ def ContributorPostUncertainCreateCapture(request):
             post_observation = PostObservation.objects.create(size = post_observation.size, depth = post_observation.depth, density = post_observation.density, weather = post_observation.weather)
             
             if Coordinates.objects.filter(latitude = coordinates.latitude, longitude = coordinates.longitude).exists() and PostObservation.objects.filter(size = post_observation.size, depth = post_observation.depth, density = post_observation.density, weather = post_observation.weather).exists():
+                post = Post.objects.create(user = user, description = post.description, capture_date = post.capture_date, coordinates = coordinates, post_status = post_status, post_observation = post_observation)
+
                 post_photos = request.FILES.getlist("post_photo")
 
                 for post_photo in post_photos:
-                    Post.objects.create(user = user, description = post.description, capture_date = post.capture_date, post_photo = post_photo, coordinates = coordinates, post_status = post_status, post_observation = post_observation)
+                    photo = PostPhotos.objects.create(post_photo = post_photo)
+                    
+                    post.post_photos.add(photo)
 
                 username = request.user.username
                 
@@ -321,10 +325,14 @@ def ContributorPostUncertainCreateChoose(request):
             post_observation = PostObservation.objects.create(size = post_observation.size, depth = post_observation.depth, density = post_observation.density, weather = post_observation.weather)
             
             if Coordinates.objects.filter(latitude = coordinates.latitude, longitude = coordinates.longitude).exists() and PostObservation.objects.filter(size = post_observation.size, depth = post_observation.depth, density = post_observation.density, weather = post_observation.weather).exists():
+                post = Post.objects.create(user = user, description = post.description, capture_date = post.capture_date, coordinates = coordinates, post_status = post_status, post_observation = post_observation)
+
                 post_photos = request.FILES.getlist("post_photo")
 
                 for post_photo in post_photos:
-                    Post.objects.create(user = user, description = post.description, capture_date = post.capture_date, post_photo = post_photo, coordinates = coordinates, post_status = post_status, post_observation = post_observation)
+                    photo = PostPhotos.objects.create(post_photo = post_photo)
+                    
+                    post.post_photos.add(photo)
 
                 username = request.user.username
                 
@@ -388,20 +396,17 @@ def ContributorPostUncertainUpdateCapture(request, id):
             
             postobservation_form.save()
            
-            post_form.save()
+            post = post_form.save()
 
-            description = uncertain_post.description
+            for post_photo in uncertain_post.post_photos.all():
+                post_photo.delete()
 
-            coordinates = uncertain_post.coordinates
+            post_photos = request.FILES.getlist("post_photo")
 
-            update_post = Post.objects.filter(Q(description = description) & Q(coordinates = coordinates))
-            
-            for uncertain_post in update_post.exclude(id = id):
-                uncertain_post.coordinates = uncertain_post.coordinates
+            for post_photo in post_photos:
+                photo = PostPhotos.objects.create(post_photo = post_photo)
 
-                uncertain_post.post_observation = uncertain_post.post_observation
-
-                uncertain_post.save()
+                post.post_photos.add(photo)
 
             username = request.user.username
             
@@ -447,20 +452,17 @@ def ContributorPostUncertainUpdateChoose(request, id):
             
             postobservation_form.save()
            
-            post_form.save()
+            post = post_form.save()
 
-            description = uncertain_post.description
+            for post_photo in uncertain_post.post_photos.all():
+                post_photo.delete()
+                
+            post_photos = request.FILES.getlist("post_photo")
 
-            coordinates = uncertain_post.coordinates
+            for post_photo in post_photos:
+                photo = PostPhotos.objects.create(post_photo = post_photo)
 
-            update_post = Post.objects.filter(Q(description = description) & Q(coordinates = coordinates))
-            
-            for uncertain_post in update_post.exclude(id = id):
-                uncertain_post.coordinates = uncertain_post.coordinates
-
-                uncertain_post.post_observation = uncertain_post.post_observation
-
-                uncertain_post.save()
+                post.post_photos.add(photo)
 
             username = request.user.username
             

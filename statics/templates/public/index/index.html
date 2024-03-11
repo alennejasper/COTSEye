@@ -29,6 +29,10 @@
 
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/public/status/status.css' %}">
 
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/public/intervention/intervention.css' %}">
+
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/public/intervention/read.css' %}">
+
         <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">          
         
         <script src = "https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -57,7 +61,7 @@
                     <ul class = "navigation-sidelinks">
                         <li><a href = "{% url 'Public Status' %}"><i class = "fa-solid fa-square-poll-vertical"></i>Statuses</a></li>
 
-                        <li><a href = "#"><i class = "fa-solid fa-calendar-day"></i>Intervention programs</a></li>
+                        <li><a href = "{% url 'Public Intervention' %}"><i class = "fa-solid fa-calendar-day"></i>Intervention programs</a></li>
 
                         <li><a href = "#"><i class = "fa-solid fa-box-archive"></i>Resources</a></li>
                     </ul>
@@ -66,7 +70,7 @@
                     <ul class = "navigation-links">
                         <li><a href = "{% url 'Public Status' %}">Statuses</a></li>
 
-                        <li><a href = "#">Intervention programs</a></li>
+                        <li><a href = "{% url 'Public Intervention' %}">Intervention programs</a></li>
 
                         <li><a href = "#">Resources</a></li>
                     </ul>

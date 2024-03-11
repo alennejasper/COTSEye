@@ -21,3 +21,10 @@ class StatusAdmin(admin.ModelAdmin):
         return request.user.usertype_id == 1 or request.user.usertype_id == 2
 
 admin.site.register(Status, StatusAdmin)
+
+
+class InterventionAdmin(admin.ModelAdmin):
+    def has_module_permission(self, request):
+        return request.user.usertype_id == 1 or request.user.usertype_id == 2
+
+admin.site.register(Intervention, InterventionAdmin)

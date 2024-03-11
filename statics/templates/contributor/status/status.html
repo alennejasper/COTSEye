@@ -85,7 +85,7 @@
                 <label for = "onset-date">Onset Date</label> 
                     
                 <div class = "onset-date">
-                    <input type = "text" placeholder = "{{status.onset_date | default:'nonexistent'}}" id = "onset-date" name = "onset_date" readonly>
+                    <input type = "text" placeholder = "{{status.onset_date | date:'M. j, Y' | default:'nonexistent'}}" id = "onset-date" name = "onset_date" readonly>
                         
                     <i class = "fa-solid fa-calendar-check"></i>
                 </div>

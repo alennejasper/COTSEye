@@ -16,7 +16,7 @@
                     <label for = "from-date">From</label> 
                         
                     <div class = "from-date">
-                        <input type = "date" placeholder = "" id = "from-date" name = "from_date" required>                            
+                        <input type = "date" value = "" id = "from-date" name = "from_date" required>                            
                     </div>
                 </div>
 
@@ -24,7 +24,7 @@
                     <label for = "to-date">To</label> 
 
                     <div class = "to-date">
-                        <input type = "date" placeholder = "" id = "to-date" name = "to_date" required>                            
+                        <input type = "date" value = "" id = "to-date" name = "to_date" required>                            
                     </div>  
                 </div>
             </div>
@@ -65,7 +65,7 @@
                 <label for = "capture-date">Capture Date</label> 
 
                 <div class = "capture-date">
-                    <input type = "text" placeholder = "{{post.capture_date | default:'nonexistent'}}" id = "capture-date" name = "capture-date" readonly>
+                    <input type = "text" value = "{{post.capture_date | date:'M. j, Y g:i a' | default:'nonexistent'}}" id = "capture-date" name = "capture-date" readonly>
 
                     <i class = "fa-solid fa-calendar-plus"></i>
                 </div>  
@@ -75,7 +75,7 @@
                 <label for = "coordinates">Coordinates</label> 
                     
                 <div class = "coordinates">
-                    <input type = "text" placeholder = "{{post.coordinates.latitude | default:'0'}}° N, {{post.coordinates.longitude | default:'0'}}° E" id = "coordinates" name = "coordinates" readonly>
+                    <input type = "text" value = "{{post.coordinates.latitude | default:'0'}}° N, {{post.coordinates.longitude | default:'0'}}° E" id = "coordinates" name = "coordinates" readonly>
                         
                     <i class = "fa-solid fa-arrow-up-wide-short"></i>
                 </div>

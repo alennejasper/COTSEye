@@ -213,7 +213,7 @@ nav .navigation-bar .navigation-sidelinks{
 }
 
 @media screen and (min-width: 320px) and (max-width: 935px){
-    .navigation-sidelinks li i.fa-solid.fa-square-plus{
+    .navigation-sidelinks li i.fa-solid.fa-pen-to-square{
         margin-right: 10px !important;
         font-size: 30px !important;
         color: #FFFFFF;
@@ -303,20 +303,20 @@ nav .navigation-bar .create-icon{
     }
 }
 
-.create-icon i.fa-solid.fa-square-plus{
+.create-icon i.fa-solid.fa-pen-to-square{
     font-size: 30px !important;
     color: #FFFFFF;
 }
 
-.create-icon i.fa-solid.fa-square-plus:hover{
+.create-icon i.fa-solid.fa-pen-to-square:hover{
     color: #B2BEB5 !important;
 }
 
-.create-icon i.fa-solid.fa-square-plus:focus{
+.create-icon i.fa-solid.fa-pen-to-square:focus{
     color: #B2BEB5 !important;
 }
 
-.create-icon i.fa-solid.fa-square-plus:active{
+.create-icon i.fa-solid.fa-pen-to-square:active{
     color: #B2BEB5 !important;
 }
 

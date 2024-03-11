@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MinValueValidator
 
 import datetime
 
@@ -41,6 +42,7 @@ class StatusType(models.Model):
 class Status(models.Model):
     location = models.ForeignKey(Location, on_delete = models.CASCADE, null = True, blank = True, help_text = "Designates the foreign key of the Location model.", verbose_name = "Location")
     statustype = models.ForeignKey(StatusType, on_delete = models.SET_NULL, blank = True, null = True, help_text = "Designates the foreign key of the Status Type model.", verbose_name = "Status Type")
+    caught_overall = models.IntegerField(validators = [MinValueValidator(0)], null = True, blank = True, help_text = "Designates the overall amount of the caught Crown-of-Thorns Starfish at the moment.", verbose_name = "Caught Amount")
     onset_date = models.DateField(default = datetime.date.today(), help_text = "Designates the onset date of the outbreak status.", verbose_name = "Onset Date")
 
     class Meta:
@@ -50,3 +52,21 @@ class Status(models.Model):
     
     def __str__(self):
         return "STATUS " + str(self.id) + " | " +  str(self.location)
+
+
+class Intervention(models.Model):
+    title = models.CharField(max_length = 150, help_text = "Designates the title of the intervention.", verbose_name = "Title")
+    location = models.ForeignKey(Location, on_delete = models.CASCADE, null = True, blank = True, help_text = "Designates the foreign key of the Location model.", verbose_name = "Location")
+    caught_amount = models.IntegerField(validators = [MinValueValidator(0)], null = True, blank = True, help_text = "Designates the amount of the caught Crown-of-Thorns Starfish at the moment the intervention took place.", verbose_name = "Caught Amount")
+    details = models.TextField(max_length = 5000, null = True, help_text = "Designates the details of the intervention.", verbose_name = "Details")
+    hosting_agency = models.CharField(max_length = 150, unique = True, help_text = "Designates the name of the hosting agency.", verbose_name = "Hosting Agency")
+    intervention_photo = models.ImageField(default = "interventions/default.png", null = True, blank = True, upload_to = "interventions", help_text = "Designates the photo of the intervention.", verbose_name = "Intervention Photo")
+    intervention_date = models.DateField(default = datetime.date.today(), help_text = "Designates the date of the intervention.", verbose_name = "Intervention Date")
+
+    class Meta:
+        db_table = "managements_intervention"
+        verbose_name = "Intervention"
+        verbose_name_plural = "Interventions"
+    
+    def __str__(self):
+        return str(self.title) + " | " +  str(self.intervention_date.strftime("%b. %d, %Y"))

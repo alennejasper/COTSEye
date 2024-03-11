@@ -36,7 +36,7 @@
 }
 
 
-.announcement{
+.intervention{
     margin-bottom: 30px;
     width: 100%;
     display: grid;
@@ -46,7 +46,7 @@
     box-shadow: 0 0 0 1px #B2BEB5 !important;
 }
 
-.announcement#announcement-filter .card-header{
+.intervention#intervention-filter .card-header{
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 15px;
@@ -57,7 +57,7 @@
     display: grid;
 }
 
-.announcement#announcement-filter .card-header header{
+.intervention#intervention-filter .card-header header{
     font-family: "Philosopher";
     font-weight: 700;
     font-size: 22px !important;
@@ -67,7 +67,7 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .announcement#announcement-filter .card-header header{
+    .intervention#intervention-filter .card-header header{
         font-family: "Philosopher";
         font-weight: 700;
         font-size: 20px !important;
@@ -78,7 +78,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .announcement#announcement-filter .card-header header{
+    .intervention#intervention-filter .card-header header{
         font-family: "Philosopher";
         font-weight: 700;
         font-size: 18px !important;
@@ -89,7 +89,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .announcement#announcement-filter .card-header header{
+    .intervention#intervention-filter .card-header header{
         font-family: "Philosopher";
         font-weight: 700;
         font-size: 16px !important;
@@ -99,7 +99,7 @@
     }
 }
 
-.announcement#announcement-filter .card-body{
+.intervention#intervention-filter .card-body{
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 15px;
@@ -112,41 +112,41 @@
     background-color: #FFFFFF;
 }
 
-.announcement#announcement-filter .card-body .field{
+.intervention#intervention-filter .card-body .field{
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
 }
 
 @media screen and (min-width: 446px) and (max-width: 775px){
-    .announcement#announcement-filter .card-body .field{        
+    .intervention#intervention-filter .card-body .field{        
         grid-template-columns: 100%;
         gap: 0px;
     }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .announcement#announcement-filter .card-body .field{        
+    .intervention#intervention-filter .card-body .field{        
         grid-template-columns: 100%;
         gap: 0px;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .announcement#announcement-filter .card-body .field{        
+    .intervention#intervention-filter .card-body .field{        
         grid-template-columns: 100%;
         gap: 0px;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .announcement#announcement-filter .card-body .field{        
+    .intervention#intervention-filter .card-body .field{        
         grid-template-columns: 100%;
         gap: 0px;
     }
 }
 
-.announcement#announcement-filter .card-body .field .column label[for = "from-date"]{
+.intervention#intervention-filter .card-body .field .column label[for = "from-date"]{
     margin-top: 0px;
     display: inline-block;
     font-family: "Overlock";
@@ -156,7 +156,7 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .announcement#announcement-filter .card-body .field .column label[for = "from-date"]{
+    .intervention#intervention-filter .card-body .field .column label[for = "from-date"]{
         margin-top: 0px;
         display: inline-block;
         font-family: "Overlock";
@@ -167,7 +167,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .announcement#announcement-filter .card-body .field .column label[for = "from-date"]{
+    .intervention#intervention-filter .card-body .field .column label[for = "from-date"]{
         margin-top: 0px;
         display: inline-block;
         font-family: "Overlock";
@@ -178,7 +178,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .announcement#announcement-filter .card-body .field .column label[for = "from-date"]{
+    .intervention#intervention-filter .card-body .field .column label[for = "from-date"]{
         margin-top: 0px;
         display: inline-block;
         font-family: "Overlock";
@@ -188,11 +188,11 @@
     }
 }
 
-.announcement#announcement-filter .card-body .field .column .from-date{
+.intervention#intervention-filter .card-body .field .column .from-date{
     position: relative;
 }
 
-.announcement#announcement-filter .card-body .field .column .from-date input{
+.intervention#intervention-filter .card-body .field .column .from-date input{
     padding-left: 10px !important;
     padding-right: 10px !important;
     padding-top: 5px !important;
@@ -208,12 +208,12 @@
     color: #154360 !important;
 }
 
-.announcement#announcement-filter .card-body .field .column .from-date input:focus{
+.intervention#intervention-filter .card-body .field .column .from-date input:focus{
     border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .announcement#announcement-filter .card-body .field .column .from-date input{
+    .intervention#intervention-filter .card-body .field .column .from-date input{
         padding-left: 10px !important;
         padding-right: 10px !important;
         padding-top: 5px !important;
@@ -231,7 +231,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .announcement#announcement-filter .card-body .field .column .from-date input{
+    .intervention#intervention-filter .card-body .field .column .from-date input{
         padding-left: 10px !important;
         padding-right: 10px !important;
         padding-top: 5px !important;
@@ -249,7 +249,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .announcement#announcement-filter .card-body .field .column .from-date input{
+    .intervention#intervention-filter .card-body .field .column .from-date input{
         padding-left: 10px !important;
         padding-right: 10px !important;
         padding-top: 5px !important;
@@ -266,51 +266,51 @@
     }
 }
 
-.announcement#announcement-filter .card-body .field .column .from-date input[type = "date"]::-webkit-calendar-picker-indicator{
+.intervention#intervention-filter .card-body .field .column .from-date input[type = "date"]::-webkit-calendar-picker-indicator{
     filter: invert(22%) sepia(7%) saturate(6538%) hue-rotate(164deg) brightness(89%) contrast(90%);
 }
 
-.announcement#announcement-filter .card-body .field .column .from-date input[type = date]:invalid::-webkit-datetime-edit{
+.intervention#intervention-filter .card-body .field .column .from-date input[type = date]:invalid::-webkit-datetime-edit{
     color: #154360 !important;
 }
 
-.announcement#announcement-filter .card-body .field .column .from-date input::-webkit-datetime-edit-day-field{
+.intervention#intervention-filter .card-body .field .column .from-date input::-webkit-datetime-edit-day-field{
     color: #154360;
     background-color: #FFFFFF;
     outline: none;
 }
 
-.announcement#announcement-filter .card-body .field .column .from-date input::-webkit-datetime-edit-month-field{
+.intervention#intervention-filter .card-body .field .column .from-date input::-webkit-datetime-edit-month-field{
     color: #154360;
     background-color: #FFFFFF;
     outline: none;
 }
 
-.announcement#announcement-filter .card-body .field .column .from-date input::-webkit-datetime-edit-year-field{
+.intervention#intervention-filter .card-body .field .column .from-date input::-webkit-datetime-edit-year-field{
     color: #154360;
     background-color: #FFFFFF;
     outline: none;
 }
 
-.announcement#announcement-filter .card-body .field .column .from-date input::-webkit-datetime-edit-day-field:focus{
+.intervention#intervention-filter .card-body .field .column .from-date input::-webkit-datetime-edit-day-field:focus{
     background-color: #154360 !important;
     color: #FFFFFF !important;
     outline: none;
 }
 
-.announcement#announcement-filter .card-body .field .column .from-date input::-webkit-datetime-edit-month-field:focus{
+.intervention#intervention-filter .card-body .field .column .from-date input::-webkit-datetime-edit-month-field:focus{
     background-color: #154360 !important;
     color: #FFFFFF !important;
     outline: none;
 }
 
-.announcement#announcement-filter .card-body .field .column .from-date input::-webkit-datetime-edit-year-field:focus{
+.intervention#intervention-filter .card-body .field .column .from-date input::-webkit-datetime-edit-year-field:focus{
     background-color: #154360 !important;
     color: #FFFFFF !important;
     outline: none;
 }
 
-.announcement#announcement-filter .card-body .field .column label[for = "to-date"]{
+.intervention#intervention-filter .card-body .field .column label[for = "to-date"]{
     margin-top: 0px;
     display: inline-block;
     font-family: "Overlock";
@@ -320,7 +320,7 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .announcement#announcement-filter .card-body .field .column label[for = "to-date"]{
+    .intervention#intervention-filter .card-body .field .column label[for = "to-date"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -331,7 +331,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .announcement#announcement-filter .card-body .field .column label[for = "to-date"]{
+    .intervention#intervention-filter .card-body .field .column label[for = "to-date"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -342,7 +342,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .announcement#announcement-filter .card-body .field .column label[for = "to-date"]{
+    .intervention#intervention-filter .card-body .field .column label[for = "to-date"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -352,11 +352,11 @@
     }
 }
 
-.announcement#announcement-filter .card-body .field .column .to-date{
+.intervention#intervention-filter .card-body .field .column .to-date{
     position: relative;
 }
 
-.announcement#announcement-filter .card-body .field .column .to-date input{
+.intervention#intervention-filter .card-body .field .column .to-date input{
     padding-left: 10px !important;
     padding-right: 10px !important;
     padding-top: 5px !important;
@@ -372,12 +372,12 @@
     color: #154360 !important;
 }
 
-.announcement#announcement-filter .card-body .field .column .to-date input:focus{
+.intervention#intervention-filter .card-body .field .column .to-date input:focus{
     border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .announcement#announcement-filter .card-body .field .column .to-date input{
+    .intervention#intervention-filter .card-body .field .column .to-date input{
         padding-left: 10px !important;
         padding-right: 10px !important;
         padding-top: 5px !important;
@@ -395,7 +395,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .announcement#announcement-filter .card-body .field .column .to-date input{
+    .intervention#intervention-filter .card-body .field .column .to-date input{
         padding-left: 10px !important;
         padding-right: 10px !important;
         padding-top: 5px !important;
@@ -413,7 +413,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .announcement#announcement-filter .card-body .field .column .to-date input{
+    .intervention#intervention-filter .card-body .field .column .to-date input{
         padding-left: 10px !important;
         padding-right: 10px !important;
         padding-top: 5px !important;
@@ -430,51 +430,51 @@
     }
 }
 
-.announcement#announcement-filter .card-body .field .column .to-date input[type = "date"]::-webkit-calendar-picker-indicator{
+.intervention#intervention-filter .card-body .field .column .to-date input[type = "date"]::-webkit-calendar-picker-indicator{
     filter: invert(22%) sepia(7%) saturate(6538%) hue-rotate(164deg) brightness(89%) contrast(90%);
 }
 
-.announcement#announcement-filter .card-body .field .column .to-date input[type = date]:invalid::-webkit-datetime-edit{
+.intervention#intervention-filter .card-body .field .column .to-date input[type = date]:invalid::-webkit-datetime-edit{
     color: #154360 !important;
 }
 
-.announcement#announcement-filter .card-body .field .column .to-date input::-webkit-datetime-edit-day-field{
+.intervention#intervention-filter .card-body .field .column .to-date input::-webkit-datetime-edit-day-field{
     color: #154360;
     background-color: #FFFFFF;
     outline: none;
 }
 
-.announcement#announcement-filter .card-body .field .column .to-date input::-webkit-datetime-edit-month-field{
+.intervention#intervention-filter .card-body .field .column .to-date input::-webkit-datetime-edit-month-field{
     color: #154360;
     background-color: #FFFFFF;
     outline: none;
 }
 
-.announcement#announcement-filter .card-body .field .column .to-date input::-webkit-datetime-edit-year-field{
+.intervention#intervention-filter .card-body .field .column .to-date input::-webkit-datetime-edit-year-field{
     color: #154360;
     background-color: #FFFFFF;
     outline: none;
 }
 
-.announcement#announcement-filter .card-body .field .column .to-date input::-webkit-datetime-edit-day-field:focus{
+.intervention#intervention-filter .card-body .field .column .to-date input::-webkit-datetime-edit-day-field:focus{
     background-color: #154360 !important;
     color: #FFFFFF !important;
     outline: none;
 }
 
-.announcement#announcement-filter .card-body .field .column .to-date input::-webkit-datetime-edit-month-field:focus{
+.intervention#intervention-filter .card-body .field .column .to-date input::-webkit-datetime-edit-month-field:focus{
     background-color: #154360 !important;
     color: #FFFFFF !important;
     outline: none;
 }
 
-.announcement#announcement-filter .card-body .field .column .to-date input::-webkit-datetime-edit-year-field:focus{
+.intervention#intervention-filter .card-body .field .column .to-date input::-webkit-datetime-edit-year-field:focus{
     background-color: #154360 !important;
     color: #FFFFFF !important;
     outline: none;
 }
 
-.announcement#announcement-filter .card-body .button{
+.intervention#intervention-filter .card-body .button{
     margin-left: auto;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
@@ -482,7 +482,7 @@
     height: 100% !important;
 }
 
-.announcement#announcement-filter .card-body .button a.filter-announcement{
+.intervention#intervention-filter .card-body .button a.filter-intervention{
     padding-left: 10px !important;
     padding-right: 10px !important;
     padding-top: 5px !important;
@@ -500,13 +500,13 @@
     cursor: pointer;
 }
 
-.announcement#announcement-filter .card-body .button a.filter-announcement:hover{
+.intervention#intervention-filter .card-body .button a.filter-intervention:hover{
     background-color: #10354C !important;
     color: #B2BEB5 !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .announcement#announcement-filter .card-body .button a{
+    .intervention#intervention-filter .card-body .button a{
         font-family: "Overlock";
         font-weight: 400;
         font-size: 18px !important;
@@ -516,7 +516,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .announcement#announcement-filter .card-body .button a{
+    .intervention#intervention-filter .card-body .button a{
         font-family: "Overlock";
         font-weight: 400;
         font-size: 16px !important;
@@ -526,7 +526,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .announcement#announcement-filter .card-body .button a{
+    .intervention#intervention-filter .card-body .button a{
         font-family: "Overlock";
         font-weight: 400;
         font-size: 14px !important;
@@ -601,7 +601,7 @@
     }
 }
 
-.announcement .card-header{
+.intervention .card-header{
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 15px;
@@ -612,7 +612,7 @@
     display: grid;
 }
 
-.announcement .card-header header{
+.intervention .card-header header{
     font-family: "Philosopher";
     font-weight: 700;
     font-size: 22px !important;
@@ -622,7 +622,7 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .announcement .card-header header{
+    .intervention .card-header header{
         font-family: "Philosopher";
         font-weight: 700;
         font-size: 20px !important;
@@ -633,7 +633,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .announcement .card-header header{
+    .intervention .card-header header{
         font-family: "Philosopher";
         font-weight: 700;
         font-size: 18px !important;
@@ -644,7 +644,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .announcement .card-header header{
+    .intervention .card-header header{
         font-family: "Philosopher";
         font-weight: 700;
         font-size: 16px !important;
@@ -654,7 +654,7 @@
     }
 }
 
-.announcement .card-body{
+.intervention .card-body{
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 15px;
@@ -663,44 +663,45 @@
     border-bottom-left-radius: 5px !important;
     border-bottom-right-radius: 5px !important;
     display: grid;
+    gap: 15px;
     background-color: #FFFFFF;
 }
 
-.announcement .card-body .field{
+.intervention .card-body .field{
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
 }
 
 @media screen and (min-width: 446px) and (max-width: 775px){
-    .announcement .card-body .field{        
+    .intervention .card-body .field{        
         grid-template-columns: 100%;
         gap: 0px;
     }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .announcement .card-body .field{        
+    .intervention .card-body .field{        
         grid-template-columns: 100%;
         gap: 0px;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .announcement .card-body .field{        
+    .intervention .card-body .field{        
         grid-template-columns: 100%;
         gap: 0px;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .announcement .card-body .field{        
+    .intervention .card-body .field{        
         grid-template-columns: 100%;
         gap: 0px;
     }
 }
 
-.announcement .card-body .field .column label[for = "release-date"]{
+.intervention .card-body .field .column label[for = "intervention-date"]{
     margin-top: 0px;
     display: inline-block;
     font-family: "Overlock";
@@ -710,7 +711,7 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .announcement .card-body .field .column label[for = "release-date"]{
+    .intervention .card-body .field .column label[for = "intervention-date"]{
         margin-top: 0px;
         display: inline-block;
         font-family: "Overlock";
@@ -721,7 +722,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .announcement .card-body .field .column label[for = "release-date"]{
+    .intervention .card-body .field .column label[for = "intervention-date"]{
         margin-top: 0px;
         display: inline-block;
         font-family: "Overlock";
@@ -732,7 +733,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .announcement .card-body .field .column label[for = "release-date"]{
+    .intervention .card-body .field .column label[for = "intervention-date"]{
         margin-top: 0px;
         display: inline-block;
         font-family: "Overlock";
@@ -742,11 +743,11 @@
     }
 }
 
-.announcement .card-body .field .column .release-date{
+.intervention .card-body .field .column .intervention-date{
     position: relative;
 }
 
-.announcement .card-body .field .column .release-date input{
+.intervention .card-body .field .column .intervention-date input{
     padding-left: 10px !important;
     padding-right: 45px !important;
     padding-top: 5px !important;
@@ -762,12 +763,12 @@
     color: #154360 !important;
 }
 
-.announcement .card-body .field .column .release-date input:focus{
+.intervention .card-body .field .column .intervention-date input:focus{
     border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .announcement .card-body .field .column .release-date input{
+    .intervention .card-body .field .column .intervention-date input{
         padding-left: 10px !important;
         padding-right: 45px !important;
         padding-top: 5px !important;
@@ -785,7 +786,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .announcement .card-body .field .column .release-date input{
+    .intervention .card-body .field .column .intervention-date input{
         padding-left: 10px !important;
         padding-right: 45px !important;
         padding-top: 5px !important;
@@ -803,7 +804,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .announcement .card-body .field .column .release-date input{
+    .intervention .card-body .field .column .intervention-date input{
         padding-left: 10px !important;
         padding-right: 45px !important;
         padding-top: 5px !important;
@@ -820,7 +821,7 @@
     }
 }
 
-.announcement .card-body .field .column .release-date i{
+.intervention .card-body .field .column .intervention-date i{
     right: 10px;
     top: 50%;
     position: absolute;
@@ -832,7 +833,7 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .announcement .card-body .field .column .release-date i{
+    .intervention .card-body .field .column .intervention-date i{
         right: 10px;
         top: 50%;
         position: absolute;
@@ -845,7 +846,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .announcement .card-body .field .column .release-date i{
+    .intervention .card-body .field .column .intervention-date i{
         right: 10px;
         top: 50%;
         position: absolute;
@@ -858,7 +859,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .announcement .card-body .field .column .release-date i{
+    .intervention .card-body .field .column .intervention-date i{
         right: 10px;
         top: 50%;
         position: absolute;
@@ -870,7 +871,7 @@
     }
 }
 
-.announcement .card-body .field .column label[for = "place"]{
+.intervention .card-body .field .column label[for = "location"]{
     margin-top: 0px;
     display: inline-block;
     font-family: "Overlock";
@@ -880,8 +881,8 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .announcement .card-body .field .column label[for = "place"]{
-        margin-top: 0px;
+    .intervention .card-body .field .column label[for = "location"]{
+        margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
@@ -891,8 +892,8 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .announcement .card-body .field .column label[for = "place"]{
-        margin-top: 0px;
+    .intervention .card-body .field .column label[for = "location"]{
+        margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
@@ -902,8 +903,8 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .announcement .card-body .field .column label[for = "place"]{
-        margin-top: 0px;
+    .intervention .card-body .field .column label[for = "location"]{
+        margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
@@ -912,11 +913,11 @@
     }
 }
 
-.announcement .card-body .field .column .place{
+.intervention .card-body .field .column .location{
     position: relative;
 }
 
-.announcement .card-body .field .column .place input{
+.intervention .card-body .field .column .location input{
     padding-left: 10px !important;
     padding-right: 45px !important;
     padding-top: 5px !important;
@@ -932,12 +933,12 @@
     color: #154360 !important;
 }
 
-.announcement .card-body .field .column .place input:focus{
+.intervention .card-body .field .column .location input:focus{
     border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .announcement .card-body .field .column .place input{
+    .intervention .card-body .field .column .location input{
         padding-left: 10px !important;
         padding-right: 45px !important;
         padding-top: 5px !important;
@@ -955,7 +956,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .announcement .card-body .field .column .place input{
+    .intervention .card-body .field .column .location input{
         padding-left: 10px !important;
         padding-right: 45px !important;
         padding-top: 5px !important;
@@ -973,7 +974,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .announcement .card-body .field .column .place input{
+    .intervention .card-body .field .column .location input{
         padding-left: 10px !important;
         padding-right: 45px !important;
         padding-top: 5px !important;
@@ -990,7 +991,7 @@
     }
 }
 
-.announcement .card-body .field .column .place i{
+.intervention .card-body .field .column .location i{
     right: 10px;
     top: 50%;
     position: absolute;
@@ -1002,7 +1003,7 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .announcement .card-body .field .column .place i{
+    .intervention .card-body .field .column .location i{
         right: 10px;
         top: 50%;
         position: absolute;
@@ -1015,7 +1016,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .announcement .card-body .field .column .place i{
+    .intervention .card-body .field .column .location i{
         right: 10px;
         top: 50%;
         position: absolute;
@@ -1028,7 +1029,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .announcement .card-body .field .column .place i{
+    .intervention .card-body .field .column .location i{
         right: 10px;
         top: 50%;
         position: absolute;
@@ -1040,7 +1041,7 @@
     }
 }
 
-.announcement .card-body .button{
+.intervention .card-body .button{
     margin-left: auto;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
@@ -1048,7 +1049,7 @@
     height: 100% !important;
 }
 
-.announcement .card-body .button a.read-announcement{
+.intervention .card-body .button a.read-intervention{
     padding-left: 10px !important;
     padding-right: 10px !important;
     padding-top: 5px !important;
@@ -1066,13 +1067,13 @@
     cursor: pointer;
 }
 
-.announcement .card-body .button a.read-announcement:hover{
+.intervention .card-body .button a.read-intervention:hover{
     background-color: #10354C !important;
     color: #B2BEB5 !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .announcement .card-body .button a{
+    .intervention .card-body .button a{
         font-family: "Overlock";
         font-weight: 400;
         font-size: 18px !important;
@@ -1082,7 +1083,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .announcement .card-body .button a{
+    .intervention .card-body .button a{
         font-family: "Overlock";
         font-weight: 400;
         font-size: 16px !important;
@@ -1092,7 +1093,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .announcement .card-body .button a{
+    .intervention .card-body .button a{
         font-family: "Overlock";
         font-weight: 400;
         font-size: 14px !important;

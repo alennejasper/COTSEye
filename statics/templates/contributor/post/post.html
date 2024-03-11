@@ -13,7 +13,7 @@
                 <label for = "valid-date">Newest Date</label> 
 
                 <div class = "valid-date">
-                    <input type = "text" placeholder = "{{valid_dates.capture_date | default:'nonexistent'}}" id = "valid-date" name = "valid-date" readonly>
+                    <input type = "text" value = "{{valid_dates.capture_date | date:'M. j, Y g:i a' | default:'nonexistent'}}" id = "valid-date" name = "valid-date" readonly>
 
                     <i class = "fa-solid fa-calendar-plus"></i>
                 </div>  
@@ -23,7 +23,7 @@
                 <label for = "valid-posts">Post Count</label> 
                     
                 <div class = "valid-posts">
-                    <input type = "text" placeholder = "{{valid_posts.count | default:'0'}}" id = "valid-posts" name = "valid_posts" readonly>
+                    <input type = "text" value = "{{valid_posts.count | default:'0'}}" id = "valid-posts" name = "valid_posts" readonly>
                         
                     <i class = "fa-solid fa-arrow-up-wide-short"></i>
                 </div>
@@ -47,7 +47,7 @@
                 <label for = "invalid-date">Newest Date</label> 
 
                 <div class = "invalid-date">
-                    <input type = "text" placeholder = "{{invalid_dates.capture_date | default:'nonexistent'}}" id = "invalid-date" name = "invalid-date" readonly>
+                    <input type = "text" value = "{{invalid_dates.capture_date | date:'M. j, Y g:i a' | default:'nonexistent'}}" id = "invalid-date" name = "invalid-date" readonly>
 
                     <i class = "fa-solid fa-calendar-plus"></i>
                 </div>  
@@ -57,7 +57,7 @@
                 <label for = "invalid-posts">Post Count</label> 
                     
                 <div class = "invalid-posts">
-                    <input type = "text" placeholder = "{{invalid_posts.count | default:'0'}}" id = "invalid-posts" name = "invalid_posts" readonly>
+                    <input type = "text" value = "{{invalid_posts.count | default:'0'}}" id = "invalid-posts" name = "invalid_posts" readonly>
                         
                     <i class = "fa-solid fa-arrow-up-wide-short"></i>
                 </div>
@@ -81,7 +81,7 @@
                 <label for = "uncertain-date">Newest Date</label> 
 
                 <div class = "uncertain-date">
-                    <input type = "text" placeholder = "{{uncertain_dates.capture_date | default:'nonexistent'}}" id = "uncertain-date" name = "uncertain-date" readonly>
+                    <input type = "text" value = "{{uncertain_dates.capture_date | date:'M. j, Y g:i a' | default:'nonexistent'}}" id = "uncertain-date" name = "uncertain-date" readonly>
 
                     <i class = "fa-solid fa-calendar-plus"></i>
                 </div>  
@@ -91,7 +91,7 @@
                 <label for = "uncertain-posts">Post Count</label> 
                     
                 <div class = "uncertain-posts">
-                    <input type = "text" placeholder = "{{uncertain_posts.count | default:'0'}}" id = "uncertain-posts" name = "uncertain_posts" readonly>
+                    <input type = "text" value = "{{uncertain_posts.count | default:'0'}}" id = "uncertain-posts" name = "uncertain_posts" readonly>
                         
                     <i class = "fa-solid fa-arrow-up-wide-short"></i>
                 </div>

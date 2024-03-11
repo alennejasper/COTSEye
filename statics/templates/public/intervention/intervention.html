@@ -1,13 +1,13 @@
-{% extends "contributor/index/index.html" %}
+{% extends "public/index/index.html" %}
 {% load static %}
 
 {% block content %}
-<div class = "announcement" id = "announcement-filter">
-    <form action = "" class = "announcement-form" method = "GET">
+<div class = "intervention" id = "intervention-filter">
+    <form action = "" class = "intervention-form" method = "GET">
         {% csrf_token %}
 
         <div class = "card-header">
-            <header>Filter announcements</header>
+            <header>Filter interventions</header>
         </div>
 
         <div class = "card-body">
@@ -30,7 +30,7 @@
             </div>
 
             <div class = "button">
-                <a class = "filter-announcement" type = "submit">Filter</a>
+                <a class = "filter-intervention" type = "submit">Filter</a>
             </div>    
         </div>
     </form>
@@ -46,36 +46,36 @@
 {% endif %}
 
 <script>
-    document.querySelector(".filter-announcement").onclick = function() {
-        document.querySelector(".announcement-form").submit();
+    document.querySelector(".filter-intervention").onclick = function() {
+        document.querySelector(".intervention-form").submit();
     }
 </script>
 
 <div class = "line"></div>
 
-{% for announcement in announcements %}
-<div class = "announcement">
+{% for intervention in interventions %}
+<div class = "intervention">
     <div class = "card-header">
-        <header>{{announcement.title | default:'nonexistent'}}</header>
+        <header>{{intervention.title | default:'nonexistent'}}</header>
     </div>
 
     <div class = "card-body">
         <div class = "field">
             <div class = "column">
-                <label for = "release-date">Release Date</label> 
+                <label for = "intervention-date">Intervention Date</label> 
                     
-                <div class = "release-date">
-                    <input type = "text" value = "{{announcement.release_date | date:'M. j, Y g:i a' | default:'nonexistent'}}" id = "release-date" name = "release_date" readonly>
+                <div class = "intervention-date">
+                    <input type = "text" value = "{{intervention.intervention_date | date:'M. j, Y' | default:'nonexistent'}}" id = "intervention-date" name = "intervention_date" readonly>
                         
                     <i class = "fa-solid fa-calendar-check"></i>
                 </div>
             </div>
 
             <div class = "column">
-                <label for = "place">Place</label> 
+                <label for = "location">Location</label> 
 
-                <div class = "place">
-                    <input type = "text" value = "{{announcement.place | default:'nonexistent'}}" id = "place" name = "place" readonly>
+                <div class = "location">
+                    <input type = "text" value = "{{intervention.location | default:'nonexistent'}}" id = "location" name = "location" readonly>
 
                     <i class = "fa-solid fa-location-dot"></i>      
                 </div>  
@@ -83,7 +83,7 @@
         </div>
 
         <div class = "button">
-            <a class = "read-announcement" href = "{% url 'Contributor Announcement Read' announcement.id %}">Read</a>
+            <a class = "read-intervention" href = "{% url 'Public Intervention Read' intervention.id %}">Read</a>
         </div>    
     </div>
 </div>

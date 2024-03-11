@@ -322,7 +322,7 @@
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .post#invalid-filter .card-body .field .column label[for = "to-date"]{
-        margin-top: 0px;
+        margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
@@ -333,7 +333,7 @@
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .post#invalid-filter .card-body .field .column label[for = "to-date"]{
-        margin-top: 0px;
+        margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
@@ -344,7 +344,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .post#invalid-filter .card-body .field .column label[for = "to-date"]{
-        margin-top: 0px;
+        margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
@@ -1385,7 +1385,7 @@
     }
 }
 
-.post .card-body .field .column label[for = "coo.coordinates"]{
+.post .card-body .field .column label[for = "coordinates"]{
     margin-top: 0px;
     display: inline-block;
     font-family: "Overlock";
@@ -1395,7 +1395,7 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column label[for = "coo.coordinates"]{
+    .post .card-body .field .column label[for = "coordinates"]{
         margin-top: 0px;
         display: inline-block;
         font-family: "Overlock";
@@ -1406,7 +1406,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column label[for = "coo.coordinates"]{
+    .post .card-body .field .column label[for = "coordinates"]{
         margin-top: 0px;
         display: inline-block;
         font-family: "Overlock";
@@ -1417,7 +1417,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column label[for = "coo.coordinates"]{
+    .post .card-body .field .column label[for = "coordinates"]{
         margin-top: 0px;
         display: inline-block;
         font-family: "Overlock";

@@ -12,7 +12,9 @@
         <p><i class = "fa-solid fa-location-dot"></i>{{valid_post.0.coordinates.latitude | default:'0'}}° N, {{invalid_post.0.coordinates.longitude | default:'0'}}° E</p>
 
         <div class = "post-gallery">
-            <img class = "gallery-photo" src = "{{valid_post.post_photo.url}}">
+            {% for post_photo in valid_post.post_photos.all %}
+                <img class = "gallery-photo" src = "{{post_photo.post_photo.url}}">
+            {% endfor %}        
         </div>
 
         <p>{{valid_post.0.description | default:'nonexistent'}}</p>
@@ -62,7 +64,9 @@
         <p><i class = "fa-solid fa-location-dot"></i>{{invalid_post.coordinates.latitude | default:'0'}}° N, {{invalid_post.coordinates.longitude | default:'0'}}° E</p>
 
         <div class = "post-gallery">
-            <img class = "gallery-photo" src = "{{invalid_post.post_photo.url}}">
+            {% for post_photo in invalid_post.post_photos.all %}
+                <img class = "gallery-photo" src = "{{post_photo.post_photo.url}}">
+            {% endfor %}       
         </div>
 
         <p>{{invalid_post.description | default:'nonexistent'}}</p>
@@ -107,12 +111,14 @@
     <div class = "card-body">
         <p><i class = "fa-solid fa-flag"></i>Uncertain</p>
 
-        <p><i class = "fa-solid fa-calendar-check"></i>{{uncertain_post.capture_date | default:'nonexistent'}}</p>
+        <p><i class = "fa-solid fa-calendar-check"></i>{{uncertain_post.capture_date | date:'M. j, Y g:i a' | default:'nonexistent'}}</p>
 
         <p><i class = "fa-solid fa-location-dot"></i>{{uncertain_post.coordinates.latitude | default:'0'}}° N, {{uncertain_post.coordinates.longitude | default:'0'}}° E</p>
 
         <div class = "post-gallery">
-            <img class = "gallery-photo" src = "{{uncertain_post.post_photo.url}}">
+            {% for post_photo in uncertain_post.post_photos.all %}
+                <img class = "gallery-photo" src = "{{post_photo.post_photo.url}}">
+            {% endfor %}
         </div>
 
         <p>{{uncertain_post.description | default:'nonexistent'}}</p>

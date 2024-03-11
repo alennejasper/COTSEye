@@ -25,7 +25,7 @@
                         
             "features": [
                 {% for status in statuses %}
-                    {"type": "Feature", "properties": {"municipality": "{{status.location.municipality}}", "barangay": "{{status.location.barangay}}", "density": 20, "statustype": "{{status.statustype}}"}, "geometry": {"type": "Polygon", "coordinates": {{status.location.perimeters}}}}, 
+                    {"type": "Feature", "properties": {"municipality": "{{status.location.municipality}}", "barangay": "{{status.location.barangay}}", "caught_overall": "{{status.caught_overall}}", "statustype": "{{status.statustype}}"}, "geometry": {"type": "Polygon", "coordinates": {{status.location.perimeters}}}}, 
                 {% endfor %}
             ]
 
@@ -142,7 +142,7 @@
             if (map.hasLayer(statuses)){
                 this._div.style.display = "block";
 
-                this._div.innerHTML = (property ? "<header>" + property.statustype + " Status" + "</header>" + "<p>" + "Barangay " + property.barangay + ", " + property.municipality + "</p>" + "<p>" + property.density + " COTS overall." + "</p>" : "<header>" + "Current Status" + "</header>" + "<p>" + "Hover to a coastal barangay." + "</p>");
+                this._div.innerHTML = (property ? "<header>" + property.statustype + " Status" + "</header>" + "<p>" + "Barangay " + property.barangay + ", " + property.municipality + "</p>" + "<p>" + property.caught_overall + " COTS overall." + "</p>" : "<header>" + "Current Status" + "</header>" + "<p>" + "Hover to a coastal barangay." + "</p>");
 
                 var status = property ? property.statustype : null;
 
