@@ -36,11 +36,12 @@
 }
 
 
-.content{
+.content:has(.post#update){
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 30px;
     padding-bottom: 30px;
+    min-height: 100vh;
     display: grid;
     grid-template-columns: 100%;
     place-items: center;
