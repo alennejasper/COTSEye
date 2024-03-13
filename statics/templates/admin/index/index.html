@@ -10,6 +10,8 @@
 
     <meta name = "apple-mobile-web-app-status-bar" content = "#154360">
     
+    <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">          
+
     <link rel = "stylesheet" href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity = "sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin = ""/>    
 
     <script src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity = "sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin = ""></script>
@@ -116,6 +118,8 @@
             {% for post in posts %}
                 var post = L.marker([{{post.coordinates.latitude}}, {{post.coordinates.longitude}}], {icon: starfish});
                 
+                post.bindPopup("<div class = 'popup'>" + "<div class = 'card-header'>" + "<header class = 'preview'>" + "{{post.description}}" + "</header>" + "</div>" + "<div class = 'card-body'>" + "<div class = 'field'>" + "<div class = 'column'>" + "<label for = 'capture-date'>" + "Capture Date" + "</label>" + "<div class = 'capture-date'>" + "<input type = 'text' value = '{{post.capture_date | date:'M. j, Y g:i a' | default:'nonexistent'}}' id = 'capture-date' name = 'capture-date' readonly>" + "<i class = 'fa-solid fa-calendar-plus'>" + "</i>" + "</div>" + "<label for = 'coordinates'>" + "Coordinates" + "</label>" + "<div class = 'coordinates'>" + "<input type = 'text' value = '{{post.coordinates.latitude | default:'0'}}° N, {{post.coordinates.longitude | default:'0'}}° E' id = 'coordinates' name = 'coordinates' readonly>" + "<i class = 'fa-solid fa-location-dot'>" + "</i>" + "</div>" + "</div>" + "</div>" + "<div class = 'button'>" + "<a class = 'read-post' href = '{% url 'Contributor Post Valid Reads' post.id %}'>" + "Read" + "</a>" + "</div>" + "</div>").openPopup();
+
                 post.addTo(posts);
             {% endfor %}
     

@@ -11,6 +11,8 @@ from authentications.views import ContributorCheck
 @login_required(login_url = "Contributor Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorPost(request):
+    username = request.user.username
+
     valid_posts = Post.objects.filter(user = request.user.user, post_status = 1)
 
     try:
@@ -35,13 +37,15 @@ def ContributorPost(request):
     except:
         uncertain_dates = None
     
-    context = {"valid_posts": valid_posts, "valid_dates": valid_dates, "invalid_posts": invalid_posts, "invalid_dates": invalid_dates, "uncertain_posts": uncertain_posts, "uncertain_dates": uncertain_dates}
+    context = {"username": username, "valid_posts": valid_posts, "valid_dates": valid_dates, "invalid_posts": invalid_posts, "invalid_dates": invalid_dates, "uncertain_posts": uncertain_posts, "uncertain_dates": uncertain_dates}
     
     return render(request, "contributor/post/post.html", context)
 
 @login_required(login_url = "Contributor Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorPostValid(request):
+    username = request.user.username
+
     valid_posts = Post.objects.filter(user = request.user.user, post_status = 1)
     
     if request.method == "GET":
@@ -69,7 +73,7 @@ def ContributorPostValid(request):
 
             messages.error(request, username + ", " + "your information input is empty within COTSEye.")
 
-    context = {"valid_posts": valid_posts}
+    context = {"username": username, "valid_posts": valid_posts}
     
     return render(request, "contributor/post/valid.html", context)
 
@@ -77,16 +81,32 @@ def ContributorPostValid(request):
 @login_required(login_url = "Contributor Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorPostValidRead(request, id):
-    valid_posts = Post.objects.filter(id = id, user = request.user.user, post_status = 1)
+    username = request.user.username
+
+    valid_post = Post.objects.get(id = id, user = request.user.user, post_status = 1)
     
-    context = {"valid_posts": valid_posts}
+    context = {"username": username, "valid_post": valid_post}
     
-    return render(request, "contributor/read.html", context)
+    return render(request, "contributor/post/read.html", context)
 
 
 @login_required(login_url = "Contributor Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Login")
-def ContributorPostInvalid(request):    
+def ContributorPostValidReads(request, id):
+    username = request.user.username
+
+    valid_post = Post.objects.get(id = id, post_status = 1)
+    
+    context = {"username": username, "valid_post": valid_post}
+    
+    return render(request, "contributor/post/reads.html", context)
+
+
+@login_required(login_url = "Contributor Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Login")
+def ContributorPostInvalid(request):  
+    username = request.user.username
+
     invalid_posts = Post.objects.filter(user = request.user.user, post_status = 2)
     
     if request.method == "GET":
@@ -119,7 +139,7 @@ def ContributorPostInvalid(request):
 
             messages.error(request, username + ", " + "your information input is empty within COTSEye.")
 
-    context = {"invalid_posts": invalid_posts}
+    context = {"username": username, "invalid_posts": invalid_posts}
     
     return render(request, "contributor/post/invalid.html", context)
 
@@ -127,9 +147,11 @@ def ContributorPostInvalid(request):
 @login_required(login_url = "Contributor Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorPostInvalidRead(request, id):
+    username = request.user.username
+
     invalid_post = Post.objects.get(id = id, user = request.user.user, post_status = 2)
     
-    context = {"invalid_post": invalid_post}
+    context = {"username": username, "invalid_post": invalid_post}
     
     return render(request, "contributor/post/read.html", context)
 
@@ -165,6 +187,8 @@ def ContributorPostInvalidDelete(request, id):
 @login_required(login_url = "Contributor Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorPostUncertain(request):
+    username = request.user.username
+
     uncertain_posts = Post.objects.filter(user = request.user.user, post_status = 3)
     
     if request.method == "GET":
@@ -192,7 +216,7 @@ def ContributorPostUncertain(request):
 
             messages.error(request, username + ", " + "your information input is empty within COTSEye.")
 
-    context = {"uncertain_posts": uncertain_posts}
+    context = {"username": username, "uncertain_posts": uncertain_posts}
     
     return render(request, "contributor/post/uncertain.html", context)
 
@@ -200,7 +224,9 @@ def ContributorPostUncertain(request):
 @login_required(login_url = "Contributor Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorPostUncertainCreate(request):
-    context = {}
+    username = request.user.username
+
+    context = {"username": username}
     
     return render(request, "contributor/post/create.html", context)
 
@@ -208,6 +234,8 @@ def ContributorPostUncertainCreate(request):
 @login_required(login_url = "Contributor Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorPostUncertainCreateCapture(request):
+    username = request.user.username
+
     coordinates_form = CoordinatesForm()
 
     postobservation_form = PostObservationForm()
@@ -276,7 +304,7 @@ def ContributorPostUncertainCreateCapture(request):
         
         post_form = PostForm() 
 
-    context = {"coordinates_form": coordinates_form, "depths": depths, "weathers": weathers, "postobservation_form": postobservation_form, "post_form": post_form}
+    context = {"username": username, "coordinates_form": coordinates_form, "depths": depths, "weathers": weathers, "postobservation_form": postobservation_form, "post_form": post_form}
     
     return render(request, "contributor/post/capture.html", context)
 
@@ -284,6 +312,8 @@ def ContributorPostUncertainCreateCapture(request):
 @login_required(login_url = "Contributor Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorPostUncertainCreateChoose(request):
+    username = request.user.username
+
     coordinates_form = CoordinatesForm()
 
     postobservation_form = PostObservationForm()
@@ -352,7 +382,7 @@ def ContributorPostUncertainCreateChoose(request):
         
         post_form = PostForm() 
 
-    context = {"coordinates_form": coordinates_form, "depths": depths, "weathers": weathers, "postobservation_form": postobservation_form, "post_form": post_form}
+    context = {"username": username, "coordinates_form": coordinates_form, "depths": depths, "weathers": weathers, "postobservation_form": postobservation_form, "post_form": post_form}
     
     return render(request, "contributor/post/choose.html", context)
 
@@ -360,17 +390,21 @@ def ContributorPostUncertainCreateChoose(request):
 @login_required(login_url = "Contributor Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorPostUncertainRead(request, id):
+    username = request.user.username
+
     uncertain_post = Post.objects.get(id = id, user = request.user.user, post_status = 3)
     
-    context = {"uncertain_post": uncertain_post}
+    context = {"username": username, "uncertain_post": uncertain_post}
     
     return render(request, "contributor/post/read.html", context)
 
 
 def ContributorPostUncertainUpdate(request, id):
+    username = request.user.username
+
     uncertain_post = Post.objects.get(id = id, user = request.user.user, post_status = 3)
     
-    context = {"uncertain_post": uncertain_post}
+    context = {"username": username, "uncertain_post": uncertain_post}
     
     return render(request, "contributor/post/update.html", context)
 
@@ -378,6 +412,8 @@ def ContributorPostUncertainUpdate(request, id):
 @login_required(login_url = "Contributor Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorPostUncertainUpdateCapture(request, id):
+    username = request.user.username
+
     uncertain_post = Post.objects.get(id = id, post_status = 3)   
 
     depths = Depth.objects.all()
@@ -426,7 +462,7 @@ def ContributorPostUncertainUpdateCapture(request, id):
         
         post_form = PostForm(instance = uncertain_post)       
 
-    context = {"uncertain_post": uncertain_post, "coordinates_form": coordinates_form, "depths": depths, "weathers": weathers, "postobservation_form": postobservation_form, "post_form": post_form}
+    context = {"username": username, "uncertain_post": uncertain_post, "coordinates_form": coordinates_form, "depths": depths, "weathers": weathers, "postobservation_form": postobservation_form, "post_form": post_form}
     
     return render(request, "contributor/post/capture.html", context)
 
@@ -434,6 +470,8 @@ def ContributorPostUncertainUpdateCapture(request, id):
 @login_required(login_url = "Contributor Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorPostUncertainUpdateChoose(request, id):
+    username = request.user.username
+
     uncertain_post = Post.objects.get(id = id, post_status = 3)   
 
     depths = Depth.objects.all()
@@ -482,6 +520,6 @@ def ContributorPostUncertainUpdateChoose(request, id):
         
         post_form = PostForm(instance = uncertain_post)       
 
-    context = {"uncertain_post": uncertain_post, "coordinates_form": coordinates_form, "depths": depths, "weathers": weathers, "postobservation_form": postobservation_form, "post_form": post_form}
+    context = {"username": username, "uncertain_post": uncertain_post, "coordinates_form": coordinates_form, "depths": depths, "weathers": weathers, "postobservation_form": postobservation_form, "post_form": post_form}
     
     return render(request, "contributor/post/choose.html", context)

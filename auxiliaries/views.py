@@ -6,6 +6,8 @@ from authentications.views import ContributorCheck
 
 # Create your views here.
 def PublicAnnouncement(request):
+    username = "public/everyone"
+
     announcements = Announcement.objects.all()
 
     if request.method == "GET":
@@ -33,15 +35,17 @@ def PublicAnnouncement(request):
 
             messages.error(request, username + ", " + "information input is empty within COTSEye.")
 
-    context = {"announcements": announcements}
+    context = {"username": username, "announcements": announcements}
 
     return render(request, "public/announcement/announcement.html", context)
 
 
 def PublicAnnouncementRead(request, id):
+    username = "public/everyone"
+
     announcement = Announcement.objects.filter(id = id)
 
-    context = {"announcement": announcement}
+    context = {"username": username, "announcement": announcement}
 
     return render(request, "public/announcement/read.html", context)
 
@@ -49,6 +53,8 @@ def PublicAnnouncementRead(request, id):
 @login_required(login_url = "Contributor Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorAnnouncement(request):
+    username = request.user.username
+
     announcements = Announcement.objects.all()
 
     if request.method == "GET":
@@ -76,7 +82,7 @@ def ContributorAnnouncement(request):
 
             messages.error(request, username + ", " + "information input is empty within COTSEye.")
 
-    context = {"announcements": announcements}
+    context = {"username": username, "announcements": announcements}
 
     return render(request, "contributor/announcement/announcement.html", context)
 
@@ -84,8 +90,10 @@ def ContributorAnnouncement(request):
 @login_required(login_url = "Contributor Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorAnnouncementRead(request, id): 
+    username = request.user.username
+
     announcement = Announcement.objects.filter(id = id)
 
-    context = {"announcement": announcement}
+    context = {"username": username, "announcement": announcement}
 
     return render(request, "contributor/announcement/read.html", context)

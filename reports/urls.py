@@ -9,6 +9,8 @@ urlpatterns = [
     
     path("contributor/post/valid/read/<int:id>", views.ContributorPostValidRead, name = "Contributor Post Valid Read"),
     
+    path("contributor/post/valid/reads/<int:id>", views.ContributorPostValidReads, name = "Contributor Post Valid Reads"),
+
     path("contributor/post/invalid", views.ContributorPostInvalid, name = "Contributor Post Invalid"),
     
     path("contributor/post/invalid/read/<int:id>", views.ContributorPostInvalidRead, name = "Contributor Post Invalid Read"),

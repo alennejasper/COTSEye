@@ -77,13 +77,13 @@
                 <div class = "coordinates">
                     <input type = "text" value = "{{post.coordinates.latitude | default:'0'}}° N, {{post.coordinates.longitude | default:'0'}}° E" id = "coordinates" name = "coordinates" readonly>
                         
-                    <i class = "fa-solid fa-arrow-up-wide-short"></i>
+                    <i class = "fa-solid fa-location-dot"></i>
                 </div>
             </div>
         </div>
 
         <div class = "button">
-            <a class = "read-posts" href = "{% url 'Contributor Post Valid Read' post.id %}">Read</a>
+            <a class = "read-post" href = "{% url 'Contributor Post Valid Read' post.id %}">Read</a>
         </div>    
     </div>
 </div>

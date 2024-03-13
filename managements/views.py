@@ -7,6 +7,8 @@ from managements.models import *
 
 # Create your views here.
 def PublicStatus(request):
+    username = "public/everyone"
+
     statuses = Status.objects.all()
 
     if request.method == "GET":
@@ -38,7 +40,7 @@ def PublicStatus(request):
 
             messages.error(request, username + ", " + "information input is empty within COTSEye.")
 
-    context = {"statuses": statuses}
+    context = {"username": username, "statuses": statuses}
 
     return render(request, "public/status/status.html", context)
 
@@ -46,6 +48,8 @@ def PublicStatus(request):
 @login_required(login_url = "Contributor Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorStatus(request):
+    username = request.user.username
+
     statuses = Status.objects.all()
 
     if request.method == "GET":
@@ -77,12 +81,14 @@ def ContributorStatus(request):
 
             messages.error(request, username + ", " + "information input is empty within COTSEye.")
 
-    context = {"statuses": statuses}
+    context = {"username": username, "statuses": statuses}
 
     return render(request, "contributor/status/status.html", context)
 
 
 def PublicIntervention(request):
+    username = "public/everyone"
+
     interventions = Intervention.objects.all()
 
     if request.method == "GET":
@@ -110,15 +116,17 @@ def PublicIntervention(request):
 
             messages.error(request, username + ", " + "information input is empty within COTSEye.")
 
-    context = {"interventions": interventions}
+    context = {"username": username, "interventions": interventions}
 
     return render(request, "public/intervention/intervention.html", context)
 
 
 def PublicInterventionRead(request, id):
+    username = "public/everyone"
+    
     intervention = Intervention.objects.filter(id = id)
 
-    context = {"intervention": intervention}
+    context = {"username": username, "intervention": intervention}
 
     return render(request, "public/intervention/read.html", context)
 
@@ -126,6 +134,8 @@ def PublicInterventionRead(request, id):
 @login_required(login_url = "Contributor Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorIntervention(request):
+    username = request.user.username
+
     interventions = Intervention.objects.all()
 
     if request.method == "GET":
@@ -153,7 +163,7 @@ def ContributorIntervention(request):
 
             messages.error(request, username + ", " + "information input is empty within COTSEye.")
 
-    context = {"interventions": interventions}
+    context = {"username": username, "interventions": interventions}
 
     return render(request, "contributor/intervention/intervention.html", context)
 
@@ -161,8 +171,10 @@ def ContributorIntervention(request):
 @login_required(login_url = "Contributor Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorInterventionRead(request, id):
+    username = request.user.username
+
     intervention = Intervention.objects.filter(id = id)
 
-    context = {"intervention": intervention}
+    context = {"username": username, "intervention": intervention}
 
     return render(request, "contributor/intervention/read.html", context)

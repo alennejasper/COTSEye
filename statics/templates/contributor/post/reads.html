@@ -1,0 +1,56 @@
+{% extends "contributor/index/index.html" %}
+{% load static %}
+
+{% block content %}
+{% if valid_post %}
+<div class = "post">
+    <div class = "card-body">
+        <p><i class = "fa-solid fa-flag"></i>Valid</p>
+
+        <p><i class = "fa-solid fa-calendar-check"></i>{{valid_post.capture_date | date:'M. j, Y g:i a' | default:'nonexistent'}}</p>
+
+        <p><i class = "fa-solid fa-location-dot"></i>{{valid_post.coordinates.latitude | default:'0'}}° N, {{valid_post.coordinates.longitude | default:'0'}}° E</p>
+
+        <div class = "post-gallery">
+            {% for post_photo in valid_post.post_photos.all %}
+                <img class = "gallery-photo" src = "{{post_photo.post_photo.url}}">
+            {% endfor %}      
+        </div>
+
+        <p>{{valid_post.description | default:'nonexistent'}}</p>
+
+        <table>
+            <caption>Post observation</caption>
+
+            <tr>
+                <td>Size</td>
+
+                <td>{{valid_post.post_observation.size | default:'0'}}</td>
+            </tr>
+
+            <tr>
+              <td>Depth</td>
+
+              <td>{{valid_post.post_observation.depth | default:'0'}}</td>
+            </tr>
+
+            <tr>
+                <td>Density</td>
+  
+                <td>{{valid_post.post_observation.density | default:'0'}}</td>
+            </tr>
+
+            <tr>
+                <td>Weather</td>
+  
+                <td>{{valid_post.post_observation.weather | default:'nonexistent'}}</td>
+            </tr>
+        </table>
+
+        <div class = "button">
+            <a class = "share-post" href = "">Share</a>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock content %}

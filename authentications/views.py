@@ -37,7 +37,7 @@ def PublicHome(request):
     if not any(message.level in [messages.INFO, messages.SUCCESS, messages.ERROR] for message in messages.get_messages(request)):
         messages.info(request, username + ", " + "kindly see announcements within the menu of COTSEye to check for updates today.")
 
-    context = {"posts": posts, "statuses": statuses}
+    context = {"username": username, "posts": posts, "statuses": statuses}
     
     return render(request, "public/home/home.html", context)
 
@@ -250,12 +250,14 @@ def ContributorHome(request):
 
         statuses = Status.objects.all()
 
+        username = request.user.username
+
     except:
         posts = None
 
         statuses = None
         
-    context = {"posts": posts, "statuses": statuses}
+    context = {"posts": posts, "statuses": statuses, "username": username}
 
     return render(request, "contributor/home/home.html", context)
 
@@ -265,7 +267,9 @@ def ContributorHome(request):
 def ContributorProfile(request):
     user = User.objects.get(account = request.user)
 
-    context = {"user": user}
+    username = request.user.username
+
+    context = {"user": user, "username": username}
 
     return render(request, "contributor/profile/profile.html", context)
 
@@ -274,6 +278,8 @@ def ContributorProfile(request):
 @user_passes_test(ContributorCheck, login_url = "Contributor Login")
 def ContributorProfileUpdate(request):
     user = User.objects.get(account = request.user)
+
+    username = request.user.username
 
     if request.method == "POST":
         profile_form = ProfileForm(request.POST, request.FILES, instance = request.user.user)
@@ -290,7 +296,7 @@ def ContributorProfileUpdate(request):
     else:
         profile_form = ProfileForm(request.user.user)
 
-    context = {"user": user, "profile_form": profile_form}
+    context = {"user": user, "username": username, "profile_form": profile_form}
     
     return render(request, "contributor/profile/update.html", context)
 

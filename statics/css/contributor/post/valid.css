@@ -1075,7 +1075,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column label[for = "valid-posts"]{
+    .post .card-body .field .column label[for = "coordinates"]{
         margin-top: 0px;
         display: inline-block;
         font-family: "Overlock";
