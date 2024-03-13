@@ -388,9 +388,27 @@ input[type = "checkbox"]:checked::before{
     margin-right: 0px !important;
     margin-top: 0px !important;
     margin-bottom: 0px !important;
-    width: 386px !important;
+    width: 326px !important;
     display: grid !important;
     grid-column: 1 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .leaflet-popup-content{
+        width: 249px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .leaflet-popup-content{
+        width: 229px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .leaflet-popup-content{
+        width: 200px !important;
+    }
 }
 
 .popup .card-header{
@@ -448,6 +466,10 @@ input[type = "checkbox"]:checked::before{
         overflow: hidden !important;
         text-overflow: ellipsis;
     }
+}
+
+.leaflet-popup-close-button{
+    display: none !important;
 }
 
 .popup .card-body{
