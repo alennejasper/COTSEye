@@ -1,0 +1,26 @@
+{% extends "contributor/service/index/index.html" %}
+{% load static %}
+
+{% block content %}
+{% for announcement in announcement %}
+<div class = "announcement">
+    <div class = "card-body">
+        <header>{{announcement.title | default:'nonexistent'}}</header>
+
+        <p><i class = "fa-solid fa-feather"></i>{{announcement.user | default:'nonexistent'}}</p>
+
+        <p><i class = "fa-solid fa-calendar-check"></i>{{announcement.release_date | date:'M. j, Y g:i a' | default:'nonexistent'}}</p>
+
+        <p><i class = "fa-solid fa-location-dot"></i>{{announcement.place | default:'nonexistent'}}</p>
+
+        <img src = "{{announcement.announcement_photo.url}}">
+
+        <p>{{announcement.context | default:'nonexistent'}}</p>
+
+        <div class = "buttons">
+            <a class = "share-announcement" href = "">Share</a>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock content %}

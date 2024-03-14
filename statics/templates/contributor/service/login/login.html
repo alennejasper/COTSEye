@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+{% load static %}
+{% load socialaccount %}
+
+<html lang = "en">
+    <head>
+        <meta charset = "UTF-8">
+            
+        <meta http-equiv = "X-UA-Compatible" content = "IE=edge">
+            
+        <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+
+        <link rel = "manifest" href = "{% static 'templates/webwares/manifest.json' %}">
+
+        <meta name = "theme-color" content = "#154360">
+
+        <link rel = "apple-touch-icon" href = "{% static 'assets/icons/logo (180 x 180).png' %}">
+
+        <meta name = "apple-mobile-web-app-status-bar" content = "#154360">
+
+        <link rel = "icon" type = "image/x-icon" href = "{% static 'assets/icons/logo.png' %}">
+                        
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/login/login.css' %}">
+                    
+        <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">          
+        
+        <script src = "https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <title>Login | COTSEye</title>
+    </head>
+
+    <body>
+        <div class = "content">
+            <div class = "login">
+                <div class = "card-header">
+                    <header>Login</header>
+                </div>
+
+                <div class = "card-body">
+                    <form action = "" method = "POST">
+                        {% csrf_token %}
+
+                        <div class = "field">
+                            <div class = "column">
+                                <label for = "username">Username</label>
+
+                                <div class = "username">
+                                    <input type = "text" id = "username" name = "username" data-initial-value = "cotseye/" oninput = "retainValue(this);" required>
+                                
+                                    <i class = "fa-solid fa-user"></i>
+                                </div>
+                        
+                                <label for = "password1">Password</label>
+
+                                <div class = "password1">
+                                    <input type = "password" id = "password1" name = "password1" required>
+
+                                    <i class = "fa-solid fa-eye" id = "toggle-password1"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class = "g-recaptcha" data-sitekey = "6LfYwRMnAAAAAG8B0ZyMeD-NNV1pnVFlXS_A0-yV" data-error-callback = "recaptchaError"></div>
+
+                        <button type = "submit">Login</button>
+                    </form>
+                    
+                    {% if messages %}
+                        {% for message in messages %}
+                            {% if message.tags == "info" %}<script>Swal.fire({title: "Hey!", text: "{{message}}", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}})</script>
+                            {% elif message.tags == "success" %}<script>Swal.fire({title: "Yay!", text: "{{message}}", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}})</script>
+                            {% else %}<script>Swal.fire({title: "Oops!", text: "{{message}}", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}})</script>
+                            {% endif %}    
+                        {% endfor %}
+                    {% endif %}
+                    
+                    <div class = "register">
+                        <span>Do not have an account? <a href = "{% url 'Contributor Service Register' %}">Register</a></span>
+                    </div>
+
+                    <div class = "line"></div>
+
+                    <div class = "socials">
+                        <button class = "facebook">
+                            <a href = "{% provider_login_url 'facebook' %}?next=/contributor/login/facebook/">
+                                <i class = "fa-brands fa-facebook-f"></i> 
+                            
+                                <span>Connect with Facebook</span>
+                            </a>
+                        </button>
+
+                        <button class = "google">
+                            <a href = "{% provider_login_url 'google' %}?next=/contributor/login/google/">
+                                <i class = "fa-brands fa-google"></i> 
+                            
+                                <span>Connect with Google</span>
+                            </a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+    <script src = "{% static 'templates/webwares/application.js' %}"></script>
+
+    <script type = "text/javascript">if (window.location.hash && window.location.hash === "#_=_"){ window.location.hash = ""; history.pushState("", document.title, window.location.pathname);}</script>
+
+    <script src = "https://www.google.com/recaptcha/api.js" async defer></script>
+
+    <script src = "https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script> 
+		window.onload = function(){
+			var $recaptcha = document.querySelector("#g-recaptcha-response");
+	
+			if ($recaptcha){
+			    $recaptcha.setAttribute("required", "required");
+			}
+		};
+	</script>
+
+    <script>
+        function recaptchaError(){
+            Swal.fire({title: "Oops!", text: "The COTSEye cannot contact reCAPTCHA today. Kindly check the connection and try again.", icon: "error", iconColor: "#E74C3C", confirmButtonColor: "#E74C3C"});
+        }
+    </script>
+
+    <script>
+        const togglePassword1 = document.querySelector("#toggle-password1");
+
+        const password1 = document.querySelector("#password1");
+
+        togglePassword1.addEventListener("click", function(){
+            const type = password1.getAttribute("type") === "password" ? "text" : "password";
+
+            password1.setAttribute("type", type);
+
+            this.classList.toggle("fa-eye");
+
+            this.classList.toggle("fa-eye-slash");
+        });
+	</script>
+
+    <script>
+        function retainValue(input){
+            if (input.value.length <= "cotseye/".length){
+                input.value = "cotseye/";
+
+                input.selectionStart = "cotseye/".length;
+            }
+        }
+    </script>
+
+    <script>
+        document.getElementById("username").addEventListener("click", function(){
+            this.style.color = "#154360";
+
+            this.value = this.dataset.initialValue;
+
+            this.focus();
+        });
+    </script>
+</html>

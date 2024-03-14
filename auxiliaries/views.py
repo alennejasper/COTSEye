@@ -5,7 +5,7 @@ from auxiliaries.models import *
 from authentications.views import ContributorCheck
 
 # Create your views here.
-def PublicAnnouncement(request):
+def PublicServiceAnnouncement(request):
     username = "public/everyone"
 
     announcements = Announcement.objects.all()
@@ -37,22 +37,22 @@ def PublicAnnouncement(request):
 
     context = {"username": username, "announcements": announcements}
 
-    return render(request, "public/announcement/announcement.html", context)
+    return render(request, "public/service/announcement/announcement.html", context)
 
 
-def PublicAnnouncementRead(request, id):
+def PublicServiceAnnouncementRead(request, id):
     username = "public/everyone"
 
     announcement = Announcement.objects.filter(id = id)
 
     context = {"username": username, "announcement": announcement}
 
-    return render(request, "public/announcement/read.html", context)
+    return render(request, "public/service/announcement/read.html", context)
 
 
-@login_required(login_url = "Contributor Login")
-@user_passes_test(ContributorCheck, login_url = "Contributor Login")
-def ContributorAnnouncement(request):
+@login_required(login_url = "Contributor Service Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
+def ContributorServiceAnnouncement(request):
     username = request.user.username
 
     announcements = Announcement.objects.all()
@@ -84,16 +84,16 @@ def ContributorAnnouncement(request):
 
     context = {"username": username, "announcements": announcements}
 
-    return render(request, "contributor/announcement/announcement.html", context)
+    return render(request, "contributor/service/announcement/announcement.html", context)
 
 
-@login_required(login_url = "Contributor Login")
-@user_passes_test(ContributorCheck, login_url = "Contributor Login")
-def ContributorAnnouncementRead(request, id): 
+@login_required(login_url = "Contributor Service Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
+def ContributorServiceAnnouncementRead(request, id): 
     username = request.user.username
 
     announcement = Announcement.objects.filter(id = id)
 
     context = {"username": username, "announcement": announcement}
 
-    return render(request, "contributor/announcement/read.html", context)
+    return render(request, "contributor/service/announcement/read.html", context)

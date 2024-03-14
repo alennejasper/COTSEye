@@ -3,33 +3,33 @@ from reports import views
 
 # Create your URL configuration here.
 urlpatterns = [    
-    path("contributor/post/", views.ContributorPost, name = "Contributor Post"),
+    path("contributor/service/post/", views.ContributorServicePost, name = "Contributor Service Post"),
 
-    path("contributor/post/valid", views.ContributorPostValid, name = "Contributor Post Valid"),
+    path("contributor/service/post/valid/", views.ContributorServicePostValid, name = "Contributor Service Post Valid"),
     
-    path("contributor/post/valid/read/<int:id>", views.ContributorPostValidRead, name = "Contributor Post Valid Read"),
+    path("contributor/service/post/valid/read/<int:id>", views.ContributorServicePostValidRead, name = "Contributor Service Post Valid Read"),
     
-    path("contributor/post/valid/reads/<int:id>", views.ContributorPostValidReads, name = "Contributor Post Valid Reads"),
+    path("contributor/service/post/valid/reads/<int:id>", views.ContributorServicePostValidReads, name = "Contributor Service Post Valid Reads"),
 
-    path("contributor/post/invalid", views.ContributorPostInvalid, name = "Contributor Post Invalid"),
+    path("contributor/service/post/invalid/", views.ContributorServicePostInvalid, name = "Contributor Service Post Invalid"),
     
-    path("contributor/post/invalid/read/<int:id>", views.ContributorPostInvalidRead, name = "Contributor Post Invalid Read"),
+    path("contributor/service/post/invalid/read/<int:id>", views.ContributorServicePostInvalidRead, name = "Contributor Service Post Invalid Read"),
     
-    path("contributor/post/invalid/delete/<int:id>", views.ContributorPostInvalidDelete, name = "Contributor Post Invalid Delete"),
+    path("contributor/service/post/invalid/delete/<int:id>", views.ContributorServicePostInvalidDelete, name = "Contributor Service Post Invalid Delete"),
 
-    path("contributor/post/uncertain", views.ContributorPostUncertain, name = "Contributor Post Uncertain"),
+    path("contributor/service/post/uncertain/", views.ContributorServicePostUncertain, name = "Contributor Service Post Uncertain"),
     
-    path("contributor/post/uncertain/create/", views.ContributorPostUncertainCreate, name = "Contributor Post Uncertain Create"),
+    path("contributor/service/post/uncertain/create/", views.ContributorServicePostUncertainCreate, name = "Contributor Service Post Uncertain Create"),
 
-    path("contributor/post/uncertain/create/capture/", views.ContributorPostUncertainCreateCapture, name = "Contributor Post Uncertain Create Capture"),
+    path("contributor/service/post/uncertain/create/capture/", views.ContributorServicePostUncertainCreateCapture, name = "Contributor Service Post Uncertain Create Capture"),
 
-    path("contributor/post/uncertain/create/choose/", views.ContributorPostUncertainCreateChoose, name = "Contributor Post Uncertain Create Choose"),
+    path("contributor/service/post/uncertain/create/choose/", views.ContributorServicePostUncertainCreateChoose, name = "Contributor Service Post Uncertain Create Choose"),
 
-    path("contributor/post/uncertain/read/<int:id>", views.ContributorPostUncertainRead, name = "Contributor Post Uncertain Read"),
+    path("contributor/service/post/uncertain/read/<int:id>", views.ContributorServicePostUncertainRead, name = "Contributor Service Post Uncertain Read"),
 
-    path("contributor/post/uncertain/read/<int:id>/update/", views.ContributorPostUncertainUpdate, name = "Contributor Post Uncertain Update"),
+    path("contributor/service/post/uncertain/read/<int:id>/update/", views.ContributorServicePostUncertainUpdate, name = "Contributor Service Post Uncertain Update"),
         
-    path("contributor/post/uncertain/read/<int:id>/update/capture/", views.ContributorPostUncertainUpdateCapture, name = "Contributor Post Uncertain Update Capture"),
+    path("contributor/service/post/uncertain/read/<int:id>/update/capture/", views.ContributorServicePostUncertainUpdateCapture, name = "Contributor Service Post Uncertain Update Capture"),
 
-    path("contributor/post/uncertain/read/<int:id>/update/choose/", views.ContributorPostUncertainUpdateChoose, name = "Contributor Post Uncertain Update Choose"),
+    path("contributor/service/post/uncertain/read/<int:id>/update/choose/", views.ContributorServicePostUncertainUpdateChoose, name = "Contributor Service Post Uncertain Update Choose"),
 ]

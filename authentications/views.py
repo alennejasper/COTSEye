@@ -18,7 +18,7 @@ def PublicHome(request):
 
     if user.is_authenticated:
         if user.usertype_id == 3:
-            return redirect("Contributor Home")
+            return redirect("Contributor Service Home")
         
         elif user.usertype_id == 2 or user.usertype_id == 1:
             return redirect("admin:index")
@@ -39,10 +39,10 @@ def PublicHome(request):
 
     context = {"username": username, "posts": posts, "statuses": statuses}
     
-    return render(request, "public/home/home.html", context)
+    return render(request, "public/service/home/home.html", context)
 
 
-def ContributorRegister(request):
+def ContributorServiceRegister(request):
     account_form = AccountForm()
 
     user_form = UserForm()
@@ -68,7 +68,7 @@ def ContributorRegister(request):
                 
                 messages.success(request, username + ", " + "your information input was recorded for COTSEye.")
                 
-                return redirect("Contributor Login")
+                return redirect("Contributor Service Login")
         
         else:
             messages.error(request, "Username exists or is not valid, or passwords are short, entirely numeric, or do not match.")
@@ -82,10 +82,10 @@ def ContributorRegister(request):
 
     context = {"account_form": account_form, "user_form": user_form}
     
-    return render(request, "contributor/register/register.html", context)
+    return render(request, "contributor/service/register/register.html", context)
 
 
-def ContributorLogin(request):
+def ContributorServiceLogin(request):
     @receiver(social_account_updated)
     def UpdateUser(sender, request, sociallogin, **kwargs):
         if sociallogin.account.provider == "google":
@@ -96,7 +96,7 @@ def ContributorLogin(request):
                 
                 sociallogin.state["save"] = False
                 
-                return redirect("Contributor Login")
+                return redirect("Contributor Service Login")
             
             else:
                 if sociallogin.account.provider == "google":
@@ -131,7 +131,7 @@ def ContributorLogin(request):
                 
                 sociallogin.state["save"] = False
                 
-                return redirect("Contributor Login")
+                return redirect("Contributor Service Login")
             
             else:
                 if sociallogin.account.provider == "facebook":
@@ -171,7 +171,7 @@ def ContributorLogin(request):
             if account.usertype_id == 3:
                 login(request, account)
                 
-                return redirect("Contributor Home")
+                return redirect("Contributor Service Home")
             
             else:
                 messages.error(request, "Username or password is not valid.")
@@ -181,10 +181,10 @@ def ContributorLogin(request):
 
     context = {}
 
-    return render(request, "contributor/login/login.html", context)
+    return render(request, "contributor/service/login/login.html", context)
 
 
-def ContributorLoginFacebook(request):
+def ContributorServiceLoginFacebook(request):
     if request.method == "POST":
         username = request.POST.get("username")
 
@@ -206,10 +206,10 @@ def ContributorLoginFacebook(request):
 
     context = {}
 
-    return render(request, "contributor/login/facebook.html", context)
+    return render(request, "contributor/service/login/facebook.html", context)
 
 
-def ContributorLoginGoogle(request):
+def ContributorServiceLoginGoogle(request):
     if request.method == "POST":
         username = request.POST.get("username")
 
@@ -231,7 +231,7 @@ def ContributorLoginGoogle(request):
 
     context = {}
 
-    return render(request, "contributor/login/google.html", context)
+    return render(request, "contributor/service/login/google.html", context)
 
 
 def ContributorCheck(account):
@@ -242,9 +242,9 @@ def ContributorCheck(account):
             return False
 
 
-@login_required(login_url = "Contributor Login")
-@user_passes_test(ContributorCheck, login_url = "Contributor Login")
-def ContributorHome(request):
+@login_required(login_url = "Contributor Service Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
+def ContributorServiceHome(request):
     try:
         posts = Post.objects.filter(post_status = 1)
 
@@ -259,24 +259,24 @@ def ContributorHome(request):
         
     context = {"posts": posts, "statuses": statuses, "username": username}
 
-    return render(request, "contributor/home/home.html", context)
+    return render(request, "contributor/service/home/home.html", context)
 
 
-@login_required(login_url = "Contributor Login")
-@user_passes_test(ContributorCheck, login_url = "Contributor Login")
-def ContributorProfile(request):
+@login_required(login_url = "Contributor Service Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
+def ContributorServiceProfile(request):
     user = User.objects.get(account = request.user)
 
     username = request.user.username
 
     context = {"user": user, "username": username}
 
-    return render(request, "contributor/profile/profile.html", context)
+    return render(request, "contributor/service/profile/profile.html", context)
 
 
-@login_required(login_url = "Contributor Login")
-@user_passes_test(ContributorCheck, login_url = "Contributor Login")
-def ContributorProfileUpdate(request):
+@login_required(login_url = "Contributor Service Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
+def ContributorServiceProfileUpdate(request):
     user = User.objects.get(account = request.user)
 
     username = request.user.username
@@ -291,19 +291,19 @@ def ContributorProfileUpdate(request):
 
             messages.success(request, username + ", " + "your information input was recorded for COTSEye.")
             
-            return redirect("Contributor Profile")
+            return redirect("Contributor Service Profile")
             
     else:
         profile_form = ProfileForm(request.user.user)
 
     context = {"user": user, "username": username, "profile_form": profile_form}
     
-    return render(request, "contributor/profile/update.html", context)
+    return render(request, "contributor/service/profile/update.html", context)
 
 
-@login_required(login_url = "Contributor Login")
-@user_passes_test(ContributorCheck, login_url = "Contributor Login")
-def ContributorLogout(request):
+@login_required(login_url = "Contributor Service Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
+def ContributorServiceLogout(request):
     username = request.user.username
 
     logout(request)
@@ -313,7 +313,7 @@ def ContributorLogout(request):
     return redirect("Public Home")
 
 
-def OfficerRegister(request):
+def OfficerDatabaseRegister(request):
     account_form = AccountForm()
 
     user_form = UserForm()
@@ -339,7 +339,7 @@ def OfficerRegister(request):
                 
                 messages.success(request, username + ", " + "your information input was recorded for COTSEye.")
                 
-                return redirect("Officer Login")
+                return redirect("Officer Database Login")
         
         else:
             messages.error(request, "Username exists or is not valid, or passwords are short, entirely numeric, or do not match.")
@@ -356,7 +356,7 @@ def OfficerRegister(request):
     return render(request, "officer/register/register.html", context)
 
 
-def OfficerLogin(request):
+def OfficerDatabaseLogin(request):
     @receiver(social_account_updated)
     def UpdateUser(sender, request, sociallogin, **kwargs):
         if sociallogin.account.provider == "google":
@@ -367,7 +367,7 @@ def OfficerLogin(request):
                 
                 sociallogin.state["save"] = False
                 
-                return redirect("Officer Login")
+                return redirect("Officer Database Login")
             
             else:
                 if sociallogin.account.provider == "google":
@@ -402,7 +402,7 @@ def OfficerLogin(request):
                 
                 sociallogin.state["save"] = False
                 
-                return redirect("Officer Login")
+                return redirect("Officer Database Login")
             
             else:
                 if sociallogin.account.provider == "facebook":
@@ -452,10 +452,10 @@ def OfficerLogin(request):
 
     context = {}
 
-    return render(request, "officer/login/login.html", context)
+    return render(request, "officer/database/login/login.html", context)
 
 
-def OfficerLoginFacebook(request):
+def OfficerDatabaseLoginFacebook(request):
     if request.method == "POST":
         username = request.POST.get("username")
         
@@ -477,10 +477,10 @@ def OfficerLoginFacebook(request):
 
     context = {}
     
-    return render(request, "officer/login/facebook.html", context)
+    return render(request, "officer/database/login/facebook.html", context)
 
 
-def OfficerLoginGoogle(request):
+def OfficerDatabaseLoginGoogle(request):
     if request.method == "POST":
         username = request.POST.get("username")
         
@@ -502,10 +502,10 @@ def OfficerLoginGoogle(request):
 
     context = {}
     
-    return render(request, "officer/login/google.html", context)
+    return render(request, "officer/database/login/google.html", context)
 
 
-@login_required(login_url = "Officer Login")
+@login_required(login_url = "Officer Database Login")
 def OfficerLogout(request):
     username = request.user.username
 
@@ -513,10 +513,10 @@ def OfficerLogout(request):
     
     messages.success(request, username + ", " + "your account used just now was signed out of COTSEye.")
     
-    return redirect("Officer Login")
+    return redirect("Officer Database Login")
 
 
-def AdministratorLogin(request):
+def AdministratorDatabaseLogin(request):
     if request.method == "POST":
         username = request.POST.get("username")
         
@@ -538,11 +538,11 @@ def AdministratorLogin(request):
 
     context = {}
 
-    return render(request, "admin/login/login.html", context)
+    return render(request, "admin/database/login/login.html", context)
 
 
-@login_required(login_url = "Administrator Login")
-def AdministratorLogout(request):
+@login_required(login_url = "Administrator Database Login")
+def AdministratorDatabaseLogout(request):
     user = request.user
     
     username = request.user.username
@@ -552,7 +552,7 @@ def AdministratorLogout(request):
         
         messages.success(request, username + ", " + "your account used just now was signed out of COTSEye.")
         
-        return redirect("Administrator Login")
+        return redirect("Administrator Database Login")
     
     elif user.usertype_id == 2:
         logout(request)

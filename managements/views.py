@@ -6,7 +6,7 @@ from managements.models import *
 
 
 # Create your views here.
-def PublicStatus(request):
+def PublicServiceStatus(request):
     username = "public/everyone"
 
     statuses = Status.objects.all()
@@ -42,12 +42,12 @@ def PublicStatus(request):
 
     context = {"username": username, "statuses": statuses}
 
-    return render(request, "public/status/status.html", context)
+    return render(request, "public/service/status/status.html", context)
 
 
-@login_required(login_url = "Contributor Login")
-@user_passes_test(ContributorCheck, login_url = "Contributor Login")
-def ContributorStatus(request):
+@login_required(login_url = "Contributor Service Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
+def ContributorServiceStatus(request):
     username = request.user.username
 
     statuses = Status.objects.all()
@@ -83,10 +83,10 @@ def ContributorStatus(request):
 
     context = {"username": username, "statuses": statuses}
 
-    return render(request, "contributor/status/status.html", context)
+    return render(request, "contributor/service/status/status.html", context)
 
 
-def PublicIntervention(request):
+def PublicServiceIntervention(request):
     username = "public/everyone"
 
     interventions = Intervention.objects.all()
@@ -118,22 +118,22 @@ def PublicIntervention(request):
 
     context = {"username": username, "interventions": interventions}
 
-    return render(request, "public/intervention/intervention.html", context)
+    return render(request, "public/service/intervention/intervention.html", context)
 
 
-def PublicInterventionRead(request, id):
+def PublicServiceInterventionRead(request, id):
     username = "public/everyone"
     
     intervention = Intervention.objects.filter(id = id)
 
     context = {"username": username, "intervention": intervention}
 
-    return render(request, "public/intervention/read.html", context)
+    return render(request, "public/service/intervention/read.html", context)
 
 
-@login_required(login_url = "Contributor Login")
-@user_passes_test(ContributorCheck, login_url = "Contributor Login")
-def ContributorIntervention(request):
+@login_required(login_url = "Contributor Service Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
+def ContributorServiceIntervention(request):
     username = request.user.username
 
     interventions = Intervention.objects.all()
@@ -165,16 +165,16 @@ def ContributorIntervention(request):
 
     context = {"username": username, "interventions": interventions}
 
-    return render(request, "contributor/intervention/intervention.html", context)
+    return render(request, "contributor/service/intervention/intervention.html", context)
 
 
-@login_required(login_url = "Contributor Login")
-@user_passes_test(ContributorCheck, login_url = "Contributor Login")
-def ContributorInterventionRead(request, id):
+@login_required(login_url = "Contributor Service Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
+def ContributorServiceInterventionRead(request, id):
     username = request.user.username
 
     intervention = Intervention.objects.filter(id = id)
 
     context = {"username": username, "intervention": intervention}
 
-    return render(request, "contributor/intervention/read.html", context)
+    return render(request, "contributor/service/intervention/read.html", context)

@@ -5,33 +5,33 @@ from authentications import views
 urlpatterns = [
     path("", views.PublicHome, name = "Public Home"),
     
-    path("contributor/register/", views.ContributorRegister, name = "Contributor Register"),
+    path("contributor/service/register/", views.ContributorServiceRegister, name = "Contributor Service Register"),
    
-    path("contributor/login/", views.ContributorLogin, name = "Contributor Login"),
+    path("contributor/service/login/", views.ContributorServiceLogin, name = "Contributor Service Login"),
     
-    path("contributor/login/facebook/", views.ContributorLoginFacebook, name = "Contributor Login Facebook"),
+    path("contributor/service/login/facebook/", views.ContributorServiceLoginFacebook, name = "Contributor Service Login Facebook"),
     
-    path("contributor/login/google/", views.ContributorLoginGoogle, name = "Contributor Login Google"),
+    path("contributor/service/login/google/", views.ContributorServiceLoginGoogle, name = "Contributor Service Login Google"),
     
-    path("contributor/home/", views.ContributorHome, name = "Contributor Home"),
+    path("contributor/service/home/", views.ContributorServiceHome, name = "Contributor Service Home"),
     
-    path("contributor/profile/", views.ContributorProfile, name = "Contributor Profile"),
+    path("contributor/service/profile/", views.ContributorServiceProfile, name = "Contributor Service Profile"),
     
-    path("contributor/profile/update/", views.ContributorProfileUpdate, name = "Contributor Profile Update"),
+    path("contributor/service/profile/update/", views.ContributorServiceProfileUpdate, name = "Contributor Service Profile Update"),
     
-    path("contributor/logout/", views.ContributorLogout, name = "Contributor Logout"),
+    path("contributor/service/logout/", views.ContributorServiceLogout, name = "Contributor Service Logout"),
     
-    path("officer/register/", views.OfficerRegister, name = "Officer Register"),
+    path("officer/database/register/", views.OfficerDatabaseRegister, name = "Officer Database Register"),
     
-    path("officer/login/", views.OfficerLogin, name = "Officer Login"),
+    path("officer/database/login/", views.OfficerDatabaseLogin, name = "Officer Database Login"),
     
-    path("contributor/login/facebook/", views.OfficerLoginFacebook, name = "Officer Login Facebook"),
+    path("contributor/login/facebook/", views.OfficerDatabaseLoginFacebook, name = "Officer Database Login Facebook"),
     
-    path("contributor/login/google/", views.OfficerLoginGoogle, name = "Officer Login Google"),
+    path("contributor/login/google/", views.OfficerDatabaseLoginGoogle, name = "Officer Database Login Google"),
     
     path("officer/logout/", views.OfficerLogout, name = "Officer Logout"),
     
-    path("admin/login/", views.AdministratorLogin, name = "Administrator Login"),
+    path("admin/database/login/", views.AdministratorDatabaseLogin, name = "Administrator Database Login"),
     
-    path("admin/logout/", views.AdministratorLogout, name = "Administrator Logout"),
+    path("admin/database/logout/", views.AdministratorDatabaseLogout, name = "Administrator Database Logout"),
 ]

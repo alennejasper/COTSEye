@@ -264,7 +264,7 @@ JAZZMIN_SETTINGS = {
    
     "navigation_expanded": False,
     
-    "custom_css": "css/admin/index/index.css", 
+    "custom_css": "css/admin/database/index/index.css", 
     
     "changeform_format": "horizontal_tabs",
 }

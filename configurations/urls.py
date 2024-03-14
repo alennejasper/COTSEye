@@ -28,14 +28,14 @@ from authentications import views
 
 admin.site.site_title = "Administration"
 admin.site.index_title = "COTSEye"
-admin.site.index_template = "admin/index/index.html"
+admin.site.index_template = "admin/database/index/index.html"
 
 urlpatterns = [
-    path("admin/login/", views.AdministratorLogin),
+    path("admin/database/login/", views.AdministratorDatabaseLogin),
     
-    path("admin/logout/", views.AdministratorLogout),
+    path("admin/database/logout/", views.AdministratorDatabaseLogout),
     
-    path("admin/", admin.site.urls),
+    path("admin/database/", admin.site.urls),
     
     path("", include("allauth.urls")),
     

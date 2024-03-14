@@ -1,0 +1,32 @@
+{% extends "contributor/service/index/index.html" %}
+{% load static %}
+
+{% block content %}
+<div class = "post" id = "create">
+    <div class = "card-header">
+        <header>Create</header>
+    </div>
+
+    <div class = "card-body">
+        <div class = "methods">
+            <button class = "capture">
+                <a href = "{% url 'Contributor Service Post Uncertain Create Capture' %}">
+                    <i class = "fa-solid fa-image"></i> 
+                
+                    <span>Capture with camera</span>
+                </a>
+            </button>
+
+            <div class = "line"></div>
+
+            <button class = "choose">
+                <a href = "{% url 'Contributor Service Post Uncertain Create Choose' %}">
+                    <i class = "fa-solid fa-camera-retro"></i> 
+                
+                    <span>Choose a file</span>
+                </a>
+            </button>
+        </div>
+    </div>
+</div>
+{% endblock content %}

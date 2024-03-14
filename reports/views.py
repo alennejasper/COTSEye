@@ -8,9 +8,9 @@ from authentications.views import ContributorCheck
 
 
 # Create your views here.
-@login_required(login_url = "Contributor Login")
-@user_passes_test(ContributorCheck, login_url = "Contributor Login")
-def ContributorPost(request):
+@login_required(login_url = "Contributor Service Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
+def ContributorServicePost(request):
     username = request.user.username
 
     valid_posts = Post.objects.filter(user = request.user.user, post_status = 1)
@@ -39,11 +39,11 @@ def ContributorPost(request):
     
     context = {"username": username, "valid_posts": valid_posts, "valid_dates": valid_dates, "invalid_posts": invalid_posts, "invalid_dates": invalid_dates, "uncertain_posts": uncertain_posts, "uncertain_dates": uncertain_dates}
     
-    return render(request, "contributor/post/post.html", context)
+    return render(request, "contributor/service/post/post.html", context)
 
-@login_required(login_url = "Contributor Login")
-@user_passes_test(ContributorCheck, login_url = "Contributor Login")
-def ContributorPostValid(request):
+@login_required(login_url = "Contributor Service Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
+def ContributorServicePostValid(request):
     username = request.user.username
 
     valid_posts = Post.objects.filter(user = request.user.user, post_status = 1)
@@ -75,36 +75,36 @@ def ContributorPostValid(request):
 
     context = {"username": username, "valid_posts": valid_posts}
     
-    return render(request, "contributor/post/valid.html", context)
+    return render(request, "contributor/service/post/valid.html", context)
 
 
-@login_required(login_url = "Contributor Login")
-@user_passes_test(ContributorCheck, login_url = "Contributor Login")
-def ContributorPostValidRead(request, id):
+@login_required(login_url = "Contributor Service Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
+def ContributorServicePostValidRead(request, id):
     username = request.user.username
 
     valid_post = Post.objects.get(id = id, user = request.user.user, post_status = 1)
     
     context = {"username": username, "valid_post": valid_post}
     
-    return render(request, "contributor/post/read.html", context)
+    return render(request, "contributor/service/post/read.html", context)
 
 
-@login_required(login_url = "Contributor Login")
-@user_passes_test(ContributorCheck, login_url = "Contributor Login")
-def ContributorPostValidReads(request, id):
+@login_required(login_url = "Contributor Service Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
+def ContributorServicePostValidReads(request, id):
     username = request.user.username
 
     valid_post = Post.objects.get(id = id, post_status = 1)
     
     context = {"username": username, "valid_post": valid_post}
     
-    return render(request, "contributor/post/reads.html", context)
+    return render(request, "contributor/service/post/reads.html", context)
 
 
-@login_required(login_url = "Contributor Login")
-@user_passes_test(ContributorCheck, login_url = "Contributor Login")
-def ContributorPostInvalid(request):  
+@login_required(login_url = "Contributor Service Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
+def ContributorServicePostInvalid(request):  
     username = request.user.username
 
     invalid_posts = Post.objects.filter(user = request.user.user, post_status = 2)
@@ -141,24 +141,24 @@ def ContributorPostInvalid(request):
 
     context = {"username": username, "invalid_posts": invalid_posts}
     
-    return render(request, "contributor/post/invalid.html", context)
+    return render(request, "contributor/service/post/invalid.html", context)
 
 
-@login_required(login_url = "Contributor Login")
-@user_passes_test(ContributorCheck, login_url = "Contributor Login")
-def ContributorPostInvalidRead(request, id):
+@login_required(login_url = "Contributor Service Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
+def ContributorServicePostInvalidRead(request, id):
     username = request.user.username
 
     invalid_post = Post.objects.get(id = id, user = request.user.user, post_status = 2)
     
     context = {"username": username, "invalid_post": invalid_post}
     
-    return render(request, "contributor/post/read.html", context)
+    return render(request, "contributor/service/post/read.html", context)
 
 
-@login_required(login_url = "Contributor Login")
-@user_passes_test(ContributorCheck, login_url = "Contributor Login")
-def ContributorPostInvalidDelete(request, id):
+@login_required(login_url = "Contributor Service Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
+def ContributorServicePostInvalidDelete(request, id):
     invalid_post = Post.objects.get(id = id, post_status = 2)
 
     if invalid_post.user == request.user.user:
@@ -179,14 +179,14 @@ def ContributorPostInvalidDelete(request, id):
         
         messages.success(request, username + ", " + "your information input was vanished from COTSEye.")
             
-        return redirect("Contributor Post Invalid")
+        return redirect("Contributor Service Post Invalid")
 
     else:
         messages.error(request, "Information input may not be vanished.")
 
-@login_required(login_url = "Contributor Login")
-@user_passes_test(ContributorCheck, login_url = "Contributor Login")
-def ContributorPostUncertain(request):
+@login_required(login_url = "Contributor Service Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
+def ContributorServicePostUncertain(request):
     username = request.user.username
 
     uncertain_posts = Post.objects.filter(user = request.user.user, post_status = 3)
@@ -218,22 +218,22 @@ def ContributorPostUncertain(request):
 
     context = {"username": username, "uncertain_posts": uncertain_posts}
     
-    return render(request, "contributor/post/uncertain.html", context)
+    return render(request, "contributor/service/post/uncertain.html", context)
 
 
-@login_required(login_url = "Contributor Login")
-@user_passes_test(ContributorCheck, login_url = "Contributor Login")
-def ContributorPostUncertainCreate(request):
+@login_required(login_url = "Contributor Service Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
+def ContributorServicePostUncertainCreate(request):
     username = request.user.username
 
     context = {"username": username}
     
-    return render(request, "contributor/post/create.html", context)
+    return render(request, "contributor/service/post/create.html", context)
 
 
-@login_required(login_url = "Contributor Login")
-@user_passes_test(ContributorCheck, login_url = "Contributor Login")
-def ContributorPostUncertainCreateCapture(request):
+@login_required(login_url = "Contributor Service Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
+def ContributorServicePostUncertainCreateCapture(request):
     username = request.user.username
 
     coordinates_form = CoordinatesForm()
@@ -290,7 +290,7 @@ def ContributorPostUncertainCreateCapture(request):
                 
                 messages.success(request, username + ", " + "your information input was recorded for COTSEye.")
                 
-                return redirect("Contributor Home")
+                return redirect("Contributor Service Home")
         
         else:
             messages.error(request, "Information input is not valid.")
@@ -306,12 +306,12 @@ def ContributorPostUncertainCreateCapture(request):
 
     context = {"username": username, "coordinates_form": coordinates_form, "depths": depths, "weathers": weathers, "postobservation_form": postobservation_form, "post_form": post_form}
     
-    return render(request, "contributor/post/capture.html", context)
+    return render(request, "contributor/service/post/capture.html", context)
 
 
-@login_required(login_url = "Contributor Login")
-@user_passes_test(ContributorCheck, login_url = "Contributor Login")
-def ContributorPostUncertainCreateChoose(request):
+@login_required(login_url = "Contributor Service Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
+def ContributorServicePostUncertainCreateChoose(request):
     username = request.user.username
 
     coordinates_form = CoordinatesForm()
@@ -368,7 +368,7 @@ def ContributorPostUncertainCreateChoose(request):
                 
                 messages.success(request, username + ", " + "your information input was recorded for COTSEye.")
                 
-                return redirect("Contributor Home")
+                return redirect("Contributor Service Home")
         
         else:
             messages.error(request, "Information input is not valid.")
@@ -384,34 +384,34 @@ def ContributorPostUncertainCreateChoose(request):
 
     context = {"username": username, "coordinates_form": coordinates_form, "depths": depths, "weathers": weathers, "postobservation_form": postobservation_form, "post_form": post_form}
     
-    return render(request, "contributor/post/choose.html", context)
+    return render(request, "contributor/service/post/choose.html", context)
 
 
-@login_required(login_url = "Contributor Login")
-@user_passes_test(ContributorCheck, login_url = "Contributor Login")
-def ContributorPostUncertainRead(request, id):
+@login_required(login_url = "Contributor Service Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
+def ContributorServicePostUncertainRead(request, id):
     username = request.user.username
 
     uncertain_post = Post.objects.get(id = id, user = request.user.user, post_status = 3)
     
     context = {"username": username, "uncertain_post": uncertain_post}
     
-    return render(request, "contributor/post/read.html", context)
+    return render(request, "contributor/service/post/read.html", context)
 
 
-def ContributorPostUncertainUpdate(request, id):
+def ContributorServicePostUncertainUpdate(request, id):
     username = request.user.username
 
     uncertain_post = Post.objects.get(id = id, user = request.user.user, post_status = 3)
     
     context = {"username": username, "uncertain_post": uncertain_post}
     
-    return render(request, "contributor/post/update.html", context)
+    return render(request, "contributor/service/post/update.html", context)
 
 
-@login_required(login_url = "Contributor Login")
-@user_passes_test(ContributorCheck, login_url = "Contributor Login")
-def ContributorPostUncertainUpdateCapture(request, id):
+@login_required(login_url = "Contributor Service Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
+def ContributorServicePostUncertainUpdateCapture(request, id):
     username = request.user.username
 
     uncertain_post = Post.objects.get(id = id, post_status = 3)   
@@ -448,7 +448,7 @@ def ContributorPostUncertainUpdateCapture(request, id):
             
             messages.success(request, username + ", " + "your information input was updated for COTSEye.")
             
-            return redirect("Contributor Post Uncertain")
+            return redirect("Contributor Service Post Uncertain")
 
         else:
             messages.error(request, "Information input is not valid.")
@@ -464,12 +464,12 @@ def ContributorPostUncertainUpdateCapture(request, id):
 
     context = {"username": username, "uncertain_post": uncertain_post, "coordinates_form": coordinates_form, "depths": depths, "weathers": weathers, "postobservation_form": postobservation_form, "post_form": post_form}
     
-    return render(request, "contributor/post/capture.html", context)
+    return render(request, "contributor/service/post/capture.html", context)
 
 
-@login_required(login_url = "Contributor Login")
-@user_passes_test(ContributorCheck, login_url = "Contributor Login")
-def ContributorPostUncertainUpdateChoose(request, id):
+@login_required(login_url = "Contributor Service Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
+def ContributorServicePostUncertainUpdateChoose(request, id):
     username = request.user.username
 
     uncertain_post = Post.objects.get(id = id, post_status = 3)   
@@ -506,7 +506,7 @@ def ContributorPostUncertainUpdateChoose(request, id):
             
             messages.success(request, username + ", " + "your information input was updated for COTSEye.")
             
-            return redirect("Contributor Post Uncertain")
+            return redirect("Contributor Service Post Uncertain")
 
         else:
             messages.error(request, "Information input is not valid.")
@@ -522,4 +522,4 @@ def ContributorPostUncertainUpdateChoose(request, id):
 
     context = {"username": username, "uncertain_post": uncertain_post, "coordinates_form": coordinates_form, "depths": depths, "weathers": weathers, "postobservation_form": postobservation_form, "post_form": post_form}
     
-    return render(request, "contributor/post/choose.html", context)
+    return render(request, "contributor/service/post/choose.html", context)
