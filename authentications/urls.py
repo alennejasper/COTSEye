@@ -25,13 +25,37 @@ urlpatterns = [
     
     path("officer/database/login/", views.OfficerDatabaseLogin, name = "Officer Database Login"),
     
-    path("contributor/login/facebook/", views.OfficerDatabaseLoginFacebook, name = "Officer Database Login Facebook"),
+    path("officer/database/login/facebook/", views.OfficerDatabaseLoginFacebook, name = "Officer Database Login Facebook"),
     
-    path("contributor/login/google/", views.OfficerDatabaseLoginGoogle, name = "Officer Database Login Google"),
+    path("officer/database/login/google/", views.OfficerDatabaseLoginGoogle, name = "Officer Database Login Google"),
     
-    path("officer/logout/", views.OfficerLogout, name = "Officer Logout"),
+    path("officer/database/logout/", views.OfficerDatabaseLogout, name = "Officer Database Logout"),
     
     path("admin/database/login/", views.AdministratorDatabaseLogin, name = "Administrator Database Login"),
     
     path("admin/database/logout/", views.AdministratorDatabaseLogout, name = "Administrator Database Logout"),
+
+    path("officer/report/register/", views.OfficerReportRegister, name = "Officer Report Register"),
+    
+    path("officer/report/login/", views.OfficerReportLogin, name = "Officer Report Login"),
+    
+    path("officer/report/login/facebook/", views.OfficerReportLoginFacebook, name = "Officer Report Login Facebook"),
+    
+    path("officer/report/login/google/", views.OfficerReportLoginGoogle, name = "Officer Report Login Google"),
+
+    path("officer/report/home/redirect/", views.OfficerReportHomeRedirect, name = "Officer Report Home Redirect"),
+
+    path("officer/report/profile/redirect/<int:id>/", views.OfficerReportProfileRedirect, name = "Officer Report Profile Redirect"),
+    
+    path("officer/report/logout/", views.OfficerReportLogout, name = "Officer Report Logout"),
+
+    path("admin/report/login/", views.AdministratorReportLogin, name = "Administrator Report Login"),
+
+    path("admin/report/home/", views.AdministratorReportHome, name = "Administrator Report Home"),
+
+    path("admin/report/home/redirect/", views.AdministratorReportHomeRedirect, name = "Administrator Report Home Redirect"),
+
+    path("admin/report/profile/redirect/<int:id>/", views.AdministratorReportProfileRedirect, name = "Administrator Report Profile Redirect"),
+
+    path("admin/report/logout/", views.AdministratorReportLogout, name = "Administrator Report Logout"),
 ]

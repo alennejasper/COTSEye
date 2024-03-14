@@ -3,6 +3,7 @@ from django.dispatch import receiver
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.urls import reverse
 from allauth.socialaccount.signals import social_account_updated
 from authentications.forms import AccountForm, UserForm, ProfileForm
 from authentications.models import *
@@ -353,7 +354,7 @@ def OfficerDatabaseRegister(request):
 
     context = {"account_form": account_form, "user_form": user_form}
     
-    return render(request, "officer/register/register.html", context)
+    return render(request, "officer/database/register/register.html", context)
 
 
 def OfficerDatabaseLogin(request):
@@ -506,7 +507,7 @@ def OfficerDatabaseLoginGoogle(request):
 
 
 @login_required(login_url = "Officer Database Login")
-def OfficerLogout(request):
+def OfficerDatabaseLogout(request):
     username = request.user.username
 
     logout(request)
@@ -559,4 +560,241 @@ def AdministratorDatabaseLogout(request):
         
         messages.success(request, username + ", " + "your account used just now was signed out of COTSEye.")
         
-        return redirect("Officer Logout")
+        return redirect("Officer Database Logout")
+
+
+def OfficerReportRegister(request):
+    account_form = AccountForm()
+
+    user_form = UserForm()
+
+    if request.method == "POST":
+        account_form = AccountForm(request.POST)
+
+        user_form = UserForm(request.POST)
+
+        if account_form.is_valid() and user_form.is_valid():
+            account = account_form.save(commit = False)
+
+            user = user_form.save(commit = False)
+
+            usertype = UserType.objects.get(id = 2)
+
+            account = Account.objects.create(username = account.username, password = account.password, usertype = usertype)
+            
+            if Account.objects.filter(username = account.username, password = account.password, usertype = usertype).exists():
+                User.objects.create(account = account, first_name = user.first_name, last_name = user.last_name, email = user.email, phone_number = user.phone_number)
+                
+                username = account.username
+                
+                messages.success(request, username + ", " + "your information input was recorded for COTSEye.")
+                
+                return redirect("Officer Database Login")
+        
+        else:
+            messages.error(request, "Username exists or is not valid, or passwords are short, entirely numeric, or do not match.")
+            
+            messages.error(request, account_form.errors, user_form.errors)  
+
+    else:
+        account_form = AccountForm()
+        
+        user_form = UserForm()
+
+    context = {"account_form": account_form, "user_form": user_form}
+    
+    return render(request, "officer/report/register/register.html", context)
+
+
+def OfficerReportLogin(request):
+    if request.method == "POST":
+        username = request.POST.get("username")
+        
+        password = request.POST.get("password1")
+        
+        account = authenticate(request, username = username, password = password)
+
+        if account:
+            if account.usertype_id == 2:
+                login(request, account)
+                
+                return redirect("Officer Report Home")
+            
+            else:
+                messages.error(request, "Username or password is not valid.")
+        
+        else:
+            messages.error(request, "Username or password is not valid.")
+
+    context = {}
+
+    return render(request, "officer/report/login/login.html", context)
+
+
+def OfficerReportLoginFacebook(request):
+    if request.method == "POST":
+        username = request.POST.get("username")
+        
+        password = request.POST.get("password1")
+        
+        account = authenticate(request, username = username, password = password)
+
+        if account:
+            if account.usertype_id == 2:
+                login(request, account)
+                
+                return redirect("Officer Report Home")
+            
+            else:
+                messages.error(request, "Username or password is not valid.")
+        
+        else:
+            messages.error(request, "Username or password is not valid.")
+
+    context = {}
+    
+    return render(request, "officer/report/login/facebook.html", context)
+
+
+def OfficerReportLoginGoogle(request):
+    if request.method == "POST":
+        username = request.POST.get("username")
+        
+        password = request.POST.get("password1")
+        
+        account = authenticate(request, username = username, password = password)
+
+        if account:
+            if account.usertype_id == 2:
+                login(request, account)
+                
+                return redirect("Officer Report Home")
+            
+            else:
+                messages.error(request, "Username or password is not valid.")
+        
+        else:
+            messages.error(request, "Username or password is not valid.")
+
+    context = {}
+    
+    return render(request, "officer/report/login/google.html", context)
+
+
+def OfficerCheck(account):
+    try:
+        return account.is_authenticated and account.usertype_id == 2 != None
+    
+    except Account.DoesNotExist:
+            return False
+
+
+@login_required(login_url = "Officer Report Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Report Login")
+def OfficerReportHome(request):
+    username = request.user.username
+
+    context = {"username": username}
+
+    return render(request, "officer/report/home/home.html", context)
+
+
+@login_required(login_url = "Officer Report Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Report Login")
+def OfficerReportHomeRedirect(request):
+    return redirect(reverse("admin:index"))
+
+
+@login_required(login_url = "Officer Report Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Report Login")
+def OfficerReportProfileRedirect(request):
+    return redirect(reverse("admin:authentications_account_change", kwargs = {"object_id": object.id}))
+
+
+@login_required(login_url = "Officer Report Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Report Login")
+def OfficerReportLogout(request):
+    username = request.user.username
+
+    logout(request)
+    
+    messages.success(request, username + ", " + "your account used just now was signed out of COTSEye.")
+    
+    return redirect("Officer Report Login")
+
+
+def AdministratorReportLogin(request):
+    if request.method == "POST":
+        username = request.POST.get("username")
+        
+        password = request.POST.get("password1")
+        
+        account = authenticate(request, username = username, password = password)
+
+        if account:
+            if account.usertype_id == 1:
+                login(request, account)
+                
+                return redirect("Administrator Report Home")
+            
+            else:
+                messages.error(request, "Username or password is not valid.")
+        
+        else:
+            messages.error(request, "Username or password is not valid.")
+
+    context = {}
+
+    return render(request, "admin/report/login/login.html", context)
+    
+
+def AdministratorCheck(account):
+    try:
+        return account.is_authenticated and account.usertype_id == 1 != None
+    
+    except Account.DoesNotExist:
+            return False
+
+
+@login_required(login_url = "Administrator Report Login")
+@user_passes_test(AdministratorCheck, login_url = "Administrator Report Login")
+def AdministratorReportHome(request):
+    username = request.user.username
+
+    context = {"username": username}
+
+    return render(request, "admin/report/home/home.html", context)
+
+
+@login_required(login_url = "Administrator Report Login")
+@user_passes_test(AdministratorCheck, login_url = "Administrator Report Login")
+def AdministratorReportHomeRedirect(request):
+    return redirect(reverse("admin:index"))
+
+
+@login_required(login_url = "Administrator Report Login")
+@user_passes_test(AdministratorCheck, login_url = "Administrator Report Login")
+def AdministratorReportProfileRedirect(request):
+    return redirect(reverse("admin:authentications_account_change", kwargs = {"object_id": object.id}))
+
+
+@login_required(login_url = "Administrator Report Login")
+@user_passes_test(AdministratorCheck, login_url = "Administrator Report Login")
+def AdministratorReportLogout(request):
+    user = request.user
+    
+    username = request.user.username
+
+    if user.usertype_id == 1:
+        logout(request)
+        
+        messages.success(request, username + ", " + "your account used just now was signed out of COTSEye.")
+        
+        return redirect("Administrator Report Login")
+    
+    elif user.usertype_id == 2:
+        logout(request)
+        
+        messages.success(request, username + ", " + "your account used just now was signed out of COTSEye.")
+        
+        return redirect("Officer Report Login")

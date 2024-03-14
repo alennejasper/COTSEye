@@ -20,7 +20,7 @@
 
         <link rel = "icon" type = "image/x-icon" href = "{% static 'assets/icons/logo.png' %}">
                         
-        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/login/google.css' %}">
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/officer/report/login/facebook.css' %}">
                     
         <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">          
         
@@ -38,11 +38,11 @@
     
                 <div class = "card-body">
                     <div class = "socials">
-                        <button class = "google">
-                            <a href = "{% provider_login_url 'google' %}?next=/contributor/service/home/">
-                                <i class = "fa-brands fa-google"></i> 
-                                
-                                <span>Login with Google</span>
+                        <button class = "facebook">
+                            <a href = "{% provider_login_url 'facebook' %}?next=/admin/">
+                                <i class = "fa-brands fa-facebook-f"></i> 
+                            
+                                <span>Login with Facebook</span>
                             </a>
                         </button>
                     </div>

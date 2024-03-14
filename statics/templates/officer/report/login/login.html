@@ -20,12 +20,13 @@
 
         <link rel = "icon" type = "image/x-icon" href = "{% static 'assets/icons/logo.png' %}">
                         
-        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/login/login.css' %}">
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/officer/report/login/login.css' %}">
                     
         <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">          
         
-        <script src = "https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src = "https://www.google.com/recaptcha/api.js" async defer></script>
 
+        <script src = "https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <title>Login | COTSEye</title>
     </head>
 
@@ -67,6 +68,7 @@
                     
                     {% if messages %}
                         {% for message in messages %}
+                            <script src = "https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
                             {% if message.tags == "info" %}<script>Swal.fire({title: "Hey!", text: "{{message}}", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}})</script>
                             {% elif message.tags == "success" %}<script>Swal.fire({title: "Yay!", text: "{{message}}", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}})</script>
                             {% else %}<script>Swal.fire({title: "Oops!", text: "{{message}}", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}})</script>
@@ -75,14 +77,14 @@
                     {% endif %}
                     
                     <div class = "register">
-                        <span>Do not have an account? <a href = "{% url 'Contributor Service Register' %}">Register</a></span>
+                        <span>Do not have an account? <a href = "{% url 'Officer Database Register' %}">Register</a></span>
                     </div>
 
                     <div class = "line"></div>
 
                     <div class = "socials">
                         <button class = "facebook">
-                            <a href = "{% provider_login_url 'facebook' %}?next=/contributor/service/login/facebook/">
+                            <a href = "{% provider_login_url 'facebook' %}?next=/officer/database/login/facebook/">
                                 <i class = "fa-brands fa-facebook-f"></i> 
                             
                                 <span>Connect with Facebook</span>
@@ -90,7 +92,7 @@
                         </button>
 
                         <button class = "google">
-                            <a href = "{% provider_login_url 'google' %}?next=/contributor/service/login/google/">
+                            <a href = "{% provider_login_url 'google' %}?next=/officer/database/login/google/">
                                 <i class = "fa-brands fa-google"></i> 
                             
                                 <span>Connect with Google</span>
@@ -105,10 +107,6 @@
     <script src = "{% static 'templates/webwares/application.js' %}"></script>
 
     <script type = "text/javascript">if (window.location.hash && window.location.hash === "#_=_"){ window.location.hash = ""; history.pushState("", document.title, window.location.pathname);}</script>
-
-    <script src = "https://www.google.com/recaptcha/api.js" async defer></script>
-
-    <script src = "https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script> 
 		window.onload = function(){
@@ -155,7 +153,7 @@
     <script>
         document.getElementById("username").addEventListener("click", function(){
             this.style.color = "#154360";
-
+            
             this.value = this.dataset.initialValue;
 
             this.focus();

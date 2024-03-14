@@ -7,15 +7,15 @@ urlpatterns = [
 
     path("contributor/service/post/valid/", views.ContributorServicePostValid, name = "Contributor Service Post Valid"),
     
-    path("contributor/service/post/valid/read/<int:id>", views.ContributorServicePostValidRead, name = "Contributor Service Post Valid Read"),
+    path("contributor/service/post/valid/read/<int:id>/", views.ContributorServicePostValidRead, name = "Contributor Service Post Valid Read"),
     
-    path("contributor/service/post/valid/reads/<int:id>", views.ContributorServicePostValidReads, name = "Contributor Service Post Valid Reads"),
+    path("contributor/service/post/valid/reads/<int:id>/", views.ContributorServicePostValidReads, name = "Contributor Service Post Valid Reads"),
 
     path("contributor/service/post/invalid/", views.ContributorServicePostInvalid, name = "Contributor Service Post Invalid"),
     
-    path("contributor/service/post/invalid/read/<int:id>", views.ContributorServicePostInvalidRead, name = "Contributor Service Post Invalid Read"),
+    path("contributor/service/post/invalid/read/<int:id>/", views.ContributorServicePostInvalidRead, name = "Contributor Service Post Invalid Read"),
     
-    path("contributor/service/post/invalid/delete/<int:id>", views.ContributorServicePostInvalidDelete, name = "Contributor Service Post Invalid Delete"),
+    path("contributor/service/post/invalid/delete/<int:id>/", views.ContributorServicePostInvalidDelete, name = "Contributor Service Post Invalid Delete"),
 
     path("contributor/service/post/uncertain/", views.ContributorServicePostUncertain, name = "Contributor Service Post Uncertain"),
     
@@ -25,7 +25,7 @@ urlpatterns = [
 
     path("contributor/service/post/uncertain/create/choose/", views.ContributorServicePostUncertainCreateChoose, name = "Contributor Service Post Uncertain Create Choose"),
 
-    path("contributor/service/post/uncertain/read/<int:id>", views.ContributorServicePostUncertainRead, name = "Contributor Service Post Uncertain Read"),
+    path("contributor/service/post/uncertain/read/<int:id>/", views.ContributorServicePostUncertainRead, name = "Contributor Service Post Uncertain Read"),
 
     path("contributor/service/post/uncertain/read/<int:id>/update/", views.ContributorServicePostUncertainUpdate, name = "Contributor Service Post Uncertain Update"),
         
