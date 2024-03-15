@@ -19,7 +19,9 @@
 
         <link rel = "icon" type = "image/x-icon" href = "{% static 'assets/icons/logo.png' %}">
 
-        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/admin/report/index/index.css' %}">
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/admin/statistics/index/index.css' %}">
+
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/admin/statistics/home/home.css' %}">
 
         <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">          
 
@@ -39,7 +41,13 @@
     <body>
         <nav>
             <div class = "navigation-bar">
-                <span class = "navigation-logo"><a href = "{% url 'Administrator Report Home' %}"><img src = "{% static 'assets/icons/logo.png' %}" alt = "navigation-logo"></a></span>
+                <span class = "navigation-logo"><a href = "{% url 'Administrator Statistics Home' %}"><img src = "{% static 'assets/icons/logo.png' %}" alt = "navigation-logo"></a></span>
+
+                <div class = "menu">
+                    <ul class = "navigation-links">
+                        <li><a href = "{% url 'Administrator Statistics Home Redirect' %}">Access database</a></li>
+                    </ul>
+                </div>
 
                 <div class = "others">
                     <div class = "dropdown">
@@ -50,15 +58,15 @@
 
                             <div class = "dropdown-divider"></div>
                             
-                            <a href = "{% url 'Administrator Report Home Redirect' %}" class = "dropdown-item"><i class = "fa-solid fa-database"></i>See database</a>
+                            <a href = "{% url 'Administrator Statistics Password Redirect' %}" class = "dropdown-item"><i class = "fa-solid fa-key"></i>Change password</a>
                             
                             <div class = "dropdown-divider"></div>
                             
-                            <a href = "{% url 'Administrator Report Logout' %}" class = "dropdown-item"><i class = "fa-solid fa-users"></i>Log out</a>
+                            <a href = "{% url 'Administrator Statistics Logout' %}" class = "dropdown-item"><i class = "fa-solid fa-users"></i>Log out</a>
                             
                             <div class = "dropdown-divider"></div>
                             
-                            <a href = "{% url 'Administrator Report Profile Redirect' %}" class = "dropdown-footer">See profile</a>
+                            <a href = "{% url 'Administrator Statistics Profile Redirect' %}" class = "dropdown-footer">See profile</a>
                         </div>
                     </div>
                 </div>

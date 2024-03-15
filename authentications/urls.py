@@ -35,27 +35,33 @@ urlpatterns = [
     
     path("admin/database/logout/", views.AdministratorDatabaseLogout, name = "Administrator Database Logout"),
 
-    path("officer/report/register/", views.OfficerReportRegister, name = "Officer Report Register"),
+    path("officer/statistics/register/", views.OfficerStatisticsRegister, name = "Officer Statistics Register"),
     
-    path("officer/report/login/", views.OfficerReportLogin, name = "Officer Report Login"),
+    path("officer/statistics/login/", views.OfficerStatisticsLogin, name = "Officer Statistics Login"),
     
-    path("officer/report/login/facebook/", views.OfficerReportLoginFacebook, name = "Officer Report Login Facebook"),
+    path("officer/statistics/login/facebook/", views.OfficerStatisticsLoginFacebook, name = "Officer Statistics Login Facebook"),
     
-    path("officer/report/login/google/", views.OfficerReportLoginGoogle, name = "Officer Report Login Google"),
+    path("officer/statistics/login/google/", views.OfficerStatisticsLoginGoogle, name = "Officer Statistics Login Google"),
 
-    path("officer/report/home/redirect/", views.OfficerReportHomeRedirect, name = "Officer Report Home Redirect"),
+    path("officer/statistics/home/", views.OfficerStatisticsHome, name = "Officer Statistics Home"),
 
-    path("officer/report/profile/redirect/<int:id>/", views.OfficerReportProfileRedirect, name = "Officer Report Profile Redirect"),
+    path("officer/statistics/home/redirect/", views.OfficerStatisticsHomeRedirect, name = "Officer Statistics Home Redirect"),
+
+    path("officer/statistics/password/redirect/", views.OfficerStatisticsPasswordRedirect, name = "Officer Statistics Password Redirect"),
+
+    path("officer/statistics/profile/redirect/", views.OfficerStatisticsProfileRedirect, name = "Officer Statistics Profile Redirect"),
     
-    path("officer/report/logout/", views.OfficerReportLogout, name = "Officer Report Logout"),
+    path("officer/statistics/logout/", views.OfficerStatisticsLogout, name = "Officer Statistics Logout"),
 
-    path("admin/report/login/", views.AdministratorReportLogin, name = "Administrator Report Login"),
+    path("admin/statistics/login/", views.AdministratorStatisticsLogin, name = "Administrator Statistics Login"),
 
-    path("admin/report/home/", views.AdministratorReportHome, name = "Administrator Report Home"),
+    path("admin/statistics/home/", views.AdministratorStatisticsHome, name = "Administrator Statistics Home"),
 
-    path("admin/report/home/redirect/", views.AdministratorReportHomeRedirect, name = "Administrator Report Home Redirect"),
+    path("admin/statistics/home/redirect/", views.AdministratorStatisticsHomeRedirect, name = "Administrator Statistics Home Redirect"),
 
-    path("admin/report/profile/redirect/<int:id>/", views.AdministratorReportProfileRedirect, name = "Administrator Report Profile Redirect"),
+    path("admin/statistics/password/redirect/", views.AdministratorStatisticsPasswordRedirect, name = "Administrator Statistics Password Redirect"),
 
-    path("admin/report/logout/", views.AdministratorReportLogout, name = "Administrator Report Logout"),
+    path("admin/statistics/profile/redirect/", views.AdministratorStatisticsProfileRedirect, name = "Administrator Statistics Profile Redirect"),
+
+    path("admin/statistics/logout/", views.AdministratorStatisticsLogout, name = "Administrator Statistics Logout"),
 ]

@@ -16,28 +16,28 @@ def ContributorServicePost(request):
     valid_posts = Post.objects.filter(user = request.user.user, post_status = 1)
 
     try:
-        valid_dates = Post.objects.filter(user = request.user.user, post_status = 1).latest("capture_date")
+        valid_date = Post.objects.filter(user = request.user.user, post_status = 1).latest("capture_date")
         
     except:
-        valid_dates = None
+        valid_date = None
 
     invalid_posts = Post.objects.filter(user = request.user.user, post_status = 2)
 
     try:
-        invalid_dates = Post.objects.filter(user = request.user.user, post_status = 2).latest("capture_date")
+        invalid_date = Post.objects.filter(user = request.user.user, post_status = 2).latest("capture_date")
         
     except:
-        invalid_dates = None
+        invalid_date = None
 
     uncertain_posts = Post.objects.filter(user = request.user.user, post_status = 3)
 
     try:
-        uncertain_dates = Post.objects.filter(user = request.user.user, post_status = 3).latest("capture_date")
+        uncertain_date = Post.objects.filter(user = request.user.user, post_status = 3).latest("capture_date")
 
     except:
-        uncertain_dates = None
+        uncertain_date = None
     
-    context = {"username": username, "valid_posts": valid_posts, "valid_dates": valid_dates, "invalid_posts": invalid_posts, "invalid_dates": invalid_dates, "uncertain_posts": uncertain_posts, "uncertain_dates": uncertain_dates}
+    context = {"username": username, "valid_posts": valid_posts, "valid_date": valid_date, "invalid_posts": invalid_posts, "invalid_date": invalid_date, "uncertain_posts": uncertain_posts, "uncertain_date": uncertain_date}
     
     return render(request, "contributor/service/post/post.html", context)
 

@@ -10,6 +10,7 @@ For the full list of settings and their values, see https://docs.djangoproject.c
 
 
 from pathlib import Path
+from django.urls import reverse_lazy
 
 import os
 
@@ -267,4 +268,8 @@ JAZZMIN_SETTINGS = {
     "custom_css": "css/admin/database/index/index.css", 
     
     "changeform_format": "horizontal_tabs",
+
+    "topmenu_links": [
+        {"name": "Access statistics", "url": reverse_lazy("Administrator Statistics Home")}
+    ],
 }
