@@ -3,9 +3,9 @@ from auxiliaries import views
 
 # Create your URL configuration here.
 urlpatterns = [
-    path("announcement/service/", views.PublicServiceAnnouncement, name = "Public Service Announcement"),
+    path("service/announcement/", views.PublicServiceAnnouncement, name = "Public Service Announcement"),
     
-    path("announcement/service/read/<int:id>/", views.PublicServiceAnnouncementRead, name = "Public Service Announcement Read"),
+    path("service/announcement/read/<int:id>/", views.PublicServiceAnnouncementRead, name = "Public Service Announcement Read"),
 
     path("contributor/service/announcement/", views.ContributorServiceAnnouncement, name = "Contributor Service Announcement"),
     

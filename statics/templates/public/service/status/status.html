@@ -19,13 +19,15 @@
                         <input type = "date" value = "" id = "from-date" name = "from_date" required>                            
                     </div>
 
-                    <label for = "barangay">Barangay</label> 
+                    <label for = "location">Location</label> 
 
-                    <select name = "barangay" id = "barangay">
-                        <option disabled selected value>Choose barangay</option>
+                    <select name = "location" id = "location">
+                        <option disabled selected value>Choose location</option>
+
+                        <option value = "each_location">Each location</option>
 
                         {% for status in statuses %}
-                            <option value="{{status.location.id}}">{{status.location.barangay}}</option>
+                            <option value="{{status.location.id}}">{{status.location}}</option>
                         {% endfor %}
                     </select>
                 </div>
@@ -37,13 +39,13 @@
                         <input type = "date" value = "" id = "to-date" name = "to_date" required>                            
                     </div>  
 
-                    <label for = "municipality">Municipality</label> 
+                    <label for = "statustype">Status Type</label> 
 
-                    <select name = "municipality" id = "municipality">
-                        <option disabled selected value>Choose municipality</option>
+                    <select name = "statustype" id = "statustype">
+                        <option disabled selected value>Choose status type</option>
 
                         {% for status in statuses %}
-                            <option value="{{status.location.id}}">{{status.location.municipality}}</option>
+                            <option value="{{status.statustype.id}}">{{status.statustype}}</option>
                         {% endfor %}
                     </select>
                 </div>
@@ -76,7 +78,7 @@
 {% for status in statuses %}
 <div class = "status">
     <div class = "card-header" {% if status.statustype.is_critical == True %} id = "critical-status" {% elif status.statustype.is_moderate == True %} id = "moderate-status" {% elif status.statustype.is_low == True %} id = "low-status" {% endif %}>
-        <header>{{status.statustype | default:'nonexistent'}}</header>
+        <header>{{status.statustype | default:'None available'}}</header>
     </div>
 
     <div class = "card-body">
@@ -85,7 +87,7 @@
                 <label for = "onset-date">Onset Date</label> 
                     
                 <div class = "onset-date">
-                    <input type = "text" value = "{{status.onset_date | date:'M. j, Y' | default:'nonexistent'}}" id = "onset-date" name = "onset_date" readonly>
+                    <input type = "text" value = "{{status.onset_date | date:'M. j, Y' | default:'None available'}}" id = "onset-date" name = "onset_date" readonly>
                         
                     <i class = "fa-solid fa-calendar-check"></i>
                 </div>
@@ -95,7 +97,7 @@
                 <label for = "location">Location</label> 
 
                 <div class = "location">
-                    <input type = "text" value = "{{status.location | default:'nonexistent'}}" id = "location" name = "location" readonly>
+                    <input type = "text" value = "{{status.location | default:'None available'}}" id = "location" name = "location" readonly>
 
                     <i class = "fa-solid fa-location-dot"></i>      
                 </div>  

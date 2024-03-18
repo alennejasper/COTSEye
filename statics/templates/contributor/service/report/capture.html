@@ -2,10 +2,10 @@
 {% load static %}
 
 {% block content %}
-<form action = "" class = "post-form" method = "POST" enctype = "multipart/form-data">
+<form action = "" class = "report-form" method = "POST" enctype = "multipart/form-data">
     {% csrf_token %}
     
-    <div class = "post">
+    <div class = "report" id = "capture">
         <div class = "card-header">
             <header>Add required information</header>
         </div>
@@ -31,7 +31,7 @@
                 </div>
             </div>
 
-            <div class = "post-gallery">
+            <div class = "report-gallery">
                 <img class = "gallery-photo" src = "{% static 'assets/posts/default.png' %}"> 
             </div>
 
@@ -64,7 +64,7 @@
             </div>
 
             <div class = "map">
-                <div class = "post-map">
+                <div class = "report-map">
                 </div>
             </div>
 
@@ -74,7 +74,7 @@
         </div> 
     </div>
 
-    <div class = "post">
+    <div class = "report" id = "capture">
         <div class = "card-header">
             <header>Add optional information</header>
         </div>
@@ -137,7 +137,7 @@
             </div>
 
             <div class = "button">
-                <a class = "save-post" type = "submit">Save</a>
+                <a class = "save-report" type = "submit">Save</a>
             </div>   
         </div>
     </div>
@@ -155,15 +155,15 @@
 <script>
     const browsePhoto = document.querySelector(".post-photo");
     
-    const postGallery = document.querySelector(".post-gallery");
+    const reportGallery = document.querySelector(".report-gallery");
 
     browsePhoto.addEventListener("change", (event) => {
-        const postFiles = event.target.files;
+        const reportFiles = event.target.files;
 
-        postGallery.innerHTML = "";
+        reportGallery.innerHTML = "";
 
-        for (let i = 0; i < postFiles.length; i++) {
-            const photoObject = postFiles[i];
+        for (let i = 0; i < reportFiles.length; i++) {
+            const photoObject = reportFiles[i];
 
             const photoElement = document.createElement("img");
             
@@ -171,7 +171,7 @@
             
             photoElement.src = URL.createObjectURL(photoObject);
             
-            postGallery.appendChild(photoElement);
+            reportGallery.appendChild(photoElement);
         }
     });
 </script>
@@ -185,9 +185,9 @@
 <script>
     document.querySelector(".post-photo").addEventListener("change", function(){
         for (var i = 0; i < this.files.length; i++){
-            var postFile = this.files[i];
+            var reportFile = this.files[i];
 
-            var modifiedDate = postFile.lastModifiedDate;
+            var modifiedDate = reportFile.lastModifiedDate;
 
             var formattedDate = modifiedDate.toISOString().split("T")[0];
 
@@ -203,36 +203,36 @@
 <script>
     var map; 
 
-    var post;
+    var report;
 
     function revealMap(){
-        var postMap = document.getElementsByClassName("post-map")[0];
+        var reportMap = document.getElementsByClassName("report-map")[0];
 
         var background = L.tileLayer("http://{s}.google.com/vt?lyrs=s,h&x={x}&y={y}&z={z}", {minZoom: 11, subdomains:["mt0", "mt1", "mt2", "mt3"], attribution: "Google"});
 
-        map = L.map(postMap, {zoomControl: true, scrollWheelZoom: false, dragging: true, maxBounds: [[5.3, 124.3],[6.3, 126.3]], layers: [background]}).setView([5.9656, 125.1929], 11);
+        map = L.map(reportMap, {zoomControl: true, scrollWheelZoom: false, dragging: true, maxBounds: [[5.3, 124.3],[6.3, 126.3]], layers: [background]}).setView([5.9656, 125.1929], 11);
         
         map.attributionControl.setPosition("bottomleft");
 
         var starfish = L.icon({iconUrl: "{% static 'assets/icons/marker.png' %}", iconSize: [30, 30], iconAnchor: [15, 15]});
         
-        post = L.marker([5.9656, 125.1929], {draggable: true, icon: starfish}).addTo(map);
+        report = L.marker([5.9656, 125.1929], {draggable: true, icon: starfish}).addTo(map);
 
-        post.on("drag", function(event){
+        report.on("drag", function(event){
             var position = event.target.getLatLng();
             
             updateCoordinates(position.lat, position.lng);
         });
 
-        post.on("dragend", function(event){
+        report.on("dragend", function(event){
             var position = event.target.getLatLng();
             
             updateCoordinates(position.lat, position.lng);
         });
 
-        var defaultLatitude = post.getLatLng().lat;
+        var defaultLatitude = report.getLatLng().lat;
 
-        var defaultLongitude = post.getLatLng().lng;
+        var defaultLongitude = report.getLatLng().lng;
 
         updateCoordinates(defaultLatitude, defaultLongitude);
     }
@@ -285,7 +285,7 @@
         } else{
             updateCoordinates(latitude, longitude);
 
-            post.setLatLng([latitude, longitude]);
+            report.setLatLng([latitude, longitude]);
             
             map.setView([latitude, longitude], 11);
         }
@@ -310,8 +310,8 @@
 
 
 <script>
-    document.querySelector(".save-post").onclick = function(){
-        document.querySelector(".post-form").submit();
+    document.querySelector(".save-report").onclick = function(){
+        document.querySelector(".report-form").submit();
     }
 </script>
 {% endblock content %}

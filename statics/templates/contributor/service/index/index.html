@@ -31,13 +31,13 @@
 
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/profile/update.css' %}">
 
-        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/post/create.css' %}">
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/report/report.css' %}">
+
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/report/capture.css' %}">
+
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/report/choose.css' %}">
 
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/post/update.css' %}">
-
-        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/post/capture.css' %}">
-
-        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/post/choose.css' %}">
 
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/post/post.css' %}">
 
@@ -69,7 +69,7 @@
 
         <script src = "https://cdnjs.cloudflare.com/ajax/libs/exif-js/2.3.0/exif.js"></script>
 
-        <title>Home | COTSEye</title>
+        <title>COTSEye | Home</title>
     </head>
 
     <body>
@@ -87,7 +87,7 @@
                     </div>
 
                     <ul class = "navigation-sidelinks">
-                        <li><a href = "{% url 'Contributor Service Post Uncertain Create' %}"><i class = "fa-solid fa-pen-to-square"></i>Create post</a></li>
+                        <li><a href = "{% url 'Contributor Service Report' %}"><i class = "fa-solid fa-pen-to-square"></i>Create post</a></li>
 
                         <li><a href = "{% url 'Contributor Service Post' %}"><i class = "fa-solid fa-images"></i>My posts</a></li>
 
@@ -112,7 +112,7 @@
 
                 <div class = "others">
                     <div class = "create-icon">
-                        <a href = "{% url 'Contributor Service Post Uncertain Create' %}"><i class = "fa-solid fa-pen-to-square"></i></a>
+                        <a href = "{% url 'Contributor Service Report' %}"><i class = "fa-solid fa-pen-to-square"></i></a>
                     </div>
 
                     <div class = "dropdown">

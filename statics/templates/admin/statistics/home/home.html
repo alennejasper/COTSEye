@@ -13,7 +13,7 @@
                 <label for = "post-date">Newest Date</label> 
 
                 <div class = "post-date">
-                    <input type = "text" value = "{{post_date | date:'M. j, Y' | default:'nonexistent'}}" id = "post-date" name = "post_date" readonly>
+                    <input type = "text" value = "{{post_date | date:'M. j, Y' | default:'None available'}}" id = "post-date" name = "post_date" readonly>
 
                     <i class = "fa-solid fa-calendar-day"></i>
                 </div>  
@@ -47,7 +47,7 @@
                 <label for = "status-date">Newest Date</label> 
 
                 <div class = "status-date">
-                    <input type = "text" value = "{{status_date | date:'M. j, Y' | default:'nonexistent'}}" id = "status-date" name = "status_date" readonly>
+                    <input type = "text" value = "{{status_date | date:'M. j, Y' | default:'None available'}}" id = "status-date" name = "status_date" readonly>
 
                     <i class = "fa-solid fa-calendar-day"></i>
                 </div>  
@@ -65,7 +65,7 @@
         </div>
 
         <div class = "button">
-            <a class = "check-statuses" href = "#">Check</a>
+            <a class = "check-statuses" href = "{% url 'Administrator Statistics Status' %}">Check</a>
         </div>    
     </div>
 </div>
@@ -81,7 +81,7 @@
                 <label for = "intervention-date">Newest Date</label> 
 
                 <div class = "intervention-date">
-                    <input type = "text" value = "{{intervention_date | date:'M. j, Y' | default:'nonexistent'}}" id = "intervention-date" name = "intervention_date" readonly>
+                    <input type = "text" value = "{{intervention_date | date:'M. j, Y' | default:'None available'}}" id = "intervention-date" name = "intervention_date" readonly>
 
                     <i class = "fa-solid fa-calendar-day"></i>
                 </div>  
@@ -99,7 +99,7 @@
         </div>
 
         <div class = "button">
-            <a class = "check-interventions" href = "#">Check</a>
+            <a class = "check-interventions" href = "{% url 'Administrator Statistics Intervention' %}">Check</a>
         </div>    
     </div>
 </div>

@@ -2,16 +2,15 @@
 {% load static %}
 
 {% block content %}
-{% if uncertain_post %}
-<div class = "post" id = "update">
+<div class = "report">
     <div class = "card-header">
-        <header>Update</header>
+        <header>Report</header>
     </div>
 
     <div class = "card-body">
         <div class = "methods">
             <button class = "capture">
-                <a href = "{% url 'Contributor Service Post Uncertain Update Capture' uncertain_post.id %}">
+                <a href = "{% url 'Contributor Service Report Capture' %}">
                     <i class = "fa-solid fa-image"></i> 
                 
                     <span>Capture with camera</span>
@@ -21,7 +20,7 @@
             <div class = "line"></div>
 
             <button class = "choose">
-                <a href = "{% url 'Contributor Service Post Uncertain Update Choose' uncertain_post.id %}">
+                <a href = "{% url 'Contributor Service Report Choose' %}">
                     <i class = "fa-solid fa-camera-retro"></i> 
                 
                     <span>Choose a file</span>
@@ -30,5 +29,4 @@
         </div>
     </div>
 </div>
-{% endif %}
 {% endblock content %}

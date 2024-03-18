@@ -34,34 +34,16 @@ urlpatterns = [
     path("admin/database/login/", views.AdministratorDatabaseLogin, name = "Administrator Database Login"),
     
     path("admin/database/logout/", views.AdministratorDatabaseLogout, name = "Administrator Database Logout"),
-
-    path("officer/statistics/register/", views.OfficerStatisticsRegister, name = "Officer Statistics Register"),
-    
-    path("officer/statistics/login/", views.OfficerStatisticsLogin, name = "Officer Statistics Login"),
-    
-    path("officer/statistics/login/facebook/", views.OfficerStatisticsLoginFacebook, name = "Officer Statistics Login Facebook"),
-    
-    path("officer/statistics/login/google/", views.OfficerStatisticsLoginGoogle, name = "Officer Statistics Login Google"),
+            
+    path("database/home/redirect/", views.DatabaseHomeRedirect, name = "Database Home Redirect"),
 
     path("officer/statistics/home/", views.OfficerStatisticsHome, name = "Officer Statistics Home"),
-
-    path("officer/statistics/home/redirect/", views.OfficerStatisticsHomeRedirect, name = "Officer Statistics Home Redirect"),
-
-    path("officer/statistics/password/redirect/", views.OfficerStatisticsPasswordRedirect, name = "Officer Statistics Password Redirect"),
-
-    path("officer/statistics/profile/redirect/", views.OfficerStatisticsProfileRedirect, name = "Officer Statistics Profile Redirect"),
     
-    path("officer/statistics/logout/", views.OfficerStatisticsLogout, name = "Officer Statistics Logout"),
-
-    path("admin/statistics/login/", views.AdministratorStatisticsLogin, name = "Administrator Statistics Login"),
-
     path("admin/statistics/home/", views.AdministratorStatisticsHome, name = "Administrator Statistics Home"),
 
-    path("admin/statistics/home/redirect/", views.AdministratorStatisticsHomeRedirect, name = "Administrator Statistics Home Redirect"),
+    path("statistics/home/redirect/", views.StatisticsHomeRedirect, name = "Statistics Home Redirect"),
 
-    path("admin/statistics/password/redirect/", views.AdministratorStatisticsPasswordRedirect, name = "Administrator Statistics Password Redirect"),
+    path("statistics/password/redirect/", views.StatisticsPasswordRedirect, name = "Statistics Password Redirect"),
 
-    path("admin/statistics/profile/redirect/", views.AdministratorStatisticsProfileRedirect, name = "Administrator Statistics Profile Redirect"),
-
-    path("admin/statistics/logout/", views.AdministratorStatisticsLogout, name = "Administrator Statistics Logout"),
+    path("statistics/profile/redirect/", views.StatisticsProfileRedirect, name = "Statistics Profile Redirect"),
 ]

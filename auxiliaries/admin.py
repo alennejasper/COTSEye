@@ -1,7 +1,14 @@
-from django.contrib import admin
+from configurations.admin import officer, admin
 from auxiliaries.models import *
 
 # Register your models here.
+class AnnouncementAdmin(admin.ModelAdmin):
+    def has_module_permission(self, request):
+        return request.user.usertype_id == 1 or request.user.usertype_id == 2
+
+officer.register(Announcement, AnnouncementAdmin)
+
+
 class AnnouncementAdmin(admin.ModelAdmin):
     def has_module_permission(self, request):
         return request.user.usertype_id == 1 or request.user.usertype_id == 2

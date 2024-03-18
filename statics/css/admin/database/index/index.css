@@ -1627,6 +1627,14 @@ input[type = "checkbox"]:checked::before{
     }
 }
 
+.datetimeshortcuts a{
+    color: #154360 !important;    
+}
+
+.datetimeshortcuts a:hover{
+    color: #10354C !important;    
+}
+
 span.select2.select2-container.select2-container--default{
     width: 100% !important;
 }

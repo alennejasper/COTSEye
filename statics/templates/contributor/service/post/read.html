@@ -7,7 +7,7 @@
     <div class = "card-body">
         <p><i class = "fa-solid fa-flag"></i>Valid</p>
 
-        <p><i class = "fa-solid fa-calendar-check"></i>{{valid_post.capture_date | date:'M. j, Y g:i a' | default:'nonexistent'}}</p>
+        <p><i class = "fa-solid fa-calendar-check"></i>{{valid_post.capture_date | date:'M. j, Y g:i a' | default:'None available'}}</p>
 
         <p><i class = "fa-solid fa-location-dot"></i>{{valid_post.coordinates.latitude | default:'0'}}° N, {{valid_post.coordinates.longitude | default:'0'}}° E</p>
 
@@ -17,7 +17,7 @@
             {% endfor %}      
         </div>
 
-        <p>{{valid_post.description | default:'nonexistent'}}</p>
+        <p>{{valid_post.description | default:'None available'}}</p>
 
         <table>
             <caption>Post observation</caption>
@@ -43,7 +43,7 @@
             <tr>
                 <td>Weather</td>
   
-                <td>{{valid_post.post_observation.weather | default:'nonexistent'}}</td>
+                <td>{{valid_post.post_observation.weather | default:'None available'}}</td>
             </tr>
         </table>
 
@@ -59,7 +59,7 @@
     <div class = "card-body">
         <p><i class = "fa-solid fa-flag"></i>Invalid</p>
 
-        <p><i class = "fa-solid fa-calendar-check"></i>{{invalid_post.capture_date | default:'nonexistent'}}</p>
+        <p><i class = "fa-solid fa-calendar-check"></i>{{invalid_post.capture_date | default:'None available'}}</p>
 
         <p><i class = "fa-solid fa-location-dot"></i>{{invalid_post.coordinates.latitude | default:'0'}}° N, {{invalid_post.coordinates.longitude | default:'0'}}° E</p>
 
@@ -69,7 +69,7 @@
             {% endfor %}       
         </div>
 
-        <p>{{invalid_post.description | default:'nonexistent'}}</p>
+        <p>{{invalid_post.description | default:'None available'}}</p>
 
         <table>
             <caption>Post observation</caption>
@@ -95,7 +95,7 @@
             <tr>
                 <td>Weather</td>
   
-                <td>{{invalid_post.post_observation.weather | default:'nonexistent'}}</td>
+                <td>{{invalid_post.post_observation.weather | default:'None available'}}</td>
             </tr>
         </table>
 
@@ -111,7 +111,7 @@
     <div class = "card-body">
         <p><i class = "fa-solid fa-flag"></i>Uncertain</p>
 
-        <p><i class = "fa-solid fa-calendar-check"></i>{{uncertain_post.capture_date | date:'M. j, Y g:i a' | default:'nonexistent'}}</p>
+        <p><i class = "fa-solid fa-calendar-check"></i>{{uncertain_post.capture_date | date:'M. j, Y g:i a' | default:'None available'}}</p>
 
         <p><i class = "fa-solid fa-location-dot"></i>{{uncertain_post.coordinates.latitude | default:'0'}}° N, {{uncertain_post.coordinates.longitude | default:'0'}}° E</p>
 
@@ -121,7 +121,7 @@
             {% endfor %}
         </div>
 
-        <p>{{uncertain_post.description | default:'nonexistent'}}</p>
+        <p>{{uncertain_post.description | default:'None available'}}</p>
 
         <table>
             <caption>Post observation</caption>
@@ -147,12 +147,12 @@
             <tr>
                 <td>Weather</td>
   
-                <td>{{uncertain_post.post_observation.weather | default:'nonexistent'}}</td>
+                <td>{{uncertain_post.post_observation.weather | default:'None available'}}</td>
             </tr>
         </table>
 
         <div class = "button">
-            <a class = "update-post" href = "{% url 'Contributor Service Post Uncertain Update' uncertain_post.id %}">Update</a>
+            <a class = "update-post" href = "{% url 'Contributor Service Report' uncertain_post.id %}">Update</a>
         </div>
     </div>
 </div>

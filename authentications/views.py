@@ -22,7 +22,7 @@ def PublicHome(request):
             return redirect("Contributor Service Home")
         
         elif user.usertype_id == 2 or user.usertype_id == 1:
-            return redirect("admin:index")
+            return redirect("Statistics Home Redirect")
     
     else:
         try:
@@ -443,7 +443,7 @@ def OfficerDatabaseLogin(request):
             if account.usertype_id == 2:
                 login(request, account)
                 
-                return redirect("admin:index")
+                return redirect("officer:index")
             
             else:
                 messages.error(request, "Username or password is not valid.")
@@ -506,7 +506,16 @@ def OfficerDatabaseLoginGoogle(request):
     return render(request, "officer/database/login/google.html", context)
 
 
+def OfficerCheck(account):
+    try:
+        return account.is_authenticated and account.usertype_id == 2 != None
+    
+    except Account.DoesNotExist:
+            return False
+    
+
 @login_required(login_url = "Officer Database Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Database Login")
 def OfficerDatabaseLogout(request):
     username = request.user.username
 
@@ -542,230 +551,72 @@ def AdministratorDatabaseLogin(request):
     return render(request, "admin/database/login/login.html", context)
 
 
-@login_required(login_url = "Administrator Database Login")
-def AdministratorDatabaseLogout(request):
-    user = request.user
-    
-    username = request.user.username
-
-    if user.usertype_id == 1:
-        logout(request)
-        
-        messages.success(request, username + ", " + "your account used just now was signed out of COTSEye.")
-        
-        return redirect("Administrator Database Login")
-    
-    elif user.usertype_id == 2:
-        logout(request)
-        
-        messages.success(request, username + ", " + "your account used just now was signed out of COTSEye.")
-        
-        return redirect("Officer Database Logout")
-
-
-def OfficerStatisticsRegister(request):
-    account_form = AccountForm()
-
-    user_form = UserForm()
-
-    if request.method == "POST":
-        account_form = AccountForm(request.POST)
-
-        user_form = UserForm(request.POST)
-
-        if account_form.is_valid() and user_form.is_valid():
-            account = account_form.save(commit = False)
-
-            user = user_form.save(commit = False)
-
-            usertype = UserType.objects.get(id = 2)
-
-            account = Account.objects.create(username = account.username, password = account.password, usertype = usertype)
-            
-            if Account.objects.filter(username = account.username, password = account.password, usertype = usertype).exists():
-                User.objects.create(account = account, first_name = user.first_name, last_name = user.last_name, email = user.email, phone_number = user.phone_number)
-                
-                username = account.username
-                
-                messages.success(request, username + ", " + "your information input was recorded for COTSEye.")
-                
-                return redirect("Officer Database Login")
-        
-        else:
-            messages.error(request, "Username exists or is not valid, or passwords are short, entirely numeric, or do not match.")
-            
-            messages.error(request, account_form.errors, user_form.errors)  
-
-    else:
-        account_form = AccountForm()
-        
-        user_form = UserForm()
-
-    context = {"account_form": account_form, "user_form": user_form}
-    
-    return render(request, "officer/statistics/register/register.html", context)
-
-
-def OfficerStatisticsLogin(request):
-    if request.method == "POST":
-        username = request.POST.get("username")
-        
-        password = request.POST.get("password1")
-        
-        account = authenticate(request, username = username, password = password)
-
-        if account:
-            if account.usertype_id == 2:
-                login(request, account)
-                
-                return redirect("Officer Statistics Home")
-            
-            else:
-                messages.error(request, "Username or password is not valid.")
-        
-        else:
-            messages.error(request, "Username or password is not valid.")
-
-    context = {}
-
-    return render(request, "officer/statistics/login/login.html", context)
-
-
-def OfficerStatisticsLoginFacebook(request):
-    if request.method == "POST":
-        username = request.POST.get("username")
-        
-        password = request.POST.get("password1")
-        
-        account = authenticate(request, username = username, password = password)
-
-        if account:
-            if account.usertype_id == 2:
-                login(request, account)
-                
-                return redirect("Officer Statistics Home")
-            
-            else:
-                messages.error(request, "Username or password is not valid.")
-        
-        else:
-            messages.error(request, "Username or password is not valid.")
-
-    context = {}
-    
-    return render(request, "officer/statistics/login/facebook.html", context)
-
-
-def OfficerStatisticsLoginGoogle(request):
-    if request.method == "POST":
-        username = request.POST.get("username")
-        
-        password = request.POST.get("password1")
-        
-        account = authenticate(request, username = username, password = password)
-
-        if account:
-            if account.usertype_id == 2:
-                login(request, account)
-                
-                return redirect("Officer Statistics Home")
-            
-            else:
-                messages.error(request, "Username or password is not valid.")
-        
-        else:
-            messages.error(request, "Username or password is not valid.")
-
-    context = {}
-    
-    return render(request, "officer/statistics/login/google.html", context)
-
-
-def OfficerCheck(account):
-    try:
-        return account.is_authenticated and account.usertype_id == 2 != None
-    
-    except Account.DoesNotExist:
-            return False
-
-
-@login_required(login_url = "Officer Statistics Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Statistics Login")
-def OfficerStatisticsHome(request):
-    username = request.user.username
-
-    context = {"username": username}
-
-    return render(request, "officer/statistics/home/home.html", context)
-
-
-@login_required(login_url = "Officer Statistics Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Statistics Login")
-def OfficerStatisticsHomeRedirect(request):
-    return redirect(reverse("admin:index"))
-
-
-@login_required(login_url = "Officer Statistics Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Statistics Login")
-def OfficerStatisticsPasswordRedirect(request):
-    return redirect(reverse("admin:password_change"))
-
-
-@login_required(login_url = "Officer Statistics Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Statistics Login")
-def OfficerStatisticsProfileRedirect(request):
-    object = Account.objects.get(id = request.user.id)
-
-    return redirect(reverse("admin:authentications_account_change", kwargs = {"object_id": object.id}))
-
-
-@login_required(login_url = "Officer Statistics Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Statistics Login")
-def OfficerStatisticsLogout(request):
-    username = request.user.username
-
-    logout(request)
-    
-    messages.success(request, username + ", " + "your account used just now was signed out of COTSEye.")
-    
-    return redirect("Officer Statistics Login")
-
-
-def AdministratorStatisticsLogin(request):
-    if request.method == "POST":
-        username = request.POST.get("username")
-        
-        password = request.POST.get("password1")
-        
-        account = authenticate(request, username = username, password = password)
-
-        if account:
-            if account.usertype_id == 1:
-                login(request, account)
-                
-                return redirect("Administrator Report Home")
-            
-            else:
-                messages.error(request, "Username or password is not valid.")
-        
-        else:
-            messages.error(request, "Username or password is not valid.")
-
-    context = {}
-
-    return render(request, "admin/statistics/login/login.html", context)
-    
-
 def AdministratorCheck(account):
     try:
         return account.is_authenticated and account.usertype_id == 1 != None
     
     except Account.DoesNotExist:
             return False
+    
+    
+@login_required(login_url = "Administrator Database Login")
+@user_passes_test(AdministratorCheck, login_url = "Administrator Database Login")
+def AdministratorDatabaseLogout(request):    
+    username = request.user.username
+
+    logout(request)
+        
+    messages.success(request, username + ", " + "your account used just now was signed out of COTSEye.")
+        
+    return redirect("Administrator Database Login")
 
 
-@login_required(login_url = "Administrator Statistics Login")
-@user_passes_test(AdministratorCheck, login_url = "Administrator Statistics Login")
+def DatabaseHomeRedirect(request):
+    usertype = request.user.usertype_id
+
+    if usertype == 2:
+        return redirect(reverse("Officer Statistics Home"))
+    
+    elif usertype == 1:
+        return redirect(reverse("Administrator Statistics Home"))
+    
+
+@login_required(login_url = "Officer Database Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Database Login")
+def OfficerStatisticsHome(request):
+    username = request.user.username
+
+    posts = Post.objects.all()
+
+    try:
+        post_date = Post.objects.latest("capture_date").capture_date
+        
+    except:
+        post_date = None
+
+    statuses = Status.objects.all()
+
+    try:
+        status_date = Status.objects.latest("onset_date").onset_date
+        
+    except:
+        status_date = None
+
+    interventions = Intervention.objects.all()
+
+    try:
+        intervention_date = Intervention.objects.latest("intervention_date").intervention_date
+        
+    except:
+        intervention_date = None
+    
+    context = {"username": username, "posts": posts, "post_date" :post_date, "statuses": statuses, "status_date": status_date, "interventions": interventions, "intervention_date": intervention_date}
+
+    return render(request, "officer/statistics/home/home.html", context)
+
+
+@login_required(login_url = "Administrator Database Login")
+@user_passes_test(AdministratorCheck, login_url = "Administrator Database Login")
 def AdministratorStatisticsHome(request):
     username = request.user.username
 
@@ -798,43 +649,33 @@ def AdministratorStatisticsHome(request):
     return render(request, "admin/statistics/home/home.html", context)
 
 
-@login_required(login_url = "Administrator Statistics Login")
-@user_passes_test(AdministratorCheck, login_url = "Administrator Statistics Login")
-def AdministratorStatisticsHomeRedirect(request):
-    return redirect(reverse("admin:index"))
+def StatisticsHomeRedirect(request):
+    usertype = request.user.usertype_id
+
+    if usertype == 2:
+        return redirect(reverse("officer:index"))
+    
+    elif usertype == 1:
+        return redirect(reverse("admin:index"))
 
 
-@login_required(login_url = "Administrator Statistics Login")
-@user_passes_test(AdministratorCheck, login_url = "Administrator Statistics Login")
-def AdministratorStatisticsPasswordRedirect(request):
-    return redirect(reverse("admin:password_change"))
+def StatisticsPasswordRedirect(request):
+    usertype = request.user.usertype_id
+
+    if usertype == 2:
+        return redirect(reverse("officer:password_change"))
+    
+    elif usertype == 1:
+        return redirect(reverse("admin:password_change"))
 
 
-@login_required(login_url = "Administrator Statistics Login")
-@user_passes_test(AdministratorCheck, login_url = "Administrator Statistics Login")
-def AdministratorStatisticsProfileRedirect(request):
+def StatisticsProfileRedirect(request):
+    usertype = request.user.usertype_id
+
     object = Account.objects.get(id = request.user.id)
 
-    return redirect(reverse("admin:authentications_account_change", kwargs = {"object_id": object.id}))
+    if usertype == 2:
+        return redirect(reverse("officer:authentications_account_change", kwargs = {"object_id": object.id}))
 
-
-@login_required(login_url = "Administrator Statistics Login")
-@user_passes_test(AdministratorCheck, login_url = "Administrator Statistics Login")
-def AdministratorStatisticsLogout(request):
-    user = request.user
-    
-    username = request.user.username
-
-    if user.usertype_id == 1:
-        logout(request)
-        
-        messages.success(request, username + ", " + "your account used just now was signed out of COTSEye.")
-        
-        return redirect("Administrator Statistics Login")
-    
-    elif user.usertype_id == 2:
-        logout(request)
-        
-        messages.success(request, username + ", " + "your account used just now was signed out of COTSEye.")
-        
-        return redirect("Officer Statistics Login")
+    if usertype == 1:
+        return redirect(reverse("admin:authentications_account_change", kwargs = {"object_id": object.id}))

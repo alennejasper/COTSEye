@@ -2,12 +2,12 @@
 {% load static %}
 
 {% block content %}
-<div class = "intervention" id = "intervention-filter">
-    <form action = "" class = "intervention-form" method = "GET">
-        {% csrf_token %}
+<form action = "" class = "intervention-form" method = "GET">
+    {% csrf_token %}
 
+    <div class = "intervention" id = "intervention-filter">
         <div class = "card-header">
-            <header>Filter interventions</header>
+            <header>Filter required information</header>
         </div>
 
         <div class = "card-body">
@@ -18,6 +18,16 @@
                     <div class = "from-date">
                         <input type = "date" value = "" id = "from-date" name = "from_date" required>                            
                     </div>
+
+                    <label for = "location">Location</label> 
+
+                    <select name = "location" id = "location">
+                        <option disabled selected value>Choose location</option>
+
+                        {% for intervention in interventions %}
+                            <option value="{{intervention.location.id}}">{{intervention.location}}</option>
+                        {% endfor %}
+                    </select>
                 </div>
 
                 <div class = "column">
@@ -26,6 +36,16 @@
                     <div class = "to-date">
                         <input type = "date" value = "" id = "to-date" name = "to_date" required>                            
                     </div>  
+
+                    <label for = "hosting-agency">Hosting Agency</label> 
+
+                    <select name = "hosting_agency" id = "hosting-agency">
+                        <option disabled selected value>Choose hosting agency</option>
+
+                        {% for intervention in interventions %}
+                            <option value="{{intervention.hosting_agency.id}}">{{intervention.hosting_agency}}</option>
+                        {% endfor %}
+                    </select>
                 </div>
             </div>
 
@@ -33,8 +53,8 @@
                 <a class = "filter-intervention" type = "submit">Filter</a>
             </div>    
         </div>
-    </form>
-</div>
+    </div>
+</form>
 
 {% if messages %}
     {% for message in messages %}
@@ -56,7 +76,7 @@
 {% for intervention in interventions %}
 <div class = "intervention">
     <div class = "card-header">
-        <header>{{intervention.title | default:'nonexistent'}}</header>
+        <header>{{intervention.title | default:'None available'}}</header>
     </div>
 
     <div class = "card-body">
@@ -65,7 +85,7 @@
                 <label for = "intervention-date">Intervention Date</label> 
                     
                 <div class = "intervention-date">
-                    <input type = "text" value = "{{intervention.intervention_date | date:'M. j, Y' | default:'nonexistent'}}" id = "intervention-date" name = "intervention_date" readonly>
+                    <input type = "text" value = "{{intervention.intervention_date | date:'M. j, Y' | default:'None available'}}" id = "intervention-date" name = "intervention_date" readonly>
                         
                     <i class = "fa-solid fa-calendar-check"></i>
                 </div>
@@ -75,7 +95,7 @@
                 <label for = "location">Location</label> 
 
                 <div class = "location">
-                    <input type = "text" value = "{{intervention.location | default:'nonexistent'}}" id = "location" name = "location" readonly>
+                    <input type = "text" value = "{{intervention.location | default:'None available'}}" id = "location" name = "location" readonly>
 
                     <i class = "fa-solid fa-location-dot"></i>      
                 </div>  

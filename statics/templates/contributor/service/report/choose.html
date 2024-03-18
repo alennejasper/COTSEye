@@ -2,13 +2,13 @@
 {% load static %}
 
 {% block content %}
-<form action = "" class = "post-form" method = "POST" enctype = "multipart/form-data">
+<form action = "" class = "report-form" method = "POST" enctype = "multipart/form-data">
     {% csrf_token %}
 
-    <div class = "post">
+    <div class = "report" id = "choose">
 
         <div class = "card-header">
-            <header>Create report</header>
+            <header>Add required information</header>
         </div>
 
         <div class = "card-body">
@@ -32,7 +32,7 @@
                 </div>
             </div>
 
-            <div class = "post-gallery">
+            <div class = "report-gallery">
                 <img class = "gallery-photo" src = "{% static 'assets/posts/default.png' %}"> 
             </div>
 
@@ -65,7 +65,7 @@
             </div>
 
             <div class = "map">
-                <div class = "post-map">
+                <div class = "report-map">
                 </div>
             </div>
 
@@ -75,9 +75,9 @@
         </div> 
     </div>
 
-    <div class = "post">
+    <div class = "report" id = "choose">
         <div class = "card-header">
-            <header>Add information</header>
+            <header>Add optional information</header>
         </div>
 
         <div class = "card-body">
@@ -140,7 +140,7 @@
             </div>
 
             <div class = "button">
-                <a class = "save-post" type = "submit">Save</a>
+                <a class = "save-report" type = "submit">Save</a>
             </div>   
         </div>
     </div>
@@ -158,15 +158,15 @@
 <script>
     const browsePhoto = document.querySelector(".post-photo");
     
-    const postGallery = document.querySelector(".post-gallery");
+    const reportGallery = document.querySelector(".report-gallery");
 
     browsePhoto.addEventListener("change", (event) => {
-        const postFiles = event.target.files;
+        const reportFiles = event.target.files;
 
-        postGallery.innerHTML = "";
+        reportGallery.innerHTML = "";
 
-        for (let i = 0; i < postFiles.length; i++) {
-            const photoObject = postFiles[i];
+        for (let i = 0; i < reportFiles.length; i++) {
+            const photoObject = reportFiles[i];
 
             const photoElement = document.createElement("img");
             
@@ -174,7 +174,7 @@
             
             photoElement.src = URL.createObjectURL(photoObject);
             
-            postGallery.appendChild(photoElement);
+            reportGallery.appendChild(photoElement);
         }
     });
 </script>
@@ -188,9 +188,9 @@
 <script>
     document.querySelector(".post-photo").addEventListener("change", function(){
         for (var i = 0; i < this.files.length; i++){
-            var postFile = this.files[i];
+            var reportFile = this.files[i];
 
-            var modifiedDate = postFile.lastModifiedDate;
+            var modifiedDate = reportFile.lastModifiedDate;
 
             var formattedDate = modifiedDate.toISOString().split("T")[0];
 
@@ -206,25 +206,25 @@
 <script>
     var map;
 
-    var post;
+    var report;
 
     function revealMap(){
         var starfish = L.icon({iconUrl: "{% static 'assets/icons/marker.png' %}", iconSize: [30, 30], iconAnchor: [15, 15]});
 
-        var post = L.marker([5.9656, 125.1929], {draggable: true, icon: starfish});
+        var report = L.marker([5.9656, 125.1929], {draggable: true, icon: starfish});
 
-        var postMap = document.getElementsByClassName("post-map")[0];
+        var reportMap = document.getElementsByClassName("report-map")[0];
         
         var background = L.tileLayer("http://{s}.google.com/vt?lyrs=s,h&x={x}&y={y}&z={z}", {minZoom: 11, subdomains:["mt0","mt1","mt2","mt3"], attribution: "Google"});
 
-        map = L.map(postMap, {zoomControl: true, scrollWheelZoom: false, dragging: true, maxBounds: [[5.3, 124.3],[6.3, 126.3]], layers: [background, post]}).setView([5.9656, 125.1929], 11);
+        map = L.map(reportMap, {zoomControl: true, scrollWheelZoom: false, dragging: true, maxBounds: [[5.3, 124.3],[6.3, 126.3]], layers: [background, report]}).setView([5.9656, 125.1929], 11);
 
         map.attributionControl.setPosition("bottomleft");
 
         function updateCoordinates(){
-            var latitude = post.getLatLng().lat.toFixed(6);
+            var latitude = report.getLatLng().lat.toFixed(6);
 
-            var longitude = post.getLatLng().lng.toFixed(6);
+            var longitude = report.getLatLng().lng.toFixed(6);
 
             document.getElementById("latitude").value = latitude;
             
@@ -233,10 +233,10 @@
 
         updateCoordinates();
 
-        post.on("drag", updateCoordinates);
+        report.on("drag", updateCoordinates);
 
-        post.on("dragend", function (e){
-            var position = post.getLatLng();
+        report.on("dragend", function (e){
+            var position = report.getLatLng();
 
             document.getElementById("latitude").value = position.lat.toFixed(6);
             
@@ -246,13 +246,13 @@
         document.getElementById("latitude").addEventListener("input", function (){
             var lat = parseFloat(this.value);
 
-            post.setLatLng([lat, post.getLatLng().lng]);
+            report.setLatLng([lat, report.getLatLng().lng]);
         });
 
         document.getElementById("longitude").addEventListener("input", function (){
             var lng = parseFloat(this.value);
 
-            post.setLatLng([post.getLatLng().lat, lng]);
+            report.setLatLng([report.getLatLng().lat, lng]);
         });
     }
 
@@ -270,13 +270,13 @@
 </script>
 
 <script>
-    let postPhoto;
+    let reportPhoto;
 
     document.querySelector(".post-photo").addEventListener("change", function(e){
-        const postFile = e.target.files[0];
+        const reportFile = e.target.files[0];
         const photo = new Image();
 
-        photo.src = URL.createObjectURL(postFile);
+        photo.src = URL.createObjectURL(reportFile);
 
         photo.onload = function(){
             EXIF.getData(photo, function(){
@@ -294,12 +294,12 @@
 
                         document.getElementById("longitude").value = roundLongitude;
                         
-                        postPhoto = photo;
+                        reportPhoto = photo;
 
                     } else {
                         Swal.fire({title: "Oops!", text: "The photo given to COTSEye incorporated coordinates out of bounds.", icon: "error", iconColor: "#E74C3C", confirmButtonColor: "#E74C3C"});
                         
-                        document.querySelector(".gallery-photo").src = "{% static 'assets/posts/default.png' %}";
+                        document.querySelector(".gallery-photo").src = "{% static 'assets/reports/default.png' %}";
                     }
 
                 } else {
@@ -331,8 +331,8 @@
 </script>
 
 <script>
-    document.querySelector(".save-post").onclick = function() {
-        document.querySelector(".post-form").submit();
+    document.querySelector(".save-report").onclick = function() {
+        document.querySelector(".report-form").submit();
     }
 </script>
 {% endblock content %}

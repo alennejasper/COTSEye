@@ -18,17 +18,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path("blog/", include("blog.urls"))
 """
 
-from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, re_path, include
 from django.views.generic import TemplateView
 from authentications import views
-
-
-admin.site.site_title = "Administration"
-admin.site.index_title = "COTSEye"
-admin.site.index_template = "admin/database/index/index.html"
+from configurations.admin import officer, admin
 
 urlpatterns = [
     path("admin/database/login/", views.AdministratorDatabaseLogin),
@@ -36,6 +31,12 @@ urlpatterns = [
     path("admin/database/logout/", views.AdministratorDatabaseLogout),
     
     path("admin/database/", admin.site.urls),
+
+    path("officer/database/login/", views.OfficerDatabaseLogin),
+    
+    path("officer/database/logout/", views.OfficerDatabaseLogout),
+
+    path("officer/database/", officer.urls),
     
     path("", include("allauth.urls")),
     

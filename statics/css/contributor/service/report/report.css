@@ -36,7 +36,7 @@
 }
 
 
-.content{
+.content:has(.report){
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 30px;
@@ -45,37 +45,36 @@
     display: grid;
     grid-template-columns: 100%;
     place-items: center;
-
 }
 
-.login{
+.report{
     width: 386px;
     display: grid;
     grid-column: 1;
     border: 1px solid #B2BEB5;
-    border-radius: 5px !important;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px #B2BEB5;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .login{
+    .report{
         width: 309px;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .login{
+    .report{
         width: 289px;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .login{
+    .report{
         width: 260px;
     }
 }
 
-.login .card-header{
+.report .card-header{
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 15px;
@@ -87,7 +86,7 @@
     place-items: center;
 }
 
-.login .card-header header{
+.report .card-header header{
     font-family: "Philosopher";
     font-weight: 700;
     font-size: 22px !important;
@@ -97,7 +96,7 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .login .card-header header{
+    .report .card-header header{
         font-family: "Philosopher";
         font-weight: 700;
         font-size: 20px !important;
@@ -108,7 +107,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .login .card-header header{
+    .report .card-header header{
         font-family: "Philosopher";
         font-weight: 700;
         font-size: 18px !important;
@@ -119,7 +118,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .login .card-header header{
+    .report .card-header header{
         font-family: "Philosopher";
         font-weight: 700;
         font-size: 16px !important;
@@ -129,7 +128,7 @@
     }
 }
 
-.login .card-body{
+.report .card-body{
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 15px;
@@ -141,17 +140,17 @@
     background-color: #FFFFFF;
 }
 
-.login .card-body .socials{
+.report .card-body .methods{
     width: 100%;
 }
 
-.login .card-body .socials .facebook{
+.report .card-body .methods .capture{
     width: 100%;
     height: 100% !important;
     position: relative;
 }
 
-.login .card-body .socials button.facebook{
+.report .card-body .methods button.capture{
     padding-left: 10px !important;
     padding-right: 10px !important;
     padding-top: 5px !important;
@@ -160,16 +159,20 @@
     border-radius: 5px;
     box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
-    background-color: #154360;
+    background-color: #698F3F;
     cursor: pointer;
 }
 
-.login .card-body .socials button.facebook:hover, .login .card-body .socials button.facebook span:hover{
-    background-color: #10354C;
+.report .card-body .methods button.capture:hover, .report .card-body .methods button.capture span:hover{
+    background-color: #557433;
     color: #B2BEB5;
 }
 
-.login .card-body .socials button.facebook i{
+.report .card-body .methods button.capture a{
+    text-decoration: none !important;
+}
+
+.report .card-body .methods button.capture i{
     left: 10px;
     top: 50%;
     position: absolute;
@@ -179,7 +182,7 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .login .card-body .socials button.facebook i{
+    .report .card-body .methods button.capture i{
         left: 10px;
         top: 50%;
         position: absolute;
@@ -190,7 +193,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .login .card-body .socials button.facebook i{
+    .report .card-body .methods button.capture i{
         left: 10px;
         top: 50%;
         position: absolute;
@@ -201,7 +204,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .login .card-body .socials button.facebook i{
+    .report .card-body .methods button.capture i{
         left: 10px;
         top: 50%;
         position: absolute;
@@ -211,7 +214,7 @@
     }
 }
 
-.login .card-body .socials button.facebook span{
+.report .card-body .methods button.capture span{
     font-family: "Overlock";
     font-weight: 400;
     font-size: 20px;
@@ -219,7 +222,7 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .login .card-body .socials button.facebook span{
+    .report .card-body .methods button.capture span{
         font-family: "Overlock";
         font-weight: 400;
         font-size: 18px !important;
@@ -228,7 +231,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .login .card-body .socials button.facebook span{
+    .report .card-body .methods button.capture span{
         font-family: "Overlock";
         font-weight: 400;
         font-size: 16px !important;
@@ -237,13 +240,187 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .login .card-body .socials button.facebook span{
+    .report .card-body .methods button.capture span{
         font-family: "Overlock";
         font-weight: 400;
         font-size: 14px !important;
         color: #FFFFFF !important;
     }
 }
+
+.report .card-body .methods .line{
+    margin-top: 15.5px;
+    margin-bottom: 0px !important;
+    position: relative;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    background-color: #B2BEB5;
+}
+
+.report .card-body .methods .line::before{
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    content: "OR";
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px;
+    background-color: #FFFFFF;
+    color: #154659;
+    transform: translate(-50%, -50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report .card-body .methods .line::before{
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        content: "OR";
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px;
+        background-color: #FFFFFF;
+        color: #154659;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report .card-body .methods .line::before{
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        content: "OR";
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px;
+        background-color: #FFFFFF;
+        color: #154659;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report .card-body .methods .line::before{
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        content: "OR";
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px;
+        background-color: #FFFFFF;
+        color: #154659;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.report .card-body .methods .choose{
+    margin-top: 15px;
+    width: 100%;
+    height: 100% !important;
+    position: relative;
+}
+
+.report .card-body .methods button.choose{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    background-color: #698F3F;
+    cursor: pointer;
+}
+
+.report .card-body .methods button.choose:hover, .report .card-body .methods button.choose span:hover{
+    background-color: #557433;
+    color: #B2BEB5;
+}
+
+.report .card-body .methods button.choose a{
+    text-decoration: none !important;
+}
+
+.report .card-body .methods button.choose i{
+    left: 10px;
+    top: 50%;
+    position: absolute;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #FFFFFF !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report .card-body .methods button.choose i{
+        left: 10px;
+        top: 50%;
+        position: absolute;
+        transform: translateY(-50%);
+        font-size: 18px;
+        color: #FFFFFF !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report .card-body .methods button.choose i{
+        left: 10px;
+        top: 50%;
+        position: absolute;
+        transform: translateY(-50%);
+        font-size: 16px;
+        color: #FFFFFF !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report .card-body .methods button.choose i{
+        left: 10px;
+        top: 50%;
+        position: absolute;
+        transform: translateY(-50%);
+        font-size: 14px;
+        color: #FFFFFF !important;
+    }
+}
+
+.report .card-body .methods button.choose span{
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px;
+    color: #FFFFFF !important;
+    text-decoration: none !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report .card-body .methods button.choose span{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #FFFFFF !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report .card-body .methods button.choose span{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #FFFFFF !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report .card-body .methods button.choose span{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #FFFFFF !important;
+    }
+}
+
 
 
 .swal2-popup{

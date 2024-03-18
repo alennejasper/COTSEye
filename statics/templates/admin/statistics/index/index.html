@@ -23,6 +23,12 @@
 
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/admin/statistics/home/home.css' %}">
 
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/admin/statistics/status/status.css' %}">
+
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/admin/statistics/intervention/intervention.css' %}">
+
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/admin/statistics/intervention/read.css' %}">
+
         <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">          
 
         <script src = "https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -35,7 +41,7 @@
 
         <script src = "https://cdnjs.cloudflare.com/ajax/libs/exif-js/2.3.0/exif.js"></script>
 
-        <title>Home | COTSEye</title>
+        <title>COTSEye | Home</title>
     </head>
 
     <body>
@@ -45,7 +51,7 @@
 
                 <div class = "menu">
                     <ul class = "navigation-links">
-                        <li><a href = "{% url 'Administrator Statistics Home Redirect' %}">Access database</a></li>
+                        <li><a href = "{% url 'Statistics Home Redirect' %}">Access database</a></li>
                     </ul>
                 </div>
 
@@ -58,15 +64,15 @@
 
                             <div class = "dropdown-divider"></div>
                             
-                            <a href = "{% url 'Administrator Statistics Password Redirect' %}" class = "dropdown-item"><i class = "fa-solid fa-key"></i>Change password</a>
+                            <a href = "{% url 'Statistics Password Redirect' %}" class = "dropdown-item"><i class = "fa-solid fa-key"></i>Change password</a>
                             
                             <div class = "dropdown-divider"></div>
                             
-                            <a href = "{% url 'Administrator Statistics Logout' %}" class = "dropdown-item"><i class = "fa-solid fa-users"></i>Log out</a>
+                            <a href = "{% url 'Administrator Database Logout' %}" class = "dropdown-item"><i class = "fa-solid fa-users"></i>Log out</a>
                             
                             <div class = "dropdown-divider"></div>
                             
-                            <a href = "{% url 'Administrator Statistics Profile Redirect' %}" class = "dropdown-footer">See profile</a>
+                            <a href = "{% url 'Statistics Profile Redirect' %}" class = "dropdown-footer">See profile</a>
                         </div>
                     </div>
                 </div>

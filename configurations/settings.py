@@ -264,12 +264,10 @@ JAZZMIN_SETTINGS = {
     "show_sidebar": False,
    
     "navigation_expanded": False,
-    
-    "custom_css": "css/admin/database/index/index.css", 
-    
+        
     "changeform_format": "horizontal_tabs",
 
     "topmenu_links": [
-        {"name": "Access statistics", "url": reverse_lazy("Administrator Statistics Home")}
-    ],
+        {"name": "Access statistics", "url": reverse_lazy("Database Home Redirect")}
+    ]
 }

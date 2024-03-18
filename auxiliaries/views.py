@@ -19,21 +19,20 @@ def PublicServiceAnnouncement(request):
             if from_date and to_date:
                 announcements = Announcement.objects.filter(release_date__range = [from_date, to_date])
             
-                if not announcements:
-                    username = "public/everyone"
+            elif not from_date or not to_date:
+                username = "public/everyone"
 
-                    messages.error(request, username + ", " + "information input cannot be found within COTSEye.")
+                messages.error(request, username + ", " + "date range is not valid.") 
 
             elif not from_date and not to_date:
-                messages.error(request, "Range is not valid.")
+                username = "public/everyone"
 
-            elif not from_date or not to_date:
-                messages.error(request, "Range is not valid.")
+                messages.error(request, username + ", " + "information filter is empty within COTSEye.")
 
-        elif not announcements:
-            username = "public/everyone"
+    else:
+        username = "public/everyone"
 
-            messages.error(request, username + ", " + "information input is empty within COTSEye.")
+        messages.info(request, username + ", " + "information input is empty within COTSEye.")
 
     context = {"username": username, "announcements": announcements}
 
@@ -65,22 +64,21 @@ def ContributorServiceAnnouncement(request):
         if "from_date" in request.GET or "to_date" in request.GET:
             if from_date and to_date:
                 announcements = Announcement.objects.filter(release_date__range = [from_date, to_date])
-            
-                if not announcements:
-                    username = request.user.username
-
-                    messages.error(request, username + ", " + "information input cannot be found within COTSEye.")
-
-            elif not from_date and not to_date:
-                messages.error(request, "Range is not valid.")
 
             elif not from_date or not to_date:
-                messages.error(request, "Range is not valid.")
+                username = request.user.username
 
-        elif not announcements:
-            username = request.user.username
+                messages.error(request, username + ", " + "date range is not valid.") 
 
-            messages.error(request, username + ", " + "information input is empty within COTSEye.")
+            elif not from_date and not to_date:
+                username = request.user.username
+
+                messages.error(request, username + ", " + "information filter is empty within COTSEye.")
+
+    else:
+        username = request.user.username
+
+        messages.info(request, username + ", " + "information input is empty within COTSEye.")
 
     context = {"username": username, "announcements": announcements}
 

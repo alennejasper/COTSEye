@@ -40,7 +40,18 @@ form{
     width: 100%;
 }
 
-.post{
+.content:has(.report#choose){
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    min-height: unset;
+    display: grid;
+    grid-template-columns: 100%;
+    place-items: unset;
+}
+
+.report#choose{
     margin-bottom: 30px;
     width: 100%;
     display: grid;
@@ -50,7 +61,7 @@ form{
     box-shadow: 0 0 0 1px #B2BEB5 !important;
 }
 
-.post .card-header{
+.report#choose .card-header{
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 15px;
@@ -59,9 +70,10 @@ form{
     border-top-right-radius: 5px !important;
     background-color: #154360;
     display: grid;
+    place-items: unset;
 }
 
-.post .card-header header{
+.report#choose .card-header header{
     font-family: "Philosopher";
     font-weight: 700;
     font-size: 22px !important;
@@ -71,7 +83,7 @@ form{
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-header header{
+    .report#choose .card-header header{
         font-family: "Philosopher";
         font-weight: 700;
         font-size: 20px !important;
@@ -82,7 +94,7 @@ form{
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-header header{
+    .report#choose .card-header header{
         font-family: "Philosopher";
         font-weight: 700;
         font-size: 18px !important;
@@ -93,7 +105,7 @@ form{
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-header header{
+    .report#choose .card-header header{
         font-family: "Philosopher";
         font-weight: 700;
         font-size: 16px !important;
@@ -103,7 +115,7 @@ form{
     }
 }
 
-.post .card-body{
+.report#choose .card-body{
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 15px;
@@ -112,44 +124,46 @@ form{
     border-bottom-left-radius: 5px !important;
     border-bottom-right-radius: 5px !important;
     display: grid;
+    gap: 15px;
+    place-items: unset;
     background-color: #FFFFFF;
 }
 
-.post .card-body .field{
+.report#choose .card-body .field{
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
 }
 
 @media screen and (min-width: 446px) and (max-width: 775px){
-    .post .card-body .field{        
+    .report#choose .card-body .field{        
         grid-template-columns: 100%;
         gap: 0px;
     }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field{        
+    .report#choose .card-body .field{        
         grid-template-columns: 100%;
         gap: 0px;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field{        
+    .report#choose .card-body .field{        
         grid-template-columns: 100%;
         gap: 0px;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field{        
+    .report#choose .card-body .field{        
         grid-template-columns: 100%;
         gap: 0px;
     }
 }
 
-.post .card-body .field .column label[for = "capture-date"]{
+.report#choose .card-body .field .column label[for = "capture-date"]{
     margin-top: 0px;
     display: inline-block;
     font-family: "Overlock";
@@ -159,7 +173,7 @@ form{
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column label[for = "capture-date"]{
+    .report#choose .card-body .field .column label[for = "capture-date"]{
         margin-top: 0px;
         display: inline-block;
         font-family: "Overlock";
@@ -170,7 +184,7 @@ form{
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column label[for = "capture-date"]{
+    .report#choose .card-body .field .column label[for = "capture-date"]{
         margin-top: 0px;
         display: inline-block;
         font-family: "Overlock";
@@ -181,7 +195,7 @@ form{
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column label[for = "capture-date"]{
+    .report#choose .card-body .field .column label[for = "capture-date"]{
         margin-top: 0px;
         display: inline-block;
         font-family: "Overlock";
@@ -191,11 +205,11 @@ form{
     }
 }
 
-.post .card-body .field .column .capture-date{
+.report#choose .card-body .field .column .capture-date{
     position: relative;
 }
 
-.post .card-body .field .column .capture-date input{
+.report#choose .card-body .field .column .capture-date input{
     padding-left: 10px !important;
     padding-right: 5px !important;
     padding-top: 5px !important;
@@ -211,12 +225,12 @@ form{
     color: #154360 !important;
 }
 
-.post .card-body .field .column .capture-date input:focus{
+.report#choose .card-body .field .column .capture-date input:focus{
     border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column .capture-date input{
+    .report#choose .card-body .field .column .capture-date input{
         padding-left: 10px !important;
         padding-right: 5px !important;
         padding-top: 5px !important;
@@ -234,7 +248,7 @@ form{
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column .capture-date input{
+    .report#choose .card-body .field .column .capture-date input{
         padding-left: 10px !important;
         padding-right: 5px !important;
         padding-top: 5px !important;
@@ -252,7 +266,7 @@ form{
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column .capture-date input{
+    .report#choose .card-body .field .column .capture-date input{
         padding-left: 10px !important;
         padding-right: 5px !important;
         padding-top: 5px !important;
@@ -269,51 +283,51 @@ form{
     }
 }
 
-.post .card-body .field .column .capture-date input[type = "date"]::-webkit-calendar-picker-indicator{
+.report#choose .card-body .field .column .capture-date input[type = "date"]::-webkit-calendar-picker-indicator{
     filter: invert(22%) sepia(7%) saturate(6538%) hue-rotate(164deg) brightness(89%) contrast(90%);
 }
 
-.post .card-body .field .column .capture-date input[type = date]:invalid::-webkit-datetime-edit{
+.report#choose .card-body .field .column .capture-date input[type = date]:invalid::-webkit-datetime-edit{
     color: #154360 !important;
 }
 
-.post .card-body .field .column .capture-date input::-webkit-datetime-edit-day-field{
+.report#choose .card-body .field .column .capture-date input::-webkit-datetime-edit-day-field{
     color: #154360;
     background-color: #FFFFFF;
     outline: none;
 }
 
-.post .card-body .field .column .capture-date input::-webkit-datetime-edit-month-field{
+.report#choose .card-body .field .column .capture-date input::-webkit-datetime-edit-month-field{
     color: #154360;
     background-color: #FFFFFF;
     outline: none;
 }
 
-.post .card-body .field .column .capture-date input::-webkit-datetime-edit-year-field{
+.report#choose .card-body .field .column .capture-date input::-webkit-datetime-edit-year-field{
     color: #154360;
     background-color: #FFFFFF;
     outline: none;
 }
 
-.post .card-body .field .column .capture-date input::-webkit-datetime-edit-day-field:focus{
+.report#choose .card-body .field .column .capture-date input::-webkit-datetime-edit-day-field:focus{
     background-color: #154360 !important;
     color: #FFFFFF !important;
     outline: none;
 }
 
-.post .card-body .field .column .capture-date input::-webkit-datetime-edit-month-field:focus{
+.report#choose .card-body .field .column .capture-date input::-webkit-datetime-edit-month-field:focus{
     background-color: #154360 !important;
     color: #FFFFFF !important;
     outline: none;
 }
 
-.post .card-body .field .column .capture-date input::-webkit-datetime-edit-year-field:focus{
+.report#choose .card-body .field .column .capture-date input::-webkit-datetime-edit-year-field:focus{
     background-color: #154360 !important;
     color: #FFFFFF !important;
     outline: none;
 }
 
-.post .card-body .field .column label[for = "description"]{
+.report#choose .card-body .field .column label[for = "description"]{
     margin-top: 0px;
     display: inline-block;
     font-family: "Overlock";
@@ -323,7 +337,7 @@ form{
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column label[for = "description"]{
+    .report#choose .card-body .field .column label[for = "description"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -334,7 +348,7 @@ form{
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column label[for = "description"]{
+    .report#choose .card-body .field .column label[for = "description"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -345,7 +359,7 @@ form{
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column label[for = "description"]{
+    .report#choose .card-body .field .column label[for = "description"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -355,11 +369,11 @@ form{
     }
 }
 
-.post .card-body .field .column .description{
+.report#choose .card-body .field .column .description{
     position: relative;
 }
 
-.post .card-body .field .column .description input{
+.report#choose .card-body .field .column .description input{
     padding-left: 10px !important;
     padding-right: 45px !important;
     padding-top: 5px !important;
@@ -376,12 +390,12 @@ form{
     overflow: auto;
 }
 
-.post .card-body .field .column .description input:focus{
+.report#choose .card-body .field .column .description input:focus{
     border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column .description input{
+    .report#choose .card-body .field .column .description input{
         padding-left: 10px !important;
         padding-right: 45px !important;
         padding-top: 5px !important;
@@ -399,7 +413,7 @@ form{
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column .description input{
+    .report#choose .card-body .field .column .description input{
         padding-left: 10px !important;
         padding-right: 45px !important;
         padding-top: 5px !important;
@@ -417,7 +431,7 @@ form{
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column .description input{
+    .report#choose .card-body .field .column .description input{
         padding-left: 10px !important;
         padding-right: 45px !important;
         padding-top: 5px !important;
@@ -434,7 +448,7 @@ form{
     }
 }
 
-.post .card-body .field .column .description i{
+.report#choose .card-body .field .column .description i{
     right: 10px;
     top: 50%;
     position: absolute;
@@ -446,7 +460,7 @@ form{
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column .description i{
+    .report#choose .card-body .field .column .description i{
         right: 10px;
         top: 50%;
         position: absolute;
@@ -459,7 +473,7 @@ form{
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column .description i{
+    .report#choose .card-body .field .column .description i{
         right: 10px;
         top: 50%;
         position: absolute;
@@ -472,7 +486,7 @@ form{
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column .description i{
+    .report#choose .card-body .field .column .description i{
         right: 10px;
         top: 50%;
         position: absolute;
@@ -484,7 +498,7 @@ form{
     }
 }
 
-.post .card-body .post-gallery{
+.report#choose .card-body .report-gallery{
     margin-top: 0px;
     padding-left: 30px;
     padding-right: 30px;
@@ -497,7 +511,7 @@ form{
     white-space: nowrap;
 }
 
-.post .card-body .post-gallery .gallery-photo{
+.report#choose .card-body .report-gallery .gallery-photo{
     margin-right: 30px;
     width: 100%;
     height: 100%;
@@ -508,11 +522,11 @@ form{
     box-shadow: 0 0 0 1px #B2BEB5 !important;
 }
 
-.post .card-body .post-gallery .gallery-photo:last-child{
+.report#choose .card-body .report-gallery .gallery-photo:last-child{
     margin-right: 0px !important;
 }
 
-.post .card-body .button{
+.report#choose .card-body .button{
     margin-left: auto;
     margin-top: 0px;
     padding-top: 5px !important;
@@ -521,7 +535,7 @@ form{
     height: 100% !important;
 }
 
-.post .card-body .button label[for = "post-photo"]{
+.report#choose .card-body .button label[for = "post-photo"]{
     padding-left: 10px !important;
     padding-right: 10px !important;
     padding-top: 5px !important;
@@ -539,13 +553,13 @@ form{
     cursor: pointer;
 }
 
-.post .card-body .button label[for = "post-photo"]:hover{
+.report#choose .card-body .button label[for = "post-photo"]:hover{
     background-color: #10354C !important;
     color: #B2BEB5 !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .button label[for = "post-photo"]{
+    .report#choose .card-body .button label[for = "post-photo"]{
         font-family: "Overlock";
         font-weight: 400;
         font-size: 18px !important;
@@ -555,7 +569,7 @@ form{
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .button label[for = "post-photo"]{
+    .report#choose .card-body .button label[for = "post-photo"]{
         font-family: "Overlock";
         font-weight: 400;
         font-size: 16px !important;
@@ -565,7 +579,7 @@ form{
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .button label[for = "post-photo"]{
+    .report#choose .card-body .button label[for = "post-photo"]{
         font-family: "Overlock";
         font-weight: 400;
         font-size: 14px !important;
@@ -574,11 +588,11 @@ form{
     }
 }
 
-.post .card-body .button input[type = "file"]{
+.report#choose .card-body .button input[type = "file"]{
     display: none;
 }
 
-.post .card-body .field .column label[for = "latitude"]{
+.report#choose .card-body .field .column label[for = "latitude"]{
     margin-top: 0px;
     display: inline-block;
     font-family: "Overlock";
@@ -588,7 +602,7 @@ form{
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column label[for = "latitude"]{
+    .report#choose .card-body .field .column label[for = "latitude"]{
         margin-top: 0px;
         display: inline-block;
         font-family: "Overlock";
@@ -599,7 +613,7 @@ form{
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column label[for = "latitude"]{
+    .report#choose .card-body .field .column label[for = "latitude"]{
         margin-top: 0px;
         display: inline-block;
         font-family: "Overlock";
@@ -610,7 +624,7 @@ form{
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column label[for = "latitude"]{
+    .report#choose .card-body .field .column label[for = "latitude"]{
         margin-top: 0px;
         display: inline-block;
         font-family: "Overlock";
@@ -620,11 +634,11 @@ form{
     }
 }
 
-.post .card-body .field .column .latitude{
+.report#choose .card-body .field .column .latitude{
     position: relative;
 }
 
-.post .card-body .field .column .latitude input{
+.report#choose .card-body .field .column .latitude input{
     padding-left: 10px !important;
     padding-right: 45px !important;
     padding-top: 5px !important;
@@ -641,12 +655,12 @@ form{
     overflow: auto;
 }
 
-.post .card-body .field .column .latitude input:focus{
+.report#choose .card-body .field .column .latitude input:focus{
     border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column .latitude input{
+    .report#choose .card-body .field .column .latitude input{
         padding-left: 10px !important;
         padding-right: 45px !important;
         padding-top: 5px !important;
@@ -664,7 +678,7 @@ form{
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column .latitude input{
+    .report#choose .card-body .field .column .latitude input{
         padding-left: 10px !important;
         padding-right: 45px !important;
         padding-top: 5px !important;
@@ -682,7 +696,7 @@ form{
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column .latitude input{
+    .report#choose .card-body .field .column .latitude input{
         padding-left: 10px !important;
         padding-right: 45px !important;
         padding-top: 5px !important;
@@ -699,7 +713,7 @@ form{
     }
 }
 
-.post .card-body .field .column .latitude i{
+.report#choose .card-body .field .column .latitude i{
     right: 10px;
     top: 50%;
     position: absolute;
@@ -711,7 +725,7 @@ form{
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column .latitude i{
+    .report#choose .card-body .field .column .latitude i{
         right: 10px;
         top: 50%;
         position: absolute;
@@ -724,7 +738,7 @@ form{
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column .latitude i{
+    .report#choose .card-body .field .column .latitude i{
         right: 10px;
         top: 50%;
         position: absolute;
@@ -737,7 +751,7 @@ form{
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column .latitude i{
+    .report#choose .card-body .field .column .latitude i{
         right: 10px;
         top: 50%;
         position: absolute;
@@ -749,7 +763,7 @@ form{
     }
 }
 
-.post .card-body .field .column label[for = "longitude"]{
+.report#choose .card-body .field .column label[for = "longitude"]{
     margin-top: 0px;
     display: inline-block;
     font-family: "Overlock";
@@ -759,7 +773,7 @@ form{
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column label[for = "longitude"]{
+    .report#choose .card-body .field .column label[for = "longitude"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -770,7 +784,7 @@ form{
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column label[for = "longitude"]{
+    .report#choose .card-body .field .column label[for = "longitude"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -781,7 +795,7 @@ form{
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column label[for = "longitude"]{
+    .report#choose .card-body .field .column label[for = "longitude"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -791,11 +805,11 @@ form{
     }
 }
 
-.post .card-body .field .column .longitude{
+.report#choose .card-body .field .column .longitude{
     position: relative;
 }
 
-.post .card-body .field .column .longitude input{
+.report#choose .card-body .field .column .longitude input{
     padding-left: 10px !important;
     padding-right: 45px !important;
     padding-top: 5px !important;
@@ -812,12 +826,12 @@ form{
     overflow: auto;
 }
 
-.post .card-body .field .column .longitude input:focus{
+.report#choose .card-body .field .column .longitude input:focus{
     border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column .longitude input{
+    .report#choose .card-body .field .column .longitude input{
         padding-left: 10px !important;
         padding-right: 45px !important;
         padding-top: 5px !important;
@@ -835,7 +849,7 @@ form{
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column .longitude input{
+    .report#choose .card-body .field .column .longitude input{
         padding-left: 10px !important;
         padding-right: 45px !important;
         padding-top: 5px !important;
@@ -853,7 +867,7 @@ form{
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column .longitude input{
+    .report#choose .card-body .field .column .longitude input{
         padding-left: 10px !important;
         padding-right: 45px !important;
         padding-top: 5px !important;
@@ -870,7 +884,7 @@ form{
     }
 }
 
-.post .card-body .field .column .longitude i{
+.report#choose .card-body .field .column .longitude i{
     right: 10px;
     top: 50%;
     position: absolute;
@@ -882,7 +896,7 @@ form{
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column .longitude i{
+    .report#choose .card-body .field .column .longitude i{
         right: 10px;
         top: 50%;
         position: absolute;
@@ -895,7 +909,7 @@ form{
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column .longitude i{
+    .report#choose .card-body .field .column .longitude i{
         right: 10px;
         top: 50%;
         position: absolute;
@@ -908,7 +922,7 @@ form{
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column .longitude i{
+    .report#choose .card-body .field .column .longitude i{
         right: 10px;
         top: 50%;
         position: absolute;
@@ -920,7 +934,7 @@ form{
     }
 }
 
-.post .card-body .button a.refresh-map{
+.report#choose .card-body .button a.refresh-map{
     padding-left: 10px !important;
     padding-right: 10px !important;
     padding-top: 5px !important;
@@ -938,13 +952,13 @@ form{
     cursor: pointer;
 }
 
-.post .card-body .button a.refresh-map:hover{
+.report#choose .card-body .button a.refresh-map:hover{
     background-color: #10354C !important;
     color: #B2BEB5 !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .button a.refresh-map{
+    .report#choose .card-body .button a.refresh-map{
         font-family: "Overlock";
         font-weight: 400;
         font-size: 18px !important;
@@ -954,7 +968,7 @@ form{
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .button a.refresh-map{
+    .report#choose .card-body .button a.refresh-map{
         font-family: "Overlock";
         font-weight: 400;
         font-size: 16px !important;
@@ -964,7 +978,7 @@ form{
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .button a.refresh-map{
+    .report#choose .card-body .button a.refresh-map{
         font-family: "Overlock";
         font-weight: 400;
         font-size: 14px !important;
@@ -973,7 +987,7 @@ form{
     }
 }
 
-.post .card-body .field .column label[for = "size"]{
+.report#choose .card-body .field .column label[for = "size"]{
     margin-top: 0px;
     display: inline-block;
     font-family: "Overlock";
@@ -983,7 +997,7 @@ form{
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column label[for = "size"]{
+    .report#choose .card-body .field .column label[for = "size"]{
         margin-top: 0px;
         display: inline-block;
         font-family: "Overlock";
@@ -994,7 +1008,7 @@ form{
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column label[for = "size"]{
+    .report#choose .card-body .field .column label[for = "size"]{
         margin-top: 0px;
         display: inline-block;
         font-family: "Overlock";
@@ -1005,7 +1019,7 @@ form{
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column label[for = "size"]{
+    .report#choose .card-body .field .column label[for = "size"]{
         margin-top: 0px;
         display: inline-block;
         font-family: "Overlock";
@@ -1015,11 +1029,11 @@ form{
     }
 }
 
-.post .card-body .field .column .size{
+.report#choose .card-body .field .column .size{
     position: relative;
 }
 
-.post .card-body .field .column .size input{
+.report#choose .card-body .field .column .size input{
     padding-left: 10px !important;
     padding-right: 45px !important;
     padding-top: 5px !important;
@@ -1035,12 +1049,12 @@ form{
     color: #154360 !important;
 }
 
-.post .card-body .field .column .size input:focus{
+.report#choose .card-body .field .column .size input:focus{
     border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column .size input{
+    .report#choose .card-body .field .column .size input{
         padding-left: 10px !important;
         padding-right: 45px !important;
         padding-top: 5px !important;
@@ -1058,7 +1072,7 @@ form{
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column .size input{
+    .report#choose .card-body .field .column .size input{
         padding-left: 10px !important;
         padding-right: 45px !important;
         padding-top: 5px !important;
@@ -1076,7 +1090,7 @@ form{
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column .size input{
+    .report#choose .card-body .field .column .size input{
         padding-left: 10px !important;
         padding-right: 45px !important;
         padding-top: 5px !important;
@@ -1093,7 +1107,7 @@ form{
     }
 }
 
-.post .card-body .field .column .size i{
+.report#choose .card-body .field .column .size i{
     right: 10px;
     top: 50%;
     position: absolute;
@@ -1105,7 +1119,7 @@ form{
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column .size i{
+    .report#choose .card-body .field .column .size i{
         right: 10px;
         top: 50%;
         position: absolute;
@@ -1118,7 +1132,7 @@ form{
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column .size i{
+    .report#choose .card-body .field .column .size i{
         right: 10px;
         top: 50%;
         position: absolute;
@@ -1131,7 +1145,7 @@ form{
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column .size i{
+    .report#choose .card-body .field .column .size i{
         right: 10px;
         top: 50%;
         position: absolute;
@@ -1143,7 +1157,7 @@ form{
     }
 }
 
-.post .card-body .field .column label[for = "density"]{
+.report#choose .card-body .field .column label[for = "density"]{
     margin-top: 0px;
     display: inline-block;
     font-family: "Overlock";
@@ -1153,7 +1167,7 @@ form{
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column label[for = "density"]{
+    .report#choose .card-body .field .column label[for = "density"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -1164,7 +1178,7 @@ form{
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column label[for = "density"]{
+    .report#choose .card-body .field .column label[for = "density"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -1175,7 +1189,7 @@ form{
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column label[for = "density"]{
+    .report#choose .card-body .field .column label[for = "density"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -1185,11 +1199,11 @@ form{
     }
 }
 
-.post .card-body .field .column .density{
+.report#choose .card-body .field .column .density{
     position: relative;
 }
 
-.post .card-body .field .column .density input{
+.report#choose .card-body .field .column .density input{
     padding-left: 10px !important;
     padding-right: 45px !important;
     padding-top: 5px !important;
@@ -1205,12 +1219,12 @@ form{
     color: #154360 !important;
 }
 
-.post .card-body .field .column .density input:focus{
+.report#choose .card-body .field .column .density input:focus{
     border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column .density input{
+    .report#choose .card-body .field .column .density input{
         padding-left: 10px !important;
         padding-right: 45px !important;
         padding-top: 5px !important;
@@ -1228,7 +1242,7 @@ form{
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column .density input{
+    .report#choose .card-body .field .column .density input{
         padding-left: 10px !important;
         padding-right: 45px !important;
         padding-top: 5px !important;
@@ -1246,7 +1260,7 @@ form{
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column .density input{
+    .report#choose .card-body .field .column .density input{
         padding-left: 10px !important;
         padding-right: 45px !important;
         padding-top: 5px !important;
@@ -1263,16 +1277,16 @@ form{
     }
 }
 
-.post .card-body .field .column .density input::-webkit-outer-spin-button, .post .card-body .field .column .density input::-webkit-inner-spin-button {
+.report#choose .card-body .field .column .density input::-webkit-outer-spin-button, .report#choose .card-body .field .column .density input::-webkit-inner-spin-button {
     margin: 0;
     -webkit-appearance: none;
 }
 
-.post .card-body .field .column .density input[type = "number"]{
+.report#choose .card-body .field .column .density input[type = "number"]{
     -moz-appearance: textfield;
 }
 
-.post .card-body .field .column .density i{
+.report#choose .card-body .field .column .density i{
     right: 10px;
     top: 50%;
     position: absolute;
@@ -1284,7 +1298,7 @@ form{
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column .density i{
+    .report#choose .card-body .field .column .density i{
         right: 10px;
         top: 50%;
         position: absolute;
@@ -1297,7 +1311,7 @@ form{
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column .density i{
+    .report#choose .card-body .field .column .density i{
         right: 10px;
         top: 50%;
         position: absolute;
@@ -1310,7 +1324,7 @@ form{
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column .density i{
+    .report#choose .card-body .field .column .density i{
         right: 10px;
         top: 50%;
         position: absolute;
@@ -1322,7 +1336,7 @@ form{
     }
 }
 
-.post .card-body .field .column label[for = "depth"]{
+.report#choose .card-body .field .column label[for = "depth"]{
     margin-top: 15px;
     display: inline-block;
     font-family: "Overlock";
@@ -1332,7 +1346,7 @@ form{
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column label[for = "depth"]{
+    .report#choose .card-body .field .column label[for = "depth"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -1343,7 +1357,7 @@ form{
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column label[for = "depth"]{
+    .report#choose .card-body .field .column label[for = "depth"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -1354,7 +1368,7 @@ form{
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column label[for = "depth"]{
+    .report#choose .card-body .field .column label[for = "depth"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -1364,11 +1378,11 @@ form{
     }
 }
 
-.post .card-body .field .column .depth{
+.report#choose .card-body .field .column .depth{
     position: relative;
 }
 
-.post .card-body .field .column select[name = "depth"]{
+.report#choose .card-body .field .column select[name = "depth"]{
     padding-left: 10px !important;
     padding-right: 45px !important;
     padding-top: 5px !important;
@@ -1390,12 +1404,12 @@ form{
     background-position: right 10px center; 
 }
 
-.post .card-body .field .column select[name = "depth"]:focus{
+.report#choose .card-body .field .column select[name = "depth"]:focus{
     border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column select[name = "depth"]{
+    .report#choose .card-body .field .column select[name = "depth"]{
         padding-left: 10px !important;
         padding-right: 45px !important;
         padding-top: 5px !important;
@@ -1416,7 +1430,7 @@ form{
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column select[name = "depth"]{
+    .report#choose .card-body .field .column select[name = "depth"]{
         padding-left: 10px !important;
         padding-right: 45px !important;
         padding-top: 5px !important;
@@ -1437,7 +1451,7 @@ form{
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column select[name = "depth"]{
+    .report#choose .card-body .field .column select[name = "depth"]{
         padding-left: 10px !important;
         padding-right: 45px !important;
         padding-top: 5px !important;
@@ -1457,12 +1471,12 @@ form{
     }
 }
 
-.post .card-body .field .column select[name = "depth"]::selection{
+.report#choose .card-body .field .column select[name = "depth"]::selection{
     color: #FFFFFF !important;
     background-color: #154360 !important;
 }
 
-/* .post .card-body .field .column .depth i{
+/* .report#choose .card-body .field .column .depth i{
     right: 10px;
     top: 50%;
     position: absolute;
@@ -1474,7 +1488,7 @@ form{
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column .depth i{
+    .report#choose .card-body .field .column .depth i{
         right: 10px;
         top: 50%;
         position: absolute;
@@ -1487,7 +1501,7 @@ form{
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column .depth i{
+    .report#choose .card-body .field .column .depth i{
         right: 10px;
         top: 50%;
         position: absolute;
@@ -1500,7 +1514,7 @@ form{
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column .depth i{
+    .report#choose .card-body .field .column .depth i{
         right: 10px;
         top: 50%;
         position: absolute;
@@ -1512,7 +1526,7 @@ form{
     }
 } */
 
-.post .card-body .field .column label[for = "weather"]{
+.report#choose .card-body .field .column label[for = "weather"]{
     margin-top: 15px;
     display: inline-block;
     font-family: "Overlock";
@@ -1522,7 +1536,7 @@ form{
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column label[for = "weather"]{
+    .report#choose .card-body .field .column label[for = "weather"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -1533,7 +1547,7 @@ form{
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column label[for = "weather"]{
+    .report#choose .card-body .field .column label[for = "weather"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -1544,7 +1558,7 @@ form{
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column label[for = "weather"]{
+    .report#choose .card-body .field .column label[for = "weather"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -1554,11 +1568,11 @@ form{
     }
 }
 
-.post .card-body .field .column .weather{
+.report#choose .card-body .field .column .weather{
     position: relative;
 }
 
-.post .card-body .field .column select[name = "weather"]{
+.report#choose .card-body .field .column select[name = "weather"]{
     padding-left: 10px !important;
     padding-right: 45px !important;
     padding-top: 5px !important;
@@ -1580,12 +1594,12 @@ form{
     background-position: right 10px center; 
 }
 
-.post .card-body .field .column select[name = "weather"]:focus{
+.report#choose .card-body .field .column select[name = "weather"]:focus{
     border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column select[name = "weather"]{
+    .report#choose .card-body .field .column select[name = "weather"]{
         padding-left: 10px !important;
         padding-right: 45px !important;
         padding-top: 5px !important;
@@ -1606,7 +1620,7 @@ form{
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column select[name = "weather"]{
+    .report#choose .card-body .field .column select[name = "weather"]{
         padding-left: 10px !important;
         padding-right: 45px !important;
         padding-top: 5px !important;
@@ -1627,7 +1641,7 @@ form{
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column select[name = "weather"]{
+    .report#choose .card-body .field .column select[name = "weather"]{
         padding-left: 10px !important;
         padding-right: 45px !important;
         padding-top: 5px !important;
@@ -1647,7 +1661,7 @@ form{
     }
 }
 
-/* .post .card-body .field .column .weather i{
+/* .report#choose .card-body .field .column .weather i{
     right: 10px;
     top: 50%;
     position: absolute;
@@ -1659,7 +1673,7 @@ form{
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column .weather i{
+    .report#choose .card-body .field .column .weather i{
         right: 10px;
         top: 50%;
         position: absolute;
@@ -1672,7 +1686,7 @@ form{
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column .weather i{
+    .report#choose .card-body .field .column .weather i{
         right: 10px;
         top: 50%;
         position: absolute;
@@ -1685,7 +1699,7 @@ form{
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column .weather i{
+    .report#choose .card-body .field .column .weather i{
         right: 10px;
         top: 50%;
         position: absolute;
@@ -1702,7 +1716,7 @@ form{
     min-height: 100vh;
 }
 
-.post-map{
+.report-map{
     margin-top: 0px;
     min-width: 100%;
     min-height: 100vh;
@@ -1712,7 +1726,7 @@ form{
     z-index: 1;
 }
 
-.post .card-body .button a.save-post{
+.report#choose .card-body .button a.save-report{
     padding-left: 10px !important;
     padding-right: 10px !important;
     padding-top: 5px !important;
@@ -1730,13 +1744,13 @@ form{
     cursor: pointer;
 }
 
-.post .card-body .button a.save-post:hover{
+.report#choose .card-body .button a.save-report:hover{
     background-color: #557433 !important;
     color: #B2BEB5 !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .button a.save-post{
+    .report#choose .card-body .button a.save-report{
         font-family: "Overlock";
         font-weight: 400;
         font-size: 18px !important;
@@ -1746,7 +1760,7 @@ form{
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .button a.save-post{
+    .report#choose .card-body .button a.save-report{
         font-family: "Overlock";
         font-weight: 400;
         font-size: 16px !important;
@@ -1756,7 +1770,7 @@ form{
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .button a.save-post{
+    .report#choose .card-body .button a.save-report{
         font-family: "Overlock";
         font-weight: 400;
         font-size: 14px !important;

@@ -1,4 +1,4 @@
-from django.contrib import admin
+from configurations.admin import admin
 from django.contrib.sites.models import Site
 from allauth.socialaccount.models import SocialAccount, SocialToken, SocialApp
 from authentications.models import *
@@ -32,7 +32,6 @@ class SiteAdmin(admin.ModelAdmin):
     
     list_display = ("domain",)
 
-admin.site.unregister(Site)
 admin.site.register(Site, SiteAdmin)
 
 
@@ -42,7 +41,6 @@ class SocialAccountAdmin(admin.ModelAdmin):
     
     list_display = ("user",)
 
-admin.site.unregister(SocialAccount)
 admin.site.register(SocialAccount, SocialAccountAdmin)
 
 
@@ -52,7 +50,6 @@ class SocialTokenAdmin(admin.ModelAdmin):
 
     list_display = ("token",)
 
-admin.site.unregister(SocialToken)
 admin.site.register(SocialToken, SocialTokenAdmin)
 
 
@@ -62,8 +59,4 @@ class SocialAppAdmin(admin.ModelAdmin):
     
     list_display = ("provider",)
 
-admin.site.unregister(SocialApp)
 admin.site.register(SocialApp, SocialAppAdmin)
-
-
-admin.site.unregister(Group)

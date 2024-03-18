@@ -36,19 +36,23 @@
 }
 
 
-.content{
+form{
+    width: 100%;
+}
+
+.content:has(.report#capture){
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 30px;
     padding-bottom: 30px;
-    min-height: 100vh;
+    min-height: unset;
     display: grid;
     grid-template-columns: 100%;
-    place-items: center;
-
+    place-items: unset;
 }
 
-.register{
+.report#capture{
+    margin-bottom: 30px;
     width: 100%;
     display: grid;
     grid-column: 1;
@@ -57,7 +61,7 @@
     box-shadow: 0 0 0 1px #B2BEB5 !important;
 }
 
-.register .card-header{
+.report#capture .card-header{
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 15px;
@@ -66,10 +70,10 @@
     border-top-right-radius: 5px !important;
     background-color: #154360;
     display: grid;
-    place-items: center;
+    place-items: unset;
 }
 
-.register .card-header header{
+.report#capture .card-header header{
     font-family: "Philosopher";
     font-weight: 700;
     font-size: 22px !important;
@@ -79,7 +83,7 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .register .card-header header{
+    .report#capture .card-header header{
         font-family: "Philosopher";
         font-weight: 700;
         font-size: 20px !important;
@@ -90,7 +94,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-header header{
+    .report#capture .card-header header{
         font-family: "Philosopher";
         font-weight: 700;
         font-size: 18px !important;
@@ -101,7 +105,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .register .card-header header{
+    .report#capture .card-header header{
         font-family: "Philosopher";
         font-weight: 700;
         font-size: 16px !important;
@@ -111,57 +115,55 @@
     }
 }
 
-.register .card-body{
+.report#capture .card-body{
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 15px;
     padding-bottom: 15px;
+    width: 100%;
     border-bottom-left-radius: 5px !important;
     border-bottom-right-radius: 5px !important;
     display: grid;
-    place-items: center;
+    gap: 15px;
+    place-items: unset;
     background-color: #FFFFFF;
 }
 
-.register .card-body form{
-    width: 100%;
-}
-
-.register .card-body form .field{
+.report#capture .card-body .field{
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
 }
 
 @media screen and (min-width: 446px) and (max-width: 775px){
-    .register .card-body .field{        
+    .report#capture .card-body .field{        
         grid-template-columns: 100%;
         gap: 0px;
     }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .register .card-body form .field{        
+    .report#capture .card-body .field{        
         grid-template-columns: 100%;
         gap: 0px;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-body form .field{        
+    .report#capture .card-body .field{        
         grid-template-columns: 100%;
         gap: 0px;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .register .card-body form .field{        
+    .report#capture .card-body .field{        
         grid-template-columns: 100%;
         gap: 0px;
     }
 }
 
-.register .card-body form .field .column label[for = "username"]{
+.report#capture .card-body .field .column label[for = "capture-date"]{
     margin-top: 0px;
     display: inline-block;
     font-family: "Overlock";
@@ -171,7 +173,7 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .register .card-body form .field .column label[for = "username"]{
+    .report#capture .card-body .field .column label[for = "capture-date"]{
         margin-top: 0px;
         display: inline-block;
         font-family: "Overlock";
@@ -182,7 +184,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-body form .field .column label[for = "username"]{
+    .report#capture .card-body .field .column label[for = "capture-date"]{
         margin-top: 0px;
         display: inline-block;
         font-family: "Overlock";
@@ -193,7 +195,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .register .card-body form .field .column label[for = "username"]{
+    .report#capture .card-body .field .column label[for = "capture-date"]{
         margin-top: 0px;
         display: inline-block;
         font-family: "Overlock";
@@ -203,13 +205,13 @@
     }
 }
 
-.register .card-body form .field .column .username{
+.report#capture .card-body .field .column .capture-date{
     position: relative;
 }
 
-.register .card-body form .field .column .username input{
+.report#capture .card-body .field .column .capture-date input{
     padding-left: 10px !important;
-    padding-right: 45px !important;
+    padding-right: 5px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -223,14 +225,14 @@
     color: #154360 !important;
 }
 
-.register .card-body form .field .column .username input:focus{
+.report#capture .card-body .field .column .capture-date input:focus{
     border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .register .card-body form .field .column .username input{
+    .report#capture .card-body .field .column .capture-date input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 5px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -246,9 +248,9 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-body form .field .column .username input{
+    .report#capture .card-body .field .column .capture-date input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 5px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -264,9 +266,9 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .register .card-body form .field .column .username input{
+    .report#capture .card-body .field .column .capture-date input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 5px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -281,405 +283,51 @@
     }
 }
 
-.register .card-body form .field .column .username i{
-    right: 10px;
-    top: 50%;
-    position: absolute;
-    display: grid;
-    place-items: center;
-    font-size: 20px;
+.report#capture .card-body .field .column .capture-date input[type = "date"]::-webkit-calendar-picker-indicator{
+    filter: invert(22%) sepia(7%) saturate(6538%) hue-rotate(164deg) brightness(89%) contrast(90%);
+}
+
+.report#capture .card-body .field .column .capture-date input[type = date]:invalid::-webkit-datetime-edit{
+    color: #154360 !important;
+}
+
+.report#capture .card-body .field .column .capture-date input::-webkit-datetime-edit-day-field{
     color: #154360;
-    transform: translateY(-50%);
+    background-color: #FFFFFF;
+    outline: none;
 }
 
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .register .card-body form .field .column .username i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 18px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-body form .field .column .username i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 16px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .register .card-body form .field .column .username i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 14px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-.register .card-body form .field .column label[for = "first-name"]{
-    margin-top: 15px;
-    display: inline-block;
-    font-family: "Overlock";
-    font-weight: 400;
-    font-size: 20px !important;
-    color: #154360 !important;
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .register .card-body form .field .column label[for = "first-name"]{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 18px !important;
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-body form .field .column label[for = "first-name"]{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 16px !important;
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .register .card-body form .field .column label[for = "first-name"]{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 14px !important;
-        color: #154360 !important;
-    }
-}
-
-.register .card-body form .field .column .first-name{
-    position: relative;
-}
-
-.register .card-body form .field .column .first-name input{
-    padding-left: 10px !important;
-    padding-right: 45px !important;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
-    width: 100%;
-    border: 1px solid #B2BEB5;
-    border-radius: 5px; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
-    outline: none !important;
-    font-family: "Philosopher";
-    font-weight: 700 !important;
-    font-size: 20px !important;   
-    color: #154360 !important;
-}
-
-.register .card-body form .field .column .first-name input:focus{
-    border-bottom-width: 2.5px !important;
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .register .card-body form .field .column .first-name input{
-        padding-left: 10px !important;
-        padding-right: 45px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Philosopher";
-        font-weight: 700 !important;
-        font-size: 18px !important;   
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-body form .field .column .first-name input{
-        padding-left: 10px !important;
-        padding-right: 45px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Philosopher";
-        font-weight: 700 !important;
-        font-size: 16px !important;   
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .register .card-body form .field .column .first-name input{
-        padding-left: 10px !important;
-        padding-right: 45px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Philosopher";
-        font-weight: 700 !important;
-        font-size: 14px !important;   
-        color: #154360 !important;
-    }
-}
-
-.register .card-body form .field .column .first-name i{
-    right: 10px;
-    top: 50%;
-    position: absolute;
-    display: grid;
-    place-items: center;
-    font-size: 20px;
+.report#capture .card-body .field .column .capture-date input::-webkit-datetime-edit-month-field{
     color: #154360;
-    transform: translateY(-50%);
+    background-color: #FFFFFF;
+    outline: none;
 }
 
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .register .card-body form .field .column .first-name i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 18px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-body form .field .column .first-name i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 16px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .register .card-body form .field .column .first-name i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 14px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-.register .card-body form .field .column label[for = "password1"]{
-    margin-top: 15px;
-    display: inline-block;
-    font-family: "Overlock";
-    font-weight: 400;
-    font-size: 20px !important;
-    color: #154360 !important;
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .register .card-body form .field .column label[for = "password1"]{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 18px !important;
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-body form .field .column label[for = "password1"]{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 16px !important;
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .register .card-body form .field .column label[for = "password1"]{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 14px !important;
-        color: #154360 !important;
-    }
-}
-
-.register .card-body form .field .column .password1{
-    position: relative;
-}
-
-.register .card-body form .field .column .password1 input{
-    padding-left: 10px !important;
-    padding-right: 45px !important;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
-    width: 100%;
-    border: 1px solid #B2BEB5;
-    border-radius: 5px; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
-    outline: none !important;
-    font-family: "Philosopher";
-    font-weight: 700 !important;
-    font-size: 20px !important;   
-    color: #154360 !important;
-}
-
-.register .card-body form .field .column .password1 input:focus{
-    border-bottom-width: 2.5px !important;
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .register .card-body form .field .column .password1 input{
-        padding-left: 10px !important;
-        padding-right: 45px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Philosopher";
-        font-weight: 700 !important;
-        font-size: 18px !important;   
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-body form .field .column .password1 input{
-        padding-left: 10px !important;
-        padding-right: 45px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Philosopher";
-        font-weight: 700 !important;
-        font-size: 16px !important;   
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .register .card-body form .field .column .password1 input{
-        padding-left: 10px !important;
-        padding-right: 45px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Philosopher";
-        font-weight: 700 !important;
-        font-size: 14px !important;   
-        color: #154360 !important;
-    }
-}
-
-.register .card-body form .field .column .password1 i{
-    right: 10px;
-    top: 50%;
-    position: absolute;
-    display: grid;
-    place-items: center;
-    font-size: 20px;
+.report#capture .card-body .field .column .capture-date input::-webkit-datetime-edit-year-field{
     color: #154360;
-    transform: translateY(-50%);
-    cursor: pointer;
+    background-color: #FFFFFF;
+    outline: none;
 }
 
-.register .card-body form .field .column .password1 i:hover{
-    color: #10354C !important;
+.report#capture .card-body .field .column .capture-date input::-webkit-datetime-edit-day-field:focus{
+    background-color: #154360 !important;
+    color: #FFFFFF !important;
+    outline: none;
 }
 
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .register .card-body form .field .column .password1 i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 18px;
-        color: #154360;
-        transform: translateY(-50%);
-        cursor: pointer;
-    }
+.report#capture .card-body .field .column .capture-date input::-webkit-datetime-edit-month-field:focus{
+    background-color: #154360 !important;
+    color: #FFFFFF !important;
+    outline: none;
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-body form .field .column .password1 i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 16px;
-        color: #154360;
-        transform: translateY(-50%);
-        cursor: pointer;
-    }
+.report#capture .card-body .field .column .capture-date input::-webkit-datetime-edit-year-field:focus{
+    background-color: #154360 !important;
+    color: #FFFFFF !important;
+    outline: none;
 }
 
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .register .card-body form .field .column .password1 i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 14px;
-        color: #154360;
-        transform: translateY(-50%);
-        cursor: pointer;
-    }
-}
-
-.register .card-body form .field .column label[for = "email"]{
+.report#capture .card-body .field .column label[for = "description"]{
     margin-top: 0px;
     display: inline-block;
     font-family: "Overlock";
@@ -689,7 +337,7 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .register .card-body form .field .column label[for = "email"]{
+    .report#capture .card-body .field .column label[for = "description"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -700,7 +348,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-body form .field .column label[for = "email"]{
+    .report#capture .card-body .field .column label[for = "description"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -711,7 +359,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .register .card-body form .field .column label[for = "email"]{
+    .report#capture .card-body .field .column label[for = "description"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -721,11 +369,11 @@
     }
 }
 
-.register .card-body form .field .column .email{
+.report#capture .card-body .field .column .description{
     position: relative;
 }
 
-.register .card-body form .field .column .email input{
+.report#capture .card-body .field .column .description input{
     padding-left: 10px !important;
     padding-right: 45px !important;
     padding-top: 5px !important;
@@ -739,14 +387,15 @@
     font-weight: 700 !important;
     font-size: 20px !important;   
     color: #154360 !important;
+    overflow: auto;
 }
 
-.register .card-body form .field .column .email input:focus{
+.report#capture .card-body .field .column .description input:focus{
     border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .register .card-body form .field .column .email input{
+    .report#capture .card-body .field .column .description input{
         padding-left: 10px !important;
         padding-right: 45px !important;
         padding-top: 5px !important;
@@ -764,7 +413,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-body form .field .column .email input{
+    .report#capture .card-body .field .column .description input{
         padding-left: 10px !important;
         padding-right: 45px !important;
         padding-top: 5px !important;
@@ -782,7 +431,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .register .card-body form .field .column .email input{
+    .report#capture .card-body .field .column .description input{
         padding-left: 10px !important;
         padding-right: 45px !important;
         padding-top: 5px !important;
@@ -799,7 +448,7 @@
     }
 }
 
-.register .card-body form .field .column .email i{
+.report#capture .card-body .field .column .description i{
     right: 10px;
     top: 50%;
     position: absolute;
@@ -811,7 +460,7 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .register .card-body form .field .column .email i{
+    .report#capture .card-body .field .column .description i{
         right: 10px;
         top: 50%;
         position: absolute;
@@ -824,7 +473,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-body form .field .column .email i{
+    .report#capture .card-body .field .column .description i{
         right: 10px;
         top: 50%;
         position: absolute;
@@ -837,7 +486,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .register .card-body form .field .column .email i{
+    .report#capture .card-body .field .column .description i{
         right: 10px;
         top: 50%;
         position: absolute;
@@ -849,552 +498,1283 @@
     }
 }
 
-.register .card-body form .field .column label[for = "last-name"]{
-    margin-top: 15px;
-    display: inline-block;
-    font-family: "Overlock";
-    font-weight: 400;
-    font-size: 20px !important;
-    color: #154360 !important;
+.report#capture .card-body .report#capture-gallery{
+    margin-top: 0px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    max-height: 100vh;
+    background-color: #698F3F;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
 }
 
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .register .card-body form .field .column label[for = "last-name"]{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 18px !important;
-        color: #154360 !important;
-    }
+.report#capture .card-body .report-gallery .gallery-photo{
+    margin-right: 30px;
+    width: 100%;
+    height: 100%;
+    place-items: center;
+    object-fit: cover;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-body form .field .column label[for = "last-name"]{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 16px !important;
-        color: #154360 !important;
-    }
+.report#capture .card-body .report-gallery .gallery-photo:last-child{
+    margin-right: 0px !important;
 }
 
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .register .card-body form .field .column label[for = "last-name"]{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 14px !important;
-        color: #154360 !important;
-    }
-}
-
-.register .card-body form .field .column .last-name{
-    position: relative;
-}
-
-.register .card-body form .field .column .last-name input{
-    padding-left: 10px !important;
-    padding-right: 45px !important;
+.report#capture .card-body .button{
+    margin-left: auto;
+    margin-top: 0px;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
-    width: 100%;
-    border: 1px solid #B2BEB5;
-    border-radius: 5px; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
-    outline: none !important;
-    font-family: "Philosopher";
-    font-weight: 700 !important;
-    font-size: 20px !important;   
-    color: #154360 !important;
+    width: fit-content;
+    height: 100% !important;
 }
 
-.register .card-body form .field .column .last-name input:focus{
-    border-bottom-width: 2.5px !important;
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .register .card-body form .field .column .last-name input{
-        padding-left: 10px !important;
-        padding-right: 45px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Philosopher";
-        font-weight: 700 !important;
-        font-size: 18px !important;   
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-body form .field .column .last-name input{
-        padding-left: 10px !important;
-        padding-right: 45px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Philosopher";
-        font-weight: 700 !important;
-        font-size: 16px !important;   
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .register .card-body form .field .column .last-name input{
-        padding-left: 10px !important;
-        padding-right: 45px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Philosopher";
-        font-weight: 700 !important;
-        font-size: 14px !important;   
-        color: #154360 !important;
-    }
-}
-
-.register .card-body form .field .column .last-name i{
-    right: 10px;
-    top: 50%;
-    position: absolute;
-    display: grid;
-    place-items: center;
-    font-size: 20px;
-    color: #154360;
-    transform: translateY(-50%);
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .register .card-body form .field .column .last-name i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 18px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-body form .field .column .last-name i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 16px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .register .card-body form .field .column .last-name i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 14px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-.register .card-body form .field .column label[for = "password2"]{
-    margin-top: 15px;
-    display: inline-block;
-    font-family: "Overlock";
-    font-weight: 400;
-    font-size: 20px !important;
-    color: #154360 !important;
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .register .card-body form .field .column label[for = "password2"]{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 18px !important;
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-body form .field .column label[for = "password2"]{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 16px !important;
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .register .card-body form .field .column label[for = "password2"]{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 14px !important;
-        color: #154360 !important;
-    }
-}
-
-.register .card-body form .field .column .password2{
-    position: relative;
-}
-
-.register .card-body form .field .column .password2 input{
-    padding-left: 10px !important;
-    padding-right: 45px !important;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
-    width: 100%;
-    border: 1px solid #B2BEB5;
-    border-radius: 5px; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
-    outline: none !important;
-    font-family: "Philosopher";
-    font-weight: 700 !important;
-    font-size: 20px !important;   
-    color: #154360 !important;
-}
-
-.register .card-body form .field .column .password2 input:focus{
-    border-bottom-width: 2.5px !important;
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .register .card-body form .field .column .password2 input{
-        padding-left: 10px !important;
-        padding-right: 45px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Philosopher";
-        font-weight: 700 !important;
-        font-size: 18px !important;   
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-body form .field .column .password2 input{
-        padding-left: 10px !important;
-        padding-right: 45px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Philosopher";
-        font-weight: 700 !important;
-        font-size: 16px !important;   
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .register .card-body form .field .column .password2 input{
-        padding-left: 10px !important;
-        padding-right: 45px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Philosopher";
-        font-weight: 700 !important;
-        font-size: 14px !important;   
-        color: #154360 !important;
-    }
-}
-
-.register .card-body form .field .column .password2 i{
-    right: 10px;
-    top: 50%;
-    position: absolute;
-    display: grid;
-    place-items: center;
-    font-size: 20px;
-    color: #154360;
-    transform: translateY(-50%);
-    cursor: pointer;
-}
-
-.register .card-body form .field .column .password2 i:hover{
-    color: #10354C !important;
-}
-
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .register .card-body form .field .column .password2 i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 18px;
-        color: #154360;
-        transform: translateY(-50%);
-        cursor: pointer;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-body form .field .column .password2 i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 16px;
-        color: #154360;
-        transform: translateY(-50%);
-        cursor: pointer;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .register .card-body form .field .column .password2 i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 14px;
-        color: #154360;
-        transform: translateY(-50%);
-        cursor: pointer;
-    }
-}
-
-.register .card-body form .g-recaptcha{
-    margin-top: 15px !important;
-    display: grid !important;
-    place-items: center;
-    position: relative !important;
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .register .card-body form .g-recaptcha > div{
-        width: 100% !important;
-        white-space: nowrap !important;
-        overflow-x: auto !important;
-        overflow-y: hidden;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-body form .g-recaptcha > div{
-        width: 100% !important;
-        white-space: nowrap !important;
-        overflow-x: auto !important;
-        overflow-y: hidden;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .register .card-body form .g-recaptcha > div{
-        width: 100% !important;
-        white-space: nowrap !important;
-        overflow-x: auto !important;
-        overflow-y: hidden;
-    }
-}
-
-.register .card-body form button{
-    margin-top: 15px;
+.report#capture .card-body .button label[for = "post-photo"]{
     padding-left: 10px !important;
     padding-right: 10px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
-    width: 100%;
-    height: 100% !important;
     border: 1px solid #B2BEB5; 
     border-radius: 5px;
     box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
     font-family: "Overlock";
     font-weight: 400;
-    font-size: 20px !important;
-    background-color: #698F3F !important;
+    font-size: 20px;
     color: #FFFFFF !important;
+    background-color: #154360 !important;
+    text-decoration: none;
     cursor: pointer;
 }
 
-.register .card-body form button:hover{
+.report#capture .card-body .button label[for = "post-photo"]:hover{
+    background-color: #10354C !important;
+    color: #B2BEB5 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report#capture .card-body .button label[for = "post-photo"]{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #FFFFFF !important;
+        text-decoration: none;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report#capture .card-body .button label[for = "post-photo"]{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #FFFFFF !important;
+        text-decoration: none;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report#capture .card-body .button label[for = "post-photo"]{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #FFFFFF !important;
+        text-decoration: none;
+    }
+}
+
+.report#capture .card-body .button input[type = "file"]{
+    display: none;
+}
+
+.report#capture .card-body .field .column label[for = "latitude"]{
+    margin-top: 0px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report#capture .card-body .field .column label[for = "latitude"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report#capture .card-body .field .column label[for = "latitude"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report#capture .card-body .field .column label[for = "latitude"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.report#capture .card-body .field .column .latitude{
+    position: relative;
+}
+
+.report#capture .card-body .field .column .latitude input{
+    padding-left: 10px !important;
+    padding-right: 45px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+    overflow: auto;
+}
+
+.report#capture .card-body .field .column .latitude input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report#capture .card-body .field .column .latitude input{
+        padding-left: 10px !important;
+        padding-right: 45px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report#capture .card-body .field .column .latitude input{
+        padding-left: 10px !important;
+        padding-right: 45px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report#capture .card-body .field .column .latitude input{
+        padding-left: 10px !important;
+        padding-right: 45px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.report#capture .card-body .field .column .latitude i{
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report#capture .card-body .field .column .latitude i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report#capture .card-body .field .column .latitude i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report#capture .card-body .field .column .latitude i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+.report#capture .card-body .field .column label[for = "longitude"]{
+    margin-top: 0px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report#capture .card-body .field .column label[for = "longitude"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report#capture .card-body .field .column label[for = "longitude"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report#capture .card-body .field .column label[for = "longitude"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.report#capture .card-body .field .column .longitude{
+    position: relative;
+}
+
+.report#capture .card-body .field .column .longitude input{
+    padding-left: 10px !important;
+    padding-right: 45px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+    overflow: auto;
+}
+
+.report#capture .card-body .field .column .longitude input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report#capture .card-body .field .column .longitude input{
+        padding-left: 10px !important;
+        padding-right: 45px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report#capture .card-body .field .column .longitude input{
+        padding-left: 10px !important;
+        padding-right: 45px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report#capture .card-body .field .column .longitude input{
+        padding-left: 10px !important;
+        padding-right: 45px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.report#capture .card-body .field .column .longitude i{
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report#capture .card-body .field .column .longitude i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report#capture .card-body .field .column .longitude i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report#capture .card-body .field .column .longitude i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+.report#capture .card-body .button a.refresh-map{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    border: 1px solid #B2BEB5; 
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px;
+    color: #FFFFFF !important;
+    background-color: #154360 !important;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.report#capture .card-body .button a.refresh-map:hover{
+    background-color: #10354C !important;
+    color: #B2BEB5 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report#capture .card-body .button a.refresh-map{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #FFFFFF !important;
+        text-decoration: none;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report#capture .card-body .button a.refresh-map{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #FFFFFF !important;
+        text-decoration: none;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report#capture .card-body .button a.refresh-map{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #FFFFFF !important;
+        text-decoration: none;
+    }
+}
+
+.report#capture .card-body .field .column label[for = "size"]{
+    margin-top: 0px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report#capture .card-body .field .column label[for = "size"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report#capture .card-body .field .column label[for = "size"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report#capture .card-body .field .column label[for = "size"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.report#capture .card-body .field .column .size{
+    position: relative;
+}
+
+.report#capture .card-body .field .column .size input{
+    padding-left: 10px !important;
+    padding-right: 45px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.report#capture .card-body .field .column .size input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report#capture .card-body .field .column .size input{
+        padding-left: 10px !important;
+        padding-right: 45px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report#capture .card-body .field .column .size input{
+        padding-left: 10px !important;
+        padding-right: 45px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report#capture .card-body .field .column .size input{
+        padding-left: 10px !important;
+        padding-right: 45px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.report#capture .card-body .field .column .size i{
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report#capture .card-body .field .column .size i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report#capture .card-body .field .column .size i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report#capture .card-body .field .column .size i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+.report#capture .card-body .field .column label[for = "density"]{
+    margin-top: 0px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report#capture .card-body .field .column label[for = "density"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report#capture .card-body .field .column label[for = "density"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report#capture .card-body .field .column label[for = "density"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.report#capture .card-body .field .column .density{
+    position: relative;
+}
+
+.report#capture .card-body .field .column .density input{
+    padding-left: 10px !important;
+    padding-right: 45px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.report#capture .card-body .field .column .density input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report#capture .card-body .field .column .density input{
+        padding-left: 10px !important;
+        padding-right: 45px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report#capture .card-body .field .column .density input{
+        padding-left: 10px !important;
+        padding-right: 45px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report#capture .card-body .field .column .density input{
+        padding-left: 10px !important;
+        padding-right: 45px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.report#capture .card-body .field .column .density input::-webkit-outer-spin-button, .report#capture .card-body .field .column .density input::-webkit-inner-spin-button {
+    margin: 0;
+    -webkit-appearance: none;
+}
+
+.report#capture .card-body .field .column .density input[type = "number"]{
+    -moz-appearance: textfield;
+}
+
+.report#capture .card-body .field .column .density i{
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report#capture .card-body .field .column .density i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report#capture .card-body .field .column .density i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report#capture .card-body .field .column .density i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+.report#capture .card-body .field .column label[for = "depth"]{
+    margin-top: 15px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report#capture .card-body .field .column label[for = "depth"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report#capture .card-body .field .column label[for = "depth"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report#capture .card-body .field .column label[for = "depth"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.report#capture .card-body .field .column .depth{
+    position: relative;
+}
+
+.report#capture .card-body .field .column select[name = "depth"]{
+    padding-left: 10px !important;
+    padding-right: 45px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+    background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '20' height = '20' viewBox = '0 0 576 512' fill = '%23154360'> <path d = 'M151.6 469.6C145.5 476.2 137 480 128 480s-17.5-3.8-23.6-10.4l-88-96c-11.9-13-11.1-33.3 2-45.2s33.3-11.1 45.2 2L96 365.7V64c0-17.7 14.3-32 32-32s32 14.3 32 32V365.7l32.4-35.4c11.9-13 32.2-13.9 45.2-2s13.9 32.2 2 45.2l-88 96zM320 480c-17.7 0-32-14.3-32-32s14.3-32 32-32h32c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32H544c17.7 0 32 14.3 32 32s-14.3 32-32 32H320z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center; 
+}
+
+.report#capture .card-body .field .column select[name = "depth"]:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report#capture .card-body .field .column select[name = "depth"]{
+        padding-left: 10px !important;
+        padding-right: 45px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '18' height = '18' viewBox = '0 0 576 512' fill = '%23154360'> <path d = 'M151.6 469.6C145.5 476.2 137 480 128 480s-17.5-3.8-23.6-10.4l-88-96c-11.9-13-11.1-33.3 2-45.2s33.3-11.1 45.2 2L96 365.7V64c0-17.7 14.3-32 32-32s32 14.3 32 32V365.7l32.4-35.4c11.9-13 32.2-13.9 45.2-2s13.9 32.2 2 45.2l-88 96zM320 480c-17.7 0-32-14.3-32-32s14.3-32 32-32h32c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32H544c17.7 0 32 14.3 32 32s-14.3 32-32 32H320z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report#capture .card-body .field .column select[name = "depth"]{
+        padding-left: 10px !important;
+        padding-right: 45px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '16' height = '16' viewBox = '0 0 576 512' fill = '%23154360'> <path d = 'M151.6 469.6C145.5 476.2 137 480 128 480s-17.5-3.8-23.6-10.4l-88-96c-11.9-13-11.1-33.3 2-45.2s33.3-11.1 45.2 2L96 365.7V64c0-17.7 14.3-32 32-32s32 14.3 32 32V365.7l32.4-35.4c11.9-13 32.2-13.9 45.2-2s13.9 32.2 2 45.2l-88 96zM320 480c-17.7 0-32-14.3-32-32s14.3-32 32-32h32c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32H544c17.7 0 32 14.3 32 32s-14.3 32-32 32H320z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report#capture .card-body .field .column select[name = "depth"]{
+        padding-left: 10px !important;
+        padding-right: 45px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '14' height = '14' viewBox = '0 0 576 512' fill = '%23154360'> <path d = 'M151.6 469.6C145.5 476.2 137 480 128 480s-17.5-3.8-23.6-10.4l-88-96c-11.9-13-11.1-33.3 2-45.2s33.3-11.1 45.2 2L96 365.7V64c0-17.7 14.3-32 32-32s32 14.3 32 32V365.7l32.4-35.4c11.9-13 32.2-13.9 45.2-2s13.9 32.2 2 45.2l-88 96zM320 480c-17.7 0-32-14.3-32-32s14.3-32 32-32h32c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32H544c17.7 0 32 14.3 32 32s-14.3 32-32 32H320z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+    }
+}
+
+.report#capture .card-body .field .column select[name = "depth"]::selection{
+    color: #FFFFFF !important;
+    background-color: #154360 !important;
+}
+
+/* .report#capture .card-body .field .column .depth i{
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report#capture .card-body .field .column .depth i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report#capture .card-body .field .column .depth i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report#capture .card-body .field .column .depth i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+} */
+
+.report#capture .card-body .field .column label[for = "weather"]{
+    margin-top: 15px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report#capture .card-body .field .column label[for = "weather"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report#capture .card-body .field .column label[for = "weather"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report#capture .card-body .field .column label[for = "weather"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.report#capture .card-body .field .column .weather{
+    position: relative;
+}
+
+.report#capture .card-body .field .column select[name = "weather"]{
+    padding-left: 10px !important;
+    padding-right: 45px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+    background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '20' height = '20' viewBox = '0 0 512 512' fill = '%23154360'> <path d = 'M416 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64zm0 128A96 96 0 1 0 416 0a96 96 0 1 0 0 192zM96 112c0-26.5 21.5-48 48-48s48 21.5 48 48V276.5c0 17.3 7.1 31.9 15.3 42.5C217.8 332.6 224 349.5 224 368c0 44.2-35.8 80-80 80s-80-35.8-80-80c0-18.5 6.2-35.4 16.7-48.9C88.9 308.4 96 293.8 96 276.5V112zM144 0C82.1 0 32 50.2 32 112V276.5c0 .1-.1 .3-.2 .6c-.2 .6-.8 1.6-1.7 2.8C11.2 304.2 0 334.8 0 368c0 79.5 64.5 144 144 144s144-64.5 144-144c0-33.2-11.2-63.8-30.1-88.1c-.9-1.2-1.5-2.2-1.7-2.8c-.1-.3-.2-.5-.2-.6V112C256 50.2 205.9 0 144 0zm0 416c26.5 0 48-21.5 48-48c0-20.9-13.4-38.7-32-45.3V112c0-8.8-7.2-16-16-16s-16 7.2-16 16V322.7c-18.6 6.6-32 24.4-32 45.3c0 26.5 21.5 48 48 48z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center; 
+}
+
+.report#capture .card-body .field .column select[name = "weather"]:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report#capture .card-body .field .column select[name = "weather"]{
+        padding-left: 10px !important;
+        padding-right: 45px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '18' height = '18' viewBox = '0 0 512 512' fill = '%23154360'> <path d = 'M416 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64zm0 128A96 96 0 1 0 416 0a96 96 0 1 0 0 192zM96 112c0-26.5 21.5-48 48-48s48 21.5 48 48V276.5c0 17.3 7.1 31.9 15.3 42.5C217.8 332.6 224 349.5 224 368c0 44.2-35.8 80-80 80s-80-35.8-80-80c0-18.5 6.2-35.4 16.7-48.9C88.9 308.4 96 293.8 96 276.5V112zM144 0C82.1 0 32 50.2 32 112V276.5c0 .1-.1 .3-.2 .6c-.2 .6-.8 1.6-1.7 2.8C11.2 304.2 0 334.8 0 368c0 79.5 64.5 144 144 144s144-64.5 144-144c0-33.2-11.2-63.8-30.1-88.1c-.9-1.2-1.5-2.2-1.7-2.8c-.1-.3-.2-.5-.2-.6V112C256 50.2 205.9 0 144 0zm0 416c26.5 0 48-21.5 48-48c0-20.9-13.4-38.7-32-45.3V112c0-8.8-7.2-16-16-16s-16 7.2-16 16V322.7c-18.6 6.6-32 24.4-32 45.3c0 26.5 21.5 48 48 48z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report#capture .card-body .field .column select[name = "weather"]{
+        padding-left: 10px !important;
+        padding-right: 45px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '16' height = '16' viewBox = '0 0 512 512' fill = '%23154360'> <path d = 'M416 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64zm0 128A96 96 0 1 0 416 0a96 96 0 1 0 0 192zM96 112c0-26.5 21.5-48 48-48s48 21.5 48 48V276.5c0 17.3 7.1 31.9 15.3 42.5C217.8 332.6 224 349.5 224 368c0 44.2-35.8 80-80 80s-80-35.8-80-80c0-18.5 6.2-35.4 16.7-48.9C88.9 308.4 96 293.8 96 276.5V112zM144 0C82.1 0 32 50.2 32 112V276.5c0 .1-.1 .3-.2 .6c-.2 .6-.8 1.6-1.7 2.8C11.2 304.2 0 334.8 0 368c0 79.5 64.5 144 144 144s144-64.5 144-144c0-33.2-11.2-63.8-30.1-88.1c-.9-1.2-1.5-2.2-1.7-2.8c-.1-.3-.2-.5-.2-.6V112C256 50.2 205.9 0 144 0zm0 416c26.5 0 48-21.5 48-48c0-20.9-13.4-38.7-32-45.3V112c0-8.8-7.2-16-16-16s-16 7.2-16 16V322.7c-18.6 6.6-32 24.4-32 45.3c0 26.5 21.5 48 48 48z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report#capture .card-body .field .column select[name = "weather"]{
+        padding-left: 10px !important;
+        padding-right: 45px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '14' height = '14' viewBox = '0 0 512 512' fill = '%23154360'> <path d = 'M416 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64zm0 128A96 96 0 1 0 416 0a96 96 0 1 0 0 192zM96 112c0-26.5 21.5-48 48-48s48 21.5 48 48V276.5c0 17.3 7.1 31.9 15.3 42.5C217.8 332.6 224 349.5 224 368c0 44.2-35.8 80-80 80s-80-35.8-80-80c0-18.5 6.2-35.4 16.7-48.9C88.9 308.4 96 293.8 96 276.5V112zM144 0C82.1 0 32 50.2 32 112V276.5c0 .1-.1 .3-.2 .6c-.2 .6-.8 1.6-1.7 2.8C11.2 304.2 0 334.8 0 368c0 79.5 64.5 144 144 144s144-64.5 144-144c0-33.2-11.2-63.8-30.1-88.1c-.9-1.2-1.5-2.2-1.7-2.8c-.1-.3-.2-.5-.2-.6V112C256 50.2 205.9 0 144 0zm0 416c26.5 0 48-21.5 48-48c0-20.9-13.4-38.7-32-45.3V112c0-8.8-7.2-16-16-16s-16 7.2-16 16V322.7c-18.6 6.6-32 24.4-32 45.3c0 26.5 21.5 48 48 48z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+    }
+}
+
+/* .report#capture .card-body .field .column .weather i{
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report#capture .card-body .field .column .weather i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report#capture .card-body .field .column .weather i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report#capture .card-body .field .column .weather i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+} */
+
+.map{ 
+    width: 100%;
+    min-height: 100vh;
+}
+
+.report-map{
+    margin-top: 0px;
+    min-width: 100%;
+    min-height: 100vh;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;    
+    z-index: 1;
+}
+
+.report#capture .card-body .button a.save-report{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    border: 1px solid #B2BEB5; 
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px;
+    color: #FFFFFF !important;
+    background-color: #698F3F !important;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.report#capture .card-body .button a.save-report:hover{
     background-color: #557433 !important;
     color: #B2BEB5 !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .register .card-body form button{
-        margin-top: 15px;
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        height: 100% !important;
-        border: 1px solid #B2BEB5; 
-        border-radius: 5px;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
+    .report#capture .card-body .button a.save-report{
         font-family: "Overlock";
         font-weight: 400;
         font-size: 18px !important;
-        background-color: #698F3F !important;
         color: #FFFFFF !important;
-        cursor: pointer;
+        text-decoration: none;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-body form button{
-        margin-top: 15px;
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        height: 100% !important;
-        border: 1px solid #B2BEB5; 
-        border-radius: 5px;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
+    .report#capture .card-body .button a.save-report{
         font-family: "Overlock";
         font-weight: 400;
         font-size: 16px !important;
-        background-color: #698F3F !important;
         color: #FFFFFF !important;
-        cursor: pointer;
+        text-decoration: none;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .register .card-body form button{
-        margin-top: 15px;
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        height: 100% !important;
-        border: 1px solid #B2BEB5; 
-        border-radius: 5px;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
+    .report#capture .card-body .button a.save-report{
         font-family: "Overlock";
         font-weight: 400;
         font-size: 14px !important;
-        background-color: #698F3F !important;
         color: #FFFFFF !important;
-        cursor: pointer;
-    }
-}
-
-.register .card-body .login{
-    margin-top: 15px;
-    display: inline-block;
-    font-family: "Overlock";
-    font-weight: 400;
-    font-size: 20px;
-    color: #154659;
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .register .card-body .login{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 18px;
-        color: #154659;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-body .login{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 16px;
-        color: #154659;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .register .card-body .login{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 14px;
-        color: #154659;
-    }
-}
-
-.register .card-body .login a{
-    font-size: 20px;
-    color: #698F3F;
-    text-decoration: none;
-}
-
-.register .card-body .login a:hover{
-    color: #557433;
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .register .card-body .login a{
-        font-size: 18px;
-        color: #698F3F;
-        text-decoration: none;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-body .login a{
-        font-size: 16px;
-        color: #698F3F;
-        text-decoration: none;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .register .card-body .login a{
-        font-size: 14px;
-        color: #698F3F;
         text-decoration: none;
     }
 }

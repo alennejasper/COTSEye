@@ -56,7 +56,7 @@
 {% for announcement in announcements %}
 <div class = "announcement">
     <div class = "card-header">
-        <header>{{announcement.title | default:'nonexistent'}}</header>
+        <header>{{announcement.title | default:'None available'}}</header>
     </div>
 
     <div class = "card-body">
@@ -65,7 +65,7 @@
                 <label for = "release-date">Release Date</label> 
                     
                 <div class = "release-date">
-                    <input type = "text" value = "{{announcement.release_date | date:'M. j, Y g:i a' | default:'nonexistent'}}" id = "release-date" name = "release_date" readonly>
+                    <input type = "text" value = "{{announcement.release_date | date:'M. j, Y g:i a' | default:'None available'}}" id = "release-date" name = "release_date" readonly>
                         
                     <i class = "fa-solid fa-calendar-check"></i>
                 </div>
@@ -75,7 +75,7 @@
                 <label for = "place">Place</label> 
 
                 <div class = "place">
-                    <input type = "text" value = "{{announcement.place | default:'nonexistent'}}" id = "place" name = "place" readonly>
+                    <input type = "text" value = "{{announcement.place | default:'None available'}}" id = "place" name = "place" readonly>
 
                     <i class = "fa-solid fa-location-dot"></i>      
                 </div>  
