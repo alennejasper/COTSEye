@@ -358,7 +358,7 @@ def OfficerStatisticsStatus(request):
 
         if "from_date" in request.GET or "to_date" in request.GET or "location" in request.GET or "statustype" in request.GET:
             if from_date and to_date:
-                statuses = Status.objects.filter(onset_date__range = [from_date, to_date])
+                statuses = Status.objects.filter(onset_date__range = [from_date, to_date])[:50]
 
             elif not from_date and not to_date:
                 username = request.user.username
@@ -371,7 +371,7 @@ def OfficerStatisticsStatus(request):
                 messages.error(request, username + ", " + "Date range is not valid.")
 
             if location:
-                statuses = Status.objects.filter(location = location)
+                statuses = Status.objects.filter(location = location)[:50]
 
             elif not location:
                 username = request.user.username
@@ -379,7 +379,7 @@ def OfficerStatisticsStatus(request):
                 messages.error(request, username, + ", " + "location is not valid.")
             
             if statustype:
-                statuses = Status.objects.filter(statustype = statustype)
+                statuses = Status.objects.filter(statustype = statustype)[:50]
             
             elif not statustype:
                 username = request.user.username
@@ -497,7 +497,7 @@ def AdministratorStatisticsStatus(request):
 
         if "from_date" in request.GET or "to_date" in request.GET or "location" in request.GET or "statustype" in request.GET:
             if from_date and to_date:
-                statuses = Status.objects.filter(onset_date__range = [from_date, to_date])
+                statuses = Status.objects.filter(onset_date__range = [from_date, to_date])[:50]
 
             elif not from_date and not to_date:
                 username = request.user.username
@@ -510,7 +510,7 @@ def AdministratorStatisticsStatus(request):
                 messages.error(request, username + ", " + "Date range is not valid.")
 
             if location:
-                statuses = Status.objects.filter(location = location)
+                statuses = Status.objects.filter(location = location)[:50]
 
             elif not location:
                 username = request.user.username
@@ -518,7 +518,7 @@ def AdministratorStatisticsStatus(request):
                 messages.error(request, username, + ", " + "location is not valid.")
             
             if statustype:
-                statuses = Status.objects.filter(statustype = statustype)
+                statuses = Status.objects.filter(statustype = statustype)[:50]
             
             elif not statustype:
                 username = request.user.username
