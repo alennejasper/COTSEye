@@ -24,8 +24,10 @@
                     <select name = "location" id = "location">
                         <option disabled selected value>Choose location</option>
 
-                        {% for status in statuses %}
-                            <option value="{{status.location.id}}">{{status.location}}</option>
+                        <option value = "each_location">Each location</option>
+
+                        {% for option in options %}
+                            <option value = "{{option.location.id}}">{{option.location}}</option>
                         {% endfor %}
                     </select>
                 </div>
@@ -42,8 +44,10 @@
                     <select name = "statustype" id = "statustype">
                         <option disabled selected value>Choose status type</option>
 
-                        {% for status in statuses %}
-                            <option value="{{status.statustype.id}}">{{status.statustype}}</option>
+                        <option value = "each_statustype">Each status type</option>
+
+                        {% for option in options %}
+                            <option value = "{{option.statustype.id}}">{{option.statustype}}</option>
                         {% endfor %}
                     </select>
                 </div>

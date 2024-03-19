@@ -3,12 +3,23 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.db.models import Q
 from django.urls import reverse
+from authentications.models import Account
 from reports.models import *
 from reports.forms import CoordinatesForm, PostObservationForm, PostForm
-from authentications.views import ContributorCheck
+from authentications.views import ContributorCheck, OfficerCheck, AdministratorCheck
 
 
 # Create your views here.
+def PublicServicePostValidRead(request, id):
+    username = request.user.username
+
+    valid_post = Post.objects.get(id = id, post_status = 1)
+    
+    context = {"username": username, "valid_post": valid_post}
+    
+    return render(request, "public/service/post/read.html", context)
+
+
 @login_required(login_url = "Contributor Service Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
 def ContributorServiceReport(request):
@@ -504,7 +515,290 @@ def ContributorServicePostUncertainRead(request, id):
     return render(request, "contributor/service/post/read.html", context)
 
 
-def ServicePostValidReadRedirect(request):
-    object = Post.objects.get()
+@login_required(login_url = "Officer Database Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Database Login")
+def OfficerStatisticsPost(request):
+    username = request.user.username
 
-    return redirect(reverse("Contributor Service Post Valid Read", kwargs = {"id": object.id}))
+    options = Post.objects.all()
+
+    posts = Post.objects.all()[:50]
+    
+    if request.method == "GET":
+        from_date = request.GET.get("from_date")
+        
+        to_date = request.GET.get("to_date")
+
+        user = request.GET.get("user")
+
+        post_status = request.GET.get("post_status")
+
+        depth = request.GET.get("depth")
+
+        weather = request.GET.get("weather")
+
+        if "from_date" in request.GET or "to_date" in request.GET or "user" in request.GET or "post_status" in request.GET or "depth" in request.GET or "weather" in request.GET:
+            if from_date and to_date:
+                posts = Post.objects.filter(Post_date__range = [from_date, to_date])[:50]
+
+            elif not from_date and not to_date:
+                username = request.user.username
+
+                messages.error(request, username + ", " + "date range is not valid.") 
+            
+            elif not from_date or not to_date:
+                username = request.user.username
+
+                messages.error(request, username + ", " + "date range is not valid.") 
+
+            if user and not user == "each_user":
+                posts = Post.objects.filter(user = user)[:50]
+
+            elif not user and user == "each_user":
+                posts = Post.objects.all()[:50]
+            
+            elif not user and not user == "each_user":
+                username = request.user.username
+
+                messages.error(request, username + ", " + "user is not valid.")
+            
+            elif not user or not user == "each_user":
+                username = request.user.username
+
+                messages.error(request, username + ", " + "user is not valid.") 
+
+            if post_status and not post_status == "each_poststatus":
+                posts = Post.objects.filter(post_status = post_status)[:50]
+        
+            elif not post_status and post_status == "each_poststatus":
+                posts = Post.objects.all()[:50]
+
+            elif not post_status and not post_status == "each_poststatus":
+                username = request.user.username
+
+                messages.error(request, username + ", " + "post status is not valid.")
+            
+            elif not post_status or not post_status == "each_poststatus":
+                username = request.user.username
+
+                messages.error(request, username + ", " + "post status is not valid.") 
+            
+            if depth and not depth == "each_depth":
+                posts = Post.objects.filter(post_observation__depth = depth)[:50]
+        
+            elif not depth and depth == "each_depth":
+                posts = Post.objects.all()[:50]
+
+            elif not depth and not depth == "each_depth":
+                username = request.user.username
+
+                messages.error(request, username + ", " + "depth is not valid.")
+            
+            elif not depth or not depth == "each_depth":
+                username = request.user.username
+
+                messages.error(request, username + ", " + "depth is not valid.")
+
+            if weather and not weather == "each_weather":
+                posts = Post.objects.filter(post_observation__weather = weather)[:50]
+        
+            elif not weather and weather == "each_weather":
+                posts = Post.objects.all()[:50]
+
+            elif not weather and not weather == "each_weather":
+                username = request.user.username
+
+                messages.error(request, username + ", " + "weather is not valid.")
+            
+            elif not weather or not weather == "each_weather":
+                username = request.user.username
+
+                messages.error(request, username + ", " + "weather is not valid.")  
+
+            if not from_date and not to_date and not user and not post_status and not depth and not weather:
+                username = request.user.username
+
+                messages.error(request, username + ", " + "information filter is empty within COTSEye.")
+
+            elif not from_date or not to_date or not user or not post_status or not depth or not weather:
+                username = request.user.username
+
+                messages.error(request, username + ", " + "information filter is incomplete within COTSEye.")
+
+    else:
+        username = request.user.username
+
+        messages.info(request, username + ", " + "information input is empty within COTSEye.")
+
+    context = {"username": username, "options": options, "posts": posts}
+
+    return render(request, "officer/statistics/post/post.html", context)
+
+
+@login_required(login_url = "Officer Database Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Database Login")
+def OfficerStatisticsPostRead(request, id):
+    username = request.user.username
+    
+    post = Post.objects.filter(id = id)
+
+    context = {"username": username, "post": post}
+
+    return render(request, "officer/statistics/post/read.html", context)
+
+
+@login_required(login_url = "Administrator Database Login")
+@user_passes_test(AdministratorCheck, login_url = "Administrator Database Login")
+def AdministratorStatisticsPost(request):
+    username = request.user.username
+
+    options = Post.objects.all()
+
+    posts = Post.objects.all()[:50]
+    
+    if request.method == "GET":
+        from_date = request.GET.get("from_date")
+        
+        to_date = request.GET.get("to_date")
+
+        user = request.GET.get("user")
+
+        post_status = request.GET.get("post_status")
+
+        depth = request.GET.get("depth")
+
+        weather = request.GET.get("weather")
+
+        if "from_date" in request.GET or "to_date" in request.GET or "user" in request.GET or "post_status" in request.GET or "depth" in request.GET or "weather" in request.GET:
+            if from_date and to_date:
+                posts = Post.objects.filter(Post_date__range = [from_date, to_date])[:50]
+
+            elif not from_date and not to_date:
+                username = request.user.username
+
+                messages.error(request, username + ", " + "date range is not valid.") 
+            
+            elif not from_date or not to_date:
+                username = request.user.username
+
+                messages.error(request, username + ", " + "date range is not valid.") 
+
+            if user and not user == "each_user":
+                posts = Post.objects.filter(user = user)[:50]
+
+            elif not user and user == "each_user":
+                posts = Post.objects.all()[:50]
+            
+            elif not user and not user == "each_user":
+                username = request.user.username
+
+                messages.error(request, username + ", " + "user is not valid.")
+            
+            elif not user or not user == "each_user":
+                username = request.user.username
+
+                messages.error(request, username + ", " + "user is not valid.") 
+
+            if post_status and not post_status == "each_poststatus":
+                posts = Post.objects.filter(post_status = post_status)[:50]
+        
+            elif not post_status and post_status == "each_poststatus":
+                posts = Post.objects.all()[:50]
+
+            elif not post_status and not post_status == "each_poststatus":
+                username = request.user.username
+
+                messages.error(request, username + ", " + "post status is not valid.")
+            
+            elif not post_status or not post_status == "each_poststatus":
+                username = request.user.username
+
+                messages.error(request, username + ", " + "post status is not valid.") 
+            
+            if depth and not depth == "each_depth":
+                posts = Post.objects.filter(post_observation__depth = depth)[:50]
+        
+            elif not depth and depth == "each_depth":
+                posts = Post.objects.all()[:50]
+
+            elif not depth and not depth == "each_depth":
+                username = request.user.username
+
+                messages.error(request, username + ", " + "depth is not valid.")
+            
+            elif not depth or not depth == "each_depth":
+                username = request.user.username
+
+                messages.error(request, username + ", " + "depth is not valid.")
+
+            if weather and not weather == "each_weather":
+                posts = Post.objects.filter(post_observation__weather = weather)[:50]
+        
+            elif not weather and weather == "each_weather":
+                posts = Post.objects.all()[:50]
+
+            elif not weather and not weather == "each_weather":
+                username = request.user.username
+
+                messages.error(request, username + ", " + "weather is not valid.")
+            
+            elif not weather or not weather == "each_weather":
+                username = request.user.username
+
+                messages.error(request, username + ", " + "weather is not valid.")  
+
+            if not from_date and not to_date and not user and not post_status and not depth and not weather:
+                username = request.user.username
+
+                messages.error(request, username + ", " + "information filter is empty within COTSEye.")
+            
+            elif not from_date or not to_date or not user or not post_status or not depth or not weather:
+                username = request.user.username
+
+                messages.error(request, username + ", " + "information filter is incomplete within COTSEye.")
+
+    else:
+        username = request.user.username
+
+        messages.info(request, username + ", " + "information input is empty within COTSEye.")
+
+    context = {"username": username, "options": options, "posts": posts}
+
+    return render(request, "admin/statistics/post/post.html", context)
+
+
+@login_required(login_url = "Administrator Database Login")
+@user_passes_test(AdministratorCheck, login_url = "Administrator Database Login")
+def AdministratorStatisticsPostRead(request, id):
+    username = request.user.username
+    
+    post = Post.objects.filter(id = id)
+
+    context = {"username": username, "post": post}
+
+    return render(request, "admin/statistics/post/read.html", context)
+
+
+def ServicePostValidReadRedirect(request):
+    if request.user.is_authenticated:
+        usertype = request.user.usertype_id
+
+        if usertype == 3:
+            object = Post.objects.get()
+
+            return redirect(reverse("Contributor Service Post Valid Read", kwargs = {"id": object.id}))
+
+        elif usertype == 2:
+            object = Account.objects.get(id = request.user.id)
+
+            return redirect(reverse("officer:reports_post_change", kwargs = {"object_id": object.id}))
+
+        elif usertype == 1:
+            object = Account.objects.get(id = request.user.id)
+
+            return redirect(reverse("admin:reports_post_change", kwargs = {"object_id": object.id}))
+    
+    else:
+        object = Post.objects.get()
+
+        return redirect(reverse("Public Service Post Valid Read", kwargs = {"id": object.id}))

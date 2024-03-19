@@ -375,7 +375,7 @@ form{
 
 .report#choose .card-body .field .column .description input{
     padding-left: 10px !important;
-    padding-right: 45px !important;
+    padding-right: 40px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -397,7 +397,7 @@ form{
 @media screen and (min-width: 369px) and (max-width: 445px){
     .report#choose .card-body .field .column .description input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 38px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -415,7 +415,7 @@ form{
 @media screen and (min-width: 349px) and (max-width: 368px){
     .report#choose .card-body .field .column .description input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 36px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -433,7 +433,7 @@ form{
 @media screen and (min-width: 320px) and (max-width: 348px){
     .report#choose .card-body .field .column .description input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 34px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -640,7 +640,7 @@ form{
 
 .report#choose .card-body .field .column .latitude input{
     padding-left: 10px !important;
-    padding-right: 45px !important;
+    padding-right: 40px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -662,7 +662,7 @@ form{
 @media screen and (min-width: 369px) and (max-width: 445px){
     .report#choose .card-body .field .column .latitude input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 38px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -680,7 +680,7 @@ form{
 @media screen and (min-width: 349px) and (max-width: 368px){
     .report#choose .card-body .field .column .latitude input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 36px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -698,7 +698,7 @@ form{
 @media screen and (min-width: 320px) and (max-width: 348px){
     .report#choose .card-body .field .column .latitude input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 34px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -811,7 +811,7 @@ form{
 
 .report#choose .card-body .field .column .longitude input{
     padding-left: 10px !important;
-    padding-right: 45px !important;
+    padding-right: 40px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -833,7 +833,7 @@ form{
 @media screen and (min-width: 369px) and (max-width: 445px){
     .report#choose .card-body .field .column .longitude input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 38px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -851,7 +851,7 @@ form{
 @media screen and (min-width: 349px) and (max-width: 368px){
     .report#choose .card-body .field .column .longitude input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 36px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -869,7 +869,7 @@ form{
 @media screen and (min-width: 320px) and (max-width: 348px){
     .report#choose .card-body .field .column .longitude input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 34px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1035,7 +1035,7 @@ form{
 
 .report#choose .card-body .field .column .size input{
     padding-left: 10px !important;
-    padding-right: 45px !important;
+    padding-right: 40px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -1056,7 +1056,7 @@ form{
 @media screen and (min-width: 369px) and (max-width: 445px){
     .report#choose .card-body .field .column .size input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 38px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1074,7 +1074,7 @@ form{
 @media screen and (min-width: 349px) and (max-width: 368px){
     .report#choose .card-body .field .column .size input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 36px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1092,7 +1092,7 @@ form{
 @media screen and (min-width: 320px) and (max-width: 348px){
     .report#choose .card-body .field .column .size input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 34px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1205,7 +1205,7 @@ form{
 
 .report#choose .card-body .field .column .density input{
     padding-left: 10px !important;
-    padding-right: 45px !important;
+    padding-right: 40px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -1226,7 +1226,7 @@ form{
 @media screen and (min-width: 369px) and (max-width: 445px){
     .report#choose .card-body .field .column .density input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 38px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1244,7 +1244,7 @@ form{
 @media screen and (min-width: 349px) and (max-width: 368px){
     .report#choose .card-body .field .column .density input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 36px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1262,7 +1262,7 @@ form{
 @media screen and (min-width: 320px) and (max-width: 348px){
     .report#choose .card-body .field .column .density input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 34px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1384,7 +1384,7 @@ form{
 
 .report#choose .card-body .field .column select[name = "depth"]{
     padding-left: 10px !important;
-    padding-right: 45px !important;
+    padding-right: 40px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -1411,7 +1411,7 @@ form{
 @media screen and (min-width: 369px) and (max-width: 445px){
     .report#choose .card-body .field .column select[name = "depth"]{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 38px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1432,7 +1432,7 @@ form{
 @media screen and (min-width: 349px) and (max-width: 368px){
     .report#choose .card-body .field .column select[name = "depth"]{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 36px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1453,7 +1453,7 @@ form{
 @media screen and (min-width: 320px) and (max-width: 348px){
     .report#choose .card-body .field .column select[name = "depth"]{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 34px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1574,7 +1574,7 @@ form{
 
 .report#choose .card-body .field .column select[name = "weather"]{
     padding-left: 10px !important;
-    padding-right: 45px !important;
+    padding-right: 40px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -1601,7 +1601,7 @@ form{
 @media screen and (min-width: 369px) and (max-width: 445px){
     .report#choose .card-body .field .column select[name = "weather"]{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 38px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1622,7 +1622,7 @@ form{
 @media screen and (min-width: 349px) and (max-width: 368px){
     .report#choose .card-body .field .column select[name = "weather"]{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 36px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1643,7 +1643,7 @@ form{
 @media screen and (min-width: 320px) and (max-width: 348px){
     .report#choose .card-body .field .column select[name = "weather"]{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 34px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;

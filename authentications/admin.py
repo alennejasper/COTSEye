@@ -6,6 +6,11 @@ from authentications.models import *
 
 # Register your models here.
 class UserTypeAdmin(admin.ModelAdmin):
+    class Media:   
+        css = {
+            "all": ["css/admin/database/index/index.css"]
+        }
+        
     def has_module_permission(self, request):
         return request.user.usertype_id == 1
 
@@ -13,6 +18,11 @@ admin.site.register(UserType, UserTypeAdmin)
 
 
 class AccountAdmin(admin.ModelAdmin):
+    class Media:   
+        css = {
+            "all": ["css/admin/database/index/index.css"]
+        }
+
     def has_module_permission(self, request):
         return request.user.usertype_id == 1
 
@@ -20,6 +30,11 @@ admin.site.register(Account, AccountAdmin)
 
 
 class UserAdmin(admin.ModelAdmin):
+    class Media:   
+        css = {
+            "all": ["css/admin/database/index/index.css"]
+        }
+
     def has_module_permission(self, request):
         return request.user.usertype_id == 1
 
@@ -27,6 +42,11 @@ admin.site.register(User, UserAdmin)
 
 
 class SiteAdmin(admin.ModelAdmin):
+    class Media:   
+        css = {
+            "all": ["css/admin/database/index/index.css"]
+        }
+
     def has_module_permission(self, request):
         return request.user.usertype_id == 1
     
@@ -36,6 +56,11 @@ admin.site.register(Site, SiteAdmin)
 
 
 class SocialAccountAdmin(admin.ModelAdmin):
+    class Media:   
+        css = {
+            "all": ["css/admin/database/index/index.css"]
+        }
+
     def has_module_permission(self, request,):
         return request.user.usertype_id == 1
     
@@ -45,6 +70,11 @@ admin.site.register(SocialAccount, SocialAccountAdmin)
 
 
 class SocialTokenAdmin(admin.ModelAdmin):
+    class Media:   
+        css = {
+            "all": ["css/admin/database/index/index.css"]
+        }
+
     def has_module_permission(self, request,):
         return request.user.usertype_id == 1
 
@@ -54,6 +84,11 @@ admin.site.register(SocialToken, SocialTokenAdmin)
 
 
 class SocialAppAdmin(admin.ModelAdmin):
+    class Media:   
+        css = {
+            "all": ["css/admin/database/index/index.css"]
+        }
+
     def has_module_permission(self, request,):
         return request.user.usertype_id == 1
     

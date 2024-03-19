@@ -3,6 +3,8 @@ from reports import views
 
 # Create your URL configuration here.
 urlpatterns = [    
+    path("service/post/valid/read/<int:id>/", views.PublicServicePostValidRead, name = "Public Service Post Valid Read"),
+
     path("contributor/service/report/", views.ContributorServiceReport, name = "Contributor Service Report"),
 
     path("contributor/service/report/capture/", views.ContributorServiceReportCapture, name = "Contributor Service Report Capture"),
@@ -28,6 +30,14 @@ urlpatterns = [
     path("contributor/service/post/uncertain/", views.ContributorServicePostUncertain, name = "Contributor Service Post Uncertain"),
     
     path("contributor/service/post/uncertain/read/<int:id>/", views.ContributorServicePostUncertainRead, name = "Contributor Service Post Uncertain Read"),
+
+    path("officer/statistics/post/", views.OfficerStatisticsPost, name = "Officer Statistics Post"),
+
+    path("officer/statistics/post/read/<int:id>/", views.OfficerStatisticsPostRead, name = "Officer Statistics Post Read"),
+
+    path("admin/statistics/post/", views.AdministratorStatisticsPost, name = "Administrator Statistics Post"),
+
+    path("admin/statistics/post/read/<int:id>/", views.AdministratorStatisticsPostRead, name = "Administrator Statistics Post Read"),
 
     path("service/post/valid/read/redirect/", views.ServicePostValidReadRedirect, name = "Service Post Valid Read Redirect"),
 ]

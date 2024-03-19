@@ -26,8 +26,8 @@
 
                         <option value = "each_location">Each location</option>
 
-                        {% for status in statuses %}
-                            <option value="{{status.location.id}}">{{status.location}}</option>
+                        {% for option in options %}
+                            <option value = "{{option.location.id}}">{{option.location}}</option>
                         {% endfor %}
                     </select>
                 </div>
@@ -39,13 +39,15 @@
                         <input type = "date" value = "" id = "to-date" name = "to_date" required>                            
                     </div>  
 
-                    <label for = "statustype">Status Type</label> 
+                    <label for = "statustype">Status Type</label>
 
                     <select name = "statustype" id = "statustype">
                         <option disabled selected value>Choose status type</option>
 
-                        {% for status in statuses %}
-                            <option value="{{status.statustype.id}}">{{status.statustype}}</option>
+                        <option value = "each_statustype">Each status type</option>
+
+                        {% for option in options %}
+                            <option value = "{{option.statustype.id}}">{{option.statustype}}</option>
                         {% endfor %}
                     </select>
                 </div>

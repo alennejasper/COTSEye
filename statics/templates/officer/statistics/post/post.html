@@ -1,0 +1,139 @@
+{% extends "officer/statistics/index/index.html" %}
+{% load static %}
+
+{% block content %}
+<form action = "" class = "post-form" method = "GET">
+    {% csrf_token %}
+
+    <div class = "post" id = "post-filter">
+        <div class = "card-header">
+            <header>Filter required information</header>
+        </div>
+
+        <div class = "card-body">
+            <div class = "field">
+                <div class = "column">
+                    <label for = "from-date">From</label> 
+                        
+                    <div class = "from-date">
+                        <input type = "date" value = "" id = "from-date" name = "from_date" required>                            
+                    </div>
+
+                    <label for = "user">User</label> 
+
+                    <select name = "user" id = "user">
+                        <option disabled selected value>Choose user</option>
+
+                        <option value = "each_user">Each user</option>
+
+                        {% for option in options %}
+                            <option value = "{{option.user.id}}">{{option.user}}</option>
+                        {% endfor %}
+                    </select>
+
+                    <label for = "depth">Depth</label> 
+
+                    <select name = "depth" id = "depth">
+                        <option disabled selected value>Choose depth</option>
+
+                        <option value = "each_depth">Each depth</option>
+
+                        {% for option in options %}
+                            <option value = "{{option.post_observation.depth.id}}">{{option.post_observation.depth}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class = "column">
+                    <label for = "to-date">To</label> 
+
+                    <div class = "to-date">
+                        <input type = "date" value = "" id = "to-date" name = "to_date" required>                            
+                    </div>  
+
+                    <label for = "post-status">Post Status</label> 
+
+                    <select name = "post_status" id = "post-status">
+                        <option disabled selected value>Choose post status</option>
+
+                        <option value = "each_poststatus">Each post status</option>
+
+                        {% for option in options %}
+                            <option value = "{{option.post_status.id}}">{{option.post_status}}</option>
+                        {% endfor %}
+                    </select>
+
+                    <label for = "weather">Weather</label> 
+
+                    <select name = "weather" id = "weather">
+                        <option disabled selected value>Choose weather</option>
+
+                        <option value = "each_weather">Each weather</option>
+
+                        {% for option in options %}
+                            <option value = "{{option.post_observation.weather.id}}">{{option.post_observation.weather}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class = "button">
+                <a class = "filter-post" type = "submit">Filter</a>
+            </div>    
+        </div>
+    </div>
+</form>
+
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags == "info" %}<script>Swal.fire({title: "Hey!", text: "{{message}}", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}})</script>
+        {% elif message.tags == "success" %}<script>Swal.fire({title: "Yay!", text: "{{message}}", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}})</script>
+        {% else %}<script>Swal.fire({title: "Oops!", text: "{{message}}", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}})</script>
+        {% endif %}    
+    {% endfor %}
+{% endif %}
+
+<script>
+    document.querySelector(".filter-post").onclick = function() {
+        document.querySelector(".post-form").submit();
+    }
+</script>
+
+<div class = "line"></div>
+
+{% for post in posts %}
+<div class = "post">
+    <div class = "card-header">
+        <header class = "preview">{{post.description}}</header>
+    </div>
+
+    <div class = "card-body">
+        <div class = "field">
+            <div class = "column">
+                <label for = "capture-date">Capture Date</label> 
+
+                <div class = "capture-date">
+                    <input type = "text" value = "{{post.capture_date | date:'M. j, Y g:i a' | default:'None available'}}" id = "capture-date" name = "capture-date" readonly>
+
+                    <i class = "fa-solid fa-calendar-day"></i>
+                </div>  
+            </div>
+
+            <div class = "column">
+                <label for = "coordinates">Coordinates</label> 
+                    
+                <div class = "coordinates">
+                    <input type = "text" value = "{{post.coordinates.latitude | default:'0'}}° N, {{post.coordinates.longitude | default:'0'}}° E" id = "coordinates" name = "coordinates" readonly>
+                        
+                    <i class = "fa-solid fa-location-dot"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class = "button">
+            <a class = "read-post" href = "{% url 'Officer Statistics Post Read' post.id %}">Read</a>
+        </div>    
+    </div>
+</div>
+{% endfor %}
+{% endblock content %}

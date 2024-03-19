@@ -36,7 +36,7 @@
 }
 
 
-.content:has(.intervention#intervention-filter){
+.content:has(.post#post-filter){
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 30px;
@@ -47,7 +47,7 @@
     place-items: unset;
 }
 
-.intervention#intervention-filter{
+.post#post-filter{
     margin-bottom: 30px;
     width: 100%;
     display: grid;
@@ -57,7 +57,7 @@
     box-shadow: 0 0 0 1px #B2BEB5 !important;
 }
 
-.intervention#intervention-filter .card-header{
+.post#post-filter .card-header{
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 15px;
@@ -68,7 +68,7 @@
     display: grid;
 }
 
-.intervention#intervention-filter .card-header header{
+.post#post-filter .card-header header{
     font-family: "Philosopher";
     font-weight: 700;
     font-size: 22px !important;
@@ -78,7 +78,7 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .intervention#intervention-filter .card-header header{
+    .post#post-filter .card-header header{
         font-family: "Philosopher";
         font-weight: 700;
         font-size: 20px !important;
@@ -89,7 +89,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .intervention#intervention-filter .card-header header{
+    .post#post-filter .card-header header{
         font-family: "Philosopher";
         font-weight: 700;
         font-size: 18px !important;
@@ -100,7 +100,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .intervention#intervention-filter .card-header header{
+    .post#post-filter .card-header header{
         font-family: "Philosopher";
         font-weight: 700;
         font-size: 16px !important;
@@ -110,7 +110,7 @@
     }
 }
 
-.intervention#intervention-filter .card-body{
+.post#post-filter .card-body{
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 15px;
@@ -123,41 +123,41 @@
     background-color: #FFFFFF;
 }
 
-.intervention#intervention-filter .card-body .field{
+.post#post-filter .card-body .field{
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
 }
 
 @media screen and (min-width: 446px) and (max-width: 775px){
-    .intervention#intervention-filter .card-body .field{        
+    .post#post-filter .card-body .field{        
         grid-template-columns: 100%;
         gap: 0px;
     }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .intervention#intervention-filter .card-body .field{        
+    .post#post-filter .card-body .field{        
         grid-template-columns: 100%;
         gap: 0px;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .intervention#intervention-filter .card-body .field{        
+    .post#post-filter .card-body .field{        
         grid-template-columns: 100%;
         gap: 0px;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .intervention#intervention-filter .card-body .field{        
+    .post#post-filter .card-body .field{        
         grid-template-columns: 100%;
         gap: 0px;
     }
 }
 
-.intervention#intervention-filter .card-body .field .column label[for = "from-date"]{
+.post#post-filter .card-body .field .column label[for = "from-date"]{
     margin-top: 0px;
     display: inline-block;
     font-family: "Overlock";
@@ -167,7 +167,7 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .intervention#intervention-filter .card-body .field .column label[for = "from-date"]{
+    .post#post-filter .card-body .field .column label[for = "from-date"]{
         margin-top: 0px;
         display: inline-block;
         font-family: "Overlock";
@@ -178,7 +178,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .intervention#intervention-filter .card-body .field .column label[for = "from-date"]{
+    .post#post-filter .card-body .field .column label[for = "from-date"]{
         margin-top: 0px;
         display: inline-block;
         font-family: "Overlock";
@@ -189,7 +189,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .intervention#intervention-filter .card-body .field .column label[for = "from-date"]{
+    .post#post-filter .card-body .field .column label[for = "from-date"]{
         margin-top: 0px;
         display: inline-block;
         font-family: "Overlock";
@@ -199,11 +199,11 @@
     }
 }
 
-.intervention#intervention-filter .card-body .field .column .from-date{
+.post#post-filter .card-body .field .column .from-date{
     position: relative;
 }
 
-.intervention#intervention-filter .card-body .field .column .from-date input{
+.post#post-filter .card-body .field .column .from-date input{
     padding-left: 10px !important;
     padding-right: 10px !important;
     padding-top: 5px !important;
@@ -219,12 +219,12 @@
     color: #154360 !important;
 }
 
-.intervention#intervention-filter .card-body .field .column .from-date input:focus{
+.post#post-filter .card-body .field .column .from-date input:focus{
     border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .intervention#intervention-filter .card-body .field .column .from-date input{
+    .post#post-filter .card-body .field .column .from-date input{
         padding-left: 10px !important;
         padding-right: 10px !important;
         padding-top: 5px !important;
@@ -242,7 +242,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .intervention#intervention-filter .card-body .field .column .from-date input{
+    .post#post-filter .card-body .field .column .from-date input{
         padding-left: 10px !important;
         padding-right: 10px !important;
         padding-top: 5px !important;
@@ -260,7 +260,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .intervention#intervention-filter .card-body .field .column .from-date input{
+    .post#post-filter .card-body .field .column .from-date input{
         padding-left: 10px !important;
         padding-right: 10px !important;
         padding-top: 5px !important;
@@ -277,51 +277,51 @@
     }
 }
 
-.intervention#intervention-filter .card-body .field .column .from-date input[type = "date"]::-webkit-calendar-picker-indicator{
+.post#post-filter .card-body .field .column .from-date input[type = "date"]::-webkit-calendar-picker-indicator{
     filter: invert(22%) sepia(7%) saturate(6538%) hue-rotate(164deg) brightness(89%) contrast(90%);
 }
 
-.intervention#intervention-filter .card-body .field .column .from-date input[type = date]:invalid::-webkit-datetime-edit{
+.post#post-filter .card-body .field .column .from-date input[type = date]:invalid::-webkit-datetime-edit{
     color: #154360 !important;
 }
 
-.intervention#intervention-filter .card-body .field .column .from-date input::-webkit-datetime-edit-day-field{
+.post#post-filter .card-body .field .column .from-date input::-webkit-datetime-edit-day-field{
     color: #154360;
     background-color: #FFFFFF;
     outline: none;
 }
 
-.intervention#intervention-filter .card-body .field .column .from-date input::-webkit-datetime-edit-month-field{
+.post#post-filter .card-body .field .column .from-date input::-webkit-datetime-edit-month-field{
     color: #154360;
     background-color: #FFFFFF;
     outline: none;
 }
 
-.intervention#intervention-filter .card-body .field .column .from-date input::-webkit-datetime-edit-year-field{
+.post#post-filter .card-body .field .column .from-date input::-webkit-datetime-edit-year-field{
     color: #154360;
     background-color: #FFFFFF;
     outline: none;
 }
 
-.intervention#intervention-filter .card-body .field .column .from-date input::-webkit-datetime-edit-day-field:focus{
+.post#post-filter .card-body .field .column .from-date input::-webkit-datetime-edit-day-field:focus{
     background-color: #154360 !important;
     color: #FFFFFF !important;
     outline: none;
 }
 
-.intervention#intervention-filter .card-body .field .column .from-date input::-webkit-datetime-edit-month-field:focus{
+.post#post-filter .card-body .field .column .from-date input::-webkit-datetime-edit-month-field:focus{
     background-color: #154360 !important;
     color: #FFFFFF !important;
     outline: none;
 }
 
-.intervention#intervention-filter .card-body .field .column .from-date input::-webkit-datetime-edit-year-field:focus{
+.post#post-filter .card-body .field .column .from-date input::-webkit-datetime-edit-year-field:focus{
     background-color: #154360 !important;
     color: #FFFFFF !important;
     outline: none;
 }
 
-.intervention#intervention-filter .card-body .field .column label[for = "to-date"]{
+.post#post-filter .card-body .field .column label[for = "to-date"]{
     margin-top: 0px;
     display: inline-block;
     font-family: "Overlock";
@@ -331,7 +331,7 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .intervention#intervention-filter .card-body .field .column label[for = "to-date"]{
+    .post#post-filter .card-body .field .column label[for = "to-date"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -342,7 +342,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .intervention#intervention-filter .card-body .field .column label[for = "to-date"]{
+    .post#post-filter .card-body .field .column label[for = "to-date"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -353,7 +353,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .intervention#intervention-filter .card-body .field .column label[for = "to-date"]{
+    .post#post-filter .card-body .field .column label[for = "to-date"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -363,11 +363,11 @@
     }
 }
 
-.intervention#intervention-filter .card-body .field .column .to-date{
+.post#post-filter .card-body .field .column .to-date{
     position: relative;
 }
 
-.intervention#intervention-filter .card-body .field .column .to-date input{
+.post#post-filter .card-body .field .column .to-date input{
     padding-left: 10px !important;
     padding-right: 10px !important;
     padding-top: 5px !important;
@@ -383,12 +383,12 @@
     color: #154360 !important;
 }
 
-.intervention#intervention-filter .card-body .field .column .to-date input:focus{
+.post#post-filter .card-body .field .column .to-date input:focus{
     border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .intervention#intervention-filter .card-body .field .column .to-date input{
+    .post#post-filter .card-body .field .column .to-date input{
         padding-left: 10px !important;
         padding-right: 10px !important;
         padding-top: 5px !important;
@@ -406,7 +406,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .intervention#intervention-filter .card-body .field .column .to-date input{
+    .post#post-filter .card-body .field .column .to-date input{
         padding-left: 10px !important;
         padding-right: 10px !important;
         padding-top: 5px !important;
@@ -424,7 +424,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .intervention#intervention-filter .card-body .field .column .to-date input{
+    .post#post-filter .card-body .field .column .to-date input{
         padding-left: 10px !important;
         padding-right: 10px !important;
         padding-top: 5px !important;
@@ -441,51 +441,51 @@
     }
 }
 
-.intervention#intervention-filter .card-body .field .column .to-date input[type = "date"]::-webkit-calendar-picker-indicator{
+.post#post-filter .card-body .field .column .to-date input[type = "date"]::-webkit-calendar-picker-indicator{
     filter: invert(22%) sepia(7%) saturate(6538%) hue-rotate(164deg) brightness(89%) contrast(90%);
 }
 
-.intervention#intervention-filter .card-body .field .column .to-date input[type = date]:invalid::-webkit-datetime-edit{
+.post#post-filter .card-body .field .column .to-date input[type = date]:invalid::-webkit-datetime-edit{
     color: #154360 !important;
 }
 
-.intervention#intervention-filter .card-body .field .column .to-date input::-webkit-datetime-edit-day-field{
+.post#post-filter .card-body .field .column .to-date input::-webkit-datetime-edit-day-field{
     color: #154360;
     background-color: #FFFFFF;
     outline: none;
 }
 
-.intervention#intervention-filter .card-body .field .column .to-date input::-webkit-datetime-edit-month-field{
+.post#post-filter .card-body .field .column .to-date input::-webkit-datetime-edit-month-field{
     color: #154360;
     background-color: #FFFFFF;
     outline: none;
 }
 
-.intervention#intervention-filter .card-body .field .column .to-date input::-webkit-datetime-edit-year-field{
+.post#post-filter .card-body .field .column .to-date input::-webkit-datetime-edit-year-field{
     color: #154360;
     background-color: #FFFFFF;
     outline: none;
 }
 
-.intervention#intervention-filter .card-body .field .column .to-date input::-webkit-datetime-edit-day-field:focus{
+.post#post-filter .card-body .field .column .to-date input::-webkit-datetime-edit-day-field:focus{
     background-color: #154360 !important;
     color: #FFFFFF !important;
     outline: none;
 }
 
-.intervention#intervention-filter .card-body .field .column .to-date input::-webkit-datetime-edit-month-field:focus{
+.post#post-filter .card-body .field .column .to-date input::-webkit-datetime-edit-month-field:focus{
     background-color: #154360 !important;
     color: #FFFFFF !important;
     outline: none;
 }
 
-.intervention#intervention-filter .card-body .field .column .to-date input::-webkit-datetime-edit-year-field:focus{
+.post#post-filter .card-body .field .column .to-date input::-webkit-datetime-edit-year-field:focus{
     background-color: #154360 !important;
     color: #FFFFFF !important;
     outline: none;
 }
 
-.intervention#intervention-filter .card-body .field .column label[for = "location"]{
+.post#post-filter .card-body .field .column label[for = "user"]{
     margin-top: 15px;
     display: inline-block;
     font-family: "Overlock";
@@ -495,7 +495,7 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .intervention#intervention-filter .card-body .field .column label[for = "location"]{
+    .post#post-filter .card-body .field .column label[for = "user"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -506,7 +506,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .intervention#intervention-filter .card-body .field .column label[for = "location"]{
+    .post#post-filter .card-body .field .column label[for = "user"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -517,7 +517,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .intervention#intervention-filter .card-body .field .column label[for = "location"]{
+    .post#post-filter .card-body .field .column label[for = "user"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -527,13 +527,13 @@
     }
 }
 
-.intervention#intervention-filter .card-body .field .column .location{
+.post#post-filter .card-body .field .column .user{
     position: relative;
 }
 
-.intervention#intervention-filter .card-body .field .column select[name = "location"]{
+.post#post-filter .card-body .field .column select[name = "user"]{
     padding-left: 10px !important;
-    padding-right: 45px !important;
+    padding-right: 40px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -548,19 +548,19 @@
     font-weight: 700 !important;
     font-size: 20px !important;   
     color: #154360 !important;
-    background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '20' height = '20' viewBox = '0 0 384 512' fill = '%23154360'> <path d = 'M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z'/></svg>");
+    background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '20' height = '20' viewBox = '0 0 448 512' fill = '%23154360'> <path d = 'M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z'/></svg>");
     background-repeat: no-repeat;
     background-position: right 10px center; 
 }
 
-.intervention#intervention-filter .card-body .field .column select[name = "location"]:focus{
+.post#post-filter .card-body .field .column select[name = "user"]:focus{
     border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .intervention#intervention-filter .card-body .field .column select[name = "location"]{
+    .post#post-filter .card-body .field .column select[name = "user"]{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 38px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -572,16 +572,16 @@
         font-weight: 700 !important;
         font-size: 18px !important;   
         color: #154360 !important;
-        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '18' height = '18' viewBox = '0 0 384 512' fill = '%23154360'> <path d = 'M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z'/></svg>");
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '18' height = '18' viewBox = '0 0 448 512' fill = '%23154360'> <path d = 'M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z'/></svg>");
         background-repeat: no-repeat;
         background-position: right 10px center;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .intervention#intervention-filter .card-body .field .column select[name = "location"]{
+    .post#post-filter .card-body .field .column select[name = "user"]{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 36px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -593,16 +593,16 @@
         font-weight: 700 !important;
         font-size: 16px !important;   
         color: #154360 !important;
-        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '16' height = '16' viewBox = '0 0 384 512' fill = '%23154360'> <path d = 'M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z'/></svg>");
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '16' height = '16' viewBox = '0 0 448 512' fill = '%23154360'> <path d = 'M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z'/></svg>");
         background-repeat: no-repeat;
         background-position: right 10px center;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .intervention#intervention-filter .card-body .field .column select[name = "location"]{
+    .post#post-filter .card-body .field .column select[name = "user"]{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 34px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -614,13 +614,13 @@
         font-weight: 700 !important;
         font-size: 14px !important;   
         color: #154360 !important;
-        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '14' height = '14' viewBox = '0 0 384 512' fill = '%23154360'> <path d = 'M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z'/></svg>");
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '14' height = '14' viewBox = '0 0 448 512' fill = '%23154360'> <path d = 'M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z'/></svg>");
         background-repeat: no-repeat;
         background-position: right 10px center;
     }
 }
 
-.intervention#intervention-filter .card-body .field .column label[for = "hosting-agency"]{
+.post#post-filter .card-body .field .column label[for = "post-status"]{
     margin-top: 15px;
     display: inline-block;
     font-family: "Overlock";
@@ -630,7 +630,7 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .intervention#intervention-filter .card-body .field .column label[for = "hosting-agency"]{
+    .post#post-filter .card-body .field .column label[for = "post-status"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -641,7 +641,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .intervention#intervention-filter .card-body .field .column label[for = "hosting-agency"]{
+    .post#post-filter .card-body .field .column label[for = "post-status"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -652,7 +652,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .intervention#intervention-filter .card-body .field .column label[for = "hosting-agency"]{
+    .post#post-filter .card-body .field .column label[for = "post-status"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -662,13 +662,13 @@
     }
 }
 
-.intervention#intervention-filter .card-body .field .column .hosting-agency{
+.post#post-filter .card-body .field .column .post-status{
     position: relative;
 }
 
-.intervention#intervention-filter .card-body .field .column select[name = "hosting_agency"]{
+.post#post-filter .card-body .field .column select[name = "post_status"]{
     padding-left: 10px !important;
-    padding-right: 45px !important;
+    padding-right: 40px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -683,20 +683,20 @@
     font-weight: 700 !important;
     font-size: 20px !important;   
     color: #154360 !important;
-    background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '20' height = '20' viewBox = '0 0 640 512' fill = '%23154360'> <path d = 'M144 0a80 80 0 1 1 0 160A80 80 0 1 1 144 0zM512 0a80 80 0 1 1 0 160A80 80 0 1 1 512 0zM0 298.7C0 239.8 47.8 192 106.7 192h42.7c15.9 0 31 3.5 44.6 9.7c-1.3 7.2-1.9 14.7-1.9 22.3c0 38.2 16.8 72.5 43.3 96c-.2 0-.4 0-.7 0H21.3C9.6 320 0 310.4 0 298.7zM405.3 320c-.2 0-.4 0-.7 0c26.6-23.5 43.3-57.8 43.3-96c0-7.6-.7-15-1.9-22.3c13.6-6.3 28.7-9.7 44.6-9.7h42.7C592.2 192 640 239.8 640 298.7c0 11.8-9.6 21.3-21.3 21.3H405.3zM224 224a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zM128 485.3C128 411.7 187.7 352 261.3 352H378.7C452.3 352 512 411.7 512 485.3c0 14.7-11.9 26.7-26.7 26.7H154.7c-14.7 0-26.7-11.9-26.7-26.7z'/></svg>");
+    background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '20' height = '20' viewBox = '0 0 448 512' fill = '%23154360'> <path d = 'M64 32C64 14.3 49.7 0 32 0S0 14.3 0 32V64 368 480c0 17.7 14.3 32 32 32s32-14.3 32-32V352l64.3-16.1c41.1-10.3 84.6-5.5 122.5 13.4c44.2 22.1 95.5 24.8 141.7 7.4l34.7-13c12.5-4.7 20.8-16.6 20.8-30V66.1c0-23-24.2-38-44.8-27.7l-9.6 4.8c-46.3 23.2-100.8 23.2-147.1 0c-35.1-17.6-75.4-22-113.5-12.5L64 48V32z'/></svg>");
     background-size: 20px 20px;
     background-repeat: no-repeat;
     background-position: right 10px center; 
 }
 
-.intervention#intervention-filter .card-body .field .column select[name = "hosting_agency"]:focus{
+.post#post-filter .card-body .field .column select[name = "post_status"]:focus{
     border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .intervention#intervention-filter .card-body .field .column select[name = "hosting_agency"]{
+    .post#post-filter .card-body .field .column select[name = "post_status"]{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 38px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -708,7 +708,7 @@
         font-weight: 700 !important;
         font-size: 18px !important;   
         color: #154360 !important;
-        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '18' height = '18' viewBox = '0 0 640 512' fill = '%23154360'> <path d = 'M144 0a80 80 0 1 1 0 160A80 80 0 1 1 144 0zM512 0a80 80 0 1 1 0 160A80 80 0 1 1 512 0zM0 298.7C0 239.8 47.8 192 106.7 192h42.7c15.9 0 31 3.5 44.6 9.7c-1.3 7.2-1.9 14.7-1.9 22.3c0 38.2 16.8 72.5 43.3 96c-.2 0-.4 0-.7 0H21.3C9.6 320 0 310.4 0 298.7zM405.3 320c-.2 0-.4 0-.7 0c26.6-23.5 43.3-57.8 43.3-96c0-7.6-.7-15-1.9-22.3c13.6-6.3 28.7-9.7 44.6-9.7h42.7C592.2 192 640 239.8 640 298.7c0 11.8-9.6 21.3-21.3 21.3H405.3zM224 224a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zM128 485.3C128 411.7 187.7 352 261.3 352H378.7C452.3 352 512 411.7 512 485.3c0 14.7-11.9 26.7-26.7 26.7H154.7c-14.7 0-26.7-11.9-26.7-26.7z'/></svg>");
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '18' height = '18' viewBox = '0 0 448 512' fill = '%23154360'> <path d = 'M64 32C64 14.3 49.7 0 32 0S0 14.3 0 32V64 368 480c0 17.7 14.3 32 32 32s32-14.3 32-32V352l64.3-16.1c41.1-10.3 84.6-5.5 122.5 13.4c44.2 22.1 95.5 24.8 141.7 7.4l34.7-13c12.5-4.7 20.8-16.6 20.8-30V66.1c0-23-24.2-38-44.8-27.7l-9.6 4.8c-46.3 23.2-100.8 23.2-147.1 0c-35.1-17.6-75.4-22-113.5-12.5L64 48V32z'/></svg>");
         background-size: 18px 18px;
         background-repeat: no-repeat;
         background-position: right 10px center;
@@ -716,9 +716,9 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .intervention#intervention-filter .card-body .field .column select[name = "hosting_agency"]{
+    .post#post-filter .card-body .field .column select[name = "post_status"]{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 36px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -730,7 +730,7 @@
         font-weight: 700 !important;
         font-size: 16px !important;   
         color: #154360 !important;
-        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '16' height = '16' viewBox = '0 0 640 512' fill = '%23154360'> <path d = 'M144 0a80 80 0 1 1 0 160A80 80 0 1 1 144 0zM512 0a80 80 0 1 1 0 160A80 80 0 1 1 512 0zM0 298.7C0 239.8 47.8 192 106.7 192h42.7c15.9 0 31 3.5 44.6 9.7c-1.3 7.2-1.9 14.7-1.9 22.3c0 38.2 16.8 72.5 43.3 96c-.2 0-.4 0-.7 0H21.3C9.6 320 0 310.4 0 298.7zM405.3 320c-.2 0-.4 0-.7 0c26.6-23.5 43.3-57.8 43.3-96c0-7.6-.7-15-1.9-22.3c13.6-6.3 28.7-9.7 44.6-9.7h42.7C592.2 192 640 239.8 640 298.7c0 11.8-9.6 21.3-21.3 21.3H405.3zM224 224a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zM128 485.3C128 411.7 187.7 352 261.3 352H378.7C452.3 352 512 411.7 512 485.3c0 14.7-11.9 26.7-26.7 26.7H154.7c-14.7 0-26.7-11.9-26.7-26.7z'/></svg>");
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '16' height = '16' viewBox = '0 0 448 512' fill = '%23154360'> <path d = 'M64 32C64 14.3 49.7 0 32 0S0 14.3 0 32V64 368 480c0 17.7 14.3 32 32 32s32-14.3 32-32V352l64.3-16.1c41.1-10.3 84.6-5.5 122.5 13.4c44.2 22.1 95.5 24.8 141.7 7.4l34.7-13c12.5-4.7 20.8-16.6 20.8-30V66.1c0-23-24.2-38-44.8-27.7l-9.6 4.8c-46.3 23.2-100.8 23.2-147.1 0c-35.1-17.6-75.4-22-113.5-12.5L64 48V32z'/></svg>");
         background-size: 16px 16px;
         background-repeat: no-repeat;
         background-position: right 10px center;
@@ -738,9 +738,9 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .intervention#intervention-filter .card-body .field .column select[name = "hosting_agency"]{
+    .post#post-filter .card-body .field .column select[name = "post_status"]{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 34px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -752,14 +752,284 @@
         font-weight: 700 !important;
         font-size: 14px !important;   
         color: #154360 !important;
-        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '14' height = '14' viewBox = '0 0 640 512' fill = '%23154360'> <path d = 'M144 0a80 80 0 1 1 0 160A80 80 0 1 1 144 0zM512 0a80 80 0 1 1 0 160A80 80 0 1 1 512 0zM0 298.7C0 239.8 47.8 192 106.7 192h42.7c15.9 0 31 3.5 44.6 9.7c-1.3 7.2-1.9 14.7-1.9 22.3c0 38.2 16.8 72.5 43.3 96c-.2 0-.4 0-.7 0H21.3C9.6 320 0 310.4 0 298.7zM405.3 320c-.2 0-.4 0-.7 0c26.6-23.5 43.3-57.8 43.3-96c0-7.6-.7-15-1.9-22.3c13.6-6.3 28.7-9.7 44.6-9.7h42.7C592.2 192 640 239.8 640 298.7c0 11.8-9.6 21.3-21.3 21.3H405.3zM224 224a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zM128 485.3C128 411.7 187.7 352 261.3 352H378.7C452.3 352 512 411.7 512 485.3c0 14.7-11.9 26.7-26.7 26.7H154.7c-14.7 0-26.7-11.9-26.7-26.7z'/></svg>");
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '14' height = '14' viewBox = '0 0 448 512' fill = '%23154360'> <path d = 'M64 32C64 14.3 49.7 0 32 0S0 14.3 0 32V64 368 480c0 17.7 14.3 32 32 32s32-14.3 32-32V352l64.3-16.1c41.1-10.3 84.6-5.5 122.5 13.4c44.2 22.1 95.5 24.8 141.7 7.4l34.7-13c12.5-4.7 20.8-16.6 20.8-30V66.1c0-23-24.2-38-44.8-27.7l-9.6 4.8c-46.3 23.2-100.8 23.2-147.1 0c-35.1-17.6-75.4-22-113.5-12.5L64 48V32z'/></svg>");
         background-size: 14px 14px;
         background-repeat: no-repeat;
         background-position: right 10px center;
     }
 }
 
-.intervention#intervention-filter .card-body .button{
+.post#post-filter .card-body .field .column label[for = "depth"]{
+    margin-top: 15px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#post-filter .card-body .field .column label[for = "depth"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#post-filter .card-body .field .column label[for = "depth"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#post-filter .card-body .field .column label[for = "depth"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.post#post-filter .card-body .field .column .depth{
+    position: relative;
+}
+
+.post#post-filter .card-body .field .column select[name = "depth"]{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+    background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '20' height = '20' viewBox = '0 0 576 512' fill = '%23154360'> <path d = 'M151.6 469.6C145.5 476.2 137 480 128 480s-17.5-3.8-23.6-10.4l-88-96c-11.9-13-11.1-33.3 2-45.2s33.3-11.1 45.2 2L96 365.7V64c0-17.7 14.3-32 32-32s32 14.3 32 32V365.7l32.4-35.4c11.9-13 32.2-13.9 45.2-2s13.9 32.2 2 45.2l-88 96zM320 480c-17.7 0-32-14.3-32-32s14.3-32 32-32h32c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32H544c17.7 0 32 14.3 32 32s-14.3 32-32 32H320z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center; 
+}
+
+.post#post-filter .card-body .field .column select[name = "depth"]:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#post-filter .card-body .field .column select[name = "depth"]{
+        padding-left: 10px !important;
+        padding-right: 38px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '18' height = '18' viewBox = '0 0 576 512' fill = '%23154360'> <path d = 'M151.6 469.6C145.5 476.2 137 480 128 480s-17.5-3.8-23.6-10.4l-88-96c-11.9-13-11.1-33.3 2-45.2s33.3-11.1 45.2 2L96 365.7V64c0-17.7 14.3-32 32-32s32 14.3 32 32V365.7l32.4-35.4c11.9-13 32.2-13.9 45.2-2s13.9 32.2 2 45.2l-88 96zM320 480c-17.7 0-32-14.3-32-32s14.3-32 32-32h32c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32H544c17.7 0 32 14.3 32 32s-14.3 32-32 32H320z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#post-filter .card-body .field .column select[name = "depth"]{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '16' height = '16' viewBox = '0 0 576 512' fill = '%23154360'> <path d = 'M151.6 469.6C145.5 476.2 137 480 128 480s-17.5-3.8-23.6-10.4l-88-96c-11.9-13-11.1-33.3 2-45.2s33.3-11.1 45.2 2L96 365.7V64c0-17.7 14.3-32 32-32s32 14.3 32 32V365.7l32.4-35.4c11.9-13 32.2-13.9 45.2-2s13.9 32.2 2 45.2l-88 96zM320 480c-17.7 0-32-14.3-32-32s14.3-32 32-32h32c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32H544c17.7 0 32 14.3 32 32s-14.3 32-32 32H320z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#post-filter .card-body .field .column select[name = "depth"]{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '14' height = '14' viewBox = '0 0 576 512' fill = '%23154360'> <path d = 'M151.6 469.6C145.5 476.2 137 480 128 480s-17.5-3.8-23.6-10.4l-88-96c-11.9-13-11.1-33.3 2-45.2s33.3-11.1 45.2 2L96 365.7V64c0-17.7 14.3-32 32-32s32 14.3 32 32V365.7l32.4-35.4c11.9-13 32.2-13.9 45.2-2s13.9 32.2 2 45.2l-88 96zM320 480c-17.7 0-32-14.3-32-32s14.3-32 32-32h32c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32H544c17.7 0 32 14.3 32 32s-14.3 32-32 32H320z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+    }
+}
+
+.post#post-filter .card-body .field .column label[for = "weather"]{
+    margin-top: 15px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#post-filter .card-body .field .column label[for = "weather"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#post-filter .card-body .field .column label[for = "weather"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#post-filter .card-body .field .column label[for = "weather"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.post#post-filter .card-body .field .column .weather{
+    position: relative;
+}
+
+.post#post-filter .card-body .field .column select[name = "weather"]{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+    background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '20' height = '20' viewBox = '0 0 512 512' fill = '%23154360'> <path d = 'M416 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64zm0 128A96 96 0 1 0 416 0a96 96 0 1 0 0 192zM96 112c0-26.5 21.5-48 48-48s48 21.5 48 48V276.5c0 17.3 7.1 31.9 15.3 42.5C217.8 332.6 224 349.5 224 368c0 44.2-35.8 80-80 80s-80-35.8-80-80c0-18.5 6.2-35.4 16.7-48.9C88.9 308.4 96 293.8 96 276.5V112zM144 0C82.1 0 32 50.2 32 112V276.5c0 .1-.1 .3-.2 .6c-.2 .6-.8 1.6-1.7 2.8C11.2 304.2 0 334.8 0 368c0 79.5 64.5 144 144 144s144-64.5 144-144c0-33.2-11.2-63.8-30.1-88.1c-.9-1.2-1.5-2.2-1.7-2.8c-.1-.3-.2-.5-.2-.6V112C256 50.2 205.9 0 144 0zm0 416c26.5 0 48-21.5 48-48c0-20.9-13.4-38.7-32-45.3V112c0-8.8-7.2-16-16-16s-16 7.2-16 16V322.7c-18.6 6.6-32 24.4-32 45.3c0 26.5 21.5 48 48 48z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center; 
+}
+
+.post#post-filter .card-body .field .column select[name = "weather"]:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#post-filter .card-body .field .column select[name = "weather"]{
+        padding-left: 10px !important;
+        padding-right: 38px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '18' height = '18' viewBox = '0 0 512 512' fill = '%23154360'> <path d = 'M416 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64zm0 128A96 96 0 1 0 416 0a96 96 0 1 0 0 192zM96 112c0-26.5 21.5-48 48-48s48 21.5 48 48V276.5c0 17.3 7.1 31.9 15.3 42.5C217.8 332.6 224 349.5 224 368c0 44.2-35.8 80-80 80s-80-35.8-80-80c0-18.5 6.2-35.4 16.7-48.9C88.9 308.4 96 293.8 96 276.5V112zM144 0C82.1 0 32 50.2 32 112V276.5c0 .1-.1 .3-.2 .6c-.2 .6-.8 1.6-1.7 2.8C11.2 304.2 0 334.8 0 368c0 79.5 64.5 144 144 144s144-64.5 144-144c0-33.2-11.2-63.8-30.1-88.1c-.9-1.2-1.5-2.2-1.7-2.8c-.1-.3-.2-.5-.2-.6V112C256 50.2 205.9 0 144 0zm0 416c26.5 0 48-21.5 48-48c0-20.9-13.4-38.7-32-45.3V112c0-8.8-7.2-16-16-16s-16 7.2-16 16V322.7c-18.6 6.6-32 24.4-32 45.3c0 26.5 21.5 48 48 48z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#post-filter .card-body .field .column select[name = "weather"]{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '16' height = '16' viewBox = '0 0 512 512' fill = '%23154360'> <path d = 'M416 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64zm0 128A96 96 0 1 0 416 0a96 96 0 1 0 0 192zM96 112c0-26.5 21.5-48 48-48s48 21.5 48 48V276.5c0 17.3 7.1 31.9 15.3 42.5C217.8 332.6 224 349.5 224 368c0 44.2-35.8 80-80 80s-80-35.8-80-80c0-18.5 6.2-35.4 16.7-48.9C88.9 308.4 96 293.8 96 276.5V112zM144 0C82.1 0 32 50.2 32 112V276.5c0 .1-.1 .3-.2 .6c-.2 .6-.8 1.6-1.7 2.8C11.2 304.2 0 334.8 0 368c0 79.5 64.5 144 144 144s144-64.5 144-144c0-33.2-11.2-63.8-30.1-88.1c-.9-1.2-1.5-2.2-1.7-2.8c-.1-.3-.2-.5-.2-.6V112C256 50.2 205.9 0 144 0zm0 416c26.5 0 48-21.5 48-48c0-20.9-13.4-38.7-32-45.3V112c0-8.8-7.2-16-16-16s-16 7.2-16 16V322.7c-18.6 6.6-32 24.4-32 45.3c0 26.5 21.5 48 48 48z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#post-filter .card-body .field .column select[name = "weather"]{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '14' height = '14' viewBox = '0 0 512 512' fill = '%23154360'> <path d = 'M416 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64zm0 128A96 96 0 1 0 416 0a96 96 0 1 0 0 192zM96 112c0-26.5 21.5-48 48-48s48 21.5 48 48V276.5c0 17.3 7.1 31.9 15.3 42.5C217.8 332.6 224 349.5 224 368c0 44.2-35.8 80-80 80s-80-35.8-80-80c0-18.5 6.2-35.4 16.7-48.9C88.9 308.4 96 293.8 96 276.5V112zM144 0C82.1 0 32 50.2 32 112V276.5c0 .1-.1 .3-.2 .6c-.2 .6-.8 1.6-1.7 2.8C11.2 304.2 0 334.8 0 368c0 79.5 64.5 144 144 144s144-64.5 144-144c0-33.2-11.2-63.8-30.1-88.1c-.9-1.2-1.5-2.2-1.7-2.8c-.1-.3-.2-.5-.2-.6V112C256 50.2 205.9 0 144 0zm0 416c26.5 0 48-21.5 48-48c0-20.9-13.4-38.7-32-45.3V112c0-8.8-7.2-16-16-16s-16 7.2-16 16V322.7c-18.6 6.6-32 24.4-32 45.3c0 26.5 21.5 48 48 48z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+    }
+}
+
+.post#post-filter .card-body .button{
     margin-left: auto;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
@@ -767,7 +1037,7 @@
     height: 100% !important;
 }
 
-.intervention#intervention-filter .card-body .button a.filter-intervention{
+.post#post-filter .card-body .button a.filter-post{
     padding-left: 10px !important;
     padding-right: 10px !important;
     padding-top: 5px !important;
@@ -785,13 +1055,13 @@
     cursor: pointer;
 }
 
-.intervention#intervention-filter .card-body .button a.filter-intervention:hover{
+.post#post-filter .card-body .button a.filter-post:hover{
     background-color: #10354C !important;
     color: #B2BEB5 !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .intervention#intervention-filter .card-body .button a{
+    .post#post-filter .card-body .button a{
         font-family: "Overlock";
         font-weight: 400;
         font-size: 18px !important;
@@ -801,7 +1071,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .intervention#intervention-filter .card-body .button a{
+    .post#post-filter .card-body .button a{
         font-family: "Overlock";
         font-weight: 400;
         font-size: 16px !important;
@@ -811,7 +1081,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .intervention#intervention-filter .card-body .button a{
+    .post#post-filter .card-body .button a{
         font-family: "Overlock";
         font-weight: 400;
         font-size: 14px !important;
@@ -886,7 +1156,7 @@
     }
 }
 
-.intervention{
+.post{
     margin-bottom: 30px;
     width: 100%;
     display: grid;
@@ -896,7 +1166,7 @@
     box-shadow: 0 0 0 1px #B2BEB5 !important;
 }
 
-.intervention .card-header{
+.post .card-header{
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 15px;
@@ -907,49 +1177,53 @@
     display: grid;
 }
 
-.intervention .card-header header{
+.post .card-header header.preview{
     font-family: "Philosopher";
     font-weight: 700;
     font-size: 22px !important;
     color: #FFFFFF;
     white-space: nowrap !important; 
-    overflow: auto !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .intervention .card-header header{
+    .post .card-header header.preview{
         font-family: "Philosopher";
         font-weight: 700;
         font-size: 20px !important;
         color: #FFFFFF;
         white-space: nowrap !important; 
-        overflow: auto !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .intervention .card-header header{
+    .post .card-header header.preview{
         font-family: "Philosopher";
         font-weight: 700;
         font-size: 18px !important;
         color: #FFFFFF;
         white-space: nowrap !important; 
-        overflow: auto !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .intervention .card-header header{
+    .post .card-header header.preview{
         font-family: "Philosopher";
         font-weight: 700;
         font-size: 16px !important;
         color: #FFFFFF;
         white-space: nowrap !important; 
-        overflow: auto !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis;
     }
 }
 
-.intervention .card-body{
+.post .card-body{
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 15px;
@@ -962,41 +1236,41 @@
     background-color: #FFFFFF;
 }
 
-.intervention .card-body .field{
+.post .card-body .field{
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
 }
 
 @media screen and (min-width: 446px) and (max-width: 775px){
-    .intervention .card-body .field{        
+    .post .card-body .field{        
         grid-template-columns: 100%;
         gap: 0px;
     }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .intervention .card-body .field{        
+    .post .card-body .field{        
         grid-template-columns: 100%;
         gap: 0px;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .intervention .card-body .field{        
+    .post .card-body .field{        
         grid-template-columns: 100%;
         gap: 0px;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .intervention .card-body .field{        
+    .post .card-body .field{        
         grid-template-columns: 100%;
         gap: 0px;
     }
 }
 
-.intervention .card-body .field .column label[for = "intervention-date"]{
+.post .card-body .field .column label[for = "capture-date"]{
     margin-top: 0px;
     display: inline-block;
     font-family: "Overlock";
@@ -1006,7 +1280,7 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .intervention .card-body .field .column label[for = "intervention-date"]{
+    .post .card-body .field .column label[for = "capture-date"]{
         margin-top: 0px;
         display: inline-block;
         font-family: "Overlock";
@@ -1017,7 +1291,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .intervention .card-body .field .column label[for = "intervention-date"]{
+    .post .card-body .field .column label[for = "capture-date"]{
         margin-top: 0px;
         display: inline-block;
         font-family: "Overlock";
@@ -1028,7 +1302,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .intervention .card-body .field .column label[for = "intervention-date"]{
+    .post .card-body .field .column label[for = "capture-date"]{
         margin-top: 0px;
         display: inline-block;
         font-family: "Overlock";
@@ -1038,13 +1312,13 @@
     }
 }
 
-.intervention .card-body .field .column .intervention-date{
+.post .card-body .field .column .capture-date{
     position: relative;
 }
 
-.intervention .card-body .field .column .intervention-date input{
+.post .card-body .field .column .capture-date input{
     padding-left: 10px !important;
-    padding-right: 45px !important;
+    padding-right: 40px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -1058,14 +1332,14 @@
     color: #154360 !important;
 }
 
-.intervention .card-body .field .column .intervention-date input:focus{
+.post .card-body .field .column .capture-date input:focus{
     border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .intervention .card-body .field .column .intervention-date input{
+    .post .card-body .field .column .capture-date input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 38px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1081,9 +1355,9 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .intervention .card-body .field .column .intervention-date input{
+    .post .card-body .field .column .capture-date input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 36px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1099,9 +1373,9 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .intervention .card-body .field .column .intervention-date input{
+    .post .card-body .field .column .capture-date input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 34px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1116,7 +1390,7 @@
     }
 }
 
-.intervention .card-body .field .column .intervention-date i{
+.post .card-body .field .column .capture-date i{
     right: 10px;
     top: 50%;
     position: absolute;
@@ -1128,7 +1402,7 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .intervention .card-body .field .column .intervention-date i{
+    .post .card-body .field .column .capture-date i{
         right: 10px;
         top: 50%;
         position: absolute;
@@ -1141,7 +1415,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .intervention .card-body .field .column .intervention-date i{
+    .post .card-body .field .column .capture-date i{
         right: 10px;
         top: 50%;
         position: absolute;
@@ -1154,7 +1428,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .intervention .card-body .field .column .intervention-date i{
+    .post .card-body .field .column .capture-date i{
         right: 10px;
         top: 50%;
         position: absolute;
@@ -1166,7 +1440,7 @@
     }
 }
 
-.intervention .card-body .field .column label[for = "location"]{
+.post .card-body .field .column label[for = "coordinates"]{
     margin-top: 0px;
     display: inline-block;
     font-family: "Overlock";
@@ -1176,7 +1450,7 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .intervention .card-body .field .column label[for = "location"]{
+    .post .card-body .field .column label[for = "coordinates"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -1187,7 +1461,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .intervention .card-body .field .column label[for = "location"]{
+    .post .card-body .field .column label[for = "coordinates"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -1198,7 +1472,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .intervention .card-body .field .column label[for = "location"]{
+    .post .card-body .field .column label[for = "coordinates"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -1208,13 +1482,13 @@
     }
 }
 
-.intervention .card-body .field .column .location{
+.post .card-body .field .column .coordinates{
     position: relative;
 }
 
-.intervention .card-body .field .column .location input{
+.post .card-body .field .column .coordinates input{
     padding-left: 10px !important;
-    padding-right: 45px !important;
+    padding-right: 40px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -1228,14 +1502,14 @@
     color: #154360 !important;
 }
 
-.intervention .card-body .field .column .location input:focus{
+.post .card-body .field .column .coordinates input:focus{
     border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .intervention .card-body .field .column .location input{
+    .post .card-body .field .column .coordinates input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 38px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1251,9 +1525,9 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .intervention .card-body .field .column .location input{
+    .post .card-body .field .column .coordinates input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 36px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1269,9 +1543,9 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .intervention .card-body .field .column .location input{
+    .post .card-body .field .column .coordinates input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 34px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1286,7 +1560,7 @@
     }
 }
 
-.intervention .card-body .field .column .location i{
+.post .card-body .field .column .coordinates i{
     right: 10px;
     top: 50%;
     position: absolute;
@@ -1298,7 +1572,7 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .intervention .card-body .field .column .location i{
+    .post .card-body .field .column .coordinates i{
         right: 10px;
         top: 50%;
         position: absolute;
@@ -1311,7 +1585,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .intervention .card-body .field .column .location i{
+    .post .card-body .field .column .coordinates i{
         right: 10px;
         top: 50%;
         position: absolute;
@@ -1324,7 +1598,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .intervention .card-body .field .column .location i{
+    .post .card-body .field .column .coordinates i{
         right: 10px;
         top: 50%;
         position: absolute;
@@ -1336,7 +1610,7 @@
     }
 }
 
-.intervention .card-body .button{
+.post .card-body .button{
     margin-left: auto;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
@@ -1344,7 +1618,7 @@
     height: 100% !important;
 }
 
-.intervention .card-body .button a.read-intervention{
+.post .card-body .button a.read-post{
     padding-left: 10px !important;
     padding-right: 10px !important;
     padding-top: 5px !important;
@@ -1362,13 +1636,13 @@
     cursor: pointer;
 }
 
-.intervention .card-body .button a.read-intervention:hover{
+.post .card-body .button a.read-post:hover{
     background-color: #10354C !important;
     color: #B2BEB5 !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .intervention .card-body .button a{
+    .post .card-body .button a{
         font-family: "Overlock";
         font-weight: 400;
         font-size: 18px !important;
@@ -1378,7 +1652,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .intervention .card-body .button a{
+    .post .card-body .button a{
         font-family: "Overlock";
         font-weight: 400;
         font-size: 16px !important;
@@ -1388,7 +1662,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .intervention .card-body .button a{
+    .post .card-body .button a{
         font-family: "Overlock";
         font-weight: 400;
         font-size: 14px !important;

@@ -2796,7 +2796,7 @@ li.select2-results__option{
 
 .popup .card-body .field .column .capture-date input{
     padding-left: 10px !important;
-    padding-right: 45px !important;
+    padding-right: 40px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -2817,7 +2817,7 @@ li.select2-results__option{
 @media screen and (min-width: 369px) and (max-width: 445px){
     .popup .card-body .field .column .capture-date input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 38px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -2835,7 +2835,7 @@ li.select2-results__option{
 @media screen and (min-width: 349px) and (max-width: 368px){
     .popup .card-body .field .column .capture-date input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 36px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -2853,7 +2853,7 @@ li.select2-results__option{
 @media screen and (min-width: 320px) and (max-width: 348px){
     .popup .card-body .field .column .capture-date input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 34px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -2966,7 +2966,7 @@ li.select2-results__option{
 
 .popup .card-body .field .column .coordinates input{
     padding-left: 10px !important;
-    padding-right: 45px !important;
+    padding-right: 40px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -2987,7 +2987,7 @@ li.select2-results__option{
 @media screen and (min-width: 369px) and (max-width: 445px){
     .popup .card-body .field .column .coordinates input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 38px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -3005,7 +3005,7 @@ li.select2-results__option{
 @media screen and (min-width: 349px) and (max-width: 368px){
     .popup .card-body .field .column .coordinates input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 36px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -3023,7 +3023,7 @@ li.select2-results__option{
 @media screen and (min-width: 320px) and (max-width: 348px){
     .popup .card-body .field .column .coordinates input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 34px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;

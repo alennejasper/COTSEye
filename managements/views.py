@@ -9,6 +9,8 @@ from managements.models import *
 def PublicServiceStatus(request):
     username = "public/everyone"
 
+    options = Intervention.objects.all()
+
     statuses = Status.objects.all()
 
     if request.method == "GET":
@@ -27,46 +29,69 @@ def PublicServiceStatus(request):
             elif not from_date and not to_date:
                 username = "public/everyone"
 
-                messages.error(request, username + ", " + "Date range is not valid.")
+                messages.error(request, username + ", " + "date range is not valid.")
             
             elif not from_date or not to_date:
                 username = "public/everyone"
 
-                messages.error(request, username + ", " + "Date range is not valid.")
+                messages.error(request, username + ", " + "date range is not valid.")
 
-            if location:
-                statuses = Status.objects.filter(location = location)
+            if location and not location == "each_location":
+                statuses = Status.objects.filter(location = location)[:50]
 
-            elif not location:
+            elif not location and location == "each_location":
+                statuses = Status.objects.all()[:50]
+            
+            elif not location and not location == "each_location":
                 username = "public/everyone"
 
-                messages.error(request, username, + ", " + "location is not valid.")
+                messages.error(request, username + ", " + "location is not valid.")
             
-            if statustype:
-                statuses = Status.objects.filter(statustype = statustype)
-            
-            elif not statustype:
+            elif not location or not location == "each_location":
                 username = "public/everyone"
 
-                messages.error(request, username + ", " + "status type is not valid.")
+                messages.error(request, username + ", " + "location is not valid.")
+            
+            if statustype and not statustype == "each_statustype":
+                statuses = Status.objects.filter(statustype = statustype)[:50]
+            
+            elif not statustype and statustype == "each_statustype":
+                statuses = Status.objects.all()[:50]
+            
+            elif not statustype and not statustype == "each_statustype":
+                username = "public/everyone"
+
+                messages.error(request, username + ", " + "location is not valid.")
+            
+            elif not statustype or not statustype == "each_statustype":
+                username = "public/everyone"
+
+                messages.error(request, username + ", " + "location is not valid.")
 
             if not from_date and not to_date and not location and not statustype:
                 username = "public/everyone"
 
                 messages.error(request, username + ", " + "information filter is empty within COTSEye.")
+            
+            elif not from_date or not to_date or not location or not statustype:
+                username = "public/everyone"
+
+                messages.error(request, username + ", " + "information filter is incomplete within COTSEye.")
     
     elif not statuses:
         username = "public/everyone"
 
         messages.info(request, username + ", " + "information input is empty within COTSEye.")
 
-    context = {"username": username, "statuses": statuses}
+    context = {"username": username, "options": options, "statuses": statuses}
 
     return render(request, "public/service/status/status.html", context)
 
 
 def PublicServiceIntervention(request):
     username = "public/everyone"
+
+    options = Intervention.objects.all()
 
     interventions = Intervention.objects.all()
     
@@ -93,18 +118,34 @@ def PublicServiceIntervention(request):
 
                 messages.error(request, username + ", " + "date range is not valid.")
 
-            if location:
-                interventions = Intervention.objects.filter(hosting_agency = hosting_agency)
+            if location and not location == "each_location":
+                interventions = Intervention.objects.filter(location = location)[:50]
 
-            elif not location:
+            elif not location and location == "each_location":
+                interventions = Intervention.objects.filter(location = location)[:50]
+            
+            elif not location and not location == "each_location":
+                username = "public/everyone"
+
+                messages.error(request, username + ", " + "location is not valid.")
+            
+            elif not location or not location == "each_location":
                 username = "public/everyone"
 
                 messages.error(request, username + ", " + "location is not valid.")
 
-            if hosting_agency:
-                interventions = Intervention.objects.filter(hosting_agency = hosting_agency)
+            if hosting_agency and not hosting_agency == "each_hostingagency":
+                interventions = Intervention.objects.filter(hosting_agency = hosting_agency)[:50]
         
-            elif not hosting_agency:
+            elif not hosting_agency and hosting_agency == "each_hostingagency":
+                interventions = Intervention.objects.all()[:50]
+
+            elif not hosting_agency and not hosting_agency == "each_hostingagency":
+                username = "public/everyone"
+
+                messages.error(request, username + ", " + "hosting agency is not valid.")
+            
+            elif not hosting_agency or not hosting_agency == "each_hostingagency":
                 username = "public/everyone"
 
                 messages.error(request, username + ", " + "hosting agency is not valid.")                      
@@ -113,13 +154,18 @@ def PublicServiceIntervention(request):
                 username = "public/everyone"
 
                 messages.error(request, username + ", " + "information filter is empty within COTSEye.")
+            
+            elif not from_date or not to_date or not location or not hosting_agency:
+                username = request.user.username
+
+                messages.error(request, username + ", " + "information filter is incomplete within COTSEye.")
 
     else:
         username = "public/everyone"
 
         messages.info(request, username + ", " + "information input is empty within COTSEye.")
 
-    context = {"username": username, "interventions": interventions}
+    context = {"username": username, "options": options, "interventions": interventions}
 
     return render(request, "public/service/intervention/intervention.html", context)
 
@@ -138,6 +184,8 @@ def PublicServiceInterventionRead(request, id):
 @user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
 def ContributorServiceStatus(request):
     username = request.user.username
+
+    options = Status.objects.all()
 
     statuses = Status.objects.all()
 
@@ -164,33 +212,54 @@ def ContributorServiceStatus(request):
 
                 messages.error(request, "Date range is not valid.")
             
-            if location:
-                statuses = Status.objects.filter(location = location)
+            if location and not location == "each_location":
+                statuses = Status.objects.filter(location = location)[:50]
 
-            elif not location:
+            elif not location and location == "each_location":
+                statuses = Status.objects.filter(location = location)[:50]
+            
+            elif not location and not location == "each_location":
                 username = request.user.username
 
-                messages.error(request, username + ", " + "Location is not valid.")
+                messages.error(request, username + ", " + "location is not valid.")
             
-            if statustype:
-                statuses = Status.objects.filter(statustype = statustype)
-            
-            elif not statustype:
+            elif not location or not location == "each_location":
                 username = request.user.username
 
-                messages.error(request, username + ", " + "Status type is not valid.")
+                messages.error(request, username + ", " + "location is not valid.")
+            
+            if statustype and not statustype == "each_statustype":
+                statuses = Status.objects.filter(statustype = statustype)[:50]
+            
+            elif not statustype and statustype == "each_statustype":
+                statuses = Status.objects.all()[:50]
+            
+            elif not statustype and not statustype == "each_statustype":
+                username = request.user.username
+
+                messages.error(request, username + ", " + "location is not valid.")
+            
+            elif not statustype or not statustype == "each_statustype":
+                username = request.user.username
+
+                messages.error(request, username + ", " + "location is not valid.")
 
             if not from_date and not to_date and not location and not statustype:
                 username = request.user.username
 
                 messages.error(request, username + ", " + "information filter is not used within COTSEye.")
+            
+            elif not from_date or not to_date or not location or not statustype:
+                username = "public/everyone"
+
+                messages.error(request, username + ", " + "information filter is incomplete within COTSEye.")
     
     else:
         username = request.user.username
 
         messages.info(request, username + ", " + "information input is empty within COTSEye.")
 
-    context = {"username": username, "statuses": statuses}
+    context = {"username": username, "options": options, "statuses": statuses}
 
     return render(request, "contributor/service/status/status.html", context)
 
@@ -199,6 +268,8 @@ def ContributorServiceStatus(request):
 @user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
 def ContributorServiceIntervention(request):
     username = request.user.username
+
+    options = Intervention.objects.all()
 
     interventions = Intervention.objects.all()
     
@@ -225,18 +296,34 @@ def ContributorServiceIntervention(request):
 
                 messages.error(request, username + ", " + "date range is not valid.")
 
-            if location:
-                interventions = Intervention.objects.filter(hosting_agency = hosting_agency)
+            if location and not location == "each_location":
+                interventions = Intervention.objects.filter(location = location)[:50]
 
-            elif not location:
+            elif not location and location == "each_location":
+                interventions = Intervention.objects.all()[:50]
+            
+            elif not location and not location == "each_location":
+                username = request.user.username
+
+                messages.error(request, username + ", " + "location is not valid.")
+            
+            elif not location or not location == "each_location":
                 username = request.user.username
 
                 messages.error(request, username + ", " + "location is not valid.")
 
-            if hosting_agency:
-                interventions = Intervention.objects.filter(hosting_agency = hosting_agency)
+            if hosting_agency and not hosting_agency == "each_hostingagency":
+                interventions = Intervention.objects.filter(hosting_agency = hosting_agency)[:50]
         
-            elif not hosting_agency:
+            elif not hosting_agency and hosting_agency == "each_hostingagency":
+                interventions = Intervention.objects.all()[:50]
+
+            elif not hosting_agency and not hosting_agency == "each_hostingagency":
+                username = request.user.username
+
+                messages.error(request, username + ", " + "hosting agency is not valid.")
+            
+            elif not hosting_agency or not hosting_agency == "each_hostingagency":
                 username = request.user.username
 
                 messages.error(request, username + ", " + "hosting agency is not valid.")   
@@ -245,13 +332,18 @@ def ContributorServiceIntervention(request):
                 username = request.user.username
 
                 messages.error(request, username + ", " + "information filter is empty within COTSEye.")
+            
+            elif not from_date or not to_date or not location or not hosting_agency:
+                username = request.user.username
+
+                messages.error(request, username + ", " + "information filter is incomplete within COTSEye.")
 
     else:
         username = request.user.username
 
         messages.info(request, username + ", " + "information input is empty within COTSEye.")
 
-    context = {"username": username, "interventions": interventions}
+    context = {"username": username, "options": options, "interventions": interventions}
 
     return render(request, "contributor/service/intervention/intervention.html", context)
 
@@ -273,6 +365,8 @@ def ContributorServiceInterventionRead(request, id):
 def OfficerStatisticsIntervention(request):
     username = request.user.username
 
+    options = Intervention.objects.all()
+
     interventions = Intervention.objects.all()[:50]
     
     if request.method == "GET":
@@ -290,6 +384,7 @@ def OfficerStatisticsIntervention(request):
 
             elif not from_date and not to_date:
                 username = request.user.username
+
                 messages.error(request, username + ", " + "date range is not valid.")
             
             elif not from_date or not to_date:
@@ -297,18 +392,34 @@ def OfficerStatisticsIntervention(request):
 
                 messages.error(request, username + ", " + "date range is not valid.")
 
-            if location:
-                interventions = interventions.filter(location = location)[:50]
+            if location and not location == "each_location":
+                interventions = Intervention.objects.filter(location = location)[:50]
 
-            elif not location:
+            elif not location and location == "each_location":
+                interventions = Intervention.objects.all()[:50]
+            
+            elif not location and not location == "each_location":
+                username = request.user.username
+
+                messages.error(request, username + ", " + "location is not valid.")
+            
+            elif not location or not location == "each_location":
                 username = request.user.username
 
                 messages.error(request, username + ", " + "location is not valid.")
 
-            if hosting_agency:
+            if hosting_agency and not hosting_agency == "each_hostingagency":
                 interventions = Intervention.objects.filter(hosting_agency = hosting_agency)[:50]
         
-            elif not hosting_agency:
+            elif not hosting_agency and hosting_agency == "each_hostingagency":
+                interventions = Intervention.objects.all()[:50]
+
+            elif not hosting_agency and not hosting_agency == "each_hostingagency":
+                username = request.user.username
+
+                messages.error(request, username + ", " + "hosting agency is not valid.")
+            
+            elif not hosting_agency or not hosting_agency == "each_hostingagency":
                 username = request.user.username
 
                 messages.error(request, username + ", " + "hosting agency is not valid.")
@@ -317,13 +428,18 @@ def OfficerStatisticsIntervention(request):
                 username = request.user.username
 
                 messages.error(request, username + ", " + "information filter is empty within COTSEye.")
+            
+            elif not from_date or not to_date or not location or not hosting_agency:
+                username = request.user.username
+
+                messages.error(request, username + ", " + "information filter is incomplete within COTSEye.")
 
     else:
         username = request.user.username
 
         messages.info(request, username + ", " + "information input is empty within COTSEye.")
 
-    context = {"username": username, "interventions": interventions}
+    context = {"username": username, "options": options, "interventions": interventions}
 
     return render(request, "officer/statistics/intervention/intervention.html", context)
 
@@ -345,7 +461,9 @@ def OfficerStatisticsInterventionRead(request, id):
 def OfficerStatisticsStatus(request):
     username = request.user.username
 
-    statuses = Status.objects.all()
+    options = Status.objects.all()
+
+    statuses = Status.objects.all()[:50]
 
     if request.method == "GET":
         from_date = request.GET.get("from_date")
@@ -370,33 +488,54 @@ def OfficerStatisticsStatus(request):
 
                 messages.error(request, username + ", " + "Date range is not valid.")
 
-            if location:
+            if location and not location == "each_location":
                 statuses = Status.objects.filter(location = location)[:50]
 
-            elif not location:
+            elif not location and location == "each_location":
+                statuses = Status.objects.filter(location = location)[:50]
+            
+            elif not location and not location == "each_location":
                 username = request.user.username
 
-                messages.error(request, username, + ", " + "location is not valid.")
+                messages.error(request, username + ", " + "location is not valid.")
             
-            if statustype:
+            elif not location or not location == "each_location":
+                username = request.user.username
+
+                messages.error(request, username + ", " + "location is not valid.")
+            
+            if statustype and not statustype == "each_statustype":
                 statuses = Status.objects.filter(statustype = statustype)[:50]
             
-            elif not statustype:
+            elif not statustype and statustype == "each_statustype":
+                statuses = Status.objects.all()[:50]
+            
+            elif not statustype and not statustype == "each_statustype":
                 username = request.user.username
 
-                messages.error(request, username + ", " + "status type is not valid.")
+                messages.error(request, username + ", " + "location is not valid.")
+            
+            elif not statustype or not statustype == "each_statustype":
+                username = request.user.username
+
+                messages.error(request, username + ", " + "location is not valid.")
 
             if not from_date and not to_date and not location and not statustype:
                 username = request.user.username
 
                 messages.error(request, username + ", " + "information filter is empty within COTSEye.")
+            
+            elif not from_date or not to_date or not location or not statustype:
+                username = "public/everyone"
+
+                messages.error(request, username + ", " + "information filter is incomplete within COTSEye.")
     
     elif not statuses:
         username = request.user.username
 
         messages.info(request, username + ", " + "information input is empty within COTSEye.")
 
-    context = {"username": username, "statuses": statuses}
+    context = {"username": username, "options": options, "statuses": statuses}
 
     return render(request, "officer/statistics/status/status.html", context)
 
@@ -405,6 +544,8 @@ def OfficerStatisticsStatus(request):
 @user_passes_test(AdministratorCheck, login_url = "Administrator Database Login")
 def AdministratorStatisticsIntervention(request):
     username = request.user.username
+
+    options = Intervention.objects.all()
 
     interventions = Intervention.objects.all()[:50]
     
@@ -419,50 +560,66 @@ def AdministratorStatisticsIntervention(request):
 
         if "from_date" in request.GET or "to_date" in request.GET or "location" in request.GET or "hosting_agency" in request.GET:
             if from_date and to_date:
-                interventions = interventions.filter(intervention_date__range = [from_date, to_date])[:50]
+                interventions = Intervention.objects.filter(intervention_date__range = [from_date, to_date])[:50]
 
             elif not from_date and not to_date:
                 username = request.user.username
 
-                messages.error(request, + ", " + "date range is not valid.") 
+                messages.error(request, username + ", " + "date range is not valid.") 
             
             elif not from_date or not to_date:
                 username = request.user.username
 
-                messages.error(request, + ", " + "date range is not valid.") 
+                messages.error(request, username + ", " + "date range is not valid.") 
 
-            if location:
-                username = request.user.username
+            if location and not location == "each_location":
+                interventions = Intervention.objects.filter(location = location)[:50]
 
-                interventions = interventions.filter(location = location)[:50]
-
-            elif not location:
-                username = request.user.username
-
-                messages.error(request, "Location is not valid.")
+            elif not location and location == "each_location":
+                interventions = Intervention.objects.all()[:50]
             
-            elif not location:
-                messages.error(request, + ", " + "location is not valid.") 
+            elif not location and not location == "each_location":
+                username = request.user.username
 
-            if hosting_agency:
+                messages.error(request, username + ", " + "location is not valid.")
+            
+            elif not location or not location == "each_location":
+                username = request.user.username
+
+                messages.error(request, username + ", " + "location is not valid.") 
+
+            if hosting_agency and not hosting_agency == "each_hostingagency":
                 interventions = Intervention.objects.filter(hosting_agency = hosting_agency)[:50]
         
-            elif not hosting_agency:
+            elif not hosting_agency and hosting_agency == "each_hostingagency":
+                interventions = Intervention.objects.all()[:50]
+
+            elif not hosting_agency and not hosting_agency == "each_hostingagency":
                 username = request.user.username
 
-                messages.error(request, + ", " + "hosting agency is not valid.") 
+                messages.error(request, username + ", " + "hosting agency is not valid.")
+            
+            elif not hosting_agency or not hosting_agency == "each_hostingagency":
+                username = request.user.username
+
+                messages.error(request, username + ", " + "hosting agency is not valid.") 
 
             if not from_date and not to_date and not location and not hosting_agency:
                 username = request.user.username
 
                 messages.error(request, username + ", " + "information filter is empty within COTSEye.")
+            
+            elif not from_date or not to_date or not location or not hosting_agency:
+                username = request.user.username
+
+                messages.error(request, username + ", " + "information filter is incomplete within COTSEye.")
 
     else:
         username = request.user.username
 
         messages.info(request, username + ", " + "information input is empty within COTSEye.")
 
-    context = {"username": username, "interventions": interventions}
+    context = {"username": username, "options": options, "interventions": interventions}
 
     return render(request, "admin/statistics/intervention/intervention.html", context)
 
@@ -484,7 +641,9 @@ def AdministratorStatisticsInterventionRead(request, id):
 def AdministratorStatisticsStatus(request):
     username = request.user.username
 
-    statuses = Status.objects.all()
+    options = Status.objects.all()
+
+    statuses = Status.objects.all()[:50]
 
     if request.method == "GET":
         from_date = request.GET.get("from_date")
@@ -509,32 +668,53 @@ def AdministratorStatisticsStatus(request):
 
                 messages.error(request, username + ", " + "Date range is not valid.")
 
-            if location:
+            if location and not location == "each_location":
                 statuses = Status.objects.filter(location = location)[:50]
 
-            elif not location:
+            elif not location and location == "each_location":
+                statuses = Status.objects.all()[:50]
+            
+            elif not location and not location == "each_location":
                 username = request.user.username
 
-                messages.error(request, username, + ", " + "location is not valid.")
+                messages.error(request, username + ", " + "location is not valid.")
             
-            if statustype:
+            elif not location or not location == "each_location":
+                username = request.user.username
+
+                messages.error(request, username + ", " + "location is not valid.")
+            
+            if statustype and not statustype == "each_statustype":
                 statuses = Status.objects.filter(statustype = statustype)[:50]
             
-            elif not statustype:
+            elif not statustype and statustype == "each_statustype":
+                statuses = Status.objects.all()[:50]
+            
+            elif not statustype and not statustype == "each_statustype":
                 username = request.user.username
 
-                messages.error(request, username + ", " + "status type is not valid.")
+                messages.error(request, username + ", " + "location is not valid.")
+            
+            elif not statustype or not statustype == "each_statustype":
+                username = request.user.username
+
+                messages.error(request, username + ", " + "location is not valid.")
 
             if not from_date and not to_date and not location and not statustype:
                 username = request.user.username
 
                 messages.error(request, username + ", " + "information filter is empty within COTSEye.")
+            
+            elif not from_date or not to_date or not location or not statustype:
+                username = "public/everyone"
+
+                messages.error(request, username + ", " + "information filter is incomplete within COTSEye.")
     
     elif not statuses:
         username = request.user.username
 
         messages.info(request, username + ", " + "information input is empty within COTSEye.")
 
-    context = {"username": username, "statuses": statuses}
+    context = {"username": username, "options": options, "statuses": statuses}
 
     return render(request, "admin/statistics/status/status.html", context)

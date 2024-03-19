@@ -533,7 +533,7 @@
 
 .intervention#intervention-filter .card-body .field .column select[name = "location"]{
     padding-left: 10px !important;
-    padding-right: 45px !important;
+    padding-right: 40px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -560,7 +560,7 @@
 @media screen and (min-width: 369px) and (max-width: 445px){
     .intervention#intervention-filter .card-body .field .column select[name = "location"]{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 38px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -581,7 +581,7 @@
 @media screen and (min-width: 349px) and (max-width: 368px){
     .intervention#intervention-filter .card-body .field .column select[name = "location"]{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 36px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -602,7 +602,7 @@
 @media screen and (min-width: 320px) and (max-width: 348px){
     .intervention#intervention-filter .card-body .field .column select[name = "location"]{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 34px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -668,7 +668,7 @@
 
 .intervention#intervention-filter .card-body .field .column select[name = "hosting_agency"]{
     padding-left: 10px !important;
-    padding-right: 45px !important;
+    padding-right: 38px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -696,7 +696,7 @@
 @media screen and (min-width: 369px) and (max-width: 445px){
     .intervention#intervention-filter .card-body .field .column select[name = "hosting_agency"]{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 38px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -718,7 +718,7 @@
 @media screen and (min-width: 349px) and (max-width: 368px){
     .intervention#intervention-filter .card-body .field .column select[name = "hosting_agency"]{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 36px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -740,7 +740,7 @@
 @media screen and (min-width: 320px) and (max-width: 348px){
     .intervention#intervention-filter .card-body .field .column select[name = "hosting_agency"]{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 34px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1044,7 +1044,7 @@
 
 .intervention .card-body .field .column .intervention-date input{
     padding-left: 10px !important;
-    padding-right: 45px !important;
+    padding-right: 40px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -1065,7 +1065,7 @@
 @media screen and (min-width: 369px) and (max-width: 445px){
     .intervention .card-body .field .column .intervention-date input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 38px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1083,7 +1083,7 @@
 @media screen and (min-width: 349px) and (max-width: 368px){
     .intervention .card-body .field .column .intervention-date input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 36px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1101,7 +1101,7 @@
 @media screen and (min-width: 320px) and (max-width: 348px){
     .intervention .card-body .field .column .intervention-date input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 34px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1214,7 +1214,7 @@
 
 .intervention .card-body .field .column .location input{
     padding-left: 10px !important;
-    padding-right: 45px !important;
+    padding-right: 40px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -1235,7 +1235,7 @@
 @media screen and (min-width: 369px) and (max-width: 445px){
     .intervention .card-body .field .column .location input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 38px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1253,7 +1253,7 @@
 @media screen and (min-width: 349px) and (max-width: 368px){
     .intervention .card-body .field .column .location input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 36px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1271,7 +1271,7 @@
 @media screen and (min-width: 320px) and (max-width: 348px){
     .intervention .card-body .field .column .location input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 34px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;

@@ -215,7 +215,7 @@
 
 .post .card-body .field .column .valid-posts input{
     padding-left: 10px !important;
-    padding-right: 45px !important;
+    padding-right: 40px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -236,7 +236,7 @@
 @media screen and (min-width: 369px) and (max-width: 445px){
     .post .card-body .field .column .valid-posts input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 38px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -254,7 +254,7 @@
 @media screen and (min-width: 349px) and (max-width: 368px){
     .post .card-body .field .column .valid-posts input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 36px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -272,7 +272,7 @@
 @media screen and (min-width: 320px) and (max-width: 348px){
     .post .card-body .field .column .valid-posts input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 34px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -385,7 +385,7 @@
 
 .post .card-body .field .column .valid-date input{
     padding-left: 10px !important;
-    padding-right: 45px !important;
+    padding-right: 40px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -406,7 +406,7 @@
 @media screen and (min-width: 369px) and (max-width: 445px){
     .post .card-body .field .column .valid-date input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 38px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -424,7 +424,7 @@
 @media screen and (min-width: 349px) and (max-width: 368px){
     .post .card-body .field .column .valid-date input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 36px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -442,7 +442,7 @@
 @media screen and (min-width: 320px) and (max-width: 348px){
     .post .card-body .field .column .valid-date input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 34px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -555,7 +555,7 @@
 
 .post .card-body .field .column .invalid-posts input{
     padding-left: 10px !important;
-    padding-right: 45px !important;
+    padding-right: 40px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -576,7 +576,7 @@
 @media screen and (min-width: 369px) and (max-width: 445px){
     .post .card-body .field .column .invalid-posts input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 38px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -594,7 +594,7 @@
 @media screen and (min-width: 349px) and (max-width: 368px){
     .post .card-body .field .column .invalid-posts input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 36px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -612,7 +612,7 @@
 @media screen and (min-width: 320px) and (max-width: 348px){
     .post .card-body .field .column .invalid-posts input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 34px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -725,7 +725,7 @@
 
 .post .card-body .field .column .invalid-date input{
     padding-left: 10px !important;
-    padding-right: 45px !important;
+    padding-right: 40px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -746,7 +746,7 @@
 @media screen and (min-width: 369px) and (max-width: 445px){
     .post .card-body .field .column .invalid-date input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 38px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -764,7 +764,7 @@
 @media screen and (min-width: 349px) and (max-width: 368px){
     .post .card-body .field .column .invalid-date input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 36px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -782,7 +782,7 @@
 @media screen and (min-width: 320px) and (max-width: 348px){
     .post .card-body .field .column .invalid-date input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 34px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -895,7 +895,7 @@
 
 .post .card-body .field .column .uncertain-posts input{
     padding-left: 10px !important;
-    padding-right: 45px !important;
+    padding-right: 40px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -916,7 +916,7 @@
 @media screen and (min-width: 369px) and (max-width: 445px){
     .post .card-body .field .column .uncertain-posts input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 38px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -934,7 +934,7 @@
 @media screen and (min-width: 349px) and (max-width: 368px){
     .post .card-body .field .column .uncertain-posts input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 36px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -952,7 +952,7 @@
 @media screen and (min-width: 320px) and (max-width: 348px){
     .post .card-body .field .column .uncertain-posts input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 34px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1065,7 +1065,7 @@
 
 .post .card-body .field .column .uncertain-date input{
     padding-left: 10px !important;
-    padding-right: 45px !important;
+    padding-right: 40px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -1086,7 +1086,7 @@
 @media screen and (min-width: 369px) and (max-width: 445px){
     .post .card-body .field .column .uncertain-date input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 38px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1104,7 +1104,7 @@
 @media screen and (min-width: 349px) and (max-width: 368px){
     .post .card-body .field .column .uncertain-date input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 36px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1122,7 +1122,7 @@
 @media screen and (min-width: 320px) and (max-width: 348px){
     .post .card-body .field .column .uncertain-date input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 34px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;

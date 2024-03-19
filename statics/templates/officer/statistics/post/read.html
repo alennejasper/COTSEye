@@ -1,0 +1,56 @@
+{% extends "officer/statistics/index/index.html" %}
+{% load static %}
+
+{% block content %}
+{% for post in posts %}
+<div class = "post">
+    <div class = "card-body">
+        <p><i class = "fa-solid fa-flag"></i>{{post.post_status | default:'None available'}}</p>
+
+        <p><i class = "fa-solid fa-calendar-check"></i>{{post.capture_date | date:'M. j, Y g:i a' | default:'None available'}}</p>
+
+        <p><i class = "fa-solid fa-location-dot"></i>{{post.coordinates.latitude | default:'0'}}° N, {{post.coordinates.longitude | default:'0'}}° E</p>
+
+        <div class = "post-gallery">
+            {% for post_photo in post.post_photos.all %}
+                <img class = "gallery-photo" src = "{{post_photo.post_photo.url}}">
+            {% endfor %}      
+        </div>
+
+        <p>{{post.description | default:'None available'}}</p>
+
+        <table>
+            <caption>Post observation</caption>
+
+            <tr>
+                <td>Size</td>
+
+                <td>{{post.post_observation.size | default:'0'}}</td>
+            </tr>
+
+            <tr>
+              <td>Depth</td>
+
+              <td>{{post.post_observation.depth | default:'0'}}</td>
+            </tr>
+
+            <tr>
+                <td>Density</td>
+  
+                <td>{{post.post_observation.density | default:'0'}}</td>
+            </tr>
+
+            <tr>
+                <td>Weather</td>
+  
+                <td>{{post.post_observation.weather | default:'None available'}}</td>
+            </tr>
+        </table>
+
+        <div class = "buttons">
+            <a class = "share-post" href = "">Share</a>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock content %}

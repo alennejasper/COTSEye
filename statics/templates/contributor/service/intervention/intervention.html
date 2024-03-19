@@ -24,8 +24,10 @@
                     <select name = "location" id = "location">
                         <option disabled selected value>Choose location</option>
 
-                        {% for intervention in interventions %}
-                            <option value="{{intervention.location.id}}">{{intervention.location}}</option>
+                        <option value = "each_location">Each location</option>
+
+                        {% for option in options %}
+                            <option value = "{{option.location.id}}">{{option.location}}</option>
                         {% endfor %}
                     </select>
                 </div>
@@ -42,8 +44,10 @@
                     <select name = "hosting_agency" id = "hosting-agency">
                         <option disabled selected value>Choose hosting agency</option>
 
-                        {% for intervention in interventions %}
-                            <option value="{{intervention.hosting_agency.id}}">{{intervention.hosting_agency}}</option>
+                        <option value = "each_hostingagency">Each hosting agency</option>
+
+                        {% for option in options %}
+                            <option value = "{{option.hosting_agency.id}}">{{option.hosting_agency}}</option>
                         {% endfor %}
                     </select>
                 </div>

@@ -522,7 +522,7 @@
 
 .status#status-filter .card-body .field .column select[name = "location"]{
     padding-left: 10px !important;
-    padding-right: 45px !important;
+    padding-right: 40px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -550,7 +550,7 @@
 @media screen and (min-width: 369px) and (max-width: 445px){
     .status#status-filter .card-body .field .column select[name = "location"]{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 38px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -572,7 +572,7 @@
 @media screen and (min-width: 349px) and (max-width: 368px){
     .status#status-filter .card-body .field .column select[name = "location"]{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 36px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -594,7 +594,7 @@
 @media screen and (min-width: 320px) and (max-width: 348px){
     .status#status-filter .card-body .field .column select[name = "location"]{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 34px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -661,7 +661,7 @@
 
 .status#status-filter .card-body .field .column select[name = "statustype"]{
     padding-left: 10px !important;
-    padding-right: 45px !important;
+    padding-right: 40px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -689,7 +689,7 @@
 @media screen and (min-width: 369px) and (max-width: 445px){
     .status#status-filter .card-body .field .column select[name = "statustype"]{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 38px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -711,7 +711,7 @@
 @media screen and (min-width: 349px) and (max-width: 368px){
     .status#status-filter .card-body .field .column select[name = "statustype"]{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 36px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -733,7 +733,7 @@
 @media screen and (min-width: 320px) and (max-width: 348px){
     .status#status-filter .card-body .field .column select[name = "statustype"]{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 34px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1048,7 +1048,7 @@
 
 .status .card-body .field .column .onset-date input{
     padding-left: 10px !important;
-    padding-right: 45px !important;
+    padding-right: 40px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -1069,7 +1069,7 @@
 @media screen and (min-width: 369px) and (max-width: 445px){
     .status .card-body .field .column .onset-date input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 38px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1087,7 +1087,7 @@
 @media screen and (min-width: 349px) and (max-width: 368px){
     .status .card-body .field .column .onset-date input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 36px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1105,7 +1105,7 @@
 @media screen and (min-width: 320px) and (max-width: 348px){
     .status .card-body .field .column .onset-date input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 34px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1218,7 +1218,7 @@
 
 .status .card-body .field .column .location input{
     padding-left: 10px !important;
-    padding-right: 45px !important;
+    padding-right: 40px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -1239,7 +1239,7 @@
 @media screen and (min-width: 369px) and (max-width: 445px){
     .status .card-body .field .column .location input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 38px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1257,7 +1257,7 @@
 @media screen and (min-width: 349px) and (max-width: 368px){
     .status .card-body .field .column .location input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 36px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -1275,7 +1275,7 @@
 @media screen and (min-width: 320px) and (max-width: 348px){
     .status .card-body .field .column .location input{
         padding-left: 10px !important;
-        padding-right: 45px !important;
+        padding-right: 34px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;

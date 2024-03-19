@@ -3,7 +3,7 @@ from authentications import views
 
 # Create your URL configuration here.
 urlpatterns = [
-    path("", views.PublicHome, name = "Public Home"),
+    path("service/home/", views.PublicHome, name = "Public Home"),
     
     path("contributor/service/register/", views.ContributorServiceRegister, name = "Contributor Service Register"),
    
