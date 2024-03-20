@@ -2,99 +2,105 @@
 {% load static %}
 
 {% block content %}
-<div class = "post" id = "uncertain-filter">
-    <form action = "" class = "post-form" method = "GET">
-        {% csrf_token %}
+    <div class = "post" id = "uncertain-filter">
+        <form action = "" class = "post-form" method = "GET">
+            {% csrf_token %}
 
-        <div class = "card-header">
-            <header>Filter uncertain posts</header>
-        </div>
+            <div class = "card-header">
+                <header>Filter uncertain posts</header>
+            </div>
 
-        <div class = "card-body">
-            <div class = "field">
-                <div class = "column">
-                    <label for = "from-date">From</label> 
-                        
-                    <div class = "from-date">
-                        <input type = "date" value = "" id = "from-date" name = "from_date" required>                            
+            <div class = "card-body">
+                <div class = "field">
+                    <div class = "column">
+                        <label for = "from-date">From</label> 
+                            
+                        <div class = "from-date">
+                            <input type = "date" value = "" id = "from-date" name = "from_date" required>                            
+                        </div>
+                    </div>
+
+                    <div class = "column">
+                        <label for = "to-date">To</label> 
+
+                        <div class = "to-date">
+                            <input type = "date" value = "" id = "to-date" name = "to_date" required>                            
+                        </div>  
                     </div>
                 </div>
 
-                <div class = "column">
-                    <label for = "to-date">To</label> 
-
-                    <div class = "to-date">
-                        <input type = "date" value = "" id = "to-date" name = "to_date" required>                            
-                    </div>  
-                </div>
+                <div class = "button">
+                    <a class = "filter-post" type = "submit">Filter</a>
+                </div>    
             </div>
-
-            <div class = "button">
-                <a class = "filter-post" type = "submit">Filter</a>
-            </div>    
-        </div>
-    </form>
-</div>
-
-{% if messages %}
-    {% for message in messages %}
-        {% if message.tags == "info" %}<script>Swal.fire({title: "Hey!", text: "{{message}}", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}})</script>
-        {% elif message.tags == "success" %}<script>Swal.fire({title: "Yay!", text: "{{message}}", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}})</script>
-        {% else %}<script>Swal.fire({title: "Oops!", text: "{{message}}", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}})</script>
-        {% endif %}    
-    {% endfor %}
-{% endif %}
-
-<script>
-    document.querySelector(".filter-post").onclick = function() {
-        document.querySelector(".post-form").submit();
-    }
-</script>
-
-<div class = "line"></div>
-
-{% for post in uncertain_posts %}
-<div class = "post">
-    <div class = "card-header">
-        <header class = "preview">{{post.description}}</header>
+        </form>
     </div>
 
-    <div class = "card-body">
-        <div class = "field">
-            <div class = "column">
-                <label for = "capture-date">Capture Date</label> 
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == "info" %}<script>Swal.fire({title: "Hey!", text: "{{message}}", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}})</script>
+            
+            {% elif message.tags == "success" %}<script>Swal.fire({title: "Yay!", text: "{{message}}", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}})</script>
+            
+            {% else %}<script>Swal.fire({title: "Oops!", text: "{{message}}", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}})</script>
+            
+            {% endif %}    
+        {% endfor %}
+    {% endif %}
 
-                <div class = "capture-date">
-                    <input type = "text" value = "{{post.capture_date | date:'M. j, Y g:i a' | default:'None available'}}" id = "capture-date" name = "capture-date" readonly>
+    <script>
+        document.querySelector(".filter-post").onclick = function() {
+            document.querySelector(".post-form").submit();
+        }
+    </script>
 
-                    <i class = "fa-solid fa-calendar-day"></i>
-                </div>  
+    <div class = "line"></div>
+
+    {% for post in uncertain_posts %}
+        <div class = "post">
+            <div class = "card-header">
+                <header class = "preview">{{post.description}}</header>
             </div>
 
-            <div class = "column">
-                <label for = "coordinates">Coordinates</label> 
-                    
-                <div class = "coordinates">
-                    <input type = "text" value = "{{post.coordinates.latitude | default:'0'}}° N, {{post.coordinates.longitude | default:'0'}}° E" id = "coordinates" name = "coordinates" readonly>
-                        
-                    <i class = "fa-solid fa-location-dot"></i>
+            <div class = "card-body">
+                <div class = "field">
+                    <div class = "column">
+                        <label for = "capture-date">Capture Date</label> 
+
+                        <div class = "capture-date">
+                            <input type = "text" value = "{{post.capture_date | date:'M. j, Y g:i a' | default:'None available'}}" id = "capture-date" name = "capture-date" readonly>
+
+                            <i class = "fa-solid fa-calendar-day"></i>
+                        </div>  
+                    </div>
+
+                    <div class = "column">
+                        <label for = "coordinates">Coordinates</label> 
+                            
+                        <div class = "coordinates">
+                            <input type = "text" value = "{{post.coordinates.latitude | default:'0'}}° N, {{post.coordinates.longitude | default:'0'}}° E" id = "coordinates" name = "coordinates" readonly>
+                                
+                            <i class = "fa-solid fa-location-dot"></i>
+                        </div>
+                    </div>
                 </div>
+
+                <div class = "button">
+                    <a class = "read-post" href = "{% url 'Contributor Service Post Uncertain Read' post.id %}">Read</a>
+                </div>    
             </div>
         </div>
-
-        <div class = "button">
-            <a class = "read-post" href = "{% url 'Contributor Service Post Uncertain Read' post.id %}">Read</a>
-        </div>    
-    </div>
-</div>
-{% endfor %}
-
-{% if messages %}
-    {% for message in messages %}
-        {% if message.tags == "info" %}<script>Swal.fire({title: "Hey!", text: "{{message}}", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}})</script>
-        {% elif message.tags == "success" %}<script>Swal.fire({title: "Yay!", text: "{{message}}", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}})</script>
-        {% else %}<script>Swal.fire({title: "Oops!", text: "{{message}}", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}})</script>
-        {% endif %}    
     {% endfor %}
-{% endif %}
+
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == "info" %}<script>Swal.fire({title: "Hey!", text: "{{message}}", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}})</script>
+            
+            {% elif message.tags == "success" %}<script>Swal.fire({title: "Yay!", text: "{{message}}", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}})</script>
+            
+            {% else %}<script>Swal.fire({title: "Oops!", text: "{{message}}", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}})</script>
+            
+            {% endif %}    
+        {% endfor %}
+    {% endif %}
 {% endblock content %}

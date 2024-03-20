@@ -2,90 +2,93 @@
 {% load static %}
 
 {% block content %}
-<div class = "announcement" id = "announcement-filter">
-    <form action = "" class = "announcement-form" method = "GET">
-        {% csrf_token %}
+    <div class = "announcement" id = "announcement-filter">
+        <form action = "" class = "announcement-form" method = "GET">
+            {% csrf_token %}
 
-        <div class = "card-header">
-            <header>Filter announcements</header>
-        </div>
+            <div class = "card-header">
+                <header>Filter announcements</header>
+            </div>
 
-        <div class = "card-body">
-            <div class = "field">
-                <div class = "column">
-                    <label for = "from-date">From</label> 
-                        
-                    <div class = "from-date">
-                        <input type = "date" value = "" id = "from-date" name = "from_date" required>                            
+            <div class = "card-body">
+                <div class = "field">
+                    <div class = "column">
+                        <label for = "from-date">From</label> 
+                            
+                        <div class = "from-date">
+                            <input type = "date" value = "" id = "from-date" name = "from_date" required>                            
+                        </div>
+                    </div>
+
+                    <div class = "column">
+                        <label for = "to-date">To</label> 
+
+                        <div class = "to-date">
+                            <input type = "date" value = "" id = "to-date" name = "to_date" required>                            
+                        </div>  
                     </div>
                 </div>
 
-                <div class = "column">
-                    <label for = "to-date">To</label> 
+                <div class = "button">
+                    <a class = "filter-announcement" type = "submit">Filter</a>
+                </div>    
+            </div>
+        </form>
+    </div>
 
-                    <div class = "to-date">
-                        <input type = "date" value = "" id = "to-date" name = "to_date" required>                            
-                    </div>  
-                </div>
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == "info" %}<script>Swal.fire({title: "Hey!", text: "{{message}}", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}})</script>
+            
+            {% elif message.tags == "success" %}<script>Swal.fire({title: "Yay!", text: "{{message}}", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}})</script>
+            
+            {% else %}<script>Swal.fire({title: "Oops!", text: "{{message}}", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}})</script>
+            
+            {% endif %}    
+        {% endfor %}
+    {% endif %}
+
+    <script>
+        document.querySelector(".filter-announcement").onclick = function() {
+            document.querySelector(".announcement-form").submit();
+        }
+    </script>
+
+    <div class = "line"></div>
+
+    {% for announcement in announcements %}
+        <div class = "announcement">
+            <div class = "card-header">
+                <header>{{announcement.title | default:'None available'}}</header>
             </div>
 
-            <div class = "button">
-                <a class = "filter-announcement" type = "submit">Filter</a>
-            </div>    
-        </div>
-    </form>
-</div>
+            <div class = "card-body">
+                <div class = "field">
+                    <div class = "column">
+                        <label for = "release-date">Release Date</label> 
+                            
+                        <div class = "release-date">
+                            <input type = "text" value = "{{announcement.release_date | date:'M. j, Y g:i a' | default:'None available'}}" id = "release-date" name = "release_date" readonly>
+                                
+                            <i class = "fa-solid fa-calendar-check"></i>
+                        </div>
+                    </div>
 
-{% if messages %}
-    {% for message in messages %}
-        {% if message.tags == "info" %}<script>Swal.fire({title: "Hey!", text: "{{message}}", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}})</script>
-        {% elif message.tags == "success" %}<script>Swal.fire({title: "Yay!", text: "{{message}}", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}})</script>
-        {% else %}<script>Swal.fire({title: "Oops!", text: "{{message}}", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}})</script>
-        {% endif %}    
+                    <div class = "column">
+                        <label for = "place">Place</label> 
+
+                        <div class = "place">
+                            <input type = "text" value = "{{announcement.place | default:'None available'}}" id = "place" name = "place" readonly>
+
+                            <i class = "fa-solid fa-location-dot"></i>      
+                        </div>  
+                    </div>
+                </div>
+
+                <div class = "button">
+                    <a class = "read-announcement" href = "{% url 'Contributor Service Announcement Read' announcement.id %}">Read</a>
+                </div>    
+            </div>
+        </div>
     {% endfor %}
-{% endif %}
-
-<script>
-    document.querySelector(".filter-announcement").onclick = function() {
-        document.querySelector(".announcement-form").submit();
-    }
-</script>
-
-<div class = "line"></div>
-
-{% for announcement in announcements %}
-<div class = "announcement">
-    <div class = "card-header">
-        <header>{{announcement.title | default:'None available'}}</header>
-    </div>
-
-    <div class = "card-body">
-        <div class = "field">
-            <div class = "column">
-                <label for = "release-date">Release Date</label> 
-                    
-                <div class = "release-date">
-                    <input type = "text" value = "{{announcement.release_date | date:'M. j, Y g:i a' | default:'None available'}}" id = "release-date" name = "release_date" readonly>
-                        
-                    <i class = "fa-solid fa-calendar-check"></i>
-                </div>
-            </div>
-
-            <div class = "column">
-                <label for = "place">Place</label> 
-
-                <div class = "place">
-                    <input type = "text" value = "{{announcement.place | default:'None available'}}" id = "place" name = "place" readonly>
-
-                    <i class = "fa-solid fa-location-dot"></i>      
-                </div>  
-            </div>
-        </div>
-
-        <div class = "button">
-            <a class = "read-announcement" href = "{% url 'Contributor Service Announcement Read' announcement.id %}">Read</a>
-        </div>    
-    </div>
-</div>
-{% endfor %}
 {% endblock content %}

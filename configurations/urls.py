@@ -20,23 +20,15 @@ Including another URLconf
 
 from django.conf import settings
 from django.conf.urls.static import static
-from django.urls import path, re_path, include
+from django.urls import path, include
 from django.views.generic import TemplateView
 from authentications import views
 from configurations.admin import officer, admin
 
-urlpatterns = [
-    path("admin/database/login/", views.AdministratorDatabaseLogin),
+urlpatterns = [        
+    path("admin/control/", admin.site.urls),
     
-    path("admin/database/logout/", views.AdministratorDatabaseLogout),
-    
-    path("admin/database/", admin.site.urls),
-
-    path("officer/database/login/", views.OfficerDatabaseLogin),
-    
-    path("officer/database/logout/", views.OfficerDatabaseLogout),
-
-    path("officer/database/", officer.urls),
+    path("officer/control/", officer.urls),
     
     path("", include("allauth.urls")),
     

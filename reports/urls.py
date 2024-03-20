@@ -31,13 +31,5 @@ urlpatterns = [
     
     path("contributor/service/post/uncertain/read/<int:id>/", views.ContributorServicePostUncertainRead, name = "Contributor Service Post Uncertain Read"),
 
-    path("officer/statistics/post/", views.OfficerStatisticsPost, name = "Officer Statistics Post"),
-
-    path("officer/statistics/post/read/<int:id>/", views.OfficerStatisticsPostRead, name = "Officer Statistics Post Read"),
-
-    path("admin/statistics/post/", views.AdministratorStatisticsPost, name = "Administrator Statistics Post"),
-
-    path("admin/statistics/post/read/<int:id>/", views.AdministratorStatisticsPostRead, name = "Administrator Statistics Post Read"),
-
     path("service/post/valid/read/redirect/", views.ServicePostValidReadRedirect, name = "Service Post Valid Read Redirect"),
 ]

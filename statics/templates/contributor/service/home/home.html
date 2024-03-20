@@ -2,191 +2,194 @@
 {% load static %}
 
 {% block content %}
-<div class = "map">
-    <div class = "contributor-map">
+    <div class = "map">
+        <div class = "contributor-map">
+        </div>
     </div>
-</div>
 
-{% if messages %}
-{% for message in messages %}
-    {% if message.tags == "info" %}<script>Swal.fire({title: "Hey!", text: "{{message}}", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}})</script>
-    {% elif message.tags == "success" %}<script>Swal.fire({title: "Yay!", text: "{{message}}", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}})</script>
-    {% else %}<script>Swal.fire({title: "Oops!", text: "{{message}}", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}})</script>
-    {% endif %}    
-{% endfor %}
-{% endif %}
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == "info" %}<script>Swal.fire({title: "Hey!", text: "{{message}}", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}})</script>
+            
+            {% elif message.tags == "success" %}<script>Swal.fire({title: "Yay!", text: "{{message}}", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}})</script>
+            
+            {% else %}<script>Swal.fire({title: "Oops!", text: "{{message}}", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}})</script>
+            
+            {% endif %}    
+        {% endfor %}
+    {% endif %}
 
-<script type = "text/javascript">if (window.location.hash && window.location.hash === "#_=_"){ window.location.hash = ""; history.pushState("", document.title, window.location.pathname);}</script>
+    <script type = "text/javascript">if (window.location.hash && window.location.hash === "#_=_"){ window.location.hash = ""; history.pushState("", document.title, window.location.pathname);}</script>
 
-<script>
-    function revealMap(){    
-        statuses = L.layerGroup();
+    <script>
+        function revealMap(){    
+            statuses = L.layerGroup();
 
-        var status = L.geoJSON([{
-            "type": "FeatureCollection", 
+            var status = L.geoJSON([{
+                "type": "FeatureCollection", 
+                            
+                "features": [
+                    {% for status in statuses %}
+                        {"type": "Feature", "properties": {"municipality": "{{status.location.municipality}}", "barangay": "{{status.location.barangay}}", "caught_overall": "{{status.caught_overall}}", "statustype": "{{status.statustype}}"}, "geometry": {"type": "Polygon", "coordinates": {{status.location.perimeters}}}}, 
+                    {% endfor %}
+                ]
+
+            }], {
+                style: function(feature){
+                    var status = feature.properties.statustype;
+
+                    var fillings = "";
+
+                    if (status === "Critical"){
+                        fillings = "#C90016";
                         
-            "features": [
-                {% for status in statuses %}
-                    {"type": "Feature", "properties": {"municipality": "{{status.location.municipality}}", "barangay": "{{status.location.barangay}}", "caught_overall": "{{status.caught_overall}}", "statustype": "{{status.statustype}}"}, "geometry": {"type": "Polygon", "coordinates": {{status.location.perimeters}}}}, 
-                {% endfor %}
-            ]
+                    } else if (status === "Moderate"){
+                        fillings = "#F4C430";
 
-        }], {
-            style: function(feature){
-                var status = feature.properties.statustype;
-
-                var fillings = "";
-
-                if (status === "Critical"){
-                    fillings = "#C90016";
+                    } else if (status === "Low"){
+                        fillings = "#698F3F";
                     
-                } else if (status === "Moderate"){
-                    fillings = "#F4C430";
+                    } else{
+                        fillings = "#154360";
+                    }
 
-                } else if (status === "Low"){
-                    fillings = "#698F3F";
-                
-                } else{
-                    fillings = "#154360";
+                    return{
+                        color: "#10354C", 
+                        
+                        weight: 2.5, 
+
+                        fillColor: fillings, 
+
+                        fillOpacity: 0.25
+                    };
+                }, 
+
+                onEachFeature: function (feature, layer){
+                    layer.on({
+                        mouseover: highlightBarangay, 
+
+                        mouseout: resetBarangay, 
+
+                        click: zoomBarangay
+                    });
                 }
-
-                return{
-                    color: "#10354C", 
-                    
-                    weight: 2.5, 
-
-                    fillColor: fillings, 
-
-                    fillOpacity: 0.25
-                };
-            }, 
-
-            onEachFeature: function (feature, layer){
-                layer.on({
-                    mouseover: highlightBarangay, 
-
-                    mouseout: resetBarangay, 
-
-                    click: zoomBarangay
-                });
-            }
-        });
-
-        function highlightBarangay(click){
-            var layer = click.target;
-
-            layer.setStyle({
-                color: "#10354C", 
-
-                weight: 5, 
-                
-                fillOpacity: 0.75
             });
 
-            layer.bringToFront();
+            function highlightBarangay(click){
+                var layer = click.target;
 
-            datum.update(layer.feature.properties);
-        }
+                layer.setStyle({
+                    color: "#10354C", 
 
-        function resetBarangay(click){
-            status.resetStyle(click.target);
+                    weight: 5, 
+                    
+                    fillOpacity: 0.75
+                });
 
-            datum.update();
-        }
+                layer.bringToFront();
 
-        function zoomBarangay(click){
-            map.fitBounds(click.target.getBounds());
-        }
-
-        status.addTo(statuses);
-
-        var starfish = L.icon({iconUrl: "{% static 'assets/icons/marker.png' %}", iconSize: [30, 30], iconAnchor: [15, 15]});
-        
-        var posts = L.markerClusterGroup();
-
-        {% for post in posts %}
-            var post = L.marker([{{post.coordinates.latitude}}, {{post.coordinates.longitude}}], {icon: starfish});
-            
-            post.bindPopup("<div class = 'popup'>" + "<div class = 'card-header'>" + "<header class = 'preview'>" + "{{post.description}}" + "</header>" + "</div>" + "<div class = 'card-body'>" + "<div class = 'field'>" + "<div class = 'column'>" + "<label for = 'capture-date'>" + "Capture Date" + "</label>" + "<div class = 'capture-date'>" + "<input type = 'text' value = '{{post.capture_date | date:'M. j, Y g:i a' | default:'None available'}}' id = 'capture-date' name = 'capture-date' readonly>" + "<i class = 'fa-solid fa-calendar-day'>" + "</i>" + "</div>" + "<label for = 'coordinates'>" + "Coordinates" + "</label>" + "<div class = 'coordinates'>" + "<input type = 'text' value = '{{post.coordinates.latitude | default:'0'}}° N, {{post.coordinates.longitude | default:'0'}}° E' id = 'coordinates' name = 'coordinates' readonly>" + "<i class = 'fa-solid fa-location-dot'>" + "</i>" + "</div>" + "</div>" + "</div>" + "<div class = 'button'>" + "<a class = 'read-post' href = '{% url 'Service Post Valid Read Redirect' %}'>" + "Read" + "</a>" + "</div>" + "</div>").openPopup();
-
-            posts.addLayer(post);
-        {% endfor %}
-
-        var contributorMap = document.getElementsByClassName("contributor-map")[0];
-
-        var background = L.tileLayer("http://{s}.google.com/vt?lyrs=s,h&x={x}&y={y}&z={z}", {minZoom: 11, subdomains:["mt0", "mt1", "mt2", "mt3"], attribution: "Google"});
-
-        var map = L.map(contributorMap, {zoomControl: true, scrollWheelZoom: false, dragging: true, maxBounds: [[5.3, 124.3], [6.3, 126.3]], layers: [background, posts]}).setView([5.9656, 125.1929], 11);
-        
-        map.on("popupopen", function(event){
-            var popup = map.project(event.target._popup._latlng);
-            
-            popup.y -= event.target._popup._container.clientHeight / 2;
-            
-            map.panTo(map.unproject(popup), {animate: true});
-        });
-
-        map.attributionControl.setPosition("bottomleft");
-
-        var bases = {}
-        
-        var overlays = {
-            "Posts": posts, 
-
-            "Statuses": statuses
-        };
-
-        var management = L.control.layers(bases, overlays).addTo(map);
-
-        management.setPosition("bottomright");
-
-        var datum = L.control({position: "topright"});
-
-        datum.onAdd = function (map){
-            this._div = L.DomUtil.create("div", "datum");
-            
-            this.update();
-            
-            return this._div;
-        };
-
-        datum.update = function (property){
-            if (map.hasLayer(statuses)){
-                this._div.style.display = "block";
-
-                this._div.innerHTML = (property ? "<header>" + property.statustype + " Status" + "</header>" + "<p>" + "Barangay " + property.barangay + ", " + property.municipality + "</p>" + "<p>" + property.caught_overall + " COTS overall." + "</p>" : "<header>" + "Current Status" + "</header>" + "<p>" + "Hover to a coastal barangay." + "</p>");
-
-                var status = property ? property.statustype : null;
-
-                if (status === "Critical"){
-                    this._div.style.backgroundColor = "#C90016";
-                
-                } else if(status === "Moderate"){
-                    this._div.style.backgroundColor = "#F4C430"; 
-                
-                } else if(status === "Low"){
-                    this._div.style.backgroundColor = "#698F3F"; 
-
-                } else{
-                    this._div.style.backgroundColor = "";
-                }
-           
-            }  else{
-                this._div.style.display = "none";
+                datum.update(layer.feature.properties);
             }
-        };
 
-        datum.addTo(map);
+            function resetBarangay(click){
+                status.resetStyle(click.target);
 
-        map.on("overlayadd overlayremove", function (event){
-            if (event.name === "Statuses"){
                 datum.update();
             }
-        });
-    }
 
-    window.addEventListener("load", function (){
-        revealMap();
-    });
-</script>
+            function zoomBarangay(click){
+                map.fitBounds(click.target.getBounds());
+            }
+
+            status.addTo(statuses);
+
+            var starfish = L.icon({iconUrl: "{% static 'assets/icons/marker.png' %}", iconSize: [30, 30], iconAnchor: [15, 15]});
+            
+            var posts = L.markerClusterGroup();
+
+            {% for post in posts %}
+                var post = L.marker([{{post.coordinates.latitude}}, {{post.coordinates.longitude}}], {icon: starfish});
+                
+                post.bindPopup("<div class = 'popup'>" + "<div class = 'card-header'>" + "<header class = 'preview'>" + "{{post.description}}" + "</header>" + "</div>" + "<div class = 'card-body'>" + "<div class = 'field'>" + "<div class = 'column'>" + "<label for = 'capture-date'>" + "Capture Date" + "</label>" + "<div class = 'capture-date'>" + "<input type = 'text' value = '{{post.capture_date | date:'M. j, Y g:i a' | default:'None available'}}' id = 'capture-date' name = 'capture-date' readonly>" + "<i class = 'fa-solid fa-calendar-day'>" + "</i>" + "</div>" + "<label for = 'coordinates'>" + "Coordinates" + "</label>" + "<div class = 'coordinates'>" + "<input type = 'text' value = '{{post.coordinates.latitude | default:'0'}}° N, {{post.coordinates.longitude | default:'0'}}° E' id = 'coordinates' name = 'coordinates' readonly>" + "<i class = 'fa-solid fa-location-dot'>" + "</i>" + "</div>" + "</div>" + "</div>" + "<div class = 'button'>" + "<a class = 'read-post' href = '{% url 'Service Post Valid Read Redirect' %}'>" + "Read" + "</a>" + "</div>" + "</div>").openPopup();
+
+                posts.addLayer(post);
+            {% endfor %}
+
+            var contributorMap = document.getElementsByClassName("contributor-map")[0];
+
+            var background = L.tileLayer("http://{s}.google.com/vt?lyrs=s,h&x={x}&y={y}&z={z}", {minZoom: 11, subdomains:["mt0", "mt1", "mt2", "mt3"], attribution: "Google"});
+
+            var map = L.map(contributorMap, {zoomControl: true, scrollWheelZoom: false, dragging: true, maxBounds: [[5.3, 124.3], [6.3, 126.3]], layers: [background, posts]}).setView([5.9656, 125.1929], 11);
+            
+            map.on("popupopen", function(event){
+                var popup = map.project(event.target._popup._latlng);
+                
+                popup.y -= event.target._popup._container.clientHeight / 2;
+                
+                map.panTo(map.unproject(popup), {animate: true});
+            });
+
+            map.attributionControl.setPosition("bottomleft");
+
+            var bases = {}
+            
+            var overlays = {
+                "Posts": posts, 
+
+                "Statuses": statuses
+            };
+
+            var management = L.control.layers(bases, overlays).addTo(map);
+
+            management.setPosition("bottomright");
+
+            var datum = L.control({position: "topright"});
+
+            datum.onAdd = function (map){
+                this._div = L.DomUtil.create("div", "datum");
+                
+                this.update();
+                
+                return this._div;
+            };
+
+            datum.update = function (property){
+                if (map.hasLayer(statuses)){
+                    this._div.style.display = "block";
+
+                    this._div.innerHTML = (property ? "<header>" + property.statustype + " Status" + "</header>" + "<p>" + "Barangay " + property.barangay + ", " + property.municipality + "</p>" + "<p>" + property.caught_overall + " COTS overall." + "</p>" : "<header>" + "Current Status" + "</header>" + "<p>" + "Hover to a coastal barangay." + "</p>");
+
+                    var status = property ? property.statustype : null;
+
+                    if (status === "Critical"){
+                        this._div.style.backgroundColor = "#C90016";
+                    
+                    } else if(status === "Moderate"){
+                        this._div.style.backgroundColor = "#F4C430"; 
+                    
+                    } else if(status === "Low"){
+                        this._div.style.backgroundColor = "#698F3F"; 
+
+                    } else{
+                        this._div.style.backgroundColor = "";
+                    }
+            
+                }  else{
+                    this._div.style.display = "none";
+                }
+            };
+
+            datum.addTo(map);
+
+            map.on("overlayadd overlayremove", function (event){
+                if (event.name === "Statuses"){
+                    datum.update();
+                }
+            });
+        }
+
+        window.addEventListener("load", function (){
+            revealMap();
+        });
+    </script>
 {% endblock content %}

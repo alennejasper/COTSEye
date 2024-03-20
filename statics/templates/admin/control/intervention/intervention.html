@@ -1,0 +1,159 @@
+{% extends "admin/control/extension/extension.html" %}
+{% load static %}
+
+{% block content %}
+    <form action = "" class = "intervention-form" method = "GET">
+        {% csrf_token %}
+
+        <div class = "intervention" id = "intervention-filter">
+            <div class = "card-header">
+                <header>Filter required information</header>
+            </div>
+
+            <div class = "card-body">
+                <div class = "field">
+                    <div class = "column">
+                        <label for = "from-date">From</label> 
+                            
+                        <div class = "from-date">
+                            <input type = "date" value = "" id = "from-date" name = "from_date" required>                            
+                        </div>
+
+                        <label for = "location">Location</label> 
+
+                        <select name = "location" id = "location">
+                            <option disabled selected value>Choose location</option>
+
+                            <option value = "each_location">Each location</option>
+
+                            {% for option in options %}
+                                <option value = "{{option.location.id}}">{{option.location}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class = "column">
+                        <label for = "to-date">To</label> 
+
+                        <div class = "to-date">
+                            <input type = "date" value = "" id = "to-date" name = "to_date" required>                            
+                        </div>  
+
+                        <label for = "hosting-agency">Hosting Agency</label> 
+
+                        <select name = "hosting_agency" id = "hosting-agency">
+                            <option disabled selected value>Choose hosting agency</option>
+
+                            <option value = "each_hostingagency">Each hosting agency</option>
+
+                            {% for option in options %}
+                                <option value = "{{option.hosting_agency.id}}">{{option.hosting_agency}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class = "button">
+                    <a class = "filter-intervention" type = "submit">Filter</a>
+                </div>    
+            </div>
+        </div>
+    </form>
+
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == "info" %}<script>Swal.fire({title: "Hey!", text: "{{message}}", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}})</script>
+            
+            {% elif message.tags == "success" %}<script>Swal.fire({title: "Yay!", text: "{{message}}", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}})</script>
+            
+            {% else %}<script>Swal.fire({title: "Oops!", text: "{{message}}", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}})</script>
+            
+            {% endif %}    
+        {% endfor %}
+    {% endif %}
+
+    <script>
+        document.querySelector(".filter-intervention").onclick = function() {
+            document.querySelector(".intervention-form").submit();
+        }
+    </script>
+
+    {% if results %}
+        <div class = "line" id = "results"></div>
+
+        {% for intervention in results %}
+            <div class = "intervention">
+                <div class = "card-header">
+                    <header>{{intervention.title | default:'None available'}}</header>
+                </div>
+
+                <div class = "card-body">
+                    <div class = "field">
+                        <div class = "column">
+                            <label for = "intervention-date">Intervention Date</label> 
+                                
+                            <div class = "intervention-date">
+                                <input type = "text" value = "{{intervention.intervention_date | date:'M. j, Y' | default:'None available'}}" id = "intervention-date" name = "intervention_date" readonly>
+                                    
+                                <i class = "fa-solid fa-calendar-check"></i>
+                            </div>
+                        </div>
+
+                        <div class = "column">
+                            <label for = "location">Location</label> 
+
+                            <div class = "location">
+                                <input type = "text" value = "{{intervention.location | default:'None available'}}" id = "location" name = "location" readonly>
+
+                                <i class = "fa-solid fa-location-dot"></i>      
+                            </div>  
+                        </div>
+                    </div>
+
+                    <div class = "button">
+                        <a class = "read-intervention" href = "{% url 'admin:Control Statistics Intervention Read Redirect' object_id=intervention.id %}">Read</a>
+                    </div>    
+                </div>
+            </div>
+        {% endfor %}
+        
+    {% else %}
+        <div class = "line" id = "records"></div>
+
+        {% for intervention in records %}
+            <div class = "intervention">
+                <div class = "card-header">
+                    <header>{{intervention.title | default:'None available'}}</header>
+                </div>
+
+                <div class = "card-body">
+                    <div class = "field">
+                        <div class = "column">
+                            <label for = "intervention-date">Intervention Date</label> 
+                                
+                            <div class = "intervention-date">
+                                <input type = "text" value = "{{intervention.intervention_date | date:'M. j, Y' | default:'None available'}}" id = "intervention-date" name = "intervention_date" readonly>
+                                    
+                                <i class = "fa-solid fa-calendar-check"></i>
+                            </div>
+                        </div>
+
+                        <div class = "column">
+                            <label for = "location">Location</label> 
+
+                            <div class = "location">
+                                <input type = "text" value = "{{intervention.location | default:'None available'}}" id = "location" name = "location" readonly>
+
+                                <i class = "fa-solid fa-location-dot"></i>      
+                            </div>  
+                        </div>
+                    </div>
+
+                    <div class = "button">
+                        <a class = "read-intervention" href = "{% url 'admin:Control Statistics Intervention Read Redirect' object_id=intervention.id %}">Read</a>
+                    </div>    
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock content %}

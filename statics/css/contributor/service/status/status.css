@@ -813,7 +813,7 @@
     }
 }
 
-.line{
+.line#records{
     margin-bottom: 30px;
     position: relative;
     width: 100%;
@@ -821,7 +821,7 @@
     background-color: #B2BEB5;
 }
 
-.line::before{
+.line#records::before{
     top: 50%;
     left: 50%;
     position: absolute;
@@ -835,7 +835,7 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .line::before{
+    .line#records::before{
         top: 50%;
         left: 50%;
         position: absolute;
@@ -850,7 +850,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .line::before{
+    .line#records::before{
         top: 50%;
         left: 50%;
         position: absolute;
@@ -865,11 +865,77 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .line::before{
+    .line#records::before{
         top: 50%;
         left: 50%;
         position: absolute;
         content: "RECORDS";
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px;
+        background-color: #FFFFFF;
+        color: #154659;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.line#results{
+    margin-bottom: 30px;
+    position: relative;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    background-color: #B2BEB5;
+}
+
+.line#results::before{
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    content: "RESULTS";
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px;
+    background-color: #FFFFFF;
+    color: #154659;
+    transform: translate(-50%, -50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .line#results::before{
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        content: "RESULTS";
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px;
+        background-color: #FFFFFF;
+        color: #154659;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .line#results::before{
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        content: "RESULTS";
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px;
+        background-color: #FFFFFF;
+        color: #154659;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .line#results::before{
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        content: "RESULTS";
         font-family: "Overlock";
         font-weight: 400;
         font-size: 14px;

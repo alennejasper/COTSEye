@@ -8,7 +8,7 @@ from authentications.models import *
 class UserTypeAdmin(admin.ModelAdmin):
     class Media:   
         css = {
-            "all": ["css/admin/database/index/index.css"]
+            "all": ["css/admin/control/index/index.css"]
         }
         
     def has_module_permission(self, request):
@@ -20,7 +20,7 @@ admin.site.register(UserType, UserTypeAdmin)
 class AccountAdmin(admin.ModelAdmin):
     class Media:   
         css = {
-            "all": ["css/admin/database/index/index.css"]
+            "all": ["css/admin/control/index/index.css"]
         }
 
     def has_module_permission(self, request):
@@ -32,7 +32,7 @@ admin.site.register(Account, AccountAdmin)
 class UserAdmin(admin.ModelAdmin):
     class Media:   
         css = {
-            "all": ["css/admin/database/index/index.css"]
+            "all": ["css/admin/control/index/index.css"]
         }
 
     def has_module_permission(self, request):
@@ -44,7 +44,7 @@ admin.site.register(User, UserAdmin)
 class SiteAdmin(admin.ModelAdmin):
     class Media:   
         css = {
-            "all": ["css/admin/database/index/index.css"]
+            "all": ["css/admin/control/index/index.css"]
         }
 
     def has_module_permission(self, request):
@@ -58,7 +58,7 @@ admin.site.register(Site, SiteAdmin)
 class SocialAccountAdmin(admin.ModelAdmin):
     class Media:   
         css = {
-            "all": ["css/admin/database/index/index.css"]
+            "all": ["css/admin/control/index/index.css"]
         }
 
     def has_module_permission(self, request,):
@@ -72,7 +72,7 @@ admin.site.register(SocialAccount, SocialAccountAdmin)
 class SocialTokenAdmin(admin.ModelAdmin):
     class Media:   
         css = {
-            "all": ["css/admin/database/index/index.css"]
+            "all": ["css/admin/control/index/index.css"]
         }
 
     def has_module_permission(self, request,):
@@ -86,7 +86,7 @@ admin.site.register(SocialToken, SocialTokenAdmin)
 class SocialAppAdmin(admin.ModelAdmin):
     class Media:   
         css = {
-            "all": ["css/admin/database/index/index.css"]
+            "all": ["css/admin/control/index/index.css"]
         }
 
     def has_module_permission(self, request,):

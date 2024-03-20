@@ -268,6 +268,6 @@ JAZZMIN_SETTINGS = {
     "changeform_format": "horizontal_tabs",
 
     "topmenu_links": [
-        {"name": "Access statistics", "url": reverse_lazy("Database Home Redirect")}
+        {"name": "Access statistics", "url": reverse_lazy("admin:Administrator Control Statistics")}
     ]
 }

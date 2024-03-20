@@ -5,7 +5,7 @@ from auxiliaries.models import *
 class AnnouncementAdmin(admin.ModelAdmin):
     class Media:   
         css = {
-            "all": ["css/admin/database/index/index.css"]
+            "all": ["css/admin/control/index/index.css"]
         }
 
     def has_module_permission(self, request):
@@ -17,7 +17,7 @@ officer.register(Announcement, AnnouncementAdmin)
 class AnnouncementAdmin(admin.ModelAdmin):
     class Media:   
         css = {
-            "all": ["css/admin/database/index/index.css"]
+            "all": ["css/admin/control/index/index.css"]
         }
         
     def has_module_permission(self, request):

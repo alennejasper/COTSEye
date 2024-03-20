@@ -2,25 +2,25 @@
 {% load static %}
 
 {% block content %}
-{% for announcement in announcement %}
-<div class = "announcement">
-    <div class = "card-body">
-        <header>{{announcement.title | default:'None available'}}</header>
+    {% for announcement in announcement %}
+        <div class = "announcement">
+            <div class = "card-body">
+                <header>{{announcement.title | default:'None available'}}</header>
 
-        <p><i class = "fa-solid fa-feather"></i>{{announcement.user | default:'None available'}}</p>
+                <p><i class = "fa-solid fa-feather"></i>{{announcement.user | default:'None available'}}</p>
 
-        <p><i class = "fa-solid fa-calendar-check"></i>{{announcement.release_date | date:'M. j, Y g:i a' | default:'None available'}}</p>
+                <p><i class = "fa-solid fa-calendar-check"></i>{{announcement.release_date | date:'M. j, Y g:i a' | default:'None available'}}</p>
 
-        <p><i class = "fa-solid fa-location-dot"></i>{{announcement.place | default:'None available'}}</p>
+                <p><i class = "fa-solid fa-location-dot"></i>{{announcement.place | default:'None available'}}</p>
 
-        <img src = "{{announcement.announcement_photo.url}}">
+                <img src = "{{announcement.announcement_photo.url}}">
 
-        <p>{{announcement.context | default:'None available'}}</p>
+                <p>{{announcement.context | default:'None available'}}</p>
 
-        <div class = "buttons">
-            <a class = "share-announcement" href = "">Share</a>
+                <div class = "buttons">
+                    <a class = "share-announcement" href = "">Share</a>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-{% endfor %}
+    {% endfor %}
 {% endblock content %}

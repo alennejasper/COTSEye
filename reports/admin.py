@@ -5,7 +5,7 @@ from reports.models import *
 class PostPhotosAdmin(admin.ModelAdmin):
     class Media:   
         css = {
-            "all": ["css/admin/database/index/index.css"]
+            "all": ["css/admin/control/index/index.css"]
         }
 
     def has_module_permission(self, request):
@@ -17,7 +17,7 @@ officer.register(PostPhotos, PostPhotosAdmin)
 class CoordinatesAdmin(admin.ModelAdmin):
     class Media:   
         css = {
-            "all": ["css/admin/database/index/index.css"]
+            "all": ["css/admin/control/index/index.css"]
         }
 
     def has_module_permission(self, request):
@@ -29,7 +29,7 @@ officer.register(Coordinates, CoordinatesAdmin)
 class PostStatusAdmin(admin.ModelAdmin):
     class Media:   
         css = {
-            "all": ["css/admin/database/index/index.css"]
+            "all": ["css/admin/control/index/index.css"]
         }
 
     def has_module_permission(self, request):
@@ -41,7 +41,7 @@ officer.register(PostStatus, PostStatusAdmin)
 class DepthAdmin(admin.ModelAdmin):
     class Media:   
         css = {
-            "all": ["css/admin/database/index/index.css"]
+            "all": ["css/admin/control/index/index.css"]
         }
 
     def has_module_permission(self, request):
@@ -53,7 +53,7 @@ officer.register(Depth, DepthAdmin)
 class WeatherAdmin(admin.ModelAdmin):
     class Media:   
         css = {
-            "all": ["css/admin/database/index/index.css"]
+            "all": ["css/admin/control/index/index.css"]
         }
 
     def has_module_permission(self, request):
@@ -65,7 +65,7 @@ officer.register(Weather, WeatherAdmin)
 class PostObservationAdmin(admin.ModelAdmin):
     class Media:   
         css = {
-            "all": ["css/admin/database/index/index.css"]
+            "all": ["css/admin/control/index/index.css"]
         }
 
     def has_module_permission(self, request):
@@ -77,7 +77,7 @@ officer.register(PostObservation, PostObservationAdmin)
 class PostAdmin(admin.ModelAdmin):
     class Media:   
         css = {
-            "all": ["css/admin/database/index/index.css"]
+            "all": ["css/admin/control/index/index.css"]
         }
 
     def has_module_permission(self, request):
@@ -89,7 +89,7 @@ officer.register(Post, PostAdmin)
 class PostPhotosAdmin(admin.ModelAdmin):
     class Media:   
         css = {
-            "all": ["css/admin/database/index/index.css"]
+            "all": ["css/admin/control/index/index.css"]
         }
 
     def has_module_permission(self, request):
@@ -101,7 +101,7 @@ admin.site.register(PostPhotos, PostPhotosAdmin)
 class CoordinatesAdmin(admin.ModelAdmin):
     class Media:   
         css = {
-            "all": ["css/admin/database/index/index.css"]
+            "all": ["css/admin/control/index/index.css"]
         }
 
     def has_module_permission(self, request):
@@ -113,7 +113,7 @@ admin.site.register(Coordinates, CoordinatesAdmin)
 class PostStatusAdmin(admin.ModelAdmin):
     class Media:   
         css = {
-            "all": ["css/admin/database/index/index.css"]
+            "all": ["css/admin/control/index/index.css"]
         }
 
     def has_module_permission(self, request):
@@ -125,7 +125,7 @@ admin.site.register(PostStatus, PostStatusAdmin)
 class DepthAdmin(admin.ModelAdmin):
     class Media:   
         css = {
-            "all": ["css/admin/database/index/index.css"]
+            "all": ["css/admin/control/index/index.css"]
         }
 
     def has_module_permission(self, request):
@@ -137,7 +137,7 @@ admin.site.register(Depth, DepthAdmin)
 class WeatherAdmin(admin.ModelAdmin):
     class Media:   
         css = {
-            "all": ["css/admin/database/index/index.css"]
+            "all": ["css/admin/control/index/index.css"]
         }
 
     def has_module_permission(self, request):
@@ -149,7 +149,7 @@ admin.site.register(Weather, WeatherAdmin)
 class PostObservationAdmin(admin.ModelAdmin):
     class Media:   
         css = {
-            "all": ["css/admin/database/index/index.css"]
+            "all": ["css/admin/control/index/index.css"]
         }
         
     def has_module_permission(self, request):
@@ -161,7 +161,7 @@ admin.site.register(PostObservation, PostObservationAdmin)
 class PostAdmin(admin.ModelAdmin):
     class Media:   
         css = {
-            "all": ["css/admin/database/index/index.css"]
+            "all": ["css/admin/control/index/index.css"]
         }
 
     def has_module_permission(self, request):

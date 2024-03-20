@@ -6,7 +6,7 @@ from managements.models import *
 class LocationAdmin(admin.ModelAdmin):
     class Media:   
         css = {
-            "all": ["css/admin/database/index/index.css"]
+            "all": ["css/admin/control/index/index.css"]
         }
 
     def has_module_permission(self, request):
@@ -18,7 +18,7 @@ officer.register(Location, LocationAdmin)
 class StatusTypeAdmin(admin.ModelAdmin):
     class Media:   
         css = {
-            "all": ["css/admin/database/index/index.css"]
+            "all": ["css/admin/control/index/index.css"]
         }
 
     def has_module_permission(self, request):
@@ -30,7 +30,7 @@ officer.register(StatusType, StatusTypeAdmin)
 class StatusAdmin(admin.ModelAdmin):
     class Media:   
         css = {
-            "all": ["css/admin/database/index/index.css"]
+            "all": ["css/admin/control/index/index.css"]
         }
 
     def has_module_permission(self, request):
@@ -42,7 +42,7 @@ officer.register(Status, StatusAdmin)
 class InterventionAdmin(admin.ModelAdmin):
     class Media:   
         css = {
-            "all": ["css/admin/database/index/index.css"]
+            "all": ["css/admin/control/index/index.css"]
         }
 
     def has_module_permission(self, request):
@@ -53,7 +53,7 @@ officer.register(Intervention, InterventionAdmin)
 class LocationAdmin(admin.ModelAdmin):
     class Media:   
         css = {
-            "all": ["css/admin/database/index/index.css"]
+            "all": ["css/admin/control/index/index.css"]
         }
 
     def has_module_permission(self, request):
@@ -64,7 +64,7 @@ admin.site.register(Location, LocationAdmin)
 class StatusTypeAdmin(admin.ModelAdmin):
     class Media:   
         css = {
-            "all": ["css/admin/database/index/index.css"]
+            "all": ["css/admin/control/index/index.css"]
         }
 
     def has_module_permission(self, request):
@@ -76,7 +76,7 @@ admin.site.register(StatusType, StatusTypeAdmin)
 class StatusAdmin(admin.ModelAdmin):
     class Media:   
         css = {
-            "all": ["css/admin/database/index/index.css"]
+            "all": ["css/admin/control/index/index.css"]
         }
 
     def has_module_permission(self, request):
@@ -88,7 +88,7 @@ admin.site.register(Status, StatusAdmin)
 class InterventionAdmin(admin.ModelAdmin):
     class Media:   
         css = {
-            "all": ["css/admin/database/index/index.css"]
+            "all": ["css/admin/control/index/index.css"]
         }
         
     def has_module_permission(self, request):

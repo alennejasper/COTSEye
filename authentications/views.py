@@ -36,7 +36,7 @@ def PublicHome(request):
             statuses = None
 
     if not any(message.level in [messages.INFO, messages.SUCCESS, messages.ERROR] for message in messages.get_messages(request)):
-        messages.info(request, username + ", " + "kindly see announcements within the menu of COTSEye to check for updates today.")
+        messages.info(request, username + ", " + "kindly see announcements within COTSEye to check for updates today.")
 
     context = {"username": username, "posts": posts, "statuses": statuses}
     
@@ -314,7 +314,7 @@ def ContributorServiceLogout(request):
     return redirect("Public Home")
 
 
-def OfficerDatabaseRegister(request):
+def OfficerControlRegister(request):
     account_form = AccountForm()
 
     user_form = UserForm()
@@ -340,7 +340,7 @@ def OfficerDatabaseRegister(request):
                 
                 messages.success(request, username + ", " + "your information input was recorded for COTSEye.")
                 
-                return redirect("Officer Database Login")
+                return redirect("officer:Officer Control Login")
         
         else:
             messages.error(request, "Username exists or is not valid, or passwords are short, entirely numeric, or do not match.")
@@ -354,10 +354,10 @@ def OfficerDatabaseRegister(request):
 
     context = {"account_form": account_form, "user_form": user_form}
     
-    return render(request, "officer/database/register/register.html", context)
+    return render(request, "officer/control/register/register.html", context)
 
 
-def OfficerDatabaseLogin(request):
+def OfficerControlLogin(request):
     @receiver(social_account_updated)
     def UpdateUser(sender, request, sociallogin, **kwargs):
         if sociallogin.account.provider == "google":
@@ -368,7 +368,7 @@ def OfficerDatabaseLogin(request):
                 
                 sociallogin.state["save"] = False
                 
-                return redirect("Officer Database Login")
+                return redirect("Officer Control Login")
             
             else:
                 if sociallogin.account.provider == "google":
@@ -403,7 +403,7 @@ def OfficerDatabaseLogin(request):
                 
                 sociallogin.state["save"] = False
                 
-                return redirect("Officer Database Login")
+                return redirect("officer:Officer Control Login")
             
             else:
                 if sociallogin.account.provider == "facebook":
@@ -453,10 +453,10 @@ def OfficerDatabaseLogin(request):
 
     context = {}
 
-    return render(request, "officer/database/login/login.html", context)
+    return render(request, "officer/control/login/login.html", context)
 
 
-def OfficerDatabaseLoginFacebook(request):
+def OfficerControlLoginFacebook(request):
     if request.method == "POST":
         username = request.POST.get("username")
         
@@ -468,7 +468,7 @@ def OfficerDatabaseLoginFacebook(request):
             if account.usertype_id == 2:
                 login(request, account)
                 
-                return redirect("admin:index")
+                return redirect("officer:index")
             
             else:
                 messages.error(request, "Username or password is not valid.")
@@ -478,10 +478,10 @@ def OfficerDatabaseLoginFacebook(request):
 
     context = {}
     
-    return render(request, "officer/database/login/facebook.html", context)
+    return render(request, "officer/control/login/facebook.html", context)
 
 
-def OfficerDatabaseLoginGoogle(request):
+def OfficerControlLoginGoogle(request):
     if request.method == "POST":
         username = request.POST.get("username")
         
@@ -493,7 +493,7 @@ def OfficerDatabaseLoginGoogle(request):
             if account.usertype_id == 2:
                 login(request, account)
                 
-                return redirect("admin:index")
+                return redirect("officer:index")
             
             else:
                 messages.error(request, "Username or password is not valid.")
@@ -503,7 +503,7 @@ def OfficerDatabaseLoginGoogle(request):
 
     context = {}
     
-    return render(request, "officer/database/login/google.html", context)
+    return render(request, "officer/control/login/google.html", context)
 
 
 def OfficerCheck(account):
@@ -514,19 +514,53 @@ def OfficerCheck(account):
             return False
     
 
-@login_required(login_url = "Officer Database Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Database Login")
-def OfficerDatabaseLogout(request):
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
+def OfficerControlStatistics(request):
+    username = request.user.username
+
+    posts = Post.objects.all()
+
+    try:
+        post_date = Post.objects.latest("capture_date").capture_date
+        
+    except:
+        post_date = None
+
+    statuses = Status.objects.all()
+
+    try:
+        status_date = Status.objects.latest("onset_date").onset_date
+        
+    except:
+        status_date = None
+
+    interventions = Intervention.objects.all()
+
+    try:
+        intervention_date = Intervention.objects.latest("intervention_date").intervention_date
+        
+    except:
+        intervention_date = None
+    
+    context = {"username": username, "posts": posts, "post_date" :post_date, "statuses": statuses, "status_date": status_date, "interventions": interventions, "intervention_date": intervention_date}
+
+    return render(request, "officer/control/statistics/statistics.html", context)
+
+
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
+def OfficerControlLogout(request):
     username = request.user.username
 
     logout(request)
     
     messages.success(request, username + ", " + "your account used just now was signed out of COTSEye.")
     
-    return redirect("Officer Database Login")
+    return redirect("officer:Officer Control Login")
 
 
-def AdministratorDatabaseLogin(request):
+def AdministratorControlLogin(request):
     if request.method == "POST":
         username = request.POST.get("username")
         
@@ -548,7 +582,7 @@ def AdministratorDatabaseLogin(request):
 
     context = {}
 
-    return render(request, "admin/database/login/login.html", context)
+    return render(request, "admin/control/login/login.html", context)
 
 
 def AdministratorCheck(account):
@@ -558,98 +592,54 @@ def AdministratorCheck(account):
     except Account.DoesNotExist:
             return False
     
+
+@login_required(login_url = "Administrator Control Login")
+@user_passes_test(AdministratorCheck, login_url = "Administrator Control Login")
+def AdministratorControlStatistics(request):
+    username = request.user.username
+
+    posts = Post.objects.all()
+
+    try:
+        post_date = Post.objects.latest("capture_date").capture_date
+        
+    except:
+        post_date = None
+
+    statuses = Status.objects.all()
+
+    try:
+        status_date = Status.objects.latest("onset_date").onset_date
+        
+    except:
+        status_date = None
+
+    interventions = Intervention.objects.all()
+
+    try:
+        intervention_date = Intervention.objects.latest("intervention_date").intervention_date
+        
+    except:
+        intervention_date = None
     
-@login_required(login_url = "Administrator Database Login")
-@user_passes_test(AdministratorCheck, login_url = "Administrator Database Login")
-def AdministratorDatabaseLogout(request):    
+    context = {"username": username, "posts": posts, "post_date" :post_date, "statuses": statuses, "status_date": status_date, "interventions": interventions, "intervention_date": intervention_date}
+    
+    return render(request, "admin/control/statistics/statistics.html", context)
+
+
+@login_required(login_url = "Administrator Control Login")
+@user_passes_test(AdministratorCheck, login_url = "Administrator Control Login")
+def AdministratorControlLogout(request):    
     username = request.user.username
 
     logout(request)
         
     messages.success(request, username + ", " + "your account used just now was signed out of COTSEye.")
         
-    return redirect("Administrator Database Login")
+    return redirect("admin:Administrator Control Login")
 
 
-def DatabaseHomeRedirect(request):
-    usertype = request.user.usertype_id
-
-    if usertype == 2:
-        return redirect(reverse("Officer Statistics Home"))
-    
-    elif usertype == 1:
-        return redirect(reverse("Administrator Statistics Home"))
-    
-
-@login_required(login_url = "Officer Database Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Database Login")
-def OfficerStatisticsHome(request):
-    username = request.user.username
-
-    posts = Post.objects.all()
-
-    try:
-        post_date = Post.objects.latest("capture_date").capture_date
-        
-    except:
-        post_date = None
-
-    statuses = Status.objects.all()
-
-    try:
-        status_date = Status.objects.latest("onset_date").onset_date
-        
-    except:
-        status_date = None
-
-    interventions = Intervention.objects.all()
-
-    try:
-        intervention_date = Intervention.objects.latest("intervention_date").intervention_date
-        
-    except:
-        intervention_date = None
-    
-    context = {"username": username, "posts": posts, "post_date" :post_date, "statuses": statuses, "status_date": status_date, "interventions": interventions, "intervention_date": intervention_date}
-
-    return render(request, "officer/statistics/home/home.html", context)
-
-
-@login_required(login_url = "Administrator Database Login")
-@user_passes_test(AdministratorCheck, login_url = "Administrator Database Login")
-def AdministratorStatisticsHome(request):
-    username = request.user.username
-
-    posts = Post.objects.all()
-
-    try:
-        post_date = Post.objects.latest("capture_date").capture_date
-        
-    except:
-        post_date = None
-
-    statuses = Status.objects.all()
-
-    try:
-        status_date = Status.objects.latest("onset_date").onset_date
-        
-    except:
-        status_date = None
-
-    interventions = Intervention.objects.all()
-
-    try:
-        intervention_date = Intervention.objects.latest("intervention_date").intervention_date
-        
-    except:
-        intervention_date = None
-    
-    context = {"username": username, "posts": posts, "post_date" :post_date, "statuses": statuses, "status_date": status_date, "interventions": interventions, "intervention_date": intervention_date}
-    
-    return render(request, "admin/statistics/home/home.html", context)
-
-
-def StatisticsHomeRedirect(request):
+def ControlHomeRedirect(request):
     usertype = request.user.usertype_id
 
     if usertype == 2:
@@ -659,7 +649,7 @@ def StatisticsHomeRedirect(request):
         return redirect(reverse("admin:index"))
 
 
-def StatisticsPasswordRedirect(request):
+def ControlPasswordRedirect(request):
     usertype = request.user.usertype_id
 
     if usertype == 2:
@@ -669,7 +659,7 @@ def StatisticsPasswordRedirect(request):
         return redirect(reverse("admin:password_change"))
 
 
-def StatisticsProfileRedirect(request):
+def ControlProfileRedirect(request):
     usertype = request.user.usertype_id
 
     object = Account.objects.get(id = request.user.id)
