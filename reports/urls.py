@@ -3,7 +3,7 @@ from reports import views
 
 # Create your URL configuration here.
 urlpatterns = [    
-    path("service/post/valid/read/<int:id>/", views.PublicServicePostValidRead, name = "Public Service Post Valid Read"),
+    path("public/service/post/valid/read/<int:id>/", views.PublicServicePostValidRead, name = "Public Service Post Valid Read"),
 
     path("contributor/service/report/", views.ContributorServiceReport, name = "Contributor Service Report"),
 

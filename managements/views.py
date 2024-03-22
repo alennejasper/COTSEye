@@ -5,6 +5,7 @@ from django.urls import reverse
 from authentications.views import ContributorCheck, OfficerCheck, AdministratorCheck
 from managements.models import *
 
+import datetime
 
 # Create your views here.
 def PublicServiceStatus(request):
@@ -17,11 +18,11 @@ def PublicServiceStatus(request):
     if request.method == "GET":
         from_date = request.GET.get("from_date")
 
-        from_date = datetime.strptime(from_date, "%Y-%m-%d")
+        from_date = datetime.datetime.strptime(from_date, "%Y-%m-%d") if from_date else None
         
         to_date = request.GET.get("to_date")
 
-        to_date = datetime.strptime(to_date, "%Y-%m-%d")
+        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
 
         location = request.GET.get("location")
 
@@ -114,11 +115,11 @@ def PublicServiceIntervention(request):
     if request.method == "GET":
         from_date = request.GET.get("from_date")
 
-        from_date = datetime.strptime(from_date, "%Y-%m-%d")
+        from_date = datetime.datetime.strptime(from_date, "%Y-%m-%d") if from_date else None
         
         to_date = request.GET.get("to_date")
 
-        to_date = datetime.strptime(to_date, "%Y-%m-%d")
+        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
 
         location = request.GET.get("location")
 
@@ -223,11 +224,11 @@ def ContributorServiceStatus(request):
     if request.method == "GET":
         from_date = request.GET.get("from_date")
 
-        from_date = datetime.strptime(from_date, "%Y-%m-%d")
+        from_date = datetime.datetime.strptime(from_date, "%Y-%m-%d") if from_date else None
         
         to_date = request.GET.get("to_date")
 
-        to_date = datetime.strptime(to_date, "%Y-%m-%d")
+        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
 
         location = request.GET.get("location")
 
@@ -322,11 +323,11 @@ def ContributorServiceIntervention(request):
     if request.method == "GET":
         from_date = request.GET.get("from_date")
 
-        from_date = datetime.strptime(from_date, "%Y-%m-%d")
+        from_date = datetime.datetime.strptime(from_date, "%Y-%m-%d") if from_date else None
         
         to_date = request.GET.get("to_date")
 
-        to_date = datetime.strptime(to_date, "%Y-%m-%d")
+        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
 
         location = request.GET.get("location")
 
@@ -433,11 +434,11 @@ def OfficerControlStatisticsIntervention(request):
     if request.method == "GET":
         from_date = request.GET.get("from_date")
 
-        from_date = datetime.strptime(from_date, "%Y-%m-%d")
+        from_date = datetime.datetime.strptime(from_date, "%Y-%m-%d") if from_date else None
         
         to_date = request.GET.get("to_date")
 
-        to_date = datetime.strptime(to_date, "%Y-%m-%d")
+        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
 
         location = request.GET.get("location")
 
@@ -532,11 +533,11 @@ def OfficerControlStatisticsStatus(request):
     if request.method == "GET":
         from_date = request.GET.get("from_date")
 
-        from_date = datetime.strptime(from_date, "%Y-%m-%d")
+        from_date = datetime.datetime.strptime(from_date, "%Y-%m-%d") if from_date else None
         
         to_date = request.GET.get("to_date")
 
-        to_date = datetime.strptime(to_date, "%Y-%m-%d")
+        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
 
         location = request.GET.get("location")
 
@@ -632,11 +633,11 @@ def AdministratorControlStatisticsIntervention(request):
     if request.method == "GET":
         from_date = request.GET.get("from_date")
 
-        from_date = datetime.strptime(from_date, "%Y-%m-%d")
+        from_date = datetime.datetime.strptime(from_date, "%Y-%m-%d") if from_date else None
         
         to_date = request.GET.get("to_date")
 
-        to_date = datetime.strptime(to_date, "%Y-%m-%d")
+        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
 
         location = request.GET.get("location")
 
@@ -732,11 +733,11 @@ def AdministratorControlStatisticsStatus(request):
     if request.method == "GET":
         from_date = request.GET.get("from_date")
 
-        from_date = datetime.strptime(from_date, "%Y-%m-%d")
+        from_date = datetime.datetime.strptime(from_date, "%Y-%m-%d") if from_date else None
         
         to_date = request.GET.get("to_date")
 
-        to_date = datetime.strptime(to_date, "%Y-%m-%d")
+        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
 
         location = request.GET.get("location")
 

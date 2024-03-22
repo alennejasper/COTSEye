@@ -3,10 +3,13 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.db.models import Q
 from django.urls import reverse
+from collections import Counter
 from authentications.models import Account
 from reports.models import *
 from reports.forms import CoordinatesForm, PostObservationForm, PostForm
 from authentications.views import ContributorCheck, OfficerCheck, AdministratorCheck
+
+import datetime
 
 
 # Create your views here.
@@ -340,34 +343,92 @@ def ContributorServicePost(request):
 def ContributorServicePostValid(request):
     username = request.user.username
 
-    valid_posts = Post.objects.filter(user = request.user.user, post_status = 1)
+    options = Post.objects.all()
+
+    records = Post.objects.filter(user = request.user.user, post_status = 1)
     
     if request.method == "GET":
         from_date = request.GET.get("from_date")
+
+        from_date = datetime.datetime.strptime(from_date, "%Y-%m-%d") if from_date else None
         
         to_date = request.GET.get("to_date")
 
-        if "from_date" in request.GET or "to_date" in request.GET:
-            if from_date and to_date:
-                valid_posts = Post.objects.filter(user = request.user.user, post_status = 1, capture_date__range = [from_date, to_date])
+        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
 
-                if not valid_posts:
-                    username = request.user.username
+        depth = request.GET.get("depth")
 
-                    messages.error(request, username + ", " + "information input cannot be found within COTSEye.")
+        weather = request.GET.get("weather")
 
-            elif not from_date and not to_date:
-                messages.error(request, "Date range is not valid.")
+        results = None
 
-            elif not from_date or not to_date:
-                messages.error(request, "Date range is not valid.")
+        if from_date and to_date:
+            results = Post.objects.filter(user = request.user.user, post_status = 1, capture_date__range = [from_date, to_date])
 
-        elif not valid_posts:
+        elif from_date and to_date and to_date < from_date:
             username = request.user.username
 
-            messages.error(request, username + ", " + "your information input is empty within COTSEye.")
+            messages.error(request, username + ", " + "date range is not valid.")
+        
+        elif not from_date and not to_date:
+            messages.error(request, "Date range is not valid.")
 
-    context = {"username": username, "valid_posts": valid_posts}
+        elif not from_date or not to_date:
+            messages.error(request, "Date range is not valid.")
+        
+        if depth and not depth == "each_depth":
+            results = Post.objects.filter(user = request.user.user, post_status = 1, post_observation__depth = depth)
+    
+        elif not depth and depth == "each_depth":
+            results = Post.objects.filter(user = request.user.user, post_status = 1)
+
+        elif not depth and not depth == "each_depth":
+            username = request.user.username
+
+            messages.error(request, username + ", " + "depth is not valid.")
+        
+        elif not depth or not depth == "each_depth":
+            username = request.user.username
+
+            messages.error(request, username + ", " + "depth is not valid.")
+
+        if weather and not weather == "each_weather":
+            results = Post.objects.filter(user = request.user.user, post_status = 1, post_observation__weather = weather)
+    
+        elif not weather and weather == "each_weather":
+            results = Post.objects.filter(user = request.user.user, post_status = 1)
+
+        elif not weather and not weather == "each_weather":
+            username = request.user.username
+
+            messages.error(request, username + ", " + "weather is not valid.")
+        
+        elif not weather or not weather == "each_weather":
+            username = request.user.username
+
+            messages.error(request, username + ", " + "weather is not valid.")  
+
+        if not from_date and not to_date and not depth and not weather:
+            username = request.user.username
+
+            messages.error(request, username + ", " + "information filter is empty within COTSEye.")
+        
+        elif not from_date or not to_date or not depth or not weather:
+            username = request.user.username
+
+            messages.error(request, username + ", " + "information filter is incomplete within COTSEye.")
+
+        if results is None:
+            username = request.user.username
+
+            messages.info(request, username + ", " + "kindly filter posts within COTSEye to generate for reports today.")
+
+        elif not results:
+            username = request.user.username
+
+            messages.error(request, username + ", " + "information input is impossible within COTSEye.")
+
+    context = {"username": username, "records": records, "results": results, "options": options}
     
     return render(request, "contributor/service/post/valid.html", context)
 
@@ -389,39 +450,92 @@ def ContributorServicePostValidRead(request, id):
 def ContributorServicePostInvalid(request):  
     username = request.user.username
 
-    invalid_posts = Post.objects.filter(user = request.user.user, post_status = 2)
+    options = Post.objects.all()
+    
+    records = Post.objects.filter(user = request.user.user, post_status = 2)
     
     if request.method == "GET":
         from_date = request.GET.get("from_date")
+
+        from_date = datetime.datetime.strptime(from_date, "%Y-%m-%d") if from_date else None
         
         to_date = request.GET.get("to_date")
 
-        if "from_date" in request.GET or "to_date" in request.GET:
-            if from_date and to_date:
-                invalid_posts = Post.objects.filter(user = request.user.user, post_status = 2, capture_date__range = [from_date, to_date])
-            
-                if not invalid_posts:
-                    username = request.user.username
+        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
 
-                    messages.error(request, username + ", " + "information input cannot be found within COTSEye.")
+        depth = request.GET.get("depth")
 
-            elif not from_date and not to_date:
-                messages.error(request, "Date range is not valid.")
+        weather = request.GET.get("weather")
 
-            elif not from_date or not to_date:
-                messages.error(request, "Date range is not valid.")
-            
-            if not invalid_posts:
-                username = request.user.username
+        results = None
 
-                messages.error(request, username + ", " + "information input cannot be found within COTSEye.")
+        if from_date and to_date:
+            results = Post.objects.filter(user = request.user.user, post_status = 2, capture_date__range = [from_date, to_date])
 
-        elif not invalid_posts:
+        elif from_date and to_date and to_date < from_date:
             username = request.user.username
 
-            messages.error(request, username + ", " + "your information input is empty within COTSEye.")
+            messages.error(request, username + ", " + "date range is not valid.")
+        
+        elif not from_date and not to_date:
+            messages.error(request, "Date range is not valid.")
 
-    context = {"username": username, "invalid_posts": invalid_posts}
+        elif not from_date or not to_date:
+            messages.error(request, "Date range is not valid.")
+        
+        if depth and not depth == "each_depth":
+            results = Post.objects.filter(user = request.user.user, post_status = 2, post_observation__depth = depth)
+    
+        elif not depth and depth == "each_depth":
+            results = Post.objects.filter(user = request.user.user, post_status = 2)
+
+        elif not depth and not depth == "each_depth":
+            username = request.user.username
+
+            messages.error(request, username + ", " + "depth is not valid.")
+        
+        elif not depth or not depth == "each_depth":
+            username = request.user.username
+
+            messages.error(request, username + ", " + "depth is not valid.")
+
+        if weather and not weather == "each_weather":
+            results = Post.objects.filter(user = request.user.user, post_status = 2, post_observation__weather = weather)
+    
+        elif not weather and weather == "each_weather":
+            results = Post.objects.filter(user = request.user.user, post_status = 2)
+
+        elif not weather and not weather == "each_weather":
+            username = request.user.username
+
+            messages.error(request, username + ", " + "weather is not valid.")
+        
+        elif not weather or not weather == "each_weather":
+            username = request.user.username
+
+            messages.error(request, username + ", " + "weather is not valid.")  
+
+        if not from_date and not to_date and not depth and not weather:
+            username = request.user.username
+
+            messages.error(request, username + ", " + "information filter is empty within COTSEye.")
+        
+        elif not from_date or not to_date or not depth or not weather:
+            username = request.user.username
+
+            messages.error(request, username + ", " + "information filter is incomplete within COTSEye.")
+
+        if results is None:
+            username = request.user.username
+
+            messages.info(request, username + ", " + "kindly filter posts within COTSEye to generate for reports today.")
+
+        elif not results:
+            username = request.user.username
+
+            messages.error(request, username + ", " + "information input is impossible within COTSEye.")
+
+    context = {"username": username, "records": records, "results": results, "options": options}
     
     return render(request, "contributor/service/post/invalid.html", context)
 
@@ -471,35 +585,93 @@ def ContributorServicePostInvalidDelete(request, id):
 def ContributorServicePostUncertain(request):
     username = request.user.username
 
-    uncertain_posts = Post.objects.filter(user = request.user.user, post_status = 3)
+    options = Post.objects.all()
+
+    records = Post.objects.filter(user = request.user.user, post_status = 3)
     
     if request.method == "GET":
         from_date = request.GET.get("from_date")
+
+        from_date = datetime.datetime.strptime(from_date, "%Y-%m-%d") if from_date else None
         
         to_date = request.GET.get("to_date")
 
-        if "from_date" in request.GET or "to_date" in request.GET:
-            if from_date and to_date:
-                uncertain_posts = Post.objects.filter(user = request.user.user, post_status = 3, capture_date__range = [from_date, to_date])
-            
-                if not uncertain_posts:
-                    username = request.user.username
+        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
 
-                    messages.error(request, username + ", " + "information input cannot be found within COTSEye.")
+        depth = request.GET.get("depth")
 
-            elif not from_date and not to_date:
-                messages.error(request, "Date range is not valid.")
+        weather = request.GET.get("weather")
 
-            elif not from_date or not to_date:
-                messages.error(request, "Date range is not valid.")
-        
-        elif not uncertain_posts:
+        results = None
+
+        if from_date and to_date:
+            results = Post.objects.filter(user = request.user.user, post_status = 3, capture_date__range = [from_date, to_date])
+
+        elif from_date and to_date and to_date < from_date:
             username = request.user.username
 
-            messages.error(request, username + ", " + "your information input is empty within COTSEye.")
+            messages.error(request, username + ", " + "date range is not valid.")
+        
+        elif not from_date and not to_date:
+            messages.error(request, "Date range is not valid.")
 
-    context = {"username": username, "uncertain_posts": uncertain_posts}
+        elif not from_date or not to_date:
+            messages.error(request, "Date range is not valid.")
+        
+        if depth and not depth == "each_depth":
+            results = Post.objects.filter(user = request.user.user, post_status = 3, post_observation__depth = depth)
     
+        elif not depth and depth == "each_depth":
+            results = Post.objects.filter(user = request.user.user, post_status = 3)
+
+        elif not depth and not depth == "each_depth":
+            username = request.user.username
+
+            messages.error(request, username + ", " + "depth is not valid.")
+        
+        elif not depth or not depth == "each_depth":
+            username = request.user.username
+
+            messages.error(request, username + ", " + "depth is not valid.")
+
+        if weather and not weather == "each_weather":
+            results = Post.objects.filter(user = request.user.user, post_status = 3, post_observation__weather = weather)
+    
+        elif not weather and weather == "each_weather":
+            results = Post.objects.filter(user = request.user.user, post_status = 3)
+
+        elif not weather and not weather == "each_weather":
+            username = request.user.username
+
+            messages.error(request, username + ", " + "weather is not valid.")
+        
+        elif not weather or not weather == "each_weather":
+            username = request.user.username
+
+            messages.error(request, username + ", " + "weather is not valid.")  
+
+        if not from_date and not to_date and not depth and not weather:
+            username = request.user.username
+
+            messages.error(request, username + ", " + "information filter is empty within COTSEye.")
+        
+        elif not from_date or not to_date or not depth or not weather:
+            username = request.user.username
+
+            messages.error(request, username + ", " + "information filter is incomplete within COTSEye.")
+
+        if results is None:
+            username = request.user.username
+
+            messages.info(request, username + ", " + "kindly filter posts within COTSEye to generate for reports today.")
+
+        elif not results:
+            username = request.user.username
+
+            messages.error(request, username + ", " + "information input is impossible within COTSEye.")
+
+    context = {"username": username, "records": records, "results": results, "options": options}
+
     return render(request, "contributor/service/post/uncertain.html", context)
 
 
@@ -523,15 +695,275 @@ def OfficerControlStatisticsPost(request):
     options = Post.objects.all()
 
     records = Post.objects.all()
+
+    try:
+        posts_count = records.count()
+
+        posts_label = "Posts" + " Count"
     
+    except:
+        posts_count = 0
+
+        posts_label = ""
+
+    try:
+        users_count = records.values("user").distinct().count()
+
+        users_label = "Users" + " Count"
+    
+    except:
+        users_count = ""
+
+        users_label = ""
+
+    try:
+        user_distribution = [str(user.user) for user in records]
+
+        user_tally = Counter(user_distribution)
+        
+        user_mode = user_tally.most_common(1)[0][0]
+    
+    except:
+        user_mode = ""
+    
+    try:
+        user_firstmode = user_tally.most_common(1)[0][1]
+
+        user_firstlabel = user_tally.most_common(1)[0][0] + " Mode"
+
+    except:
+        user_firstmode = ""
+    
+        user_firstlabel = ""
+    
+    try:
+        user_secondmode = user_tally.most_common(2)[1][1]
+
+        user_secondlabel = user_tally.most_common(2)[1][0] + " Mode"
+    
+    except:
+        user_secondmode = ""
+    
+        user_secondlabel = ""
+    
+    try:
+        user_thirdmode = size_tally.most_common(3)[2][1] 
+
+        user_thirdlabel = size_tally.most_common(3)[2][0] + " Mode"
+    
+    except:
+        user_thirdmode = ""
+    
+        user_thirdlabel = ""
+
+    try:
+        poststatus_distribution = [str(post_status.post_status) for post_status in records]
+
+        poststatus_tally = Counter(poststatus_distribution)
+
+        poststatus_mode = poststatus_tally.most_common(1)[0][0]
+
+    except:
+        poststatus_mode = ""
+
+    try:
+        poststatus_firstmode = poststatus_tally.most_common(1)[0][1]
+
+        poststatus_firstlabel = poststatus_tally.most_common(1)[0][0] + " Mode"
+
+    except:
+        poststatus_firstmode = ""
+    
+        poststatus_firstlabel = ""
+
+    try:
+        poststatus_secondmode = poststatus_tally.most_common(2)[1][1]
+
+        poststatus_secondlabel = poststatus_tally.most_common(2)[1][0] + " Mode"
+    
+    except:
+        poststatus_secondmode = ""
+    
+        poststatus_secondlabel = ""
+
+    try:
+        poststatus_thirdmode = poststatus_tally.most_common(3)[2][1] 
+
+        poststatus_thirdlabel = poststatus_tally.most_common(3)[2][0] + " Mode"
+    
+    except:
+        poststatus_thirdmode = ""
+    
+        poststatus_thirdlabel = ""
+
+    try:
+        size_distribution = [str(post_observation.post_observation.size) for post_observation in records]
+
+        size_tally = Counter(size_distribution)
+
+        size_mode = size_tally.most_common(1)[0][0]
+
+    except:
+        size_mode = ""
+    
+    try:
+        size_firstmode = size_tally.most_common(1)[0][1]
+
+        size_firstlabel = size_tally.most_common(1)[0][0] + " / Centimeter Mode"
+
+    except:
+        size_firstmode = ""
+    
+        size_firstlabel = ""
+    
+    try:
+        size_secondmode = size_tally.most_common(2)[1][1]
+
+        size_secondlabel = size_tally.most_common(2)[1][0] + " / Centimeter Mode"
+    
+    except:
+        size_secondmode = ""
+    
+        size_secondlabel = ""
+    
+    try:
+        size_thirdmode = size_tally.most_common(3)[2][1] 
+
+        size_thirdlabel = size_tally.most_common(3)[2][0] + " / Centimeter Mode"
+    
+    except:
+        size_thirdmode = ""
+    
+        size_thirdlabel = ""
+
+    try:
+        density_distribution = [str(post_observation.post_observation.density) for post_observation in records]
+
+        density_tally = Counter(density_distribution)
+
+        density_mode = density_tally.most_common(1)[0][0]
+    
+    except:
+        density_mode = ""
+    
+    try:
+        density_firstmode = density_tally.most_common(1)[0][1]
+
+        density_firstlabel = density_tally.most_common(1)[0][0] + " / Square Meter Mode"
+
+    except:
+        density_firstmode = ""
+    
+        density_firstlabel = ""
+    
+    try:
+        density_secondmode = density_tally.most_common(2)[1][1]
+
+        density_secondlabel = density_tally.most_common(2)[1][0] + " / Square Meter Mode"
+    
+    except:
+        density_secondmode = ""
+    
+        density_secondlabel = ""
+    
+    try:
+        density_thirdmode = density_tally.most_common(3)[2][1] 
+
+        density_thirdlabel = density_tally.most_common(3)[2][0] + " / Square Meter Mode"
+    
+    except:
+        density_thirdmode = ""
+    
+        density_thirdlabel = ""
+
+    try:
+        depth_distribution = [str(post_observation.post_observation.depth) for post_observation in records]
+
+        depth_tally = Counter(depth_distribution)
+
+        depth_mode = depth_tally.most_common(1)[0][0]
+    
+    except:
+        depth_mode = ""
+    
+    try:
+        depth_firstmode = depth_tally.most_common(1)[0][1]
+
+        depth_firstlabel = depth_tally.most_common(1)[0][0] + " Mode"
+
+    except:
+        depth_firstmode = ""
+    
+        depth_firstlabel = ""
+    
+    try:
+        depth_secondmode = depth_tally.most_common(2)[1][1]
+
+        depth_secondlabel = depth_tally.most_common(2)[1][0] + " Mode"
+    
+    except:
+        depth_secondmode = ""
+    
+        depth_secondlabel = ""
+    
+    try:
+        depth_thirdmode = depth_tally.most_common(3)[2][1] 
+
+        depth_thirdlabel = depth_tally.most_common(3)[2][0] + " Mode"
+    
+    except:
+        depth_thirdmode = ""
+    
+        depth_thirdlabel = ""
+
+    try:
+        weather_distribution = [str(post_observation.post_observation.weather) for post_observation in records]
+
+        weather_tally = Counter(weather_distribution)
+
+        weather_mode = weather_tally.most_common(1)[0][0]
+
+    except:
+        weather_mode = ""
+    
+    try:
+        weather_firstmode = weather_tally.most_common(1)[0][1]
+
+        weather_firstlabel = weather_tally.most_common(1)[0][0] + " Mode"
+
+    except:
+        weather_firstmode = ""
+    
+        weather_firstlabel = ""
+    
+    try:
+        weather_secondmode = weather_tally.most_common(2)[1][1]
+
+        weather_secondlabel = weather_tally.most_common(2)[1][0] + " Mode"
+    
+    except:
+        weather_secondmode = ""
+    
+        weather_secondlabel = ""
+    
+    try:
+        weather_thirdmode = weather_tally.most_common(3)[2][1] 
+
+        weather_thirdlabel = weather_tally.most_common(3)[2][0] + " Mode"
+    
+    except:
+        weather_thirdmode = ""
+    
+        weather_thirdlabel = ""
+
     if request.method == "GET":
         from_date = request.GET.get("from_date")
 
-        from_date = datetime.strptime(from_date, "%Y-%m-%d")
+        from_date = datetime.datetime.strptime(from_date, "%Y-%m-%d") if from_date else None
         
         to_date = request.GET.get("to_date")
 
-        to_date = datetime.strptime(to_date, "%Y-%m-%d")
+        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
 
         user = request.GET.get("user")
 
@@ -639,14 +1071,274 @@ def OfficerControlStatisticsPost(request):
             username = request.user.username
 
             messages.info(request, username + ", " + "kindly filter posts within COTSEye to generate for reports today.")
+        
+        elif results is not None:
+            try:
+                posts_count = results.count()
+
+                posts_label = "Posts" + " Count"
+    
+            except:
+                posts_count = ""
+
+                posts_label = ""
+
+            try:
+                users_count = results.values("user").distinct().count()
+
+                users_label = "Users" + " Count"
+        
+            except:
+                users_count = ""
+
+                users_label = ""
+
+            try:
+                user_distribution = [str(user.user) for user in results]
+
+                user_tally = Counter(user_distribution)
+                
+                user_mode = user_tally.most_common(1)[0][0]
+            
+            except:
+                user_mode = ""
+            
+            try:
+                user_firstmode = user_tally.most_common(1)[0][1]
+
+                user_firstlabel = user_tally.most_common(1)[0][0] + " Mode"
+
+            except:
+                user_firstmode = ""
+            
+                user_firstlabel = ""
+            
+            try:
+                user_secondmode = user_tally.most_common(2)[1][1]
+
+                user_secondlabel = user_tally.most_common(2)[1][0] + " Mode"
+            
+            except:
+                user_secondmode = ""
+            
+                user_secondlabel = ""
+            
+            try:
+                user_thirdmode = size_tally.most_common(3)[2][1] 
+
+                user_thirdlabel = size_tally.most_common(3)[2][0] + " Mode"
+            
+            except:
+                user_thirdmode = ""
+            
+                user_thirdlabel = ""
+
+            try:
+                poststatus_distribution = [str(post_status.post_status) for post_status in results]
+
+                poststatus_tally = Counter(poststatus_distribution)
+
+                poststatus_mode = poststatus_tally.most_common(1)[0][0]
+
+            except:
+                poststatus_mode = ""
+
+            try:
+                poststatus_firstmode = poststatus_tally.most_common(1)[0][1]
+
+                poststatus_firstlabel = poststatus_tally.most_common(1)[0][0] + " Mode"
+
+            except:
+                poststatus_firstmode = ""
+            
+                poststatus_firstlabel = ""
+
+            try:
+                poststatus_secondmode = poststatus_tally.most_common(2)[1][1]
+
+                poststatus_secondlabel = poststatus_tally.most_common(2)[1][0] + " Mode"
+            
+            except:
+                poststatus_secondmode = ""
+            
+                poststatus_secondlabel = ""
+
+            try:
+                poststatus_thirdmode = poststatus_tally.most_common(3)[2][1] 
+
+                poststatus_thirdlabel = poststatus_tally.most_common(3)[2][0] + " Mode"
+            
+            except:
+                poststatus_thirdmode = ""
+            
+                poststatus_thirdlabel = ""
+
+            try:
+                size_distribution = [str(post_observation.post_observation.size) for post_observation in results]
+
+                size_tally = Counter(size_distribution)
+
+                size_mode = size_tally.most_common(1)[0][0]
+
+            except:
+                size_mode = ""
+            
+            try:
+                size_firstmode = size_tally.most_common(1)[0][1]
+
+                size_firstlabel = size_tally.most_common(1)[0][0] + " / Centimeter Mode"
+
+            except:
+                size_firstmode = ""
+            
+                size_firstlabel = ""
+            
+            try:
+                size_secondmode = size_tally.most_common(2)[1][1]
+
+                size_secondlabel = size_tally.most_common(2)[1][0] + " / Centimeter Mode"
+            
+            except:
+                size_secondmode = ""
+            
+                size_secondlabel = ""
+            
+            try:
+                size_thirdmode = size_tally.most_common(3)[2][1] 
+
+                size_thirdlabel = size_tally.most_common(3)[2][0] + " / Centimeter Mode"
+            
+            except:
+                size_thirdmode = ""
+            
+                size_thirdlabel = ""
+
+            try:
+                density_distribution = [str(post_observation.post_observation.density) for post_observation in results]
+
+                density_tally = Counter(density_distribution)
+
+                density_mode = density_tally.most_common(1)[0][0]
+            
+            except:
+                density_mode = ""
+            
+            try:
+                density_firstmode = density_tally.most_common(1)[0][1]
+
+                density_firstlabel = density_tally.most_common(1)[0][0] + " / Square Meter Mode"
+
+            except:
+                density_firstmode = ""
+            
+                density_firstlabel = ""
+            
+            try:
+                density_secondmode = density_tally.most_common(2)[1][1]
+
+                density_secondlabel = density_tally.most_common(2)[1][0] + " / Square Meter Mode"
+            
+            except:
+                density_secondmode = ""
+            
+                density_secondlabel = ""
+            
+            try:
+                density_thirdmode = density_tally.most_common(3)[2][1] 
+
+                density_thirdlabel = density_tally.most_common(3)[2][0] + " / Square Meter Mode"
+            
+            except:
+                density_thirdmode = ""
+            
+                density_thirdlabel = ""
+
+            try:
+                depth_distribution = [str(post_observation.post_observation.depth) for post_observation in results]
+
+                depth_tally = Counter(depth_distribution)
+
+                depth_mode = depth_tally.most_common(1)[0][0]
+            
+            except:
+                depth_mode = ""
+            
+            try:
+                depth_firstmode = depth_tally.most_common(1)[0][1]
+
+                depth_firstlabel = depth_tally.most_common(1)[0][0] + " Mode"
+
+            except:
+                depth_firstmode = ""
+            
+                depth_firstlabel = ""
+            
+            try:
+                depth_secondmode = depth_tally.most_common(2)[1][1]
+
+                depth_secondlabel = depth_tally.most_common(2)[1][0] + " Mode"
+            
+            except:
+                depth_secondmode = ""
+            
+                depth_secondlabel = ""
+            
+            try:
+                depth_thirdmode = depth_tally.most_common(3)[2][1] 
+
+                depth_thirdlabel = depth_tally.most_common(3)[2][0] + " Mode"
+            
+            except:
+                depth_thirdmode = ""
+            
+                depth_thirdlabel = ""
+
+            try:
+                weather_distribution = [str(post_observation.post_observation.weather) for post_observation in results]
+
+                weather_tally = Counter(weather_distribution)
+
+                weather_mode = weather_tally.most_common(1)[0][0]
+
+            except:
+                weather_mode = ""
+            
+            try:
+                weather_firstmode = weather_tally.most_common(1)[0][1]
+
+                weather_firstlabel = weather_tally.most_common(1)[0][0] + " Mode"
+
+            except:
+                weather_firstmode = ""
+            
+                weather_firstlabel = ""
+            
+            try:
+                weather_secondmode = weather_tally.most_common(2)[1][1]
+
+                weather_secondlabel = weather_tally.most_common(2)[1][0] + " Mode"
+            
+            except:
+                weather_secondmode = ""
+            
+                weather_secondlabel = ""
+            
+            try:
+                weather_thirdmode = weather_tally.most_common(3)[2][1] 
+
+                weather_thirdlabel = weather_tally.most_common(3)[2][0] + " Mode"
+            
+            except:
+                weather_thirdmode = ""
+            
+                weather_thirdlabel = ""
 
         elif not results:
             username = request.user.username
 
             messages.error(request, username + ", " + "information input is impossible within COTSEye.")
 
-
-    context = {"username": username, "options": options, "records": records, "results": results}
+    context = {"username": username, "records": records, "results": results, "options": options, "posts_count": posts_count, "posts_label": posts_label, "users_count": users_count, "users_label": users_label,"user_mode": user_mode, "user_firstmode": user_firstmode, "user_firstlabel": user_firstlabel, "user_secondmode": user_secondmode, "user_secondlabel": user_secondlabel, "user_thirdmode": user_thirdmode, "user_thirdlabel": user_thirdlabel, "poststatus_mode": poststatus_mode, "poststatus_firstmode": poststatus_firstmode, "poststatus_firstlabel": poststatus_firstlabel, "poststatus_secondmode": poststatus_secondmode, "poststatus_secondlabel": poststatus_secondlabel, "poststatus_thirdmode": poststatus_thirdmode, "poststatus_thirdlabel": poststatus_thirdlabel, "size_mode": size_mode, "size_firstmode": size_firstmode, "size_firstlabel": size_firstlabel, "size_secondmode": size_secondmode, "size_secondlabel": size_secondlabel, "size_thirdmode": size_thirdmode, "size_thirdlabel": size_thirdlabel, "density_mode": density_mode, "density_firstmode": density_firstmode, "density_firstlabel": density_firstlabel, "density_secondmode": density_secondmode, "density_secondlabel": density_secondlabel, "density_thirdmode": density_thirdmode, "density_thirdlabel": density_thirdlabel, "depth_mode": depth_mode, "depth_firstmode": depth_firstmode, "depth_firstlabel": depth_firstlabel, "depth_secondmode": depth_secondmode, "depth_secondlabel": depth_secondlabel, "depth_thirdmode": depth_thirdmode, "depth_thirdlabel": depth_thirdlabel, "weather_mode": weather_mode, "weather_firstmode": weather_firstmode, "weather_firstlabel": weather_firstlabel, "weather_secondmode": weather_secondmode, "weather_secondlabel": weather_secondlabel, "weather_thirdmode": weather_thirdmode, "weather_thirdlabel": weather_thirdlabel}
 
     return render(request, "officer/control/post/post.html", context)
 
@@ -659,15 +1351,275 @@ def AdministratorControlStatisticsPost(request):
     options = Post.objects.all()
 
     records = Post.objects.all()
+
+    try:
+        posts_count = records.count()
+
+        posts_label = "Posts" + " Count"
     
+    except:
+        posts_count = 0
+
+        posts_label = ""
+
+    try:
+        users_count = records.values("user").distinct().count()
+
+        users_label = "Users" + " Count"
+    
+    except:
+        users_count = ""
+
+        users_label = ""
+
+    try:
+        user_distribution = [str(user.user) for user in records]
+
+        user_tally = Counter(user_distribution)
+        
+        user_mode = user_tally.most_common(1)[0][0]
+    
+    except:
+        user_mode = ""
+    
+    try:
+        user_firstmode = user_tally.most_common(1)[0][1]
+
+        user_firstlabel = user_tally.most_common(1)[0][0] + " Mode"
+
+    except:
+        user_firstmode = ""
+    
+        user_firstlabel = ""
+    
+    try:
+        user_secondmode = user_tally.most_common(2)[1][1]
+
+        user_secondlabel = user_tally.most_common(2)[1][0] + " Mode"
+    
+    except:
+        user_secondmode = ""
+    
+        user_secondlabel = ""
+    
+    try:
+        user_thirdmode = size_tally.most_common(3)[2][1] 
+
+        user_thirdlabel = size_tally.most_common(3)[2][0] + " Mode"
+    
+    except:
+        user_thirdmode = ""
+    
+        user_thirdlabel = ""
+
+    try:
+        poststatus_distribution = [str(post_status.post_status) for post_status in records]
+
+        poststatus_tally = Counter(poststatus_distribution)
+
+        poststatus_mode = poststatus_tally.most_common(1)[0][0]
+
+    except:
+        poststatus_mode = ""
+
+    try:
+        poststatus_firstmode = poststatus_tally.most_common(1)[0][1]
+
+        poststatus_firstlabel = poststatus_tally.most_common(1)[0][0] + " Mode"
+
+    except:
+        poststatus_firstmode = ""
+    
+        poststatus_firstlabel = ""
+
+    try:
+        poststatus_secondmode = poststatus_tally.most_common(2)[1][1]
+
+        poststatus_secondlabel = poststatus_tally.most_common(2)[1][0] + " Mode"
+    
+    except:
+        poststatus_secondmode = ""
+    
+        poststatus_secondlabel = ""
+
+    try:
+        poststatus_thirdmode = poststatus_tally.most_common(3)[2][1] 
+
+        poststatus_thirdlabel = poststatus_tally.most_common(3)[2][0] + " Mode"
+    
+    except:
+        poststatus_thirdmode = ""
+    
+        poststatus_thirdlabel = ""
+
+    try:
+        size_distribution = [str(post_observation.post_observation.size) for post_observation in records]
+
+        size_tally = Counter(size_distribution)
+
+        size_mode = size_tally.most_common(1)[0][0]
+
+    except:
+        size_mode = ""
+    
+    try:
+        size_firstmode = size_tally.most_common(1)[0][1]
+
+        size_firstlabel = size_tally.most_common(1)[0][0] + " / Centimeter Mode"
+
+    except:
+        size_firstmode = ""
+    
+        size_firstlabel = ""
+    
+    try:
+        size_secondmode = size_tally.most_common(2)[1][1]
+
+        size_secondlabel = size_tally.most_common(2)[1][0] + " / Centimeter Mode"
+    
+    except:
+        size_secondmode = ""
+    
+        size_secondlabel = ""
+    
+    try:
+        size_thirdmode = size_tally.most_common(3)[2][1] 
+
+        size_thirdlabel = size_tally.most_common(3)[2][0] + " / Centimeter Mode"
+    
+    except:
+        size_thirdmode = ""
+    
+        size_thirdlabel = ""
+
+    try:
+        density_distribution = [str(post_observation.post_observation.density) for post_observation in records]
+
+        density_tally = Counter(density_distribution)
+
+        density_mode = density_tally.most_common(1)[0][0]
+    
+    except:
+        density_mode = ""
+    
+    try:
+        density_firstmode = density_tally.most_common(1)[0][1]
+
+        density_firstlabel = density_tally.most_common(1)[0][0] + " / Square Meter Mode"
+
+    except:
+        density_firstmode = ""
+    
+        density_firstlabel = ""
+    
+    try:
+        density_secondmode = density_tally.most_common(2)[1][1]
+
+        density_secondlabel = density_tally.most_common(2)[1][0] + " / Square Meter Mode"
+    
+    except:
+        density_secondmode = ""
+    
+        density_secondlabel = ""
+    
+    try:
+        density_thirdmode = density_tally.most_common(3)[2][1] 
+
+        density_thirdlabel = density_tally.most_common(3)[2][0] + " / Square Meter Mode"
+    
+    except:
+        density_thirdmode = ""
+    
+        density_thirdlabel = ""
+
+    try:
+        depth_distribution = [str(post_observation.post_observation.depth) for post_observation in records]
+
+        depth_tally = Counter(depth_distribution)
+
+        depth_mode = depth_tally.most_common(1)[0][0]
+    
+    except:
+        depth_mode = ""
+    
+    try:
+        depth_firstmode = depth_tally.most_common(1)[0][1]
+
+        depth_firstlabel = depth_tally.most_common(1)[0][0] + " Mode"
+
+    except:
+        depth_firstmode = ""
+    
+        depth_firstlabel = ""
+    
+    try:
+        depth_secondmode = depth_tally.most_common(2)[1][1]
+
+        depth_secondlabel = depth_tally.most_common(2)[1][0] + " Mode"
+    
+    except:
+        depth_secondmode = ""
+    
+        depth_secondlabel = ""
+    
+    try:
+        depth_thirdmode = depth_tally.most_common(3)[2][1] 
+
+        depth_thirdlabel = depth_tally.most_common(3)[2][0] + " Mode"
+    
+    except:
+        depth_thirdmode = ""
+    
+        depth_thirdlabel = ""
+
+    try:
+        weather_distribution = [str(post_observation.post_observation.weather) for post_observation in records]
+
+        weather_tally = Counter(weather_distribution)
+
+        weather_mode = weather_tally.most_common(1)[0][0]
+
+    except:
+        weather_mode = ""
+    
+    try:
+        weather_firstmode = weather_tally.most_common(1)[0][1]
+
+        weather_firstlabel = weather_tally.most_common(1)[0][0] + " Mode"
+
+    except:
+        weather_firstmode = ""
+    
+        weather_firstlabel = ""
+    
+    try:
+        weather_secondmode = weather_tally.most_common(2)[1][1]
+
+        weather_secondlabel = weather_tally.most_common(2)[1][0] + " Mode"
+    
+    except:
+        weather_secondmode = ""
+    
+        weather_secondlabel = ""
+    
+    try:
+        weather_thirdmode = weather_tally.most_common(3)[2][1] 
+
+        weather_thirdlabel = weather_tally.most_common(3)[2][0] + " Mode"
+    
+    except:
+        weather_thirdmode = ""
+    
+        weather_thirdlabel = ""
+
     if request.method == "GET":
         from_date = request.GET.get("from_date")
 
-        from_date = datetime.strptime(from_date, "%Y-%m-%d")
+        from_date = datetime.datetime.strptime(from_date, "%Y-%m-%d") if from_date else None
         
         to_date = request.GET.get("to_date")
 
-        to_date = datetime.strptime(to_date, "%Y-%m-%d")
+        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
 
         user = request.GET.get("user")
 
@@ -775,14 +1727,274 @@ def AdministratorControlStatisticsPost(request):
             username = request.user.username
 
             messages.info(request, username + ", " + "kindly filter posts within COTSEye to generate for reports today.")
+        
+        elif results is not None:
+            try:
+                posts_count = results.count()
+
+                posts_label = "Posts" + " Count"
+    
+            except:
+                posts_count = ""
+
+                posts_label = ""
+
+            try:
+                users_count = results.values("user").distinct().count()
+
+                users_label = "Users" + " Count"
+        
+            except:
+                users_count = ""
+
+                users_label = ""
+
+            try:
+                user_distribution = [str(user.user) for user in results]
+
+                user_tally = Counter(user_distribution)
+                
+                user_mode = user_tally.most_common(1)[0][0]
+            
+            except:
+                user_mode = ""
+            
+            try:
+                user_firstmode = user_tally.most_common(1)[0][1]
+
+                user_firstlabel = user_tally.most_common(1)[0][0] + " Mode"
+
+            except:
+                user_firstmode = ""
+            
+                user_firstlabel = ""
+            
+            try:
+                user_secondmode = user_tally.most_common(2)[1][1]
+
+                user_secondlabel = user_tally.most_common(2)[1][0] + " Mode"
+            
+            except:
+                user_secondmode = ""
+            
+                user_secondlabel = ""
+            
+            try:
+                user_thirdmode = size_tally.most_common(3)[2][1] 
+
+                user_thirdlabel = size_tally.most_common(3)[2][0] + " Mode"
+            
+            except:
+                user_thirdmode = ""
+            
+                user_thirdlabel = ""
+
+            try:
+                poststatus_distribution = [str(post_status.post_status) for post_status in results]
+
+                poststatus_tally = Counter(poststatus_distribution)
+
+                poststatus_mode = poststatus_tally.most_common(1)[0][0]
+
+            except:
+                poststatus_mode = ""
+
+            try:
+                poststatus_firstmode = poststatus_tally.most_common(1)[0][1]
+
+                poststatus_firstlabel = poststatus_tally.most_common(1)[0][0] + " Mode"
+
+            except:
+                poststatus_firstmode = ""
+            
+                poststatus_firstlabel = ""
+
+            try:
+                poststatus_secondmode = poststatus_tally.most_common(2)[1][1]
+
+                poststatus_secondlabel = poststatus_tally.most_common(2)[1][0] + " Mode"
+            
+            except:
+                poststatus_secondmode = ""
+            
+                poststatus_secondlabel = ""
+
+            try:
+                poststatus_thirdmode = poststatus_tally.most_common(3)[2][1] 
+
+                poststatus_thirdlabel = poststatus_tally.most_common(3)[2][0] + " Mode"
+            
+            except:
+                poststatus_thirdmode = ""
+            
+                poststatus_thirdlabel = ""
+
+            try:
+                size_distribution = [str(post_observation.post_observation.size) for post_observation in results]
+
+                size_tally = Counter(size_distribution)
+
+                size_mode = size_tally.most_common(1)[0][0]
+
+            except:
+                size_mode = ""
+            
+            try:
+                size_firstmode = size_tally.most_common(1)[0][1]
+
+                size_firstlabel = size_tally.most_common(1)[0][0] + " / Centimeter Mode"
+
+            except:
+                size_firstmode = ""
+            
+                size_firstlabel = ""
+            
+            try:
+                size_secondmode = size_tally.most_common(2)[1][1]
+
+                size_secondlabel = size_tally.most_common(2)[1][0] + " / Centimeter Mode"
+            
+            except:
+                size_secondmode = ""
+            
+                size_secondlabel = ""
+            
+            try:
+                size_thirdmode = size_tally.most_common(3)[2][1] 
+
+                size_thirdlabel = size_tally.most_common(3)[2][0] + " / Centimeter Mode"
+            
+            except:
+                size_thirdmode = ""
+            
+                size_thirdlabel = ""
+
+            try:
+                density_distribution = [str(post_observation.post_observation.density) for post_observation in results]
+
+                density_tally = Counter(density_distribution)
+
+                density_mode = density_tally.most_common(1)[0][0]
+            
+            except:
+                density_mode = ""
+            
+            try:
+                density_firstmode = density_tally.most_common(1)[0][1]
+
+                density_firstlabel = density_tally.most_common(1)[0][0] + " / Square Meter Mode"
+
+            except:
+                density_firstmode = ""
+            
+                density_firstlabel = ""
+            
+            try:
+                density_secondmode = density_tally.most_common(2)[1][1]
+
+                density_secondlabel = density_tally.most_common(2)[1][0] + " / Square Meter Mode"
+            
+            except:
+                density_secondmode = ""
+            
+                density_secondlabel = ""
+            
+            try:
+                density_thirdmode = density_tally.most_common(3)[2][1] 
+
+                density_thirdlabel = density_tally.most_common(3)[2][0] + " / Square Meter Mode"
+            
+            except:
+                density_thirdmode = ""
+            
+                density_thirdlabel = ""
+
+            try:
+                depth_distribution = [str(post_observation.post_observation.depth) for post_observation in results]
+
+                depth_tally = Counter(depth_distribution)
+
+                depth_mode = depth_tally.most_common(1)[0][0]
+            
+            except:
+                depth_mode = ""
+            
+            try:
+                depth_firstmode = depth_tally.most_common(1)[0][1]
+
+                depth_firstlabel = depth_tally.most_common(1)[0][0] + " Mode"
+
+            except:
+                depth_firstmode = ""
+            
+                depth_firstlabel = ""
+            
+            try:
+                depth_secondmode = depth_tally.most_common(2)[1][1]
+
+                depth_secondlabel = depth_tally.most_common(2)[1][0] + " Mode"
+            
+            except:
+                depth_secondmode = ""
+            
+                depth_secondlabel = ""
+            
+            try:
+                depth_thirdmode = depth_tally.most_common(3)[2][1] 
+
+                depth_thirdlabel = depth_tally.most_common(3)[2][0] + " Mode"
+            
+            except:
+                depth_thirdmode = ""
+            
+                depth_thirdlabel = ""
+
+            try:
+                weather_distribution = [str(post_observation.post_observation.weather) for post_observation in results]
+
+                weather_tally = Counter(weather_distribution)
+
+                weather_mode = weather_tally.most_common(1)[0][0]
+
+            except:
+                weather_mode = ""
+            
+            try:
+                weather_firstmode = weather_tally.most_common(1)[0][1]
+
+                weather_firstlabel = weather_tally.most_common(1)[0][0] + " Mode"
+
+            except:
+                weather_firstmode = ""
+            
+                weather_firstlabel = ""
+            
+            try:
+                weather_secondmode = weather_tally.most_common(2)[1][1]
+
+                weather_secondlabel = weather_tally.most_common(2)[1][0] + " Mode"
+            
+            except:
+                weather_secondmode = ""
+            
+                weather_secondlabel = ""
+            
+            try:
+                weather_thirdmode = weather_tally.most_common(3)[2][1] 
+
+                weather_thirdlabel = weather_tally.most_common(3)[2][0] + " Mode"
+            
+            except:
+                weather_thirdmode = ""
+            
+                weather_thirdlabel = ""
 
         elif not results:
             username = request.user.username
 
             messages.error(request, username + ", " + "information input is impossible within COTSEye.")
 
-
-    context = {"username": username, "options": options, "records": records, "results": results}
+    context = {"username": username, "records": records, "results": results, "options": options, "posts_count": posts_count, "posts_label": posts_label, "users_count": users_count, "users_label": users_label,"user_mode": user_mode, "user_firstmode": user_firstmode, "user_firstlabel": user_firstlabel, "user_secondmode": user_secondmode, "user_secondlabel": user_secondlabel, "user_thirdmode": user_thirdmode, "user_thirdlabel": user_thirdlabel, "poststatus_mode": poststatus_mode, "poststatus_firstmode": poststatus_firstmode, "poststatus_firstlabel": poststatus_firstlabel, "poststatus_secondmode": poststatus_secondmode, "poststatus_secondlabel": poststatus_secondlabel, "poststatus_thirdmode": poststatus_thirdmode, "poststatus_thirdlabel": poststatus_thirdlabel, "size_mode": size_mode, "size_firstmode": size_firstmode, "size_firstlabel": size_firstlabel, "size_secondmode": size_secondmode, "size_secondlabel": size_secondlabel, "size_thirdmode": size_thirdmode, "size_thirdlabel": size_thirdlabel, "density_mode": density_mode, "density_firstmode": density_firstmode, "density_firstlabel": density_firstlabel, "density_secondmode": density_secondmode, "density_secondlabel": density_secondlabel, "density_thirdmode": density_thirdmode, "density_thirdlabel": density_thirdlabel, "depth_mode": depth_mode, "depth_firstmode": depth_firstmode, "depth_firstlabel": depth_firstlabel, "depth_secondmode": depth_secondmode, "depth_secondlabel": depth_secondlabel, "depth_thirdmode": depth_thirdmode, "depth_thirdlabel": depth_thirdlabel, "weather_mode": weather_mode, "weather_firstmode": weather_firstmode, "weather_firstlabel": weather_firstlabel, "weather_secondmode": weather_secondmode, "weather_secondlabel": weather_secondlabel, "weather_thirdmode": weather_thirdmode, "weather_thirdlabel": weather_thirdlabel}
 
     return render(request, "admin/control/post/post.html", context)
 

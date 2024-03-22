@@ -521,6 +521,8 @@ def OfficerControlStatistics(request):
 
     posts = Post.objects.all()
 
+    post_count = Post.objects.count()
+
     try:
         post_date = Post.objects.latest("capture_date").capture_date
         
@@ -528,6 +530,8 @@ def OfficerControlStatistics(request):
         post_date = None
 
     statuses = Status.objects.all()
+        
+    status_count = Status.objects.count()
 
     try:
         status_date = Status.objects.latest("onset_date").onset_date
@@ -537,13 +541,15 @@ def OfficerControlStatistics(request):
 
     interventions = Intervention.objects.all()
 
+    intervention_count = Intervention.objects.count()
+
     try:
         intervention_date = Intervention.objects.latest("intervention_date").intervention_date
         
     except:
         intervention_date = None
     
-    context = {"username": username, "posts": posts, "post_date" :post_date, "statuses": statuses, "status_date": status_date, "interventions": interventions, "intervention_date": intervention_date}
+    context = {"username": username, "posts": posts, "post_count": post_count, "post_date": post_date, "statuses": statuses, "status_count": status_count, "status_date": status_date, "interventions": interventions, "intervention_count": intervention_count, "intervention_date": intervention_date}
 
     return render(request, "officer/control/statistics/statistics.html", context)
 
@@ -600,6 +606,8 @@ def AdministratorControlStatistics(request):
 
     posts = Post.objects.all()
 
+    post_count = Post.objects.count()
+
     try:
         post_date = Post.objects.latest("capture_date").capture_date
         
@@ -607,6 +615,8 @@ def AdministratorControlStatistics(request):
         post_date = None
 
     statuses = Status.objects.all()
+        
+    status_count = Status.objects.count()
 
     try:
         status_date = Status.objects.latest("onset_date").onset_date
@@ -616,13 +626,15 @@ def AdministratorControlStatistics(request):
 
     interventions = Intervention.objects.all()
 
+    intervention_count = Intervention.objects.count()
+
     try:
         intervention_date = Intervention.objects.latest("intervention_date").intervention_date
         
     except:
         intervention_date = None
     
-    context = {"username": username, "posts": posts, "post_date" :post_date, "statuses": statuses, "status_date": status_date, "interventions": interventions, "intervention_date": intervention_date}
+    context = {"username": username, "posts": posts, "post_count": post_count, "post_date": post_date, "statuses": statuses, "status_count": status_count, "status_date": status_date, "interventions": interventions, "intervention_count": intervention_count, "intervention_date": intervention_date}
     
     return render(request, "admin/control/statistics/statistics.html", context)
 

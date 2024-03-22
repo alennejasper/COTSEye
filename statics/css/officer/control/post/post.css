@@ -1037,7 +1037,7 @@
     height: 100% !important;
 }
 
-.post#post-filter .card-body .button a.filter-post{
+.post#post-filter .card-body .button a.filter-posts{
     padding-left: 10px !important;
     padding-right: 10px !important;
     padding-top: 5px !important;
@@ -1055,7 +1055,7 @@
     cursor: pointer;
 }
 
-.post#post-filter .card-body .button a.filter-post:hover{
+.post#post-filter .card-body .button a.filter-posts:hover{
     background-color: #10354C !important;
     color: #B2BEB5 !important;
 }
@@ -1087,6 +1087,138 @@
         font-size: 14px !important;
         color: #FFFFFF !important;
         text-decoration: none;
+    }
+}
+
+.line#overall-statistics{
+    margin-bottom: 30px;
+    position: relative;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    background-color: #B2BEB5;
+}
+
+.line#overall-statistics::before{
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    content: "OVERALL STATISTICS";
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px;
+    background-color: #FFFFFF;
+    color: #154659;
+    transform: translate(-50%, -50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .line#overall-statistics::before{
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        content: "OVERALL STATISTICS";
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px;
+        background-color: #FFFFFF;
+        color: #154659;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .line#overall-statistics::before{
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        content: "OVERALL STATISTICS";
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px;
+        background-color: #FFFFFF;
+        color: #154659;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .line#overall-statistics::before{
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        content: "OVERALL STATISTICS";
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px;
+        background-color: #FFFFFF;
+        color: #154659;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.line#overall-chart{
+    margin-bottom: 30px;
+    position: relative;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    background-color: #B2BEB5;
+}
+
+.line#overall-chart::before{
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    content: "OVERALL CHART";
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px;
+    background-color: #FFFFFF;
+    color: #154659;
+    transform: translate(-50%, -50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .line#overall-chart::before{
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        content: "OVERALL CHART";
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px;
+        background-color: #FFFFFF;
+        color: #154659;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .line#overall-chart::before{
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        content: "OVERALL CHART";
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px;
+        background-color: #FFFFFF;
+        color: #154659;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .line#overall-chart::before{
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        content: "OVERALL CHART";
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px;
+        background-color: #FFFFFF;
+        color: #154659;
+        transform: translate(-50%, -50%);
     }
 }
 
@@ -1147,6 +1279,138 @@
         left: 50%;
         position: absolute;
         content: "RECORDS";
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px;
+        background-color: #FFFFFF;
+        color: #154659;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.line#filtered-statistics{
+    margin-bottom: 30px;
+    position: relative;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    background-color: #B2BEB5;
+}
+
+.line#filtered-statistics::before{
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    content: "FILTERED";
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px;
+    background-color: #FFFFFF;
+    color: #154659;
+    transform: translate(-50%, -50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .line#filtered-statistics::before{
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        content: "FILTERED";
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px;
+        background-color: #FFFFFF;
+        color: #154659;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .line#filtered-statistics::before{
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        content: "FILTERED";
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px;
+        background-color: #FFFFFF;
+        color: #154659;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .line#filtered-statistics::before{
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        content: "FILTERED";
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px;
+        background-color: #FFFFFF;
+        color: #154659;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.line#filtered-chart{
+    margin-bottom: 30px;
+    position: relative;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    background-color: #B2BEB5;
+}
+
+.line#filtered-chart::before{
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    content: "OVERALL CHART";
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px;
+    background-color: #FFFFFF;
+    color: #154659;
+    transform: translate(-50%, -50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .line#filtered-chart::before{
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        content: "OVERALL CHART";
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px;
+        background-color: #FFFFFF;
+        color: #154659;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .line#filtered-chart::before{
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        content: "OVERALL CHART";
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px;
+        background-color: #FFFFFF;
+        color: #154659;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .line#filtered-chart::before{
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        content: "OVERALL CHART";
         font-family: "Overlock";
         font-weight: 400;
         font-size: 14px;
@@ -1243,49 +1507,45 @@
     display: grid;
 }
 
-.post .card-header header.preview{
+.post .card-header header{
     font-family: "Philosopher";
     font-weight: 700;
     font-size: 22px !important;
     color: #FFFFFF;
     white-space: nowrap !important; 
-    overflow: hidden !important;
-    text-overflow: ellipsis;
+    overflow: auto !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-header header.preview{
+    .post .card-header header{
         font-family: "Philosopher";
         font-weight: 700;
         font-size: 20px !important;
         color: #FFFFFF;
         white-space: nowrap !important; 
-        overflow: hidden !important;
-        text-overflow: ellipsis;
+        overflow: auto !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-header header.preview{
+    .post .card-header header{
         font-family: "Philosopher";
         font-weight: 700;
         font-size: 18px !important;
         color: #FFFFFF;
         white-space: nowrap !important; 
-        overflow: hidden !important;
-        text-overflow: ellipsis;
+        overflow: auto !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-header header.preview{
+    .post .card-header header{
         font-family: "Philosopher";
         font-weight: 700;
         font-size: 16px !important;
         color: #FFFFFF;
         white-space: nowrap !important; 
-        overflow: hidden !important;
-        text-overflow: ellipsis;
+        overflow: auto !important;
     }
 }
 
@@ -1333,6 +1593,1881 @@
     .post .card-body .field{        
         grid-template-columns: 100%;
         gap: 0px;
+    }
+}
+
+.post .card-body .field .column label[for = "posts-count"]{
+    margin-top: 0px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body .field .column label[for = "posts-count"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body .field .column label[for = "posts-count"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body .field .column label[for = "posts-count"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.post .card-body .field .column .posts-count{
+    position: relative;
+}
+
+.post .card-body .field .column .posts-count input{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.post .card-body .field .column .posts-count input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body .field .column .posts-count input{
+        padding-left: 10px !important;
+        padding-right: 38px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body .field .column .posts-count input{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body .field .column .posts-count input{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.post .card-body .field .column .posts-count i{
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body .field .column .posts-count i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body .field .column .posts-count i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body .field .column .posts-count i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+.post .card-body .field .column label[for = "users-count"]{
+    margin-top: 0px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body .field .column label[for = "users-count"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body .field .column label[for = "users-count"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body .field .column label[for = "users-count"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.post .card-body .field .column .users-count{
+    position: relative;
+}
+
+.post .card-body .field .column .users-count input{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.post .card-body .field .column .users-count input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body .field .column .users-count input{
+        padding-left: 10px !important;
+        padding-right: 38px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body .field .column .users-count input{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body .field .column .users-count input{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.post .card-body .field .column .users-count i{
+    margin-right: unset !important;
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body .field .column .users-count i{
+        margin-right: unset !important;
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body .field .column .users-count i{
+        margin-right: unset !important;
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body .field .column .users-count i{
+        margin-right: unset !important; 
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+.post .card-body .field .column label[for = "user-mode"]{
+    margin-top: 15px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body .field .column label[for = "user-mode"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body .field .column label[for = "user-mode"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body .field .column label[for = "user-mode"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.post .card-body .field .column .user-mode{
+    position: relative;
+}
+
+.post .card-body .field .column .user-mode input{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.post .card-body .field .column .user-mode input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body .field .column .user-mode input{
+        padding-left: 10px !important;
+        padding-right: 38px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body .field .column .user-mode input{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body .field .column .user-mode input{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.post .card-body .field .column .user-mode i{
+    margin-right: unset !important;
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body .field .column .user-mode i{
+        margin-right: unset !important;
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body .field .column .user-mode i{
+        margin-right: unset !important;
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body .field .column .user-mode i{
+        margin-right: unset !important; 
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+.post .card-body .field .column label[for = "poststatus-mode"]{
+    margin-top: 15px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body .field .column label[for = "poststatus-mode"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body .field .column label[for = "poststatus-mode"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body .field .column label[for = "poststatus-mode"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.post .card-body .field .column .poststatus-mode{
+    position: relative;
+}
+
+.post .card-body .field .column .poststatus-mode input{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.post .card-body .field .column .poststatus-mode input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body .field .column .poststatus-mode input{
+        padding-left: 10px !important;
+        padding-right: 38px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body .field .column .poststatus-mode input{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body .field .column .poststatus-mode input{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.post .card-body .field .column .poststatus-mode i{
+    margin-right: unset !important;
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body .field .column .poststatus-mode i{
+        margin-right: unset !important;
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body .field .column .poststatus-mode i{
+        margin-right: unset !important;
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body .field .column .poststatus-mode i{
+        margin-right: unset !important; 
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+.post .card-body .field .column label[for = "size-mode"]{
+    margin-top: 15px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body .field .column label[for = "size-mode"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body .field .column label[for = "size-mode"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body .field .column label[for = "size-mode"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.post .card-body .field .column .size-mode{
+    position: relative;
+}
+
+.post .card-body .field .column .size-mode input{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.post .card-body .field .column .size-mode input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body .field .column .size-mode input{
+        padding-left: 10px !important;
+        padding-right: 38px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body .field .column .size-mode input{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body .field .column .size-mode input{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.post .card-body .field .column .size-mode i{
+    margin-right: unset !important;
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body .field .column .size-mode i{
+        margin-right: unset !important;
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body .field .column .size-mode i{
+        margin-right: unset !important;
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body .field .column .size-mode i{
+        margin-right: unset !important; 
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+.post .card-body .field .column label[for = "density-mode"]{
+    margin-top: 15px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body .field .column label[for = "density-mode"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body .field .column label[for = "density-mode"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body .field .column label[for = "density-mode"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.post .card-body .field .column .density-mode{
+    position: relative;
+}
+
+.post .card-body .field .column .density-mode input{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.post .card-body .field .column .density-mode input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body .field .column .density-mode input{
+        padding-left: 10px !important;
+        padding-right: 38px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body .field .column .density-mode input{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body .field .column .density-mode input{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.post .card-body .field .column .density-mode i{
+    margin-right: unset !important;
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body .field .column .density-mode i{
+        margin-right: unset !important;
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body .field .column .density-mode i{
+        margin-right: unset !important;
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body .field .column .density-mode i{
+        margin-right: unset !important; 
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+.post .card-body .field .column label[for = "depth-mode"]{
+    margin-top: 15px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body .field .column label[for = "depth-mode"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body .field .column label[for = "depth-mode"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body .field .column label[for = "depth-mode"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.post .card-body .field .column .depth-mode{
+    position: relative;
+}
+
+.post .card-body .field .column .depth-mode input{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.post .card-body .field .column .depth-mode input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body .field .density .depth-mode input{
+        padding-left: 10px !important;
+        padding-right: 38px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body .field .column .depth-mode input{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body .field .column .depth-mode input{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.post .card-body .field .column .depth-mode i{
+    margin-right: unset !important;
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body .field .column .depth-mode i{
+        margin-right: unset !important;
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body .field .column .depth-mode i{
+        margin-right: unset !important;
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body .field .column .depth-mode i{
+        margin-right: unset !important; 
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+.post .card-body .field .column label[for = "weather-mode"]{
+    margin-top: 15px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body .field .column label[for = "weather-mode"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body .field .column label[for = "weather-mode"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body .field .column label[for = "weather-mode"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.post .card-body .field .column .weather-mode{
+    position: relative;
+}
+
+.post .card-body .field .column .weather-mode input{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.post .card-body .field .column .weather-mode input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body .field .density .weather-mode input{
+        padding-left: 10px !important;
+        padding-right: 38px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body .field .column .weather-mode input{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body .field .column .weather-mode input{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.post .card-body .field .column .weather-mode i{
+    margin-right: unset !important;
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body .field .column .weather-mode i{
+        margin-right: unset !important;
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body .field .column .weather-mode i{
+        margin-right: unset !important;
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body .field .column .weather-mode i{
+        margin-right: unset !important; 
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+.post .card-body .button a.generate-pdf{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    border: 1px solid #B2BEB5; 
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px;
+    color: #FFFFFF !important;
+    background-color: #154360 !important;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.post .card-body .button a.generate-pdf:hover{
+    background-color: #10354C !important;
+    color: #B2BEB5 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body .button a{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #FFFFFF !important;
+        text-decoration: none;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body .button a{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #FFFFFF !important;
+        text-decoration: none;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body .button a{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #FFFFFF !important;
+        text-decoration: none;
+    }
+}
+
+.post .card-body label[for = "posts-chart"]{
+    margin-top: 0px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body label[for = "posts-chart"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body label[for = "posts-chart"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body label[for = "posts-chart"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.post .card-body:has(.posts-chart){
+    gap: unset !important;
+}
+
+.post .card-body canvas.posts-chart{
+    width: 100% !important;
+    position: relative;
+    border-radius: 5px;
+    border: 1px solid #B2BEB5; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important; 
+}
+
+.post .card-body label[for = "users-chart"]{
+    margin-top: 15px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body label[for = "users-chart"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body label[for = "users-chart"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body label[for = "users-chart"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.post .card-body:has(.users-chart){
+    gap: unset !important;
+}
+
+.post .card-body canvas.users-chart{
+    width: 100% !important;
+    position: relative;
+    border-radius: 5px;
+    border: 1px solid #B2BEB5; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important; 
+}
+
+.post .card-body label[for = "poststatus-chart"]{
+    margin-top: 15px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body label[for = "poststatus-chart"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body label[for = "poststatus-chart"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body label[for = "poststatus-chart"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.post .card-body:has(.poststatus-chart){
+    gap: unset !important;
+}
+
+.post .card-body canvas.poststatus-chart{
+    width: 100% !important;
+    position: relative;
+    border-radius: 5px;
+    border: 1px solid #B2BEB5; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important; 
+}
+
+.post .card-body label[for = "size-chart"]{
+    margin-top: 15px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body label[for = "size-chart"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body label[for = "size-chart"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body label[for = "size-chart"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.post .card-body:has(.size-chart){
+    gap: unset !important;
+}
+
+.post .card-body canvas.size-chart{
+    width: 100% !important;
+    position: relative;
+    border-radius: 5px;
+    border: 1px solid #B2BEB5; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important; 
+}
+
+.post .card-body label[for = "density-chart"]{
+    margin-top: 15px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body label[for = "density-chart"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body label[for = "density-chart"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body label[for = "density-chart"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.post .card-body:has(.density-chart){
+    gap: unset !important;
+}
+
+.post .card-body canvas.density-chart{
+    width: 100% !important;
+    position: relative;
+    border-radius: 5px;
+    border: 1px solid #B2BEB5; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important; 
+}
+
+.post .card-body label[for = "depth-chart"]{
+    margin-top: 15px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body label[for = "depth-chart"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body label[for = "depth-chart"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body label[for = "depth-chart"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.post .card-body:has(.depth-chart){
+    gap: unset !important;
+}
+
+.post .card-body canvas.depth-chart{
+    width: 100% !important;
+    position: relative;
+    border-radius: 5px;
+    border: 1px solid #B2BEB5; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important; 
+}
+
+.post .card-body label[for = "weather-chart"]{
+    margin-top: 15px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body label[for = "weather-chart"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body label[for = "weather-chart"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body label[for = "weather-chart"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.post .card-body:has(.weather-chart){
+    gap: unset !important;
+}
+
+.post .card-body canvas.weather-chart{
+    width: 100% !important;
+    position: relative;
+    border-radius: 5px;
+    border: 1px solid #B2BEB5; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important; 
+}
+
+.post .card-header header.preview{
+    font-family: "Philosopher";
+    font-weight: 700;
+    font-size: 22px !important;
+    color: #FFFFFF;
+    white-space: nowrap !important; 
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+}
+
+.post .card-header header.preview{
+    font-family: "Philosopher";
+    font-weight: 700;
+    font-size: 22px !important;
+    color: #FFFFFF;
+    white-space: nowrap !important; 
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-header header.preview{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 20px !important;
+        color: #FFFFFF;
+        white-space: nowrap !important; 
+        overflow: hidden !important;
+        text-overflow: ellipsis;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-header header.preview{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 18px !important;
+        color: #FFFFFF;
+        white-space: nowrap !important; 
+        overflow: hidden !important;
+        text-overflow: ellipsis;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-header header.preview{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 16px !important;
+        color: #FFFFFF;
+        white-space: nowrap !important; 
+        overflow: hidden !important;
+        text-overflow: ellipsis;
     }
 }
 
