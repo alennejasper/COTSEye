@@ -54,41 +54,82 @@
         }
     </script>
 
-    <div class = "line"></div>
+    {% if results %}
+        <div class = "line" id = "results"></div>
 
-    {% for announcement in announcements %}
-        <div class = "announcement">
-            <div class = "card-header">
-                <header>{{announcement.title | default:'None available'}}</header>
-            </div>
+        {% for announcement in results %}
+            <div class = "announcement">
+                <div class = "card-header">
+                    <header>{{announcement.title | default:'None available'}}</header>
+                </div>
 
-            <div class = "card-body">
-                <div class = "field">
-                    <div class = "column">
-                        <label for = "release-date">Release Date</label> 
-                            
-                        <div class = "release-date">
-                            <input type = "text" value = "{{announcement.release_date | date:'M. j, Y g:i a' | default:'None available'}}" id = "release-date" name = "release_date" readonly>
+                <div class = "card-body">
+                    <div class = "field">
+                        <div class = "column">
+                            <label for = "release-date">Release Date</label> 
                                 
-                            <i class = "fa-solid fa-calendar-check"></i>
+                            <div class = "release-date">
+                                <input type = "text" value = "{{announcement.release_date | date:'M. j, Y g:i a' | default:'None available'}}" id = "release-date" name = "release_date" readonly>
+                                    
+                                <i class = "fa-solid fa-calendar-check"></i>
+                            </div>
+                        </div>
+
+                        <div class = "column">
+                            <label for = "place">Place</label> 
+
+                            <div class = "place">
+                                <input type = "text" value = "{{announcement.place | default:'None available'}}" id = "place" name = "place" readonly>
+
+                                <i class = "fa-solid fa-location-dot"></i>      
+                            </div>  
                         </div>
                     </div>
 
-                    <div class = "column">
-                        <label for = "place">Place</label> 
+                    <div class = "button">
+                        <a class = "read-announcement" href = "{% url 'Public Service Announcement Read' announcement.id %}">Read</a>
+                    </div>    
+                </div>
+            </div>
+        {% endfor %}
 
-                        <div class = "place">
-                            <input type = "text" value = "{{announcement.place | default:'None available'}}" id = "place" name = "place" readonly>
+    {% else %}
+        <div class = "line" id = "records"></div>
 
-                            <i class = "fa-solid fa-location-dot"></i>      
-                        </div>  
-                    </div>
+        {% for announcement in records %}
+            <div class = "announcement">
+                <div class = "card-header">
+                    <header>{{announcement.title | default:'None available'}}</header>
                 </div>
 
-                <div class = "button">
-                    <a class = "read-announcement" href = "{% url 'Contributor Service Announcement Read' announcement.id %}">Read</a>
-                </div>    
+                <div class = "card-body">
+                    <div class = "field">
+                        <div class = "column">
+                            <label for = "release-date">Release Date</label> 
+                                
+                            <div class = "release-date">
+                                <input type = "text" value = "{{announcement.release_date | date:'M. j, Y g:i a' | default:'None available'}}" id = "release-date" name = "release_date" readonly>
+                                    
+                                <i class = "fa-solid fa-calendar-check"></i>
+                            </div>
+                        </div>
+
+                        <div class = "column">
+                            <label for = "place">Place</label> 
+
+                            <div class = "place">
+                                <input type = "text" value = "{{announcement.place | default:'None available'}}" id = "place" name = "place" readonly>
+
+                                <i class = "fa-solid fa-location-dot"></i>      
+                            </div>  
+                        </div>
+                    </div>
+
+                    <div class = "button">
+                        <a class = "read-announcement" href = "{% url 'Public Service Announcement Read' announcement.id %}">Read</a>
+                    </div>    
+                </div>
             </div>
-        </div>
-    {% endfor %}
+        {% endfor %}
+    {% endif %}
 {% endblock content %}

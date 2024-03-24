@@ -2,7 +2,7 @@ from configurations.admin import officer, admin
 from reports.models import *
 
 # Register your models here.
-class PostPhotosAdmin(admin.ModelAdmin):
+class PostPhotoAdmin(admin.ModelAdmin):
     class Media:   
         css = {
             "all": ["css/admin/control/index/index.css"]
@@ -11,7 +11,7 @@ class PostPhotosAdmin(admin.ModelAdmin):
     def has_module_permission(self, request):
         return request.user.usertype_id == 1 or request.user.usertype_id == 2
 
-officer.register(PostPhotos, PostPhotosAdmin)
+officer.register(PostPhoto, PostPhotoAdmin)
 
 
 class CoordinatesAdmin(admin.ModelAdmin):
@@ -86,7 +86,7 @@ class PostAdmin(admin.ModelAdmin):
 officer.register(Post, PostAdmin)
 
 
-class PostPhotosAdmin(admin.ModelAdmin):
+class PostPhotoAdmin(admin.ModelAdmin):
     class Media:   
         css = {
             "all": ["css/admin/control/index/index.css"]
@@ -95,7 +95,7 @@ class PostPhotosAdmin(admin.ModelAdmin):
     def has_module_permission(self, request):
         return request.user.usertype_id == 1 or request.user.usertype_id == 2
 
-admin.site.register(PostPhotos, PostPhotosAdmin)
+admin.site.register(PostPhoto, PostPhotoAdmin)
 
 
 class CoordinatesAdmin(admin.ModelAdmin):

@@ -189,7 +189,7 @@
     }
 }
 
-.intervention .card-body .buttons{
+.intervention .card-body .button{
     margin-left: auto;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
@@ -197,7 +197,7 @@
     height: 100% !important;
 }
 
-.intervention .card-body .buttons a.share-intervention{
+.intervention .card-body .button a.share-intervention{
     padding-left: 10px !important;
     padding-right: 10px !important;
     padding-top: 5px !important;
@@ -215,13 +215,13 @@
     cursor: pointer;
 }
 
-.intervention .card-body .buttons a.share-intervention:hover{
+.intervention .card-body .button a.share-intervention:hover{
     background-color: #10354C !important;
     color: #B2BEB5 !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .intervention .card-body .buttons a{
+    .intervention .card-body .button a{
         font-family: "Overlock";
         font-weight: 400;
         font-size: 18px !important;
@@ -231,7 +231,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .intervention .card-body .buttons a{
+    .intervention .card-body .button a{
         font-family: "Overlock";
         font-weight: 400;
         font-size: 16px !important;
@@ -241,7 +241,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .intervention .card-body .buttons a{
+    .intervention .card-body .button a{
         font-family: "Overlock";
         font-weight: 400;
         font-size: 14px !important;

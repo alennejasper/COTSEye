@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.http import HttpResponseRedirect
 from django.urls import reverse, path
 from authentications.views import OfficerControlRegister, OfficerControlLogin, OfficerControlLoginGoogle, OfficerControlLoginFacebook, OfficerControlStatistics, OfficerControlLogout, AdministratorControlLogin, AdministratorControlStatistics, AdministratorControlLogout, ControlHomeRedirect, ControlPasswordRedirect, ControlProfileRedirect
-from managements.views import OfficerControlStatisticsStatus, OfficerControlStatisticsIntervention, AdministratorControlStatisticsStatus, AdministratorControlStatisticsIntervention, ControlStatisticsInterventionReadRedirect
+from managements.views import OfficerControlStatisticsStatus, OfficerControlStatisticsIntervention, AdministratorControlStatisticsStatus, AdministratorControlStatisticsIntervention, ControlStatisticsStatusReadRedirect, ControlStatisticsInterventionReadRedirect
 from reports.views import OfficerControlStatisticsPost, AdministratorControlStatisticsPost, ControlStatisticsPostReadRedirect
 
 
@@ -49,6 +49,8 @@ class AdministratorSite(admin.AdminSite):
             path("profile/redirect/", ControlProfileRedirect, name = "Control Profile Redirect"),
 
             path("statistics/post/read/<int:object_id>/redirect/", ControlStatisticsPostReadRedirect, name = "Control Statistics Post Read Redirect"),
+
+            path("statistics/status/read/<int:object_id>/redirect/", ControlStatisticsStatusReadRedirect, name = "Control Statistics Status Read Redirect"),
 
             path("statistics/intervention/read/<int:object_id>/redirect/", ControlStatisticsInterventionReadRedirect, name = "Control Statistics Intervention Read Redirect")
         ]
@@ -105,6 +107,8 @@ class OfficerSite(admin.AdminSite):
             path("profile/redirect/", ControlProfileRedirect, name = "Control Profile Redirect"),
 
             path("statistics/post/read/<int:object_id>/redirect/", ControlStatisticsPostReadRedirect, name = "Control Statistics Post Read Redirect"),
+
+            path("statistics/status/read/<int:object_id>/redirect/", ControlStatisticsStatusReadRedirect, name = "Control Statistics Status Read Redirect"),
 
             path("statistics/intervention/read/<int:object_id>/redirect/", ControlStatisticsInterventionReadRedirect, name = "Control Statistics Intervention Read Redirect")
         ]

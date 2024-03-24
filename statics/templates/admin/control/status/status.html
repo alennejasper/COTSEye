@@ -79,9 +79,715 @@
     </script>
 
     {% if results %}
+        <div class = "line" id = "filtered-statistics"></div>
+
+        <div class = "status">
+            <div class = "card-header">
+                <header>Overall statistics</header>
+            </div>
+
+            <div class = "card-body">
+                <div class = "field">
+                    <div class = "column">
+                        <label for = "statuses-count">Statuses Count</label> 
+                            
+                        <div class = "statuses-count">
+                            <input type = "number" value = "{{statuses_count | default:'0'}}" id = "statuses-count" name = "statuses_count" readonly>
+                                
+                            <i class = "fa-solid fa-bell"></i>
+                        </div>
+
+                        <label for = "location-frequency">Location Frequency</label> 
+
+                        <div class = "location-frequency">
+                            <input type = "text" value = "{{location_frequency | default:'0'}}" id = "location-frequency" name = "location_frequency" readonly>
+
+                            <i class = "fa-solid fa-location-dot"></i>      
+                        </div>
+                    </div>
+
+                    <div class = "column">
+                        <label for = "caughtoverall-count">Caught Overall Count</label> 
+
+                        <div class = "caughtoverall-count">
+                            <input type = "number" value = "{{caughtoverall_count | default:'0'}}" id = "caughtoverall-count" name = "caughtoverall_count" readonly>
+
+                            <i class = "fa-solid fa-arrow-up-wide-short"></i>      
+                        </div>
+
+                        <label for = "statustype-frequency">Status Type Frequency</label> 
+
+                        <div class = "statustype-frequency">
+                            <input type = "text" value = "{{statustype_frequency | default:'0'}}" id = "statustype-frequency" name = "statustype_frequency" readonly>
+
+                            <i class = "fa-solid fa-flag"></i>      
+                        </div>
+                    </div>
+                </div> 
+                
+                <div class = "button">
+                    <a class = "generate-pdf" type = "submit">Generate pdf</a>
+                </div>
+            </div>
+        </div>
+
+        <div class = "line" id = "filtered-charts"></div>
+
+        <div class = "status">
+            <div class = "card-header">
+                <header>Filtered charts</header>
+            </div>
+
+            <div class = "card-body">
+                <label for = "statuses-chart">Statuses Chart</label> 
+
+                <div class = "statuses-chart">
+                    <canvas class = "statuses-chart" id = "statuses-chart"></canvas>
+                </div>
+
+                <label for = "caughtoverall-chart">Caught Overall Chart</label> 
+
+                <div class = "caughtoverall-chart">
+                    <canvas class = "caughtoverall-chart" id = "caughtoverall-chart"></canvas>
+                </div>
+
+                <label for = "location-chart">Location Chart</label> 
+
+                <div class = "location-chart">
+                    <canvas class = "location-chart" id = "location-chart"></canvas>
+                </div>
+
+                <label for = "statustype-chart">Status Type Chart</label> 
+
+                <div class = "statustype-chart">
+                    <canvas class = "statustype-chart" id = "statustype-chart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <script>                        
+            new Chart("statuses-chart", {
+                type: "bar",
+            
+                data: {
+                    labels: ["Statuses"],
+                
+                    datasets: [{
+                        borderWidth: 2,
+
+                        borderColor: "#B2BEB5",
+
+                        backgroundColor: ["#698F3F"],
+
+                        hoverBackgroundColor: ["#557433"],
+                                        
+                        data: [{{statuses_count}}],
+
+                        label: ["{{statuses_label}}"]
+                    }]
+                },
+
+                options: {
+                    indexAxis: "y",
+
+                    maintainAspectRatio: false,
+
+                    plugins: {
+                        legend: {
+                            labels: {
+                                padding: 0,
+
+                                boxWidth: 0,
+
+                                boxHeight: 0,
+
+                                color: "#154360",
+
+                                font: {
+                                    family: "Philosopher",
+
+                                    weight: 700,
+
+                                    size: window.innerWidth >= 369 && window.innerWidth <= 445 ? 18 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 16 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 14 : 20
+                                },
+
+                                textAlign: "center"
+                            }
+                        },
+
+                        tooltip: {
+                            paddingLeft: 10,
+
+                            paddingRight: 10,
+                            
+                            paddingTop: 5,
+
+                            paddingBottom: 5,
+
+                            caretSize: window.innerWidth >= 369 && window.innerWidth <= 445 ? 10 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 6 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 4 : 10,
+
+                            borderWidth: 2,
+
+                            borderColor: "#B2BEB5",
+
+                            backgroundColor: ["#154360"],
+
+                            titleFont: {
+                                family: "Philosopher",
+
+                                weight: 700,
+
+                                size: window.innerWidth >= 369 && window.innerWidth <= 445 ? 18 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 16 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 14 : 20
+                            },
+
+                            titleSpacing: 5,
+
+                            bodyFont: {
+                                family: "Overlock",
+
+                                weight: 400,
+
+                                size: window.innerWidth >= 369 && window.innerWidth <= 445 ? 16 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 14 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 12 : 18
+                            },
+
+                            bodySpacing: 5,
+
+                            displayColors: false,
+                        }
+                    },
+
+                    responsive: false,
+
+                    scales: {
+                        y: {
+                            grid: {
+                                lineWidth: 2,
+
+                                color: "#B2BEB5"
+                            },
+
+                            ticks: {
+                                padding: 0,
+
+                                font: {
+                                    family: "Philosopher",
+
+                                    weight: 700,
+
+                                    size: window.innerWidth >= 369 && window.innerWidth <= 445 ? 18 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 16 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 14 : 20
+                                },
+
+                                color: "#154360"
+                            }
+                        },
+
+                        x: {
+                            grid: {
+                                lineWidth: 2,
+
+                                color: "#B2BEB5"
+                            },
+
+                            ticks: {
+                                padding: 0,
+
+                                font: {
+                                    family: "Philosopher",
+
+                                    weight: 700,
+
+                                    size: window.innerWidth >= 369 && window.innerWidth <= 445 ? 18 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 16 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 14 : 20
+                                },
+
+                                color: "#154360"
+                            }
+                        }
+                    }
+                }
+            });
+        </script>
+
+        <script>                        
+            new Chart("caughtoverall-chart", {
+                type: "bar",
+            
+                data: {
+                    labels: ["Caught Overall"],
+                
+                    datasets: [{
+                        borderWidth: 2,
+
+                        borderColor: "#B2BEB5",
+
+                        backgroundColor: ["#698F3F"],
+
+                        hoverBackgroundColor: ["#557433"],
+                                        
+                        data: [{{caughtoverall_count}}],
+
+                        label: ["{{caughtoverall_label}}"]
+                    }]
+                },
+
+                options: {
+                    indexAxis: "y",
+
+                    maintainAspectRatio: false,
+
+                    plugins: {
+                        legend: {
+                            labels: {
+                                padding: 0,
+
+                                boxWidth: 0,
+
+                                boxHeight: 0,
+
+                                color: "#154360",
+
+                                font: {
+                                    family: "Philosopher",
+
+                                    weight: 700,
+
+                                    size: window.innerWidth >= 369 && window.innerWidth <= 445 ? 18 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 16 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 14 : 20
+                                },
+
+                                textAlign: "center"
+                            }
+                        },
+
+                        tooltip: {
+                            paddingLeft: 10,
+
+                            paddingRight: 10,
+                            
+                            paddingTop: 5,
+
+                            paddingBottom: 5,
+
+                            caretSize: window.innerWidth >= 369 && window.innerWidth <= 445 ? 10 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 6 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 4 : 10,
+
+                            borderWidth: 2,
+
+                            borderColor: "#B2BEB5",
+
+                            backgroundColor: ["#154360"],
+
+                            titleFont: {
+                                family: "Philosopher",
+
+                                weight: 700,
+
+                                size: window.innerWidth >= 369 && window.innerWidth <= 445 ? 18 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 16 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 14 : 20
+                            },
+
+                            titleSpacing: 5,
+
+                            bodyFont: {
+                                family: "Overlock",
+
+                                weight: 400,
+
+                                size: window.innerWidth >= 369 && window.innerWidth <= 445 ? 16 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 14 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 12 : 18
+                            },
+
+                            bodySpacing: 5,
+
+                            displayColors: false,
+                        }
+                    },
+
+                    responsive: false,
+
+                    scales: {
+                        y: {
+                            grid: {
+                                lineWidth: 2,
+
+                                color: "#B2BEB5"
+                            },
+
+                            ticks: {
+                                padding: 0,
+
+                                font: {
+                                    family: "Philosopher",
+
+                                    weight: 700,
+
+                                    size: window.innerWidth >= 369 && window.innerWidth <= 445 ? 18 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 16 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 14 : 20
+                                },
+
+                                color: "#154360"
+                            }
+                        },
+
+                        x: {
+                            grid: {
+                                lineWidth: 2,
+
+                                color: "#B2BEB5"
+                            },
+
+                            ticks: {
+                                padding: 0,
+
+                                font: {
+                                    family: "Philosopher",
+
+                                    weight: 700,
+
+                                    size: window.innerWidth >= 369 && window.innerWidth <= 445 ? 18 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 16 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 14 : 20
+                                },
+
+                                color: "#154360"
+                            }
+                        }
+                    }
+                }
+            });
+        </script>
+
+        <script>                        
+            new Chart("location-chart", {
+                type: "bar",
+            
+                data: {
+                    labels: ["Location"],
+                
+                    datasets: [{
+                        borderWidth: 2,
+
+                        borderColor: "#B2BEB5",
+
+                        backgroundColor: ["#698F3F"],
+
+                        hoverBackgroundColor: ["#557433"],
+                                        
+                        data: [{{location_firstfrequency}}],
+
+                        label: ["{{location_firstlabel}}"],
+
+                    }, {
+                        borderWidth: 2,
+
+                        borderColor: "#B2BEB5",
+
+                        backgroundColor: ["#F4C430"],
+
+                        hoverBackgroundColor: ["#C39C26"],
+                                        
+                        data: [{{location_secondfrequency}}],
+
+                        label: ["{{location_secondlabel}}"],
+
+                    }, {
+                        borderWidth: 2,
+
+                        borderColor: "#B2BEB5",
+
+                        backgroundColor: ["#C90016"],
+
+                        hoverBackgroundColor: ["#A00011"],
+                                        
+                        data: [{{location_thirdfrequency}}],
+
+                        label: ["{{location_thirdlabel}}"]
+                    }]
+                },
+
+                options: {
+                    indexAxis: "y",
+
+                    maintainAspectRatio: false,
+
+                    plugins: {
+                        legend: {
+                            labels: {
+                                padding: 0,
+
+                                boxWidth: 0,
+
+                                boxHeight: 0,
+
+                                color: "#154360",
+
+                                font: {
+                                    family: "Philosopher",
+
+                                    weight: 700,
+
+                                    size: window.innerWidth >= 369 && window.innerWidth <= 445 ? 18 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 16 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 14 : 20
+                                },
+
+                                textAlign: "center"
+                            }
+                        },
+
+                        tooltip: {
+                            paddingLeft: 10,
+
+                            paddingRight: 10,
+                            
+                            paddingTop: 5,
+
+                            paddingBottom: 5,
+
+                            caretSize: window.innerWidth >= 369 && window.innerWidth <= 445 ? 10 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 6 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 4 : 10,
+
+                            borderWidth: 2,
+
+                            borderColor: "#B2BEB5",
+
+                            backgroundColor: ["#154360"],
+
+                            titleFont: {
+                                family: "Philosopher",
+
+                                weight: 700,
+
+                                size: window.innerWidth >= 369 && window.innerWidth <= 445 ? 18 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 16 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 14 : 20
+                            },
+
+                            titleSpacing: 5,
+
+                            bodyFont: {
+                                family: "Overlock",
+
+                                weight: 400,
+
+                                size: window.innerWidth >= 369 && window.innerWidth <= 445 ? 16 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 14 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 12 : 18
+                            },
+
+                            bodySpacing: 5,
+
+                            displayColors: false,
+                        }
+                    },
+
+                    responsive: false,
+
+                    scales: {
+                        y: {
+                            grid: {
+                                lineWidth: 2,
+
+                                color: "#B2BEB5"
+                            },
+
+                            ticks: {
+                                padding: 0,
+
+                                font: {
+                                    family: "Philosopher",
+
+                                    weight: 700,
+
+                                    size: window.innerWidth >= 369 && window.innerWidth <= 445 ? 18 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 16 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 14 : 20
+                                },
+
+                                color: "#154360"
+                            }
+                        },
+
+                        x: {
+                            grid: {
+                                lineWidth: 2,
+
+                                color: "#B2BEB5"
+                            },
+
+                            ticks: {
+                                padding: 0,
+
+                                font: {
+                                    family: "Philosopher",
+
+                                    weight: 700,
+
+                                    size: window.innerWidth >= 369 && window.innerWidth <= 445 ? 18 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 16 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 14 : 20
+                                },
+
+                                color: "#154360"
+                            }
+                        }
+                    }
+                }
+            });
+        </script>
+
+        <script>                        
+            new Chart("statustype-chart", {
+                type: "bar",
+            
+                data: {
+                    labels: ["Status Type"],
+                
+                    datasets: [{
+                        borderWidth: 2,
+
+                        borderColor: "#B2BEB5",
+
+                        backgroundColor: ["#698F3F"],
+
+                        hoverBackgroundColor: ["#557433"],
+                                        
+                        data: [{{statustype_firstfrequency}}],
+
+                        label: ["{{statustype_firstlabel}}"],
+
+                    }, {
+                        borderWidth: 2,
+
+                        borderColor: "#B2BEB5",
+
+                        backgroundColor: ["#F4C430"],
+
+                        hoverBackgroundColor: ["#C39C26"],
+                                        
+                        data: [{{statustype_secondfrequency}}],
+
+                        label: ["{{statustype_secondlabel}}"],
+
+                    }, {
+                        borderWidth: 2,
+
+                        borderColor: "#B2BEB5",
+
+                        backgroundColor: ["#C90016"],
+
+                        hoverBackgroundColor: ["#A00011"],
+                                        
+                        data: [{{statustype_thirdfrequency}}],
+
+                        label: ["{{statustype_thirdlabel}}"]
+                    }]
+                },
+
+                options: {
+                    indexAxis: "y",
+
+                    maintainAspectRatio: false,
+
+                    plugins: {
+                        legend: {
+                            labels: {
+                                padding: 0,
+
+                                boxWidth: 0,
+
+                                boxHeight: 0,
+
+                                color: "#154360",
+
+                                font: {
+                                    family: "Philosopher",
+
+                                    weight: 700,
+
+                                    size: window.innerWidth >= 369 && window.innerWidth <= 445 ? 18 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 16 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 14 : 20
+                                },
+
+                                textAlign: "center"
+                            }
+                        },
+
+                        tooltip: {
+                            paddingLeft: 10,
+
+                            paddingRight: 10,
+                            
+                            paddingTop: 5,
+
+                            paddingBottom: 5,
+
+                            caretSize: window.innerWidth >= 369 && window.innerWidth <= 445 ? 10 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 6 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 4 : 10,
+
+                            borderWidth: 2,
+
+                            borderColor: "#B2BEB5",
+
+                            backgroundColor: ["#154360"],
+
+                            titleFont: {
+                                family: "Philosopher",
+
+                                weight: 700,
+
+                                size: window.innerWidth >= 369 && window.innerWidth <= 445 ? 18 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 16 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 14 : 20
+                            },
+
+                            titleSpacing: 5,
+
+                            bodyFont: {
+                                family: "Overlock",
+
+                                weight: 400,
+
+                                size: window.innerWidth >= 369 && window.innerWidth <= 445 ? 16 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 14 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 12 : 18
+                            },
+
+                            bodySpacing: 5,
+
+                            displayColors: false,
+                        }
+                    },
+
+                    responsive: false,
+
+                    scales: {
+                        y: {
+                            grid: {
+                                lineWidth: 2,
+
+                                color: "#B2BEB5"
+                            },
+
+                            ticks: {
+                                padding: 0,
+
+                                font: {
+                                    family: "Philosopher",
+
+                                    weight: 700,
+
+                                    size: window.innerWidth >= 369 && window.innerWidth <= 445 ? 18 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 16 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 14 : 20
+                                },
+
+                                color: "#154360"
+                            }
+                        },
+
+                        x: {
+                            grid: {
+                                lineWidth: 2,
+
+                                color: "#B2BEB5"
+                            },
+
+                            ticks: {
+                                padding: 0,
+
+                                font: {
+                                    family: "Philosopher",
+
+                                    weight: 700,
+
+                                    size: window.innerWidth >= 369 && window.innerWidth <= 445 ? 18 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 16 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 14 : 20
+                                },
+
+                                color: "#154360"
+                            }
+                        }
+                    }
+                }
+            });
+        </script>
+        
         <div class = "line" id = "results"></div>
 
-        {% for status in statuses %}
+        {% for status in results %}
             <div class = "status">
                 <div class = "card-header" {% if status.statustype.is_critical == True %} id = "critical-status" {% elif status.statustype.is_moderate == True %} id = "moderate-status" {% elif status.statustype.is_low == True %} id = "low-status" {% endif %}>
                     <header>{{status.statustype | default:'None available'}}</header>
@@ -108,12 +814,722 @@
                                 <i class = "fa-solid fa-location-dot"></i>      
                             </div>  
                         </div>
-                    </div>   
+                    </div>
+                    
+                    <div class = "button">
+                        <a class = "read-status" href = "{% url 'admin:Control Statistics Status Read Redirect' object_id=status.id %}">Read</a>
+                    </div>
                 </div>
             </div>
         {% endfor %}
 
     {% else %}
+        <div class = "line" id = "overall-statistics"></div>
+
+        <div class = "status">
+            <div class = "card-header">
+                <header>Overall statistics</header>
+            </div>
+
+            <div class = "card-body">
+                <div class = "field">
+                    <div class = "column">
+                        <label for = "statuses-count">Statuses Count</label> 
+                            
+                        <div class = "statuses-count">
+                            <input type = "number" value = "{{statuses_count | default:'0'}}" id = "statuses-count" name = "statuses_count" readonly>
+                                
+                            <i class = "fa-solid fa-bell"></i>
+                        </div>
+
+                        <label for = "location-frequency">Location Frequency</label> 
+
+                        <div class = "location-frequency">
+                            <input type = "text" value = "{{location_frequency | default:'0'}}" id = "location-frequency" name = "location_frequency" readonly>
+
+                            <i class = "fa-solid fa-location-dot"></i>      
+                        </div>
+                    </div>
+
+                    <div class = "column">
+                        <label for = "caughtoverall-count">Caught Overall Count</label> 
+
+                        <div class = "caughtoverall-count">
+                            <input type = "number" value = "{{caughtoverall_count | default:'0'}}" id = "caughtoverall-count" name = "caughtoverall_count" readonly>
+
+                            <i class = "fa-solid fa-arrow-up-wide-short"></i>      
+                        </div>
+
+                        <label for = "statustype-frequency">Status Type Frequency</label> 
+
+                        <div class = "statustype-frequency">
+                            <input type = "text" value = "{{statustype_frequency | default:'0'}}" id = "statustype-frequency" name = "statustype_frequency" readonly>
+
+                            <i class = "fa-solid fa-flag"></i>      
+                        </div>
+                    </div>
+                </div> 
+                
+                <div class = "button">
+                    <a class = "generate-pdf" type = "submit">Generate pdf</a>
+                </div>
+            </div>
+        </div>
+
+        <div class = "line" id = "overall-charts"></div>
+
+        <div class = "status">
+            <div class = "card-header">
+                <header>Overall charts</header>
+            </div>
+
+            <div class = "card-body">
+                <label for = "statuses-chart">Statuses Chart</label> 
+
+                <div class = "statuses-chart">
+                    <canvas class = "statuses-chart" id = "statuses-chart"></canvas>
+                </div>
+                
+                <label for = "caughtoverall-chart">Caught Overall Chart</label> 
+
+                <div class = "caughtoverall-chart">
+                    <canvas class = "caughtoverall-chart" id = "caughtoverall-chart"></canvas>
+                </div>
+
+                <label for = "location-chart">Location Chart</label> 
+
+                <div class = "location-chart">
+                    <canvas class = "location-chart" id = "location-chart"></canvas>
+                </div>
+
+                <label for = "statustype-chart">Status Type Chart</label> 
+
+                <div class = "statustype-chart">
+                    <canvas class = "statustype-chart" id = "statustype-chart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <script>                        
+            new Chart("statuses-chart", {
+                type: "bar",
+              
+                data: {
+                    labels: ["Statuses"],
+                
+                    datasets: [{
+                        borderWidth: 2,
+
+                        borderColor: "#B2BEB5",
+
+                        backgroundColor: ["#698F3F"],
+
+                        hoverBackgroundColor: ["#557433"],
+                                          
+                        data: [{{statuses_count}}],
+
+                        label: ["{{statuses_label}}"]
+                    }]
+                },
+
+                options: {
+                    indexAxis: "y",
+
+                    maintainAspectRatio: false,
+
+                    plugins: {
+                        legend: {
+                            labels: {
+                                padding: 0,
+
+                                boxWidth: 0,
+
+                                boxHeight: 0,
+
+                                color: "#154360",
+
+                                font: {
+                                    family: "Philosopher",
+
+                                    weight: 700,
+
+                                    size: window.innerWidth >= 369 && window.innerWidth <= 445 ? 18 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 16 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 14 : 20
+                                },
+
+                                textAlign: "center"
+                            }
+                        },
+
+                        tooltip: {
+                            paddingLeft: 10,
+
+                            paddingRight: 10,
+                            
+                            paddingTop: 5,
+
+                            paddingBottom: 5,
+
+                            caretSize: window.innerWidth >= 369 && window.innerWidth <= 445 ? 10 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 6 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 4 : 10,
+
+                            borderWidth: 2,
+
+                            borderColor: "#B2BEB5",
+
+                            backgroundColor: ["#154360"],
+
+                            titleFont: {
+                                family: "Philosopher",
+
+                                weight: 700,
+
+                                size: window.innerWidth >= 369 && window.innerWidth <= 445 ? 18 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 16 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 14 : 20
+                            },
+
+                            titleSpacing: 5,
+
+                            bodyFont: {
+                                family: "Overlock",
+
+                                weight: 400,
+
+                                size: window.innerWidth >= 369 && window.innerWidth <= 445 ? 16 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 14 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 12 : 18
+                            },
+
+                            bodySpacing: 5,
+
+                            displayColors: false,
+                        }
+                    },
+
+                    responsive: false,
+
+                    scales: {
+                        y: {
+                            grid: {
+                                lineWidth: 2,
+
+                                color: "#B2BEB5"
+                            },
+
+                            ticks: {
+                                padding: 0,
+
+                                font: {
+                                    family: "Philosopher",
+
+                                    weight: 700,
+
+                                    size: window.innerWidth >= 369 && window.innerWidth <= 445 ? 18 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 16 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 14 : 20
+                                },
+
+                                color: "#154360"
+                            }
+                        },
+
+                        x: {
+                            grid: {
+                                lineWidth: 2,
+
+                                color: "#B2BEB5"
+                            },
+
+                            ticks: {
+                                padding: 0,
+
+                                font: {
+                                    family: "Philosopher",
+
+                                    weight: 700,
+
+                                    size: window.innerWidth >= 369 && window.innerWidth <= 445 ? 18 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 16 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 14 : 20
+                                },
+
+                                color: "#154360"
+                            }
+                        }
+                    }
+                }
+            });
+        </script>
+
+        <script>                        
+            new Chart("caughtoverall-chart", {
+                type: "bar",
+            
+                data: {
+                    labels: ["Caught Overall"],
+                
+                    datasets: [{
+                        borderWidth: 2,
+
+                        borderColor: "#B2BEB5",
+
+                        backgroundColor: ["#698F3F"],
+
+                        hoverBackgroundColor: ["#557433"],
+                                        
+                        data: [{{caughtoverall_count}}],
+
+                        label: ["{{caughtoverall_label}}"]
+                    }]
+                },
+
+                options: {
+                    indexAxis: "y",
+
+                    maintainAspectRatio: false,
+
+                    plugins: {
+                        legend: {
+                            labels: {
+                                padding: 0,
+
+                                boxWidth: 0,
+
+                                boxHeight: 0,
+
+                                color: "#154360",
+
+                                font: {
+                                    family: "Philosopher",
+
+                                    weight: 700,
+
+                                    size: window.innerWidth >= 369 && window.innerWidth <= 445 ? 18 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 16 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 14 : 20
+                                },
+
+                                textAlign: "center"
+                            }
+                        },
+
+                        tooltip: {
+                            paddingLeft: 10,
+
+                            paddingRight: 10,
+                            
+                            paddingTop: 5,
+
+                            paddingBottom: 5,
+
+                            caretSize: window.innerWidth >= 369 && window.innerWidth <= 445 ? 10 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 6 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 4 : 10,
+
+                            borderWidth: 2,
+
+                            borderColor: "#B2BEB5",
+
+                            backgroundColor: ["#154360"],
+
+                            titleFont: {
+                                family: "Philosopher",
+
+                                weight: 700,
+
+                                size: window.innerWidth >= 369 && window.innerWidth <= 445 ? 18 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 16 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 14 : 20
+                            },
+
+                            titleSpacing: 5,
+
+                            bodyFont: {
+                                family: "Overlock",
+
+                                weight: 400,
+
+                                size: window.innerWidth >= 369 && window.innerWidth <= 445 ? 16 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 14 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 12 : 18
+                            },
+
+                            bodySpacing: 5,
+
+                            displayColors: false,
+                        }
+                    },
+
+                    responsive: false,
+
+                    scales: {
+                        y: {
+                            grid: {
+                                lineWidth: 2,
+
+                                color: "#B2BEB5"
+                            },
+
+                            ticks: {
+                                padding: 0,
+
+                                font: {
+                                    family: "Philosopher",
+
+                                    weight: 700,
+
+                                    size: window.innerWidth >= 369 && window.innerWidth <= 445 ? 18 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 16 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 14 : 20
+                                },
+
+                                color: "#154360"
+                            }
+                        },
+
+                        x: {
+                            grid: {
+                                lineWidth: 2,
+
+                                color: "#B2BEB5"
+                            },
+
+                            ticks: {
+                                padding: 0,
+
+                                font: {
+                                    family: "Philosopher",
+
+                                    weight: 700,
+
+                                    size: window.innerWidth >= 369 && window.innerWidth <= 445 ? 18 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 16 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 14 : 20
+                                },
+
+                                color: "#154360"
+                            }
+                        }
+                    }
+                }
+            });
+        </script>
+
+        <script>                        
+            new Chart("location-chart", {
+                type: "bar",
+            
+                data: {
+                    labels: ["Location"],
+                
+                    datasets: [{
+                        borderWidth: 2,
+
+                        borderColor: "#B2BEB5",
+
+                        backgroundColor: ["#698F3F"],
+
+                        hoverBackgroundColor: ["#557433"],
+                                        
+                        data: [{{location_firstfrequency}}],
+
+                        label: ["{{location_firstlabel}}"],
+
+                    }, {
+                        borderWidth: 2,
+
+                        borderColor: "#B2BEB5",
+
+                        backgroundColor: ["#F4C430"],
+
+                        hoverBackgroundColor: ["#C39C26"],
+                                        
+                        data: [{{location_secondfrequency}}],
+
+                        label: ["{{location_secondlabel}}"],
+
+                    }, {
+                        borderWidth: 2,
+
+                        borderColor: "#B2BEB5",
+
+                        backgroundColor: ["#C90016"],
+
+                        hoverBackgroundColor: ["#A00011"],
+                                        
+                        data: [{{location_thirdfrequency}}],
+
+                        label: ["{{location_thirdlabel}}"]
+                    }]
+                },
+
+                options: {
+                    indexAxis: "y",
+
+                    maintainAspectRatio: false,
+
+                    plugins: {
+                        legend: {
+                            labels: {
+                                padding: 0,
+
+                                boxWidth: 0,
+
+                                boxHeight: 0,
+
+                                color: "#154360",
+
+                                font: {
+                                    family: "Philosopher",
+
+                                    weight: 700,
+
+                                    size: window.innerWidth >= 369 && window.innerWidth <= 445 ? 18 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 16 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 14 : 20
+                                },
+
+                                textAlign: "center"
+                            }
+                        },
+
+                        tooltip: {
+                            paddingLeft: 10,
+
+                            paddingRight: 10,
+                            
+                            paddingTop: 5,
+
+                            paddingBottom: 5,
+
+                            caretSize: window.innerWidth >= 369 && window.innerWidth <= 445 ? 10 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 6 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 4 : 10,
+
+                            borderWidth: 2,
+
+                            borderColor: "#B2BEB5",
+
+                            backgroundColor: ["#154360"],
+
+                            titleFont: {
+                                family: "Philosopher",
+
+                                weight: 700,
+
+                                size: window.innerWidth >= 369 && window.innerWidth <= 445 ? 18 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 16 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 14 : 20
+                            },
+
+                            titleSpacing: 5,
+
+                            bodyFont: {
+                                family: "Overlock",
+
+                                weight: 400,
+
+                                size: window.innerWidth >= 369 && window.innerWidth <= 445 ? 16 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 14 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 12 : 18
+                            },
+
+                            bodySpacing: 5,
+
+                            displayColors: false,
+                        }
+                    },
+
+                    responsive: false,
+
+                    scales: {
+                        y: {
+                            grid: {
+                                lineWidth: 2,
+
+                                color: "#B2BEB5"
+                            },
+
+                            ticks: {
+                                padding: 0,
+
+                                font: {
+                                    family: "Philosopher",
+
+                                    weight: 700,
+
+                                    size: window.innerWidth >= 369 && window.innerWidth <= 445 ? 18 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 16 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 14 : 20
+                                },
+
+                                color: "#154360"
+                            }
+                        },
+
+                        x: {
+                            grid: {
+                                lineWidth: 2,
+
+                                color: "#B2BEB5"
+                            },
+
+                            ticks: {
+                                padding: 0,
+
+                                font: {
+                                    family: "Philosopher",
+
+                                    weight: 700,
+
+                                    size: window.innerWidth >= 369 && window.innerWidth <= 445 ? 18 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 16 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 14 : 20
+                                },
+
+                                color: "#154360"
+                            }
+                        }
+                    }
+                }
+            });
+        </script>
+
+        <script>                        
+            new Chart("statustype-chart", {
+                type: "bar",
+            
+                data: {
+                    labels: ["Status Type"],
+                
+                    datasets: [{
+                        borderWidth: 2,
+
+                        borderColor: "#B2BEB5",
+
+                        backgroundColor: ["#698F3F"],
+
+                        hoverBackgroundColor: ["#557433"],
+                                        
+                        data: [{{statustype_firstfrequency}}],
+
+                        label: ["{{statustype_firstlabel}}"],
+
+                    }, {
+                        borderWidth: 2,
+
+                        borderColor: "#B2BEB5",
+
+                        backgroundColor: ["#F4C430"],
+
+                        hoverBackgroundColor: ["#C39C26"],
+                                        
+                        data: [{{statustype_secondfrequency}}],
+
+                        label: ["{{statustype_secondlabel}}"],
+
+                    }, {
+                        borderWidth: 2,
+
+                        borderColor: "#B2BEB5",
+
+                        backgroundColor: ["#C90016"],
+
+                        hoverBackgroundColor: ["#A00011"],
+                                        
+                        data: [{{statustype_thirdfrequency}}],
+
+                        label: ["{{statustype_thirdlabel}}"]
+                    }]
+                },
+
+                options: {
+                    indexAxis: "y",
+
+                    maintainAspectRatio: false,
+
+                    plugins: {
+                        legend: {
+                            labels: {
+                                padding: 0,
+
+                                boxWidth: 0,
+
+                                boxHeight: 0,
+
+                                color: "#154360",
+
+                                font: {
+                                    family: "Philosopher",
+
+                                    weight: 700,
+
+                                    size: window.innerWidth >= 369 && window.innerWidth <= 445 ? 18 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 16 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 14 : 20
+                                },
+
+                                textAlign: "center"
+                            }
+                        },
+
+                        tooltip: {
+                            paddingLeft: 10,
+
+                            paddingRight: 10,
+                            
+                            paddingTop: 5,
+
+                            paddingBottom: 5,
+
+                            caretSize: window.innerWidth >= 369 && window.innerWidth <= 445 ? 10 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 6 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 4 : 10,
+
+                            borderWidth: 2,
+
+                            borderColor: "#B2BEB5",
+
+                            backgroundColor: ["#154360"],
+
+                            titleFont: {
+                                family: "Philosopher",
+
+                                weight: 700,
+
+                                size: window.innerWidth >= 369 && window.innerWidth <= 445 ? 18 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 16 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 14 : 20
+                            },
+
+                            titleSpacing: 5,
+
+                            bodyFont: {
+                                family: "Overlock",
+
+                                weight: 400,
+
+                                size: window.innerWidth >= 369 && window.innerWidth <= 445 ? 16 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 14 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 12 : 18
+                            },
+
+                            bodySpacing: 5,
+
+                            displayColors: false,
+                        }
+                    },
+
+                    responsive: false,
+
+                    scales: {
+                        y: {
+                            grid: {
+                                lineWidth: 2,
+
+                                color: "#B2BEB5"
+                            },
+
+                            ticks: {
+                                padding: 0,
+
+                                font: {
+                                    family: "Philosopher",
+
+                                    weight: 700,
+
+                                    size: window.innerWidth >= 369 && window.innerWidth <= 445 ? 18 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 16 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 14 : 20
+                                },
+
+                                color: "#154360"
+                            }
+                        },
+
+                        x: {
+                            grid: {
+                                lineWidth: 2,
+
+                                color: "#B2BEB5"
+                            },
+
+                            ticks: {
+                                padding: 0,
+
+                                font: {
+                                    family: "Philosopher",
+
+                                    weight: 700,
+
+                                    size: window.innerWidth >= 369 && window.innerWidth <= 445 ? 18 : window.innerWidth >= 349 && window.innerWidth <= 368 ? 16 : window.innerWidth >= 320 && window.innerWidth <= 348 ? 14 : 20
+                                },
+
+                                color: "#154360"
+                            }
+                        }
+                    }
+                }
+            });
+        </script>
+
         <div class = "line" id = "records"></div>
 
         {% for status in records %}
@@ -144,6 +1560,10 @@
                             </div>  
                         </div>
                     </div>   
+
+                    <div class = "button">
+                        <a class = "read-status" href = "{% url 'admin:Control Statistics Status Read Redirect' object_id=status.id %}">Read</a>
+                    </div>
                 </div>
             </div>
         {% endfor %}

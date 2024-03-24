@@ -20,3 +20,42 @@ class Announcement(models.Model):
     
     def __str__(self):
         return str(self.title) + " | " + str(self.user)
+
+
+class Resource(models.Model):
+    author = models.CharField(max_length = 150, null = True, blank = True, help_text = "Designates the name of the author.", verbose_name = "Author")
+    title = models.CharField(max_length = 150, help_text = "Designates the title of the resource.", verbose_name = "Title")
+    release_date = models.DateTimeField(default = datetime.datetime.now, help_text = "Designates the release date and time of the resource.", verbose_name = "Release Date")
+
+    class Meta:
+            db_table = "auxiliaries_resource"
+            verbose_name = "Resource"
+            verbose_name_plural = "Resources"
+    
+    def __str__(self):
+        return str(self.title) + " | " + str(self.author)
+    
+    
+class ResourceFile(models.Model):
+    resource = models.ForeignKey(Resource, on_delete = models.CASCADE, null = True, blank = True, help_text = "Designates the foreign key of the Resource model.", verbose_name = "Resource")
+    resource_file = models.FileField(null = True, blank = True, upload_to = "resources", help_text = "Designates the file of the resource.", verbose_name = "Resource File")
+
+    class Meta:
+            db_table = "auxiliaries_resource_file"
+            verbose_name = "Resource File"
+            verbose_name_plural = "Resource Files"
+    
+    def __str__(self):
+        return "FILE" + str(self.id)
+
+class ResourceLink(models.Model):
+    resource = models.ForeignKey(Resource, on_delete = models.CASCADE, null = True, blank = True, help_text = "Designates the foreign key of the Resource model.", verbose_name = "Resource")
+    resource_link = models.FileField(max_length = 2050, null = True, blank = True, help_text = "Designates the link of the resource.", verbose_name = "Resource Link")
+
+    class Meta:
+            db_table = "auxiliaries_resource_link"
+            verbose_name = "Resource Link"
+            verbose_name_plural = "Resource Links"
+    
+    def __str__(self):
+        return "LINK" + str(self.id)

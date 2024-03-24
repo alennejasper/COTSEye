@@ -1156,7 +1156,7 @@
     }
 }
 
-.line#overall-chart{
+.line#overall-charts{
     margin-bottom: 30px;
     position: relative;
     width: 100%;
@@ -1164,11 +1164,11 @@
     background-color: #B2BEB5;
 }
 
-.line#overall-chart::before{
+.line#overall-charts::before{
     top: 50%;
     left: 50%;
     position: absolute;
-    content: "OVERALL CHART";
+    content: "OVERALL CHARTS";
     font-family: "Overlock";
     font-weight: 400;
     font-size: 20px;
@@ -1178,11 +1178,11 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .line#overall-chart::before{
+    .line#overall-charts::before{
         top: 50%;
         left: 50%;
         position: absolute;
-        content: "OVERALL CHART";
+        content: "OVERALL CHARTS";
         font-family: "Overlock";
         font-weight: 400;
         font-size: 18px;
@@ -1193,11 +1193,11 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .line#overall-chart::before{
+    .line#overall-charts::before{
         top: 50%;
         left: 50%;
         position: absolute;
-        content: "OVERALL CHART";
+        content: "OVERALL CHARTS";
         font-family: "Overlock";
         font-weight: 400;
         font-size: 16px;
@@ -1208,11 +1208,11 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .line#overall-chart::before{
+    .line#overall-charts::before{
         top: 50%;
         left: 50%;
         position: absolute;
-        content: "OVERALL CHART";
+        content: "OVERALL CHARTS";
         font-family: "Overlock";
         font-weight: 400;
         font-size: 14px;
@@ -1300,7 +1300,7 @@
     top: 50%;
     left: 50%;
     position: absolute;
-    content: "FILTERED";
+    content: "FILTERED STATISTICS";
     font-family: "Overlock";
     font-weight: 400;
     font-size: 20px;
@@ -1314,7 +1314,7 @@
         top: 50%;
         left: 50%;
         position: absolute;
-        content: "FILTERED";
+        content: "FILTERED STATISTICS";
         font-family: "Overlock";
         font-weight: 400;
         font-size: 18px;
@@ -1329,7 +1329,7 @@
         top: 50%;
         left: 50%;
         position: absolute;
-        content: "FILTERED";
+        content: "FILTERED STATISTICS";
         font-family: "Overlock";
         font-weight: 400;
         font-size: 16px;
@@ -1344,7 +1344,7 @@
         top: 50%;
         left: 50%;
         position: absolute;
-        content: "FILTERED";
+        content: "FILTERED STATISTICS";
         font-family: "Overlock";
         font-weight: 400;
         font-size: 14px;
@@ -1354,7 +1354,7 @@
     }
 }
 
-.line#filtered-chart{
+.line#filtered-charts{
     margin-bottom: 30px;
     position: relative;
     width: 100%;
@@ -1362,11 +1362,11 @@
     background-color: #B2BEB5;
 }
 
-.line#filtered-chart::before{
+.line#filtered-charts::before{
     top: 50%;
     left: 50%;
     position: absolute;
-    content: "OVERALL CHART";
+    content: "FILTERED CHARTS";
     font-family: "Overlock";
     font-weight: 400;
     font-size: 20px;
@@ -1376,11 +1376,11 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .line#filtered-chart::before{
+    .line#filtered-charts::before{
         top: 50%;
         left: 50%;
         position: absolute;
-        content: "OVERALL CHART";
+        content: "FILTERED CHARTS";
         font-family: "Overlock";
         font-weight: 400;
         font-size: 18px;
@@ -1391,11 +1391,11 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .line#filtered-chart::before{
+    .line#filtered-charts::before{
         top: 50%;
         left: 50%;
         position: absolute;
-        content: "OVERALL CHART";
+        content: "FILTERED CHARTS";
         font-family: "Overlock";
         font-weight: 400;
         font-size: 16px;
@@ -1406,11 +1406,11 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .line#filtered-chart::before{
+    .line#filtered-charts::before{
         top: 50%;
         left: 50%;
         position: absolute;
-        content: "OVERALL CHART";
+        content: "FILTERED CHARTS";
         font-family: "Overlock";
         font-weight: 400;
         font-size: 14px;
@@ -1777,7 +1777,7 @@
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .post .card-body .field .column label[for = "users-count"]{
-        margin-top: 0px;
+        margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
@@ -1788,7 +1788,7 @@
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .post .card-body .field .column label[for = "users-count"]{
-        margin-top: 0px;
+        margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
@@ -1799,7 +1799,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .post .card-body .field .column label[for = "users-count"]{
-        margin-top: 0px;
+        margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
@@ -1940,7 +1940,7 @@
     }
 }
 
-.post .card-body .field .column label[for = "user-mode"]{
+.post .card-body .field .column label[for = "user-frequency"]{
     margin-top: 15px;
     display: inline-block;
     font-family: "Overlock";
@@ -1950,7 +1950,7 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column label[for = "user-mode"]{
+    .post .card-body .field .column label[for = "user-frequency"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -1961,7 +1961,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column label[for = "user-mode"]{
+    .post .card-body .field .column label[for = "user-frequency"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -1972,7 +1972,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column label[for = "user-mode"]{
+    .post .card-body .field .column label[for = "user-frequency"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -1982,11 +1982,11 @@
     }
 }
 
-.post .card-body .field .column .user-mode{
+.post .card-body .field .column .user-frequency{
     position: relative;
 }
 
-.post .card-body .field .column .user-mode input{
+.post .card-body .field .column .user-frequency input{
     padding-left: 10px !important;
     padding-right: 40px !important;
     padding-top: 5px !important;
@@ -2002,12 +2002,12 @@
     color: #154360 !important;
 }
 
-.post .card-body .field .column .user-mode input:focus{
+.post .card-body .field .column .user-frequency input:focus{
     border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column .user-mode input{
+    .post .card-body .field .column .user-frequency input{
         padding-left: 10px !important;
         padding-right: 38px !important;
         padding-top: 5px !important;
@@ -2025,7 +2025,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column .user-mode input{
+    .post .card-body .field .column .user-frequency input{
         padding-left: 10px !important;
         padding-right: 36px !important;
         padding-top: 5px !important;
@@ -2043,7 +2043,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column .user-mode input{
+    .post .card-body .field .column .user-frequency input{
         padding-left: 10px !important;
         padding-right: 34px !important;
         padding-top: 5px !important;
@@ -2060,7 +2060,7 @@
     }
 }
 
-.post .card-body .field .column .user-mode i{
+.post .card-body .field .column .user-frequency i{
     margin-right: unset !important;
     right: 10px;
     top: 50%;
@@ -2073,7 +2073,7 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column .user-mode i{
+    .post .card-body .field .column .user-frequency i{
         margin-right: unset !important;
         right: 10px;
         top: 50%;
@@ -2087,7 +2087,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column .user-mode i{
+    .post .card-body .field .column .user-frequency i{
         margin-right: unset !important;
         right: 10px;
         top: 50%;
@@ -2101,7 +2101,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column .user-mode i{
+    .post .card-body .field .column .user-frequency i{
         margin-right: unset !important; 
         right: 10px;
         top: 50%;
@@ -2114,7 +2114,7 @@
     }
 }
 
-.post .card-body .field .column label[for = "poststatus-mode"]{
+.post .card-body .field .column label[for = "poststatus-frequency"]{
     margin-top: 15px;
     display: inline-block;
     font-family: "Overlock";
@@ -2124,7 +2124,7 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column label[for = "poststatus-mode"]{
+    .post .card-body .field .column label[for = "poststatus-frequency"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -2135,7 +2135,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column label[for = "poststatus-mode"]{
+    .post .card-body .field .column label[for = "poststatus-frequency"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -2146,7 +2146,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column label[for = "poststatus-mode"]{
+    .post .card-body .field .column label[for = "poststatus-frequency"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -2156,11 +2156,11 @@
     }
 }
 
-.post .card-body .field .column .poststatus-mode{
+.post .card-body .field .column .poststatus-frequency{
     position: relative;
 }
 
-.post .card-body .field .column .poststatus-mode input{
+.post .card-body .field .column .poststatus-frequency input{
     padding-left: 10px !important;
     padding-right: 40px !important;
     padding-top: 5px !important;
@@ -2176,12 +2176,12 @@
     color: #154360 !important;
 }
 
-.post .card-body .field .column .poststatus-mode input:focus{
+.post .card-body .field .column .poststatus-frequency input:focus{
     border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column .poststatus-mode input{
+    .post .card-body .field .column .poststatus-frequency input{
         padding-left: 10px !important;
         padding-right: 38px !important;
         padding-top: 5px !important;
@@ -2199,7 +2199,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column .poststatus-mode input{
+    .post .card-body .field .column .poststatus-frequency input{
         padding-left: 10px !important;
         padding-right: 36px !important;
         padding-top: 5px !important;
@@ -2217,7 +2217,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column .poststatus-mode input{
+    .post .card-body .field .column .poststatus-frequency input{
         padding-left: 10px !important;
         padding-right: 34px !important;
         padding-top: 5px !important;
@@ -2234,7 +2234,7 @@
     }
 }
 
-.post .card-body .field .column .poststatus-mode i{
+.post .card-body .field .column .poststatus-frequency i{
     margin-right: unset !important;
     right: 10px;
     top: 50%;
@@ -2247,7 +2247,7 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column .poststatus-mode i{
+    .post .card-body .field .column .poststatus-frequency i{
         margin-right: unset !important;
         right: 10px;
         top: 50%;
@@ -2261,7 +2261,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column .poststatus-mode i{
+    .post .card-body .field .column .poststatus-frequency i{
         margin-right: unset !important;
         right: 10px;
         top: 50%;
@@ -2275,7 +2275,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column .poststatus-mode i{
+    .post .card-body .field .column .poststatus-frequency i{
         margin-right: unset !important; 
         right: 10px;
         top: 50%;
@@ -2288,7 +2288,7 @@
     }
 }
 
-.post .card-body .field .column label[for = "size-mode"]{
+.post .card-body .field .column label[for = "size-frequency"]{
     margin-top: 15px;
     display: inline-block;
     font-family: "Overlock";
@@ -2298,7 +2298,7 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column label[for = "size-mode"]{
+    .post .card-body .field .column label[for = "size-frequency"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -2309,7 +2309,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column label[for = "size-mode"]{
+    .post .card-body .field .column label[for = "size-frequency"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -2320,7 +2320,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column label[for = "size-mode"]{
+    .post .card-body .field .column label[for = "size-frequency"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -2330,11 +2330,11 @@
     }
 }
 
-.post .card-body .field .column .size-mode{
+.post .card-body .field .column .size-frequency{
     position: relative;
 }
 
-.post .card-body .field .column .size-mode input{
+.post .card-body .field .column .size-frequency input{
     padding-left: 10px !important;
     padding-right: 40px !important;
     padding-top: 5px !important;
@@ -2350,12 +2350,12 @@
     color: #154360 !important;
 }
 
-.post .card-body .field .column .size-mode input:focus{
+.post .card-body .field .column .size-frequency input:focus{
     border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column .size-mode input{
+    .post .card-body .field .column .size-frequency input{
         padding-left: 10px !important;
         padding-right: 38px !important;
         padding-top: 5px !important;
@@ -2373,7 +2373,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column .size-mode input{
+    .post .card-body .field .column .size-frequency input{
         padding-left: 10px !important;
         padding-right: 36px !important;
         padding-top: 5px !important;
@@ -2391,7 +2391,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column .size-mode input{
+    .post .card-body .field .column .size-frequency input{
         padding-left: 10px !important;
         padding-right: 34px !important;
         padding-top: 5px !important;
@@ -2408,7 +2408,7 @@
     }
 }
 
-.post .card-body .field .column .size-mode i{
+.post .card-body .field .column .size-frequency i{
     margin-right: unset !important;
     right: 10px;
     top: 50%;
@@ -2421,7 +2421,7 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column .size-mode i{
+    .post .card-body .field .column .size-frequency i{
         margin-right: unset !important;
         right: 10px;
         top: 50%;
@@ -2435,7 +2435,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column .size-mode i{
+    .post .card-body .field .column .size-frequency i{
         margin-right: unset !important;
         right: 10px;
         top: 50%;
@@ -2449,7 +2449,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column .size-mode i{
+    .post .card-body .field .column .size-frequency i{
         margin-right: unset !important; 
         right: 10px;
         top: 50%;
@@ -2462,7 +2462,7 @@
     }
 }
 
-.post .card-body .field .column label[for = "density-mode"]{
+.post .card-body .field .column label[for = "density-frequency"]{
     margin-top: 15px;
     display: inline-block;
     font-family: "Overlock";
@@ -2472,7 +2472,7 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column label[for = "density-mode"]{
+    .post .card-body .field .column label[for = "density-frequency"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -2483,7 +2483,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column label[for = "density-mode"]{
+    .post .card-body .field .column label[for = "density-frequency"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -2494,7 +2494,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column label[for = "density-mode"]{
+    .post .card-body .field .column label[for = "density-frequency"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -2504,11 +2504,11 @@
     }
 }
 
-.post .card-body .field .column .density-mode{
+.post .card-body .field .column .density-frequency{
     position: relative;
 }
 
-.post .card-body .field .column .density-mode input{
+.post .card-body .field .column .density-frequency input{
     padding-left: 10px !important;
     padding-right: 40px !important;
     padding-top: 5px !important;
@@ -2524,12 +2524,12 @@
     color: #154360 !important;
 }
 
-.post .card-body .field .column .density-mode input:focus{
+.post .card-body .field .column .density-frequency input:focus{
     border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column .density-mode input{
+    .post .card-body .field .column .density-frequency input{
         padding-left: 10px !important;
         padding-right: 38px !important;
         padding-top: 5px !important;
@@ -2547,7 +2547,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column .density-mode input{
+    .post .card-body .field .column .density-frequency input{
         padding-left: 10px !important;
         padding-right: 36px !important;
         padding-top: 5px !important;
@@ -2565,7 +2565,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column .density-mode input{
+    .post .card-body .field .column .density-frequency input{
         padding-left: 10px !important;
         padding-right: 34px !important;
         padding-top: 5px !important;
@@ -2582,7 +2582,7 @@
     }
 }
 
-.post .card-body .field .column .density-mode i{
+.post .card-body .field .column .density-frequency i{
     margin-right: unset !important;
     right: 10px;
     top: 50%;
@@ -2595,7 +2595,7 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column .density-mode i{
+    .post .card-body .field .column .density-frequency i{
         margin-right: unset !important;
         right: 10px;
         top: 50%;
@@ -2609,7 +2609,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column .density-mode i{
+    .post .card-body .field .column .density-frequency i{
         margin-right: unset !important;
         right: 10px;
         top: 50%;
@@ -2623,7 +2623,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column .density-mode i{
+    .post .card-body .field .column .density-frequency i{
         margin-right: unset !important; 
         right: 10px;
         top: 50%;
@@ -2636,7 +2636,7 @@
     }
 }
 
-.post .card-body .field .column label[for = "depth-mode"]{
+.post .card-body .field .column label[for = "depth-frequency"]{
     margin-top: 15px;
     display: inline-block;
     font-family: "Overlock";
@@ -2646,7 +2646,7 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column label[for = "depth-mode"]{
+    .post .card-body .field .column label[for = "depth-frequency"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -2657,7 +2657,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column label[for = "depth-mode"]{
+    .post .card-body .field .column label[for = "depth-frequency"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -2668,7 +2668,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column label[for = "depth-mode"]{
+    .post .card-body .field .column label[for = "depth-frequency"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -2678,11 +2678,11 @@
     }
 }
 
-.post .card-body .field .column .depth-mode{
+.post .card-body .field .column .depth-frequency{
     position: relative;
 }
 
-.post .card-body .field .column .depth-mode input{
+.post .card-body .field .column .depth-frequency input{
     padding-left: 10px !important;
     padding-right: 40px !important;
     padding-top: 5px !important;
@@ -2698,12 +2698,12 @@
     color: #154360 !important;
 }
 
-.post .card-body .field .column .depth-mode input:focus{
+.post .card-body .field .column .depth-frequency input:focus{
     border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .density .depth-mode input{
+    .post .card-body .field .density .depth-frequency input{
         padding-left: 10px !important;
         padding-right: 38px !important;
         padding-top: 5px !important;
@@ -2721,7 +2721,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column .depth-mode input{
+    .post .card-body .field .column .depth-frequency input{
         padding-left: 10px !important;
         padding-right: 36px !important;
         padding-top: 5px !important;
@@ -2739,7 +2739,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column .depth-mode input{
+    .post .card-body .field .column .depth-frequency input{
         padding-left: 10px !important;
         padding-right: 34px !important;
         padding-top: 5px !important;
@@ -2756,7 +2756,7 @@
     }
 }
 
-.post .card-body .field .column .depth-mode i{
+.post .card-body .field .column .depth-frequency i{
     margin-right: unset !important;
     right: 10px;
     top: 50%;
@@ -2769,7 +2769,7 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column .depth-mode i{
+    .post .card-body .field .column .depth-frequency i{
         margin-right: unset !important;
         right: 10px;
         top: 50%;
@@ -2783,7 +2783,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column .depth-mode i{
+    .post .card-body .field .column .depth-frequency i{
         margin-right: unset !important;
         right: 10px;
         top: 50%;
@@ -2797,7 +2797,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column .depth-mode i{
+    .post .card-body .field .column .depth-frequency i{
         margin-right: unset !important; 
         right: 10px;
         top: 50%;
@@ -2810,7 +2810,7 @@
     }
 }
 
-.post .card-body .field .column label[for = "weather-mode"]{
+.post .card-body .field .column label[for = "weather-frequency"]{
     margin-top: 15px;
     display: inline-block;
     font-family: "Overlock";
@@ -2820,7 +2820,7 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column label[for = "weather-mode"]{
+    .post .card-body .field .column label[for = "weather-frequency"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -2831,7 +2831,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column label[for = "weather-mode"]{
+    .post .card-body .field .column label[for = "weather-frequency"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -2842,7 +2842,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column label[for = "weather-mode"]{
+    .post .card-body .field .column label[for = "weather-frequency"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -2852,11 +2852,11 @@
     }
 }
 
-.post .card-body .field .column .weather-mode{
+.post .card-body .field .column .weather-frequency{
     position: relative;
 }
 
-.post .card-body .field .column .weather-mode input{
+.post .card-body .field .column .weather-frequency input{
     padding-left: 10px !important;
     padding-right: 40px !important;
     padding-top: 5px !important;
@@ -2872,12 +2872,12 @@
     color: #154360 !important;
 }
 
-.post .card-body .field .column .weather-mode input:focus{
+.post .card-body .field .column .weather-frequency input:focus{
     border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .density .weather-mode input{
+    .post .card-body .field .density .weather-frequency input{
         padding-left: 10px !important;
         padding-right: 38px !important;
         padding-top: 5px !important;
@@ -2895,7 +2895,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column .weather-mode input{
+    .post .card-body .field .column .weather-frequency input{
         padding-left: 10px !important;
         padding-right: 36px !important;
         padding-top: 5px !important;
@@ -2913,7 +2913,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column .weather-mode input{
+    .post .card-body .field .column .weather-frequency input{
         padding-left: 10px !important;
         padding-right: 34px !important;
         padding-top: 5px !important;
@@ -2930,7 +2930,7 @@
     }
 }
 
-.post .card-body .field .column .weather-mode i{
+.post .card-body .field .column .weather-frequency i{
     margin-right: unset !important;
     right: 10px;
     top: 50%;
@@ -2943,7 +2943,7 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column .weather-mode i{
+    .post .card-body .field .column .weather-frequency i{
         margin-right: unset !important;
         right: 10px;
         top: 50%;
@@ -2957,7 +2957,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column .weather-mode i{
+    .post .card-body .field .column .weather-frequency i{
         margin-right: unset !important;
         right: 10px;
         top: 50%;
@@ -2971,7 +2971,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column .weather-mode i{
+    .post .card-body .field .column .weather-frequency i{
         margin-right: unset !important; 
         right: 10px;
         top: 50%;
@@ -3083,13 +3083,38 @@
     gap: unset !important;
 }
 
-.post .card-body canvas.posts-chart{
+.post .card-body .posts-chart{
     width: 100% !important;
-    position: relative;
     border-radius: 5px;
     border: 1px solid #B2BEB5; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important; 
+    overflow: auto;
 }
+
+.post .card-body .posts-chart canvas.posts-chart{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100% !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body .posts-chart canvas.posts-chart{
+        width: 100vw !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body .posts-chart canvas.posts-chart{
+        width: 100vw !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body .posts-chart canvas.posts-chart{
+        width: 100vw !important;
+    }
+}    
 
 .post .card-body label[for = "users-chart"]{
     margin-top: 15px;
@@ -3137,13 +3162,38 @@
     gap: unset !important;
 }
 
-.post .card-body canvas.users-chart{
+.post .card-body .users-chart{
     width: 100% !important;
-    position: relative;
     border-radius: 5px;
     border: 1px solid #B2BEB5; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important; 
+    overflow: auto;
 }
+
+.post .card-body .users-chart canvas.users-chart{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100% !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body .users-chart canvas.users-chart{
+        width: 100vw !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body .users-chart canvas.users-chart{
+        width: 100vw !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body .users-chart canvas.users-chart{
+        width: 100vw !important;
+    }
+}    
 
 .post .card-body label[for = "poststatus-chart"]{
     margin-top: 15px;
@@ -3191,13 +3241,38 @@
     gap: unset !important;
 }
 
-.post .card-body canvas.poststatus-chart{
+.post .card-body .poststatus-chart{
     width: 100% !important;
-    position: relative;
     border-radius: 5px;
     border: 1px solid #B2BEB5; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important; 
+    overflow: auto;
 }
+
+.post .card-body .poststatus-chart canvas.poststatus-chart{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100% !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body .poststatus-chart canvas.poststatus-chart{
+        width: 100vw !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body .poststatus-chart canvas.poststatus-chart{
+        width: 100vw !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body .poststatus-chart canvas.poststatus-chart{
+        width: 100vw !important;
+    }
+}    
 
 .post .card-body label[for = "size-chart"]{
     margin-top: 15px;
@@ -3245,13 +3320,38 @@
     gap: unset !important;
 }
 
-.post .card-body canvas.size-chart{
+.post .card-body .size-chart{
     width: 100% !important;
-    position: relative;
     border-radius: 5px;
     border: 1px solid #B2BEB5; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important; 
+    overflow: auto;
 }
+
+.post .card-body .size-chart canvas.size-chart{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100% !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body .size-chart canvas.size-chart{
+        width: 100vw !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body .size-chart canvas.size-chart{
+        width: 100vw !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body .size-chart canvas.size-chart{
+        width: 100vw !important;
+    }
+}    
 
 .post .card-body label[for = "density-chart"]{
     margin-top: 15px;
@@ -3299,13 +3399,38 @@
     gap: unset !important;
 }
 
-.post .card-body canvas.density-chart{
+.post .card-body .density-chart{
     width: 100% !important;
-    position: relative;
     border-radius: 5px;
     border: 1px solid #B2BEB5; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important; 
+    overflow: auto;
 }
+
+.post .card-body .density-chart canvas.density-chart{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100% !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body .density-chart canvas.density-chart{
+        width: 100vw !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body .density-chart canvas.density-chart{
+        width: 100vw !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body .density-chart canvas.density-chart{
+        width: 100vw !important;
+    }
+}    
 
 .post .card-body label[for = "depth-chart"]{
     margin-top: 15px;
@@ -3353,13 +3478,38 @@
     gap: unset !important;
 }
 
-.post .card-body canvas.depth-chart{
+.post .card-body .depth-chart{
     width: 100% !important;
-    position: relative;
     border-radius: 5px;
     border: 1px solid #B2BEB5; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important; 
+    overflow: auto;
 }
+
+.post .card-body .depth-chart canvas.depth-chart{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100% !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body .depth-chart canvas.depth-chart{
+        width: 100vw !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body .depth-chart canvas.depth-chart{
+        width: 100vw !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body .depth-chart canvas.depth-chart{
+        width: 100vw !important;
+    }
+}    
 
 .post .card-body label[for = "weather-chart"]{
     margin-top: 15px;
@@ -3407,13 +3557,38 @@
     gap: unset !important;
 }
 
-.post .card-body canvas.weather-chart{
+.post .card-body .weather-chart{
     width: 100% !important;
-    position: relative;
     border-radius: 5px;
     border: 1px solid #B2BEB5; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important; 
+    overflow: auto;
 }
+
+.post .card-body .weather-chart canvas.weather-chart{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100% !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body .weather-chart canvas.weather-chart{
+        width: 100vw !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body .weather-chart canvas.weather-chart{
+        width: 100vw !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body .weather-chart canvas.weather-chart{
+        width: 100vw !important;
+    }
+}    
 
 .post .card-header header.preview{
     font-family: "Philosopher";

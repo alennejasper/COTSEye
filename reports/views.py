@@ -84,7 +84,7 @@ def ContributorServiceReportCapture(request):
                 post_photos = request.FILES.getlist("post_photo")
 
                 for post_photo in post_photos:
-                    photo = PostPhotos.objects.create(post_photo = post_photo)
+                    photo = PostPhoto.objects.create(post_photo = post_photo)
                     
                     post.post_photos.add(photo)
 
@@ -162,7 +162,7 @@ def ContributorServiceReportChoose(request):
                 post_photos = request.FILES.getlist("post_photo")
 
                 for post_photo in post_photos:
-                    photo = PostPhotos.objects.create(post_photo = post_photo)
+                    photo = PostPhoto.objects.create(post_photo = post_photo)
                     
                     post.post_photos.add(photo)
 
@@ -220,7 +220,7 @@ def ContributorServiceReportCaptureUpdate(request, id):
             post_photos = request.FILES.getlist("post_photo")
 
             for post_photo in post_photos:
-                photo = PostPhotos.objects.create(post_photo = post_photo)
+                photo = PostPhoto.objects.create(post_photo = post_photo)
 
                 post.post_photos.add(photo)
 
@@ -278,7 +278,7 @@ def ContributorServiceReportChooseUpdate(request, id):
             post_photos = request.FILES.getlist("post_photo")
 
             for post_photo in post_photos:
-                photo = PostPhotos.objects.create(post_photo = post_photo)
+                photo = PostPhoto.objects.create(post_photo = post_photo)
 
                 post.post_photos.add(photo)
 
@@ -702,7 +702,7 @@ def OfficerControlStatisticsPost(request):
         posts_label = "Posts" + " Count"
     
     except:
-        posts_count = 0
+        posts_count = ""
 
         posts_label = ""
 
@@ -721,38 +721,38 @@ def OfficerControlStatisticsPost(request):
 
         user_tally = Counter(user_distribution)
         
-        user_mode = user_tally.most_common(1)[0][0]
+        user_frequency = user_tally.most_common(1)[0][0]
     
     except:
-        user_mode = ""
+        user_frequency = ""
     
     try:
-        user_firstmode = user_tally.most_common(1)[0][1]
+        user_firstfrequency = user_tally.most_common(1)[0][1]
 
-        user_firstlabel = user_tally.most_common(1)[0][0] + " Mode"
+        user_firstlabel = user_tally.most_common(1)[0][0] + " Frequency"
 
     except:
-        user_firstmode = ""
+        user_firstfrequency = ""
     
         user_firstlabel = ""
     
     try:
-        user_secondmode = user_tally.most_common(2)[1][1]
+        user_secondfrequency = user_tally.most_common(2)[1][1]
 
-        user_secondlabel = user_tally.most_common(2)[1][0] + " Mode"
+        user_secondlabel = user_tally.most_common(2)[1][0] + " Frequency"
     
     except:
-        user_secondmode = ""
+        user_secondfrequency = ""
     
         user_secondlabel = ""
     
     try:
-        user_thirdmode = size_tally.most_common(3)[2][1] 
+        user_thirdfrequency = size_tally.most_common(3)[2][1] 
 
-        user_thirdlabel = size_tally.most_common(3)[2][0] + " Mode"
+        user_thirdlabel = size_tally.most_common(3)[2][0] + " Frequency"
     
     except:
-        user_thirdmode = ""
+        user_thirdfrequency = ""
     
         user_thirdlabel = ""
 
@@ -761,38 +761,38 @@ def OfficerControlStatisticsPost(request):
 
         poststatus_tally = Counter(poststatus_distribution)
 
-        poststatus_mode = poststatus_tally.most_common(1)[0][0]
+        poststatus_frequency = poststatus_tally.most_common(1)[0][0]
 
     except:
-        poststatus_mode = ""
+        poststatus_frequency = ""
 
     try:
-        poststatus_firstmode = poststatus_tally.most_common(1)[0][1]
+        poststatus_firstfrequency = poststatus_tally.most_common(1)[0][1]
 
-        poststatus_firstlabel = poststatus_tally.most_common(1)[0][0] + " Mode"
+        poststatus_firstlabel = poststatus_tally.most_common(1)[0][0] + " Frequency"
 
     except:
-        poststatus_firstmode = ""
+        poststatus_firstfrequency = ""
     
         poststatus_firstlabel = ""
 
     try:
-        poststatus_secondmode = poststatus_tally.most_common(2)[1][1]
+        poststatus_secondfrequency = poststatus_tally.most_common(2)[1][1]
 
-        poststatus_secondlabel = poststatus_tally.most_common(2)[1][0] + " Mode"
+        poststatus_secondlabel = poststatus_tally.most_common(2)[1][0] + " Frequency"
     
     except:
-        poststatus_secondmode = ""
+        poststatus_secondfrequency = ""
     
         poststatus_secondlabel = ""
 
     try:
-        poststatus_thirdmode = poststatus_tally.most_common(3)[2][1] 
+        poststatus_thirdfrequency = poststatus_tally.most_common(3)[2][1] 
 
-        poststatus_thirdlabel = poststatus_tally.most_common(3)[2][0] + " Mode"
+        poststatus_thirdlabel = poststatus_tally.most_common(3)[2][0] + " Frequency"
     
     except:
-        poststatus_thirdmode = ""
+        poststatus_thirdfrequency = ""
     
         poststatus_thirdlabel = ""
 
@@ -801,38 +801,38 @@ def OfficerControlStatisticsPost(request):
 
         size_tally = Counter(size_distribution)
 
-        size_mode = size_tally.most_common(1)[0][0]
+        size_frequency = size_tally.most_common(1)[0][0]
 
     except:
-        size_mode = ""
+        size_frequency = ""
     
     try:
-        size_firstmode = size_tally.most_common(1)[0][1]
+        size_firstfrequency = size_tally.most_common(1)[0][1]
 
-        size_firstlabel = size_tally.most_common(1)[0][0] + " / Centimeter Mode"
+        size_firstlabel = size_tally.most_common(1)[0][0] + " / Centimeter Frequency"
 
     except:
-        size_firstmode = ""
+        size_firstfrequency = ""
     
         size_firstlabel = ""
     
     try:
-        size_secondmode = size_tally.most_common(2)[1][1]
+        size_secondfrequency = size_tally.most_common(2)[1][1]
 
-        size_secondlabel = size_tally.most_common(2)[1][0] + " / Centimeter Mode"
+        size_secondlabel = size_tally.most_common(2)[1][0] + " / Centimeter Frequency"
     
     except:
-        size_secondmode = ""
+        size_secondfrequency = ""
     
         size_secondlabel = ""
     
     try:
-        size_thirdmode = size_tally.most_common(3)[2][1] 
+        size_thirdfrequency = size_tally.most_common(3)[2][1] 
 
-        size_thirdlabel = size_tally.most_common(3)[2][0] + " / Centimeter Mode"
+        size_thirdlabel = size_tally.most_common(3)[2][0] + " / Centimeter Frequency"
     
     except:
-        size_thirdmode = ""
+        size_thirdfrequency = ""
     
         size_thirdlabel = ""
 
@@ -841,38 +841,38 @@ def OfficerControlStatisticsPost(request):
 
         density_tally = Counter(density_distribution)
 
-        density_mode = density_tally.most_common(1)[0][0]
+        density_frequency = density_tally.most_common(1)[0][0]
     
     except:
-        density_mode = ""
+        density_frequency = ""
     
     try:
-        density_firstmode = density_tally.most_common(1)[0][1]
+        density_firstfrequency = density_tally.most_common(1)[0][1]
 
-        density_firstlabel = density_tally.most_common(1)[0][0] + " / Square Meter Mode"
+        density_firstlabel = density_tally.most_common(1)[0][0] + " / Square Meter Frequency"
 
     except:
-        density_firstmode = ""
+        density_firstfrequency = ""
     
         density_firstlabel = ""
     
     try:
-        density_secondmode = density_tally.most_common(2)[1][1]
+        density_secondfrequency = density_tally.most_common(2)[1][1]
 
-        density_secondlabel = density_tally.most_common(2)[1][0] + " / Square Meter Mode"
+        density_secondlabel = density_tally.most_common(2)[1][0] + " / Square Meter Frequency"
     
     except:
-        density_secondmode = ""
+        density_secondfrequency = ""
     
         density_secondlabel = ""
     
     try:
-        density_thirdmode = density_tally.most_common(3)[2][1] 
+        density_thirdfrequency = density_tally.most_common(3)[2][1] 
 
-        density_thirdlabel = density_tally.most_common(3)[2][0] + " / Square Meter Mode"
+        density_thirdlabel = density_tally.most_common(3)[2][0] + " / Square Meter Frequency"
     
     except:
-        density_thirdmode = ""
+        density_thirdfrequency = ""
     
         density_thirdlabel = ""
 
@@ -881,38 +881,38 @@ def OfficerControlStatisticsPost(request):
 
         depth_tally = Counter(depth_distribution)
 
-        depth_mode = depth_tally.most_common(1)[0][0]
+        depth_frequency = depth_tally.most_common(1)[0][0]
     
     except:
-        depth_mode = ""
+        depth_frequency = ""
     
     try:
-        depth_firstmode = depth_tally.most_common(1)[0][1]
+        depth_firstfrequency = depth_tally.most_common(1)[0][1]
 
-        depth_firstlabel = depth_tally.most_common(1)[0][0] + " Mode"
+        depth_firstlabel = depth_tally.most_common(1)[0][0] + " Frequency"
 
     except:
-        depth_firstmode = ""
+        depth_firstfrequency = ""
     
         depth_firstlabel = ""
     
     try:
-        depth_secondmode = depth_tally.most_common(2)[1][1]
+        depth_secondfrequency = depth_tally.most_common(2)[1][1]
 
-        depth_secondlabel = depth_tally.most_common(2)[1][0] + " Mode"
+        depth_secondlabel = depth_tally.most_common(2)[1][0] + " Frequency"
     
     except:
-        depth_secondmode = ""
+        depth_secondfrequency = ""
     
         depth_secondlabel = ""
     
     try:
-        depth_thirdmode = depth_tally.most_common(3)[2][1] 
+        depth_thirdfrequency = depth_tally.most_common(3)[2][1] 
 
-        depth_thirdlabel = depth_tally.most_common(3)[2][0] + " Mode"
+        depth_thirdlabel = depth_tally.most_common(3)[2][0] + " Frequency"
     
     except:
-        depth_thirdmode = ""
+        depth_thirdfrequency = ""
     
         depth_thirdlabel = ""
 
@@ -921,38 +921,38 @@ def OfficerControlStatisticsPost(request):
 
         weather_tally = Counter(weather_distribution)
 
-        weather_mode = weather_tally.most_common(1)[0][0]
+        weather_frequency = weather_tally.most_common(1)[0][0]
 
     except:
-        weather_mode = ""
+        weather_frequency = ""
     
     try:
-        weather_firstmode = weather_tally.most_common(1)[0][1]
+        weather_firstfrequency = weather_tally.most_common(1)[0][1]
 
-        weather_firstlabel = weather_tally.most_common(1)[0][0] + " Mode"
+        weather_firstlabel = weather_tally.most_common(1)[0][0] + " Frequency"
 
     except:
-        weather_firstmode = ""
+        weather_firstfrequency = ""
     
         weather_firstlabel = ""
     
     try:
-        weather_secondmode = weather_tally.most_common(2)[1][1]
+        weather_secondfrequency = weather_tally.most_common(2)[1][1]
 
-        weather_secondlabel = weather_tally.most_common(2)[1][0] + " Mode"
+        weather_secondlabel = weather_tally.most_common(2)[1][0] + " Frequency"
     
     except:
-        weather_secondmode = ""
+        weather_secondfrequency = ""
     
         weather_secondlabel = ""
     
     try:
-        weather_thirdmode = weather_tally.most_common(3)[2][1] 
+        weather_thirdfrequency = weather_tally.most_common(3)[2][1] 
 
-        weather_thirdlabel = weather_tally.most_common(3)[2][0] + " Mode"
+        weather_thirdlabel = weather_tally.most_common(3)[2][0] + " Frequency"
     
     except:
-        weather_thirdmode = ""
+        weather_thirdfrequency = ""
     
         weather_thirdlabel = ""
 
@@ -1098,38 +1098,38 @@ def OfficerControlStatisticsPost(request):
 
                 user_tally = Counter(user_distribution)
                 
-                user_mode = user_tally.most_common(1)[0][0]
+                user_frequency = user_tally.most_common(1)[0][0]
             
             except:
-                user_mode = ""
+                user_frequency = ""
             
             try:
-                user_firstmode = user_tally.most_common(1)[0][1]
+                user_firstfrequency = user_tally.most_common(1)[0][1]
 
-                user_firstlabel = user_tally.most_common(1)[0][0] + " Mode"
+                user_firstlabel = user_tally.most_common(1)[0][0] + " Frequency"
 
             except:
-                user_firstmode = ""
+                user_firstfrequency = ""
             
                 user_firstlabel = ""
             
             try:
-                user_secondmode = user_tally.most_common(2)[1][1]
+                user_secondfrequency = user_tally.most_common(2)[1][1]
 
-                user_secondlabel = user_tally.most_common(2)[1][0] + " Mode"
+                user_secondlabel = user_tally.most_common(2)[1][0] + " Frequency"
             
             except:
-                user_secondmode = ""
+                user_secondfrequency = ""
             
                 user_secondlabel = ""
             
             try:
-                user_thirdmode = size_tally.most_common(3)[2][1] 
+                user_thirdfrequency = size_tally.most_common(3)[2][1] 
 
-                user_thirdlabel = size_tally.most_common(3)[2][0] + " Mode"
+                user_thirdlabel = size_tally.most_common(3)[2][0] + " Frequency"
             
             except:
-                user_thirdmode = ""
+                user_thirdfrequency = ""
             
                 user_thirdlabel = ""
 
@@ -1138,38 +1138,38 @@ def OfficerControlStatisticsPost(request):
 
                 poststatus_tally = Counter(poststatus_distribution)
 
-                poststatus_mode = poststatus_tally.most_common(1)[0][0]
+                poststatus_frequency = poststatus_tally.most_common(1)[0][0]
 
             except:
-                poststatus_mode = ""
+                poststatus_frequency = ""
 
             try:
-                poststatus_firstmode = poststatus_tally.most_common(1)[0][1]
+                poststatus_firstfrequency = poststatus_tally.most_common(1)[0][1]
 
-                poststatus_firstlabel = poststatus_tally.most_common(1)[0][0] + " Mode"
+                poststatus_firstlabel = poststatus_tally.most_common(1)[0][0] + " Frequency"
 
             except:
-                poststatus_firstmode = ""
+                poststatus_firstfrequency = ""
             
                 poststatus_firstlabel = ""
 
             try:
-                poststatus_secondmode = poststatus_tally.most_common(2)[1][1]
+                poststatus_secondfrequency = poststatus_tally.most_common(2)[1][1]
 
-                poststatus_secondlabel = poststatus_tally.most_common(2)[1][0] + " Mode"
+                poststatus_secondlabel = poststatus_tally.most_common(2)[1][0] + " Frequency"
             
             except:
-                poststatus_secondmode = ""
+                poststatus_secondfrequency = ""
             
                 poststatus_secondlabel = ""
 
             try:
-                poststatus_thirdmode = poststatus_tally.most_common(3)[2][1] 
+                poststatus_thirdfrequency = poststatus_tally.most_common(3)[2][1] 
 
-                poststatus_thirdlabel = poststatus_tally.most_common(3)[2][0] + " Mode"
+                poststatus_thirdlabel = poststatus_tally.most_common(3)[2][0] + " Frequency"
             
             except:
-                poststatus_thirdmode = ""
+                poststatus_thirdfrequency = ""
             
                 poststatus_thirdlabel = ""
 
@@ -1178,38 +1178,38 @@ def OfficerControlStatisticsPost(request):
 
                 size_tally = Counter(size_distribution)
 
-                size_mode = size_tally.most_common(1)[0][0]
+                size_frequency = size_tally.most_common(1)[0][0]
 
             except:
-                size_mode = ""
+                size_frequency = ""
             
             try:
-                size_firstmode = size_tally.most_common(1)[0][1]
+                size_firstfrequency = size_tally.most_common(1)[0][1]
 
-                size_firstlabel = size_tally.most_common(1)[0][0] + " / Centimeter Mode"
+                size_firstlabel = size_tally.most_common(1)[0][0] + " / Centimeter Frequency"
 
             except:
-                size_firstmode = ""
+                size_firstfrequency = ""
             
                 size_firstlabel = ""
             
             try:
-                size_secondmode = size_tally.most_common(2)[1][1]
+                size_secondfrequency = size_tally.most_common(2)[1][1]
 
-                size_secondlabel = size_tally.most_common(2)[1][0] + " / Centimeter Mode"
+                size_secondlabel = size_tally.most_common(2)[1][0] + " / Centimeter Frequency"
             
             except:
-                size_secondmode = ""
+                size_secondfrequency = ""
             
                 size_secondlabel = ""
             
             try:
-                size_thirdmode = size_tally.most_common(3)[2][1] 
+                size_thirdfrequency = size_tally.most_common(3)[2][1] 
 
-                size_thirdlabel = size_tally.most_common(3)[2][0] + " / Centimeter Mode"
+                size_thirdlabel = size_tally.most_common(3)[2][0] + " / Centimeter Frequency"
             
             except:
-                size_thirdmode = ""
+                size_thirdfrequency = ""
             
                 size_thirdlabel = ""
 
@@ -1218,38 +1218,38 @@ def OfficerControlStatisticsPost(request):
 
                 density_tally = Counter(density_distribution)
 
-                density_mode = density_tally.most_common(1)[0][0]
+                density_frequency = density_tally.most_common(1)[0][0]
             
             except:
-                density_mode = ""
+                density_frequency = ""
             
             try:
-                density_firstmode = density_tally.most_common(1)[0][1]
+                density_firstfrequency = density_tally.most_common(1)[0][1]
 
-                density_firstlabel = density_tally.most_common(1)[0][0] + " / Square Meter Mode"
+                density_firstlabel = density_tally.most_common(1)[0][0] + " / Square Meter Frequency"
 
             except:
-                density_firstmode = ""
+                density_firstfrequency = ""
             
                 density_firstlabel = ""
             
             try:
-                density_secondmode = density_tally.most_common(2)[1][1]
+                density_secondfrequency = density_tally.most_common(2)[1][1]
 
-                density_secondlabel = density_tally.most_common(2)[1][0] + " / Square Meter Mode"
+                density_secondlabel = density_tally.most_common(2)[1][0] + " / Square Meter Frequency"
             
             except:
-                density_secondmode = ""
+                density_secondfrequency = ""
             
                 density_secondlabel = ""
             
             try:
-                density_thirdmode = density_tally.most_common(3)[2][1] 
+                density_thirdfrequency = density_tally.most_common(3)[2][1] 
 
-                density_thirdlabel = density_tally.most_common(3)[2][0] + " / Square Meter Mode"
+                density_thirdlabel = density_tally.most_common(3)[2][0] + " / Square Meter Frequency"
             
             except:
-                density_thirdmode = ""
+                density_thirdfrequency = ""
             
                 density_thirdlabel = ""
 
@@ -1258,38 +1258,38 @@ def OfficerControlStatisticsPost(request):
 
                 depth_tally = Counter(depth_distribution)
 
-                depth_mode = depth_tally.most_common(1)[0][0]
+                depth_frequency = depth_tally.most_common(1)[0][0]
             
             except:
-                depth_mode = ""
+                depth_frequency = ""
             
             try:
-                depth_firstmode = depth_tally.most_common(1)[0][1]
+                depth_firstfrequency = depth_tally.most_common(1)[0][1]
 
-                depth_firstlabel = depth_tally.most_common(1)[0][0] + " Mode"
+                depth_firstlabel = depth_tally.most_common(1)[0][0] + " Frequency"
 
             except:
-                depth_firstmode = ""
+                depth_firstfrequency = ""
             
                 depth_firstlabel = ""
             
             try:
-                depth_secondmode = depth_tally.most_common(2)[1][1]
+                depth_secondfrequency = depth_tally.most_common(2)[1][1]
 
-                depth_secondlabel = depth_tally.most_common(2)[1][0] + " Mode"
+                depth_secondlabel = depth_tally.most_common(2)[1][0] + " Frequency"
             
             except:
-                depth_secondmode = ""
+                depth_secondfrequency = ""
             
                 depth_secondlabel = ""
             
             try:
-                depth_thirdmode = depth_tally.most_common(3)[2][1] 
+                depth_thirdfrequency = depth_tally.most_common(3)[2][1] 
 
-                depth_thirdlabel = depth_tally.most_common(3)[2][0] + " Mode"
+                depth_thirdlabel = depth_tally.most_common(3)[2][0] + " Frequency"
             
             except:
-                depth_thirdmode = ""
+                depth_thirdfrequency = ""
             
                 depth_thirdlabel = ""
 
@@ -1298,38 +1298,38 @@ def OfficerControlStatisticsPost(request):
 
                 weather_tally = Counter(weather_distribution)
 
-                weather_mode = weather_tally.most_common(1)[0][0]
+                weather_frequency = weather_tally.most_common(1)[0][0]
 
             except:
-                weather_mode = ""
+                weather_frequency = ""
             
             try:
-                weather_firstmode = weather_tally.most_common(1)[0][1]
+                weather_firstfrequency = weather_tally.most_common(1)[0][1]
 
-                weather_firstlabel = weather_tally.most_common(1)[0][0] + " Mode"
+                weather_firstlabel = weather_tally.most_common(1)[0][0] + " Frequency"
 
             except:
-                weather_firstmode = ""
+                weather_firstfrequency = ""
             
                 weather_firstlabel = ""
             
             try:
-                weather_secondmode = weather_tally.most_common(2)[1][1]
+                weather_secondfrequency = weather_tally.most_common(2)[1][1]
 
-                weather_secondlabel = weather_tally.most_common(2)[1][0] + " Mode"
+                weather_secondlabel = weather_tally.most_common(2)[1][0] + " Frequency"
             
             except:
-                weather_secondmode = ""
+                weather_secondfrequency = ""
             
                 weather_secondlabel = ""
             
             try:
-                weather_thirdmode = weather_tally.most_common(3)[2][1] 
+                weather_thirdfrequency = weather_tally.most_common(3)[2][1] 
 
-                weather_thirdlabel = weather_tally.most_common(3)[2][0] + " Mode"
+                weather_thirdlabel = weather_tally.most_common(3)[2][0] + " Frequency"
             
             except:
-                weather_thirdmode = ""
+                weather_thirdfrequency = ""
             
                 weather_thirdlabel = ""
 
@@ -1338,7 +1338,7 @@ def OfficerControlStatisticsPost(request):
 
             messages.error(request, username + ", " + "information input is impossible within COTSEye.")
 
-    context = {"username": username, "records": records, "results": results, "options": options, "posts_count": posts_count, "posts_label": posts_label, "users_count": users_count, "users_label": users_label,"user_mode": user_mode, "user_firstmode": user_firstmode, "user_firstlabel": user_firstlabel, "user_secondmode": user_secondmode, "user_secondlabel": user_secondlabel, "user_thirdmode": user_thirdmode, "user_thirdlabel": user_thirdlabel, "poststatus_mode": poststatus_mode, "poststatus_firstmode": poststatus_firstmode, "poststatus_firstlabel": poststatus_firstlabel, "poststatus_secondmode": poststatus_secondmode, "poststatus_secondlabel": poststatus_secondlabel, "poststatus_thirdmode": poststatus_thirdmode, "poststatus_thirdlabel": poststatus_thirdlabel, "size_mode": size_mode, "size_firstmode": size_firstmode, "size_firstlabel": size_firstlabel, "size_secondmode": size_secondmode, "size_secondlabel": size_secondlabel, "size_thirdmode": size_thirdmode, "size_thirdlabel": size_thirdlabel, "density_mode": density_mode, "density_firstmode": density_firstmode, "density_firstlabel": density_firstlabel, "density_secondmode": density_secondmode, "density_secondlabel": density_secondlabel, "density_thirdmode": density_thirdmode, "density_thirdlabel": density_thirdlabel, "depth_mode": depth_mode, "depth_firstmode": depth_firstmode, "depth_firstlabel": depth_firstlabel, "depth_secondmode": depth_secondmode, "depth_secondlabel": depth_secondlabel, "depth_thirdmode": depth_thirdmode, "depth_thirdlabel": depth_thirdlabel, "weather_mode": weather_mode, "weather_firstmode": weather_firstmode, "weather_firstlabel": weather_firstlabel, "weather_secondmode": weather_secondmode, "weather_secondlabel": weather_secondlabel, "weather_thirdmode": weather_thirdmode, "weather_thirdlabel": weather_thirdlabel}
+    context = {"username": username, "options": options, "records": records, "results": results, "posts_count": posts_count, "posts_label": posts_label, "users_count": users_count, "users_label": users_label, "user_frequency": user_frequency, "user_firstfrequency": user_firstfrequency, "user_firstlabel": user_firstlabel, "user_secondfrequency": user_secondfrequency, "user_secondlabel": user_secondlabel, "user_thirdfrequency": user_thirdfrequency, "user_thirdlabel": user_thirdlabel, "poststatus_frequency": poststatus_frequency, "poststatus_firstfrequency": poststatus_firstfrequency, "poststatus_firstlabel": poststatus_firstlabel, "poststatus_secondfrequency": poststatus_secondfrequency, "poststatus_secondlabel": poststatus_secondlabel, "poststatus_thirdfrequency": poststatus_thirdfrequency, "poststatus_thirdlabel": poststatus_thirdlabel, "size_frequency": size_frequency, "size_firstfrequency": size_firstfrequency, "size_firstlabel": size_firstlabel, "size_secondfrequency": size_secondfrequency, "size_secondlabel": size_secondlabel, "size_thirdfrequency": size_thirdfrequency, "size_thirdlabel": size_thirdlabel, "density_frequency": density_frequency, "density_firstfrequency": density_firstfrequency, "density_firstlabel": density_firstlabel, "density_secondfrequency": density_secondfrequency, "density_secondlabel": density_secondlabel, "density_thirdfrequency": density_thirdfrequency, "density_thirdlabel": density_thirdlabel, "depth_frequency": depth_frequency, "depth_firstfrequency": depth_firstfrequency, "depth_firstlabel": depth_firstlabel, "depth_secondfrequency": depth_secondfrequency, "depth_secondlabel": depth_secondlabel, "depth_thirdfrequency": depth_thirdfrequency, "depth_thirdlabel": depth_thirdlabel, "weather_frequency": weather_frequency, "weather_firstfrequency": weather_firstfrequency, "weather_firstlabel": weather_firstlabel, "weather_secondfrequency": weather_secondfrequency, "weather_secondlabel": weather_secondlabel, "weather_thirdfrequency": weather_thirdfrequency, "weather_thirdlabel": weather_thirdlabel}
 
     return render(request, "officer/control/post/post.html", context)
 
@@ -1358,7 +1358,7 @@ def AdministratorControlStatisticsPost(request):
         posts_label = "Posts" + " Count"
     
     except:
-        posts_count = 0
+        posts_count = ""
 
         posts_label = ""
 
@@ -1377,38 +1377,38 @@ def AdministratorControlStatisticsPost(request):
 
         user_tally = Counter(user_distribution)
         
-        user_mode = user_tally.most_common(1)[0][0]
+        user_frequency = user_tally.most_common(1)[0][0]
     
     except:
-        user_mode = ""
+        user_frequency = ""
     
     try:
-        user_firstmode = user_tally.most_common(1)[0][1]
+        user_firstfrequency = user_tally.most_common(1)[0][1]
 
-        user_firstlabel = user_tally.most_common(1)[0][0] + " Mode"
+        user_firstlabel = user_tally.most_common(1)[0][0] + " Frequency"
 
     except:
-        user_firstmode = ""
+        user_firstfrequency = ""
     
         user_firstlabel = ""
     
     try:
-        user_secondmode = user_tally.most_common(2)[1][1]
+        user_secondfrequency = user_tally.most_common(2)[1][1]
 
-        user_secondlabel = user_tally.most_common(2)[1][0] + " Mode"
+        user_secondlabel = user_tally.most_common(2)[1][0] + " Frequency"
     
     except:
-        user_secondmode = ""
+        user_secondfrequency = ""
     
         user_secondlabel = ""
     
     try:
-        user_thirdmode = size_tally.most_common(3)[2][1] 
+        user_thirdfrequency = size_tally.most_common(3)[2][1] 
 
-        user_thirdlabel = size_tally.most_common(3)[2][0] + " Mode"
+        user_thirdlabel = size_tally.most_common(3)[2][0] + " Frequency"
     
     except:
-        user_thirdmode = ""
+        user_thirdfrequency = ""
     
         user_thirdlabel = ""
 
@@ -1417,38 +1417,38 @@ def AdministratorControlStatisticsPost(request):
 
         poststatus_tally = Counter(poststatus_distribution)
 
-        poststatus_mode = poststatus_tally.most_common(1)[0][0]
+        poststatus_frequency = poststatus_tally.most_common(1)[0][0]
 
     except:
-        poststatus_mode = ""
+        poststatus_frequency = ""
 
     try:
-        poststatus_firstmode = poststatus_tally.most_common(1)[0][1]
+        poststatus_firstfrequency = poststatus_tally.most_common(1)[0][1]
 
-        poststatus_firstlabel = poststatus_tally.most_common(1)[0][0] + " Mode"
+        poststatus_firstlabel = poststatus_tally.most_common(1)[0][0] + " Frequency"
 
     except:
-        poststatus_firstmode = ""
+        poststatus_firstfrequency = ""
     
         poststatus_firstlabel = ""
 
     try:
-        poststatus_secondmode = poststatus_tally.most_common(2)[1][1]
+        poststatus_secondfrequency = poststatus_tally.most_common(2)[1][1]
 
-        poststatus_secondlabel = poststatus_tally.most_common(2)[1][0] + " Mode"
+        poststatus_secondlabel = poststatus_tally.most_common(2)[1][0] + " Frequency"
     
     except:
-        poststatus_secondmode = ""
+        poststatus_secondfrequency = ""
     
         poststatus_secondlabel = ""
 
     try:
-        poststatus_thirdmode = poststatus_tally.most_common(3)[2][1] 
+        poststatus_thirdfrequency = poststatus_tally.most_common(3)[2][1] 
 
-        poststatus_thirdlabel = poststatus_tally.most_common(3)[2][0] + " Mode"
+        poststatus_thirdlabel = poststatus_tally.most_common(3)[2][0] + " Frequency"
     
     except:
-        poststatus_thirdmode = ""
+        poststatus_thirdfrequency = ""
     
         poststatus_thirdlabel = ""
 
@@ -1457,38 +1457,38 @@ def AdministratorControlStatisticsPost(request):
 
         size_tally = Counter(size_distribution)
 
-        size_mode = size_tally.most_common(1)[0][0]
+        size_frequency = size_tally.most_common(1)[0][0]
 
     except:
-        size_mode = ""
+        size_frequency = ""
     
     try:
-        size_firstmode = size_tally.most_common(1)[0][1]
+        size_firstfrequency = size_tally.most_common(1)[0][1]
 
-        size_firstlabel = size_tally.most_common(1)[0][0] + " / Centimeter Mode"
+        size_firstlabel = size_tally.most_common(1)[0][0] + " / Centimeter Frequency"
 
     except:
-        size_firstmode = ""
+        size_firstfrequency = ""
     
         size_firstlabel = ""
     
     try:
-        size_secondmode = size_tally.most_common(2)[1][1]
+        size_secondfrequency = size_tally.most_common(2)[1][1]
 
-        size_secondlabel = size_tally.most_common(2)[1][0] + " / Centimeter Mode"
+        size_secondlabel = size_tally.most_common(2)[1][0] + " / Centimeter Frequency"
     
     except:
-        size_secondmode = ""
+        size_secondfrequency = ""
     
         size_secondlabel = ""
     
     try:
-        size_thirdmode = size_tally.most_common(3)[2][1] 
+        size_thirdfrequency = size_tally.most_common(3)[2][1] 
 
-        size_thirdlabel = size_tally.most_common(3)[2][0] + " / Centimeter Mode"
+        size_thirdlabel = size_tally.most_common(3)[2][0] + " / Centimeter Frequency"
     
     except:
-        size_thirdmode = ""
+        size_thirdfrequency = ""
     
         size_thirdlabel = ""
 
@@ -1497,38 +1497,38 @@ def AdministratorControlStatisticsPost(request):
 
         density_tally = Counter(density_distribution)
 
-        density_mode = density_tally.most_common(1)[0][0]
+        density_frequency = density_tally.most_common(1)[0][0]
     
     except:
-        density_mode = ""
+        density_frequency = ""
     
     try:
-        density_firstmode = density_tally.most_common(1)[0][1]
+        density_firstfrequency = density_tally.most_common(1)[0][1]
 
-        density_firstlabel = density_tally.most_common(1)[0][0] + " / Square Meter Mode"
+        density_firstlabel = density_tally.most_common(1)[0][0] + " / Square Meter Frequency"
 
     except:
-        density_firstmode = ""
+        density_firstfrequency = ""
     
         density_firstlabel = ""
     
     try:
-        density_secondmode = density_tally.most_common(2)[1][1]
+        density_secondfrequency = density_tally.most_common(2)[1][1]
 
-        density_secondlabel = density_tally.most_common(2)[1][0] + " / Square Meter Mode"
+        density_secondlabel = density_tally.most_common(2)[1][0] + " / Square Meter Frequency"
     
     except:
-        density_secondmode = ""
+        density_secondfrequency = ""
     
         density_secondlabel = ""
     
     try:
-        density_thirdmode = density_tally.most_common(3)[2][1] 
+        density_thirdfrequency = density_tally.most_common(3)[2][1] 
 
-        density_thirdlabel = density_tally.most_common(3)[2][0] + " / Square Meter Mode"
+        density_thirdlabel = density_tally.most_common(3)[2][0] + " / Square Meter Frequency"
     
     except:
-        density_thirdmode = ""
+        density_thirdfrequency = ""
     
         density_thirdlabel = ""
 
@@ -1537,38 +1537,38 @@ def AdministratorControlStatisticsPost(request):
 
         depth_tally = Counter(depth_distribution)
 
-        depth_mode = depth_tally.most_common(1)[0][0]
+        depth_frequency = depth_tally.most_common(1)[0][0]
     
     except:
-        depth_mode = ""
+        depth_frequency = ""
     
     try:
-        depth_firstmode = depth_tally.most_common(1)[0][1]
+        depth_firstfrequency = depth_tally.most_common(1)[0][1]
 
-        depth_firstlabel = depth_tally.most_common(1)[0][0] + " Mode"
+        depth_firstlabel = depth_tally.most_common(1)[0][0] + " Frequency"
 
     except:
-        depth_firstmode = ""
+        depth_firstfrequency = ""
     
         depth_firstlabel = ""
     
     try:
-        depth_secondmode = depth_tally.most_common(2)[1][1]
+        depth_secondfrequency = depth_tally.most_common(2)[1][1]
 
-        depth_secondlabel = depth_tally.most_common(2)[1][0] + " Mode"
+        depth_secondlabel = depth_tally.most_common(2)[1][0] + " Frequency"
     
     except:
-        depth_secondmode = ""
+        depth_secondfrequency = ""
     
         depth_secondlabel = ""
     
     try:
-        depth_thirdmode = depth_tally.most_common(3)[2][1] 
+        depth_thirdfrequency = depth_tally.most_common(3)[2][1] 
 
-        depth_thirdlabel = depth_tally.most_common(3)[2][0] + " Mode"
+        depth_thirdlabel = depth_tally.most_common(3)[2][0] + " Frequency"
     
     except:
-        depth_thirdmode = ""
+        depth_thirdfrequency = ""
     
         depth_thirdlabel = ""
 
@@ -1577,38 +1577,38 @@ def AdministratorControlStatisticsPost(request):
 
         weather_tally = Counter(weather_distribution)
 
-        weather_mode = weather_tally.most_common(1)[0][0]
+        weather_frequency = weather_tally.most_common(1)[0][0]
 
     except:
-        weather_mode = ""
+        weather_frequency = ""
     
     try:
-        weather_firstmode = weather_tally.most_common(1)[0][1]
+        weather_firstfrequency = weather_tally.most_common(1)[0][1]
 
-        weather_firstlabel = weather_tally.most_common(1)[0][0] + " Mode"
+        weather_firstlabel = weather_tally.most_common(1)[0][0] + " Frequency"
 
     except:
-        weather_firstmode = ""
+        weather_firstfrequency = ""
     
         weather_firstlabel = ""
     
     try:
-        weather_secondmode = weather_tally.most_common(2)[1][1]
+        weather_secondfrequency = weather_tally.most_common(2)[1][1]
 
-        weather_secondlabel = weather_tally.most_common(2)[1][0] + " Mode"
+        weather_secondlabel = weather_tally.most_common(2)[1][0] + " Frequency"
     
     except:
-        weather_secondmode = ""
+        weather_secondfrequency = ""
     
         weather_secondlabel = ""
     
     try:
-        weather_thirdmode = weather_tally.most_common(3)[2][1] 
+        weather_thirdfrequency = weather_tally.most_common(3)[2][1] 
 
-        weather_thirdlabel = weather_tally.most_common(3)[2][0] + " Mode"
+        weather_thirdlabel = weather_tally.most_common(3)[2][0] + " Frequency"
     
     except:
-        weather_thirdmode = ""
+        weather_thirdfrequency = ""
     
         weather_thirdlabel = ""
 
@@ -1754,38 +1754,38 @@ def AdministratorControlStatisticsPost(request):
 
                 user_tally = Counter(user_distribution)
                 
-                user_mode = user_tally.most_common(1)[0][0]
+                user_frequency = user_tally.most_common(1)[0][0]
             
             except:
-                user_mode = ""
+                user_frequency = ""
             
             try:
-                user_firstmode = user_tally.most_common(1)[0][1]
+                user_firstfrequency = user_tally.most_common(1)[0][1]
 
-                user_firstlabel = user_tally.most_common(1)[0][0] + " Mode"
+                user_firstlabel = user_tally.most_common(1)[0][0] + " Frequency"
 
             except:
-                user_firstmode = ""
+                user_firstfrequency = ""
             
                 user_firstlabel = ""
             
             try:
-                user_secondmode = user_tally.most_common(2)[1][1]
+                user_secondfrequency = user_tally.most_common(2)[1][1]
 
-                user_secondlabel = user_tally.most_common(2)[1][0] + " Mode"
+                user_secondlabel = user_tally.most_common(2)[1][0] + " Frequency"
             
             except:
-                user_secondmode = ""
+                user_secondfrequency = ""
             
                 user_secondlabel = ""
             
             try:
-                user_thirdmode = size_tally.most_common(3)[2][1] 
+                user_thirdfrequency = size_tally.most_common(3)[2][1] 
 
-                user_thirdlabel = size_tally.most_common(3)[2][0] + " Mode"
+                user_thirdlabel = size_tally.most_common(3)[2][0] + " Frequency"
             
             except:
-                user_thirdmode = ""
+                user_thirdfrequency = ""
             
                 user_thirdlabel = ""
 
@@ -1794,38 +1794,38 @@ def AdministratorControlStatisticsPost(request):
 
                 poststatus_tally = Counter(poststatus_distribution)
 
-                poststatus_mode = poststatus_tally.most_common(1)[0][0]
+                poststatus_frequency = poststatus_tally.most_common(1)[0][0]
 
             except:
-                poststatus_mode = ""
+                poststatus_frequency = ""
 
             try:
-                poststatus_firstmode = poststatus_tally.most_common(1)[0][1]
+                poststatus_firstfrequency = poststatus_tally.most_common(1)[0][1]
 
-                poststatus_firstlabel = poststatus_tally.most_common(1)[0][0] + " Mode"
+                poststatus_firstlabel = poststatus_tally.most_common(1)[0][0] + " Frequency"
 
             except:
-                poststatus_firstmode = ""
+                poststatus_firstfrequency = ""
             
                 poststatus_firstlabel = ""
 
             try:
-                poststatus_secondmode = poststatus_tally.most_common(2)[1][1]
+                poststatus_secondfrequency = poststatus_tally.most_common(2)[1][1]
 
-                poststatus_secondlabel = poststatus_tally.most_common(2)[1][0] + " Mode"
+                poststatus_secondlabel = poststatus_tally.most_common(2)[1][0] + " Frequency"
             
             except:
-                poststatus_secondmode = ""
+                poststatus_secondfrequency = ""
             
                 poststatus_secondlabel = ""
 
             try:
-                poststatus_thirdmode = poststatus_tally.most_common(3)[2][1] 
+                poststatus_thirdfrequency = poststatus_tally.most_common(3)[2][1] 
 
-                poststatus_thirdlabel = poststatus_tally.most_common(3)[2][0] + " Mode"
+                poststatus_thirdlabel = poststatus_tally.most_common(3)[2][0] + " Frequency"
             
             except:
-                poststatus_thirdmode = ""
+                poststatus_thirdfrequency = ""
             
                 poststatus_thirdlabel = ""
 
@@ -1834,38 +1834,38 @@ def AdministratorControlStatisticsPost(request):
 
                 size_tally = Counter(size_distribution)
 
-                size_mode = size_tally.most_common(1)[0][0]
+                size_frequency = size_tally.most_common(1)[0][0]
 
             except:
-                size_mode = ""
+                size_frequency = ""
             
             try:
-                size_firstmode = size_tally.most_common(1)[0][1]
+                size_firstfrequency = size_tally.most_common(1)[0][1]
 
-                size_firstlabel = size_tally.most_common(1)[0][0] + " / Centimeter Mode"
+                size_firstlabel = size_tally.most_common(1)[0][0] + " / Centimeter Frequency"
 
             except:
-                size_firstmode = ""
+                size_firstfrequency = ""
             
                 size_firstlabel = ""
             
             try:
-                size_secondmode = size_tally.most_common(2)[1][1]
+                size_secondfrequency = size_tally.most_common(2)[1][1]
 
-                size_secondlabel = size_tally.most_common(2)[1][0] + " / Centimeter Mode"
+                size_secondlabel = size_tally.most_common(2)[1][0] + " / Centimeter Frequency"
             
             except:
-                size_secondmode = ""
+                size_secondfrequency = ""
             
                 size_secondlabel = ""
             
             try:
-                size_thirdmode = size_tally.most_common(3)[2][1] 
+                size_thirdfrequency = size_tally.most_common(3)[2][1] 
 
-                size_thirdlabel = size_tally.most_common(3)[2][0] + " / Centimeter Mode"
+                size_thirdlabel = size_tally.most_common(3)[2][0] + " / Centimeter Frequency"
             
             except:
-                size_thirdmode = ""
+                size_thirdfrequency = ""
             
                 size_thirdlabel = ""
 
@@ -1874,38 +1874,38 @@ def AdministratorControlStatisticsPost(request):
 
                 density_tally = Counter(density_distribution)
 
-                density_mode = density_tally.most_common(1)[0][0]
+                density_frequency = density_tally.most_common(1)[0][0]
             
             except:
-                density_mode = ""
+                density_frequency = ""
             
             try:
-                density_firstmode = density_tally.most_common(1)[0][1]
+                density_firstfrequency = density_tally.most_common(1)[0][1]
 
-                density_firstlabel = density_tally.most_common(1)[0][0] + " / Square Meter Mode"
+                density_firstlabel = density_tally.most_common(1)[0][0] + " / Square Meter Frequency"
 
             except:
-                density_firstmode = ""
+                density_firstfrequency = ""
             
                 density_firstlabel = ""
             
             try:
-                density_secondmode = density_tally.most_common(2)[1][1]
+                density_secondfrequency = density_tally.most_common(2)[1][1]
 
-                density_secondlabel = density_tally.most_common(2)[1][0] + " / Square Meter Mode"
+                density_secondlabel = density_tally.most_common(2)[1][0] + " / Square Meter Frequency"
             
             except:
-                density_secondmode = ""
+                density_secondfrequency = ""
             
                 density_secondlabel = ""
             
             try:
-                density_thirdmode = density_tally.most_common(3)[2][1] 
+                density_thirdfrequency = density_tally.most_common(3)[2][1] 
 
-                density_thirdlabel = density_tally.most_common(3)[2][0] + " / Square Meter Mode"
+                density_thirdlabel = density_tally.most_common(3)[2][0] + " / Square Meter Frequency"
             
             except:
-                density_thirdmode = ""
+                density_thirdfrequency = ""
             
                 density_thirdlabel = ""
 
@@ -1914,38 +1914,38 @@ def AdministratorControlStatisticsPost(request):
 
                 depth_tally = Counter(depth_distribution)
 
-                depth_mode = depth_tally.most_common(1)[0][0]
+                depth_frequency = depth_tally.most_common(1)[0][0]
             
             except:
-                depth_mode = ""
+                depth_frequency = ""
             
             try:
-                depth_firstmode = depth_tally.most_common(1)[0][1]
+                depth_firstfrequency = depth_tally.most_common(1)[0][1]
 
-                depth_firstlabel = depth_tally.most_common(1)[0][0] + " Mode"
+                depth_firstlabel = depth_tally.most_common(1)[0][0] + " Frequency"
 
             except:
-                depth_firstmode = ""
+                depth_firstfrequency = ""
             
                 depth_firstlabel = ""
             
             try:
-                depth_secondmode = depth_tally.most_common(2)[1][1]
+                depth_secondfrequency = depth_tally.most_common(2)[1][1]
 
-                depth_secondlabel = depth_tally.most_common(2)[1][0] + " Mode"
+                depth_secondlabel = depth_tally.most_common(2)[1][0] + " Frequency"
             
             except:
-                depth_secondmode = ""
+                depth_secondfrequency = ""
             
                 depth_secondlabel = ""
             
             try:
-                depth_thirdmode = depth_tally.most_common(3)[2][1] 
+                depth_thirdfrequency = depth_tally.most_common(3)[2][1] 
 
-                depth_thirdlabel = depth_tally.most_common(3)[2][0] + " Mode"
+                depth_thirdlabel = depth_tally.most_common(3)[2][0] + " Frequency"
             
             except:
-                depth_thirdmode = ""
+                depth_thirdfrequency = ""
             
                 depth_thirdlabel = ""
 
@@ -1954,38 +1954,38 @@ def AdministratorControlStatisticsPost(request):
 
                 weather_tally = Counter(weather_distribution)
 
-                weather_mode = weather_tally.most_common(1)[0][0]
+                weather_frequency = weather_tally.most_common(1)[0][0]
 
             except:
-                weather_mode = ""
+                weather_frequency = ""
             
             try:
-                weather_firstmode = weather_tally.most_common(1)[0][1]
+                weather_firstfrequency = weather_tally.most_common(1)[0][1]
 
-                weather_firstlabel = weather_tally.most_common(1)[0][0] + " Mode"
+                weather_firstlabel = weather_tally.most_common(1)[0][0] + " Frequency"
 
             except:
-                weather_firstmode = ""
+                weather_firstfrequency = ""
             
                 weather_firstlabel = ""
             
             try:
-                weather_secondmode = weather_tally.most_common(2)[1][1]
+                weather_secondfrequency = weather_tally.most_common(2)[1][1]
 
-                weather_secondlabel = weather_tally.most_common(2)[1][0] + " Mode"
+                weather_secondlabel = weather_tally.most_common(2)[1][0] + " Frequency"
             
             except:
-                weather_secondmode = ""
+                weather_secondfrequency = ""
             
                 weather_secondlabel = ""
             
             try:
-                weather_thirdmode = weather_tally.most_common(3)[2][1] 
+                weather_thirdfrequency = weather_tally.most_common(3)[2][1] 
 
-                weather_thirdlabel = weather_tally.most_common(3)[2][0] + " Mode"
+                weather_thirdlabel = weather_tally.most_common(3)[2][0] + " Frequency"
             
             except:
-                weather_thirdmode = ""
+                weather_thirdfrequency = ""
             
                 weather_thirdlabel = ""
 
@@ -1994,7 +1994,7 @@ def AdministratorControlStatisticsPost(request):
 
             messages.error(request, username + ", " + "information input is impossible within COTSEye.")
 
-    context = {"username": username, "records": records, "results": results, "options": options, "posts_count": posts_count, "posts_label": posts_label, "users_count": users_count, "users_label": users_label,"user_mode": user_mode, "user_firstmode": user_firstmode, "user_firstlabel": user_firstlabel, "user_secondmode": user_secondmode, "user_secondlabel": user_secondlabel, "user_thirdmode": user_thirdmode, "user_thirdlabel": user_thirdlabel, "poststatus_mode": poststatus_mode, "poststatus_firstmode": poststatus_firstmode, "poststatus_firstlabel": poststatus_firstlabel, "poststatus_secondmode": poststatus_secondmode, "poststatus_secondlabel": poststatus_secondlabel, "poststatus_thirdmode": poststatus_thirdmode, "poststatus_thirdlabel": poststatus_thirdlabel, "size_mode": size_mode, "size_firstmode": size_firstmode, "size_firstlabel": size_firstlabel, "size_secondmode": size_secondmode, "size_secondlabel": size_secondlabel, "size_thirdmode": size_thirdmode, "size_thirdlabel": size_thirdlabel, "density_mode": density_mode, "density_firstmode": density_firstmode, "density_firstlabel": density_firstlabel, "density_secondmode": density_secondmode, "density_secondlabel": density_secondlabel, "density_thirdmode": density_thirdmode, "density_thirdlabel": density_thirdlabel, "depth_mode": depth_mode, "depth_firstmode": depth_firstmode, "depth_firstlabel": depth_firstlabel, "depth_secondmode": depth_secondmode, "depth_secondlabel": depth_secondlabel, "depth_thirdmode": depth_thirdmode, "depth_thirdlabel": depth_thirdlabel, "weather_mode": weather_mode, "weather_firstmode": weather_firstmode, "weather_firstlabel": weather_firstlabel, "weather_secondmode": weather_secondmode, "weather_secondlabel": weather_secondlabel, "weather_thirdmode": weather_thirdmode, "weather_thirdlabel": weather_thirdlabel}
+    context = {"username": username, "options": options, "records": records, "results": results, "posts_count": posts_count, "posts_label": posts_label, "users_count": users_count, "users_label": users_label, "user_frequency": user_frequency, "user_firstfrequency": user_firstfrequency, "user_firstlabel": user_firstlabel, "user_secondfrequency": user_secondfrequency, "user_secondlabel": user_secondlabel, "user_thirdfrequency": user_thirdfrequency, "user_thirdlabel": user_thirdlabel, "poststatus_frequency": poststatus_frequency, "poststatus_firstfrequency": poststatus_firstfrequency, "poststatus_firstlabel": poststatus_firstlabel, "poststatus_secondfrequency": poststatus_secondfrequency, "poststatus_secondlabel": poststatus_secondlabel, "poststatus_thirdfrequency": poststatus_thirdfrequency, "poststatus_thirdlabel": poststatus_thirdlabel, "size_frequency": size_frequency, "size_firstfrequency": size_firstfrequency, "size_firstlabel": size_firstlabel, "size_secondfrequency": size_secondfrequency, "size_secondlabel": size_secondlabel, "size_thirdfrequency": size_thirdfrequency, "size_thirdlabel": size_thirdlabel, "density_frequency": density_frequency, "density_firstfrequency": density_firstfrequency, "density_firstlabel": density_firstlabel, "density_secondfrequency": density_secondfrequency, "density_secondlabel": density_secondlabel, "density_thirdfrequency": density_thirdfrequency, "density_thirdlabel": density_thirdlabel, "depth_frequency": depth_frequency, "depth_firstfrequency": depth_firstfrequency, "depth_firstlabel": depth_firstlabel, "depth_secondfrequency": depth_secondfrequency, "depth_secondlabel": depth_secondlabel, "depth_thirdfrequency": depth_thirdfrequency, "depth_thirdlabel": depth_thirdlabel, "weather_frequency": weather_frequency, "weather_firstfrequency": weather_firstfrequency, "weather_firstlabel": weather_firstlabel, "weather_secondfrequency": weather_secondfrequency, "weather_secondlabel": weather_secondlabel, "weather_thirdfrequency": weather_thirdfrequency, "weather_thirdlabel": weather_thirdlabel}
 
     return render(request, "admin/control/post/post.html", context)
 
