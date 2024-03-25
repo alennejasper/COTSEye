@@ -1,0 +1,1172 @@
+@import url("https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Overlock:wght@400;700;900&display=swap");
+
+
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    scrollbar-width: thin !important;
+    scrollbar-color: #698F3F #154360 !important;
+    transition: all 0.25s ease;
+}
+
+
+::-webkit-scrollbar{
+    width: 5px !important;
+    height: 5px !important;
+}
+
+::-webkit-scrollbar-track{
+    border-radius: 5px;
+    border: 1px solid #B2BEB5; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    background: #154360 !important; 
+}
+
+::-webkit-scrollbar-thumb{
+    border-radius: 5px;
+    border: 1px solid #B2BEB5; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    background: #698F3F !important;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background: #557433 !important;
+}
+
+
+.resource{
+    margin-bottom: 30px;
+    width: 100%;
+    display: grid;
+    grid-column: 1;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+}
+
+.resource#files-filter .card-header{
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-top-left-radius: 5px !important;
+    border-top-right-radius: 5px !important;
+    background-color: #154360;
+    display: grid;
+}
+
+.resource#files-filter .card-header header{
+    font-family: "Philosopher";
+    font-weight: 700;
+    font-size: 22px !important;
+    color: #FFFFFF;
+    white-space: nowrap !important; 
+    overflow: auto !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .resource#files-filter .card-header header{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 20px !important;
+        color: #FFFFFF;
+        white-space: nowrap !important; 
+        overflow: auto !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .resource#files-filter .card-header header{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 18px !important;
+        color: #FFFFFF;
+        white-space: nowrap !important; 
+        overflow: auto !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .resource#files-filter .card-header header{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 16px !important;
+        color: #FFFFFF;
+        white-space: nowrap !important; 
+        overflow: auto !important;
+    }
+}
+
+.resource#files-filter .card-body{
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 100%;
+    border-bottom-left-radius: 5px !important;
+    border-bottom-right-radius: 5px !important;
+    display: grid;
+    gap: 15px;
+    background-color: #FFFFFF;
+}
+
+.resource#files-filter .card-body .field{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .resource#files-filter .card-body .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .resource#files-filter .card-body .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .resource#files-filter .card-body .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .resource#files-filter .card-body .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
+}
+
+.resource#files-filter .card-body .field .column label[for = "from-date"]{
+    margin-top: 0px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .resource#files-filter .card-body .field .column label[for = "from-date"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .resource#files-filter .card-body .field .column label[for = "from-date"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .resource#files-filter .card-body .field .column label[for = "from-date"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.resource#files-filter .card-body .field .column .from-date{
+    position: relative;
+}
+
+.resource#files-filter .card-body .field .column .from-date input{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.resource#files-filter .card-body .field .column .from-date input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .resource#files-filter .card-body .field .column .from-date input{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .resource#files-filter .card-body .field .column .from-date input{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .resource#files-filter .card-body .field .column .from-date input{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.resource#files-filter .card-body .field .column .from-date input[type = "date"]::-webkit-calendar-picker-indicator{
+    filter: invert(22%) sepia(7%) saturate(6538%) hue-rotate(164deg) brightness(89%) contrast(90%);
+}
+
+.resource#files-filter .card-body .field .column .from-date input[type = date]:invalid::-webkit-datetime-edit{
+    color: #154360 !important;
+}
+
+.resource#files-filter .card-body .field .column .from-date input::-webkit-datetime-edit-day-field{
+    color: #154360;
+    background-color: #FFFFFF;
+    outline: none;
+}
+
+.resource#files-filter .card-body .field .column .from-date input::-webkit-datetime-edit-month-field{
+    color: #154360;
+    background-color: #FFFFFF;
+    outline: none;
+}
+
+.resource#files-filter .card-body .field .column .from-date input::-webkit-datetime-edit-year-field{
+    color: #154360;
+    background-color: #FFFFFF;
+    outline: none;
+}
+
+.resource#files-filter .card-body .field .column .from-date input::-webkit-datetime-edit-day-field:focus{
+    background-color: #154360 !important;
+    color: #FFFFFF !important;
+    outline: none;
+}
+
+.resource#files-filter .card-body .field .column .from-date input::-webkit-datetime-edit-month-field:focus{
+    background-color: #154360 !important;
+    color: #FFFFFF !important;
+    outline: none;
+}
+
+.resource#files-filter .card-body .field .column .from-date input::-webkit-datetime-edit-year-field:focus{
+    background-color: #154360 !important;
+    color: #FFFFFF !important;
+    outline: none;
+}
+
+.resource#files-filter .card-body .field .column label[for = "to-date"]{
+    margin-top: 0px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .resource#files-filter .card-body .field .column label[for = "to-date"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .resource#files-filter .card-body .field .column label[for = "to-date"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .resource#files-filter .card-body .field .column label[for = "to-date"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.resource#files-filter .card-body .field .column .to-date{
+    position: relative;
+}
+
+.resource#files-filter .card-body .field .column .to-date input{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.resource#files-filter .card-body .field .column .to-date input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .resource#files-filter .card-body .field .column .to-date input{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .resource#files-filter .card-body .field .column .to-date input{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .resource#files-filter .card-body .field .column .to-date input{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.resource#files-filter .card-body .field .column .to-date input[type = "date"]::-webkit-calendar-picker-indicator{
+    filter: invert(22%) sepia(7%) saturate(6538%) hue-rotate(164deg) brightness(89%) contrast(90%);
+}
+
+.resource#files-filter .card-body .field .column .to-date input[type = date]:invalid::-webkit-datetime-edit{
+    color: #154360 !important;
+}
+
+.resource#files-filter .card-body .field .column .to-date input::-webkit-datetime-edit-day-field{
+    color: #154360;
+    background-color: #FFFFFF;
+    outline: none;
+}
+
+.resource#files-filter .card-body .field .column .to-date input::-webkit-datetime-edit-month-field{
+    color: #154360;
+    background-color: #FFFFFF;
+    outline: none;
+}
+
+.resource#files-filter .card-body .field .column .to-date input::-webkit-datetime-edit-year-field{
+    color: #154360;
+    background-color: #FFFFFF;
+    outline: none;
+}
+
+.resource#files-filter .card-body .field .column .to-date input::-webkit-datetime-edit-day-field:focus{
+    background-color: #154360 !important;
+    color: #FFFFFF !important;
+    outline: none;
+}
+
+.resource#files-filter .card-body .field .column .to-date input::-webkit-datetime-edit-month-field:focus{
+    background-color: #154360 !important;
+    color: #FFFFFF !important;
+    outline: none;
+}
+
+.resource#files-filter .card-body .field .column .to-date input::-webkit-datetime-edit-year-field:focus{
+    background-color: #154360 !important;
+    color: #FFFFFF !important;
+    outline: none;
+}
+
+.resource#files-filter .card-body .button{
+    margin-left: auto;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: fit-content;
+    height: 100% !important;
+}
+
+.resource#files-filter .card-body .button a.filter-resource{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    border: 1px solid #B2BEB5; 
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px;
+    color: #FFFFFF !important;
+    background-color: #154360 !important;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.resource#files-filter .card-body .button a.filter-resource:hover{
+    background-color: #10354C !important;
+    color: #B2BEB5 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .resource#files-filter .card-body .button a{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #FFFFFF !important;
+        text-decoration: none;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .resource#files-filter .card-body .button a{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #FFFFFF !important;
+        text-decoration: none;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .resource#files-filter .card-body .button a{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #FFFFFF !important;
+        text-decoration: none;
+    }
+}
+
+.line#records{
+    margin-bottom: 30px;
+    position: relative;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    background-color: #B2BEB5;
+}
+
+.line#records::before{
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    content: "RECORDS";
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px;
+    background-color: #FFFFFF;
+    color: #154659;
+    transform: translate(-50%, -50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .line#records::before{
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        content: "RECORDS";
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px;
+        background-color: #FFFFFF;
+        color: #154659;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .line#records::before{
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        content: "RECORDS";
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px;
+        background-color: #FFFFFF;
+        color: #154659;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .line#records::before{
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        content: "RECORDS";
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px;
+        background-color: #FFFFFF;
+        color: #154659;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.line#results{
+    margin-bottom: 30px;
+    position: relative;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    background-color: #B2BEB5;
+}
+
+.line#results::before{
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    content: "RESULTS";
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px;
+    background-color: #FFFFFF;
+    color: #154659;
+    transform: translate(-50%, -50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .line#results::before{
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        content: "RESULTS";
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px;
+        background-color: #FFFFFF;
+        color: #154659;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .line#results::before{
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        content: "RESULTS";
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px;
+        background-color: #FFFFFF;
+        color: #154659;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .line#results::before{
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        content: "RESULTS";
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px;
+        background-color: #FFFFFF;
+        color: #154659;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.resource .card-header{
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-top-left-radius: 5px !important;
+    border-top-right-radius: 5px !important;
+    background-color: #154360;
+    display: grid;
+}
+
+.resource .card-header header.preview{
+    font-family: "Philosopher";
+    font-weight: 700;
+    font-size: 22px !important;
+    color: #FFFFFF;
+    white-space: nowrap !important; 
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .resource .card-header header.preview{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 20px !important;
+        color: #FFFFFF;
+        white-space: nowrap !important; 
+        overflow: hidden !important;
+        text-overflow: ellipsis;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .resource .card-header header.preview{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 18px !important;
+        color: #FFFFFF;
+        white-space: nowrap !important; 
+        overflow: hidden !important;
+        text-overflow: ellipsis;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .resource .card-header header.preview{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 16px !important;
+        color: #FFFFFF;
+        white-space: nowrap !important; 
+        overflow: hidden !important;
+        text-overflow: ellipsis;
+    }
+}
+
+.resource .card-body{
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 100%;
+    border-bottom-left-radius: 5px !important;
+    border-bottom-right-radius: 5px !important;
+    display: grid;
+    background-color: #FFFFFF;
+}
+
+.resource .card-body .field{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .resource .card-body .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .resource .card-body .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .resource .card-body .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .resource .card-body .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
+}
+
+.resource .card-body .field .column label[for = "release-date"]{
+    margin-top: 0px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .resource .card-body .field .column label[for = "release-date"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .resource .card-body .field .column label[for = "release-date"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .resource .card-body .field .column label[for = "release-date"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.resource .card-body .field .column .release-date{
+    position: relative;
+}
+
+.resource .card-body .field .column .release-date input{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.resource .card-body .field .column .release-date input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .resource .card-body .field .column .release-date input{
+        padding-left: 10px !important;
+        padding-right: 38px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .resource .card-body .field .column .release-date input{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .resource .card-body .field .column .release-date input{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.resource .card-body .field .column .release-date i{
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .resource .card-body .field .column .release-date i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .resource .card-body .field .column .release-date i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .resource .card-body .field .column .release-date i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+.resource .card-body .field .column label[for = "author"]{
+    margin-top: 0px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .resource .card-body .field .column label[for = "author"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .resource .card-body .field .column label[for = "author"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .resource .card-body .field .column label[for = "author"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.resource .card-body .field .column .author{
+    position: relative;
+}
+
+.resource .card-body .field .column .author input{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.resource .card-body .field .column .author input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .resource .card-body .field .column .author input{
+        padding-left: 10px !important;
+        padding-right: 38px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .resource .card-body .field .column .author input{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .resource .card-body .field .column .author input{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.resource .card-body .field .column .author i{
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .resource .card-body .field .column .author i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .resource .card-body .field .column .author i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .resource .card-body .field .column .author i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+.resource .card-body .button{
+    margin-left: auto;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: fit-content;
+    height: 100% !important;
+}
+
+.resource .card-body .button a.read-resource{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    border: 1px solid #B2BEB5; 
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px;
+    color: #FFFFFF !important;
+    background-color: #154360 !important;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.resource .card-body .button a.read-resource:hover{
+    background-color: #10354C !important;
+    color: #B2BEB5 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .resource .card-body .button a{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #FFFFFF !important;
+        text-decoration: none;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .resource .card-body .button a{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #FFFFFF !important;
+        text-decoration: none;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .resource .card-body .button a{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #FFFFFF !important;
+        text-decoration: none;
+    }
+}

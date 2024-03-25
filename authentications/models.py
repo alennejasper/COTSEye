@@ -22,7 +22,17 @@ class AccountManager(BaseUserManager):
     def create_superuser(self, username, password, **other_fields):
         username = "cotseye/" + username
 
-        return self.create_user(username, password, **other_fields)
+        usertype, created = UserType.objects.get_or_create(is_superuser = True)
+
+        if created:
+            account = self.create_user(username, password, usertype = usertype, **other_fields)
+        
+        else:
+            account = self.create_user(username, password, usertype = usertype, **other_fields)
+
+        user = User.objects.create(account = account)
+
+        return usertype, account, user
 
 
 class UserType(models.Model):
@@ -49,11 +59,11 @@ class UserType(models.Model):
 class Account(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length = 150, unique = True, help_text = "Designates the name of the user.", verbose_name = "Username")
     password = models.CharField(max_length = 150, help_text = "Designates the password of the user.", verbose_name = "Password")
-    usertype = models.ForeignKey(UserType, on_delete = models.SET_NULL, blank = True, null = True, help_text = "Designates the foreign key of the User Type model.", verbose_name = "User Type")
+    usertype = models.ForeignKey(UserType, on_delete = models.CASCADE, help_text = "Designates the foreign key of the User Type model.", verbose_name = "User Type")
     is_active = models.BooleanField(default = True, help_text = "Designates whether the user should be considered active or not.", verbose_name = "Active Status")
     last_login = models.DateTimeField(default = datetime.datetime.now, help_text = "Designates the last login date and time of the user.", verbose_name = "Last Signin")
-    groups = models.ManyToManyField(Group, blank = True, help_text = "Designates the foreign key of the Group model.", verbose_name = "Groups")
-    user_permissions = models.ManyToManyField(Permission, blank = True, help_text = "Designates the foreign key of the Permission model.", verbose_name = "User Permissions")
+    groups = models.ManyToManyField(Group, null = True, blank = True, help_text = "Designates the foreign key of the Group model.", verbose_name = "Groups")
+    user_permissions = models.ManyToManyField(Permission, null = True, blank = True, help_text = "Designates the foreign key of the Permission model.", verbose_name = "User Permissions")
 
     objects = AccountManager()
     USERNAME_FIELD = "username"
@@ -84,11 +94,11 @@ class Account(AbstractBaseUser, PermissionsMixin):
 
 
 class User(models.Model):
-    account = models.OneToOneField(Account, on_delete = models.CASCADE, null = True, blank = True, help_text = "Designates the foreign key of the Account model.", verbose_name = "Account")
-    first_name = models.CharField(max_length = 65, null = True, blank = True, help_text = "Designates the first name of the user.", verbose_name = "First Name")
-    last_name = models.CharField(max_length = 65, null = True, blank = True, help_text = "Designates the last name of the user.", verbose_name = "Last Name")
+    account = models.OneToOneField(Account, on_delete = models.SET_NULL, null = True, help_text = "Designates the foreign key of the Account model.", verbose_name = "Account")
+    first_name = models.CharField(max_length = 65, null = True, help_text = "Designates the first name of the user.", verbose_name = "First Name")
+    last_name = models.CharField(max_length = 65, null = True, help_text = "Designates the last name of the user.", verbose_name = "Last Name")
     email = models.EmailField(max_length = 65, null = True, help_text = "Designates the email of the user.", verbose_name = "Email")
-    phone_number = models.CharField(max_length = 10, null = True, blank = True, help_text = "Designates the phone number of the user.", verbose_name = "Phone Number")
+    phone_number = models.CharField(max_length = 10, null = True, help_text = "Designates the phone number of the user.", verbose_name = "Phone Number")
     profile_photo = models.ImageField(default = "profiles/default.png", null = True, blank = True, upload_to = "profiles", help_text = "Designates the profile photo of the user.", verbose_name = "Profile Photo")
     joined_date = models.DateTimeField(default = datetime.datetime.now(), help_text = "Designates the joined date and time of the user.", verbose_name = "Joined Date")
     

@@ -1134,8 +1134,8 @@ i.fas.fa-users{
 
 
 .select2-container--default.select2-container--open.select2-container--below .select2-selection--single{
-    border-bottom-left-radius: 0 !important;
-    border-bottom-right-radius: 0 !important;
+    border-bottom-left-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
 }
 
 .select2-container, .select2-dropdown, .select2-search, .select2-results{
@@ -1635,6 +1635,472 @@ input[type = "checkbox"]:checked::before{
     color: #10354C !important;    
 }
 
+.calendarbox{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    width: fit-content !important;
+    border-top-left-radius: 5px !important;
+    border-top-right-radius: 5px !important;
+    border-bottom-left-radius: 5px !important;   
+    border-bottom-right-radius: 5px !important;  
+}
+
+.calendarbox .calendar table caption{
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    border: 1px solid #B2BEB5 !important;
+    border-top-left-radius: 0px !important;
+    border-top-right-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;   
+    border-bottom-right-radius: 0px !important;   
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    font-family: "Philosopher";
+    font-weight: 700;
+    font-size: 18px;
+    background-color: #154360 !important;
+    color: #FFFFFF !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .calendarbox .calendar table caption{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 16px;
+        background-color: #154360 !important;
+        color: #FFFFFF !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .calendarbox .calendar table caption{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 14px;
+        background-color: #154360 !important;
+        color: #FFFFFF !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .calendarbox .calendar table caption{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 12px;
+        background-color: #154360 !important;
+        color: #FFFFFF !important;
+    }
+}
+
+.calendarbox .calendar table tr th{
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    border: 2px solid #B2BEB5 !important;
+    border-top-left-radius: 5px !important;
+    border-top-right-radius: 5px !important;
+    border-bottom-left-radius: 0px !important;   
+    border-bottom-right-radius: 0px !important;  
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    font-family: "Philosopher";
+    font-weight: 700;
+    font-size: 18px;
+    background-color: #698F3F !important;
+    color: #FFFFFF !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .calendarbox .calendar table tr th{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 16px;
+        color: #FFFFFF !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .calendarbox .calendar table tr th{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 14px;
+        color: #FFFFFF !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .calendarbox .calendar table tr th{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 12px;
+        color: #FFFFFF !important;
+    }
+}
+
+.calendarbox .calendar table tr td{
+    border: 2px solid #B2BEB5 !important;
+    border-top-left-radius: 0px !important;
+    border-top-right-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;   
+    border-bottom-right-radius: 0px !important;
+    box-shadow: 1px 1px 1px 1px #B2BEB5 !important;
+    background-color: #FFFFFF !important;
+}
+
+.calendarbox .calendar table tr td.nonday{
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    border: 2px solid #B2BEB5 !important;
+    border-top-left-radius: 0px !important;
+    border-top-right-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;   
+    border-bottom-right-radius: 0px !important;
+    box-shadow: 1px 1px 1px 1px #B2BEB5 !important;
+    background-color: #B2BEB5 !important;
+}
+
+.calendarbox .calendar table tr td a{
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 16px;
+    color: #154360 !important;
+}
+
+.calendarbox .calendar table tr td.selected a{
+    background-color: #10354C !important;
+    color: #FFFFFF !important;
+}
+
+.calendarbox .calendar table tr td a:hover{
+    background-color: #10354C !important;
+    color: #B2BEB5 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .calendarbox .calendar table tr td a{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .calendarbox .calendar table tr td a{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 12px;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .calendarbox .calendar table tr td a{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 10px;
+        color: #154360 !important;
+    }
+}
+
+.calendarbox a.calendarnav-previous, .calendarbox a.calendarnav-next{
+    margin-top: 26px !important;
+    color: #154360 !important;
+}
+
+.calendarbox a.calendarnav-previous:hover, .calendarbox a.calendarnav-next:hover{
+    color: #10354C !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .calendarbox a.calendarnav-previous, .calendarbox a.calendarnav-next{
+        margin-top: 22px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .calendarbox a.calendarnav-previous, .calendarbox a.calendarnav-next{
+        margin-top: 20px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .calendarbox a.calendarnav-previous, .calendarbox a.calendarnav-next{
+        margin-top: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+.calendarbox .calendar-shortcuts{
+    border: 1px solid #B2BEB5 !important;
+    border-top-left-radius: 0px !important;
+    border-top-right-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;   
+    border-bottom-right-radius: 0px !important;   
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+}
+
+.calendarbox .calendar-shortcuts a{
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 16px;
+    color: #154360 !important;
+}
+
+.calendarbox .calendar-shortcuts a:hover{
+    color: #10354C !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .calendarbox .calendar-shortcuts a{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .calendarbox .calendar-shortcuts a{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 12px;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .calendarbox .calendar-shortcuts a{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 10px;
+        color: #154360 !important;
+    }
+}
+
+.calendarbox .calendar-cancel{
+    border: 1px solid #B2BEB5 !important;
+    border-top-left-radius: 0px !important;
+    border-top-right-radius: 0px !important;
+    border-bottom-left-radius: 5px !important;   
+    border-bottom-right-radius: 5px !important;   
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    background-color: #C90016 !important;
+}
+
+.calendarbox .calendar-cancel:hover{
+    background-color: #A00011 !important;
+}
+
+.calendarbox .calendar-cancel a{
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 16px;
+    color: #FFFFFF !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .calendarbox .calendar-cancel a{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px;
+        color: #FFFFFF !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .calendarbox .calendar-cancel a{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px;
+        color: #FFFFFF !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .calendarbox .calendar-cancel a{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px;
+        color: #FFFFFF !important;
+    }
+}
+
+.clockbox{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    width: fit-content !important;
+}
+
+.clockbox h2{
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    border: 1px solid #B2BEB5 !important;
+    border-top-left-radius: 5px !important;
+    border-top-right-radius: 5px !important;
+    border-bottom-left-radius: 0px !important;   
+    border-bottom-right-radius: 0px !important;   
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    font-family: "Philosopher";
+    font-weight: 700;
+    font-size: 18px;
+    background-color: #154360 !important;
+    color: #FFFFFF !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .clockbox h2{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 16px;
+        background-color: #154360 !important;
+        color: #FFFFFF !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .clockbox h2{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 14px;
+        background-color: #154360 !important;
+        color: #FFFFFF !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .clockbox h2{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 12px;
+        background-color: #154360 !important;
+        color: #FFFFFF !important;
+    }
+}
+
+.clockbox .timelist li{
+    border: 1px solid #B2BEB5 !important;
+    border-top-left-radius: 0px !important;
+    border-top-right-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;   
+    border-bottom-right-radius: 0px !important;   
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+}
+
+.clockbox .timelist li a{
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 16px;
+    color: #154360 !important;
+}
+
+.clockbox .timelist li a:hover{
+    background-color: #10354C !important;
+    color: #B2BEB5 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .clockbox .timelist li a{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .clockbox .timelist li a{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 12px;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .clockbox .timelist li a{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 10px;
+        color: #154360 !important;
+    }
+}
+
+.clockbox .calendar-cancel{
+    border: 1px solid #B2BEB5 !important;
+    border-top-left-radius: 0px !important;
+    border-top-right-radius: 0px !important;
+    border-bottom-left-radius: 5px !important;   
+    border-bottom-right-radius: 5px !important;   
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    background-color: #C90016 !important;
+}
+
+.clockbox .calendar-cancel:hover{
+    background-color: #A00011 !important;
+}
+
+.clockbox .calendar-cancel a{
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 16px;
+    color: #FFFFFF !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .clockbox .calendar-cancel a{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px;
+        color: #FFFFFF !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .clockbox .calendar-cancel a{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px;
+        color: #FFFFFF !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .clockbox .calendar-cancel a{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px;
+        color: #FFFFFF !important;
+    }
+}
+
 span.select2.select2-container.select2-container--default{
     width: 100% !important;
 }
@@ -1659,8 +2125,8 @@ span.select2.select2-container.select2-container--default{
 }
 
 .select2-container--default.select2-container--open.select2-container--below .select2-selection--multiple{
-    border-bottom-left-radius: 0 !important;
-    border-bottom-right-radius: 0 !important;
+    border-bottom-left-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
 }
 
 @media screen and (min-width: 446px) and (max-width: 1318px){

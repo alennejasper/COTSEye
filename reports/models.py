@@ -18,8 +18,8 @@ class PostPhoto(models.Model):
     
 
 class Coordinates(models.Model):
-    latitude = models.DecimalField(null = True, max_digits = 9, decimal_places = 6, help_text = "Designates the latitude of the post.", verbose_name = "Latitude")
-    longitude = models.DecimalField(null = True, max_digits = 9, decimal_places = 6, help_text = "Designates the longitude of the post.", verbose_name = "Longitude")
+    latitude = models.DecimalField(max_digits = 9, decimal_places = 6, help_text = "Designates the latitude of the post.", verbose_name = "Latitude")
+    longitude = models.DecimalField(max_digits = 9, decimal_places = 6, help_text = "Designates the longitude of the post.", verbose_name = "Longitude")
 
     class Meta:
         db_table = "reports_coordinates"
@@ -112,13 +112,13 @@ class PostObservation(models.Model):
         return "OBSERVATION " + str(self.id)
     
 class Post(models.Model):
-    user = models.ForeignKey(User, on_delete = models.CASCADE, null = True, blank = True, help_text = "Designates the foreign key of the User model.", verbose_name = "User")
-    description = models.TextField(max_length = 1500, null = True, blank = True, help_text = "Designates the description of the post.", verbose_name = "Description")
+    user = models.ForeignKey(User, on_delete = models.CASCADE, help_text = "Designates the foreign key of the User model.", verbose_name = "User")
+    description = models.TextField(max_length = 1500, help_text = "Designates the description of the post.", verbose_name = "Description")
     capture_date = models.DateTimeField(default = datetime.datetime.now(), help_text = "Designates the capture date and time of the post.", verbose_name = "Capture Date")
-    post_photos = models.ManyToManyField(PostPhoto, null = True, blank = True, through = "PostGallery", help_text = "Designates the foreign key of the Post Photo model.", verbose_name = "Post Photos")
-    coordinates = models.ForeignKey(Coordinates, on_delete = models.CASCADE, null = True, blank = True, help_text = "Designates the foreign key of the Coordinates model.", verbose_name = "Coordinates")
-    post_status = models.ForeignKey(PostStatus, on_delete = models.CASCADE, default = 1, null = True, blank = True, help_text = "Designates the foreign key of the Post Status model.", verbose_name = "Post Status")
-    post_observation = models.ForeignKey(PostObservation, on_delete = models.CASCADE, null = True, blank = True, help_text = "Designates the foreign key of the Post Observation model.", verbose_name = "Post Observation")
+    post_photos = models.ManyToManyField(PostPhoto, through = "PostGallery", help_text = "Designates the foreign key of the Post Photo model.", verbose_name = "Post Photos")
+    coordinates = models.ForeignKey(Coordinates, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Coordinates model.", verbose_name = "Coordinates")
+    post_status = models.ForeignKey(PostStatus, on_delete = models.CASCADE, default = 1, help_text = "Designates the foreign key of the Post Status model.", verbose_name = "Post Status")
+    post_observation = models.ForeignKey(PostObservation, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Post Observation model.", verbose_name = "Post Observation")
 
     class Meta:
         db_table = "reports_post"
@@ -130,8 +130,8 @@ class Post(models.Model):
 
 
 class PostGallery(models.Model):
-    post_photos = models.ForeignKey(PostPhoto, on_delete = models.CASCADE, null = True, blank = True, help_text = "Designates the foreign key of the Post Photos model.", verbose_name = "Post Photo")
-    post = models.ForeignKey(Post, on_delete = models.CASCADE, null = True, blank = True, help_text = "Designates the foreign key of the Post model.", verbose_name = "Post")
+    post_photos = models.ForeignKey(PostPhoto, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Post Photos model.", verbose_name = "Post Photo")
+    post = models.ForeignKey(Post, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Post model.", verbose_name = "Post")
 
     class Meta:
         db_table = "reports_post_gallery"

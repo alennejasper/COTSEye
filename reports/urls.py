@@ -31,5 +31,5 @@ urlpatterns = [
     
     path("contributor/service/post/uncertain/read/<int:id>/", views.ContributorServicePostUncertainRead, name = "Contributor Service Post Uncertain Read"),
 
-    path("service/post/valid/read/redirect/", views.ServicePostValidReadRedirect, name = "Service Post Valid Read Redirect"),
+    path("service/post/valid/read/redirect/", views.PostValidReadRedirect, name = "Post Valid Read Redirect"),
 ]

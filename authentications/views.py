@@ -197,7 +197,7 @@ def ContributorServiceLoginFacebook(request):
             if account.usertype_id == 3:
                 login(request, account)
 
-                return redirect("admin:index")
+                return redirect("Contributor Service Home")
             
             else:
                 messages.error(request, "Username or password is not valid.")
@@ -222,7 +222,7 @@ def ContributorServiceLoginGoogle(request):
             if account.usertype_id == 3:
                 login(request, account)
 
-                return redirect("admin:index")
+                return redirect("Contributor Service Home")
             
             else:
                 messages.error(request, "Username or password is not valid.")

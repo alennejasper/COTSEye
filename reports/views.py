@@ -1999,7 +1999,7 @@ def AdministratorControlStatisticsPost(request):
     return render(request, "admin/control/post/post.html", context)
 
 
-def ServicePostValidReadRedirect(request):
+def PostValidReadRedirect(request):
     if request.user.is_authenticated:
         usertype = request.user.usertype_id
 

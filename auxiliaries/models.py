@@ -6,9 +6,9 @@ import datetime
 
 # Create your models here.
 class Announcement(models.Model):
-    user = models.ForeignKey(User, on_delete = models.CASCADE, null = True, blank = True, help_text = "Designates the foreign key of the User model.", verbose_name = "User")
+    user = models.ForeignKey(User, on_delete = models.CASCADE, help_text = "Designates the foreign key of the User model.", verbose_name = "User")
     title = models.CharField(max_length = 150, help_text = "Designates the title of the announcement.", verbose_name = "Title")
-    context = models.TextField(max_length = 5000, null = True, help_text = "Designates the context of the announcement.", verbose_name = "Context")
+    context = models.TextField(max_length = 5000, help_text = "Designates the context of the announcement.", verbose_name = "Context")
     place = models.CharField(max_length = 150, help_text = "Designates the place of the announcement.", verbose_name = "Place")
     release_date = models.DateTimeField(default = datetime.datetime.now, help_text = "Designates the release date and time of the announcement.", verbose_name = "Release Date")
     announcement_photo = models.ImageField(default = "announcements/default.png", null = True, blank = True, upload_to = "announcements", help_text = "Designates the photo of the announcement.", verbose_name = "Announcement Photo")
@@ -23,7 +23,7 @@ class Announcement(models.Model):
 
 
 class Resource(models.Model):
-    author = models.CharField(max_length = 150, null = True, blank = True, help_text = "Designates the name of the author.", verbose_name = "Author")
+    author = models.CharField(max_length = 150, help_text = "Designates the name of the author.", verbose_name = "Author")
     title = models.CharField(max_length = 150, help_text = "Designates the title of the resource.", verbose_name = "Title")
     release_date = models.DateTimeField(default = datetime.datetime.now, help_text = "Designates the release date and time of the resource.", verbose_name = "Release Date")
 
@@ -37,8 +37,8 @@ class Resource(models.Model):
     
     
 class ResourceFile(models.Model):
-    resource = models.ForeignKey(Resource, on_delete = models.CASCADE, null = True, blank = True, help_text = "Designates the foreign key of the Resource model.", verbose_name = "Resource")
-    resource_file = models.FileField(null = True, blank = True, upload_to = "resources", help_text = "Designates the file of the resource.", verbose_name = "Resource File")
+    resource = models.ForeignKey(Resource, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Resource model.", verbose_name = "Resource")
+    resource_file = models.FileField(upload_to = "resources", help_text = "Designates the file of the resource.", verbose_name = "Resource File")
 
     class Meta:
             db_table = "auxiliaries_resource_file"
@@ -46,11 +46,11 @@ class ResourceFile(models.Model):
             verbose_name_plural = "Resource Files"
     
     def __str__(self):
-        return "FILE" + str(self.id)
+        return "FILE " + str(self.id)
 
 class ResourceLink(models.Model):
-    resource = models.ForeignKey(Resource, on_delete = models.CASCADE, null = True, blank = True, help_text = "Designates the foreign key of the Resource model.", verbose_name = "Resource")
-    resource_link = models.FileField(max_length = 2050, null = True, blank = True, help_text = "Designates the link of the resource.", verbose_name = "Resource Link")
+    resource = models.ForeignKey(Resource, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Resource model.", verbose_name = "Resource")
+    resource_link = models.CharField(max_length = 2050, help_text = "Designates the link of the resource.", verbose_name = "Resource Link")
 
     class Meta:
             db_table = "auxiliaries_resource_link"
@@ -58,4 +58,4 @@ class ResourceLink(models.Model):
             verbose_name_plural = "Resource Links"
     
     def __str__(self):
-        return "LINK" + str(self.id)
+        return "LINK " + str(self.id)

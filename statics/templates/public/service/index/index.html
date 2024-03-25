@@ -35,6 +35,12 @@
 
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/public/service/intervention/read.css' %}">
 
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/public/service/resource/resource.css' %}">
+
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/public/service/resource/link.css' %}">
+
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/public/service/resource/file.css' %}">
+
         <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">          
         
         <script src = "https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -67,7 +73,7 @@
 
                         <li><a href = "{% url 'Public Service Intervention' %}"><i class = "fa-solid fa-calendar-day"></i>Intervention programs</a></li>
 
-                        <li><a href = "#"><i class = "fa-solid fa-box-archive"></i>Resources</a></li>
+                        <li><a href = "{% url 'Public Service Resource' %}"><i class = "fa-solid fa-box-archive"></i>Resources</a></li>
                     </ul>
 
 
@@ -76,7 +82,7 @@
 
                         <li><a href = "{% url 'Public Service Intervention' %}">Intervention programs</a></li>
 
-                        <li><a href = "#">Resources</a></li>
+                        <li><a href = "{% url 'Public Service Resource' %}">Resources</a></li>
                     </ul>
                 </div>
 

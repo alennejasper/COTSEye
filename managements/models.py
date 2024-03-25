@@ -6,9 +6,9 @@ import datetime
 
 # Create your models here.
 class Location(models.Model):
-    barangay = models.CharField(max_length = 65, null = True, blank = True, help_text = "Designates the name of the barangay.", verbose_name = "Barangay")
-    municipality = models.CharField(max_length = 65, null = True, blank = True, help_text = "Designates the name of the municipality.", verbose_name = "Municipality")
-    perimeters = models.TextField(max_length = 15000, null = True, blank = True, help_text = "Designates the perimeters of the location.", verbose_name = "Perimeters")
+    barangay = models.CharField(max_length = 65, help_text = "Designates the name of the barangay.", verbose_name = "Barangay")
+    municipality = models.CharField(max_length = 65, help_text = "Designates the name of the municipality.", verbose_name = "Municipality")
+    perimeters = models.TextField(max_length = 15000, help_text = "Designates the perimeters of the location.", verbose_name = "Perimeters")
     
     class Meta:
         db_table = "managements_location"
@@ -40,9 +40,9 @@ class StatusType(models.Model):
             return "Low"
 
 class Status(models.Model):
-    location = models.ForeignKey(Location, on_delete = models.CASCADE, null = True, blank = True, help_text = "Designates the foreign key of the Location model.", verbose_name = "Location")
-    statustype = models.ForeignKey(StatusType, on_delete = models.SET_NULL, blank = True, null = True, help_text = "Designates the foreign key of the Status Type model.", verbose_name = "Status Type")
-    caught_overall = models.IntegerField(validators = [MinValueValidator(0)], null = True, blank = True, help_text = "Designates the overall amount of the caught Crown-of-Thorns Starfish at the moment.", verbose_name = "Caught Amount")
+    location = models.ForeignKey(Location, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Location model.", verbose_name = "Location")
+    statustype = models.ForeignKey(StatusType, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Status Type model.", verbose_name = "Status Type")
+    caught_overall = models.IntegerField(validators = [MinValueValidator(0)], help_text = "Designates the overall amount of the caught Crown-of-Thorns Starfish at the moment.", verbose_name = "Caught Amount")
     onset_date = models.DateField(default = datetime.date.today(), help_text = "Designates the onset date of the outbreak status.", verbose_name = "Onset Date")
 
     class Meta:
@@ -56,11 +56,11 @@ class Status(models.Model):
 
 class Intervention(models.Model):
     title = models.CharField(max_length = 150, help_text = "Designates the title of the intervention.", verbose_name = "Title")
-    location = models.ForeignKey(Location, on_delete = models.CASCADE, null = True, blank = True, help_text = "Designates the foreign key of the Location model.", verbose_name = "Location")
-    caught_amount = models.IntegerField(validators = [MinValueValidator(0)], null = True, blank = True, help_text = "Designates the amount of the caught Crown-of-Thorns Starfish at the moment the intervention took place.", verbose_name = "Caught Amount")
-    details = models.TextField(max_length = 5000, null = True, help_text = "Designates the details of the intervention.", verbose_name = "Details")
-    hosting_agency = models.CharField(max_length = 150, unique = True, help_text = "Designates the name of the hosting agency.", verbose_name = "Hosting Agency")
-    intervention_photo = models.ImageField(default = "interventions/default.png", null = True, blank = True, upload_to = "interventions", help_text = "Designates the photo of the intervention.", verbose_name = "Intervention Photo")
+    location = models.ForeignKey(Location, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Location model.", verbose_name = "Location")
+    caught_amount = models.IntegerField(validators = [MinValueValidator(0)], help_text = "Designates the amount of the caught Crown-of-Thorns Starfish at the moment the intervention took place.", verbose_name = "Caught Amount")
+    details = models.TextField(max_length = 5000, help_text = "Designates the details of the intervention.", verbose_name = "Details")
+    hosting_agency = models.CharField(max_length = 150, help_text = "Designates the name of the hosting agency.", verbose_name = "Hosting Agency")
+    intervention_photo = models.ImageField(default = "interventions/default.png", upload_to = "interventions", help_text = "Designates the photo of the intervention.", verbose_name = "Intervention Photo")
     intervention_date = models.DateField(default = datetime.date.today(), help_text = "Designates the date of the intervention.", verbose_name = "Intervention Date")
 
     class Meta:
