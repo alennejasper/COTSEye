@@ -20,9 +20,9 @@ class Location(models.Model):
 
 
 class StatusType(models.Model):
-    is_critical = models.BooleanField(default = False, help_text = "Designates that the status is critical.", verbose_name = "Critical Status")
-    is_moderate = models.BooleanField(default = False, help_text = "Designates that the status is moderate.", verbose_name = "Moderate Status")
-    is_low = models.BooleanField(default = False, help_text = "Designates that the status is low.", verbose_name = "Low Status")
+    is_critical = models.BooleanField(default = False, help_text = "Designates that the status is critical.", verbose_name = "Critical")
+    is_moderate = models.BooleanField(default = False, help_text = "Designates that the status is moderate.", verbose_name = "Moderate")
+    is_low = models.BooleanField(default = False, help_text = "Designates that the status is low.", verbose_name = "Low")
     
     class Meta:
         db_table = "managements_status_type"

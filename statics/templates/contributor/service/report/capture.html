@@ -180,12 +180,6 @@
     </script>
 
     <script>
-        document.querySelector(".capture-photo").addEventListener("click", function(){
-            document.querySelector(".post-photo").click();
-        });
-    </script>
-
-    <script>
         document.querySelector(".post-photo").addEventListener("change", function(){
             for (var i = 0; i < this.files.length; i++){
                 var reportFile = this.files[i];
@@ -238,6 +232,8 @@
             var defaultLongitude = report.getLatLng().lng;
 
             updateCoordinates(defaultLatitude, defaultLongitude);
+
+            fetchLocation();
         }
 
         function updateCoordinates(latitude, longitude){
@@ -261,9 +257,9 @@
 
     <script>
         function fetchLocation(){
-            if (navigator.geolocation) {
+            if (navigator.geolocation){
                 navigator.geolocation.getCurrentPosition(checkPosition);
-
+                
             } else{
                 Swal.fire({title: "Oops!", text: "The location is not supported and cannot be given to COTSEye.", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}});
             }
@@ -284,13 +280,22 @@
 
             if (latitude < minimumLatitude || latitude > maximumLatitude || longitude < minimumLongitude || longitude > maximumLongitude){
                 Swal.fire({title: "Oops!", text: "The location given to COTSEye incorporated coordinates out of bounds.", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}});
-            
+                
+                document.querySelector(".capture-photo").addEventListener("click", function(){
+                    Swal.fire({title: "Oops!", text: "The location given to COTSEye incorporated coordinates out of bounds.", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}});
+                });
+
             } else{
                 updateCoordinates(latitude, longitude);
 
                 report.setLatLng([latitude, longitude]);
                 
                 map.setView([latitude, longitude], 11);
+
+                document.querySelector(".capture-photo").addEventListener("click", function(){
+                    document.querySelector(".post-photo").click();
+                });
+
             }
         }
 
@@ -304,8 +309,6 @@
                     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
                         Swal.fire({title: "Oops!", text: "The camera is not supported and cannot be given to COTSEye.", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}});
                     }
-
-                    fetchLocation();
                 });
             }
         });
