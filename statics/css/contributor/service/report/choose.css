@@ -1033,6 +1033,15 @@ form{
     position: relative;
 }
 
+.report#choose .card-body .field .column .size input::-webkit-outer-spin-button, .report#choose .card-body .field .column .size input::-webkit-inner-spin-button{
+    margin: 0;
+    -webkit-appearance: none;
+}
+
+.report#choose .card-body .field .column .size input[type = "number"]{
+    -moz-appearance: textfield;
+}
+
 .report#choose .card-body .field .column .size input{
     padding-left: 10px !important;
     padding-right: 40px !important;
@@ -1277,7 +1286,7 @@ form{
     }
 }
 
-.report#choose .card-body .field .column .density input::-webkit-outer-spin-button, .report#choose .card-body .field .column .density input::-webkit-inner-spin-button {
+.report#choose .card-body .field .column .density input::-webkit-outer-spin-button, .report#choose .card-body .field .column .density input::-webkit-inner-spin-button{
     margin: 0;
     -webkit-appearance: none;
 }

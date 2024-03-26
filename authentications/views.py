@@ -21,8 +21,11 @@ def PublicHome(request):
         if user.usertype_id == 3:
             return redirect("Contributor Service Home")
         
-        elif user.usertype_id == 2 or user.usertype_id == 1:
-            return redirect("Statistics Home Redirect")
+        elif user.usertype_id == 2:
+            return redirect("admin:index")
+        
+        elif user.usertype_id == 1:
+            return redirect("officer:index")
     
     else:
         try:
@@ -368,7 +371,7 @@ def OfficerControlLogin(request):
                 
                 sociallogin.state["save"] = False
                 
-                return redirect("Officer Control Login")
+                return redirect("officer:Officer Control Login")
             
             else:
                 if sociallogin.account.provider == "google":
@@ -514,8 +517,8 @@ def OfficerCheck(account):
             return False
     
 
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
+@login_required(login_url = "officer:Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "officer:Officer Control Login")
 def OfficerControlStatistics(request):
     username = request.user.username
 
@@ -554,8 +557,8 @@ def OfficerControlStatistics(request):
     return render(request, "officer/control/statistics/statistics.html", context)
 
 
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
+@login_required(login_url = "officer:Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "officer:Officer Control Login")
 def OfficerControlLogout(request):
     username = request.user.username
 
@@ -599,8 +602,8 @@ def AdministratorCheck(account):
             return False
     
 
-@login_required(login_url = "Administrator Control Login")
-@user_passes_test(AdministratorCheck, login_url = "Administrator Control Login")
+@login_required(login_url = "admin:Administrator Control Login")
+@user_passes_test(AdministratorCheck, login_url = "admin:Administrator Control Login")
 def AdministratorControlStatistics(request):
     username = request.user.username
 
@@ -639,8 +642,8 @@ def AdministratorControlStatistics(request):
     return render(request, "admin/control/statistics/statistics.html", context)
 
 
-@login_required(login_url = "Administrator Control Login")
-@user_passes_test(AdministratorCheck, login_url = "Administrator Control Login")
+@login_required(login_url = "admin:Administrator Control Login")
+@user_passes_test(AdministratorCheck, login_url = "admin:Administrator Control Login")
 def AdministratorControlLogout(request):    
     username = request.user.username
 

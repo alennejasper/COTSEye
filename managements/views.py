@@ -423,8 +423,8 @@ def ContributorServiceInterventionRead(request, id):
     return render(request, "contributor/service/intervention/read.html", context)
 
 
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
+@login_required(login_url = "officer:Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "officer:Officer Control Login")
 def OfficerControlStatisticsIntervention(request):
     username = request.user.username
 
@@ -724,8 +724,8 @@ def OfficerControlStatisticsIntervention(request):
     return render(request, "officer/control/intervention/intervention.html", context)
 
 
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
+@login_required(login_url = "officer:Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "officer:Officer Control Login")
 def OfficerControlStatisticsStatus(request):
     username = request.user.username
 
@@ -1025,8 +1025,8 @@ def OfficerControlStatisticsStatus(request):
     return render(request, "officer/control/status/status.html", context)
 
 
-@login_required(login_url = "Administrator Control Login")
-@user_passes_test(AdministratorCheck, login_url = "Administrator Control Login")
+@login_required(login_url = "admin:Administrator Control Login")
+@user_passes_test(AdministratorCheck, login_url = "admin:Administrator Control Login")
 def AdministratorControlStatisticsIntervention(request):
     username = request.user.username
 
@@ -1326,8 +1326,8 @@ def AdministratorControlStatisticsIntervention(request):
     return render(request, "admin/control/intervention/intervention.html", context)
 
 
-@login_required(login_url = "Administrator Control Login")
-@user_passes_test(AdministratorCheck, login_url = "Administrator Control Login")
+@login_required(login_url = "admin:Administrator Control Login")
+@user_passes_test(AdministratorCheck, login_url = "admin:Administrator Control Login")
 def AdministratorControlStatisticsStatus(request):
     username = request.user.username
 

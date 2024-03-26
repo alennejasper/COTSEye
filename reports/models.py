@@ -98,10 +98,10 @@ class Weather(models.Model):
             return "Stormy"
 
 class PostObservation(models.Model):
-    size = models.IntegerField(validators = [MinValueValidator(0)], null = True, help_text = "Designates the size of the Crown-of-Thorns Starfish at the moment the post taken.", verbose_name = "Size / Centimeter")
-    depth = models.ForeignKey(Depth, on_delete = models.CASCADE, null = True, help_text = "Designates the foreign key of the Depth model.", verbose_name = "Depth")
-    density = models.IntegerField(validators = [MinValueValidator(0)], null = True, help_text = "Designates the density of the Crown-of-Thorns Starfish at the moment the post taken.", verbose_name = "Density / Square Meter")
-    weather = models.ForeignKey(Weather, on_delete = models.CASCADE, null = True, help_text = "Designates the foreign key of the Weather model.", verbose_name = "Weather")
+    size = models.IntegerField(validators = [MinValueValidator(0)], null = True, blank = True, help_text = "Designates the size of the Crown-of-Thorns Starfish at the moment the post taken.", verbose_name = "Size / Centimeter")
+    depth = models.ForeignKey(Depth, on_delete = models.CASCADE, null = True, blank = True, help_text = "Designates the foreign key of the Depth model.", verbose_name = "Depth")
+    density = models.IntegerField(validators = [MinValueValidator(0)], null = True, blank = True, help_text = "Designates the density of the Crown-of-Thorns Starfish at the moment the post taken.", verbose_name = "Density / Square Meter")
+    weather = models.ForeignKey(Weather, on_delete = models.CASCADE, null = True, blank = True, help_text = "Designates the foreign key of the Weather model.", verbose_name = "Weather")
 
     class Meta:
         db_table = "reports_post_observation"
@@ -114,11 +114,11 @@ class PostObservation(models.Model):
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete = models.CASCADE, help_text = "Designates the foreign key of the User model.", verbose_name = "User")
     description = models.TextField(max_length = 1500, help_text = "Designates the description of the post.", verbose_name = "Description")
-    capture_date = models.DateTimeField(default = datetime.datetime.now(), help_text = "Designates the capture date and time of the post.", verbose_name = "Capture Date")
-    post_photos = models.ManyToManyField(PostPhoto, through = "PostGallery", help_text = "Designates the foreign key of the Post Photo model.", verbose_name = "Post Photos")
+    capture_date = models.DateField(default = datetime.datetime.now(), help_text = "Designates the capture date and time of the post.", verbose_name = "Capture Date")
+    post_photos = models.ManyToManyField(PostPhoto, blank = True, through = "PostGallery", help_text = "Designates the foreign key of the Post Photo model.", verbose_name = "Post Photos")
     coordinates = models.ForeignKey(Coordinates, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Coordinates model.", verbose_name = "Coordinates")
     post_status = models.ForeignKey(PostStatus, on_delete = models.CASCADE, default = 1, help_text = "Designates the foreign key of the Post Status model.", verbose_name = "Post Status")
-    post_observation = models.ForeignKey(PostObservation, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Post Observation model.", verbose_name = "Post Observation")
+    post_observation = models.ForeignKey(PostObservation, null = True, blank = True, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Post Observation model.", verbose_name = "Post Observation")
 
     class Meta:
         db_table = "reports_post"

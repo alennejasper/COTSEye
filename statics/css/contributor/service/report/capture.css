@@ -1107,6 +1107,15 @@ form{
     }
 }
 
+.report#capture .card-body .field .column .size input::-webkit-outer-spin-button, .report#capture .card-body .field .column .size input::-webkit-inner-spin-button{
+    margin: 0;
+    -webkit-appearance: none;
+}
+
+.report#capture .card-body .field .column .size input[type = "number"]{
+    -moz-appearance: textfield;
+}
+
 .report#capture .card-body .field .column .size i{
     right: 10px;
     top: 50%;
@@ -1277,7 +1286,7 @@ form{
     }
 }
 
-.report#capture .card-body .field .column .density input::-webkit-outer-spin-button, .report#capture .card-body .field .column .density input::-webkit-inner-spin-button {
+.report#capture .card-body .field .column .density input::-webkit-outer-spin-button, .report#capture .card-body .field .column .density input::-webkit-inner-spin-button{
     margin: 0;
     -webkit-appearance: none;
 }

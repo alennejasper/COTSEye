@@ -53,7 +53,7 @@ def ContributorServiceReportCapture(request):
 
         postobservation_form = PostObservationForm(request.POST)
 
-        post_form =  PostForm(request.POST)
+        post_form =  PostForm(request.POST, request.FILES)
 
         if coordinates_form.is_valid() and postobservation_form.is_valid() and post_form.is_valid():
             coordinates = coordinates_form.save(commit = False)
@@ -70,18 +70,26 @@ def ContributorServiceReportCapture(request):
             
             depth = request.POST.get("depth")
 
-            post_observation.depth = Depth.objects.get(id = depth)
+            try:
+                post_observation.depth = Depth.objects.get(id = depth)
+
+            except:
+                post_observation.depth = None
 
             weather = request.POST.get("weather")
 
-            post_observation.weather = Weather.objects.get(id = weather)
+            try:
+                post_observation.weather = Weather.objects.get(id = weather)
+            
+            except:
+                post_observation.weather = None
 
             post_observation = PostObservation.objects.create(size = post_observation.size, depth = post_observation.depth, density = post_observation.density, weather = post_observation.weather)
             
             if Coordinates.objects.filter(latitude = coordinates.latitude, longitude = coordinates.longitude).exists() and PostObservation.objects.filter(size = post_observation.size, depth = post_observation.depth, density = post_observation.density, weather = post_observation.weather).exists():
                 post = Post.objects.create(user = user, description = post.description, capture_date = post.capture_date, coordinates = coordinates, post_status = post_status, post_observation = post_observation)
 
-                post_photos = request.FILES.getlist("post_photo")
+                post_photos = request.FILES.getlist("post_photos")
 
                 for post_photo in post_photos:
                     photo = PostPhoto.objects.create(post_photo = post_photo)
@@ -131,9 +139,9 @@ def ContributorServiceReportChoose(request):
 
         postobservation_form = PostObservationForm(request.POST)
 
-        post_form =  PostForm(request.POST)
+        post_form =  PostForm(request.POST, request.FILES)
 
-        if coordinates_form.is_valid() and postobservation_form.is_valid() and post_form.is_valid():
+        if coordinates_form.is_valid() and post_form.is_valid() and postobservation_form.is_valid():
             coordinates = coordinates_form.save(commit = False)
 
             post_observation = postobservation_form.save(commit = False)
@@ -148,19 +156,27 @@ def ContributorServiceReportChoose(request):
             
             depth = request.POST.get("depth")
 
-            post_observation.depth = Depth.objects.get(id = depth)
+            try:
+                post_observation.depth = Depth.objects.get(id = depth)
+
+            except:
+                post_observation.depth = None
 
             weather = request.POST.get("weather")
 
-            post_observation.weather = Weather.objects.get(id = weather)
+            try:
+                post_observation.weather = Weather.objects.get(id = weather)
+            
+            except:
+                post_observation.weather = None
 
             post_observation = PostObservation.objects.create(size = post_observation.size, depth = post_observation.depth, density = post_observation.density, weather = post_observation.weather)
             
-            if Coordinates.objects.filter(latitude = coordinates.latitude, longitude = coordinates.longitude).exists() and PostObservation.objects.filter(size = post_observation.size, depth = post_observation.depth, density = post_observation.density, weather = post_observation.weather).exists():
+            if Coordinates.objects.filter(latitude = coordinates.latitude, longitude = coordinates.longitude).exists() and Coordinates.objects.filter(latitude = coordinates.latitude, longitude = coordinates.longitude).exists() and PostObservation.objects.filter(size = post_observation.size, depth = post_observation.depth, density = post_observation.density, weather = post_observation.weather).exists():
                 post = Post.objects.create(user = user, description = post.description, capture_date = post.capture_date, coordinates = coordinates, post_status = post_status, post_observation = post_observation)
 
-                post_photos = request.FILES.getlist("post_photo")
-
+                post_photos = request.FILES.getlist("post_photos")
+        
                 for post_photo in post_photos:
                     photo = PostPhoto.objects.create(post_photo = post_photo)
                     
@@ -687,8 +703,8 @@ def ContributorServicePostUncertainRead(request, id):
     return render(request, "contributor/service/post/read.html", context)
 
 
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
+@login_required(login_url = "officer:Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "officer:Officer Control Login")
 def OfficerControlStatisticsPost(request):
     username = request.user.username
 
@@ -1343,8 +1359,8 @@ def OfficerControlStatisticsPost(request):
     return render(request, "officer/control/post/post.html", context)
 
 
-@login_required(login_url = "Administrator Control Login")
-@user_passes_test(AdministratorCheck, login_url = "Administrator Control Login")
+@login_required(login_url = "admin:Administrator Control Login")
+@user_passes_test(AdministratorCheck, login_url = "admin:Administrator Control Login")
 def AdministratorControlStatisticsPost(request):
     username = request.user.username
 
