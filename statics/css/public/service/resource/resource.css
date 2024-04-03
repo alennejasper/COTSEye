@@ -110,7 +110,7 @@
     }
 }
 
-.resource .card-body{
+.resource .card-body:has(.links-date, .resource-links, .files-date, .resource-files){
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 15px;

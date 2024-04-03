@@ -760,7 +760,7 @@
     height: 100% !important;
 }
 
-.status#status-filter .card-body .button a.filter-status{
+.status#status-filter .card-body .button a.filter-statuses{
     padding-left: 10px !important;
     padding-right: 10px !important;
     padding-top: 5px !important;
@@ -778,7 +778,7 @@
     cursor: pointer;
 }
 
-.status#status-filter .card-body .button a.filter-status:hover{
+.status#status-filter .card-body .button a.filter-statuses:hover{
     background-color: #10354C !important;
     color: #B2BEB5 !important;
 }
@@ -954,6 +954,7 @@
     border-top-right-radius: 5px !important;
     background-color: #C90016 !important;
     display: grid;
+    cursor: pointer;
 }
 
 .status .card-header#moderate-status{
@@ -965,6 +966,7 @@
     border-top-right-radius: 5px !important;
     background-color: #154360;
     display: grid;
+    cursor: pointer;
 }
 
 .status .card-header#low-status{
@@ -976,6 +978,7 @@
     border-top-right-radius: 5px !important;
     background-color: #698F3F;
     display: grid;
+    cursor: pointer;
 }
 
 .status .card-header header{
@@ -1028,7 +1031,7 @@
     width: 100%;
     border-bottom-left-radius: 5px !important;
     border-bottom-right-radius: 5px !important;
-    display: grid;
+    display: none;
     background-color: #FFFFFF;
 }
 

@@ -30,7 +30,7 @@
                 </div>
 
                 <div class = "button">
-                    <a class = "filter-resource" type = "submit">Filter</a>
+                    <a class = "filter-resources" type = "submit">Filter</a>
                 </div>    
             </div>
         </form>
@@ -49,7 +49,7 @@
     {% endif %}
 
     <script>
-        document.querySelector(".filter-resource").onclick = function() {
+        document.querySelector(".filter-resources").onclick = function() {
             document.querySelector(".resource-form").submit();
         }
     </script>
@@ -59,11 +59,11 @@
 
         {% for resource in results %}
             <div class = "resource">
-                <div class = "card-header">
+                <div class = "card-header" onclick = "toggleBody(this)">
                     <header class = "preview">{{resource.title | default:'None available'}}</header>
                 </div>
 
-                <div class = "card-body">
+                <div class = "card-body"> 
                     <div class = "field">
                         <div class = "column">
                             <label for = "release-date">Release Date</label> 
@@ -98,7 +98,7 @@
 
         {% for resource in records %}
             <div class = "resource">
-                <div class = "card-header">
+                <div class = "card-header" onclick = "toggleBody(this)">
                     <header class = "preview">{{resource.resource.title | default:'None available'}}</header>
                 </div>
 
@@ -132,4 +132,21 @@
             </div>
         {% endfor %}
     {% endif %}
+
+    <script>
+        function toggleBody(element){
+            var body = element.nextElementSibling;
+            
+            if (body.style.display === "none" || body.style.display === ""){
+                body.style.borderBottomLeftRadius = "5px";
+
+                body.style.borderBottomTopRadius = "5px";
+                
+                body.style.display = "grid";
+            
+            } else {
+                body.style.display = "none";
+            }
+        }
+    </script>
 {% endblock content %}

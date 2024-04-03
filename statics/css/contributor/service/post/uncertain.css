@@ -751,7 +751,7 @@
     height: 100% !important;
 }
 
-.post#uncertain-filter .card-body .button a.filter-post{
+.post#uncertain-filter .card-body .button a.filter-posts{
     padding-left: 10px !important;
     padding-right: 10px !important;
     padding-top: 5px !important;
@@ -769,7 +769,7 @@
     cursor: pointer;
 }
 
-.post#uncertain-filter .card-body .button a.filter-post:hover{
+.post#uncertain-filter .card-body .button a.filter-posts:hover{
     background-color: #10354C !important;
     color: #B2BEB5 !important;
 }
@@ -945,6 +945,7 @@
     border-top-right-radius: 5px !important;
     background-color: #F4C430;
     display: grid;
+    cursor: pointer;
 }
 
 .post#uncertain-records .card-header header.preview{
@@ -1001,7 +1002,7 @@
     width: 100%;
     border-bottom-left-radius: 5px !important;
     border-bottom-right-radius: 5px !important;
-    display: grid;
+    display: none;
     background-color: #FFFFFF;
 }
 
@@ -2127,8 +2128,9 @@
     padding-bottom: 15px;
     border-top-left-radius: 5px !important;
     border-top-right-radius: 5px !important;
-    background-color: #698F3F;
+    background-color: #F4C430;
     display: grid;
+    cursor: pointer;
 }
 
 .post#uncertain-results .card-header header.preview{
@@ -2185,7 +2187,7 @@
     width: 100%;
     border-bottom-left-radius: 5px !important;
     border-bottom-right-radius: 5px !important;
-    display: grid;
+    display: none;
     background-color: #FFFFFF;
 }
 

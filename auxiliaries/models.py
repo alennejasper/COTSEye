@@ -1,3 +1,5 @@
+from django.conf import settings
+from django.utils.html import mark_safe
 from django.db import models
 from authentications.models import User
 
@@ -14,9 +16,15 @@ class Announcement(models.Model):
     announcement_photo = models.ImageField(default = "announcements/default.png", null = True, upload_to = "announcements", help_text = "Designates the photo of the announcement.", verbose_name = "Announcement Photo")
 
     class Meta:
-            db_table = "auxiliaries_announcement"
-            verbose_name = "Announcement"
-            verbose_name_plural = "Announcements"
+        db_table = "auxiliaries_announcement"
+        verbose_name = "Announcement"
+        verbose_name_plural = "Announcements"
+
+    def gallery_photo(self):
+        if self.announcement_photo != "":
+            return mark_safe("<img src = '%s%s'/>" % (f"{settings.MEDIA_URL}", self.announcement_photo))
+    
+    gallery_photo.short_description = "Gallery Photo"
     
     def __str__(self):
         return str(self.title) + " | " + str(self.user)
@@ -59,3 +67,16 @@ class ResourceLink(models.Model):
     
     def __str__(self):
         return "LINK " + str(self.id)
+
+
+class Inquiry(models.Model):
+    question = models.CharField(max_length = 150, help_text = "Designates the question of the inquiry.", verbose_name = "Question")
+    answer = models.TextField(max_length = 5000, help_text = "Designates the answer of the inquiry.", verbose_name = "Answer")
+
+    class Meta:
+            db_table = "auxiliaries_inquiry"
+            verbose_name = "Inquiry"
+            verbose_name_plural = "Inquiries"
+    
+    def __str__(self):
+        return str(self.question)

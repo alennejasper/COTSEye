@@ -1,5 +1,5 @@
-from reports.models import Post
 from managements.models import Status
+from reports.models import Post
 
 
 def coordinates(request):

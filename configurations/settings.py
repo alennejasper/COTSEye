@@ -200,11 +200,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "statics/assets")
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-RECAPTCHA_PUBLIC_KEY = "6LfYwRMnAAAAAG8B0ZyMeD-NNV1pnVFlXS_A0-yV"
-
-RECAPTCHA_PRIVATE_KEY = "6LfYwRMnAAAAAIHt-ewPrUDtpE3Uxwr5Xa6-tqL-"
-
-
 AUTH_USER_MODEL = "authentications.Account"
 
 AUTHENTICATION_BACKENDS = [
@@ -221,7 +216,7 @@ SOCIALACCOUNT_EMAIL_REQUIRED = False
 
 SOCIALACCOUNT_QUERY_EMAIL = False
 
-ACCOUNT_user_frequencyL_EMAIL_FIELD = None
+ACCOUNT_USER_MODEL_EMAIL_FIELD = None
 
 ACCOUNT_EMAIL_REQUIRED = False
 
@@ -258,18 +253,40 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+
+EMAIL_HOST = "smtp.gmail.com"
+
+EMAIL_PORT = 587
+
+EMAIL_USE_TLS = True
+
+EMAIL_HOST_USER = "evergreen.postcard@gmail.com"
+
+EMAIL_HOST_PASSWORD = "svaplqphgxacfnco"
+
+
+RECAPTCHA_PUBLIC_KEY = "6LfYwRMnAAAAAG8B0ZyMeD-NNV1pnVFlXS_A0-yV"
+
+RECAPTCHA_PRIVATE_KEY = "6LfYwRMnAAAAAIHt-ewPrUDtpE3Uxwr5Xa6-tqL-"
+
+
 JAZZMIN_SETTINGS = {
+    "changeform_format": "horizontal_tabs",
+        
+    "custom_css": "css/officer/control/index/index.css",
+
+    "custom_css": "css/admin/control/index/index.css", 
+
+    "copyright": "Team Rocket",
+
+    "navigation_expanded": False,
+
+    "show_sidebar": False,
+
     "site_brand": "COTSEye",
     
     "site_logo": "assets/icons/logo.png",
-    
-    "copyright": "Team Rocket",
-    
-    "show_sidebar": False,
-   
-    "navigation_expanded": False,
-        
-    "changeform_format": "horizontal_tabs",
 
     "topmenu_links": [
         {"name": "Access statistics", "url": reverse_lazy("admin:Administrator Control Statistics")}

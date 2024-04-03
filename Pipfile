@@ -1,22 +1,14 @@
 [[source]]
 url = "https://pypi.org/simple"
-
 verify_ssl = true
-
 name = "pypi"
-
 
 [packages]
 django = "*"
-
 django-jazzmin = "*"
-
 django-allauth = "*"
-
 psycopg2 = "*"
-
 pillow = "*"
-
 
 [dev-packages]
 

@@ -1505,6 +1505,7 @@
     border-top-right-radius: 5px !important;
     background-color: #154360;
     display: grid;
+    cursor: pointer;
 }
 
 .post .card-header header{
@@ -1557,7 +1558,7 @@
     width: 100%;
     border-bottom-left-radius: 5px !important;
     border-bottom-right-radius: 5px !important;
-    display: grid;
+    display: none;
     gap: 15px;
     background-color: #FFFFFF;
 }
@@ -2984,7 +2985,7 @@
     }
 }
 
-.post .card-body .button a.generate-pdf{
+.post .card-body .button a.generate-report{
     padding-left: 10px !important;
     padding-right: 10px !important;
     padding-top: 5px !important;
@@ -3002,7 +3003,7 @@
     cursor: pointer;
 }
 
-.post .card-body .button a.generate-pdf:hover{
+.post .card-body .button a.generate-report:hover{
     background-color: #10354C !important;
     color: #B2BEB5 !important;
 }

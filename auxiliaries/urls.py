@@ -13,6 +13,8 @@ urlpatterns = [
 
     path("public/service/resource/file/", views.PublicServiceResourceFile, name = "Public Service Resource File"),
 
+    path("public/service/inquiry/", views.PublicServiceInquiry, name = "Public Service Inquiry"),
+
     path("contributor/service/announcement/", views.ContributorServiceAnnouncement, name = "Contributor Service Announcement"),
     
     path("contributor/service/announcement/read/<int:id>/", views.ContributorServiceAnnouncementRead, name = "Contributor Service Announcement Read"),

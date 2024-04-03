@@ -99,7 +99,7 @@
     }
 }
 
-.post .card-body{
+.post .card-body:has(.post-date, .posts){
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 15px;
@@ -610,7 +610,7 @@
     }
 }
 
-.status .card-body{
+.status .card-body:has(.status-date, .statuses){
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 15px;
@@ -1121,7 +1121,7 @@
     }
 }
 
-.intervention .card-body{
+.intervention .card-body:has(.intervention-date, .interventions){
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 15px;

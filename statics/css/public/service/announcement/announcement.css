@@ -482,7 +482,7 @@
     height: 100% !important;
 }
 
-.announcement#announcement-filter .card-body .button a.filter-announcement{
+.announcement#announcement-filter .card-body .button a.filter-announcementss{
     padding-left: 10px !important;
     padding-right: 10px !important;
     padding-top: 5px !important;
@@ -500,7 +500,7 @@
     cursor: pointer;
 }
 
-.announcement#announcement-filter .card-body .button a.filter-announcement:hover{
+.announcement#announcement-filter .card-body .button a.filter-announcementss:hover{
     background-color: #10354C !important;
     color: #B2BEB5 !important;
 }
@@ -676,6 +676,7 @@
     border-top-right-radius: 5px !important;
     background-color: #154360;
     display: grid;
+    cursor: pointer;
 }
 
 .announcement .card-header header{
@@ -728,7 +729,7 @@
     width: 100%;
     border-bottom-left-radius: 5px !important;
     border-bottom-right-radius: 5px !important;
-    display: grid;
+    display: none;
     background-color: #FFFFFF;
 }
 

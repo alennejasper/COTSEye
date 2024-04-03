@@ -5,19 +5,26 @@ from reports.models import *
 class PostPhotoAdmin(admin.ModelAdmin):
     class Media:   
         css = {
-            "all": ["css/admin/control/index/index.css"]
+            "all": ["css/officer/control/index/index.css"]
         }
 
     def has_module_permission(self, request):
         return request.user.usertype_id == 1 or request.user.usertype_id == 2
-
+    
+    readonly_fields = ["gallery_photo"]
+    
 officer.register(PostPhoto, PostPhotoAdmin)
 
+
+class PostGalleryInline(admin.TabularInline):
+    model = PostGallery
+    extra = 0
+    
 
 class CoordinatesAdmin(admin.ModelAdmin):
     class Media:   
         css = {
-            "all": ["css/admin/control/index/index.css"]
+            "all": ["css/officer/control/index/index.css"]
         }
 
     def has_module_permission(self, request):
@@ -29,7 +36,7 @@ officer.register(Coordinates, CoordinatesAdmin)
 class PostStatusAdmin(admin.ModelAdmin):
     class Media:   
         css = {
-            "all": ["css/admin/control/index/index.css"]
+            "all": ["css/officer/control/index/index.css"]
         }
 
     def has_module_permission(self, request):
@@ -41,7 +48,7 @@ officer.register(PostStatus, PostStatusAdmin)
 class DepthAdmin(admin.ModelAdmin):
     class Media:   
         css = {
-            "all": ["css/admin/control/index/index.css"]
+            "all": ["css/officer/control/index/index.css"]
         }
 
     def has_module_permission(self, request):
@@ -53,7 +60,7 @@ officer.register(Depth, DepthAdmin)
 class WeatherAdmin(admin.ModelAdmin):
     class Media:   
         css = {
-            "all": ["css/admin/control/index/index.css"]
+            "all": ["css/officer/control/index/index.css"]
         }
 
     def has_module_permission(self, request):
@@ -65,7 +72,7 @@ officer.register(Weather, WeatherAdmin)
 class PostObservationAdmin(admin.ModelAdmin):
     class Media:   
         css = {
-            "all": ["css/admin/control/index/index.css"]
+            "all": ["css/officer/control/index/index.css"]
         }
 
     def has_module_permission(self, request):
@@ -77,7 +84,7 @@ officer.register(PostObservation, PostObservationAdmin)
 class PostAdmin(admin.ModelAdmin):
     class Media:   
         css = {
-            "all": ["css/admin/control/index/index.css"]
+            "all": ["css/officer/control/index/index.css"]
         }
 
     def has_module_permission(self, request):
@@ -94,8 +101,15 @@ class PostPhotoAdmin(admin.ModelAdmin):
 
     def has_module_permission(self, request):
         return request.user.usertype_id == 1 or request.user.usertype_id == 2
+    
+    readonly_fields = ["gallery_photo"]
 
 admin.site.register(PostPhoto, PostPhotoAdmin)
+
+
+class PostGalleryInline(admin.TabularInline):
+    model = PostGallery
+    extra = 0
 
 
 class CoordinatesAdmin(admin.ModelAdmin):
@@ -154,7 +168,7 @@ class PostObservationAdmin(admin.ModelAdmin):
         
     def has_module_permission(self, request):
         return request.user.usertype_id == 1 or request.user.usertype_id == 2
-
+    
 admin.site.register(PostObservation, PostObservationAdmin)
 
 
@@ -166,5 +180,7 @@ class PostAdmin(admin.ModelAdmin):
 
     def has_module_permission(self, request):
         return request.user.usertype_id == 1 or request.user.usertype_id == 2
+
+    inlines = [PostGalleryInline]
 
 admin.site.register(Post, PostAdmin)

@@ -13,7 +13,7 @@
                     <label for = "valid-date">Newest Date</label> 
 
                     <div class = "valid-date">
-                        <input type = "text" value = "{{valid_date.capture_date | date:'M. j, Y g:i a' | default:'None available'}}" id = "valid-date" name = "valid_date" readonly>
+                        <input type = "text" value = "{{valid_date.capture_date | date:'M. j, Y' | default:'None available'}}" id = "valid-date" name = "valid_date" readonly>
 
                         <i class = "fa-solid fa-calendar-day"></i>
                     </div>  
@@ -47,7 +47,7 @@
                     <label for = "invalid-date">Newest Date</label> 
 
                     <div class = "invalid-date">
-                        <input type = "text" value = "{{invalid_date.capture_date | date:'M. j, Y g:i a' | default:'None available'}}" id = "invalid-date" name = "invalid_date" readonly>
+                        <input type = "text" value = "{{invalid_date.capture_date | date:'M. j, Y' | default:'None available'}}" id = "invalid-date" name = "invalid_date" readonly>
 
                         <i class = "fa-solid fa-calendar-day"></i>
                     </div>  
@@ -81,7 +81,7 @@
                     <label for = "uncertain-date">Newest Date</label> 
 
                     <div class = "uncertain-date">
-                        <input type = "text" value = "{{uncertain_date.capture_date | date:'M. j, Y g:i a' | default:'None available'}}" id = "uncertain-date" name = "uncertain_date" readonly>
+                        <input type = "text" value = "{{uncertain_date.capture_date | date:'M. j, Y' | default:'None available'}}" id = "uncertain-date" name = "uncertain_date" readonly>
 
                         <i class = "fa-solid fa-calendar-day"></i>
                     </div>  

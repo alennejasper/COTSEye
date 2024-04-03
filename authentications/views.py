@@ -1,8 +1,8 @@
-from django.shortcuts import render, redirect
-from django.dispatch import receiver
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.dispatch import receiver
+from django.shortcuts import render, redirect
 from django.urls import reverse
 from allauth.socialaccount.signals import social_account_updated
 from authentications.forms import AccountForm, UserForm, ProfileForm
@@ -665,22 +665,29 @@ def ControlHomeRedirect(request):
 
 
 def ControlPasswordRedirect(request):
-    usertype = request.user.usertype_id
+    if request.user.is_authenticated:
+        usertype = request.user.usertype_id
 
-    if usertype == 2:
-        return redirect(reverse("officer:password_change"))
+        if usertype == 2:
+            return redirect(reverse("officer:password_change"))
+        
+        elif usertype == 1:
+            return redirect(reverse("admin:password_change"))
     
-    elif usertype == 1:
-        return redirect(reverse("admin:password_change"))
-
+    else:
+        return redirect(reverse("officer:password_change"))
 
 def ControlProfileRedirect(request):
-    usertype = request.user.usertype_id
-
     object = Account.objects.get(id = request.user.id)
 
-    if usertype == 2:
-        return redirect(reverse("officer:authentications_account_change", kwargs = {"object_id": object.id}))
+    if request.user.is_authenticated:
+        usertype = request.user.usertype_id
 
-    if usertype == 1:
-        return redirect(reverse("admin:authentications_account_change", kwargs = {"object_id": object.id}))
+        if usertype == 2:
+            return redirect(reverse("officer:authentications_account_change", kwargs = {"object_id": object.id}))
+
+        elif usertype == 1:
+            return redirect(reverse("admin:authentications_account_change", kwargs = {"object_id": object.id}))
+    
+    else:
+        return redirect(reverse("officer:authentications_account_change", kwargs = {"object_id": object.id}))

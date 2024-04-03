@@ -54,7 +54,7 @@
                 </div>
 
                 <div class = "button">
-                    <a class = "filter-intervention" type = "submit">Filter</a>
+                    <a class = "filter-interventions" type = "submit">Filter</a>
                 </div>    
             </div>
         </div>
@@ -73,7 +73,7 @@
     {% endif %}
 
     <script>
-        document.querySelector(".filter-intervention").onclick = function() {
+        document.querySelector(".filter-interventions").onclick = function() {
             document.querySelector(".intervention-form").submit();
         }
     </script>
@@ -83,7 +83,7 @@
 
         {% for intervention in results %}
             <div class = "intervention">
-                <div class = "card-header">
+                <div class = "card-header" onclick = "toggleBody(this)">
                     <header>{{intervention.title | default:'None available'}}</header>
                 </div>
 
@@ -122,7 +122,7 @@
 
         {% for intervention in records %}
             <div class = "intervention">
-                <div class = "card-header">
+                <div class = "card-header" onclick = "toggleBody(this)">
                     <header>{{intervention.title | default:'None available'}}</header>
                 </div>
 
@@ -156,4 +156,21 @@
             </div>
         {% endfor %}
     {% endif %}
+
+    <script>
+        function toggleBody(element){
+            var body = element.nextElementSibling;
+            
+            if (body.style.display === "none" || body.style.display === ""){
+                body.style.borderBottomLeftRadius = "5px";
+
+                body.style.borderBottomTopRadius = "5px";
+                
+                body.style.display = "grid";
+            
+            } else {
+                body.style.display = "none";
+            }
+        }
+    </script>
 {% endblock content %}

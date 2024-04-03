@@ -54,7 +54,7 @@
                 </div>
 
                 <div class = "button">
-                    <a class = "filter-status" type = "submit">Filter</a>
+                    <a class = "filter-statuses" type = "submit">Filter</a>
                 </div>    
             </div>
         </form>
@@ -73,7 +73,7 @@
     {% endif %}
 
     <script>
-        document.querySelector(".filter-status").onclick = function() {
+        document.querySelector(".filter-statuses").onclick = function() {
             document.querySelector(".status-form").submit();
         }
     </script>
@@ -82,7 +82,7 @@
         <div class = "line" id = "filtered-statistics"></div>
 
         <div class = "status">
-            <div class = "card-header">
+            <div class = "card-header" onclick = "toggleBody(this)">
                 <header>Overall statistics</header>
             </div>
 
@@ -126,7 +126,7 @@
                 </div> 
                 
                 <div class = "button">
-                    <a class = "generate-pdf" type = "submit">Generate pdf</a>
+                    <a class = "generate-report" type = "submit">Generate report</a>
                 </div>
             </div>
         </div>
@@ -134,7 +134,7 @@
         <div class = "line" id = "filtered-charts"></div>
 
         <div class = "status">
-            <div class = "card-header">
+            <div class = "card-header" onclick = "toggleBody(this)">
                 <header>Filtered charts</header>
             </div>
 
@@ -789,7 +789,7 @@
 
         {% for status in results %}
             <div class = "status">
-                <div class = "card-header" {% if status.statustype.is_critical == True %} id = "critical-status" {% elif status.statustype.is_moderate == True %} id = "moderate-status" {% elif status.statustype.is_low == True %} id = "low-status" {% endif %}>
+                <div class = "card-header" onclick = "toggleBody(this)" {% if status.statustype.is_critical == True %} id = "critical-status" {% elif status.statustype.is_moderate == True %} id = "moderate-status" {% elif status.statustype.is_low == True %} id = "low-status" {% endif %}>
                     <header>{{status.statustype | default:'None available'}}</header>
                 </div>
 
@@ -827,7 +827,7 @@
         <div class = "line" id = "overall-statistics"></div>
 
         <div class = "status">
-            <div class = "card-header">
+            <div class = "card-header" onclick = "toggleBody(this)">
                 <header>Overall statistics</header>
             </div>
 
@@ -871,7 +871,7 @@
                 </div> 
                 
                 <div class = "button">
-                    <a class = "generate-pdf" type = "submit">Generate pdf</a>
+                    <a class = "generate-report" type = "submit">Generate report</a>
                 </div>
             </div>
         </div>
@@ -879,7 +879,7 @@
         <div class = "line" id = "overall-charts"></div>
 
         <div class = "status">
-            <div class = "card-header">
+            <div class = "card-header" onclick = "toggleBody(this)">
                 <header>Overall charts</header>
             </div>
 
@@ -1534,7 +1534,7 @@
 
         {% for status in records %}
             <div class = "status">
-                <div class = "card-header" {% if status.statustype.is_critical == True %} id = "critical-status" {% elif status.statustype.is_moderate == True %} id = "moderate-status" {% elif status.statustype.is_low == True %} id = "low-status" {% endif %}>
+                <div class = "card-header" onclick = "toggleBody(this)" {% if status.statustype.is_critical == True %} id = "critical-status" {% elif status.statustype.is_moderate == True %} id = "moderate-status" {% elif status.statustype.is_low == True %} id = "low-status" {% endif %}>
                     <header>{{status.statustype | default:'None available'}}</header>
                 </div>
 
@@ -1568,4 +1568,21 @@
             </div>
         {% endfor %}
     {% endif %}
+
+    <script>
+        function toggleBody(element){
+            var body = element.nextElementSibling;
+            
+            if (body.style.display === "none" || body.style.display === ""){
+                body.style.borderBottomLeftRadius = "5px";
+
+                body.style.borderBottomTopRadius = "5px";
+                
+                body.style.display = "grid";
+            
+            } else {
+                body.style.display = "none";
+            }
+        }
+    </script>
 {% endblock content %}

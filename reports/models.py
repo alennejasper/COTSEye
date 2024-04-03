@@ -1,5 +1,7 @@
-from django.db import models
+from django.conf import settings
 from django.core.validators import MinValueValidator
+from django.db import models
+from django.utils.html import mark_safe
 from authentications.models import User
 
 import datetime
@@ -13,9 +15,15 @@ class PostPhoto(models.Model):
         verbose_name = "Post Photo"
         verbose_name_plural = "Posts Photos"
     
+    def gallery_photo(self):
+        if self.post_photo != "":
+            return mark_safe("<img src = '%s%s'/>" % (f"{settings.MEDIA_URL}", self.post_photo))
+    
+    gallery_photo.short_description = "Gallery Photo"
+    
     def __str__(self):
         return "PHOTO " + str(self.id)
-    
+
 
 class Coordinates(models.Model):
     latitude = models.DecimalField(max_digits = 9, decimal_places = 6, help_text = "Designates the latitude of the post.", verbose_name = "Latitude")

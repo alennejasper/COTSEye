@@ -1,13 +1,18 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.sites.shortcuts import get_current_site
+from django.core.mail import EmailMultiAlternatives
 from django.db.models import Q
+from django.http import HttpResponse
+from django.template.loader import render_to_string
 from django.urls import reverse
-from collections import Counter
+from django.utils.html import strip_tags
 from authentications.models import Account
+from authentications.views import ContributorCheck, OfficerCheck, AdministratorCheck
+from collections import Counter
 from reports.models import *
 from reports.forms import CoordinatesForm, PostObservationForm, PostForm
-from authentications.views import ContributorCheck, OfficerCheck, AdministratorCheck
 
 import datetime
 
@@ -95,6 +100,39 @@ def ContributorServiceReportCapture(request):
                     photo = PostPhoto.objects.create(post_photo = post_photo)
                     
                     post.post_photos.add(photo)
+                
+                officers = User.objects.filter(account__usertype_id = 2)
+
+                for officer in officers:
+                    subject = "COTSEye has been delivered an alert message!"
+
+                    scheme = request.scheme
+
+                    host = request.META["HTTP_HOST"]
+
+                    template = render_to_string("admin/control/email/email.html", {"officer": officer.account.username, "contributor": post.user.account.username, "post": post, "scheme": scheme, "host": host})
+
+                    body = strip_tags(template)
+
+                    source = "COTSEye <settings.EMAIL_HOST_USER>"
+
+                    recipient = [officer.email]
+
+                    email = EmailMultiAlternatives(
+                        subject,
+                        
+                        body,
+                        
+                        source,
+                        
+                        recipient,
+                    )
+
+                    email.attach_alternative(template, "text/html")
+
+                    email.fail_silently = False
+
+                    email.send()
 
                 username = request.user.username
                 
@@ -181,6 +219,39 @@ def ContributorServiceReportChoose(request):
                     photo = PostPhoto.objects.create(post_photo = post_photo)
                     
                     post.post_photos.add(photo)
+                
+                officers = User.objects.filter(account__usertype_id = 2)
+
+                for officer in officers:
+                    subject = "COTSEye has delivered an alert message!"
+
+                    scheme = request.scheme
+
+                    host = request.META["HTTP_HOST"]
+
+                    template = render_to_string("admin/control/email/email.html", {"officer": officer.account.username, "contributor": post.user.account.username, "post": post, "scheme": scheme, "host": host})
+
+                    body = strip_tags(template)
+
+                    source = "COTSEye <settings.EMAIL_HOST_USER>"
+
+                    recipient = [officer.email]
+
+                    email = EmailMultiAlternatives(
+                        subject,
+                        
+                        body,
+                        
+                        source,
+                        
+                        recipient,
+                    )
+
+                    email.attach_alternative(template, "text/html")
+
+                    email.fail_silently = False
+
+                    email.send()
 
                 username = request.user.username
                 
@@ -362,6 +433,8 @@ def ContributorServicePostValid(request):
     options = Post.objects.all()
 
     records = Post.objects.filter(user = request.user.user, post_status = 1)
+
+    results = None
     
     if request.method == "GET":
         from_date = request.GET.get("from_date")
@@ -375,8 +448,6 @@ def ContributorServicePostValid(request):
         depth = request.GET.get("depth")
 
         weather = request.GET.get("weather")
-
-        results = None
 
         if from_date and to_date:
             results = Post.objects.filter(user = request.user.user, post_status = 1, capture_date__range = [from_date, to_date])
@@ -469,6 +540,8 @@ def ContributorServicePostInvalid(request):
     options = Post.objects.all()
     
     records = Post.objects.filter(user = request.user.user, post_status = 2)
+
+    results = None
     
     if request.method == "GET":
         from_date = request.GET.get("from_date")
@@ -482,8 +555,6 @@ def ContributorServicePostInvalid(request):
         depth = request.GET.get("depth")
 
         weather = request.GET.get("weather")
-
-        results = None
 
         if from_date and to_date:
             results = Post.objects.filter(user = request.user.user, post_status = 2, capture_date__range = [from_date, to_date])
@@ -604,6 +675,8 @@ def ContributorServicePostUncertain(request):
     options = Post.objects.all()
 
     records = Post.objects.filter(user = request.user.user, post_status = 3)
+
+    results = None
     
     if request.method == "GET":
         from_date = request.GET.get("from_date")
@@ -617,8 +690,6 @@ def ContributorServicePostUncertain(request):
         depth = request.GET.get("depth")
 
         weather = request.GET.get("weather")
-
-        results = None
 
         if from_date and to_date:
             results = Post.objects.filter(user = request.user.user, post_status = 3, capture_date__range = [from_date, to_date])
@@ -711,6 +782,8 @@ def OfficerControlStatisticsPost(request):
     options = Post.objects.all()
 
     records = Post.objects.all()
+
+    results = None
 
     try:
         posts_count = records.count()
@@ -988,8 +1061,6 @@ def OfficerControlStatisticsPost(request):
         depth = request.GET.get("depth")
 
         weather = request.GET.get("weather")
-
-        results = None
 
         if from_date and to_date:
             results = Post.objects.filter(capture_date__range = [from_date, to_date])
@@ -1368,6 +1439,8 @@ def AdministratorControlStatisticsPost(request):
 
     records = Post.objects.all()
 
+    results = None
+
     try:
         posts_count = records.count()
 
@@ -1644,8 +1717,6 @@ def AdministratorControlStatisticsPost(request):
         depth = request.GET.get("depth")
 
         weather = request.GET.get("weather")
-
-        results = None
 
         if from_date and to_date:
             results = Post.objects.filter(capture_date__range = [from_date, to_date])
@@ -2041,12 +2112,19 @@ def PostValidReadRedirect(request):
 
 
 def ControlStatisticsPostReadRedirect(request, object_id):
-    usertype = request.user.usertype_id
-
     object = Post.objects.get(id = object_id)
 
-    if usertype == 2:
-        return redirect(reverse("officer:reports_post_change", kwargs = {"object_id": object.id}))
+    if request.user.is_authenticated:
+        usertype = request.user.usertype_id
 
-    if usertype == 1:
-        return redirect(reverse("admin:reports_post_change", kwargs = {"object_id": object.id}))
+        if usertype == 3:
+            return redirect(reverse("officer:reports_post_change", kwargs = {"object_id": object.id}))
+        
+        elif usertype == 2:
+            return redirect(reverse("officer:reports_post_change", kwargs = {"object_id": object.id}))
+
+        elif usertype == 1:
+            return redirect(reverse("admin:reports_post_change", kwargs = {"object_id": object.id}))
+
+    else:
+        return redirect(reverse("officer:reports_post_change", kwargs = {"object_id": object.id}))     

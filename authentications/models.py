@@ -1,6 +1,8 @@
-from django.db import models
+from django.conf import settings
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager, Group, Permission
 from django.contrib.sites.models import Site
+from django.db import models
+from django.utils.html import mark_safe
 from allauth.socialaccount.models import SocialAccount, SocialToken, SocialApp
 
 import datetime
@@ -106,6 +108,12 @@ class User(models.Model):
         db_table = "localaccount_user"
         verbose_name = "User"
         verbose_name_plural = "Users"
+    
+    def gallery_photo(self):
+        if self.profile_photo != "":
+            return mark_safe("<img src = '%s%s'/>" % (f"{settings.MEDIA_URL}", self.profile_photo))
+    
+    gallery_photo.short_description = "Gallery Photo"
 
     def __str__(self):
         return str(self.account)

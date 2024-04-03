@@ -54,7 +54,7 @@
                 </div>
 
                 <div class = "button">
-                    <a class = "filter-post" type = "submit">Filter</a>
+                    <a class = "filter-posts" type = "submit">Filter</a>
                 </div>    
             </div>
         </form>
@@ -73,7 +73,7 @@
     {% endif %}
 
     <script>
-        document.querySelector(".filter-post").onclick = function() {
+        document.querySelector(".filter-posts").onclick = function() {
             document.querySelector(".post-form").submit();
         }
     </script>
@@ -83,7 +83,7 @@
 
         {% for post in results %}
             <div class = "post" id = "invalid-results">
-                <div class = "card-header">
+                <div class = "card-header" onclick = "toggleBody(this)">
                     <header class = "preview">{{post.description}}</header>
                 </div>
 
@@ -93,7 +93,7 @@
                             <label for = "capture-date">Capture Date</label> 
 
                             <div class = "capture-date">
-                                <input type = "text" value = "{{post.capture_date | date:'M. j, Y g:i a' | default:'None available'}}" id = "capture-date" name = "capture-date" readonly>
+                                <input type = "text" value = "{{post.capture_date | date:'M. j, Y' | default:'None available'}}" id = "capture-date" name = "capture-date" readonly>
 
                                 <i class = "fa-solid fa-calendar-day"></i>
                             </div>  
@@ -122,7 +122,7 @@
 
         {% for post in records %}
             <div class = "post" id = "invalid-records">
-                <div class = "card-header">
+                <div class = "card-header" onclick = "toggleBody(this)">
                     <header class = "preview">{{post.description}}</header>
                 </div>
 
@@ -132,7 +132,7 @@
                             <label for = "capture-date">Capture Date</label> 
 
                             <div class = "capture-date">
-                                <input type = "text" value = "{{post.capture_date | date:'M. j, Y g:i a' | default:'None available'}}" id = "capture-date" name = "capture-date" readonly>
+                                <input type = "text" value = "{{post.capture_date | date:'M. j, Y' | default:'None available'}}" id = "capture-date" name = "capture-date" readonly>
 
                                 <i class = "fa-solid fa-calendar-day"></i>
                             </div>  
@@ -157,15 +157,20 @@
         {% endfor %}
     {% endif %}
 
-    {% if messages %}
-        {% for message in messages %}
-            {% if message.tags == "info" %}<script>Swal.fire({title: "Hey!", text: "{{message}}", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}})</script>
+    <script>
+        function toggleBody(element){
+            var body = element.nextElementSibling;
             
-            {% elif message.tags == "success" %}<script>Swal.fire({title: "Yay!", text: "{{message}}", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}})</script>
+            if (body.style.display === "none" || body.style.display === ""){
+                body.style.borderBottomLeftRadius = "5px";
+
+                body.style.borderBottomTopRadius = "5px";
+                
+                body.style.display = "grid";
             
-            {% else %}<script>Swal.fire({title: "Oops!", text: "{{message}}", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}})</script>
-            
-            {% endif %}    
-        {% endfor %}
-    {% endif %}
+            } else {
+                body.style.display = "none";
+            }
+        }
+    </script>
 {% endblock content %}

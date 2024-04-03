@@ -1,9 +1,9 @@
-from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.shortcuts import render, redirect
 from django.urls import reverse
-from collections import Counter
 from authentications.views import ContributorCheck, OfficerCheck, AdministratorCheck
+from collections import Counter
 from managements.models import *
 
 import datetime
@@ -15,6 +15,8 @@ def PublicServiceStatus(request):
     options = Status.objects.all()
 
     records = Status.objects.all()
+
+    results = None
 
     if request.method == "GET":
         from_date = request.GET.get("from_date")
@@ -29,8 +31,6 @@ def PublicServiceStatus(request):
 
         statustype = request.GET.get("statustype")
 
-        results = None
-
         if from_date and to_date:
             results = Status.objects.filter(onset_date__range = [from_date, to_date])
         
@@ -42,7 +42,7 @@ def PublicServiceStatus(request):
         elif not from_date and not to_date:
             username = "public/everyone"
             
-            messages.error(request, username + ", " + "Date range is not valid.")
+            messages.error(request, username + ", " + "date range is not valid.")
         
         elif not from_date or not to_date:
             username = "public/everyone"
@@ -84,7 +84,7 @@ def PublicServiceStatus(request):
         if not from_date and not to_date and not location and not statustype:
             username = "public/everyone"
 
-            messages.error(request, username + ", " + "information filter is not used within COTSEye.")
+            messages.error(request, username + ", " + "information filter is empty within COTSEye.")
         
         elif not from_date or not to_date or not location or not statustype:
             username = "public/everyone"
@@ -112,6 +112,8 @@ def PublicServiceIntervention(request):
     options = Intervention.objects.all()
 
     records = Intervention.objects.all()
+
+    results = None
     
     if request.method == "GET":
         from_date = request.GET.get("from_date")
@@ -125,8 +127,6 @@ def PublicServiceIntervention(request):
         location = request.GET.get("location")
 
         hosting_agency = request.GET.get("hosting_agency")
-
-        results = None
 
         if from_date and to_date:
             results = Intervention.objects.filter(intervention_date__range = [from_date, to_date])
@@ -222,6 +222,8 @@ def ContributorServiceStatus(request):
 
     records = Status.objects.all()
 
+    results = None
+
     if request.method == "GET":
         from_date = request.GET.get("from_date")
 
@@ -234,8 +236,6 @@ def ContributorServiceStatus(request):
         location = request.GET.get("location")
 
         statustype = request.GET.get("statustype")
-
-        results = None
 
         if from_date and to_date:
             results = Status.objects.filter(onset_date__range = [from_date, to_date])
@@ -290,7 +290,7 @@ def ContributorServiceStatus(request):
         if not from_date and not to_date and not location and not statustype:
             username = request.user.username
 
-            messages.error(request, username + ", " + "information filter is not used within COTSEye.")
+            messages.error(request, username + ", " + "information filter is empty within COTSEye.")
         
         elif not from_date or not to_date or not location or not statustype:
             username = request.user.username
@@ -320,6 +320,8 @@ def ContributorServiceIntervention(request):
     options = Intervention.objects.all()
 
     records = Intervention.objects.all()
+
+    results = None
     
     if request.method == "GET":
         from_date = request.GET.get("from_date")
@@ -333,8 +335,6 @@ def ContributorServiceIntervention(request):
         location = request.GET.get("location")
 
         hosting_agency = request.GET.get("hosting_agency")
-
-        results = None
 
         if from_date and to_date:
             results = Intervention.objects.filter(intervention_date__range = [from_date, to_date])
@@ -431,6 +431,8 @@ def OfficerControlStatisticsIntervention(request):
     options = Intervention.objects.all()
 
     records = Intervention.objects.all()
+
+    results = None
 
     try:
         interventions_count = records.count()
@@ -544,8 +546,6 @@ def OfficerControlStatisticsIntervention(request):
         location = request.GET.get("location")
 
         hosting_agency = request.GET.get("hosting_agency")
-
-        results = None
 
         if from_date and to_date:
             results = Intervention.objects.filter(intervention_date__range = [from_date, to_date])
@@ -733,6 +733,8 @@ def OfficerControlStatisticsStatus(request):
 
     records = Status.objects.all()
 
+    results = None
+
     try:
         statuses_count = records.count()
 
@@ -845,8 +847,6 @@ def OfficerControlStatisticsStatus(request):
         location = request.GET.get("location")
 
         statustype = request.GET.get("statustype")
-
-        results = None
 
         if from_date and to_date:
             results = Status.objects.filter(onset_date__range = [from_date, to_date])
@@ -1034,6 +1034,8 @@ def AdministratorControlStatisticsIntervention(request):
 
     records = Intervention.objects.all()
 
+    results = None
+
     try:
         interventions_count = records.count()
 
@@ -1146,8 +1148,6 @@ def AdministratorControlStatisticsIntervention(request):
         location = request.GET.get("location")
 
         hosting_agency = request.GET.get("hosting_agency")
-
-        results = None
 
         if from_date and to_date:
             results = Intervention.objects.filter(intervention_date__range = [from_date, to_date])
@@ -1335,6 +1335,8 @@ def AdministratorControlStatisticsStatus(request):
 
     records = Status.objects.all()
 
+    results = None
+
     try:
         statuses_count = records.count()
 
@@ -1447,8 +1449,6 @@ def AdministratorControlStatisticsStatus(request):
         location = request.GET.get("location")
 
         statustype = request.GET.get("statustype")
-
-        results = None
 
         if from_date and to_date:
             results = Status.objects.filter(onset_date__range = [from_date, to_date])
@@ -1627,15 +1627,19 @@ def AdministratorControlStatisticsStatus(request):
     return render(request, "admin/control/status/status.html", context)
 
 def ControlStatisticsStatusReadRedirect(request, object_id):
-    usertype = request.user.usertype_id
-
     object = Status.objects.get(id = object_id)
+    
+    if request.user.is_authenticated:
+        usertype = request.user.usertype_id
 
-    if usertype == 2:
+        if usertype == 2:
+            return redirect(reverse("officer:managements_status_change", kwargs = {"object_id": object.id}))
+
+        elif usertype == 1:
+            return redirect(reverse("admin:managements_status_change", kwargs = {"object_id": object.id}))
+    
+    else:
         return redirect(reverse("officer:managements_status_change", kwargs = {"object_id": object.id}))
-
-    if usertype == 1:
-        return redirect(reverse("admin:managements_status_change", kwargs = {"object_id": object.id}))
     
 
 def ControlStatisticsInterventionReadRedirect(request, object_id):
@@ -1643,8 +1647,12 @@ def ControlStatisticsInterventionReadRedirect(request, object_id):
 
     object = Intervention.objects.get(id = object_id)
 
-    if usertype == 2:
-        return redirect(reverse("officer:managements_intervention_change", kwargs = {"object_id": object.id}))
+    if request.user.is_authenticated:
+        if usertype == 2:
+            return redirect(reverse("officer:managements_intervention_change", kwargs = {"object_id": object.id}))
 
-    if usertype == 1:
-        return redirect(reverse("admin:managements_intervention_change", kwargs = {"object_id": object.id}))
+        elif usertype == 1:
+            return redirect(reverse("admin:managements_intervention_change", kwargs = {"object_id": object.id}))
+    
+    else:
+        return redirect(reverse("officer:managements_status_change", kwargs = {"object_id": object.id}))

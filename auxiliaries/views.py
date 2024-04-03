@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import FileResponse
+from django.shortcuts import render, redirect
 from django.utils.encoding import smart_str
 from auxiliaries.models import *
 from authentications.views import ContributorCheck
@@ -12,6 +12,8 @@ def PublicServiceAnnouncement(request):
 
     records = Announcement.objects.all()
 
+    results = None
+
     if request.method == "GET":
         from_date = request.GET.get("from_date")
 
@@ -20,8 +22,6 @@ def PublicServiceAnnouncement(request):
         to_date = request.GET.get("to_date")
 
         to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
-
-        results = None
 
         if from_date and to_date:
             results = Announcement.objects.filter(release_date__range = [from_date, to_date])
@@ -99,6 +99,8 @@ def PublicServiceResourceLink(request):
 
     records = ResourceLink.objects.all()
 
+    results = None
+
     if request.method == "GET":
         from_date = request.GET.get("from_date")
 
@@ -107,8 +109,6 @@ def PublicServiceResourceLink(request):
         to_date = request.GET.get("to_date")
 
         to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
-
-        results = None
 
         if from_date and to_date:
             results = ResourceLink.objects.filter(resource__release_date__range = [from_date, to_date])
@@ -192,12 +192,47 @@ def PublicServiceResourceFile(request):
     return render(request, "public/service/resource/file.html", context)
 
 
+def PublicServiceInquiry(request):
+    username = "public/everyone"
+
+    records = Inquiry.objects.all()
+
+    results = None
+
+    if request.method == "GET":
+        keyword = request.GET.get("keyword")
+
+        if keyword:
+            results = Inquiry.objects.filter(question__icontains = keyword)
+
+        elif not keyword:
+            username = "public/everyone"
+
+            messages.error(request, username + ", " + "keyword is not valid.")
+
+        if results is None:
+            username = "public/everyone"
+
+            messages.info(request, username + ", " + "kindly search inquiries within COTSEye to read for guide today.")
+
+        elif not results:
+            username = "public/everyone"
+
+            messages.error(request, username + ", " + "information input is impossible within COTSEye.")
+
+    context = {"username": username, "records": records, "results": results}
+
+    return render(request, "public/service/inquiry/inquiry.html", context)
+
+
 @login_required(login_url = "Contributor Service Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
 def ContributorServiceAnnouncement(request):
     username = request.user.username
 
     records = Announcement.objects.all()
+
+    results = None
 
     if request.method == "GET":
         from_date = request.GET.get("from_date")
@@ -207,8 +242,6 @@ def ContributorServiceAnnouncement(request):
         to_date = request.GET.get("to_date")
 
         to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
-
-        results = None
 
         if from_date and to_date:
             results = Announcement.objects.filter(release_date__range = [from_date, to_date])
@@ -226,7 +259,7 @@ def ContributorServiceAnnouncement(request):
         elif not from_date and not to_date:
             username = request.user.username
 
-            messages.error(request, username + ", " + "information filter is empty within COTSEye.")
+            messages.error(request, username + ", " + "date range is not valid.")
         
         if results is None:
             username = request.user.username
@@ -286,6 +319,8 @@ def ContributorServiceResourceLink(request):
 
     records = ResourceLink.objects.all()
 
+    results = None
+
     if request.method == "GET":
         from_date = request.GET.get("from_date")
 
@@ -294,8 +329,6 @@ def ContributorServiceResourceLink(request):
         to_date = request.GET.get("to_date")
 
         to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
-
-        results = None
 
         if from_date and to_date:
             results = ResourceLink.objects.filter(resource__release_date__range = [from_date, to_date])
@@ -337,6 +370,8 @@ def ContributorServiceResourceFile(request):
 
     records = ResourceFile.objects.all()
 
+    results = None
+
     if request.method == "GET":
         from_date = request.GET.get("from_date")
 
@@ -345,8 +380,6 @@ def ContributorServiceResourceFile(request):
         to_date = request.GET.get("to_date")
 
         to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
-
-        results = None
 
         if from_date and to_date:
             results = ResourceFile.objects.filter(resource__release_date__range = [from_date, to_date])
