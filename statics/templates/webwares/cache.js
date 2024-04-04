@@ -6,17 +6,20 @@ self.addEventListener("install", event => {
             caches.open("public/service/index").then(cache => {
                 cache.addAll([
                     "/statics/templates/public/service/index/index.html",
+
                     
-                    "/statics/css/public/service/index/index.css",
+                    "{% static 'css/public/service/index/index.css' %}",
 
 
-                    "/statics/templates/webwares/application.js",
+                    "{% static 'templates/webwares/application.js' %}",
                     
-                    "/statics/templates/webwares/manifest.json",
+                    "{% static 'templates/webwares/manifest.json' %}",
                     
+                    
+                    "{% static 'assets/icons/logo.png' %}",
 
-                    "/statics/assets/icons/logo.png",
-                    
+                    "{% static 'assets/icons/logo (180 x 180).png' %}",
+
                     "/statics/assets/icons/logo (72 x 72).png",
                     
                     "/statics/assets/icons/logo (96 x 96).png",
@@ -37,6 +40,7 @@ self.addEventListener("install", event => {
                     
                     "/statics/assets/icons/logo (512 x 512).png",
 
+
                     "https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&display=swap",
                     
                     "https://fonts.googleapis.com/css2?family=Overlock:wght@400;700;900&display=swap",
@@ -53,10 +57,154 @@ self.addEventListener("install", event => {
 
             caches.open("public/service/home").then(cache => {
                 cache.addAll([
+                    "{% url 'Public Service Home' %}",
+                    
                     "/statics/templates/public/service/home/home.html",
                     
-                    "/statics/css/public/service/home/home.css",
                     
+                    "{% static 'css/public/service/home/home.css' %}",
+
+
+                    "{% static 'assets/maps/google' %}/11/1731/987.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1731/988.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1731/989.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1731/990.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1731/991.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1731/992.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1731/993.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1732/987.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1732/988.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1732/989.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1732/990.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1732/991.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1732/992.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1732/993.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1733/987.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1733/988.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1733/989.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1733/990.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1733/991.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1733/992.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1733/993.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1734/987.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1734/988.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1734/989.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1734/990.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1734/991.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1734/992.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1734/993.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1735/987.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1735/988.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1735/989.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1735/990.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1735/991.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1735/992.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1735/993.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1736/987.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1736/988.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1736/989.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1736/990.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1736/991.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1736/992.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1736/993.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1737/987.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1737/988.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1737/989.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1737/990.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1737/991.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1737/992.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1737/993.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1738/987.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1738/988.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1738/989.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1738/990.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1738/991.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1738/992.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1738/993.jpg",
+                    
+                    "{% static 'assets/maps/google' %}/11/1739/987.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1739/988.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1739/989.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1739/990.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1739/991.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1739/992.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1739/993.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1740/987.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1740/988.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1740/989.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1740/990.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1740/991.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1740/992.jpg",
+
+                    "{% static 'assets/maps/google' %}/11/1740/993.jpg",
+
 
                     "https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&display=swap",
                     

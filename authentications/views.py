@@ -314,7 +314,7 @@ def ContributorServiceLogout(request):
     
     messages.success(request, username + ", " + "your account used just now was signed out of COTSEye.")
     
-    return redirect("Public Home")
+    return redirect("Public Service Home")
 
 
 def OfficerControlRegister(request):
