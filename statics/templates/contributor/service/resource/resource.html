@@ -13,7 +13,7 @@
                     <label for = "links-date">Newest Date</label> 
 
                     <div class = "links-date">
-                        <input type = "text" value = "{{links_date.capture_date | date:'M. j, Y g:i a' | default:'None available'}}" id = "links-date" name = "links_date" readonly>
+                        <input type = "text" value = "{{links_date.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}" id = "links-date" name = "links_date" readonly>
 
                         <i class = "fa-solid fa-calendar-day"></i>
                     </div>  
@@ -47,7 +47,7 @@
                     <label for = "files-date">Newest Date</label> 
 
                     <div class = "files-date">
-                        <input type = "text" value = "{{files_date.capture_date | date:'M. j, Y g:i a' | default:'None available'}}" id = "files-date" name = "files_date" readonly>
+                        <input type = "text" value = "{{files_date.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}" id = "files-date" name = "files_date" readonly>
 
                         <i class = "fa-solid fa-calendar-day"></i>
                     </div>  

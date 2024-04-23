@@ -261,9 +261,9 @@ EMAIL_PORT = 587
 
 EMAIL_USE_TLS = True
 
-EMAIL_HOST_USER = "evergreen.postcard@gmail.com"
+EMAIL_HOST_USER = "cotseye.information@gmail.com"
 
-EMAIL_HOST_PASSWORD = "svaplqphgxacfnco"
+EMAIL_HOST_PASSWORD = "vqmurhtaaynudqku"
 
 
 RECAPTCHA_PUBLIC_KEY = "6LfYwRMnAAAAAG8B0ZyMeD-NNV1pnVFlXS_A0-yV"

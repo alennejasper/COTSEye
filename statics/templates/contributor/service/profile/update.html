@@ -4,7 +4,7 @@
 {% block content %}
     {% if user %}
         <div class = "update">
-            <form action = "" method = "POST" enctype = "multipart/form-data">
+            <form action = "" class = "profile-form" method = "POST" enctype = "multipart/form-data">
                 {% csrf_token %}
                 
                 <div class = "card-body">
@@ -24,7 +24,7 @@
                                 <i class = "fa-solid fa-user-tag"></i>
                             </div>
             
-                            <label for = "last-name">User Type</label>
+                            <label for = "last-name">Last Name</label>
             
                             <div class = "last-name">                    
                                 <input type = "text" id = "last-name" name = "last_name">
@@ -45,7 +45,7 @@
                             <label for = "phone-number">Phone Number</label>
             
                             <div class = "phone-number">
-                                <input type = "text" id = "phone-number" name = "phone_number">
+                                <input type = "number" id = "phone-number" name = "phone_number">
             
                                 <i class = "fa-solid fa-phone"></i>
                             </div>
@@ -87,5 +87,139 @@
         document.querySelector(".profile-photo").addEventListener("click", () =>{
             document.querySelector("input[type = 'file']").click();
         });
+    </script>
+
+    <script>
+        document.querySelector(".save-profile").onclick = function(event){
+            event.preventDefault();
+
+            if(!navigator.onLine){
+                const username = "{{request.user.username}}";
+                        
+                Swal.fire({title: "Hey!", text: username + ", " + "your information input was recorded offline for COTSEye. Kindly visit the current page again if back online.", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}}).then(() => {
+                    location.reload();
+                });
+
+            } else{
+                document.querySelector(".profile-form").submit();
+            };
+        };
+    </script>
+
+    <script>
+        const indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB || window.shimIndexedDB;
+        
+        const request = indexedDB.open("cotseye", 1);
+
+        request.onupgradeneeded = (event) => {
+            const cotseye = event.target.result;
+        
+            cotseye.createObjectStore("cotseye_schema", {autoIncrement: true});
+        };
+
+        request.onsuccess = (event) => {
+            const cotseye = event.target.result;
+
+            const form = document.querySelector(".profile-form");
+
+            const account = "{{request.user.id}}";
+
+            if (!navigator.onLine){
+                document.querySelector(".profile-photo").addEventListener("change", () => {
+                    const file = document.querySelector(".profile-photo").files[0];
+
+                    if (file){
+                        const reader = new FileReader();
+                        
+                        reader.addEventListener("load", (event) => {
+                            profilePhoto.push(event.target.result);
+                        });
+                        
+                        reader.readAsDataURL(file);
+                    };
+                });
+
+                const profilePhoto = [];
+
+                document.querySelector(".save-profile").addEventListener("click", (event) => {
+                    event.preventDefault();
+
+                    const information = new FormData(form);
+
+                    const firstName = information.get("first_name");
+
+                    const lastName = information.get("last_name");
+
+                    const email = information.get("email");
+
+                    const phoneNumber = information.get("phone_number");
+
+                    const transaction = cotseye.transaction("cotseye_schema", "readwrite");
+
+                    const cotseye_schema = transaction.objectStore("cotseye_schema");
+
+                    const profile = {             
+                        account: parseInt(account),
+
+                        first_name: firstName,
+                        
+                        last_name: lastName,
+
+                        profile_photo: profilePhoto,
+
+                        email: email,
+
+                        phone_number: parseInt(phoneNumber)
+                    };
+
+                    cotseye_schema.add(profile);
+                }); 
+            };
+
+            if(navigator.onLine){
+                const transaction = cotseye.transaction("cotseye_schema", "readonly");
+
+                const cotseye_schema = transaction.objectStore("cotseye_schema");
+
+                const profile = cotseye_schema.getAll();
+
+                post.onsuccess = (event) => {
+                    const information = event.target.result;
+
+                    if(information && information.length > 0){
+                        const json = JSON.stringify(information);
+
+                        const token = "{{csrf_token}}"
+
+                        fetch("{% url 'Contributor Service Profile Update Fetch' %}", {
+                            method: "POST",
+
+                            headers: {"Content-Type": "application/json", "X-CSRFToken": token},
+
+                            body: json
+
+                        }).then(() => {
+                            const request = indexedDB.open("cotseye", 1);
+
+                            request.onsuccess = (event) => {
+                                const cotseye = event.target.result;
+                                
+                                const transaction = cotseye.transaction("cotseye_schema", "readwrite");
+                                
+                                const cotseye_schema = transaction.objectStore("cotseye_schema");
+                                
+                                cotseye_schema.clear();
+
+                                const username = "{{request.user.username}}";
+
+                                Swal.fire({title: "Yay!", text: username + ", " + "your information input recorded offline was delivered to COTSEye.", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}}).then(() => {
+                                    window.location.href = "{% url 'Contributor Service Home' %}";
+                                });
+                            };
+                        });
+                    };
+                };
+            };
+        };
     </script>
 {% endblock content %}

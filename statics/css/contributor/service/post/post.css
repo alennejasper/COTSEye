@@ -79,6 +79,17 @@
     display: grid;
 }
 
+.post#draft .card-header{
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-top-left-radius: 5px !important;
+    border-top-right-radius: 5px !important;
+    background-color: #154360;
+    display: grid;
+}
+
 .post .card-header header{
     font-family: "Philosopher";
     font-weight: 700;
@@ -1176,6 +1187,346 @@
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .post .card-body .field .column .uncertain-date i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+.post .card-body .field .column label[for = "draft-posts"]{
+    margin-top: 0px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body .field .column label[for = "draft-posts"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body .field .column label[for = "draft-posts"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body .field .column label[for = "draft-posts"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.post .card-body .field .column .draft-posts{
+    position: relative;
+}
+
+.post .card-body .field .column .draft-posts input{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.post .card-body .field .column .draft-posts input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body .field .column .draft-posts input{
+        padding-left: 10px !important;
+        padding-right: 38px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body .field .column .draft-posts input{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body .field .column .draft-posts input{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.post .card-body .field .column .draft-posts i{
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body .field .column .uncertain-posts i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body .field .column .draft-posts i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body .field .column .draft-posts i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+.post .card-body .field .column label[for = "draft-date"]{
+    margin-top: 0px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body .field .column label[for = "draft-date"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body .field .column label[for = "draft-date"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body .field .column label[for = "draft-date"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.post .card-body .field .column .draft-date{
+    position: relative;
+}
+
+.post .card-body .field .column .draft-date input{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.post .card-body .field .column .draft-date input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body .field .column .draft-date input{
+        padding-left: 10px !important;
+        padding-right: 38px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body .field .column .draft-date input{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body .field .column .draft-date input{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.post .card-body .field .column .draft-date i{
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post .card-body .field .column .draft-date i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post .card-body .field .column .draft-date i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post .card-body .field .column .draft-date i{
         right: 10px;
         top: 50%;
         position: absolute;

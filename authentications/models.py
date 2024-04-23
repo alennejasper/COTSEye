@@ -1,7 +1,8 @@
 from django.conf import settings
+from django.core.validators import MinValueValidator
+from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager, Group, Permission
 from django.contrib.sites.models import Site
-from django.db import models
 from django.utils.html import mark_safe
 from allauth.socialaccount.models import SocialAccount, SocialToken, SocialApp
 
@@ -100,7 +101,7 @@ class User(models.Model):
     first_name = models.CharField(max_length = 65, null = True, help_text = "Designates the first name of the user.", verbose_name = "First Name")
     last_name = models.CharField(max_length = 65, null = True, help_text = "Designates the last name of the user.", verbose_name = "Last Name")
     email = models.EmailField(max_length = 65, null = True, help_text = "Designates the email of the user.", verbose_name = "Email")
-    phone_number = models.CharField(max_length = 10, null = True, help_text = "Designates the phone number of the user.", verbose_name = "Phone Number")
+    phone_number = models.IntegerField(validators = [MinValueValidator(0)], null = True, blank = True, help_text = "Designates the phone number of the user.", verbose_name = "Phone Number")
     profile_photo = models.ImageField(default = "profiles/default.png", null = True, upload_to = "profiles", help_text = "Designates the profile photo of the user.", verbose_name = "Profile Photo")
     joined_date = models.DateTimeField(default = datetime.datetime.now(), help_text = "Designates the joined date and time of the user.", verbose_name = "Joined Date")
     
@@ -108,7 +109,7 @@ class User(models.Model):
         db_table = "localaccount_user"
         verbose_name = "User"
         verbose_name_plural = "Users"
-    
+
     def gallery_photo(self):
         if self.profile_photo != "":
             return mark_safe("<img src = '%s%s'/>" % (f"{settings.MEDIA_URL}", self.profile_photo))
@@ -129,6 +130,7 @@ class Site2(Site):
 
     class Meta:
         app_label = "sites"
+        managed = False
 
     def __str__(self):
         if Site._meta.get_field("domain"):
@@ -152,6 +154,7 @@ class SocialAccount2(SocialAccount):
     
     class Meta:
         app_label = "socialaccount"
+        managed = False
     
     def __str__(self):
         return str(SocialAccount._meta.get_field("user"))
@@ -173,6 +176,7 @@ class SocialToken2(SocialToken):
 
     class Meta:
         app_label = "socialaccount"
+        managed = False
     
     def __str__(self):
         return str(SocialToken._meta.get_field("token"))
@@ -198,6 +202,7 @@ class SocialApp2(SocialApp):
 
     class Meta:
         app_label = "socialaccount"
+        managed = False
     
     def __str__(self):
         return str(SocialApp._meta.get_field("provider"))

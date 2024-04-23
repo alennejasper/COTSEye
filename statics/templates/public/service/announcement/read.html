@@ -9,7 +9,7 @@
 
                 <p><i class = "fa-solid fa-feather"></i>{{announcement.user | default:'None available'}}</p>
 
-                <p><i class = "fa-solid fa-calendar-check"></i>{{announcement.release_date | date:'M. j, Y g:i a' | default:'None available'}}</p>
+                <p><i class = "fa-solid fa-calendar-check"></i>{{announcement.release_date | date:'M. j, Y, g:i a' | default:'None available'}}</p>
 
                 <p><i class = "fa-solid fa-location-dot"></i>{{announcement.place | default:'None available'}}</p>
 
@@ -18,9 +18,19 @@
                 <p>{{announcement.context | default:'None available'}}</p>
 
                 <div class = "buttons">
-                    <a class = "share-announcement" href = "">Share</a>
+                    <a class = "share-announcement" target = "blank">Share</a>
                 </div>
             </div>
         </div>
     {% endfor %}
+
+    <script>
+        {% if announcement %}
+            const link = encodeURI("{{scheme}}://{{host}}{% url 'Public Service Announcement Read' announcement.id %}");
+        
+            const facebook = document.querySelector(".share-announcement");
+
+            facebook.href = "https://www.facebook.com/share.php?u=" + link;
+        {% endif %}
+    </script>
 {% endblock content %}

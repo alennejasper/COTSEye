@@ -7,7 +7,9 @@
             <div class = "card-body">
                 <p><i class = "fa-solid fa-flag"></i>Valid</p>
 
-                <p><i class = "fa-solid fa-calendar-check"></i>{{valid_post.capture_date | date:'M. j, Y g:i a' | default:'None available'}}</p>
+                <p><i class = "fa-solid fa-user"></i>{{valid_post.user}}</p>
+
+                <p><i class = "fa-solid fa-calendar-check"></i>{{valid_post.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}</p>
 
                 <p><i class = "fa-solid fa-location-dot"></i>{{valid_post.coordinates.latitude | default:'0'}}° N, {{valid_post.coordinates.longitude | default:'0'}}° E</p>
 
@@ -48,7 +50,7 @@
                 </table>
 
                 <div class = "button">
-                    <a class = "share-post" href = "">Share</a>
+                    <a class = "share-post" target = "blank">Share</a>
                 </div>
             </div>
         </div>
@@ -58,6 +60,8 @@
         <div class = "post">
             <div class = "card-body">
                 <p><i class = "fa-solid fa-flag"></i>Invalid</p>
+
+                <p><i class = "fa-solid fa-user"></i>{{invalid_post.user}}</p>
 
                 <p><i class = "fa-solid fa-calendar-check"></i>{{invalid_post.capture_date | default:'None available'}}</p>
 
@@ -100,7 +104,7 @@
                 </table>
 
                 <div class = "button">
-                    <a class = "delete-post" href = "{% url 'Contributor Service Post Invalid Delete' uncertain_post.id %}">Delete</a>
+                    <a class = "delete-post" href = "{% url 'Contributor Service Post Invalid Delete' invalid_post.id %}">Delete</a>
                 </div>
             </div>
         </div>
@@ -111,7 +115,9 @@
             <div class = "card-body">
                 <p><i class = "fa-solid fa-flag"></i>Uncertain</p>
 
-                <p><i class = "fa-solid fa-calendar-check"></i>{{uncertain_post.capture_date | date:'M. j, Y g:i a' | default:'None available'}}</p>
+                <p><i class = "fa-solid fa-user"></i>{{uncertain_post.user}}</p>
+
+                <p><i class = "fa-solid fa-calendar-check"></i>{{uncertain_post.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}</p>
 
                 <p><i class = "fa-solid fa-location-dot"></i>{{uncertain_post.coordinates.latitude | default:'0'}}° N, {{uncertain_post.coordinates.longitude | default:'0'}}° E</p>
 
@@ -150,11 +156,247 @@
                         <td>{{uncertain_post.post_observation.weather | default:'None available'}}</td>
                     </tr>
                 </table>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if draft_post %}
+        <div class = "post">
+            <div class = "card-body">
+                <p><i class = "fa-solid fa-flag"></i>Draft</p>
+
+                <p><i class = "fa-solid fa-user"></i>{{draft_post.user}}</p>
+
+                <p><i class = "fa-solid fa-calendar-check"></i>{{draft_post.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}</p>
+
+                <p><i class = "fa-solid fa-location-dot"></i>{{draft_post.coordinates.latitude | default:'0'}}° N, {{draft_post.coordinates.longitude | default:'0'}}° E</p>
+
+                <div class = "post-gallery">
+                    {% for post_photo in draft_post.post_photos.all %}
+                        <img class = "gallery-photo" src = "{{post_photo.post_photo.url}}">
+                    {% endfor %}
+                </div>
+
+                <p>{{draft_post.description | default:'None available'}}</p>
+
+                <table>
+                    <caption>Post observation</caption>
+
+                    <tr>
+                        <td>Size</td>
+
+                        <td>{{draft_post.post_observation.size | default:'0'}}</td>
+                    </tr>
+
+                    <tr>
+                    <td>Depth</td>
+
+                    <td>{{draft_post.post_observation.depth | default:'0'}}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Density</td>
+        
+                        <td>{{draft_post.post_observation.density | default:'0'}}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Weather</td>
+        
+                        <td>{{draft_post.post_observation.weather | default:'None available'}}</td>
+                    </tr>
+                </table>
 
                 <div class = "button">
-                    <a class = "update-post" href = "{% url 'Contributor Service Post Uncertain Read' uncertain_post.id %}">Update</a>
+                    <a class = "send-post" href = "{% url 'Contributor Service Post Draft Send' draft_post.id %}">Send</a><!--
+                        
+                    --><a class = "update-post" href = "{% url 'Contributor Service Report Update' draft_post.id %}">Update</a>
                 </div>
             </div>
         </div>
     {% endif %}
+
+    <script>
+        {% if valid_post %}
+            const link = encodeURI("{{scheme}}://{{host}}{% url 'Contributor Service Post Valid Read' valid_post.id %}");
+        
+            const facebook = document.querySelector(".share-post");
+
+            facebook.href = "https://www.facebook.com/share.php?u=" + link;
+        {% endif %}
+    </script>
+
+    <script>
+        document.querySelector(".delete-post").onclick = function(event){
+            event.preventDefault();
+
+            if(!navigator.onLine){
+                const username = "{{request.user.username}}";
+                        
+                Swal.fire({title: "Hey!", text: username + ", " + "your information input was vanished offline from COTSEye. Kindly visit the current page again if back online.", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}}).then(() => {
+                    location.reload();
+                });
+
+            } else{
+                window.location.href = "{% if invalid_post %}{% url 'Contributor Service Post Invalid Delete' invalid_post.id %}{% endif %}";
+            };
+        };
+    </script>
+
+    <script>
+        document.querySelector(".send-post").onclick = function(event){
+            event.preventDefault();
+
+            if(!navigator.onLine){
+                const username = "{{request.user.username}}";
+                        
+                Swal.fire({title: "Hey!", text: username + ", " + "your information input was sent offline to COTSEye. Kindly visit the current page again if back online.", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}}).then(() => {
+                    location.reload();
+                });
+
+            } else{
+                Swal.fire({title: "Yay!", text: username + ", " + "your information input was sent offline to COTSEye. Kindly visit the current page again if back online.", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "success-button", title: "title"}}).then(() => {
+                    window.location.href = "{% if draft_post %}{% url 'Contributor Service Post Draft Send' draft_post.id %}{% endif %}";
+                });
+            };
+        };
+    </script>
+
+    <script>
+        const indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB || window.shimIndexedDB;
+        
+        const request = indexedDB.open("cotseye", 1);
+
+        request.onupgradeneeded = (event) => {
+            const cotseye = event.target.result;
+        
+            const cotseye_schema = cotseye.createObjectStore("cotseye_schema", {keyPath: "id", autoIncrement: true});
+        };
+
+        request.onsuccess = (event) => {
+            const cotseye = event.target.result;
+
+            {% if invalid_post %}
+                document.querySelector(".delete-post").addEventListener("click", (event) => {
+                    if (!navigator.onLine){
+                        event.preventDefault();
+
+                        const id = "{{invalid_post.id}}";
+
+                        const user = "{{request.user.id}}";
+
+                        const transaction = cotseye.transaction("cotseye_schema", "readwrite");
+
+                        const cotseye_schema = transaction.objectStore("cotseye_schema");
+
+                        const post = {
+                            id: parseInt(id),
+
+                            user: parseInt(user)
+                        };
+
+                        cotseye_schema.add(post);                    
+                    };
+                });
+        
+            {% else %}
+                document.querySelector(".send-post").addEventListener("click", (event) => {
+                    if (!navigator.onLine){
+                        event.preventDefault();
+
+                        const id = "{{draft_post.id}}";
+
+                        const user = "{{request.user.id}}";
+
+                        const transaction = cotseye.transaction("cotseye_schema", "readwrite");
+
+                        const cotseye_schema = transaction.objectStore("cotseye_schema");
+
+                        const post = {
+                            id: parseInt(id),
+
+                            user: parseInt(user)
+                        };
+
+                        cotseye_schema.add(post);                    
+                    };
+                });
+            {% endif %}
+                
+            if(navigator.onLine){
+                const transaction = cotseye.transaction("cotseye_schema", "readonly");
+
+                const cotseye_schema = transaction.objectStore("cotseye_schema");
+
+                const post = cotseye_schema.getAll();
+
+                post.onsuccess = (event) => {
+                    const information = event.target.result;
+
+                    if(information && information.length > 0){
+                        const json = JSON.stringify(information);
+
+                        const token = "{{csrf_token}}"
+
+                        {% if invalid_post %}
+                            fetch("{% url 'Contributor Service Post Invalid Delete Fetch' %}", {
+                                method: "POST",
+
+                                headers: {"Content-Type": "application/json", "X-CSRFToken": token},
+
+                                body: json
+
+                            }).then((event) => {
+                                const request = indexedDB.open("cotseye", 1);
+
+                                request.onsuccess = (event) => {
+                                    const cotseye = event.target.result;
+                                    
+                                    const transaction = cotseye.transaction("cotseye_schema", "readwrite");
+                                    
+                                    const cotseye_schema = transaction.objectStore("cotseye_schema");
+                                    
+                                    cotseye_schema.clear();
+
+                                    const username = "{{request.user.username}}";
+
+                                    Swal.fire({title: "Yay!", text: username + ", " + "your information input recorded offline was delivered to COTSEye.", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}}).then(() => {
+                                        window.location.href = "{% url 'Contributor Service Home' %}";
+                                    });
+                                };
+                            });
+                        
+                        {% else %}
+                            fetch("{% url 'Contributor Service Post Draft Send Fetch' %}", {
+                                method: "POST",
+
+                                headers: {"Content-Type": "application/json", "X-CSRFToken": token},
+
+                                body: json
+
+                            }).then((event) => {
+                                const request = indexedDB.open("cotseye", 1);
+
+                                request.onsuccess = (event) => {
+                                    const cotseye = event.target.result;
+                                    
+                                    const transaction = cotseye.transaction("cotseye_schema", "readwrite");
+                                    
+                                    const cotseye_schema = transaction.objectStore("cotseye_schema");
+                                    
+                                    cotseye_schema.clear();
+
+                                    const username = "{{request.user.username}}";
+
+                                    Swal.fire({title: "Yay!", text: username + ", " + "your information input recorded offline was delivered to COTSEye.", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}}).then(() => {
+                                        window.location.href = "{% url 'Contributor Service Home' %}";
+                                    });
+                                };
+                            });
+                        {% endif %}
+                    };
+                };
+            };
+        };
+    </script>
 {% endblock content %}

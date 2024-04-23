@@ -1,5 +1,5 @@
 if ("serviceWorker" in navigator){
-    navigator.serviceWorker.register("/cache.js")
+    navigator.serviceWorker.register("/cache.js", {scope: "."})
         .then((register) => console.log("The service worker or cache for COTSEye is now registered.", register))
 
         .catch((error) => console.log("The service worker or cache for COTSEye cannot be registered.", error))

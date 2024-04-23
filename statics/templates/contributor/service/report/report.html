@@ -2,31 +2,62 @@
 {% load static %}
 
 {% block content %}
-    <div class = "report">
-        <div class = "card-header">
-            <header>Report</header>
-        </div>
+    {% if draft_post %}
+        <div class = "report">
+            <div class = "card-header">
+                <header>Report</header>
+            </div>
 
-        <div class = "card-body">
-            <div class = "methods">
-                <button class = "capture">
-                    <a href = "{% url 'Contributor Service Report Capture' %}">
-                        <i class = "fa-solid fa-image"></i> 
-                    
-                        <span>Capture with camera</span>
-                    </a>
-                </button>
+            <div class = "card-body">
+                <div class = "methods">
+                    <button class = "capture">
+                        <a href = "{% url 'Contributor Service Report Capture Update' draft_post.id %}">
+                            <i class = "fa-solid fa-image"></i> 
+                        
+                            <span>Capture with camera</span>
+                        </a>
+                    </button>
 
-                <div class = "line"></div>
+                    <div class = "line"></div>
 
-                <button class = "choose">
-                    <a href = "{% url 'Contributor Service Report Choose' %}">
-                        <i class = "fa-solid fa-camera-retro"></i> 
-                    
-                        <span>Choose a file</span>
-                    </a>
-                </button>
+                    <button class = "choose">
+                        <a href = "{% url 'Contributor Service Report Choose Update' draft_post.id %}">
+                            <i class = "fa-solid fa-camera-retro"></i> 
+                        
+                            <span>Choose a file</span>
+                        </a>
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
+
+    {% else %}
+        <div class = "report">
+            <div class = "card-header">
+                <header>Report</header>
+            </div>
+
+            <div class = "card-body">
+                <div class = "methods">
+                    <button class = "capture">
+                        <a href = "{% url 'Contributor Service Report Capture' %}">
+                            <i class = "fa-solid fa-camera-retro"></i> 
+                        
+                            <span>Capture with camera</span>
+                        </a>
+                    </button>
+
+                    <div class = "line"></div>
+
+                    <button class = "choose">
+                        <a href = "{% url 'Contributor Service Report Choose' %}">
+                            <i class = "fa-solid fa-image"></i> 
+                        
+                            <span>Choose an image</span>
+                        </a>
+                    </button>
+                </div>
+            </div>
+        </div>
+    {% endif %}
 {% endblock content %}

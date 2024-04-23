@@ -11,6 +11,8 @@
 
         <link rel = "manifest" href = "{% static 'templates/webwares/manifest.json' %}">
 
+        <script src = "{% static 'templates/webwares/application.js' %}"></script>
+
         <meta name = "theme-color" content = "#154360">
 
         <link rel = "apple-touch-icon" href = "{% static 'assets/icons/logo (180 x 180).png' %}">
@@ -37,8 +39,6 @@
 
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/report/choose.css' %}">
 
-        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/post/update.css' %}">
-
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/post/post.css' %}">
 
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/post/valid.css' %}">
@@ -47,9 +47,9 @@
 
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/post/uncertain.css' %}">
 
-        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/post/read.css' %}">
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/post/draft.css' %}">
 
-        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/post/reads.css' %}">
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/post/read.css' %}">
 
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/status/status.css' %}">
 
@@ -62,6 +62,8 @@
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/resource/link.css' %}">
 
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/resource/file.css' %}">
+
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/fallback/fallback.css' %}">
 
         <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">          
 
@@ -153,9 +155,7 @@
         </div>
     </body>
 
-    <script src = "{% static 'templates/webwares/application.js' %}"></script>
-
-    <script type = "text/javascript">if (window.location.hash && window.location.hash === "#_=_"){ window.location.hash = ""; history.pushState("", document.title, window.location.pathname);}</script>
+    <script type = "text/javascript">if(window.location.hash && window.location.hash === "#_=_"){ window.location.hash = ""; history.pushState("", document.title, window.location.pathname);}</script>
 
     <script>
         const body = document.querySelector("body"),
@@ -181,7 +181,7 @@
     <script>
         function shownDropdown(){
             document.getElementById("dropdown-content").classList.toggle("show");
-        }
+        };
 
         window.onclick = function(event){
             if (!event.target.matches("i.fa-regular.fa-user")){
@@ -194,9 +194,9 @@
                     
                     if (openDropdown.classList.contains("show")){
                         openDropdown.classList.remove("show");
-                    }
-                }
-            }
-        }
+                    };
+                };
+            };
+        };
     </script>
 </html>

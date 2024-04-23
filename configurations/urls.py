@@ -40,5 +40,7 @@ urlpatterns = [
     
     path("", include("auxiliaries.urls")),
 
-    path("cache.js", (TemplateView.as_view(template_name = "webwares/cache.js", content_type = "application/javascript")), name = "cache.js")
+    path("cache.js", (TemplateView.as_view(template_name = "webwares/cache.js", content_type = "application/javascript")), name = "cache.js"),
+
+    path("robots.txt", (TemplateView.as_view(template_name = "webwares/robots.txt", content_type = "text/plain")), name = "robots.txt")
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

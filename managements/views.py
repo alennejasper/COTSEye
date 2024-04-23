@@ -12,6 +12,10 @@ import datetime
 def PublicServiceStatus(request):
     username = "public/everyone"
 
+    scheme = request.scheme
+
+    host = request.META["HTTP_HOST"]
+
     options = Status.objects.all()
 
     records = Status.objects.all()
@@ -101,7 +105,7 @@ def PublicServiceStatus(request):
 
             messages.error(request, username + ", " + "information input is impossible within COTSEye.")
 
-    context = {"username": username, "options": options, "records": records, "results": results}
+    context = {"username": username, "scheme": scheme, "host": host, "options": options, "records": records, "results": results}
 
     return render(request, "public/service/status/status.html", context)
 
@@ -205,10 +209,14 @@ def PublicServiceIntervention(request):
 
 def PublicServiceInterventionRead(request, id):
     username = "public/everyone"
+
+    scheme = request.scheme
+
+    host = request.META["HTTP_HOST"]
     
     intervention = Intervention.objects.filter(id = id)
 
-    context = {"username": username, "intervention": intervention}
+    context = {"username": username, "scheme": scheme, "host": host, "intervention": intervention}
 
     return render(request, "public/service/intervention/read.html", context)
 
@@ -217,6 +225,10 @@ def PublicServiceInterventionRead(request, id):
 @user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
 def ContributorServiceStatus(request):
     username = request.user.username
+
+    scheme = request.scheme
+
+    host = request.META["HTTP_HOST"]
 
     options = Status.objects.all()
 
@@ -307,7 +319,7 @@ def ContributorServiceStatus(request):
 
             messages.error(request, username + ", " + "information input is impossible within COTSEye.")
 
-    context = {"username": username, "options": options, "records": records, "results": results}
+    context = {"username": username, "scheme": scheme, "host": host, "options": options, "records": records, "results": results}
 
     return render(request, "contributor/service/status/status.html", context)
 
@@ -416,9 +428,13 @@ def ContributorServiceIntervention(request):
 def ContributorServiceInterventionRead(request, id):
     username = request.user.username
 
+    scheme = request.scheme
+
+    host = request.META["HTTP_HOST"]
+
     intervention = Intervention.objects.filter(id = id)
 
-    context = {"username": username, "intervention": intervention}
+    context = {"username": username, "scheme": scheme, "host": host, "intervention": intervention}
 
     return render(request, "contributor/service/intervention/read.html", context)
 

@@ -192,7 +192,7 @@
     position: relative;
 }
 
-.announcement#announcement-filter .card-body .field .column .from-date input{
+.announcement#announcement-filter .card-body .field .column .from-date input[type = "date"]{
     padding-left: 10px !important;
     padding-right: 10px !important;
     padding-top: 5px !important;
@@ -206,14 +206,17 @@
     font-weight: 700 !important;
     font-size: 20px !important;   
     color: #154360 !important;
+    background: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '20' height = '20' viewBox = '0 0 448 512' fill = '%23154360'> <path d = 'M96 32V64H48C21.5 64 0 85.5 0 112v48H448V112c0-26.5-21.5-48-48-48H352V32c0-17.7-14.3-32-32-32s-32 14.3-32 32V64H160V32c0-17.7-14.3-32-32-32S96 14.3 96 32zM448 192H0V464c0 26.5 21.5 48 48 48H400c26.5 0 48-21.5 48-48V192zM224 248c13.3 0 24 10.7 24 24v56h56c13.3 0 24 10.7 24 24s-10.7 24-24 24H248v56c0 13.3-10.7 24-24 24s-24-10.7-24-24V376H144c-13.3 0-24-10.7-24-24s10.7-24 24-24h56V272c0-13.3 10.7-24 24-24z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center; 
 }
 
-.announcement#announcement-filter .card-body .field .column .from-date input:focus{
+.announcement#announcement-filter .card-body .field .column .from-date input[type = "date"]:focus{
     border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .announcement#announcement-filter .card-body .field .column .from-date input{
+    .announcement#announcement-filter .card-body .field .column .from-date input[type = "date"]{
         padding-left: 10px !important;
         padding-right: 10px !important;
         padding-top: 5px !important;
@@ -227,11 +230,14 @@
         font-weight: 700 !important;
         font-size: 18px !important;   
         color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '18' height = '18' viewBox = '0 0 448 512' fill = '%23154360'> <path d = 'M96 32V64H48C21.5 64 0 85.5 0 112v48H448V112c0-26.5-21.5-48-48-48H352V32c0-17.7-14.3-32-32-32s-32 14.3-32 32V64H160V32c0-17.7-14.3-32-32-32S96 14.3 96 32zM448 192H0V464c0 26.5 21.5 48 48 48H400c26.5 0 48-21.5 48-48V192zM224 248c13.3 0 24 10.7 24 24v56h56c13.3 0 24 10.7 24 24s-10.7 24-24 24H248v56c0 13.3-10.7 24-24 24s-24-10.7-24-24V376H144c-13.3 0-24-10.7-24-24s10.7-24 24-24h56V272c0-13.3 10.7-24 24-24z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .announcement#announcement-filter .card-body .field .column .from-date input{
+    .announcement#announcement-filter .card-body .field .column .from-date input[type = "date"]{
         padding-left: 10px !important;
         padding-right: 10px !important;
         padding-top: 5px !important;
@@ -245,11 +251,14 @@
         font-weight: 700 !important;
         font-size: 16px !important;   
         color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '16' height = '16' viewBox = '0 0 448 512' fill = '%23154360'> <path d = 'M96 32V64H48C21.5 64 0 85.5 0 112v48H448V112c0-26.5-21.5-48-48-48H352V32c0-17.7-14.3-32-32-32s-32 14.3-32 32V64H160V32c0-17.7-14.3-32-32-32S96 14.3 96 32zM448 192H0V464c0 26.5 21.5 48 48 48H400c26.5 0 48-21.5 48-48V192zM224 248c13.3 0 24 10.7 24 24v56h56c13.3 0 24 10.7 24 24s-10.7 24-24 24H248v56c0 13.3-10.7 24-24 24s-24-10.7-24-24V376H144c-13.3 0-24-10.7-24-24s10.7-24 24-24h56V272c0-13.3 10.7-24 24-24z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .announcement#announcement-filter .card-body .field .column .from-date input{
+    .announcement#announcement-filter .card-body .field .column .from-date input[type = "date"]{
         padding-left: 10px !important;
         padding-right: 10px !important;
         padding-top: 5px !important;
@@ -263,51 +272,62 @@
         font-weight: 700 !important;
         font-size: 14px !important;   
         color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '14' height = '14' viewBox = '0 0 448 512' fill = '%23154360'> <path d = 'M96 32V64H48C21.5 64 0 85.5 0 112v48H448V112c0-26.5-21.5-48-48-48H352V32c0-17.7-14.3-32-32-32s-32 14.3-32 32V64H160V32c0-17.7-14.3-32-32-32S96 14.3 96 32zM448 192H0V464c0 26.5 21.5 48 48 48H400c26.5 0 48-21.5 48-48V192zM224 248c13.3 0 24 10.7 24 24v56h56c13.3 0 24 10.7 24 24s-10.7 24-24 24H248v56c0 13.3-10.7 24-24 24s-24-10.7-24-24V376H144c-13.3 0-24-10.7-24-24s10.7-24 24-24h56V272c0-13.3 10.7-24 24-24z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
     }
 }
 
-.announcement#announcement-filter .card-body .field .column .from-date input[type = "date"]::-webkit-calendar-picker-indicator{
+/* .announcement#announcement-filter .card-body .field .column .from-date input[type = "date"]::-webkit-calendar-picker-indicator{
     filter: invert(22%) sepia(7%) saturate(6538%) hue-rotate(164deg) brightness(89%) contrast(90%);
 }
 
-.announcement#announcement-filter .card-body .field .column .from-date input[type = date]:invalid::-webkit-datetime-edit{
+.announcement#announcement-filter .card-body .field .column .from-date input[type = "date"]:invalid::-webkit-datetime-edit{
     color: #154360 !important;
 }
 
-.announcement#announcement-filter .card-body .field .column .from-date input::-webkit-datetime-edit-day-field{
+.announcement#announcement-filter .card-body .field .column .from-date input[type = "date"]::-webkit-datetime-edit-day-field{
     color: #154360;
     background-color: #FFFFFF;
     outline: none;
 }
 
-.announcement#announcement-filter .card-body .field .column .from-date input::-webkit-datetime-edit-month-field{
+.announcement#announcement-filter .card-body .field .column .from-date input[type = "date"]::-webkit-datetime-edit-month-field{
     color: #154360;
     background-color: #FFFFFF;
     outline: none;
 }
 
-.announcement#announcement-filter .card-body .field .column .from-date input::-webkit-datetime-edit-year-field{
+.announcement#announcement-filter .card-body .field .column .from-date input[type = "date"]::-webkit-datetime-edit-year-field{
     color: #154360;
     background-color: #FFFFFF;
     outline: none;
 }
 
-.announcement#announcement-filter .card-body .field .column .from-date input::-webkit-datetime-edit-day-field:focus{
+.announcement#announcement-filter .card-body .field .column .from-date input[type = "date"]::-webkit-datetime-edit-day-field:focus{
     background-color: #154360 !important;
     color: #FFFFFF !important;
     outline: none;
 }
 
-.announcement#announcement-filter .card-body .field .column .from-date input::-webkit-datetime-edit-month-field:focus{
+.announcement#announcement-filter .card-body .field .column .from-date input[type = "date"]::-webkit-datetime-edit-month-field:focus{
     background-color: #154360 !important;
     color: #FFFFFF !important;
     outline: none;
 }
 
-.announcement#announcement-filter .card-body .field .column .from-date input::-webkit-datetime-edit-year-field:focus{
+.announcement#announcement-filter .card-body .field .column .from-date input[type = "date"]::-webkit-datetime-edit-year-field:focus{
     background-color: #154360 !important;
     color: #FFFFFF !important;
     outline: none;
+} */
+
+.announcement#announcement-filter .card-body .field .column .from-date input[type = "date"]::-webkit-inner-spin-button{
+    display: none !important;
+}
+
+.announcement#announcement-filter .card-body .field .column .from-date input[type = "date"]::-webkit-calendar-picker-indicator{
+    opacity: 0 !important;
 }
 
 .announcement#announcement-filter .card-body .field .column label[for = "to-date"]{
@@ -356,7 +376,7 @@
     position: relative;
 }
 
-.announcement#announcement-filter .card-body .field .column .to-date input{
+.announcement#announcement-filter .card-body .field .column .to-date input[type = "date"]{
     padding-left: 10px !important;
     padding-right: 10px !important;
     padding-top: 5px !important;
@@ -370,14 +390,17 @@
     font-weight: 700 !important;
     font-size: 20px !important;   
     color: #154360 !important;
+    background: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '20' height = '20' viewBox = '0 0 448 512' fill = '%23154360'> <path d = 'M96 32V64H48C21.5 64 0 85.5 0 112v48H448V112c0-26.5-21.5-48-48-48H352V32c0-17.7-14.3-32-32-32s-32 14.3-32 32V64H160V32c0-17.7-14.3-32-32-32S96 14.3 96 32zM448 192H0V464c0 26.5 21.5 48 48 48H400c26.5 0 48-21.5 48-48V192zM224 248c13.3 0 24 10.7 24 24v56h56c13.3 0 24 10.7 24 24s-10.7 24-24 24H248v56c0 13.3-10.7 24-24 24s-24-10.7-24-24V376H144c-13.3 0-24-10.7-24-24s10.7-24 24-24h56V272c0-13.3 10.7-24 24-24z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center; 
 }
 
-.announcement#announcement-filter .card-body .field .column .to-date input:focus{
+.announcement#announcement-filter .card-body .field .column .to-date input[type = "date"]:focus{
     border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .announcement#announcement-filter .card-body .field .column .to-date input{
+    .announcement#announcement-filter .card-body .field .column .to-date input[type = "date"]{
         padding-left: 10px !important;
         padding-right: 10px !important;
         padding-top: 5px !important;
@@ -391,11 +414,14 @@
         font-weight: 700 !important;
         font-size: 18px !important;   
         color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '18' height = '18' viewBox = '0 0 448 512' fill = '%23154360'> <path d = 'M96 32V64H48C21.5 64 0 85.5 0 112v48H448V112c0-26.5-21.5-48-48-48H352V32c0-17.7-14.3-32-32-32s-32 14.3-32 32V64H160V32c0-17.7-14.3-32-32-32S96 14.3 96 32zM448 192H0V464c0 26.5 21.5 48 48 48H400c26.5 0 48-21.5 48-48V192zM224 248c13.3 0 24 10.7 24 24v56h56c13.3 0 24 10.7 24 24s-10.7 24-24 24H248v56c0 13.3-10.7 24-24 24s-24-10.7-24-24V376H144c-13.3 0-24-10.7-24-24s10.7-24 24-24h56V272c0-13.3 10.7-24 24-24z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .announcement#announcement-filter .card-body .field .column .to-date input{
+    .announcement#announcement-filter .card-body .field .column .to-date input[type = "date"]{
         padding-left: 10px !important;
         padding-right: 10px !important;
         padding-top: 5px !important;
@@ -409,11 +435,14 @@
         font-weight: 700 !important;
         font-size: 16px !important;   
         color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '16' height = '16' viewBox = '0 0 448 512' fill = '%23154360'> <path d = 'M96 32V64H48C21.5 64 0 85.5 0 112v48H448V112c0-26.5-21.5-48-48-48H352V32c0-17.7-14.3-32-32-32s-32 14.3-32 32V64H160V32c0-17.7-14.3-32-32-32S96 14.3 96 32zM448 192H0V464c0 26.5 21.5 48 48 48H400c26.5 0 48-21.5 48-48V192zM224 248c13.3 0 24 10.7 24 24v56h56c13.3 0 24 10.7 24 24s-10.7 24-24 24H248v56c0 13.3-10.7 24-24 24s-24-10.7-24-24V376H144c-13.3 0-24-10.7-24-24s10.7-24 24-24h56V272c0-13.3 10.7-24 24-24z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .announcement#announcement-filter .card-body .field .column .to-date input{
+    .announcement#announcement-filter .card-body .field .column .to-date input[type = "date"]{
         padding-left: 10px !important;
         padding-right: 10px !important;
         padding-top: 5px !important;
@@ -427,51 +456,62 @@
         font-weight: 700 !important;
         font-size: 14px !important;   
         color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '14' height = '14' viewBox = '0 0 448 512' fill = '%23154360'> <path d = 'M96 32V64H48C21.5 64 0 85.5 0 112v48H448V112c0-26.5-21.5-48-48-48H352V32c0-17.7-14.3-32-32-32s-32 14.3-32 32V64H160V32c0-17.7-14.3-32-32-32S96 14.3 96 32zM448 192H0V464c0 26.5 21.5 48 48 48H400c26.5 0 48-21.5 48-48V192zM224 248c13.3 0 24 10.7 24 24v56h56c13.3 0 24 10.7 24 24s-10.7 24-24 24H248v56c0 13.3-10.7 24-24 24s-24-10.7-24-24V376H144c-13.3 0-24-10.7-24-24s10.7-24 24-24h56V272c0-13.3 10.7-24 24-24z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
     }
 }
 
-.announcement#announcement-filter .card-body .field .column .to-date input[type = "date"]::-webkit-calendar-picker-indicator{
+/* .announcement#announcement-filter .card-body .field .column .to-date input[type = "date"]::-webkit-calendar-picker-indicator{
     filter: invert(22%) sepia(7%) saturate(6538%) hue-rotate(164deg) brightness(89%) contrast(90%);
 }
 
-.announcement#announcement-filter .card-body .field .column .to-date input[type = date]:invalid::-webkit-datetime-edit{
+.announcement#announcement-filter .card-body .field .column .to-date input[type = "date"]:invalid::-webkit-datetime-edit{
     color: #154360 !important;
 }
 
-.announcement#announcement-filter .card-body .field .column .to-date input::-webkit-datetime-edit-day-field{
+.announcement#announcement-filter .card-body .field .column .to-date input[type = "date"]::-webkit-datetime-edit-day-field{
     color: #154360;
     background-color: #FFFFFF;
     outline: none;
 }
 
-.announcement#announcement-filter .card-body .field .column .to-date input::-webkit-datetime-edit-month-field{
+.announcement#announcement-filter .card-body .field .column .to-date input[type = "date"]::-webkit-datetime-edit-month-field{
     color: #154360;
     background-color: #FFFFFF;
     outline: none;
 }
 
-.announcement#announcement-filter .card-body .field .column .to-date input::-webkit-datetime-edit-year-field{
+.announcement#announcement-filter .card-body .field .column .to-date input[type = "date"]::-webkit-datetime-edit-year-field{
     color: #154360;
     background-color: #FFFFFF;
     outline: none;
 }
 
-.announcement#announcement-filter .card-body .field .column .to-date input::-webkit-datetime-edit-day-field:focus{
+.announcement#announcement-filter .card-body .field .column .to-date input[type = "date"]::-webkit-datetime-edit-day-field:focus{
     background-color: #154360 !important;
     color: #FFFFFF !important;
     outline: none;
 }
 
-.announcement#announcement-filter .card-body .field .column .to-date input::-webkit-datetime-edit-month-field:focus{
+.announcement#announcement-filter .card-body .field .column .to-date input[type = "date"]::-webkit-datetime-edit-month-field:focus{
     background-color: #154360 !important;
     color: #FFFFFF !important;
     outline: none;
 }
 
-.announcement#announcement-filter .card-body .field .column .to-date input::-webkit-datetime-edit-year-field:focus{
+.announcement#announcement-filter .card-body .field .column .to-date input[type = "date"]::-webkit-datetime-edit-year-field:focus{
     background-color: #154360 !important;
     color: #FFFFFF !important;
     outline: none;
+} */
+
+.announcement#announcement-filter .card-body .field .column .to-date input[type = "date"]::-webkit-inner-spin-button{
+    display: none !important;
+}
+
+.announcement#announcement-filter .card-body .field .column .to-date input[type = "date"]::-webkit-calendar-picker-indicator{
+    opacity: 0 !important;
 }
 
 .announcement#announcement-filter .card-body .button{
@@ -482,7 +522,7 @@
     height: 100% !important;
 }
 
-.announcement#announcement-filter .card-body .button a.filter-announcementss{
+.announcement#announcement-filter .card-body .button a.filter-announcements{
     padding-left: 10px !important;
     padding-right: 10px !important;
     padding-top: 5px !important;
@@ -500,7 +540,7 @@
     cursor: pointer;
 }
 
-.announcement#announcement-filter .card-body .button a.filter-announcementss:hover{
+.announcement#announcement-filter .card-body .button a.filter-announcements:hover{
     background-color: #10354C !important;
     color: #B2BEB5 !important;
 }

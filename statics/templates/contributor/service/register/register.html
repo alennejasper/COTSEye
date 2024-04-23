@@ -59,12 +59,12 @@
                                     <i class = "fa-solid fa-id-card"></i>
                                 </div>
 
-                                <label for = "password1">Create Password</label>
+                                <label for = "last-name">Last Name</label>
 
-                                <div class = "password1">        
-                                    <input type = "password" id = "password1" name = "password1" required>
-        
-                                    <i class = "fa-solid fa-eye" id = "toggle-password1"></i>
+                                <div class = "last-name">
+                                    <input type = "text" id = "last-name" name = "last_name" required>
+
+                                    <i class = "fa-solid fa-id-card"></i>
                                 </div>
                             </div>
 
@@ -77,12 +77,12 @@
                                     <i class = "fa-solid fa-envelope"></i>
                                 </div>
 
-                                <label for = "last-name">Last Name</label>
+                                <label for = "password1">Create Password</label>
 
-                                <div class = "last-name">
-                                    <input type = "text" id = "last-name" name = "last_name" required>
-
-                                    <i class = "fa-solid fa-id-card"></i>
+                                <div class = "password1">        
+                                    <input type = "password" id = "password1" name = "password1" required>
+        
+                                    <i class = "fa-solid fa-eye" id = "toggle-password1"></i>
                                 </div>
 
                                 <label for = "password2">Confirm Password</label>
@@ -120,22 +120,26 @@
         </div>
     </body>
 
-    <script src = "{% static 'templates/webwares/application.js' %}"></script>
-
     <script> 
 		window.onload = function(){
 			var $recaptcha = document.querySelector("#g-recaptcha-response");
-	
-			if ($recaptcha){
-			    $recaptcha.setAttribute("required", "required");
-			}
+            
+            document.querySelector("form").addEventListener("submit", (event) => {
+                if($recaptcha && !$recaptcha.value){
+                    event.preventDefault();
+                    
+                    $recaptcha.setAttribute("required", "required");
+                
+                    Swal.fire({title: "Oops!", text: "reCAPTCHA is not valid. Kindly check the reCAPTCHA and try again.", icon: "error", iconColor: "#C90016", confirmButtonColor: "#C90016"});
+                };
+            });
 		};
 	</script>
 
     <script>
         function recaptchaError(){
-            Swal.fire({title: "Oops!", text: "The COTSEye cannot contact reCAPTCHA today. Kindly check the connection and try again.", icon: "error", iconColor: "#E74C3C", confirmButtonColor: "#E74C3C"});
-        }
+            Swal.fire({title: "Oops!", text: "The COTSEye cannot contact reCAPTCHA today. Kindly check the connection and try again.", icon: "error", iconColor: "#C90016", confirmButtonColor: "#C90016"});
+        };
     </script>
 
     <script>
@@ -192,7 +196,6 @@
 
     <script>
         document.getElementById("username").addEventListener("click", function(){
-
             this.style.color = "#154360";
 
             this.value = this.dataset.initialValue;

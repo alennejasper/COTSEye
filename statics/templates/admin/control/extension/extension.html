@@ -92,12 +92,12 @@
 
     <script src = "{% static 'templates/webwares/application.js' %}"></script>
 
-    <script type = "text/javascript">if (window.location.hash && window.location.hash === "#_=_"){ window.location.hash = ""; history.pushState("", document.title, window.location.pathname);}</script>
+    <script type = "text/javascript">if(window.location.hash && window.location.hash === "#_=_"){ window.location.hash = ""; history.pushState("", document.title, window.location.pathname);}</script>
 
     <script>
         function shownDropdown(){
             document.getElementById("dropdown-content").classList.toggle("show");
-        }
+        };
 
         window.onclick = function(event){
             if (!event.target.matches("i.fa-regular.fa-user")){
@@ -110,9 +110,9 @@
                     
                     if (openDropdown.classList.contains("show")){
                         openDropdown.classList.remove("show");
-                    }
-                }
-            }
-        }
+                    };
+                };
+            };
+        };
     </script>
 </html>

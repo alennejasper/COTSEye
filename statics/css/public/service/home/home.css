@@ -40,7 +40,7 @@ body{
     padding-right: 0px !important;
 }
 
-.map{ 
+.map:has(.public-map){ 
     width: 100%;
     min-height: 100vh;
 }
@@ -985,6 +985,24 @@ input[type = "checkbox"]:checked::before{
         font-family: "Philosopher";
         font-weight: 700;
         font-size: 14px !important;
+        color: #FFFFFF !important;
+        text-align: justify;
+    }
+}
+
+.datum i{
+    font-family: "Philosopher";
+    font-weight: 700;
+    font-size: 18px !important;
+    color: #FFFFFF !important;
+    text-align: justify;
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .datum i{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 16px !important;
         color: #FFFFFF !important;
         text-align: justify;
     }

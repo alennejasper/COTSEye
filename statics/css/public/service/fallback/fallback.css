@@ -1,0 +1,310 @@
+@import url("https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Overlock:wght@400;700;900&display=swap");
+
+
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    scrollbar-width: thin !important;
+    scrollbar-color: #698F3F #154360 !important;
+    transition: all 0.25s ease;
+}
+
+
+::-webkit-scrollbar{
+    width: 5px !important;
+    height: 5px !important;
+}
+
+::-webkit-scrollbar-track{
+    border-radius: 5px;
+    border: 1px solid #B2BEB5; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    background: #154360 !important; 
+}
+
+::-webkit-scrollbar-thumb{
+    border-radius: 5px;
+    border: 1px solid #B2BEB5; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    background: #698F3F !important;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background: #557433 !important;
+}
+
+
+.content:has(.fallback){
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 100%;
+    place-items: center;
+}
+
+.fallback{
+    width: 386px;
+    display: grid;
+    grid-column: 1;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px #B2BEB5;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .fallback{
+        width: 309px;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .fallback{
+        width: 289px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .fallback{
+        width: 260px;
+    }
+}
+
+.fallback .card-header{
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-top-left-radius: 5px !important;
+    border-top-right-radius: 5px !important;
+    background-color: #154360;
+    display: grid;
+    place-items: center;
+}
+
+.fallback .card-header header{
+    font-family: "Philosopher";
+    font-weight: 700;
+    font-size: 22px !important;
+    color: #FFFFFF;
+    white-space: nowrap !important; 
+    overflow: auto !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .fallback .card-header header{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 20px !important;
+        color: #FFFFFF;
+        white-space: nowrap !important; 
+        overflow: auto !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .fallback .card-header header{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 18px !important;
+        color: #FFFFFF;
+        white-space: nowrap !important; 
+        overflow: auto !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .fallback .card-header header{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 16px !important;
+        color: #FFFFFF;
+        white-space: nowrap !important; 
+        overflow: auto !important;
+    }
+}
+
+.fallback .card-body{
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 100%;
+    border-bottom-left-radius: 5px !important;
+    border-bottom-right-radius: 5px !important;
+    display: grid;
+    gap: 15px;
+    place-items: center;
+    background-color: #FFFFFF;
+}
+
+.fallback .card-body p{
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    color: #154360 !important;
+    text-align: center;
+    white-space: normal;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .fallback .card-body p{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 30px;
+        color: #154360;
+        text-align: center;
+        white-space: normal; 
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .fallback .card-body p{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 30px;
+        color: #154360;
+        text-align: center;
+        white-space: normal; 
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .fallback .card-body p{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 30px;
+        color: #154360;
+        text-align: center;
+        white-space: normal; 
+    }
+}
+
+.fallback .card-body i.fa-solid.fa-quote-left{
+    margin-right: 10px;
+    font-size: 20px;
+    color: #154360;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .fallback .card-body i.fa-solid.fa-quote-left{
+        margin-right: 10px;
+        font-size: 18px;
+        color: #154360;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .fallback .card-body i.fa-solid.fa-quote-left{
+        margin-right: 10px;
+        font-size: 16px;
+        color: #154360;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .fallback .card-body i.fa-solid.fa-quote-left{
+        margin-right: 10px;
+        font-size: 14px;
+        color: #154360;
+    }
+}
+
+.fallback .card-body i.fa-solid.fa-quote-right{
+    margin-left: 10px;
+    font-size: 20px;
+    color: #154360;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .fallback .card-body i.fa-solid.fa-quote-right{
+        margin-left: 10px;
+        font-size: 18px;
+        color: #154360;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .fallback .card-body i.fa-solid.fa-quote-right{
+        margin-left: 10px;
+        font-size: 16px;
+        color: #154360;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .fallback .card-body i.fa-solid.fa-quote-right{
+        margin-left: 10px;
+        font-size: 14px;
+        color: #154360;
+    }
+}
+
+.fallback .card-body .button{
+    margin-left: auto;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: fit-content;
+    height: 100% !important;
+}
+
+.fallback .card-body .button a.return-home{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    border: 1px solid #B2BEB5; 
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px;
+    color: #FFFFFF !important;
+    background-color: #154360 !important;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.fallback .card-body .button a.return-home:hover{
+    background-color: #10354C !important;
+    color: #B2BEB5 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .fallback .card-body .button a{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #FFFFFF !important;
+        text-decoration: none;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .fallback .card-body .button a{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #FFFFFF !important;
+        text-decoration: none;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .fallback .card-body .button a{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #FFFFFF !important;
+        text-decoration: none;
+    }
+}

@@ -8,7 +8,7 @@ from reports.views import OfficerControlStatisticsPost, AdministratorControlStat
 
 # Register your models here.
 class OfficerSite(admin.AdminSite):
-    admin.site.site_title = "Home"
+    site_title = "Home"
     
     index_title = "COTSEye"
     
@@ -67,7 +67,7 @@ officer = OfficerSite(name = "officer")
 
 
 class AdministratorSite(admin.AdminSite):    
-    admin.site.site_title = "Home"
+    site_title = "Home"
 
     index_title = "COTSEye"
     

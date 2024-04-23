@@ -16,7 +16,7 @@
                         <label for = "capture-date">Capture Date</label> 
                             
                         <div class = "capture-date">
-                            <input type = "date" value = "" id = "capture-date" name = "capture_date" required>                            
+                            <input type = "datetime-local" value = "" id = "capture-date" name = "capture_date" required>                            
                         </div>
                     </div>
 
@@ -38,7 +38,7 @@
                 <div class = "button">
                     <label for = "post-photo" class = "capture-photo">Capture</label> 
                     
-                    <input type = "file" class = "post-photo" name = "post_photo" accept = "image/*" capture = "environment" required>
+                    <input type = "file" class = "post-photo" name = "post_photos" accept = "image/*" capture = "environment" required>
                 </div>
 
                 <div class = "field">
@@ -165,7 +165,7 @@
 
             reportGallery.innerHTML = "";
 
-            for (let i = 0; i < reportFiles.length; i++) {
+            for (let i = 0; i < reportFiles.length; i++){
                 const photoObject = reportFiles[i];
 
                 const photoElement = document.createElement("img");
@@ -186,15 +186,11 @@
 
                 var modifiedDate = reportFile.lastModifiedDate;
 
-                var formattedDate = modifiedDate.toISOString().split("T")[0];
+                var formattedDate = modifiedDate.toISOString().slice(0, 16);
 
                 document.getElementById("capture-date").value = formattedDate;
-            }
+            };
         });
-    </script>
-
-    <script>
-        date.value = new Date().toJSON().split("T")[0]
     </script>
 
     <script>
@@ -234,7 +230,7 @@
             updateCoordinates(defaultLatitude, defaultLongitude);
 
             fetchLocation();
-        }
+        };
 
         function updateCoordinates(latitude, longitude){
             var latitudeInput = document.getElementById("latitude");
@@ -244,13 +240,13 @@
             latitudeInput.value = latitude.toFixed(6);
             
             longitudeInput.value = longitude.toFixed(6);
-        }
+        };
     </script>
 
     <script>
         function refreshMap(){
             map.setView([5.9656, 125.1929], 11);
-        }
+        };
 
         document.querySelector(".refresh-map").addEventListener("click", refreshMap);
     </script>
@@ -262,8 +258,8 @@
                 
             } else{
                 Swal.fire({title: "Oops!", text: "The location is not supported and cannot be given to COTSEye.", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}});
-            }
-        }
+            };
+        };
 
         function checkPosition(position){
             const maximumLatitude = 6.3;
@@ -308,15 +304,197 @@
                 captureButton.addEventListener("click", function (event){
                     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
                         Swal.fire({title: "Oops!", text: "The camera is not supported and cannot be given to COTSEye.", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}});
-                    }
+                    };
                 });
             }
         });
     </script>
 
     <script>
-        document.querySelector(".save-report").onclick = function(){
-            document.querySelector(".report-form").submit();
-        }
+        document.querySelector(".save-report").onclick = function(event){
+            event.preventDefault();
+
+            if(!navigator.onLine){
+                const username = "{{request.user.username}}";
+                        
+                Swal.fire({title: "Hey!", text: username + ", " + "your information input was recorded offline for COTSEye. Kindly visit the current page again if back online.", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}}).then(() => {
+                    location.reload();
+                });
+
+            } else{
+                document.querySelector(".report-form").submit();
+            };
+        };
+    </script>
+
+    <script>
+        const indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB || window.shimIndexedDB;
+        
+        const request = indexedDB.open("cotseye", 1);
+
+        request.onupgradeneeded = (event) => {
+            const cotseye = event.target.result;
+        
+            const cotseye_schema = cotseye.createObjectStore("cotseye_schema", {autoIncrement: true});
+        };
+
+        request.onsuccess = (event) => {
+            const cotseye = event.target.result;
+
+            const form = document.querySelector(".report-form");
+
+            {% if draft_post %}
+                const id = "{{draft_post.id}}";
+            {% endif %}
+
+            const user = "{{request.user.id}}";
+
+            if(!navigator.onLine){
+                document.querySelector(".post-photo").addEventListener("change", () => {
+                    const files = document.querySelector(".post-photo").files;
+
+                    for (let i = 0; i < files.length; i++){
+                        const reader = new FileReader();
+                        
+                        reader.addEventListener("load", (event) => {
+                            postPhotos.push(event.target.result);
+                        });
+                        
+                        reader.readAsDataURL(files[i]);
+                    };
+                });
+
+                const postPhotos = [];
+
+                document.querySelector(".save-report").addEventListener("click", (event) => {
+                    event.preventDefault();
+
+                    const information = new FormData(form);
+
+                    const captureDate = information.get("capture_date");
+
+                    const description = information.get("description");
+
+                    const latitude = information.get("latitude");
+
+                    const longitude = information.get("longitude");
+
+                    const size = information.get("size");
+
+                    const depth = information.get("depth");
+
+                    const density = information.get("density");
+
+                    const weather = information.get("weather");
+
+                    const transaction = cotseye.transaction("cotseye_schema", "readwrite");
+
+                    const cotseye_schema = transaction.objectStore("cotseye_schema");
+
+                    const post = {            
+                        {% if draft_post %}
+                            id: parseInt(id),
+                        {% endif %}        
+
+                        user: parseInt(user),
+
+                        capture_date: new Date(captureDate),
+                        
+                        description: description,
+
+                        post_photos: postPhotos,
+
+                        latitude: parseFloat(latitude),
+
+                        longitude: parseFloat(longitude),
+
+                        size: parseInt(size),
+
+                        depth: parseInt(depth),
+
+                        density: parseInt(density),
+
+                        weather: parseInt(weather)
+                    };
+
+                    cotseye_schema.add(post);
+                }); 
+            };
+
+            if(navigator.onLine){
+                const transaction = cotseye.transaction("cotseye_schema", "readonly");
+
+                const cotseye_schema = transaction.objectStore("cotseye_schema");
+
+                const post = cotseye_schema.getAll();
+
+                post.onsuccess = (event) => {
+                    const information = event.target.result;
+
+                    if(information && information.length > 0){
+                        const json = JSON.stringify(information);
+
+                        const token = "{{csrf_token}}"
+
+                        {% if draft_post %}
+                            fetch("{% url 'Contributor Service Report Update Fetch' %}", {
+                                method: "POST",
+
+                                headers: {"Content-Type": "application/json", "X-CSRFToken": token},
+
+                                body: json
+
+                            }).then(() => {
+                                const request = indexedDB.open("cotseye", 1);
+
+                                request.onsuccess = (event) => {
+                                    const cotseye = event.target.result;
+                                    
+                                    const transaction = cotseye.transaction("cotseye_schema", "readwrite");
+                                    
+                                    const cotseye_schema = transaction.objectStore("cotseye_schema");
+                                    
+                                    cotseye_schema.clear();
+
+                                    const username = "{{request.user.username}}";
+
+                                    Swal.fire({title: "Yay!", text: username + ", " + "your information input recorded offline was delivered to COTSEye.", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}}).then(() => {
+                                        window.location.href = "{% url 'Contributor Service Home' %}";
+                                    });
+                                };
+                            });
+
+                        {% else %}
+                            fetch("{% url 'Contributor Service Report Fetch' %}", {
+                                method: "POST",
+
+                                headers: {"Content-Type": "application/json", "X-CSRFToken": token},
+
+                                body: json
+
+                            }).then(() => {
+                                const request = indexedDB.open("cotseye", 1);
+
+                                request.onsuccess = (event) => {
+                                    const cotseye = event.target.result;
+                                    
+                                    const transaction = cotseye.transaction("cotseye_schema", "readwrite");
+                                    
+                                    const cotseye_schema = transaction.objectStore("cotseye_schema");
+                                    
+                                    cotseye_schema.clear();
+
+                                    const username = "{{request.user.username}}";
+
+                                    Swal.fire({title: "Yay!", text: username + ", " + "your information input recorded offline was delivered to COTSEye.", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}}).then(() => {
+                                        window.location.href = "{% url 'Contributor Service Home' %}";
+                                    });
+                                };
+                            });
+                        {% endif %}
+                    };
+                };
+            };
+        };
     </script>
 {% endblock content %}

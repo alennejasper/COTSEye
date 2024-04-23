@@ -116,7 +116,7 @@
                         <label for = "posts-count">Posts Count</label> 
                             
                         <div class = "posts-count">
-                            <input type = "number" value = "{{posts_count | default:'0'}}" id = "posts-count" name = "posts_count" readonly>
+                            <input type = "text" value = "{{posts_count | default:'0'}}" id = "posts-count" name = "posts_count" readonly>
                                 
                             <i class = "fa-solid fa-copy"></i>
                         </div>
@@ -132,7 +132,7 @@
                         <label for = "size-frequency">Size / Centimeter Frequency</label> 
                             
                         <div class = "size-frequency">
-                            <input type = "number" value = "{{size_frequency | default:'0'}}" id = "size-frequency" name = "size_frequency" readonly>
+                            <input type = "text" value = "{{size_frequency | default:'0'}}" id = "size-frequency" name = "size_frequency" readonly>
                                 
                             <i class = "fa-solid fa-draw-polygon"></i>
                         </div>
@@ -140,7 +140,7 @@
                         <label for = "depth-frequency">Depth Frequency</label> 
                             
                         <div class = "depth-frequency">
-                            <input type = "text" value = "{{depth_frequency | default:'0'}}" id = "depth-frequency" name = "depth_frequency" readonly>
+                            <input type = "text" value = "{{depth_frequency | default:'None available'}}" id = "depth-frequency" name = "depth_frequency" readonly>
                                 
                             <i class = "fa-solid fa-arrow-down-wide-short"></i>
                         </div>
@@ -150,7 +150,7 @@
                         <label for = "users-count">Users Count</label> 
 
                         <div class = "users-count">
-                            <input type = "number" value = "{{users_count | default:'0'}}" id = "users-count" name = "users_count" readonly>
+                            <input type = "text" value = "{{users_count | default:'0'}}" id = "users-count" name = "users_count" readonly>
 
                             <i class = "fa-solid fa-users"></i>      
                         </div>
@@ -166,7 +166,7 @@
                         <label for = "density-frequency">Density / Square Meter Frequency</label> 
                             
                         <div class = "density-frequency">
-                            <input type = "number" value = "{{density_frequency | default:'0'}}" id = "density-frequency" name = "density_frequency" readonly>
+                            <input type = "text" value = "{{density_frequency | default:'0'}}" id = "density-frequency" name = "density_frequency" readonly>
                                 
                             <i class = "fa-solid fa-braille"></i>
                         </div>
@@ -1377,7 +1377,7 @@
                             <label for = "capture-date">Capture Date</label> 
 
                             <div class = "capture-date">
-                                <input type = "text" value = "{{post.capture_date | date:'M. j, Y g:i a' | default:'None available'}}" id = "capture-date" name = "capture-date" readonly>
+                                <input type = "text" value = "{{post.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}" id = "capture-date" name = "capture-date" readonly>
 
                                 <i class = "fa-solid fa-calendar-day"></i>
                             </div>  
@@ -1415,7 +1415,7 @@
                         <label for = "posts-count">Posts Count</label> 
                             
                         <div class = "posts-count">
-                            <input type = "number" value = "{{posts_count | default:'0'}}" id = "posts-count" name = "posts_count" readonly>
+                            <input type = "text" value = "{{posts_count | default:'0'}}" id = "posts-count" name = "posts_count" readonly>
                                 
                             <i class = "fa-solid fa-copy"></i>
                         </div>
@@ -1431,7 +1431,7 @@
                         <label for = "size-frequency">Size / Centimeter Frequency</label> 
                             
                         <div class = "size-frequency">
-                            <input type = "number" value = "{{size_frequency | default:'0'}}" id = "size-frequency" name = "size_frequency" readonly>
+                            <input type = "text" value = "{{size_frequency | default:'0'}}" id = "size-frequency" name = "size_frequency" readonly>
                                 
                             <i class = "fa-solid fa-draw-polygon"></i>
                         </div>
@@ -1439,7 +1439,7 @@
                         <label for = "depth-frequency">Depth Frequency</label> 
                             
                         <div class = "depth-frequency">
-                            <input type = "text" value = "{{depth_frequency | default:'0'}}" id = "depth-frequency" name = "depth_frequency" readonly>
+                            <input type = "text" value = "{{depth_frequency | default:'None available'}}" id = "depth-frequency" name = "depth_frequency" readonly>
                                 
                             <i class = "fa-solid fa-arrow-down-wide-short"></i>
                         </div>
@@ -1449,7 +1449,7 @@
                         <label for = "users-count">Users Count</label> 
 
                         <div class = "users-count">
-                            <input type = "number" value = "{{users_count | default:'0'}}" id = "users-count" name = "users_count" readonly>
+                            <input type = "text" value = "{{users_count | default:'0'}}" id = "users-count" name = "users_count" readonly>
 
                             <i class = "fa-solid fa-users"></i>      
                         </div>
@@ -1465,7 +1465,7 @@
                         <label for = "density-frequency">Density / Square Meter Frequency</label> 
                             
                         <div class = "density-frequency">
-                            <input type = "number" value = "{{density_frequency | default:'0'}}" id = "density-frequency" name = "density_frequency" readonly>
+                            <input type = "text" value = "{{density_frequency | default:'0'}}" id = "density-frequency" name = "density_frequency" readonly>
                                 
                             <i class = "fa-solid fa-braille"></i>
                         </div>
@@ -2676,7 +2676,7 @@
                             <label for = "capture-date">Capture Date</label> 
 
                             <div class = "capture-date">
-                                <input type = "text" value = "{{post.capture_date | date:'M. j, Y g:i a' | default:'None available'}}" id = "capture-date" name = "capture-date" readonly>
+                                <input type = "text" value = "{{post.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}" id = "capture-date" name = "capture-date" readonly>
 
                                 <i class = "fa-solid fa-calendar-day"></i>
                             </div>  
@@ -2705,16 +2705,16 @@
         function toggleBody(element){
             var body = element.nextElementSibling;
             
-            if (body.style.display === "none" || body.style.display === ""){
+            if(body.style.display === "none" || body.style.display === ""){
                 body.style.borderBottomLeftRadius = "5px";
 
                 body.style.borderBottomTopRadius = "5px";
                 
                 body.style.display = "grid";
             
-            } else {
+            } else{
                 body.style.display = "none";
-            }
-        }
+            };
+        };
     </script>
 {% endblock content %}

@@ -1,0 +1,3759 @@
+@import url("https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Overlock:wght@400;700;900&display=swap");
+
+
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    scrollbar-width: thin !important;
+    scrollbar-color: #698F3F #154360 !important;
+    transition: all 0.25s ease;
+}
+
+
+::-webkit-scrollbar{
+    width: 5px !important;
+    height: 5px !important;
+}
+
+::-webkit-scrollbar-track{
+    border-radius: 5px;
+    border: 1px solid #B2BEB5; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    background: #154360 !important; 
+}
+
+::-webkit-scrollbar-thumb{
+    border-radius: 5px;
+    border: 1px solid #B2BEB5; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    background: #698F3F !important;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background: #557433 !important;
+}
+
+
+
+
+.post{
+    margin-bottom: 30px;
+    width: 100%;
+    display: grid;
+    grid-column: 1;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+}
+
+.post#draft-filter .card-header{
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-top-left-radius: 5px !important;
+    border-top-right-radius: 5px !important;
+    background-color: #154360;
+    display: grid;
+}
+
+.post#draft-filter .card-header header{
+    font-family: "Philosopher";
+    font-weight: 700;
+    font-size: 22px !important;
+    color: #FFFFFF;
+    white-space: nowrap !important; 
+    overflow: auto !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-filter .card-header header{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 20px !important;
+        color: #FFFFFF;
+        white-space: nowrap !important; 
+        overflow: auto !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-filter .card-header header{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 18px !important;
+        color: #FFFFFF;
+        white-space: nowrap !important; 
+        overflow: auto !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-filter .card-header header{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 16px !important;
+        color: #FFFFFF;
+        white-space: nowrap !important; 
+        overflow: auto !important;
+    }
+}
+
+.post#draft-filter .card-body{
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 100%;
+    border-bottom-left-radius: 5px !important;
+    border-bottom-right-radius: 5px !important;
+    display: grid;
+    background-color: #FFFFFF;
+}
+
+.post#draft-filter .card-body .field{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .post#draft-filter .card-body .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-filter .card-body .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-filter .card-body .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-filter .card-body .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
+}
+
+.post#draft-filter .card-body .field .column label[for = "from-date"]{
+    margin-top: 0px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-filter .card-body .field .column label[for = "from-date"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-filter .card-body .field .column label[for = "from-date"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-filter .card-body .field .column label[for = "from-date"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.post#draft-filter .card-body .field .column .from-date{
+    position: relative;
+}
+
+.post#draft-filter .card-body .field .column .from-date input[type = "date"]{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+    background: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '20' height = '20' viewBox = '0 0 448 512' fill = '%23154360'> <path d = 'M96 32V64H48C21.5 64 0 85.5 0 112v48H448V112c0-26.5-21.5-48-48-48H352V32c0-17.7-14.3-32-32-32s-32 14.3-32 32V64H160V32c0-17.7-14.3-32-32-32S96 14.3 96 32zM448 192H0V464c0 26.5 21.5 48 48 48H400c26.5 0 48-21.5 48-48V192zM224 248c13.3 0 24 10.7 24 24v56h56c13.3 0 24 10.7 24 24s-10.7 24-24 24H248v56c0 13.3-10.7 24-24 24s-24-10.7-24-24V376H144c-13.3 0-24-10.7-24-24s10.7-24 24-24h56V272c0-13.3 10.7-24 24-24z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center; 
+}
+
+.post#draft-filter .card-body .field .column .from-date input[type = "date"]:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-filter .card-body .field .column .from-date input[type = "date"]{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '18' height = '18' viewBox = '0 0 448 512' fill = '%23154360'> <path d = 'M96 32V64H48C21.5 64 0 85.5 0 112v48H448V112c0-26.5-21.5-48-48-48H352V32c0-17.7-14.3-32-32-32s-32 14.3-32 32V64H160V32c0-17.7-14.3-32-32-32S96 14.3 96 32zM448 192H0V464c0 26.5 21.5 48 48 48H400c26.5 0 48-21.5 48-48V192zM224 248c13.3 0 24 10.7 24 24v56h56c13.3 0 24 10.7 24 24s-10.7 24-24 24H248v56c0 13.3-10.7 24-24 24s-24-10.7-24-24V376H144c-13.3 0-24-10.7-24-24s10.7-24 24-24h56V272c0-13.3 10.7-24 24-24z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-filter .card-body .field .column .from-date input[type = "date"]{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '16' height = '16' viewBox = '0 0 448 512' fill = '%23154360'> <path d = 'M96 32V64H48C21.5 64 0 85.5 0 112v48H448V112c0-26.5-21.5-48-48-48H352V32c0-17.7-14.3-32-32-32s-32 14.3-32 32V64H160V32c0-17.7-14.3-32-32-32S96 14.3 96 32zM448 192H0V464c0 26.5 21.5 48 48 48H400c26.5 0 48-21.5 48-48V192zM224 248c13.3 0 24 10.7 24 24v56h56c13.3 0 24 10.7 24 24s-10.7 24-24 24H248v56c0 13.3-10.7 24-24 24s-24-10.7-24-24V376H144c-13.3 0-24-10.7-24-24s10.7-24 24-24h56V272c0-13.3 10.7-24 24-24z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-filter .card-body .field .column .from-date input[type = "date"]{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '14' height = '14' viewBox = '0 0 448 512' fill = '%23154360'> <path d = 'M96 32V64H48C21.5 64 0 85.5 0 112v48H448V112c0-26.5-21.5-48-48-48H352V32c0-17.7-14.3-32-32-32s-32 14.3-32 32V64H160V32c0-17.7-14.3-32-32-32S96 14.3 96 32zM448 192H0V464c0 26.5 21.5 48 48 48H400c26.5 0 48-21.5 48-48V192zM224 248c13.3 0 24 10.7 24 24v56h56c13.3 0 24 10.7 24 24s-10.7 24-24 24H248v56c0 13.3-10.7 24-24 24s-24-10.7-24-24V376H144c-13.3 0-24-10.7-24-24s10.7-24 24-24h56V272c0-13.3 10.7-24 24-24z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+    }
+}
+
+/* .post#draft-filter .card-body .field .column .from-date input[type = "date"]::-webkit-calendar-picker-indicator{
+    filter: invert(22%) sepia(7%) saturate(6538%) hue-rotate(164deg) brightness(89%) contrast(90%);
+}
+
+.post#draft-filter .card-body .field .column .from-date input[type = "date"]:draft::-webkit-datetime-edit{
+    color: #154360 !important;
+}
+
+.post#draft-filter .card-body .field .column .from-date input[type = "date"]::-webkit-datetime-edit-day-field{
+    color: #154360;
+    background-color: #FFFFFF;
+    outline: none;
+}
+
+.post#draft-filter .card-body .field .column .from-date input[type = "date"]::-webkit-datetime-edit-month-field{
+    color: #154360;
+    background-color: #FFFFFF;
+    outline: none;
+}
+
+.post#draft-filter .card-body .field .column .from-date input[type = "date"]::-webkit-datetime-edit-year-field{
+    color: #154360;
+    background-color: #FFFFFF;
+    outline: none;
+}
+
+.post#draft-filter .card-body .field .column .from-date input[type = "date"]::-webkit-datetime-edit-day-field:focus{
+    background-color: #154360 !important;
+    color: #FFFFFF !important;
+    outline: none;
+}
+
+.post#draft-filter .card-body .field .column .from-date input[type = "date"]::-webkit-datetime-edit-month-field:focus{
+    background-color: #154360 !important;
+    color: #FFFFFF !important;
+    outline: none;
+}
+
+.post#draft-filter .card-body .field .column .from-date input[type = "date"]::-webkit-datetime-edit-year-field:focus{
+    background-color: #154360 !important;
+    color: #FFFFFF !important;
+    outline: none;
+} */
+
+.post#draft-filter .card-body .field .column .from-date input[type = "date"]::-webkit-inner-spin-button{
+    display: none !important;
+}
+
+.post#draft-filter .card-body .field .column .from-date input[type = "date"]::-webkit-calendar-picker-indicator{
+    opacity: 0 !important;
+}
+
+.post#draft-filter .card-body .field .column label[for = "to-date"]{
+    margin-top: 0px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-filter .card-body .field .column label[for = "to-date"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-filter .card-body .field .column label[for = "to-date"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-filter .card-body .field .column label[for = "to-date"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.post#draft-filter .card-body .field .column .to-date{
+    position: relative;
+}
+
+.post#draft-filter .card-body .field .column .to-date input[type = "date"]{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+    background: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '20' height = '20' viewBox = '0 0 448 512' fill = '%23154360'> <path d = 'M96 32V64H48C21.5 64 0 85.5 0 112v48H448V112c0-26.5-21.5-48-48-48H352V32c0-17.7-14.3-32-32-32s-32 14.3-32 32V64H160V32c0-17.7-14.3-32-32-32S96 14.3 96 32zM448 192H0V464c0 26.5 21.5 48 48 48H400c26.5 0 48-21.5 48-48V192zM224 248c13.3 0 24 10.7 24 24v56h56c13.3 0 24 10.7 24 24s-10.7 24-24 24H248v56c0 13.3-10.7 24-24 24s-24-10.7-24-24V376H144c-13.3 0-24-10.7-24-24s10.7-24 24-24h56V272c0-13.3 10.7-24 24-24z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center; 
+}
+
+.post#draft-filter .card-body .field .column .to-date input[type = "date"]:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-filter .card-body .field .column .to-date input[type = "date"]{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '18' height = '18' viewBox = '0 0 448 512' fill = '%23154360'> <path d = 'M96 32V64H48C21.5 64 0 85.5 0 112v48H448V112c0-26.5-21.5-48-48-48H352V32c0-17.7-14.3-32-32-32s-32 14.3-32 32V64H160V32c0-17.7-14.3-32-32-32S96 14.3 96 32zM448 192H0V464c0 26.5 21.5 48 48 48H400c26.5 0 48-21.5 48-48V192zM224 248c13.3 0 24 10.7 24 24v56h56c13.3 0 24 10.7 24 24s-10.7 24-24 24H248v56c0 13.3-10.7 24-24 24s-24-10.7-24-24V376H144c-13.3 0-24-10.7-24-24s10.7-24 24-24h56V272c0-13.3 10.7-24 24-24z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-filter .card-body .field .column .to-date input[type = "date"]{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '16' height = '16' viewBox = '0 0 448 512' fill = '%23154360'> <path d = 'M96 32V64H48C21.5 64 0 85.5 0 112v48H448V112c0-26.5-21.5-48-48-48H352V32c0-17.7-14.3-32-32-32s-32 14.3-32 32V64H160V32c0-17.7-14.3-32-32-32S96 14.3 96 32zM448 192H0V464c0 26.5 21.5 48 48 48H400c26.5 0 48-21.5 48-48V192zM224 248c13.3 0 24 10.7 24 24v56h56c13.3 0 24 10.7 24 24s-10.7 24-24 24H248v56c0 13.3-10.7 24-24 24s-24-10.7-24-24V376H144c-13.3 0-24-10.7-24-24s10.7-24 24-24h56V272c0-13.3 10.7-24 24-24z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-filter .card-body .field .column .to-date input[type = "date"]{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '14' height = '14' viewBox = '0 0 448 512' fill = '%23154360'> <path d = 'M96 32V64H48C21.5 64 0 85.5 0 112v48H448V112c0-26.5-21.5-48-48-48H352V32c0-17.7-14.3-32-32-32s-32 14.3-32 32V64H160V32c0-17.7-14.3-32-32-32S96 14.3 96 32zM448 192H0V464c0 26.5 21.5 48 48 48H400c26.5 0 48-21.5 48-48V192zM224 248c13.3 0 24 10.7 24 24v56h56c13.3 0 24 10.7 24 24s-10.7 24-24 24H248v56c0 13.3-10.7 24-24 24s-24-10.7-24-24V376H144c-13.3 0-24-10.7-24-24s10.7-24 24-24h56V272c0-13.3 10.7-24 24-24z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+    }
+}
+
+/* .post#draft-filter .card-body .field .column .to-date input[type = "date"]::-webkit-calendar-picker-indicator{
+    filter: invert(22%) sepia(7%) saturate(6538%) hue-rotate(164deg) brightness(89%) contrast(90%);
+}
+
+.post#draft-filter .card-body .field .column .to-date input[type = "date"]:draft::-webkit-datetime-edit{
+    color: #154360 !important;
+}
+
+.post#draft-filter .card-body .field .column .to-date input[type = "date"]::-webkit-datetime-edit-day-field{
+    color: #154360;
+    background-color: #FFFFFF;
+    outline: none;
+}
+
+.post#draft-filter .card-body .field .column .to-date input[type = "date"]::-webkit-datetime-edit-month-field{
+    color: #154360;
+    background-color: #FFFFFF;
+    outline: none;
+}
+
+.post#draft-filter .card-body .field .column .to-date input[type = "date"]::-webkit-datetime-edit-year-field{
+    color: #154360;
+    background-color: #FFFFFF;
+    outline: none;
+}
+
+.post#draft-filter .card-body .field .column .to-date input[type = "date"]::-webkit-datetime-edit-day-field:focus{
+    background-color: #154360 !important;
+    color: #FFFFFF !important;
+    outline: none;
+}
+
+.post#draft-filter .card-body .field .column .to-date input[type = "date"]::-webkit-datetime-edit-month-field:focus{
+    background-color: #154360 !important;
+    color: #FFFFFF !important;
+    outline: none;
+}
+
+.post#draft-filter .card-body .field .column .to-date input[type = "date"]::-webkit-datetime-edit-year-field:focus{
+    background-color: #154360 !important;
+    color: #FFFFFF !important;
+    outline: none;
+} */
+
+.post#draft-filter .card-body .field .column .to-date input[type = "date"]::-webkit-inner-spin-button{
+    display: none !important;
+}
+
+.post#draft-filter .card-body .field .column .to-date input[type = "date"]::-webkit-calendar-picker-indicator{
+    opacity: 0 !important;
+}
+
+.post#draft-filter .card-body .field .column label[for = "depth"]{
+    margin-top: 15px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-filter .card-body .field .column label[for = "depth"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-filter .card-body .field .column label[for = "depth"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-filter .card-body .field .column label[for = "depth"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.post#draft-filter .card-body .field .column .depth{
+    position: relative;
+}
+
+.post#draft-filter .card-body .field .column select[name = "depth"]{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+    background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '20' height = '20' viewBox = '0 0 576 512' fill = '%23154360'> <path d = 'M151.6 469.6C145.5 476.2 137 480 128 480s-17.5-3.8-23.6-10.4l-88-96c-11.9-13-11.1-33.3 2-45.2s33.3-11.1 45.2 2L96 365.7V64c0-17.7 14.3-32 32-32s32 14.3 32 32V365.7l32.4-35.4c11.9-13 32.2-13.9 45.2-2s13.9 32.2 2 45.2l-88 96zM320 480c-17.7 0-32-14.3-32-32s14.3-32 32-32h32c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32H544c17.7 0 32 14.3 32 32s-14.3 32-32 32H320z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center; 
+}
+
+.post#draft-filter .card-body .field .column select[name = "depth"]:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-filter .card-body .field .column select[name = "depth"]{
+        padding-left: 10px !important;
+        padding-right: 38px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '18' height = '18' viewBox = '0 0 576 512' fill = '%23154360'> <path d = 'M151.6 469.6C145.5 476.2 137 480 128 480s-17.5-3.8-23.6-10.4l-88-96c-11.9-13-11.1-33.3 2-45.2s33.3-11.1 45.2 2L96 365.7V64c0-17.7 14.3-32 32-32s32 14.3 32 32V365.7l32.4-35.4c11.9-13 32.2-13.9 45.2-2s13.9 32.2 2 45.2l-88 96zM320 480c-17.7 0-32-14.3-32-32s14.3-32 32-32h32c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32H544c17.7 0 32 14.3 32 32s-14.3 32-32 32H320z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-filter .card-body .field .column select[name = "depth"]{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '16' height = '16' viewBox = '0 0 576 512' fill = '%23154360'> <path d = 'M151.6 469.6C145.5 476.2 137 480 128 480s-17.5-3.8-23.6-10.4l-88-96c-11.9-13-11.1-33.3 2-45.2s33.3-11.1 45.2 2L96 365.7V64c0-17.7 14.3-32 32-32s32 14.3 32 32V365.7l32.4-35.4c11.9-13 32.2-13.9 45.2-2s13.9 32.2 2 45.2l-88 96zM320 480c-17.7 0-32-14.3-32-32s14.3-32 32-32h32c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32H544c17.7 0 32 14.3 32 32s-14.3 32-32 32H320z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-filter .card-body .field .column select[name = "depth"]{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '14' height = '14' viewBox = '0 0 576 512' fill = '%23154360'> <path d = 'M151.6 469.6C145.5 476.2 137 480 128 480s-17.5-3.8-23.6-10.4l-88-96c-11.9-13-11.1-33.3 2-45.2s33.3-11.1 45.2 2L96 365.7V64c0-17.7 14.3-32 32-32s32 14.3 32 32V365.7l32.4-35.4c11.9-13 32.2-13.9 45.2-2s13.9 32.2 2 45.2l-88 96zM320 480c-17.7 0-32-14.3-32-32s14.3-32 32-32h32c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32H544c17.7 0 32 14.3 32 32s-14.3 32-32 32H320z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+    }
+}
+
+.post#draft-filter .card-body .field .column label[for = "weather"]{
+    margin-top: 15px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-filter .card-body .field .column label[for = "weather"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-filter .card-body .field .column label[for = "weather"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-filter .card-body .field .column label[for = "weather"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.post#draft-filter .card-body .field .column .weather{
+    position: relative;
+}
+
+.post#draft-filter .card-body .field .column select[name = "weather"]{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+    background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '20' height = '20' viewBox = '0 0 512 512' fill = '%23154360'> <path d = 'M416 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64zm0 128A96 96 0 1 0 416 0a96 96 0 1 0 0 192zM96 112c0-26.5 21.5-48 48-48s48 21.5 48 48V276.5c0 17.3 7.1 31.9 15.3 42.5C217.8 332.6 224 349.5 224 368c0 44.2-35.8 80-80 80s-80-35.8-80-80c0-18.5 6.2-35.4 16.7-48.9C88.9 308.4 96 293.8 96 276.5V112zM144 0C82.1 0 32 50.2 32 112V276.5c0 .1-.1 .3-.2 .6c-.2 .6-.8 1.6-1.7 2.8C11.2 304.2 0 334.8 0 368c0 79.5 64.5 144 144 144s144-64.5 144-144c0-33.2-11.2-63.8-30.1-88.1c-.9-1.2-1.5-2.2-1.7-2.8c-.1-.3-.2-.5-.2-.6V112C256 50.2 205.9 0 144 0zm0 416c26.5 0 48-21.5 48-48c0-20.9-13.4-38.7-32-45.3V112c0-8.8-7.2-16-16-16s-16 7.2-16 16V322.7c-18.6 6.6-32 24.4-32 45.3c0 26.5 21.5 48 48 48z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center; 
+}
+
+.post#draft-filter .card-body .field .column select[name = "weather"]:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-filter .card-body .field .column select[name = "weather"]{
+        padding-left: 10px !important;
+        padding-right: 38px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '18' height = '18' viewBox = '0 0 512 512' fill = '%23154360'> <path d = 'M416 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64zm0 128A96 96 0 1 0 416 0a96 96 0 1 0 0 192zM96 112c0-26.5 21.5-48 48-48s48 21.5 48 48V276.5c0 17.3 7.1 31.9 15.3 42.5C217.8 332.6 224 349.5 224 368c0 44.2-35.8 80-80 80s-80-35.8-80-80c0-18.5 6.2-35.4 16.7-48.9C88.9 308.4 96 293.8 96 276.5V112zM144 0C82.1 0 32 50.2 32 112V276.5c0 .1-.1 .3-.2 .6c-.2 .6-.8 1.6-1.7 2.8C11.2 304.2 0 334.8 0 368c0 79.5 64.5 144 144 144s144-64.5 144-144c0-33.2-11.2-63.8-30.1-88.1c-.9-1.2-1.5-2.2-1.7-2.8c-.1-.3-.2-.5-.2-.6V112C256 50.2 205.9 0 144 0zm0 416c26.5 0 48-21.5 48-48c0-20.9-13.4-38.7-32-45.3V112c0-8.8-7.2-16-16-16s-16 7.2-16 16V322.7c-18.6 6.6-32 24.4-32 45.3c0 26.5 21.5 48 48 48z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-filter .card-body .field .column select[name = "weather"]{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '16' height = '16' viewBox = '0 0 512 512' fill = '%23154360'> <path d = 'M416 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64zm0 128A96 96 0 1 0 416 0a96 96 0 1 0 0 192zM96 112c0-26.5 21.5-48 48-48s48 21.5 48 48V276.5c0 17.3 7.1 31.9 15.3 42.5C217.8 332.6 224 349.5 224 368c0 44.2-35.8 80-80 80s-80-35.8-80-80c0-18.5 6.2-35.4 16.7-48.9C88.9 308.4 96 293.8 96 276.5V112zM144 0C82.1 0 32 50.2 32 112V276.5c0 .1-.1 .3-.2 .6c-.2 .6-.8 1.6-1.7 2.8C11.2 304.2 0 334.8 0 368c0 79.5 64.5 144 144 144s144-64.5 144-144c0-33.2-11.2-63.8-30.1-88.1c-.9-1.2-1.5-2.2-1.7-2.8c-.1-.3-.2-.5-.2-.6V112C256 50.2 205.9 0 144 0zm0 416c26.5 0 48-21.5 48-48c0-20.9-13.4-38.7-32-45.3V112c0-8.8-7.2-16-16-16s-16 7.2-16 16V322.7c-18.6 6.6-32 24.4-32 45.3c0 26.5 21.5 48 48 48z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-filter .card-body .field .column select[name = "weather"]{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '14' height = '14' viewBox = '0 0 512 512' fill = '%23154360'> <path d = 'M416 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64zm0 128A96 96 0 1 0 416 0a96 96 0 1 0 0 192zM96 112c0-26.5 21.5-48 48-48s48 21.5 48 48V276.5c0 17.3 7.1 31.9 15.3 42.5C217.8 332.6 224 349.5 224 368c0 44.2-35.8 80-80 80s-80-35.8-80-80c0-18.5 6.2-35.4 16.7-48.9C88.9 308.4 96 293.8 96 276.5V112zM144 0C82.1 0 32 50.2 32 112V276.5c0 .1-.1 .3-.2 .6c-.2 .6-.8 1.6-1.7 2.8C11.2 304.2 0 334.8 0 368c0 79.5 64.5 144 144 144s144-64.5 144-144c0-33.2-11.2-63.8-30.1-88.1c-.9-1.2-1.5-2.2-1.7-2.8c-.1-.3-.2-.5-.2-.6V112C256 50.2 205.9 0 144 0zm0 416c26.5 0 48-21.5 48-48c0-20.9-13.4-38.7-32-45.3V112c0-8.8-7.2-16-16-16s-16 7.2-16 16V322.7c-18.6 6.6-32 24.4-32 45.3c0 26.5 21.5 48 48 48z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+    }
+}
+
+.post#draft-filter .card-body .button{
+    margin-left: auto;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: fit-content;
+    height: 100% !important;
+}
+
+.post#draft-filter .card-body .button a.filter-posts{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    border: 1px solid #B2BEB5; 
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px;
+    color: #FFFFFF !important;
+    background-color: #154360 !important;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.post#draft-filter .card-body .button a.filter-posts:hover{
+    background-color: #10354C !important;
+    color: #B2BEB5 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-filter .card-body .button a{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #FFFFFF !important;
+        text-decoration: none;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-filter .card-body .button a{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #FFFFFF !important;
+        text-decoration: none;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-filter .card-body .button a{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #FFFFFF !important;
+        text-decoration: none;
+    }
+}
+
+.line#records{
+    margin-bottom: 30px;
+    position: relative;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    background-color: #B2BEB5;
+}
+
+.line#records::before{
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    content: "RECORDS";
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px;
+    background-color: #FFFFFF;
+    color: #154659;
+    transform: translate(-50%, -50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .line#records::before{
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        content: "RECORDS";
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px;
+        background-color: #FFFFFF;
+        color: #154659;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .line#records::before{
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        content: "RECORDS";
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px;
+        background-color: #FFFFFF;
+        color: #154659;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .line#records::before{
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        content: "RECORDS";
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px;
+        background-color: #FFFFFF;
+        color: #154659;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.line#results{
+    margin-bottom: 30px;
+    position: relative;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    background-color: #B2BEB5;
+}
+
+.line#results::before{
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    content: "RESULTS";
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px;
+    background-color: #FFFFFF;
+    color: #154659;
+    transform: translate(-50%, -50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .line#results::before{
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        content: "RESULTS";
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px;
+        background-color: #FFFFFF;
+        color: #154659;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .line#results::before{
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        content: "RESULTS";
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px;
+        background-color: #FFFFFF;
+        color: #154659;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .line#results::before{
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        content: "RECORDS";
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px;
+        background-color: #FFFFFF;
+        color: #154659;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.post#draft-records .card-header{
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-top-left-radius: 5px !important;
+    border-top-right-radius: 5px !important;
+    background-color: #154360;
+    display: grid;
+    cursor: pointer;
+}
+
+.post#draft-records .card-header header.preview{
+    font-family: "Philosopher";
+    font-weight: 700;
+    font-size: 22px !important;
+    color: #FFFFFF;
+    white-space: nowrap !important; 
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-records .card-header header.preview{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 20px !important;
+        color: #FFFFFF;
+        white-space: nowrap !important; 
+        overflow: hidden !important;
+        text-overflow: ellipsis;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-records .card-header header.preview{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 18px !important;
+        color: #FFFFFF;
+        white-space: nowrap !important; 
+        overflow: hidden !important;
+        text-overflow: ellipsis;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-records .card-header header.preview{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 16px !important;
+        color: #FFFFFF;
+        white-space: nowrap !important; 
+        overflow: hidden !important;
+        text-overflow: ellipsis;
+    }
+}
+
+.post#draft-records .card-body{
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 100%;
+    border-bottom-left-radius: 5px !important;
+    border-bottom-right-radius: 5px !important;
+    display: none;
+    background-color: #FFFFFF;
+}
+
+.post#draft-records .card-body .field{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .post#draft-records .card-body .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-records .card-body .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-records .card-body .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-records .card-body .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
+}
+
+.post#draft-records .card-body .field .column label[for = "valid-posts"]{
+    margin-top: 0px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-records .card-body .field .column label[for = "valid-posts"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-records .card-body .field .column label[for = "valid-posts"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-records .card-body .field .column label[for = "valid-posts"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.post#draft-records .card-body .field .column .valid-posts{
+    position: relative;
+}
+
+.post#draft-records .card-body .field .column .valid-posts input{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.post#draft-records .card-body .field .column .valid-posts input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-records .card-body .field .column .valid-posts input{
+        padding-left: 10px !important;
+        padding-right: 38px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-records .card-body .field .column .valid-posts input{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-records .card-body .field .column .valid-posts input{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.post#draft-records .card-body .field .column .valid-posts i{
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-records .card-body .field .column .valid-posts i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-records .card-body .field .column .valid-posts i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-records .card-body .field .column .valid-posts i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+.post#draft-records .card-body .field .column label[for = "valid-date"]{
+    margin-top: 0px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-records .card-body .field .column label[for = "valid-date"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-records .card-body .field .column label[for = "valid-date"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-records .card-body .field .column label[for = "valid-date"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.post#draft-records .card-body .field .column .valid-date{
+    position: relative;
+}
+
+.post#draft-records .card-body .field .column .valid-date input{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.post#draft-records .card-body .field .column .valid-date input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-records .card-body .field .column .valid-date input{
+        padding-left: 10px !important;
+        padding-right: 38px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-records .card-body .field .column .valid-date input{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-records .card-body .field .column .valid-date input{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.post#draft-records .card-body .field .column .valid-date i{
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-records .card-body .field .column .valid-date i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-records .card-body .field .column .valid-date i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-records .card-body .field .column .valid-date i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+.post#draft-records .card-body .field .column label[for = "coordinates"]{
+    margin-top: 0px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-records .card-body .field .column label[for = "coordinates"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-records .card-body .field .column label[for = "coordinates"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-records .card-body .field .column label[for = "valid-posts"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.post#draft-records .card-body .field .column .coordinates{
+    position: relative;
+}
+
+.post#draft-records .card-body .field .column .coordinates input{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.post#draft-records .card-body .field .column .coordinates input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-records .card-body .field .column .coordinates input{
+        padding-left: 10px !important;
+        padding-right: 38px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-records .card-body .field .column .coordinates input{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-records .card-body .field .column .coordinates input{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.post#draft-records .card-body .field .column .coordinates i{
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-records .card-body .field .column .coordinates i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-records .card-body .field .column .coordinates i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-records .card-body .field .column .coordinates i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+.post#draft-records .card-body .field .column label[for = "draft-date"]{
+    margin-top: 0px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-records .card-body .field .column label[for = "draft-date"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-records .card-body .field .column label[for = "draft-date"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-records .card-body .field .column label[for = "draft-date"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.post#draft-records .card-body .field .column .draft-date{
+    position: relative;
+}
+
+.post#draft-records .card-body .field .column .draft-date input{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.post#draft-records .card-body .field .column .draft-date input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-records .card-body .field .column .draft-date input{
+        padding-left: 10px !important;
+        padding-right: 38px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-records .card-body .field .column .draft-date input{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-records .card-body .field .column .draft-date input{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.post#draft-records .card-body .field .column .draft-date i{
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-records .card-body .field .column .draft-date i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-records .card-body .field .column .draft-date i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-records .card-body .field .column .draft-date i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+.post#draft-records .card-body .field .column label[for = "coordinates"]{
+    margin-top: 0px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-records .card-body .field .column label[for = "coordinates"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-records .card-body .field .column label[for = "coordinates"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-records .card-body .field .column label[for = "coordinates"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.post#draft-records .card-body .field .column .coordinates{
+    position: relative;
+}
+
+.post#draft-records .card-body .field .column .coordinates input{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.post#draft-records .card-body .field .column .coordinates input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-records .card-body .field .column .coordinates input{
+        padding-left: 10px !important;
+        padding-right: 38px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-records .card-body .field .column .coordinates input{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-records .card-body .field .column .coordinates input{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.post#draft-records .card-body .field .column .coordinates i{
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-records .card-body .field .column .coordinates i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-records .card-body .field .column .coordinates i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-records .card-body .field .column .coordinates i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+.post#draft-records .card-body .field .column label[for = "capture-date"]{
+    margin-top: 0px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-records .card-body .field .column label[for = "capture-date"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-records .card-body .field .column label[for = "capture-date"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-records .card-body .field .column label[for = "capture-date"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.post#draft-records .card-body .field .column .capture-date{
+    position: relative;
+}
+
+.post#draft-records .card-body .field .column .capture-date input{
+    padding-left: 10px !important;
+    padding-right: 5px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.post#draft-records .card-body .field .column .capture-date input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-records .card-body .field .column .capture-date input{
+        padding-left: 10px !important;
+        padding-right: 5px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-records .card-body .field .column .capture-date input{
+        padding-left: 10px !important;
+        padding-right: 5px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-records .card-body .field .column .capture-date input{
+        padding-left: 10px !important;
+        padding-right: 5px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.post#draft-records .card-body .field .column .capture-date i{
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-records .card-body .field .column .capture-date i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-records .card-body .field .column .capture-date i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-records .card-body .field .column .capture-date i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+.post#draft-records .card-body .button{
+    margin-left: auto;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: fit-content;
+    height: 100% !important;
+}
+
+.post#draft-records .card-body .button a.read-post{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    border: 1px solid #B2BEB5; 
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px;
+    color: #FFFFFF !important;
+    background-color: #154360 !important;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.post#draft-records .card-body .button a.read-post:hover{
+    background-color: #10354C !important;
+    color: #B2BEB5 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-records .card-body .button a{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #FFFFFF !important;
+        text-decoration: none;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-records .card-body .button a{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #FFFFFF !important;
+        text-decoration: none;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-records .card-body .button a{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #FFFFFF !important;
+        text-decoration: none;
+    }
+}
+
+.post#draft-results .card-header{
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-top-left-radius: 5px !important;
+    border-top-right-radius: 5px !important;
+    background-color: #154360;
+    display: grid;
+    cursor: pointer;
+}
+
+.post#draft-results .card-header header.preview{
+    font-family: "Philosopher";
+    font-weight: 700;
+    font-size: 22px !important;
+    color: #FFFFFF;
+    white-space: nowrap !important; 
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-results .card-header header.preview{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 20px !important;
+        color: #FFFFFF;
+        white-space: nowrap !important; 
+        overflow: hidden !important;
+        text-overflow: ellipsis;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-results .card-header header.preview{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 18px !important;
+        color: #FFFFFF;
+        white-space: nowrap !important; 
+        overflow: hidden !important;
+        text-overflow: ellipsis;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-results .card-header header.preview{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 16px !important;
+        color: #FFFFFF;
+        white-space: nowrap !important; 
+        overflow: hidden !important;
+        text-overflow: ellipsis;
+    }
+}
+
+.post#draft-results .card-body{
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 100%;
+    border-bottom-left-radius: 5px !important;
+    border-bottom-right-radius: 5px !important;
+    display: none;
+    background-color: #FFFFFF;
+}
+
+.post#draft-results .card-body .field{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .post#draft-results .card-body .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-results .card-body .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-results .card-body .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-results .card-body .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
+}
+
+.post#draft-results .card-body .field .column label[for = "valid-posts"]{
+    margin-top: 0px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-results .card-body .field .column label[for = "valid-posts"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-results .card-body .field .column label[for = "valid-posts"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-results .card-body .field .column label[for = "valid-posts"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.post#draft-results .card-body .field .column .valid-posts{
+    position: relative;
+}
+
+.post#draft-results .card-body .field .column .valid-posts input{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.post#draft-results .card-body .field .column .valid-posts input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-results .card-body .field .column .valid-posts input{
+        padding-left: 10px !important;
+        padding-right: 38px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-results .card-body .field .column .valid-posts input{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-results .card-body .field .column .valid-posts input{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.post#draft-results .card-body .field .column .valid-posts i{
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-results .card-body .field .column .valid-posts i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-results .card-body .field .column .valid-posts i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-results .card-body .field .column .valid-posts i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+.post#draft-results .card-body .field .column label[for = "valid-date"]{
+    margin-top: 0px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-results .card-body .field .column label[for = "valid-date"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-results .card-body .field .column label[for = "valid-date"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-results .card-body .field .column label[for = "valid-date"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.post#draft-results .card-body .field .column .valid-date{
+    position: relative;
+}
+
+.post#draft-results .card-body .field .column .valid-date input{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.post#draft-results .card-body .field .column .valid-date input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-results .card-body .field .column .valid-date input{
+        padding-left: 10px !important;
+        padding-right: 38px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-results .card-body .field .column .valid-date input{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-results .card-body .field .column .valid-date input{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.post#draft-results .card-body .field .column .valid-date i{
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-results .card-body .field .column .valid-date i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-results .card-body .field .column .valid-date i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-results .card-body .field .column .valid-date i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+.post#draft-results .card-body .field .column label[for = "coordinates"]{
+    margin-top: 0px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-results .card-body .field .column label[for = "coordinates"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-results .card-body .field .column label[for = "coordinates"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-results .card-body .field .column label[for = "coordinates"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.post#draft-results .card-body .field .column .coordinates{
+    position: relative;
+}
+
+.post#draft-results .card-body .field .column .coordinates input{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.post#draft-results .card-body .field .column .coordinates input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-results .card-body .field .column .coordinates input{
+        padding-left: 10px !important;
+        padding-right: 38px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-results .card-body .field .column .coordinates input{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-results .card-body .field .column .coordinates input{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.post#draft-results .card-body .field .column .coordinates i{
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-results .card-body .field .column .coordinates i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-results .card-body .field .column .coordinates i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-results .card-body .field .column .coordinates i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+.post#draft-results .card-body .field .column label[for = "draft-date"]{
+    margin-top: 0px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-results .card-body .field .column label[for = "draft-date"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-results .card-body .field .column label[for = "draft-date"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-results .card-body .field .column label[for = "draft-date"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.post#draft-results .card-body .field .column .draft-date{
+    position: relative;
+}
+
+.post#draft-results .card-body .field .column .draft-date input{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.post#draft-results .card-body .field .column .draft-date input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-results .card-body .field .column .draft-date input{
+        padding-left: 10px !important;
+        padding-right: 38px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-results .card-body .field .column .draft-date input{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-results .card-body .field .column .draft-date input{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.post#draft-results .card-body .field .column .draft-date i{
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-results .card-body .field .column .draft-date i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-results .card-body .field .column .draft-date i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-results .card-body .field .column .draft-date i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+.post#draft-results .card-body .field .column label[for = "coordinates"]{
+    margin-top: 0px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-results .card-body .field .column label[for = "coordinates"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-results .card-body .field .column label[for = "coordinates"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-results .card-body .field .column label[for = "coordinates"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.post#draft-results .card-body .field .column .coordinates{
+    position: relative;
+}
+
+.post#draft-results .card-body .field .column .coordinates input{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.post#draft-results .card-body .field .column .coordinates input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-results .card-body .field .column .coordinates input{
+        padding-left: 10px !important;
+        padding-right: 38px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-results .card-body .field .column .coordinates input{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-results .card-body .field .column .coordinates input{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.post#draft-results .card-body .field .column .coordinates i{
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-results .card-body .field .column .coordinates i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-results .card-body .field .column .coordinates i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-results .card-body .field .column .coordinates i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+.post#draft-results .card-body .field .column label[for = "capture-date"]{
+    margin-top: 0px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-results .card-body .field .column label[for = "capture-date"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-results .card-body .field .column label[for = "capture-date"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-results .card-body .field .column label[for = "capture-date"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.post#draft-results .card-body .field .column .capture-date{
+    position: relative;
+}
+
+.post#draft-results .card-body .field .column .capture-date input{
+    padding-left: 10px !important;
+    padding-right: 5px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.post#draft-results .card-body .field .column .capture-date input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-results .card-body .field .column .capture-date input{
+        padding-left: 10px !important;
+        padding-right: 5px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-results .card-body .field .column .capture-date input{
+        padding-left: 10px !important;
+        padding-right: 5px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-results .card-body .field .column .capture-date input{
+        padding-left: 10px !important;
+        padding-right: 5px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.post#draft-results .card-body .field .column .capture-date i{
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-results .card-body .field .column .capture-date i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-results .card-body .field .column .capture-date i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-results .card-body .field .column .capture-date i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+.post#draft-results .card-body .button{
+    margin-left: auto;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: fit-content;
+    height: 100% !important;
+}
+
+.post#draft-results .card-body .button a.read-post{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    border: 1px solid #B2BEB5; 
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px;
+    color: #FFFFFF !important;
+    background-color: #154360 !important;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.post#draft-results .card-body .button a.read-post:hover{
+    background-color: #10354C !important;
+    color: #B2BEB5 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#draft-results .card-body .button a{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #FFFFFF !important;
+        text-decoration: none;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#draft-results .card-body .button a{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #FFFFFF !important;
+        text-decoration: none;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#draft-results .card-body .button a{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #FFFFFF !important;
+        text-decoration: none;
+    }
+}
+
+
+.swal2-popup{
+    padding-bottom: 15px !important;
+    border-radius: 5px !important;
+    border: 1px solid #B2BEB5 !important; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+}
+
+.swal2-popup .swal2-styled:focus{
+    box-shadow: none !important;
+}
+
+div:where(.swal2-container) .swal2-html-container{
+    padding: 10px 30px 0em 30px !important;
+    margin: 0px !important;
+    font-family: "Overlock" !important;
+    font-weight: 400 !important;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    div:where(.swal2-container) .swal2-html-container{
+        padding: 10px 30px 0em 30px !important;
+        margin: 0px !important;
+        font-family: "Overlock" !important;
+        font-weight: 400 !important;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    div:where(.swal2-container) .swal2-html-container{
+        padding: 10px 30px 0em 30px !important;
+        margin: 0px !important;
+        font-family: "Overlock" !important;
+        font-weight: 400 !important;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    div:where(.swal2-container) .swal2-html-container{
+        padding: 10px 30px 0em 30px !important;
+        margin: 0px !important;
+        font-family: "Overlock" !important;
+        font-weight: 400 !important;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+div:where(.swal2-icon){
+    margin: 15px auto 0em auto !important;
+}
+
+div:where(.swal2-icon).swal2-success .swal2-success-ring{
+    border: 0.25em solid #698F3F !important;
+}
+
+div:where(.swal2-icon).swal2-success [class ^= swal2-success-line]{
+    background-color: #698F3F !important;
+}
+
+div:where(.swal2-icon).swal2-error [class ^= swal2-x-mark-line]{
+    background-color: #C90016 !important;
+}
+
+div:where(.swal2-container) h2:where(.swal2-title){
+    padding: 15px 30px 0em 30px !important;
+}
+
+.title{
+    font-family: "Philosopher" !important;
+    font-weight: 700 !important;
+    font-size: 22px !important;   
+    color: #154360 !important;
+    pointer-events: none !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .title{
+        font-family: "Philosopher" !important;
+        font-weight: 700 !important;
+        font-size: 20px !important;   
+        color: #154360 !important;
+        pointer-events: none !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .title{
+        font-family: "Philosopher" !important;
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+        pointer-events: none !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .title{
+        font-family: "Philosopher" !important;
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+        pointer-events: none !important;
+    }
+}
+
+div:where(.swal2-container) div:where(.swal2-actions){
+    margin: 15px auto 0 !important;
+}
+
+.swal2-actions{
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    height: fit-content !important;
+}
+
+.info-button{
+    visibility: hidden;
+    font-size: 0px !important;
+}
+
+.info-button::before{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    content: "Ok" !important;
+    visibility: visible !important;
+    border: 1px solid #B2BEB5 !important; 
+    border-radius: 5px !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Overlock" !important;
+    font-weight: 400 !important;
+    font-size: 20px !important;
+    background-color: #154360 !important;
+    color: #FFFFFF !important;
+    pointer-events: auto !important;
+    cursor: pointer;
+}
+
+.info-button:hover{
+    background-color: #10354C !important;
+    color: #B2BEB5 !important;        
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .info-button::before{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        content: "Ok" !important;
+        visibility: visible !important;
+        border: 1px solid #B2BEB5 !important; 
+        border-radius: 5px !important;
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Overlock" !important;
+        font-weight: 400 !important;
+        font-size: 18px !important;
+        background-color: #154360 !important;
+        color: #FFFFFF !important;
+        pointer-events: auto !important;
+        cursor: pointer;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .info-button::before{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        content: "Ok" !important;
+        visibility: visible !important;
+        border: 1px solid #B2BEB5 !important; 
+        border-radius: 5px !important;
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Overlock" !important;
+        font-weight: 400 !important;
+        font-size: 16px !important;
+        background-color: #154360 !important;
+        color: #FFFFFF !important;
+        pointer-events: auto !important;
+        cursor: pointer;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .info-button::before{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        content: "Ok" !important;
+        visibility: visible !important;
+        border: 1px solid #B2BEB5 !important; 
+        border-radius: 5px !important;
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Overlock" !important;
+        font-weight: 400 !important;
+        font-size: 14px !important;
+        background-color: #154360 !important;
+        color: #FFFFFF !important;
+        pointer-events: auto !important;
+        cursor: pointer;
+    }
+}
+
+.success-button{
+    visibility: hidden;
+    font-size: 0px !important;
+}
+
+.success-button::before{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    content: "Ok" !important;
+    visibility: visible !important;
+    border: 1px solid #B2BEB5 !important; 
+    border-radius: 5px !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Overlock" !important;
+    font-weight: 400 !important;
+    font-size: 20px !important;
+    background-color: #698F3F !important;
+    color: #FFFFFF !important;
+    pointer-events: auto !important;
+    cursor: pointer;
+}
+
+.success-button:hover{
+    background-color: #557433 !important;
+    color: #B2BEB5 !important;        
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .success-button::before{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        content: "Ok" !important;
+        visibility: visible !important;
+        border: 1px solid #B2BEB5 !important; 
+        border-radius: 5px !important;
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Overlock" !important;
+        font-weight: 400 !important;
+        font-size: 18px !important;
+        background-color: #698F3F !important;
+        color: #FFFFFF !important;
+        pointer-events: auto !important;
+        cursor: pointer;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .success-button::before{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        content: "Ok" !important;
+        visibility: visible !important;
+        border: 1px solid #B2BEB5 !important; 
+        border-radius: 5px !important;
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Overlock" !important;
+        font-weight: 400 !important;
+        font-size: 16px !important;
+        background-color: #698F3F !important;
+        color: #FFFFFF !important;
+        pointer-events: auto !important;
+        cursor: pointer;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .success-button::before{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        content: "Ok" !important;
+        visibility: visible !important;
+        border: 1px solid #B2BEB5 !important; 
+        border-radius: 5px !important;
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Overlock" !important;
+        font-weight: 400 !important;
+        font-size: 14px !important;
+        background-color: #698F3F !important;
+        color: #FFFFFF !important;
+        pointer-events: auto !important;
+        cursor: pointer;
+    }
+}
+
+.error-button{
+    visibility: hidden;
+    font-size: 0px !important;
+}
+
+.error-button::before{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    content: "Ok" !important;
+    visibility: visible !important;
+    border: 1px solid #B2BEB5 !important; 
+    border-radius: 5px !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Overlock" !important;
+    font-weight: 400 !important;
+    font-size: 20px !important;
+    background-color: #C90016 !important;
+    color: #FFFFFF !important;
+    pointer-events: auto !important;
+    cursor: pointer;
+}
+
+.error-button:hover{
+    background-color: #A00011 !important;
+    color: #B2BEB5 !important;        
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .error-button::before{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        content: "Ok" !important;
+        visibility: visible !important;
+        border: 1px solid #B2BEB5 !important; 
+        border-radius: 5px !important;
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Overlock" !important;
+        font-weight: 400 !important;
+        font-size: 18px !important;
+        background-color: #C90016 !important;
+        color: #FFFFFF !important;
+        pointer-events: auto !important;
+        cursor: pointer;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .error-button::before{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        content: "Ok" !important;
+        visibility: visible !important;
+        border: 1px solid #B2BEB5 !important; 
+        border-radius: 5px !important;
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Overlock" !important;
+        font-weight: 400 !important;
+        font-size: 16px !important;
+        background-color: #C90016 !important;
+        color: #FFFFFF !important;
+        pointer-events: auto !important;
+        cursor: pointer;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .error-button::before{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        content: "Ok" !important;
+        visibility: visible !important;
+        border: 1px solid #B2BEB5 !important; 
+        border-radius: 5px !important;
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Overlock" !important;
+        font-weight: 400 !important;
+        font-size: 14px !important;
+        background-color: #C90016 !important;
+        color: #FFFFFF !important;
+        pointer-events: auto !important;
+        cursor: pointer;
+    }
+}

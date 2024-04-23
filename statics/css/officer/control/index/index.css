@@ -867,6 +867,8 @@ i.fas.fa-users{
 }
 
 .col-12.col-lg-9 > .card > .card-body .nav-tabs{
+    margin-left: 10px;
+    margin-right: 10px;
     margin-bottom: 15px !important;
     border-bottom: 2px solid #B2BEB5 !important;
 }
@@ -888,6 +890,15 @@ i.fas.fa-users{
 .col-12.col-lg-9 > .card > .card-body li.nav-item:first-child:hover{
     background-color: #B2BEB5 !important;
     color: #10354C !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .col-12.col-lg-9 > .card > .card-body li.nav-item:first-child{
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+        padding-top: 2.5px !important;
+        padding-bottom: 2.5px !important;
+    }
 }
 
 .col-12.col-lg-9 > .card > .card-body li.nav-item:first-child .nav-link{
@@ -945,6 +956,15 @@ i.fas.fa-users{
     border-bottom-right-radius: 0px !important; 
     box-shadow: 0 0 0 1px #B2BEB5 !important;
     background-color: #10354C !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .col-12.col-lg-9 > .card > .card-body li.nav-item:has(.active):first-child{
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+        padding-top: 2.5px !important;
+        padding-bottom: 2.5px !important;
+    }
 }
 
 .col-12.col-lg-9 > .card > .card-body li.nav-item:first-child .nav-link.active{
@@ -1007,6 +1027,15 @@ i.fas.fa-users{
     color: #10354C !important;
 }
 
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .col-12.col-lg-9 > .card > .card-body li.nav-item:last-child{
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+        padding-top: 2.5px !important;
+        padding-bottom: 2.5px !important;
+    }
+}
+
 .col-12.col-lg-9 > .card > .card-body li.nav-item:last-child .nav-link{
     padding-left: 5px !important;
     padding-right: 5px !important;
@@ -1064,6 +1093,15 @@ i.fas.fa-users{
     background-color: #10354C !important;
 }
 
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .col-12.col-lg-9 > .card > .card-body li.nav-item:has(.active):last-child{
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+        padding-top: 2.5px !important;
+        padding-bottom: 2.5px !important;
+    }
+}
+
 .col-12.col-lg-9 > .card > .card-body li.nav-item:last-child .nav-link.active{
     padding-left: 5px !important;
     padding-right: 5px !important;
@@ -1103,6 +1141,10 @@ i.fas.fa-users{
         font-size: 14px !important;
         color: #FFFFFF !important;
     }
+}
+
+.col-12.col-lg-9 > .card > .card-body .tab-content .card{
+    box-shadow: none !important;
 }
 
 .col-12.col-lg-9 > .card > .card-body .tab-content .p-5{
@@ -1173,14 +1215,6 @@ i.fas.fa-users{
 
 .col-12.col-lg-9 > .card > .card-body .tab-content .tabular table tbody tr td .related-widget-wrapper{
     width: 75% !important;
-}
-
-.col-12.col-lg-9 > .card > .card-body .tab-content .tabular table tbody tr td .related-widget-wrapper a.view-related > img{
-    filter: invert(22%) sepia(14%) saturate(100%) hue-rotate(160deg) brightness(0%) contrast(97%);
-}
-
-.col-12.col-lg-9 > .card > .card-body .tab-content .tabular table tbody tr td .related-widget-wrapper a.view-related > img{
-    filter: invert(21%) sepia(92%) saturate(394%) hue-rotate(159deg) brightness(92%) contrast(98%) !important;
 }
 
 .col-12.col-lg-9 > .card > .card-body .tab-content .tabular table tbody tr td .related-widget-wrapper a.add-related{
@@ -1433,6 +1467,10 @@ i.fas.fa-users{
     }
 }
 
+.form-group .help-block.text-red{
+    color: #C90016 !important;
+}
+
 .form-group .help-block ul{
     margin-left: 0px !important;
     margin-top: 15px !important;
@@ -1443,7 +1481,7 @@ i.fas.fa-users{
 }
 
 .select2-container{
-    max-width: 100% !important;
+    min-width: 100% !important;
 }
 
 .select2-container--default .select2-selection--single{
@@ -1710,7 +1748,7 @@ input[type = "checkbox"]:checked::before{
 }
 
 .datetime{
-    margin-top: -27px;
+    margin-top: -22px;
     margin-bottom: 0px;
     visibility: collapse;
     font-size: 15px;
@@ -2144,7 +2182,7 @@ input[type = "checkbox"]:checked::before{
 }
 
 .calendarbox a.calendarnav-previous, .calendarbox a.calendarnav-next{
-    margin-top: 26px !important;
+    margin-top: 25px !important;
     color: #154360 !important;
 }
 
@@ -2154,21 +2192,21 @@ input[type = "checkbox"]:checked::before{
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .calendarbox a.calendarnav-previous, .calendarbox a.calendarnav-next{
-        margin-top: 22px !important;
+        margin-top: 21px !important;
         color: #154360 !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .calendarbox a.calendarnav-previous, .calendarbox a.calendarnav-next{
-        margin-top: 20px !important;
+        margin-top: 19px !important;
         color: #154360 !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .calendarbox a.calendarnav-previous, .calendarbox a.calendarnav-next{
-        margin-top: 18px !important;
+        margin-top: 17px !important;
         color: #154360 !important;
     }
 }
@@ -2768,7 +2806,6 @@ li.select2-results__option{
     padding-top: 0px !important;
     padding-bottom: 0px !important;
     height: 100% !important;
-    border: 1px solid #B2BEB5; 
     outline: none !important;
     font-family: "Philosopher";
     font-weight: 700 !important;
@@ -3105,13 +3142,13 @@ li.select2-results__option{
     padding-bottom: 30px;
 }
 
-.map{ 
+.map:has(.officer-map){ 
     margin-bottom: 30px;
     width: 100%;
     height: 100%;
 }
 
-.admin-map{
+.officer-map{
     height: 750px;
     border: 1px solid #B2BEB5;
     border-radius: 5px; 
@@ -3120,22 +3157,8 @@ li.select2-results__option{
 }
 
 @media screen and (min-width: 320px) and (max-width: 775px){
-    .admin-map{
-        height: 500px;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        z-index: 1;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 775px){
-    .admin-map{
+    .officer-map{
         height: 250px;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        z-index: 1;
     }
 }
 
@@ -4017,6 +4040,24 @@ li.select2-results__option{
         font-family: "Philosopher";
         font-weight: 700;
         font-size: 14px !important;
+        color: #FFFFFF !important;
+        text-align: justify;
+    }
+}
+
+.datum i{
+    font-family: "Philosopher";
+    font-weight: 700;
+    font-size: 18px !important;
+    color: #FFFFFF !important;
+    text-align: justify;
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .datum i{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 16px !important;
         color: #FFFFFF !important;
         text-align: justify;
     }

@@ -41,6 +41,7 @@ class PostStatus(models.Model):
     is_valid = models.BooleanField(default = False, help_text = "Designates that the post can be pinned into the contributors site.", verbose_name = "Valid")
     is_invalid = models.BooleanField(default = False, help_text = "Designates that the post cannot be pinned into the contributors site.", verbose_name = "Invalid")
     is_uncertain = models.BooleanField(default = False, help_text = "Designates that the post is under review to be pinned into the contributors site.", verbose_name = "Uncertain")
+    is_draft = models.BooleanField(default = False, help_text = "Designates that the post is under draft to be reviewed for the contributors site.", verbose_name = "Draft")
    
     class Meta:
         db_table = "reports_post_status"
@@ -56,6 +57,9 @@ class PostStatus(models.Model):
         
         elif self.is_uncertain == True:
             return "Uncertain"
+        
+        elif self.is_draft == True:
+            return "Draft"
 
 
 class Depth(models.Model):
@@ -122,10 +126,10 @@ class PostObservation(models.Model):
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete = models.CASCADE, help_text = "Designates the foreign key of the User model.", verbose_name = "User")
     description = models.TextField(max_length = 1500, help_text = "Designates the description of the post.", verbose_name = "Description")
-    capture_date = models.DateField(default = datetime.datetime.now(), help_text = "Designates the capture date and time of the post.", verbose_name = "Capture Date")
+    capture_date = models.DateTimeField(default = datetime.datetime.now(), help_text = "Designates the capture date and time of the post.", verbose_name = "Capture Date")
     post_photos = models.ManyToManyField(PostPhoto, blank = True, through = "PostGallery", help_text = "Designates the foreign key of the Post Photo model.", verbose_name = "Post Photos")
     coordinates = models.ForeignKey(Coordinates, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Coordinates model.", verbose_name = "Coordinates")
-    post_status = models.ForeignKey(PostStatus, on_delete = models.CASCADE, default = 1, help_text = "Designates the foreign key of the Post Status model.", verbose_name = "Post Status")
+    post_status = models.ForeignKey(PostStatus, on_delete = models.CASCADE, default = 4, help_text = "Designates the foreign key of the Post Status model.", verbose_name = "Post Status")
     post_observation = models.ForeignKey(PostObservation, null = True, blank = True, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Post Observation model.", verbose_name = "Post Observation")
 
     class Meta:

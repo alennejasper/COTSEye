@@ -49,7 +49,7 @@
 }
 
 .login{
-    width: 386px;
+    width: 400px;
     display: grid;
     grid-column: 1;
     border: 1px solid #B2BEB5;
@@ -615,6 +615,362 @@
         background-color: #698F3F !important;
         color: #FFFFFF !important;
         cursor: pointer;
+    }
+}
+
+.login .card-body .register{
+    margin-top: 15px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px;
+    color: #154659;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .login .card-body .register{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px;
+        color: #154659;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .login .card-body .register{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px;
+        color: #154659;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .login .card-body .register{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px;
+        color: #154659;
+    }
+}
+
+.login .card-body .register a{
+    font-size: 20px;
+    color: #698F3F;
+    text-decoration: none;
+}
+
+.login .card-body .register a:hover{
+    color: #557433;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .login .card-body .register a{
+        font-size: 18px;
+        color: #698F3F;
+        text-decoration: none;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .login .card-body .register a{
+        font-size: 16px;
+        color: #698F3F;
+        text-decoration: none;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .login .card-body .register a{
+        font-size: 14px;
+        color: #698F3F;
+        text-decoration: none;
+    }
+}
+
+.login .card-body .line{
+    margin-top: 15.5px;
+    position: relative;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    background-color: #B2BEB5;
+}
+
+.login .card-body .line::before{
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    content: "OR";
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px;
+    background-color: #FFFFFF;
+    color: #154659;
+    transform: translate(-50%, -50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .login .card-body .line::before{
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        content: "OR";
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px;
+        background-color: #FFFFFF;
+        color: #154659;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .login .card-body .line::before{
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        content: "OR";
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px;
+        background-color: #FFFFFF;
+        color: #154659;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .login .card-body .line::before{
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        content: "OR";
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px;
+        background-color: #FFFFFF;
+        color: #154659;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.login .card-body .socials{
+    width: 100%;
+}
+
+.login .card-body .socials .facebook{
+    margin-top: 15px;
+    width: 100%;
+    height: 100% !important;
+    position: relative;
+}
+
+.login .card-body .socials button.facebook{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    background-color: #154360;
+    cursor: pointer;
+}
+
+.login .card-body .socials button.facebook a{
+    text-decoration: none;
+}
+
+.login .card-body .socials button.facebook:hover, .login .card-body .socials button.facebook span:hover{
+    background-color: #10354C;
+    color: #B2BEB5 !important;
+}
+
+.login .card-body .socials button.facebook i{
+    left: 10px;
+    top: 50%;
+    position: absolute;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #FFFFFF !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .login .card-body .socials button.facebook i{
+        left: 10px;
+        top: 50%;
+        position: absolute;
+        transform: translateY(-50%);
+        font-size: 18px;
+        color: #FFFFFF !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .login .card-body .socials button.facebook i{
+        left: 10px;
+        top: 50%;
+        position: absolute;
+        transform: translateY(-50%);
+        font-size: 16px;
+        color: #FFFFFF !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .login .card-body .socials button.facebook i{
+        left: 10px;
+        top: 50%;
+        position: absolute;
+        transform: translateY(-50%);
+        font-size: 14px;
+        color: #FFFFFF !important;
+    }
+}
+
+.login .card-body .socials button.facebook span{
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px;
+    color: #FFFFFF !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .login .card-body .socials button.facebook span{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #FFFFFF !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .login .card-body .socials button.facebook span{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #FFFFFF !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .login .card-body .socials button.facebook span{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #FFFFFF !important;
+    }
+}
+
+.login .card-body .socials .google{
+    margin-top: 15px;
+    width: 100%;
+    height: 100% !important;
+    position: relative;
+}
+
+.login .card-body .socials button.google{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    background-color: #FFFFFF;
+    cursor: pointer;
+}
+
+.login .card-body .socials button.google a{
+    text-decoration: none;
+}
+
+.login .card-body .socials button.google:hover, .login .card-body .socials button.google a:hover{
+    background-color: #B2BEB5;
+    color: #10354C;
+}
+
+.login .card-body .socials button.google i{
+    left: 10px;
+    top: 50%;
+    position: absolute;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .login .card-body .socials button.google i{
+        left: 10px;
+        top: 50%;
+        position: absolute;
+        transform: translateY(-50%);
+        font-size: 18px;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .login .card-body .socials button.google i{
+        left: 10px;
+        top: 50%;
+        position: absolute;
+        transform: translateY(-50%);
+        font-size: 16px;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .login .card-body .socials button.google i{
+        left: 10px;
+        top: 50%;
+        position: absolute;
+        transform: translateY(-50%);
+        font-size: 14px;
+        color: #154360 !important;
+    }
+}
+
+.login .card-body .socials button.google span{
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .login .card-body .socials button.google span{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .login .card-body .socials button.google span{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .login .card-body .socials button.google span{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
     }
 }
 

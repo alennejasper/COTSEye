@@ -13,7 +13,7 @@
                     <label for = "valid-date">Newest Date</label> 
 
                     <div class = "valid-date">
-                        <input type = "text" value = "{{valid_date.capture_date | date:'M. j, Y' | default:'None available'}}" id = "valid-date" name = "valid_date" readonly>
+                        <input type = "text" value = "{{valid_date.capture_date | date:'M. j, Y g:i a' | default:'None available'}}" id = "valid-date" name = "valid_date" readonly>
 
                         <i class = "fa-solid fa-calendar-day"></i>
                     </div>  
@@ -47,7 +47,7 @@
                     <label for = "invalid-date">Newest Date</label> 
 
                     <div class = "invalid-date">
-                        <input type = "text" value = "{{invalid_date.capture_date | date:'M. j, Y' | default:'None available'}}" id = "invalid-date" name = "invalid_date" readonly>
+                        <input type = "text" value = "{{invalid_date.capture_date | date:'M. j, Y g:i a' | default:'None available'}}" id = "invalid-date" name = "invalid_date" readonly>
 
                         <i class = "fa-solid fa-calendar-day"></i>
                     </div>  
@@ -81,7 +81,7 @@
                     <label for = "uncertain-date">Newest Date</label> 
 
                     <div class = "uncertain-date">
-                        <input type = "text" value = "{{uncertain_date.capture_date | date:'M. j, Y' | default:'None available'}}" id = "uncertain-date" name = "uncertain_date" readonly>
+                        <input type = "text" value = "{{uncertain_date.capture_date | date:'M. j, Y g:i a' | default:'None available'}}" id = "uncertain-date" name = "uncertain_date" readonly>
 
                         <i class = "fa-solid fa-calendar-day"></i>
                     </div>  
@@ -100,6 +100,40 @@
 
             <div class = "button">
                 <a class = "browse-posts" href = "{% url 'Contributor Service Post Uncertain' %}">Browse</a>
+            </div>    
+        </div>
+    </div>
+
+    <div class = "post" id = "draft">
+        <div class = "card-header">
+            <header>Draft posts</header>
+        </div>
+
+        <div class = "card-body">
+            <div class = "field">
+                <div class = "column">
+                    <label for = "draft-date">Newest Date</label> 
+
+                    <div class = "draft-date">
+                        <input type = "text" value = "{{draft_date.capture_date | date:'M. j, Y' | default:'None available'}}" id = "draft-date" name = "draft_date" readonly>
+
+                        <i class = "fa-solid fa-calendar-day"></i>
+                    </div>  
+                </div>
+
+                <div class = "column">
+                    <label for = "draft-posts">Posts Count</label> 
+                        
+                    <div class = "uncertain-posts">
+                        <input type = "text" value = "{{draft_posts.count | default:'0'}}" id = "draft-posts" name = "draft_posts" readonly>
+                            
+                        <i class = "fa-solid fa-arrow-up-wide-short"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class = "button">
+                <a class = "browse-posts" href = "{% url 'Contributor Service Post Draft' %}">Browse</a>
             </div>    
         </div>
     </div>

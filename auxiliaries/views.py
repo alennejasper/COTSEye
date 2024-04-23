@@ -59,9 +59,14 @@ def PublicServiceAnnouncement(request):
 def PublicServiceAnnouncementRead(request, id):
     username = "public/everyone"
 
+    scheme = request.scheme
+
+    host = request.META["HTTP_HOST"]
+
+
     announcement = Announcement.objects.filter(id = id)
 
-    context = {"username": username, "announcement": announcement}
+    context = {"username": username, "scheme": scheme, "host": host, "announcement": announcement}
 
     return render(request, "public/service/announcement/read.html", context)
 
@@ -281,9 +286,13 @@ def ContributorServiceAnnouncement(request):
 def ContributorServiceAnnouncementRead(request, id): 
     username = request.user.username
 
+    scheme = request.scheme
+
+    host = request.META["HTTP_HOST"]
+
     announcement = Announcement.objects.filter(id = id)
 
-    context = {"username": username, "announcement": announcement}
+    context = {"username": username, "scheme": scheme, "host": host, "announcement": announcement}
 
     return render(request, "contributor/service/announcement/read.html", context)
 

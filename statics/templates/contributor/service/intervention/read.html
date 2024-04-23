@@ -20,9 +20,19 @@
                 <p><i class = "fa-solid fa-arrow-up-wide-short"></i>{{intervention.caught_amount | default:'None available'}} COTS caught.</p>
 
                 <div class = "button">
-                    <a class = "share-intervention" href = "">Share</a>
+                    <a class = "share-intervention" target = "blank">Share</a>
                 </div>
             </div>
         </div>
     {% endfor %}
+
+    <script>
+        {% if intervention %}
+            const link = encodeURI("{{scheme}}://{{host}}{% url 'Contributor Service Intervention Read' intervention.id %}");
+        
+            const facebook = document.querySelector(".share-intervention");
+
+            facebook.href = "https://www.facebook.com/share.php?u=" + link;
+        {% endif %}
+    </script>
 {% endblock content %}

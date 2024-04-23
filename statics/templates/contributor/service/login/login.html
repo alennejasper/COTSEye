@@ -24,6 +24,8 @@
                     
         <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">          
         
+        <script src = "https://www.google.com/recaptcha/api.js" async defer></script>
+
         <script src = "https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
         <title>COTSEye | Login</title>
@@ -105,28 +107,27 @@
         </div>
     </body>
 
-    <script src = "{% static 'templates/webwares/application.js' %}"></script>
-
-    <script type = "text/javascript">if (window.location.hash && window.location.hash === "#_=_"){ window.location.hash = ""; history.pushState("", document.title, window.location.pathname);}</script>
-
-    <script src = "https://www.google.com/recaptcha/api.js" async defer></script>
-
-    <script src = "https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type = "text/javascript">if(window.location.hash && window.location.hash === "#_=_"){ window.location.hash = ""; history.pushState("", document.title, window.location.pathname);}</script>
 
     <script> 
 		window.onload = function(){
 			var $recaptcha = document.querySelector("#g-recaptcha-response");
-	
-			if ($recaptcha){
-			    $recaptcha.setAttribute("required", "required");
-			}
+            
+            document.querySelector("form").addEventListener("submit", (event) => {
+
+                if($recaptcha && $recaptcha.getResponse().length !== 0){
+                    $recaptcha.setAttribute("required", "required");
+                
+                    Swal.fire({title: "Oops!", text: "reCAPTCHA is not valid. Kindly check the reCAPTCHA and try again.", icon: "error", iconColor: "#C90016", confirmButtonColor: "#C90016"});
+                };
+            });
 		};
 	</script>
 
     <script>
         function recaptchaError(){
-            Swal.fire({title: "Oops!", text: "The COTSEye cannot contact reCAPTCHA today. Kindly check the connection and try again.", icon: "error", iconColor: "#E74C3C", confirmButtonColor: "#E74C3C"});
-        }
+            Swal.fire({title: "Oops!", text: "The COTSEye cannot contact reCAPTCHA today. Kindly check the connection and try again.", icon: "error", iconColor: "#C90016", confirmButtonColor: "#C90016"});
+        };
     </script>
 
     <script>
@@ -147,12 +148,12 @@
 
     <script>
         function retainValue(input){
-            if (input.value.length <= "cotseye/".length){
+            if(input.value.length <= "cotseye/".length){
                 input.value = "cotseye/";
 
                 input.selectionStart = "cotseye/".length;
-            }
-        }
+            };
+        };
     </script>
 
     <script>

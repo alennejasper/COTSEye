@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.core.files.base import ContentFile
 from django.dispatch import receiver
 from django.shortcuts import render, redirect
 from django.urls import reverse
@@ -10,9 +11,12 @@ from authentications.models import *
 from managements.models import Status, Intervention
 from reports.models import Post
 
+import base64
+import json
+
 
 # Create your views here.
-def PublicHome(request):
+def PublicServiceHome(request):
     user = request.user
 
     username = "public/everyone"
@@ -22,10 +26,10 @@ def PublicHome(request):
             return redirect("Contributor Service Home")
         
         elif user.usertype_id == 2:
-            return redirect("admin:index")
+            return redirect("officer:index")
         
         elif user.usertype_id == 1:
-            return redirect("officer:index")
+            return redirect("admin:index")
     
     else:
         try:
@@ -44,6 +48,16 @@ def PublicHome(request):
     context = {"username": username, "posts": posts, "statuses": statuses}
     
     return render(request, "public/service/home/home.html", context)
+
+
+def PublicServiceFallback(request):
+    public = "public/everyone"
+
+    fallback = "The COTSEye cannot keep in touch to the requested page today, as such is not found within the cache storage."
+
+    context = {"public": public, "fallback": fallback}
+    
+    return render(request, "public/service/fallback/fallback.html", context)
 
 
 def ContributorServiceRegister(request):
@@ -70,7 +84,7 @@ def ContributorServiceRegister(request):
                 
                 username = account.username
                 
-                messages.success(request, username + ", " + "your information input was recorded for COTSEye.")
+                messages.success(request, username + ", " + "your information input was recorded online for COTSEye.")
                 
                 return redirect("Contributor Service Login")
         
@@ -293,7 +307,7 @@ def ContributorServiceProfileUpdate(request):
 
             username = request.user.username
 
-            messages.success(request, username + ", " + "your information input was recorded for COTSEye.")
+            messages.success(request, username + ", " + "your information input was recorded online for COTSEye.")
             
             return redirect("Contributor Service Profile")
             
@@ -303,6 +317,58 @@ def ContributorServiceProfileUpdate(request):
     context = {"user": user, "username": username, "profile_form": profile_form}
     
     return render(request, "contributor/service/profile/update.html", context)
+
+
+@login_required(login_url = "Contributor Service Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
+def ContributorServiceProfileUpdateFetch(request):
+    if request.method == "POST":
+        information = json.loads(request.body)
+
+    for information in information:
+        account = information.get("account")
+
+        account = Account.objects.get(id = account)
+
+        first_name = information.get("first_name")
+
+        last_name = information.get("last_name")
+
+        profile_photo = information.get("profile_photo")
+
+        format, string = profile_photo.split(";base64,")
+
+        extension = format.split("/")[-1]
+
+        profile_photo = ContentFile(base64.b64decode(string), name = "POST " + str(user.id) + "." + extension)
+
+        email = information.get("email")
+
+        phone_number = information.get("phone_number")
+
+        user = User.objects.get(account = account)
+
+        user.first_name = first_name
+
+        user.last_name = last_name
+
+        user.profile_photo = profile_photo
+
+        user.email = email
+        
+        user.phone_number = phone_number
+                
+
+@login_required(login_url = "Contributor Service Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
+def ContributorServiceFallback(request):
+    contributor = request.user.username
+
+    fallback = "The COTSEye cannot keep in touch to the requested page today, as such is not found within the cache storage."
+
+    context = {"contributor": contributor, "fallback": fallback}
+    
+    return render(request, "contributor/service/fallback/fallback.html", context)
 
 
 @login_required(login_url = "Contributor Service Login")
@@ -341,7 +407,7 @@ def OfficerControlRegister(request):
                 
                 username = account.username
                 
-                messages.success(request, username + ", " + "your information input was recorded for COTSEye.")
+                messages.success(request, username + ", " + "your information input was recorded online for COTSEye.")
                 
                 return redirect("officer:Officer Control Login")
         

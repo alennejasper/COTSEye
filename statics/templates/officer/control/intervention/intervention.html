@@ -92,7 +92,7 @@
                         <label for = "interventions-count">Interventions Count</label> 
                             
                         <div class = "interventions-count">
-                            <input type = "number" value = "{{interventions_count | default:'0'}}" id = "interventions-count" name = "interventions_count" readonly>
+                            <input type = "text" value = "{{interventions_count | default:'0'}}" id = "interventions-count" name = "interventions_count" readonly>
                                 
                             <i class = "fa-solid fa-calendar-days"></i>
                         </div>
@@ -100,7 +100,7 @@
                         <label for = "caughtamount-frequency">Caught Amount Frequency</label> 
                             
                         <div class = "caughtamount-frequency">
-                            <input type = "number" value = "{{caughtamount_frequency | default:'0'}}" id = "caughtamount-frequency" name = "caughtamount_frequency" readonly>
+                            <input type = "text" value = "{{caughtamount_frequency | default:'0'}}" id = "caughtamount-frequency" name = "caughtamount_frequency" readonly>
                                 
                             <i class = "fa-solid fa-arrow-up-wide-short"></i>
                         </div>
@@ -110,7 +110,7 @@
                         <label for = "locations-count">Locations Count</label> 
 
                         <div class = "locations-count">
-                            <input type = "number" value = "{{locations_count | default:'0'}}" id = "locations-count" name = "locations_count" readonly>
+                            <input type = "text" value = "{{locations_count | default:'0'}}" id = "locations-count" name = "locations_count" readonly>
 
                             <i class = "fa-solid fa-location-dot"></i>      
                         </div>
@@ -118,7 +118,7 @@
                         <label for = "hostingagency-frequency">Hosting Agency Frequency</label> 
                             
                         <div class = "hostingagency-frequency">
-                            <input type = "text" value = "{{hostingagency_frequency | default:'0'}}" id = "hostingagency-frequency" name = "hostingagency_frequency" readonly>
+                            <input type = "text" value = "{{hostingagency_frequency | default:'None available'}}" id = "hostingagency-frequency" name = "hostingagency_frequency" readonly>
                                 
                             <i class = "fa-solid fa-users"></i>
                         </div>
@@ -837,7 +837,7 @@
                         <label for = "interventions-count">Interventions Count</label> 
                             
                         <div class = "interventions-count">
-                            <input type = "number" value = "{{interventions_count | default:'0'}}" id = "interventions-count" name = "interventions_count" readonly>
+                            <input type = "text" value = "{{interventions_count | default:'0'}}" id = "interventions-count" name = "interventions_count" readonly>
                                 
                             <i class = "fa-solid fa-calendar-days"></i>
                         </div>
@@ -845,7 +845,7 @@
                         <label for = "caughtamount-frequency">Caught Amount Frequency</label> 
                             
                         <div class = "caughtamount-frequency">
-                            <input type = "number" value = "{{caughtamount_frequency | default:'0'}}" id = "caughtamount-frequency" name = "caughtamount_frequency" readonly>
+                            <input type = "text" value = "{{caughtamount_frequency | default:'0'}}" id = "caughtamount-frequency" name = "caughtamount_frequency" readonly>
                                 
                             <i class = "fa-solid fa-arrow-up-wide-short"></i>
                         </div>
@@ -855,7 +855,7 @@
                         <label for = "locations-count">Locations Count</label> 
 
                         <div class = "locations-count">
-                            <input type = "number" value = "{{locations_count | default:'0'}}" id = "locations-count" name = "locations_count" readonly>
+                            <input type = "text" value = "{{locations_count | default:'0'}}" id = "locations-count" name = "locations_count" readonly>
 
                             <i class = "fa-solid fa-location-dot"></i>      
                         </div>
@@ -863,7 +863,7 @@
                         <label for = "hostingagency-frequency">Hosting Agency Frequency</label> 
                             
                         <div class = "hostingagency-frequency">
-                            <input type = "text" value = "{{hostingagency_frequency | default:'0'}}" id = "hostingagency-frequency" name = "hostingagency_frequency" readonly>
+                            <input type = "text" value = "{{hostingagency_frequency | default:'None available'}}" id = "hostingagency-frequency" name = "hostingagency_frequency" readonly>
                                 
                             <i class = "fa-solid fa-users"></i>
                         </div>
@@ -1573,7 +1573,7 @@
         function toggleBody(element){
             var body = element.nextElementSibling;
             
-            if (body.style.display === "none" || body.style.display === ""){
+            if(body.style.display === "none" || body.style.display === ""){
                 body.style.borderBottomLeftRadius = "5px";
 
                 body.style.borderBottomTopRadius = "5px";
@@ -1582,7 +1582,7 @@
             
             } else {
                 body.style.display = "none";
-            }
-        }
+            };
+        };
     </script>
 {% endblock content %}

@@ -1,0 +1,18 @@
+{% extends "contributor/service/index/index.html" %}
+{% load static %}
+
+{% block content %}
+    <div class = "fallback">
+        <div class = "card-header">
+            <header>Oops! Dear {{contributor}},</header>
+        </div>
+
+        <div class = "card-body">
+            <p><i class = "fa-solid fa-quote-left"></i>{{fallback}}<i class = "fa-solid fa-quote-right"></i></p>
+            
+            <div class = "button">
+                <a class = "return-home" href = "{% url 'Contributor Service Home' %}">Return</a>
+            </div>   
+        </div>
+    </div>
+{% endblock content %}
