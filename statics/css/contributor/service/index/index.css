@@ -213,6 +213,14 @@ nav .navigation-bar .navigation-sidelinks{
 }
 
 @media screen and (min-width: 320px) and (max-width: 935px){
+    .navigation-sidelinks li i.fa-solid.fa-map{
+        margin-right: 10px !important;
+        font-size: 30px !important;
+        color: #FFFFFF;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 935px){
     .navigation-sidelinks li i.fa-solid.fa-pen-to-square{
         margin-right: 10px !important;
         font-size: 30px !important;
@@ -365,7 +373,7 @@ nav .navigation-bar .dropdown button{
     z-index: 1;
 }
 
-.dropdown-content p.dropdown-header{
+.dropdown-content a.dropdown-header{
     padding-left: 15px !important;
     padding-right: 15px !important;
     padding-top: 10px !important;
@@ -376,10 +384,27 @@ nav .navigation-bar .dropdown button{
     background-color: #154360;
     color: #FFFFFF;
     text-align: center;
+    text-decoration: none !important;
+    display: block;
+}
+
+.dropdown-content a.dropdown-header:hover{
+    background-color: #10354C !important;
+    color: #B2BEB5 !important;
+}
+
+.dropdown-content a.dropdown-header:focus{
+    background-color: #10354C !important;
+    color: #B2BEB5 !important;
+}
+
+.dropdown-content a.dropdown-header:active{
+    background-color: #10354C !important;
+    color: #B2BEB5 !important;
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .dropdown-content p.dropdown-header{
+    .dropdown-content a.dropdown-header{
         padding-left: 15px !important;
         padding-right: 15px !important;
         padding-top: 10px !important;
@@ -393,7 +418,7 @@ nav .navigation-bar .dropdown button{
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .dropdown-content p.dropdown-header{
+    .dropdown-content a.dropdown-header{
         padding-left: 15px !important;
         padding-right: 15px !important;
         padding-top: 10px !important;

@@ -1,0 +1,181 @@
+{% extends "public/service/index/index.html" %}
+{% load static %}
+
+{% block content %}
+    <div class = "map">
+        <div class = "public-map">
+        </div>
+    </div>
+
+    <script>
+        function revealMap(){    
+            statuses = L.layerGroup();
+
+            var status = L.geoJSON([{
+                "type": "FeatureCollection", 
+                            
+                "features": [
+                    {% for status in statuses %}
+                        {"type": "Feature", "properties": {"barangay": "{{status.location.barangay}}", "municipality": "{{status.location.municipality}}", "caught_overall": "{{status.caught_overall}}", "statustype": "{{status.statustype}}", "onset_date": "{{status.onset_date}}"}, "geometry": {"type": "Polygon", "coordinates": {{status.location.perimeters}}}}, 
+                    {% endfor %}
+                ]
+
+            }], {
+                style: function(feature){
+                    var status = feature.properties.statustype;
+
+                    var fillings = "";
+
+                    if(status === "Critical"){
+                        fillings = "#C90016";
+                        
+                    } else if(status === "Moderate"){
+                        fillings = "#F4C430";
+
+                    } else if(status === "Low"){
+                        fillings = "#698F3F";
+                    
+                    } else{
+                        fillings = "#154360";
+                    }
+
+                    return{
+                        color: "#10354C", 
+                        
+                        weight: 2.5, 
+
+                        fillColor: fillings, 
+
+                        fillOpacity: 0.25
+                    };
+                }, 
+
+                onEachFeature: function (feature, layer){
+                    layer.on({
+                        mouseover: highlightBarangay, 
+
+                        mouseout: resetBarangay, 
+
+                        click: zoomBarangay
+                    });
+                }
+            });
+
+            function highlightBarangay(click){
+                var layer = click.target;
+
+                layer.setStyle({
+                    color: "#10354C", 
+
+                    weight: 5, 
+                    
+                    fillOpacity: 0.75
+                });
+
+                layer.bringToFront();
+
+                datum.update(layer.feature.properties);
+            }
+
+            function resetBarangay(click){
+                status.resetStyle(click.target);
+
+                datum.update();
+            }
+
+            function zoomBarangay(click){
+                map.fitBounds(click.target.getBounds());
+            }
+
+            status.addTo(statuses);
+
+            var starfish = L.icon({iconUrl: "{% static 'assets/icons/marker.png' %}", iconSize: [30, 30], iconAnchor: [15, 15]});
+            
+            var posts = L.markerClusterGroup({iconCreateFunction: function(cluster){return starfish}});
+
+            {% for post in posts %}
+                var post = L.marker([{{post.coordinates.latitude}}, {{post.coordinates.longitude}}], {icon: starfish});
+                
+                post.bindPopup("<div class = 'popup'>" + "<div class = 'card-header'>" + "<header class = 'preview'>" + "{{post.description}}" + "</header>" + "</div>" + "<div class = 'card-body'>" + "<div class = 'field'>" + "<div class = 'column'>" + "<label for = 'capture-date'>" + "Capture Date" + "</label>" + "<div class = 'capture-date'>" + "<input type = 'text' value = '{{post.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}' id = 'capture-date' name = 'capture-date' readonly>" + "<i class = 'fa-solid fa-calendar-day'>" + "</i>" + "</div>" + "<label for = 'coordinates'>" + "Coordinates" + "</label>" + "<div class = 'coordinates'>" + "<input type = 'text' value = '{{post.coordinates.latitude | default:'0'}}° N, {{post.coordinates.longitude | default:'0'}}° E' id = 'coordinates' name = 'coordinates' readonly>" + "<i class = 'fa-solid fa-location-dot'>" + "</i>" + "</div>" + "</div>" + "</div>" + "<div class = 'button'>" + "<a class = 'read-post' href = '{% url 'Post Valid Read Redirect' %}'>" + "Read" + "</a>" + "</div>" + "</div>").openPopup();
+
+                posts.addLayer(post);
+            {% endfor %}
+
+            var publicMap = document.getElementsByClassName("public-map")[0];
+
+            var background = L.tileLayer("http://{s}.google.com/vt?lyrs=s,h&x={x}&y={y}&z={z}", {minZoom: 11, maxZoom: 15, subdomains:["mt0", "mt1", "mt2", "mt3"], attribution: "Google"});
+
+            var map = L.map(publicMap, {zoomControl: true, scrollWheelZoom: false, dragging: true, maxBounds: [[5.266008, 124.277344], [6.489983, 126.035156]], layers: [background, posts]}).setView([5.9656, 125.1929], 11);
+            
+            map.on("popupopen", function(event){
+                var popup = map.project(event.target._popup._latlng);
+                
+                popup.y -= event.target._popup._container.clientHeight / 2;
+                
+                map.panTo(map.unproject(popup), {animate: true});
+            });
+
+            map.attributionControl.setPosition("bottomleft");
+
+            var bases = {};
+            
+            var overlays = {
+                "Posts": posts, 
+
+                "Statuses": statuses
+            };
+
+            var management = L.control.layers(bases, overlays).addTo(map);
+
+            management.setPosition("bottomright");
+
+            var datum = L.control({position: "topright"});
+
+            datum.onAdd = function (map){
+                this._div = L.DomUtil.create("div", "datum");
+                
+                this.update();
+                
+                return this._div;
+            };
+
+            datum.update = function (property){
+                if (map.hasLayer(statuses)){
+                    this._div.style.display = "block";
+
+                    this._div.innerHTML = (property ? "<header>" + property.statustype + " Status" + "</header>" + "<p>" + "As of " + property.onset_date + "." + "</p>" + "<p>" + "Barangay " + property.barangay + ", " + property.municipality + "</p>" + "<i>" + property.caught_overall + " COTS overall" + "." + "</i>" : "<header>" + "Current Status" + "</header>" + "<p>" + "Hover to a coastal barangay." + "</p>");
+
+                    var status = property ? property.statustype : null;
+
+                    if(status === "Critical"){
+                        this._div.style.backgroundColor = "#C90016";
+                    
+                    } else if(status === "Moderate"){
+                        this._div.style.backgroundColor = "#F4C430"; 
+                    
+                    } else if(status === "Low"){
+                        this._div.style.backgroundColor = "#698F3F"; 
+
+                    } else{
+                        this._div.style.backgroundColor = "";
+                    }
+            
+                }  else{
+                    this._div.style.display = "none";
+                };
+            };
+
+            datum.addTo(map);
+
+            map.on("overlayadd overlayremove", function (event){
+                if (event.name === "Statuses"){
+                    datum.update();
+                };
+            });
+        }
+
+        window.addEventListener("load", function (){
+            revealMap();
+        });
+    </script>
+{% endblock content %}

@@ -30,22 +30,12 @@ def PublicServiceHome(request):
         
         elif user.usertype_id == 1:
             return redirect("admin:index")
-    
+
     else:
-        try:
-            posts = Post.objects.filter(post_status = 1)
+        if not any(message.level in [messages.INFO, messages.SUCCESS, messages.ERROR] for message in messages.get_messages(request)):
+            messages.info(request, username + ", " + "kindly see announcements within COTSEye to check for updates today.")
 
-            statuses = Status.objects.all()
-    
-        except:
-            posts = None
-
-            statuses = None
-
-    if not any(message.level in [messages.INFO, messages.SUCCESS, messages.ERROR] for message in messages.get_messages(request)):
-        messages.info(request, username + ", " + "kindly see announcements within COTSEye to check for updates today.")
-
-    context = {"username": username, "posts": posts, "statuses": statuses}
+    context = {"username": username}
     
     return render(request, "public/service/home/home.html", context)
 
@@ -263,19 +253,9 @@ def ContributorCheck(account):
 @login_required(login_url = "Contributor Service Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
 def ContributorServiceHome(request):
-    try:
-        posts = Post.objects.filter(post_status = 1)
-
-        statuses = Status.objects.all()
-
-        username = request.user.username
-
-    except:
-        posts = None
-
-        statuses = None
-        
-    context = {"posts": posts, "statuses": statuses, "username": username}
+    username = request.user.username
+    
+    context = {"username": username}
 
     return render(request, "contributor/service/home/home.html", context)
 

@@ -213,6 +213,14 @@ nav .navigation-bar .navigation-sidelinks{
 }
 
 @media screen and (min-width: 320px) and (max-width: 935px){
+    .navigation-sidelinks li i.fa-solid.fa-map{
+        margin-right: 10px !important;
+        font-size: 30px !important;
+        color: #FFFFFF;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 935px){
     .navigation-sidelinks li i.fa-solid.fa-images{
         margin-right: 10px !important;
         font-size: 30px !important;

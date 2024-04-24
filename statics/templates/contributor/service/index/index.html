@@ -57,6 +57,10 @@
 
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/intervention/read.css' %}">
 
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/inquiry/inquiry.css' %}">
+
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/map/map.css' %}">
+
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/resource/resource.css' %}">
 
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/resource/link.css' %}">
@@ -95,6 +99,8 @@
                     </div>
 
                     <ul class = "navigation-sidelinks">
+                        <li><a href = "{% url 'Contributor Service Map' %}"><i class = "fa-solid fa-map"></i>Map</a></li>
+
                         <li><a href = "{% url 'Contributor Service Report' %}"><i class = "fa-solid fa-pen-to-square"></i>Create post</a></li>
 
                         <li><a href = "{% url 'Contributor Service Post' %}"><i class = "fa-solid fa-images"></i>My posts</a></li>
@@ -108,6 +114,8 @@
 
 
                     <ul class = "navigation-links">
+                        <li><a href = "{% url 'Contributor Service Map' %}"></i>Map</a></li>
+
                         <li><a href = "{% url 'Contributor Service Post' %}">My posts</a></li>
 
                         <li><a href = "{% url 'Contributor Service Status' %}">Statuses</a></li>
@@ -127,7 +135,7 @@
                         <button onclick = "shownDropdown()"><i class = "fa-regular fa-user"></i></button>
 
                         <div id = "dropdown-content" class = "dropdown-content">
-                            <p class = "dropdown-header">{{username}}</p>
+                            <a href = "{% url 'Contributor Service Profile' %}" class = "dropdown-header">{{username}}</a>
 
                             <div class = "dropdown-divider"></div>
                             
@@ -138,8 +146,8 @@
                             <a href = "{% url 'Contributor Service Logout' %}" class = "dropdown-item"><i class = "fa-solid fa-users"></i>Log out</a>
                             
                             <div class = "dropdown-divider"></div>
-                            
-                            <a href = "{% url 'Contributor Service Profile' %}" class = "dropdown-footer">See profile</a>
+
+                            <a href = "{% url 'Contributor Service Inquiry' %}" class = "dropdown-footer">See inquiries</a>                            
                         </div>
                     </div>
                 </div>

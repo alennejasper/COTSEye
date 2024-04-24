@@ -15,6 +15,8 @@ urlpatterns = [
 
     path("public/service/inquiry/", views.PublicServiceInquiry, name = "Public Service Inquiry"),
 
+    path("public/service/map/", views.PublicServiceMap, name = "Public Service Map"),
+
     path("contributor/service/announcement/", views.ContributorServiceAnnouncement, name = "Contributor Service Announcement"),
     
     path("contributor/service/announcement/read/<int:id>/", views.ContributorServiceAnnouncementRead, name = "Contributor Service Announcement Read"),
@@ -24,6 +26,10 @@ urlpatterns = [
     path("contributor/service/resource/link/", views.ContributorServiceResourceLink, name = "Contributor Service Resource Link"),
 
     path("contributor/service/resource/file/", views.ContributorServiceResourceFile, name = "Contributor Service Resource File"),
+
+    path("contributor/service/inquiry/", views.ContributorServiceInquiry, name = "Contributor Service Inquiry"),
+
+    path("contributor/service/map/", views.ContributorServiceMap, name = "Contributor Service Map"),
 
     path("service/resource/link/read/<int:id>/redirect/", views.ServiceResourceLinkReadRedirect, name = "Service Resource Link Read Redirect"),
 

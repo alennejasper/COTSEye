@@ -5,6 +5,9 @@ from django.shortcuts import render, redirect
 from django.utils.encoding import smart_str
 from auxiliaries.models import *
 from authentications.views import ContributorCheck
+from managements.models import Status
+from reports.models import Post
+
 
 # Create your views here.
 def PublicServiceAnnouncement(request):
@@ -69,6 +72,57 @@ def PublicServiceAnnouncementRead(request, id):
     context = {"username": username, "scheme": scheme, "host": host, "announcement": announcement}
 
     return render(request, "public/service/announcement/read.html", context)
+
+
+def PublicServiceInquiry(request):
+    username = "public/everyone"
+
+    records = Inquiry.objects.all()
+
+    results = None
+
+    if request.method == "GET":
+        keyword = request.GET.get("keyword")
+
+        if keyword:
+            results = Inquiry.objects.filter(question__icontains = keyword)
+
+        elif not keyword:
+            username = "public/everyone"
+
+            messages.error(request, username + ", " + "keyword is not valid.")
+
+        if results is None:
+            username = "public/everyone"
+
+            messages.info(request, username + ", " + "kindly search inquiries within COTSEye to read for guide today.")
+
+        elif not results:
+            username = "public/everyone"
+
+            messages.error(request, username + ", " + "information input is impossible within COTSEye.")
+
+    context = {"username": username, "records": records, "results": results}
+
+    return render(request, "public/service/inquiry/inquiry.html", context)
+
+
+def PublicServiceMap(request):
+    username = "public/everyone"
+
+    try:
+        posts = Post.objects.filter(post_status = 1)
+
+        statuses = Status.objects.all()
+
+    except:
+        posts = None
+
+        statuses = None
+
+    context = {"username": username, "posts": posts, "statuses": statuses}
+    
+    return render(request, "public/service/map/map.html", context)
 
 
 def PublicServiceResource(request):
@@ -197,39 +251,6 @@ def PublicServiceResourceFile(request):
     return render(request, "public/service/resource/file.html", context)
 
 
-def PublicServiceInquiry(request):
-    username = "public/everyone"
-
-    records = Inquiry.objects.all()
-
-    results = None
-
-    if request.method == "GET":
-        keyword = request.GET.get("keyword")
-
-        if keyword:
-            results = Inquiry.objects.filter(question__icontains = keyword)
-
-        elif not keyword:
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "keyword is not valid.")
-
-        if results is None:
-            username = "public/everyone"
-
-            messages.info(request, username + ", " + "kindly search inquiries within COTSEye to read for guide today.")
-
-        elif not results:
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "information input is impossible within COTSEye.")
-
-    context = {"username": username, "records": records, "results": results}
-
-    return render(request, "public/service/inquiry/inquiry.html", context)
-
-
 @login_required(login_url = "Contributor Service Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
 def ContributorServiceAnnouncement(request):
@@ -295,6 +316,59 @@ def ContributorServiceAnnouncementRead(request, id):
     context = {"username": username, "scheme": scheme, "host": host, "announcement": announcement}
 
     return render(request, "contributor/service/announcement/read.html", context)
+
+
+def ContributorServiceInquiry(request):
+    username = request.user.username
+
+    records = Inquiry.objects.all()
+
+    results = None
+
+    if request.method == "GET":
+        keyword = request.GET.get("keyword")
+
+        if keyword:
+            results = Inquiry.objects.filter(question__icontains = keyword)
+
+        elif not keyword:
+            username = request.user.username
+
+            messages.error(request, username + ", " + "keyword is not valid.")
+
+        if results is None:
+            username = request.user.username
+
+            messages.info(request, username + ", " + "kindly search inquiries within COTSEye to read for guide today.")
+
+        elif not results:
+            username = request.user.username
+
+            messages.error(request, username + ", " + "information input is impossible within COTSEye.")
+
+    context = {"username": username, "records": records, "results": results}
+
+    return render(request, "contributor/service/inquiry/inquiry.html", context)
+
+
+@login_required(login_url = "Contributor Service Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
+def ContributorServiceMap(request):
+    username = request.user.username
+
+    try:
+        posts = Post.objects.filter(post_status = 1)
+
+        statuses = Status.objects.all()
+
+    except:
+        posts = None
+
+        statuses = None
+
+    context = {"posts": posts, "statuses": statuses, "username": username}
+
+    return render(request, "contributor/service/map/map.html", context)
 
 
 def ContributorServiceResource(request):
