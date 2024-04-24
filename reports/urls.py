@@ -23,11 +23,11 @@ urlpatterns = [
 
     path("contributor/service/report/update/fetch/", views.ContributorServiceReportUpdateFetch, name = "Contributor Service Report Update Fetch"),
 
+    path("contributor/service/post/", views.ContributorServicePost, name = "Contributor Service Post"),
+
     path("contributor/service/post/feed/", views.ContributorServicePostFeed, name = "Contributor Service Post Feed"),
 
     path("contributor/service/post/feed/read/<int:id>/", views.ContributorServicePostFeedRead, name = "Contributor Service Post Feed Read"),
-
-    path("contributor/service/post/", views.ContributorServicePost, name = "Contributor Service Post"),
 
     path("contributor/service/post/valid/", views.ContributorServicePostValid, name = "Contributor Service Post Valid"),
     
