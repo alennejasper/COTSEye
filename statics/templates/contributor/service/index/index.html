@@ -41,6 +41,8 @@
 
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/post/post.css' %}">
 
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/post/feed.css' %}">
+
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/post/valid.css' %}">
 
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/post/invalid.css' %}">
@@ -99,9 +101,9 @@
                     </div>
 
                     <ul class = "navigation-sidelinks">
-                        <li><a href = "{% url 'Contributor Service Map' %}"><i class = "fa-solid fa-map"></i>Map</a></li>
-
                         <li><a href = "{% url 'Contributor Service Report' %}"><i class = "fa-solid fa-pen-to-square"></i>Create post</a></li>
+
+                        <li><a href = "{% url 'Contributor Service Map' %}"><i class = "fa-solid fa-map"></i>Map</a></li>
 
                         <li><a href = "{% url 'Contributor Service Post' %}"><i class = "fa-solid fa-images"></i>My posts</a></li>
 
@@ -110,6 +112,8 @@
                         <li><a href = "{% url 'Contributor Service Intervention' %}"><i class = "fa-solid fa-calendar-day"></i>Intervention programs</a></li>
 
                         <li><a href = "{% url 'Contributor Service Resource' %}"><i class = "fa-solid fa-box-archive"></i>Resources</a></li>
+
+                        <li><a href = "{% url 'Contributor Service Post Feed' %}">Posts feed</a></li>
                     </ul>
 
 
@@ -123,6 +127,8 @@
                         <li><a href = "{% url 'Contributor Service Intervention' %}">Intervention programs</a></li>
 
                         <li><a href = "{% url 'Contributor Service Resource' %}">Resources</a></li>
+
+                        <li><a href = "{% url 'Contributor Service Post Feed' %}">Posts feed</a></li>
                     </ul>
                 </div>
 

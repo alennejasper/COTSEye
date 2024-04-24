@@ -3,9 +3,9 @@ from reports import views
 
 # Create your URL configuration here.
 urlpatterns = [    
-    path("public/service/post/valid/", views.PublicServicePostValid, name = "Public Service Post Valid"),
+    path("public/service/post/feed/", views.PublicServicePostFeed, name = "Public Service Post Feed"),
 
-    path("public/service/post/valid/read/<int:id>/", views.PublicServicePostValidRead, name = "Public Service Post Valid Read"),
+    path("public/service/post/feed/read/<int:id>/", views.PublicServicePostFeedRead, name = "Public Service Post Feed Read"),
 
     path("contributor/service/report/", views.ContributorServiceReport, name = "Contributor Service Report"),
 
@@ -22,6 +22,10 @@ urlpatterns = [
     path("contributor/service/report/choose/update/<int:id>/", views.ContributorServiceReportChooseUpdate, name = "Contributor Service Report Choose Update"),
 
     path("contributor/service/report/update/fetch/", views.ContributorServiceReportUpdateFetch, name = "Contributor Service Report Update Fetch"),
+
+    path("contributor/service/post/feed/", views.ContributorServicePostFeed, name = "Contributor Service Post Feed"),
+
+    path("contributor/service/post/feed/read/<int:id>/", views.ContributorServicePostFeedRead, name = "Contributor Service Post Feed Read"),
 
     path("contributor/service/post/", views.ContributorServicePost, name = "Contributor Service Post"),
 

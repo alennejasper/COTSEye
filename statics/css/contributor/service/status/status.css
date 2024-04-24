@@ -1072,6 +1072,7 @@
     border-bottom-left-radius: 5px !important;
     border-bottom-right-radius: 5px !important;
     display: none;
+    gap: 15px;
     background-color: #FFFFFF;
 }
 

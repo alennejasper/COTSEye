@@ -58,7 +58,7 @@
 
     <script>
         {% if valid_post %}
-            const link = encodeURI("{{scheme}}://{{host}}{% url 'Public Service Post Valid Read' valid_post.id %}");
+            const link = encodeURI("{{scheme}}://{{host}}{% url 'Public Service Post Feed Read' valid_post.id %}");
         
             const facebook = document.querySelector(".share-post");
 

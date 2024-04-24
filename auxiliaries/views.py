@@ -318,6 +318,8 @@ def ContributorServiceAnnouncementRead(request, id):
     return render(request, "contributor/service/announcement/read.html", context)
 
 
+@login_required(login_url = "Contributor Service Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
 def ContributorServiceInquiry(request):
     username = request.user.username
 
