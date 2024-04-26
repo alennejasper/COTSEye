@@ -36,6 +36,2003 @@
 }
 
 
+.home{
+    margin-bottom: 30px;
+    width: 100%;
+    display: grid;
+    grid-column: 1;
+}
+
+.home .section-header{
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    background-color: #FFFFFF;
+    display: grid;
+}
+
+.home .section-header header{
+    font-family: "Philosopher";
+    font-weight: 700;
+    font-size: 36px !important;
+    color: #154360;
+    text-align: center;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home .section-header header{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 28px !important;
+        color: #154360;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home .section-header header{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 26px !important;
+        color: #154360;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home .section-header header{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 24px !important;
+        color: #154360;
+    }
+}
+
+.home .section-body{
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    background-color: #FFFFFF;
+    display: grid;
+}
+
+.home .section-body p{
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 22px !important;
+    color: #154360;
+    text-align: center;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home .section-body p{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 20px !important;
+        color: #154360;
+        text-align: center;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home .section-body p{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360;
+        text-align: center;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home .section-body p{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360;
+        text-align: center;
+    }
+}
+
+body{
+    padding-right: 0px !important;
+}
+
+.map:has(.contributor-map){ 
+    width: 100%;
+    min-height: 100vh;
+    margin-bottom: 30px;
+}
+
+.contributor-map{
+    min-width: 100%;
+    min-height: 100vh;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;    
+    z-index: 1;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .contributor-map{
+        min-width: 100%;
+        min-height: 100vh;
+        z-index: 1;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .contributor-map{
+        min-width: 100%;
+        min-height: 100vh;
+        z-index: 1;
+    }
+}
+
+.leaflet-control-zoom{
+    border: 1px solid #B2BEB5 !important;
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+}
+
+.leaflet-control-zoom a.leaflet-control-zoom-in{
+    border-bottom: 1px solid #B2BEB5 !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    -webkit-user-select: none;
+    -ms-user-select: none; 
+    user-select: none; 
+    background-color: #698F3F !important;
+    color: #FFFFFF !important;
+    text-decoration: none !important;
+}
+
+.leaflet-control-zoom a.leaflet-control-zoom-in:hover{
+    border-bottom: 1px solid #B2BEB5 !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    -webkit-user-select: none;
+    -ms-user-select: none; 
+    user-select: none; 
+    background-color: #557433 !important;
+    color: #B2BEB5 !important;
+    text-decoration: none !important;
+}
+
+.leaflet-control-zoom a.leaflet-control-zoom-in.leaflet-disabled{
+    border-bottom: 1px solid #B2BEB5 !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    background-color: #557433 !important;
+    color: #B2BEB5 !important;
+    cursor: default !important;
+}
+
+.leaflet-control-zoom a.leaflet-control-zoom-out{
+    border-top: none !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    -webkit-user-select: none;
+    -ms-user-select: none; 
+    user-select: none; 
+    background-color: #C90016 !important;
+    color: #FFFFFF !important;
+    text-decoration: none !important;
+}
+
+.leaflet-control-zoom a.leaflet-control-zoom-out:hover{
+    border-top: none !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    -webkit-user-select: none;
+    -ms-user-select: none; 
+    user-select: none; 
+    background-color: #A00011 !important;
+    color: #FFFFFF !important;
+    text-decoration: none !important;
+}
+
+.leaflet-control-zoom a.leaflet-control-zoom-out.leaflet-disabled{
+    border-top: none !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    background-color: #A00011 !important;
+    color: #B2BEB5 !important;
+    cursor: default !important;
+}
+
+.leaflet-disabled span{
+    color: #B2BEB5 !important;
+}
+
+.leaflet-control-attribution a{
+    font-family: "Philosopher";
+    font-weight: 700;
+    font-size: 18px !important;
+    background-color: #698F3F !important;
+    color: #FFFFFF !important;
+    text-align: center;
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .leaflet-control-attribution a{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 16px !important;
+        background-color: #698F3F !important;
+        color: #FFFFFF !important;
+        text-align: center;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .leaflet-control-attribution a{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 14px !important;
+        background-color: #698F3F !important;
+        color: #FFFFFF !important;
+        text-align: center;
+    }
+}
+
+.leaflet-control-attribution span{
+    font-size: 20px !important;
+    background-color: #698F3F !important;
+    color: #FFFFFF !important;
+    text-align: center;
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .leaflet-control-attribution span{
+        font-size: 18px !important;
+        background-color: #698F3F !important;
+        color: #FFFFFF !important;
+        text-align: center;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .leaflet-control-attribution span{
+        font-size: 16px !important;
+        background-color: #698F3F !important;
+        color: #FFFFFF !important;
+        text-align: center;
+    }
+}
+
+.leaflet-control-attribution{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    font-family: "Overlook";
+    font-weight: 400;
+    font-size: 16px !important;
+    background-color: #698F3F !important;
+    color: #FFFFFF !important;
+    text-align: center;
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .leaflet-control-attribution{
+        font-family: "Overlook";
+        font-weight: 400;
+        font-size: 14px !important;
+        background-color: #698F3F !important;
+        color: #FFFFFF !important;
+        text-align: center;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .leaflet-control-attribution{
+        font-family: "Overlook";
+        font-weight: 400;
+        font-size: 12px !important;
+        background-color: #698F3F !important;
+        color: #FFFFFF !important;
+        text-align: center;
+    }
+}
+
+.leaflet-touch .leaflet-control-layers-toggle{
+    border-radius: 5px !important;
+    border: 1px solid #B2BEB5 !important; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    background-color: #154360 !important;
+}
+
+.leaflet-control-layers-expanded{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    border-radius: 5px !important;
+    border: 1px solid #B2BEB5 !important; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    background-color: #154360 !important;
+}
+
+.leaflet-control-layers-list{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    font-family: "Philosopher";
+    font-weight: 700;
+    font-size: 18px !important;
+    color: #FFFFFF !important;
+    text-align: justify;
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .leaflet-control-layers-list{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 16px !important;
+        color: #FFFFFF !important;
+        text-align: justify;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .leaflet-control-layers-list{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 14px !important;
+        color: #FFFFFF !important;
+        text-align: justify;
+    }
+}
+
+.leaflet-control-layers-list label{
+    margin-bottom: 0px !important;
+}
+
+input[type = "checkbox"]{
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    width: 38px;
+    height: 38px;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    outline: none !important;
+    background-color: #FFFFFF;
+    color: #B2BEB5;
+    cursor: pointer !important;
+    display: grid;
+    place-content: center;
+}
+
+input[type = "checkbox"]::before{
+    content: "";
+    width: 16px;
+    height: 16px;
+    border-radius: 5px;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    background-color: #698F3F;
+}
+
+input[type = "checkbox"]:checked::before{
+    transform: scale(1);
+}
+
+.leaflet-control-layers-list input[type = "checkbox"]{
+    margin-top: 5px;
+    margin-right: 10px !important;
+    width: 18px;
+    height: 18px;
+    float: left !important;
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .leaflet-control-layers-list input[type = "checkbox"]{
+        margin-top: 2.5px;
+        width: 16px;
+        height: 16px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .leaflet-control-layers-list input[type = "checkbox"]{
+        margin-top: 2.5px;
+        width: 14px;
+        height: 14px;
+    }
+}
+
+.leaflet-control-layers-list input[type = "checkbox"]::before{
+    width: 10px;
+    height: 10px;
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .leaflet-control-layers-list input[type = "checkbox"]::before{
+        width: 8px;
+        height: 8px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .leaflet-control-layers-list input[type = "checkbox"]::before{
+        width: 6px;
+        height: 6px;
+    }
+}
+
+.leaflet-popup{
+    margin-bottom: 15px !important;
+}
+
+.leaflet-popup-content-wrapper{
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    border: 1px solid #B2BEB5 !important;
+    border-radius: 5px !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+}
+
+.leaflet-popup-content{
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    width: 326px !important;
+    display: grid !important;
+    grid-column: 1 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .leaflet-popup-content{
+        width: 249px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .leaflet-popup-content{
+        width: 229px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .leaflet-popup-content{
+        width: 200px !important;
+    }
+}
+
+.popup .card-header{
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-top-left-radius: 5px !important;
+    border-top-right-radius: 5px !important;
+    background-color: #154360;
+    display: grid;
+}
+
+.popup .card-header header.preview{
+    font-family: "Philosopher";
+    font-weight: 700;
+    font-size: 22px !important;
+    color: #FFFFFF;
+    white-space: nowrap !important; 
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .popup .card-header header.preview{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 20px !important;
+        color: #FFFFFF;
+        white-space: nowrap !important; 
+        overflow: hidden !important;
+        text-overflow: ellipsis;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .popup .card-header header.preview{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 18px !important;
+        color: #FFFFFF;
+        white-space: nowrap !important; 
+        overflow: hidden !important;
+        text-overflow: ellipsis;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .popup .card-header header.preview{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 16px !important;
+        color: #FFFFFF;
+        white-space: nowrap !important; 
+        overflow: hidden !important;
+        text-overflow: ellipsis;
+    }
+}
+
+.leaflet-popup-close-button{
+    display: none !important;
+}
+
+.popup .card-body{
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 100%;
+    border-bottom-left-radius: 5px !important;
+    border-bottom-right-radius: 5px !important;
+    display: grid;
+    gap: 15px;
+    background-color: #FFFFFF;
+}
+
+.popup .card-body .field{
+    display: grid;
+    grid-template-columns: 100%;
+    gap: 30px;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .popup .card-body .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .popup .card-body .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .popup .card-body .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .popup .card-body .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
+}
+
+.popup .card-body .field .column label[for = "capture-date"]{
+    margin-top: 0px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .popup .card-body .field .column label[for = "capture-date"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .popup .card-body .field .column label[for = "capture-date"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .popup .card-body .field .column label[for = "capture-date"]{
+        margin-top: 0px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.popup .card-body .field .column .capture-date{
+    position: relative;
+}
+
+.popup .card-body .field .column .capture-date input{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.popup .card-body .field .column .capture-date input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .popup .card-body .field .column .capture-date input{
+        padding-left: 10px !important;
+        padding-right: 38px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .popup .card-body .field .column .capture-date input{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .popup .card-body .field .column .capture-date input{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.popup .card-body .field .column .capture-date i{
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .popup .card-body .field .column .capture-date i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .popup .card-body .field .column .capture-date i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .popup .card-body .field .column .capture-date i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+.popup .card-body .field .column label[for = "coordinates"]{
+    margin-top: 15px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .popup .card-body .field .column label[for = "coordinates"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .popup .card-body .field .column label[for = "coordinates"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .popup .card-body .field .column label[for = "coordinates"]{
+        margin-top: 15px;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.popup .card-body .field .column .coordinates{
+    position: relative;
+}
+
+.popup .card-body .field .column .coordinates input{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.popup .card-body .field .column .coordinates input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .popup .card-body .field .column .coordinates input{
+        padding-left: 10px !important;
+        padding-right: 38 !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .popup .card-body .field .column .coordinates input{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .popup .card-body .field .column .coordinates input{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.popup .card-body .field .column .coordinates i{
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .popup .card-body .field .column .coordinates i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .popup .card-body .field .column .coordinates i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .popup .card-body .field .column .coordinates i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+.popup .card-body .button{
+    margin-left: auto;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: fit-content;
+    height: 100% !important;
+}
+
+.popup .card-body .button a.read-post{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    border: 1px solid #B2BEB5; 
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px;
+    color: #FFFFFF !important;
+    background-color: #154360 !important;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.popup .card-body .button a.read-post:hover{
+    background-color: #10354C !important;
+    color: #B2BEB5 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .popup .card-body .button a{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #FFFFFF !important;
+        text-decoration: none;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .popup .card-body .button a{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #FFFFFF !important;
+        text-decoration: none;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .popup .card-body .button a{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #FFFFFF !important;
+        text-decoration: none;
+    }
+}
+
+.leaflet-popup-tip{
+    border: 1px solid #B2BEB5 !important;
+    border-radius: 5px !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+}
+
+.datum{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    border: 1px solid #B2BEB5 !important; 
+    border-radius: 5px !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    font-family: "Overlook";
+    font-weight: 400;
+    font-size: 16px !important;
+    color: #FFFFFF !important;
+    background-color: #154360;
+    text-align: justify;
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .datum{
+        font-family: "Overlook";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #FFFFFF !important;
+        text-align: justify;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .datum{
+        font-family: "Overlook";
+        font-weight: 400;
+        font-size: 12px !important;
+        color: #FFFFFF !important;
+        text-align: justify;
+    }
+}
+
+.datum header{
+    font-family: "Philosopher";
+    font-weight: 700;
+    font-size: 18px !important;
+    color: #FFFFFF !important;
+    text-align: justify;
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .datum header{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 16px !important;
+        color: #FFFFFF !important;
+        text-align: justify;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .datum header{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 14px !important;
+        color: #FFFFFF !important;
+        text-align: justify;
+    }
+}
+
+.datum i{
+    font-family: "Philosopher";
+    font-weight: 700;
+    font-size: 18px !important;
+    color: #FFFFFF !important;
+    text-align: justify;
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .datum i{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 16px !important;
+        color: #FFFFFF !important;
+        text-align: justify;
+    }
+}
+
+.home .latest-announcement{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    position: relative;
+    max-height: 100vh;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    background-color: #698F3F;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    white-space: nowrap;
+}
+
+.home .latest-announcement .announcement-gallery{
+    margin-right: 10px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: inline-block;
+}
+
+.home .latest-announcement .announcement-gallery:last-child{
+    margin-right: 0px !important;
+}
+
+.home .latest-announcement .announcement-gallery img{
+    margin-right: 10px;
+    width: 100%;
+    height: 100%;
+    place-items: center;
+    object-fit: cover;
+    filter: brightness(50%);
+}
+
+.home .latest-announcement .announcement-gallery img:hover{
+    transform: scale(1.25);
+}
+
+.home .latest-announcement .announcement-gallery img:last-child{
+    margin-right: 0px !important;
+}
+
+.home .latest-announcement .announcement-gallery .context{
+    bottom: 0;
+    left: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    position: absolute;
+}
+
+.home .latest-announcement .announcement-gallery .context header{
+    text-align: justify;
+    font-family: "Philosopher" !important;
+    font-weight: 700 !important;
+    font-size: 36px !important;
+    color: #FFFFFF !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home .latest-announcement .announcement-gallery .context header{
+        text-align: justify;
+        font-family: "Philosopher" !important;
+        font-weight: 700 !important;
+        font-size: 22px !important;
+        color: #FFFFFF !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home .latest-announcement .announcement-gallery .context header{
+        text-align: justify;
+        font-family: "Philosopher" !important;
+        font-weight: 700 !important;
+        font-size: 20px !important;
+        color: #FFFFFF !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home .latest-announcement .announcement-gallery .context header{
+        text-align: justify;
+        font-family: "Philosopher" !important;
+        font-weight: 700 !important;
+        font-size: 18px !important;
+        color: #FFFFFF !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home .latest-announcement .announcement-gallery .context header{
+        text-align: justify;
+        font-family: "Philosopher" !important;
+        font-weight: 700 !important;
+        font-size: 16px !important;
+        color: #FFFFFF !important;
+    }
+}
+
+.home .latest-announcement .announcement-gallery .context p{
+    text-align: justify;
+    font-family: "Overlock" !important;
+    font-weight: 400 !important;
+    font-size: 28px !important;
+    color: #FFFFFF;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home .latest-announcement .announcement-gallery .context p{
+        text-align: justify;
+        font-family: "Overlock" !important;
+        font-weight: 400 !important;
+        font-size: 20px !important;
+        color: #FFFFFF;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home .latest-announcement .announcement-gallery .context p{
+        text-align: justify;
+        font-family: "Overlock" !important;
+        font-weight: 400 !important;
+        font-size: 18px !important;
+        color: #FFFFFF;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home .latest-announcement .announcement-gallery .context p{
+        text-align: justify;
+        font-family: "Overlock" !important;
+        font-weight: 400 !important;
+        font-size: 16px !important;
+        color: #FFFFFF;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home .latest-announcement .announcement-gallery .context p{
+        text-align: justify;
+        font-family: "Overlock" !important;
+        font-weight: 400 !important;
+        font-size: 14px !important;
+        color: #FFFFFF;
+    }
+}
+
+.home .latest-intervention{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    position: relative;
+    max-height: 100vh;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    background-color: #698F3F;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    white-space: nowrap;
+}
+
+.home .latest-intervention .intervention-gallery{
+    margin-right: 10px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: inline-block;
+}
+
+.home .latest-intervention .intervention-gallery:last-child{
+    margin-right: 0px !important;
+}
+
+.home .latest-intervention .intervention-gallery img{
+    margin-right: 10px;
+    width: 100%;
+    height: 100%;
+    place-items: center;
+    object-fit: cover;
+    filter: brightness(50%);
+}
+
+.home .latest-intervention .intervention-gallery img:hover{
+    transform: scale(1.25);
+}
+
+.home .latest-intervention .intervention-gallery img:last-child{
+    margin-right: 0px !important;
+}
+
+.home .latest-intervention .intervention-gallery .context{
+    bottom: 0;
+    left: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    position: absolute;
+}
+
+.home .latest-intervention .intervention-gallery .context header{
+    text-align: justify;
+    font-family: "Philosopher" !important;
+    font-weight: 700 !important;
+    font-size: 36px !important;
+    color: #FFFFFF !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home .latest-intervention .intervention-gallery .context header{
+        text-align: justify;
+        font-family: "Philosopher" !important;
+        font-weight: 700 !important;
+        font-size: 22px !important;
+        color: #FFFFFF !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home .latest-intervention .intervention-gallery .context header{
+        text-align: justify;
+        font-family: "Philosopher" !important;
+        font-weight: 700 !important;
+        font-size: 20px !important;
+        color: #FFFFFF !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home .latest-intervention .intervention-gallery .context header{
+        text-align: justify;
+        font-family: "Philosopher" !important;
+        font-weight: 700 !important;
+        font-size: 18px !important;
+        color: #FFFFFF !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home .latest-intervention .intervention-gallery .context header{
+        text-align: justify;
+        font-family: "Philosopher" !important;
+        font-weight: 700 !important;
+        font-size: 16px !important;
+        color: #FFFFFF !important;
+    }
+}
+
+.home .latest-intervention .intervention-gallery .context p{
+    text-align: justify;
+    font-family: "Overlock" !important;
+    font-weight: 400 !important;
+    font-size: 28px !important;
+    color: #FFFFFF;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home .latest-intervention .intervention-gallery .context p{
+        text-align: justify;
+        font-family: "Overlock" !important;
+        font-weight: 400 !important;
+        font-size: 20px !important;
+        color: #FFFFFF;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home .latest-intervention .intervention-gallery .context p{
+        text-align: justify;
+        font-family: "Overlock" !important;
+        font-weight: 400 !important;
+        font-size: 18px !important;
+        color: #FFFFFF;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home .latest-intervention .intervention-gallery .context p{
+        text-align: justify;
+        font-family: "Overlock" !important;
+        font-weight: 400 !important;
+        font-size: 16px !important;
+        color: #FFFFFF;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home .latest-intervention .intervention-gallery .context p{
+        text-align: justify;
+        font-family: "Overlock" !important;
+        font-weight: 400 !important;
+        font-size: 14px !important;
+        color: #FFFFFF;
+    }
+}
+
+.home .context{
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    display: grid;
+}
+
+.home .context header{
+    font-family: "Philosopher";
+    font-weight: 700;
+    font-size: 36px !important;
+    color: #154360;
+    text-align: justify;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home .context header{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 28px !important;
+        color: #154360;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home .context header{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 26px !important;
+        color: #154360;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home .context header{
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 24px !important;
+        color: #154360;
+    }
+}
+
+.home .list a{
+    margin-bottom: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    display: grid !important;
+    background-color: #FFFFFF;
+    text-decoration: none;
+}
+
+.home .list .field{
+    display: grid;
+    grid-template-columns: 100%;
+    gap: 15px;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home .list .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home .list .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home .list .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home .list .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
+}
+
+.home .list .post-gallery{
+    margin-top: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #698F3F;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    white-space: nowrap;
+}
+
+.home .list .post-gallery .gallery-photo{
+    margin-right: 30px;
+    width: 100%;
+    height: 25vw;
+    place-items: center;
+    object-fit: cover;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+}
+
+.home .list .post-gallery .gallery-photo:last-child{
+    margin-right: 0px !important;
+}
+
+.home .list .field .column label[for = "user"]{
+    margin-top: 0px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home .list .field .column label[for = "user"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home .list .field .column label[for = "user"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home .list .field .column label[for = "user"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.home .list .field .column .user{
+    position: relative;
+}
+
+.home .list .field .column .user input{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.home .list .field .column .user input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home .list .field .column .user input{
+        padding-left: 10px !important;
+        padding-right: 38px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home .list .field .column .user input{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home .list .field .column .user input{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.home .list .field .column .user i{
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home .list .field .column .user i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home .list .field .column .user i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home .list .field .column .user i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+.home .list .field .column label[for = "capture-date"]{
+    margin-top: 15px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home .list .field .column label[for = "capture-date"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home .list .field .column label[for = "capture-date"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home .list .field .column label[for = "capture-date"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.home .list .field .column .capture-date{
+    position: relative;
+}
+
+.home .list .field .column .capture-date input{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.home .list .field .column .capture-date input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home .list .field .column .capture-date input{
+        padding-left: 10px !important;
+        padding-right: 38px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home .list .field .column .capture-date input{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home .list .field .column .capture-date input{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.home .list .field .column .capture-date i{
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home .list .field .column .capture-date i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home .list .field .column .capture-date i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home .list .field .column .capture-date i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+.home .list .field .column label[for = "location"]{
+    margin-top: 15px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home .list .field .column label[for = "location"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home .list .field .column label[for = "location"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home .list .field .column label[for = "location"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.home .list .field .column .location{
+    position: relative;
+}
+
+.home .list .field .column .location input{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.home .list .field .column .location input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home .list .field .column .location input{
+        padding-left: 10px !important;
+        padding-right: 38px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home .list .field .column .location input{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home .list .field .column .location input{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.home .list .field .column .location i{
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home .list .field .column .location i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home .list .field .column .location i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home .list .field .column .location i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+
 .swal2-popup{
     padding-bottom: 15px !important;
     border-radius: 5px !important;

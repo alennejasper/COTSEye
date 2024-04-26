@@ -8,6 +8,7 @@ from django.urls import reverse
 from allauth.socialaccount.signals import social_account_updated
 from authentications.forms import AccountForm, UserForm, ProfileForm
 from authentications.models import *
+from auxiliaries.models import Announcement
 from managements.models import Status, Intervention
 from reports.models import Post
 
@@ -20,6 +21,12 @@ def PublicServiceHome(request):
     user = request.user
 
     username = "public/everyone"
+
+    latest_announcements = Announcement.objects.all().order_by("-release_date")[:3]
+
+    latest_interventions = Intervention.objects.all().order_by("-intervention_date")[:3]
+
+    valid_posts = Post.objects.filter(post_status = 1).order_by("-capture_date")[:3]
 
     if user.is_authenticated:
         if user.usertype_id == 3:
@@ -35,7 +42,7 @@ def PublicServiceHome(request):
         if not any(message.level in [messages.INFO, messages.SUCCESS, messages.ERROR] for message in messages.get_messages(request)):
             messages.info(request, username + ", " + "kindly see announcements within COTSEye to check for updates today.")
 
-    context = {"username": username}
+    context = {"username": username, "latest_announcements": latest_announcements, "latest_interventions": latest_interventions, "valid_posts": valid_posts}
     
     return render(request, "public/service/home/home.html", context)
 
@@ -254,8 +261,14 @@ def ContributorCheck(account):
 @user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
 def ContributorServiceHome(request):
     username = request.user.username
+
+    latest_announcements = Announcement.objects.all().order_by("-release_date")[:3]
+
+    latest_interventions = Intervention.objects.all().order_by("-intervention_date")[:3]
+
+    valid_posts = Post.objects.filter(post_status = 1).order_by("-capture_date")[:3]
     
-    context = {"username": username}
+    context = {"username": username, "latest_announcements": latest_announcements, "latest_interventions": latest_interventions, "valid_posts": valid_posts}
 
     return render(request, "contributor/service/home/home.html", context)
 

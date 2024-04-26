@@ -707,107 +707,79 @@
     }
 }
 
-.announcement .card-header{
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    border-top-left-radius: 5px !important;
-    border-top-right-radius: 5px !important;
-    background-color: #154360;
-    display: grid;
-    cursor: pointer;
-}
-
-.announcement .card-header header{
-    font-family: "Philosopher";
-    font-weight: 700;
-    font-size: 22px !important;
-    color: #FFFFFF;
-    white-space: nowrap !important; 
-    overflow: auto !important;
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .announcement .card-header header{
-        font-family: "Philosopher";
-        font-weight: 700;
-        font-size: 20px !important;
-        color: #FFFFFF;
-        white-space: nowrap !important; 
-        overflow: auto !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .announcement .card-header header{
-        font-family: "Philosopher";
-        font-weight: 700;
-        font-size: 18px !important;
-        color: #FFFFFF;
-        white-space: nowrap !important; 
-        overflow: auto !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .announcement .card-header header{
-        font-family: "Philosopher";
-        font-weight: 700;
-        font-size: 16px !important;
-        color: #FFFFFF;
-        white-space: nowrap !important; 
-        overflow: auto !important;
-    }
-}
-
-.announcement .card-body{
+.announcement#announcement-records .list a{
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 15px;
     padding-bottom: 15px;
     width: 100%;
-    border-bottom-left-radius: 5px !important;
-    border-bottom-right-radius: 5px !important;
-    display: none;
+    display: grid !important;
     background-color: #FFFFFF;
+    text-decoration: none;
 }
 
-.announcement .card-body .field{
+.announcement#announcement-records .list .field{
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
+    grid-template-columns: 100%;
+    gap: 15px;
 }
 
 @media screen and (min-width: 446px) and (max-width: 775px){
-    .announcement .card-body .field{        
+    .announcement#announcement-records .list .field{        
         grid-template-columns: 100%;
         gap: 0px;
     }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .announcement .card-body .field{        
+    .announcement#announcement-records .list .field{        
         grid-template-columns: 100%;
         gap: 0px;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .announcement .card-body .field{        
+    .announcement#announcement-records .list .field{        
         grid-template-columns: 100%;
         gap: 0px;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .announcement .card-body .field{        
+    .announcement#announcement-records .list .field{        
         grid-template-columns: 100%;
         gap: 0px;
     }
 }
 
-.announcement .card-body .field .column label[for = "release-date"]{
+.announcement#announcement-records .list .announcement-gallery{
+    margin-top: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #698F3F;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    white-space: nowrap;
+}
+
+.announcement#announcement-records .list .announcement-gallery .gallery-photo{
+    margin-right: 30px;
+    width: 100%;
+    height: 25vw;
+    place-items: center;
+    object-fit: cover;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+}
+
+.announcement#announcement-records .list .announcement-gallery .gallery-photo:last-child{
+    margin-right: 0px !important;
+}
+
+.announcement#announcement-records .list .field .column label[for = "user"]{
     margin-top: 0px;
     display: inline-block;
     font-family: "Overlock";
@@ -817,8 +789,8 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .announcement .card-body .field .column label[for = "release-date"]{
-        margin-top: 0px;
+    .announcement#announcement-records .list .field .column label[for = "user"]{
+        margin-top: 15px !important;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
@@ -828,8 +800,8 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .announcement .card-body .field .column label[for = "release-date"]{
-        margin-top: 0px;
+    .announcement#announcement-records .list .field .column label[for = "user"]{
+        margin-top: 15px !important;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
@@ -839,8 +811,8 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .announcement .card-body .field .column label[for = "release-date"]{
-        margin-top: 0px;
+    .announcement#announcement-records .list .field .column label[for = "user"]{
+        margin-top: 15px !important;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
@@ -849,11 +821,11 @@
     }
 }
 
-.announcement .card-body .field .column .release-date{
+.announcement#announcement-records .list .field .column .user{
     position: relative;
 }
 
-.announcement .card-body .field .column .release-date input{
+.announcement#announcement-records .list .field .column .user input{
     padding-left: 10px !important;
     padding-right: 40px !important;
     padding-top: 5px !important;
@@ -869,12 +841,12 @@
     color: #154360 !important;
 }
 
-.announcement .card-body .field .column .release-date input:focus{
+.announcement#announcement-records .list .field .column .user input:focus{
     border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .announcement .card-body .field .column .release-date input{
+    .announcement#announcement-records .list .field .column .user input{
         padding-left: 10px !important;
         padding-right: 38px !important;
         padding-top: 5px !important;
@@ -892,7 +864,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .announcement .card-body .field .column .release-date input{
+    .announcement#announcement-records .list .field .column .user input{
         padding-left: 10px !important;
         padding-right: 36px !important;
         padding-top: 5px !important;
@@ -910,7 +882,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .announcement .card-body .field .column .release-date input{
+    .announcement#announcement-records .list .field .column .user input{
         padding-left: 10px !important;
         padding-right: 34px !important;
         padding-top: 5px !important;
@@ -927,7 +899,7 @@
     }
 }
 
-.announcement .card-body .field .column .release-date i{
+.announcement#announcement-records .list .field .column .user i{
     right: 10px;
     top: 50%;
     position: absolute;
@@ -939,7 +911,7 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .announcement .card-body .field .column .release-date i{
+    .announcement#announcement-records .list .field .column .user i{
         right: 10px;
         top: 50%;
         position: absolute;
@@ -952,7 +924,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .announcement .card-body .field .column .release-date i{
+    .announcement#announcement-records .list .field .column .user i{
         right: 10px;
         top: 50%;
         position: absolute;
@@ -965,7 +937,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .announcement .card-body .field .column .release-date i{
+    .announcement#announcement-records .list .field .column .user i{
         right: 10px;
         top: 50%;
         position: absolute;
@@ -977,8 +949,8 @@
     }
 }
 
-.announcement .card-body .field .column label[for = "place"]{
-    margin-top: 0px;
+.announcement#announcement-records .list .field .column label[for = "release-date"]{
+    margin-top: 15px;
     display: inline-block;
     font-family: "Overlock";
     font-weight: 400;
@@ -987,8 +959,8 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .announcement .card-body .field .column label[for = "place"]{
-        margin-top: 0px;
+    .announcement#announcement-records .list .field .column label[for = "release-date"]{
+        margin-top: 15px !important;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
@@ -998,8 +970,8 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .announcement .card-body .field .column label[for = "place"]{
-        margin-top: 0px;
+    .announcement#announcement-records .list .field .column label[for = "release-date"]{
+        margin-top: 15px !important;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
@@ -1009,8 +981,8 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .announcement .card-body .field .column label[for = "place"]{
-        margin-top: 0px;
+    .announcement#announcement-records .list .field .column label[for = "release-date"]{
+        margin-top: 15px !important;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
@@ -1019,11 +991,11 @@
     }
 }
 
-.announcement .card-body .field .column .place{
+.announcement#announcement-records .list .field .column .release-date{
     position: relative;
 }
 
-.announcement .card-body .field .column .place input{
+.announcement#announcement-records .list .field .column .release-date input{
     padding-left: 10px !important;
     padding-right: 40px !important;
     padding-top: 5px !important;
@@ -1039,12 +1011,12 @@
     color: #154360 !important;
 }
 
-.announcement .card-body .field .column .place input:focus{
+.announcement#announcement-records .list .field .column .release-date input:focus{
     border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .announcement .card-body .field .column .place input{
+    .announcement#announcement-records .list .field .column .release-date input{
         padding-left: 10px !important;
         padding-right: 38px !important;
         padding-top: 5px !important;
@@ -1062,7 +1034,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .announcement .card-body .field .column .place input{
+    .announcement#announcement-records .list .field .column .release-date input{
         padding-left: 10px !important;
         padding-right: 36px !important;
         padding-top: 5px !important;
@@ -1080,7 +1052,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .announcement .card-body .field .column .place input{
+    .announcement#announcement-records .list .field .column .release-date input{
         padding-left: 10px !important;
         padding-right: 34px !important;
         padding-top: 5px !important;
@@ -1097,7 +1069,7 @@
     }
 }
 
-.announcement .card-body .field .column .place i{
+.announcement#announcement-records .list .field .column .release-date i{
     right: 10px;
     top: 50%;
     position: absolute;
@@ -1109,7 +1081,7 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .announcement .card-body .field .column .place i{
+    .announcement#announcement-records .list .field .column .release-date i{
         right: 10px;
         top: 50%;
         position: absolute;
@@ -1122,7 +1094,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .announcement .card-body .field .column .place i{
+    .announcement#announcement-records .list .field .column .release-date i{
         right: 10px;
         top: 50%;
         position: absolute;
@@ -1135,7 +1107,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .announcement .card-body .field .column .place i{
+    .announcement#announcement-records .list .field .column .release-date i{
         right: 10px;
         top: 50%;
         position: absolute;
@@ -1147,63 +1119,758 @@
     }
 }
 
-.announcement .card-body .button{
-    margin-left: auto;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
-    width: fit-content;
-    height: 100% !important;
-}
-
-.announcement .card-body .button a.read-announcement{
-    padding-left: 10px !important;
-    padding-right: 10px !important;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
-    border: 1px solid #B2BEB5; 
-    border-radius: 5px;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
-    outline: none !important;
+.announcement#announcement-records .list .field .column label[for = "place"]{
+    margin-top: 15px;
+    display: inline-block;
     font-family: "Overlock";
     font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .announcement#announcement-records .list .field .column label[for = "place"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .announcement#announcement-records .list .field .column label[for = "place"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .announcement#announcement-records .list .field .column label[for = "place"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.announcement#announcement-records .list .field .column .place{
+    position: relative;
+}
+
+.announcement#announcement-records .list .field .column .place input{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.announcement#announcement-records .list .field .column .place input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .announcement#announcement-records .list .field .column .place input{
+        padding-left: 10px !important;
+        padding-right: 38px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .announcement#announcement-records .list .field .column .place input{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .announcement#announcement-records .list .field .column .place input{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.announcement#announcement-records .list .field .column .place i{
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
     font-size: 20px;
-    color: #FFFFFF !important;
-    background-color: #154360 !important;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .announcement#announcement-records .list .field .column .place i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .announcement#announcement-records .list .field .column .place i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .announcement#announcement-records .list .field .column .place i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+.announcement#announcement-results .list a{
+    margin-bottom: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    display: grid !important;
+    background-color: #FFFFFF;
     text-decoration: none;
-    cursor: pointer;
 }
 
-.announcement .card-body .button a.read-announcement:hover{
-    background-color: #10354C !important;
-    color: #B2BEB5 !important;
+.announcement#announcement-results .list .field{
+    display: grid;
+    grid-template-columns: 100%;
+    gap: 15px;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .announcement#announcement-results .list .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .announcement .card-body .button a{
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 18px !important;
-        color: #FFFFFF !important;
-        text-decoration: none;
+    .announcement#announcement-results .list .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .announcement .card-body .button a{
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 16px !important;
-        color: #FFFFFF !important;
-        text-decoration: none;
+    .announcement#announcement-results .list .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .announcement .card-body .button a{
+    .announcement#announcement-results .list .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
+}
+
+.announcement#announcement-results .list .post-gallery{
+    margin-top: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #698F3F;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    white-space: nowrap;
+}
+
+.announcement#announcement-results .list .post-gallery .gallery-photo{
+    margin-right: 30px;
+    width: 100%;
+    height: 25vw;
+    place-items: center;
+    object-fit: cover;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+}
+
+.announcement#announcement-results .list .post-gallery .gallery-photo:last-child{
+    margin-right: 0px !important;
+}
+
+.announcement#announcement-results .list .field .column label[for = "user"]{
+    margin-top: 0px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .announcement#announcement-results .list .field .column label[for = "user"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .announcement#announcement-results .list .field .column label[for = "user"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .announcement#announcement-results .list .field .column label[for = "user"]{
+        margin-top: 15px !important;
+        display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
         font-size: 14px !important;
-        color: #FFFFFF !important;
-        text-decoration: none;
+        color: #154360 !important;
+    }
+}
+
+.announcement#announcement-results .list .field .column .user{
+    position: relative;
+}
+
+.announcement#announcement-results .list .field .column .user input{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.announcement#announcement-results .list .field .column .user input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .announcement#announcement-results .list .field .column .user input{
+        padding-left: 10px !important;
+        padding-right: 38px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .announcement#announcement-results .list .field .column .user input{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .announcement#announcement-results .list .field .column .user input{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.announcement#announcement-results .list .field .column .user i{
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .announcement#announcement-results .list .field .column .user i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .announcement#announcement-results .list .field .column .user i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .announcement#announcement-results .list .field .column .user i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+.announcement#announcement-results .list .field .column label[for = "release-date"]{
+    margin-top: 15px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .announcement#announcement-results .list .field .column label[for = "release-date"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .announcement#announcement-results .list .field .column label[for = "release-date"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .announcement#announcement-results .list .field .column label[for = "release-date"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.announcement#announcement-results .list .field .column .release-date{
+    position: relative;
+}
+
+.announcement#announcement-results .list .field .column .release-date input{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.announcement#announcement-results .list .field .column .release-date input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .announcement#announcement-results .list .field .column .release-date input{
+        padding-left: 10px !important;
+        padding-right: 38px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .announcement#announcement-results .list .field .column .release-date input{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .announcement#announcement-results .list .field .column .release-date input{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.announcement#announcement-results .list .field .column .release-date i{
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .announcement#announcement-results .list .field .column .release-date i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .announcement#announcement-results .list .field .column .release-date i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .announcement#announcement-results .list .field .column .release-date i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+.announcement#announcement-results .list .field .column label[for = "place"]{
+    margin-top: 15px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .announcement#announcement-results .list .field .column label[for = "place"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .announcement#announcement-results .list .field .column label[for = "place"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .announcement#announcement-results .list .field .column label[for = "place"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.announcement#announcement-results .list .field .column .place{
+    position: relative;
+}
+
+.announcement#announcement-results .list .field .column .place input{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.announcement#announcement-results .list .field .column .place input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .announcement#announcement-results .list .field .column .place input{
+        padding-left: 10px !important;
+        padding-right: 38px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .announcement#announcement-results .list .field .column .place input{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .announcement#announcement-results .list .field .column .place input{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.announcement#announcement-results .list .field .column .place i{
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .announcement#announcement-results .list .field .column .place i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .announcement#announcement-results .list .field .column .place i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .announcement#announcement-results .list .field .column .place i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
     }
 }

@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-    {% for announcement in announcement %}
+    {% if announcement %}
         <div class = "announcement">
             <div class = "card-body">
                 <header>{{announcement.title | default:'None available'}}</header>
@@ -22,7 +22,7 @@
                 </div>
             </div>
         </div>
-    {% endfor %}
+    {% endif %}
 
     <script>
         {% if announcement %}

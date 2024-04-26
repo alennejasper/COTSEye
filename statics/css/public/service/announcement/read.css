@@ -36,7 +36,7 @@
 }
 
 
-.announcement{
+.content:has(.announcement){
     margin-bottom: 30px;
     width: 100%;
     display: grid;

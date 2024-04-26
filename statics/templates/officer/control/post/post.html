@@ -1395,7 +1395,7 @@
                     </div>
 
                     <div class = "button">
-                        <a class = "read-post" href = "{% url 'admin:Control Statistics Post Read Redirect' object_id=post.id %}">Read</a>
+                        <a class = "read-post" href = "{% url 'officer:Control Statistics Post Read Redirect' object_id=post.id %}">Read</a>
                     </div>    
                 </div>
             </div>
@@ -2662,59 +2662,99 @@
             });
         </script>
 
-        <div class = "line" id = "records"></div>
+        {% if results %}
+            <div class = "line" id = "results"></div>
 
-        {% for post in records %}
-            <div class = "post">
-                <div class = "card-header" onclick = "toggleBody(this)">
-                    <header class = "preview">{{post.description}}</header>
-                </div>
-
-                <div class = "card-body">
-                    <div class = "field">
-                        <div class = "column">
-                            <label for = "capture-date">Capture Date</label> 
-
-                            <div class = "capture-date">
-                                <input type = "text" value = "{{post.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}" id = "capture-date" name = "capture-date" readonly>
-
-                                <i class = "fa-solid fa-calendar-day"></i>
-                            </div>  
-                        </div>
-
-                        <div class = "column">
-                            <label for = "coordinates">Coordinates</label> 
+            {% for post in results %}
+                <div class = "post" id = "post-results">
+                    <div class = "list">
+                        <a href = "{% url 'officer:Control Statistics Post Read Redirect' object_id=post.id %}">
+                            <div class = "field">
+                                <div class = "column">
+                                    <div class = "post-gallery">
+                                        {% for post_photo in post.post_photos.all %}
+                                            <img class = "gallery-photo" src = "{{post_photo.post_photo.url}}">
+                                        {% endfor %}      
+                                    </div>  
+                                </div>
                                 
-                            <div class = "coordinates">
-                                <input type = "text" value = "{{post.coordinates.latitude | default:'0'}}° N, {{post.coordinates.longitude | default:'0'}}° E" id = "coordinates" name = "coordinates" readonly>
-                                    
-                                <i class = "fa-solid fa-location-dot"></i>
+                                <div class = "column">
+                                    <label for = "user">User</label> 
+                                        
+                                    <div class = "user">
+                                        <input type = "text" value = "{{post.user | default:'None available'}}" id = "user" name = "user" readonly>
+                                            
+                                        <i class = "fa-solid fa-user"></i>
+                                    </div>
+
+                                    <label for = "capture-date">Capture Date</label> 
+                                        
+                                    <div class = "capture-date">
+                                        <input type = "text" value = "{{post.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}" id = "capture-date" name = "capture_date" readonly>
+                                            
+                                        <i class = "fa-solid fa-calendar-check"></i>
+                                    </div>
+
+                                    <label for = "location">Location</label> 
+                                        
+                                    <div class = "location">
+                                        <input type = "text" value = "{{post.location | default:'None available'}}" id = "location" name = "location" readonly>
+                                            
+                                        <i class = "fa-solid fa-location-dot"></i>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
-
-                    <div class = "button">
-                        <a class = "read-post" href = "{% url 'admin:Control Statistics Post Read Redirect' object_id=post.id %}">Read</a>
-                    </div>    
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+
+        {% else %}
+            <div class = "line" id = "records"></div>
+
+            {% for post in records %}
+                <div class = "post" id = "post-records">
+                    <div class = "list">
+                        <a href = "{% url 'officer:Control Statistics Post Read Redirect' object_id=post.id %}">
+                            <div class = "field">
+                                <div class = "column">
+                                    <div class = "post-gallery">
+                                        {% for post_photo in post.post_photos.all %}
+                                            <img class = "gallery-photo" src = "{{post_photo.post_photo.url}}">
+                                        {% endfor %}      
+                                    </div>  
+                                </div>
+                                
+                                <div class = "column">
+                                    <label for = "user">User</label> 
+                                        
+                                    <div class = "user">
+                                        <input type = "text" value = "{{post.user | default:'None available'}}" id = "user" name = "user" readonly>
+                                            
+                                        <i class = "fa-solid fa-user"></i>
+                                    </div>
+
+                                    <label for = "capture-date">Capture Date</label> 
+                                        
+                                    <div class = "capture-date">
+                                        <input type = "text" value = "{{post.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}" id = "capture-date" name = "capture_date" readonly>
+                                            
+                                        <i class = "fa-solid fa-calendar-check"></i>
+                                    </div>
+
+                                    <label for = "location">Location</label> 
+                                        
+                                    <div class = "location">
+                                        <input type = "text" value = "{{post.location | default:'None available'}}" id = "location" name = "location" readonly>
+                                            
+                                        <i class = "fa-solid fa-location-dot"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
     {% endif %}
-
-    <script>
-        function toggleBody(element){
-            var body = element.nextElementSibling;
-            
-            if(body.style.display === "none" || body.style.display === ""){
-                body.style.borderBottomLeftRadius = "5px";
-
-                body.style.borderBottomTopRadius = "5px";
-                
-                body.style.display = "grid";
-            
-            } else{
-                body.style.display = "none";
-            };
-        };
-    </script>
 {% endblock content %}

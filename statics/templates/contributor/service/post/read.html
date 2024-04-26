@@ -110,24 +110,24 @@
         </div>
     {% endif %}
 
-    {% if uncertain_post %}
+    {% if pending_post %}
         <div class = "post">
             <div class = "card-body">
-                <p><i class = "fa-solid fa-flag"></i>Uncertain</p>
+                <p><i class = "fa-solid fa-flag"></i>Pending</p>
 
-                <p><i class = "fa-solid fa-user"></i>{{uncertain_post.user}}</p>
+                <p><i class = "fa-solid fa-user"></i>{{pending_post.user}}</p>
 
-                <p><i class = "fa-solid fa-calendar-check"></i>{{uncertain_post.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}</p>
+                <p><i class = "fa-solid fa-calendar-check"></i>{{pending_post.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}</p>
 
-                <p><i class = "fa-solid fa-location-dot"></i>{{uncertain_post.coordinates.latitude | default:'0'}}° N, {{uncertain_post.coordinates.longitude | default:'0'}}° E</p>
+                <p><i class = "fa-solid fa-location-dot"></i>{{pending_post.coordinates.latitude | default:'0'}}° N, {{pending_post.coordinates.longitude | default:'0'}}° E</p>
 
                 <div class = "post-gallery">
-                    {% for post_photo in uncertain_post.post_photos.all %}
+                    {% for post_photo in pending_post.post_photos.all %}
                         <img class = "gallery-photo" src = "{{post_photo.post_photo.url}}">
                     {% endfor %}
                 </div>
 
-                <p>{{uncertain_post.description | default:'None available'}}</p>
+                <p>{{pending_post.description | default:'None available'}}</p>
 
                 <table>
                     <caption>Post observation</caption>
@@ -135,25 +135,25 @@
                     <tr>
                         <td>Size</td>
 
-                        <td>{{uncertain_post.post_observation.size | default:'0'}}</td>
+                        <td>{{pending_post.post_observation.size | default:'0'}}</td>
                     </tr>
 
                     <tr>
                     <td>Depth</td>
 
-                    <td>{{uncertain_post.post_observation.depth | default:'0'}}</td>
+                    <td>{{pending_post.post_observation.depth | default:'0'}}</td>
                     </tr>
 
                     <tr>
                         <td>Density</td>
         
-                        <td>{{uncertain_post.post_observation.density | default:'0'}}</td>
+                        <td>{{pending_post.post_observation.density | default:'0'}}</td>
                     </tr>
 
                     <tr>
                         <td>Weather</td>
         
-                        <td>{{uncertain_post.post_observation.weather | default:'None available'}}</td>
+                        <td>{{pending_post.post_observation.weather | default:'None available'}}</td>
                     </tr>
                 </table>
             </div>
@@ -218,7 +218,7 @@
 
     <script>
         {% if valid_post %}
-            const link = encodeURI("{{scheme}}://{{host}}{% url 'Contributor Service Post Valid Read' valid_post.id %}");
+            const link = encodeURI("{{scheme}}://{{host}}{% url 'Contributor Service Post Read' valid_post.id %}");
         
             const facebook = document.querySelector(".share-post");
 

@@ -2,6 +2,101 @@
 {% load static %}
 
 {% block content %}
+    <div class = "home">
+        <div class = "section-header">
+            <header>COTSEYE</header>
+        </div>
+
+        <div class = "section-body">
+            <p>Discover latest announcements, interventions, statuses, and posts here.</p>
+        </div>
+    </div>
+
+    <div class = "home">
+        <div class = "latest-announcement">
+            {% for announcement in latest_announcements %}
+                <div class = "announcement-gallery">
+                    <a href = "{% url 'Public Service Announcement Read' announcement.id %}">
+                        <img src = "{{announcement.announcement_photo.url}}">
+                    </a> 
+
+                    <div class = "context">
+                        <header>ANNOUNCEMENT</header>
+
+                        <p>{{announcement.title | default:'None available'}}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+    <div class = "home">
+        <div class = "latest-intervention">
+            {% for intervention in latest_interventions %}
+                <div class = "intervention-gallery">
+                    <a href = "{% url 'Public Service Intervention Read' intervention.id %}">
+                        <img src = "{{intervention.intervention_photo.url}}">
+                    </a>
+
+                    <div class = "context">
+                        <header>INTERVENTION</header>
+
+                        <p>{{intervention.title | default:'None available'}}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class = "home">
+        <div class = "context">
+            <header>POSTS</header>
+        </div>
+
+        {% for post in valid_posts %}
+            <div class = "list">
+                <a href = "{% url 'Public Service Post Feed Read' post.id %}">
+                    <div class = "field">
+                        <div class = "column">
+                            <div class = "post-gallery">
+                                {% for post_photo in post.post_photos.all %}
+                                    <img class = "gallery-photo" src = "{{post_photo.post_photo.url}}">
+                                {% endfor %}      
+                            </div>  
+                        </div>
+                        
+                        <div class = "column">
+                            <label for = "user">User</label> 
+                                
+                            <div class = "user">
+                                <input type = "text" value = "{{post.user | default:'None available'}}" id = "user" name = "user" readonly>
+                                    
+                                <i class = "fa-solid fa-user"></i>
+                            </div>
+
+                            <label for = "capture-date">Capture Date</label> 
+                                
+                            <div class = "capture-date">
+                                <input type = "text" value = "{{post.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}" id = "capture-date" name = "capture_date" readonly>
+                                    
+                                <i class = "fa-solid fa-calendar-check"></i>
+                            </div>
+
+                            <label for = "location">Location</label> 
+                                
+                            <div class = "location">
+                                <input type = "text" value = "{{post.location | default:'None available'}}" id = "location" name = "location" readonly>
+                                    
+                                <i class = "fa-solid fa-location-dot"></i>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+
     {% if messages %}
         {% for message in messages %}
             {% if message.tags == "info" %}<script>Swal.fire({title: "Hey!", text: "{{message}}", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}})</script>

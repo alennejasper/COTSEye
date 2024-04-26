@@ -51,13 +51,13 @@ def PublicServiceStatus(request):
         elif not from_date or not to_date:
             username = "public/everyone"
 
-            messages.error(request, "date range is not valid.")
+            messages.error(request, username + ", " + "date range is not valid.")
             
         if location and not location == "each_location":
-            results = Status.objects.filter(location = location)
+            results = Status.objects.filter(onset_date__range = [from_date, to_date], location = location)
 
         elif not location and location == "each_location":
-            results = Status.objects.filter(location = location)
+            results = Status.objects.all()
         
         elif not location and not location == "each_location":
             username = "public/everyone"
@@ -70,7 +70,7 @@ def PublicServiceStatus(request):
             messages.error(request, username + ", " + "location is not valid.")
         
         if statustype and not statustype == "each_statustype":
-            results = Status.objects.filter(statustype = statustype)
+            results = Status.objects.filter(onset_date__range = [from_date, to_date], statustype = statustype)
             
         elif not statustype and statustype == "each_statustype":
             results = Status.objects.all()
@@ -151,7 +151,7 @@ def PublicServiceIntervention(request):
             messages.error(request, username + ", " + "date range is not valid.")
 
         if location and not location == "each_location":
-            results = Intervention.objects.filter(location = location)
+            results = Intervention.objects.filter(intervention_date__range = [from_date, to_date], location = location)
 
         elif not location and location == "each_location":
             results = Intervention.objects.all()
@@ -167,7 +167,7 @@ def PublicServiceIntervention(request):
             messages.error(request, username + ", " + "location is not valid.")
 
         if hosting_agency and not hosting_agency == "each_hostingagency":
-            results = Intervention.objects.filter(hosting_agency = hosting_agency)
+            results = Intervention.objects.filter(intervention_date__range = [from_date, to_date], hosting_agency = hosting_agency)
     
         elif not hosting_agency and hosting_agency == "each_hostingagency":
             results = Intervention.objects.all()
@@ -214,7 +214,7 @@ def PublicServiceInterventionRead(request, id):
 
     host = request.META["HTTP_HOST"]
     
-    intervention = Intervention.objects.filter(id = id)
+    intervention = Intervention.objects.get(id = id)
 
     context = {"username": username, "scheme": scheme, "host": host, "intervention": intervention}
 
@@ -265,13 +265,13 @@ def ContributorServiceStatus(request):
         elif not from_date or not to_date:
             username = request.user.username
 
-            messages.error(request, "date range is not valid.")
+            messages.error(request, username + ", " + "date range is not valid.")
             
         if location and not location == "each_location":
-            results = Status.objects.filter(location = location)
+            results = Status.objects.filter(onset_date__range = [from_date, to_date], location = location)
 
         elif not location and location == "each_location":
-            results = Status.objects.filter(location = location)
+            results = Status.objects.all()
         
         elif not location and not location == "each_location":
             username = request.user.username
@@ -284,7 +284,7 @@ def ContributorServiceStatus(request):
             messages.error(request, username + ", " + "location is not valid.")
         
         if statustype and not statustype == "each_statustype":
-            results = Status.objects.filter(statustype = statustype)
+            results = Status.objects.filter(onset_date__range = [from_date, to_date], statustype = statustype)
             
         elif not statustype and statustype == "each_statustype":
             results = Status.objects.all()
@@ -367,10 +367,10 @@ def ContributorServiceIntervention(request):
             messages.error(request, username + ", " + "date range is not valid.")
 
         if location and not location == "each_location":
-            results = Intervention.objects.filter(location = location)[:50]
+            results = Intervention.objects.filter(intervention_date__range = [from_date, to_date], location = location)[:50]
 
         elif not location and location == "each_location":
-            results = Intervention.objects.all()[:50]
+            results = Intervention.objects.all()
         
         elif not location and not location == "each_location":
             username = request.user.username
@@ -383,7 +383,7 @@ def ContributorServiceIntervention(request):
             messages.error(request, username + ", " + "location is not valid.")
 
         if hosting_agency and not hosting_agency == "each_hostingagency":
-            results = Intervention.objects.filter(hosting_agency = hosting_agency)
+            results = Intervention.objects.filter(intervention_date__range = [from_date, to_date], hosting_agency = hosting_agency)
     
         elif not hosting_agency and hosting_agency == "each_hostingagency":
             results = Intervention.objects.all()
@@ -432,7 +432,7 @@ def ContributorServiceInterventionRead(request, id):
 
     host = request.META["HTTP_HOST"]
 
-    intervention = Intervention.objects.filter(id = id)
+    intervention = Intervention.objects.get(id = id)
 
     context = {"username": username, "scheme": scheme, "host": host, "intervention": intervention}
 
@@ -582,10 +582,10 @@ def OfficerControlStatisticsIntervention(request):
             messages.error(request, username + ", " + "date range is not valid.") 
 
         if location and not location == "each_location":
-            results = Intervention.objects.filter(location = location)
+            results = Intervention.objects.filter(intervention_date__range = [from_date, to_date], location = location)
 
         elif not location and location == "each_location":
-            results = Intervention.objects.all()
+            results = Intervention.objects.all()[:50]
         
         elif not location and not location == "each_location":
             username = request.user.username
@@ -598,7 +598,7 @@ def OfficerControlStatisticsIntervention(request):
             messages.error(request, username + ", " + "location is not valid.") 
 
         if hosting_agency and not hosting_agency == "each_hostingagency":
-            results = Intervention.objects.filter(hosting_agency = hosting_agency)
+            results = Intervention.objects.filter(intervention_date__range = [from_date, to_date], hosting_agency = hosting_agency)
     
         elif not hosting_agency and hosting_agency == "each_hostingagency":
             results = Intervention.objects.all()
@@ -883,10 +883,10 @@ def OfficerControlStatisticsStatus(request):
             messages.error(request, username + ", " + "date range is not valid.")
 
         if location and not location == "each_location":
-            results = Status.objects.filter(location = location)
+            results = Status.objects.filter(onset_date__range = [from_date, to_date], location = location)
 
         elif not location and location == "each_location":
-            results = Status.objects.filter(location = location)
+            results = Status.objects.filter(onset_date__range = [from_date, to_date], location = location)
         
         elif not location and not location == "each_location":
             username = request.user.username
@@ -902,7 +902,7 @@ def OfficerControlStatisticsStatus(request):
             results = Status.objects.filter(statustype = statustype)
         
         elif not statustype and statustype == "each_statustype":
-            results = Status.objects.all()
+            results = Status.objects.all()[:50]
         
         elif not statustype and not statustype == "each_statustype":
             username = request.user.username
@@ -1184,10 +1184,10 @@ def AdministratorControlStatisticsIntervention(request):
             messages.error(request, username + ", " + "date range is not valid.") 
 
         if location and not location == "each_location":
-            results = Intervention.objects.filter(location = location)
+            results = Intervention.objects.filter(intervention_date__range = [from_date, to_date], location = location)
 
         elif not location and location == "each_location":
-            results = Intervention.objects.all()
+            results = Intervention.objects.all()[:50]
         
         elif not location and not location == "each_location":
             username = request.user.username
@@ -1200,7 +1200,7 @@ def AdministratorControlStatisticsIntervention(request):
             messages.error(request, username + ", " + "location is not valid.") 
 
         if hosting_agency and not hosting_agency == "each_hostingagency":
-            results = Intervention.objects.filter(hosting_agency = hosting_agency)
+            results = Intervention.objects.filter(intervention_date__range = [from_date, to_date], hosting_agency = hosting_agency)
     
         elif not hosting_agency and hosting_agency == "each_hostingagency":
             results = Intervention.objects.all()
@@ -1485,10 +1485,10 @@ def AdministratorControlStatisticsStatus(request):
             messages.error(request, username + ", " + "date range is not valid.")
 
         if location and not location == "each_location":
-            results = Status.objects.filter(location = location)
+            results = Status.objects.filter(onset_date__range = [from_date, to_date], location = location)
 
         elif not location and location == "each_location":
-            results = Status.objects.filter(location = location)
+            results = Status.objects.all()[:50]
         
         elif not location and not location == "each_location":
             username = request.user.username
@@ -1504,7 +1504,7 @@ def AdministratorControlStatisticsStatus(request):
             results = Status.objects.filter(statustype = statustype)
         
         elif not statustype and statustype == "each_statustype":
-            results = Status.objects.all()
+            results = Status.objects.all()[:50]
         
         elif not statustype and not statustype == "each_statustype":
             username = request.user.username

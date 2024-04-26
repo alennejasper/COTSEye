@@ -342,7 +342,7 @@
 }
 
 .intervention#intervention-filter .card-body .field .column label[for = "to-date"]{
-    margin-top: 0px;
+    margin-top: 15px;
     display: inline-block;
     font-family: "Overlock";
     font-weight: 400;
@@ -526,7 +526,7 @@
 }
 
 .intervention#intervention-filter .card-body .field .column label[for = "location"]{
-    margin-top: 15px;
+    margin-top: 0px;
     display: inline-block;
     font-family: "Overlock";
     font-weight: 400;
@@ -574,8 +574,8 @@
 .intervention#intervention-filter .card-body .field .column select[name = "location"]{
     padding-left: 10px !important;
     padding-right: 40px !important;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
+    padding-top: 6px !important;
+    padding-bottom: 6px !important;
     width: 100%;
     border: 1px solid #B2BEB5;
     border-radius: 5px; 
@@ -601,8 +601,8 @@
     .intervention#intervention-filter .card-body .field .column select[name = "location"]{
         padding-left: 10px !important;
         padding-right: 38px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
+        padding-top: 6px !important;
+        padding-bottom: 6px !important;
         width: 100%;
         border: 1px solid #B2BEB5;
         border-radius: 5px; 
@@ -622,8 +622,8 @@
     .intervention#intervention-filter .card-body .field .column select[name = "location"]{
         padding-left: 10px !important;
         padding-right: 36px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
+        padding-top: 6px !important;
+        padding-bottom: 6px !important;
         width: 100%;
         border: 1px solid #B2BEB5;
         border-radius: 5px; 
@@ -643,8 +643,8 @@
     .intervention#intervention-filter .card-body .field .column select[name = "location"]{
         padding-left: 10px !important;
         padding-right: 34px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
+        padding-top: 6px !important;
+        padding-bottom: 6px !important;
         width: 100%;
         border: 1px solid #B2BEB5;
         border-radius: 5px; 
@@ -709,8 +709,8 @@
 .intervention#intervention-filter .card-body .field .column select[name = "hosting_agency"]{
     padding-left: 10px !important;
     padding-right: 40px !important;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
+    padding-top: 6px !important;
+    padding-bottom: 6px !important;
     width: 100%;
     border: 1px solid #B2BEB5;
     border-radius: 5px; 
@@ -737,8 +737,8 @@
     .intervention#intervention-filter .card-body .field .column select[name = "hosting_agency"]{
         padding-left: 10px !important;
         padding-right: 38px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
+        padding-top: 6px !important;
+        padding-bottom: 6px !important;
         width: 100%;
         border: 1px solid #B2BEB5;
         border-radius: 5px; 
@@ -759,8 +759,8 @@
     .intervention#intervention-filter .card-body .field .column select[name = "hosting_agency"]{
         padding-left: 10px !important;
         padding-right: 36px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
+        padding-top: 6px !important;
+        padding-bottom: 6px !important;
         width: 100%;
         border: 1px solid #B2BEB5;
         border-radius: 5px; 
@@ -781,8 +781,8 @@
     .intervention#intervention-filter .card-body .field .column select[name = "hosting_agency"]{
         padding-left: 10px !important;
         padding-right: 34px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
+        padding-top: 6px !important;
+        padding-bottom: 6px !important;
         width: 100%;
         border: 1px solid #B2BEB5;
         border-radius: 5px; 
@@ -2421,403 +2421,1174 @@
     }
 }
 
-.intervention .card-body .field .column label[for = "intervention-date"]{
-    margin-top: 0px;
-    display: inline-block;
-    font-family: "Overlock";
-    font-weight: 400;
-    font-size: 20px !important;
-    color: #154360 !important;
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .intervention .card-body .field .column label[for = "intervention-date"]{
-        margin-top: 0px;
-        display: inline-block;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 18px !important;
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .intervention .card-body .field .column label[for = "intervention-date"]{
-        margin-top: 0px;
-        display: inline-block;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 16px !important;
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .intervention .card-body .field .column label[for = "intervention-date"]{
-        margin-top: 0px;
-        display: inline-block;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 14px !important;
-        color: #154360 !important;
-    }
-}
-
-.intervention .card-body .field .column .intervention-date{
-    position: relative;
-}
-
-.intervention .card-body .field .column .intervention-date input{
-    padding-left: 10px !important;
-    padding-right: 40px !important;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
+.intervention#intervention-records .list a{
+    margin-bottom: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     width: 100%;
     border: 1px solid #B2BEB5;
-    border-radius: 5px; 
+    border-radius: 5px !important;
     box-shadow: 0 0 0 1px #B2BEB5 !important;
-    outline: none !important;
-    font-family: "Philosopher";
-    font-weight: 700 !important;
-    font-size: 20px !important;   
-    color: #154360 !important;
-}
-
-.intervention .card-body .field .column .intervention-date input:focus{
-    border-bottom-width: 2.5px !important;
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .intervention .card-body .field .column .intervention-date input{
-        padding-left: 10px !important;
-        padding-right: 38px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Philosopher";
-        font-weight: 700 !important;
-        font-size: 18px !important;   
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .intervention .card-body .field .column .intervention-date input{
-        padding-left: 10px !important;
-        padding-right: 36px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Philosopher";
-        font-weight: 700 !important;
-        font-size: 16px !important;   
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .intervention .card-body .field .column .intervention-date input{
-        padding-left: 10px !important;
-        padding-right: 34px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Philosopher";
-        font-weight: 700 !important;
-        font-size: 14px !important;   
-        color: #154360 !important;
-    }
-}
-
-.intervention .card-body .field .column .intervention-date i{
-    right: 10px;
-    top: 50%;
-    position: absolute;
-    display: grid;
-    place-items: center;
-    font-size: 20px;
-    color: #154360;
-    transform: translateY(-50%);
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .intervention .card-body .field .column .intervention-date i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 18px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .intervention .card-body .field .column .intervention-date i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 16px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .intervention .card-body .field .column .intervention-date i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 14px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-.intervention .card-body .field .column label[for = "location"]{
-    margin-top: 0px;
-    display: inline-block;
-    font-family: "Overlock";
-    font-weight: 400;
-    font-size: 20px !important;
-    color: #154360 !important;
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .intervention .card-body .field .column label[for = "location"]{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 18px !important;
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .intervention .card-body .field .column label[for = "location"]{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 16px !important;
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .intervention .card-body .field .column label[for = "location"]{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 14px !important;
-        color: #154360 !important;
-    }
-}
-
-.intervention .card-body .field .column .location{
-    position: relative;
-}
-
-.intervention .card-body .field .column .location input{
-    padding-left: 10px !important;
-    padding-right: 40px !important;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
-    width: 100%;
-    border: 1px solid #B2BEB5;
-    border-radius: 5px; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
-    outline: none !important;
-    font-family: "Philosopher";
-    font-weight: 700 !important;
-    font-size: 20px !important;   
-    color: #154360 !important;
-}
-
-.intervention .card-body .field .column .location input:focus{
-    border-bottom-width: 2.5px !important;
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .intervention .card-body .field .column .location input{
-        padding-left: 10px !important;
-        padding-right: 38px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Philosopher";
-        font-weight: 700 !important;
-        font-size: 18px !important;   
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .intervention .card-body .field .column .location input{
-        padding-left: 10px !important;
-        padding-right: 36px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Philosopher";
-        font-weight: 700 !important;
-        font-size: 16px !important;   
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .intervention .card-body .field .column .location input{
-        padding-left: 10px !important;
-        padding-right: 34px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Philosopher";
-        font-weight: 700 !important;
-        font-size: 14px !important;   
-        color: #154360 !important;
-    }
-}
-
-.intervention .card-body .field .column .location i{
-    right: 10px;
-    top: 50%;
-    position: absolute;
-    display: grid;
-    place-items: center;
-    font-size: 20px;
-    color: #154360;
-    transform: translateY(-50%);
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .intervention .card-body .field .column .location i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 18px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .intervention .card-body .field .column .location i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 16px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .intervention .card-body .field .column .location i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 14px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-.intervention .card-body .button{
-    margin-left: auto;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
-    width: fit-content;
-    height: 100% !important;
-}
-
-.intervention .card-body .button a.read-intervention{
-    padding-left: 10px !important;
-    padding-right: 10px !important;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
-    border: 1px solid #B2BEB5; 
-    border-radius: 5px;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
-    outline: none !important;
-    font-family: "Overlock";
-    font-weight: 400;
-    font-size: 20px;
-    color: #FFFFFF !important;
-    background-color: #154360 !important;
+    display: grid !important;
+    background-color: #FFFFFF;
     text-decoration: none;
-    cursor: pointer;
 }
 
-.intervention .card-body .button a.read-intervention:hover{
-    background-color: #10354C !important;
-    color: #B2BEB5 !important;
+.intervention#intervention-records .list .field{
+    display: grid;
+    grid-template-columns: 100%;
+    gap: 15px;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .intervention#intervention-records .list .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .intervention .card-body .button a{
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 18px !important;
-        color: #FFFFFF !important;
-        text-decoration: none;
+    .intervention#intervention-records .list .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .intervention .card-body .button a{
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 16px !important;
-        color: #FFFFFF !important;
-        text-decoration: none;
+    .intervention#intervention-records .list .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .intervention .card-body .button a{
+    .intervention#intervention-records .list .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
+}
+
+.intervention#intervention-records .list .intervention-gallery{
+    margin-top: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #698F3F;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    white-space: nowrap;
+}
+
+.intervention#intervention-records .list .intervention-gallery .gallery-photo{
+    margin-right: 30px;
+    width: 100%;
+    height: 25vw;
+    place-items: center;
+    object-fit: cover;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+}
+
+.intervention#intervention-records .list .intervention-gallery .gallery-photo:last-child{
+    margin-right: 0px !important;
+}
+
+.intervention#intervention-records .list .field .column label[for = "hosting-agency"]{
+    margin-top: 0px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .intervention#intervention-records .list .field .column label[for = "hosting-agency"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .intervention#intervention-records .list .field .column label[for = "hosting-agency"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .intervention#intervention-records .list .field .column label[for = "hosting-agency"]{
+        margin-top: 15px !important;
+        display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
         font-size: 14px !important;
-        color: #FFFFFF !important;
-        text-decoration: none;
+        color: #154360 !important;
+    }
+}
+
+.intervention#intervention-records .list .field .column .hosting-agency{
+    position: relative;
+}
+
+.intervention#intervention-records .list .field .column .hosting-agency input{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.intervention#intervention-records .list .field .column .hosting-agency input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .intervention#intervention-records .list .field .column .hosting-agency input{
+        padding-left: 10px !important;
+        padding-right: 38px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .intervention#intervention-records .list .field .column .hosting-agency input{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .intervention#intervention-records .list .field .column .hosting-agency input{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.intervention#intervention-records .list .field .column .hosting-agency i{
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .intervention#intervention-records .list .field .column .hosting-agency i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .intervention#intervention-records .list .field .column .hosting-agency i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .intervention#intervention-records .list .field .column .hosting-agency i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+.intervention#intervention-records .list .field .column label[for = "intervention-date"]{
+    margin-top: 15px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .intervention#intervention-records .list .field .column label[for = "intervention-date"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .intervention#intervention-records .list .field .column label[for = "intervention-date"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .intervention#intervention-records .list .field .column label[for = "intervention-date"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.intervention#intervention-records .list .field .column .intervention-date{
+    position: relative;
+}
+
+.intervention#intervention-records .list .field .column .intervention-date input{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.intervention#intervention-records .list .field .column .intervention-date input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .intervention#intervention-records .list .field .column .intervention-date input{
+        padding-left: 10px !important;
+        padding-right: 38px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .intervention#intervention-records .list .field .column .intervention-date input{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .intervention#intervention-records .list .field .column .intervention-date input{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.intervention#intervention-records .list .field .column .intervention-date i{
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .intervention#intervention-records .list .field .column .intervention-date i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .intervention#intervention-records .list .field .column .intervention-date i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .intervention#intervention-records .list .field .column .intervention-date i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+.intervention#intervention-records .list .field .column label[for = "location"]{
+    margin-top: 15px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .intervention#intervention-records .list .field .column label[for = "location"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .intervention#intervention-records .list .field .column label[for = "location"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .intervention#intervention-records .list .field .column label[for = "location"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.intervention#intervention-records .list .field .column .location{
+    position: relative;
+}
+
+.intervention#intervention-records .list .field .column .location input{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.intervention#intervention-records .list .field .column .location input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .intervention#intervention-records .list .field .column .location input{
+        padding-left: 10px !important;
+        padding-right: 38px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .intervention#intervention-records .list .field .column .location input{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .intervention#intervention-records .list .field .column .location input{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.intervention#intervention-records .list .field .column .location i{
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .intervention#intervention-records .list .field .column .location i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .intervention#intervention-records .list .field .column .location i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .intervention#intervention-records .list .field .column .location i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+.intervention#intervention-results .list a{
+    margin-bottom: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    display: grid !important;
+    background-color: #FFFFFF;
+    text-decoration: none;
+}
+
+.intervention#intervention-results .list .field{
+    display: grid;
+    grid-template-columns: 100%;
+    gap: 15px;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .intervention#intervention-results .list .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .intervention#intervention-results .list .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .intervention#intervention-results .list .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .intervention#intervention-results .list .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
+}
+
+.intervention#intervention-results .list .intervention-gallery{
+    margin-top: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #698F3F;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    white-space: nowrap;
+}
+
+.intervention#intervention-results .list .intervention-gallery .gallery-photo{
+    margin-right: 30px;
+    width: 100%;
+    height: 25vw;
+    place-items: center;
+    object-fit: cover;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+}
+
+.intervention#intervention-results .list .intervention-gallery .gallery-photo:last-child{
+    margin-right: 0px !important;
+}
+
+.intervention#intervention-results .list .field .column label[for = "hosting-agency"]{
+    margin-top: 0px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .intervention#intervention-results .list .field .column label[for = "hosting-agency"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .intervention#intervention-results .list .field .column label[for = "hosting-agency"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .intervention#intervention-results .list .field .column label[for = "hosting-agency"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.intervention#intervention-results .list .field .column .hosting-agency{
+    position: relative;
+}
+
+.intervention#intervention-results .list .field .column .hosting-agency input{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.intervention#intervention-results .list .field .column .hosting-agency input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .intervention#intervention-results .list .field .column .hosting-agency input{
+        padding-left: 10px !important;
+        padding-right: 38px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .intervention#intervention-results .list .field .column .hosting-agency input{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .intervention#intervention-results .list .field .column .hosting-agency input{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.intervention#intervention-results .list .field .column .hosting-agency i{
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .intervention#intervention-results .list .field .column .hosting-agency i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .intervention#intervention-results .list .field .column .hosting-agency i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .intervention#intervention-results .list .field .column .hosting-agency i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+.intervention#intervention-results .list .field .column label[for = "intervention-date"]{
+    margin-top: 15px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .intervention#intervention-results .list .field .column label[for = "intervention-date"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .intervention#intervention-results .list .field .column label[for = "intervention-date"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .intervention#intervention-results .list .field .column label[for = "intervention-date"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.intervention#intervention-results .list .field .column .intervention-date{
+    position: relative;
+}
+
+.intervention#intervention-results .list .field .column .intervention-date input{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.intervention#intervention-results .list .field .column .intervention-date input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .intervention#intervention-results .list .field .column .intervention-date input{
+        padding-left: 10px !important;
+        padding-right: 38px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .intervention#intervention-results .list .field .column .intervention-date input{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .intervention#intervention-results .list .field .column .intervention-date input{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.intervention#intervention-results .list .field .column .intervention-date i{
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .intervention#intervention-results .list .field .column .intervention-date i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .intervention#intervention-results .list .field .column .intervention-date i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .intervention#intervention-results .list .field .column .intervention-date i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+.intervention#intervention-results .list .field .column label[for = "location"]{
+    margin-top: 15px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .intervention#intervention-results .list .field .column label[for = "location"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .intervention#intervention-results .list .field .column label[for = "location"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .intervention#intervention-results .list .field .column label[for = "location"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.intervention#intervention-results .list .field .column .location{
+    position: relative;
+}
+
+.intervention#intervention-results .list .field .column .location input{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.intervention#intervention-results .list .field .column .location input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .intervention#intervention-results .list .field .column .location input{
+        padding-left: 10px !important;
+        padding-right: 38px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .intervention#intervention-results .list .field .column .location input{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .intervention#intervention-results .list .field .column .location input{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.intervention#intervention-results .list .field .column .location i{
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .intervention#intervention-results .list .field .column .location i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .intervention#intervention-results .list .field .column .location i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .intervention#intervention-results .list .field .column .location i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
     }
 }

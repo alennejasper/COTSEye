@@ -19,6 +19,14 @@
                             <input type = "date" value = "" id = "from-date" name = "from_date" required>                            
                         </div>
 
+                        <label for = "to-date">To</label> 
+
+                        <div class = "to-date">
+                            <input type = "date" value = "" id = "to-date" name = "to_date" required>                            
+                        </div>
+                    </div>
+
+                    <div class = "column">
                         <label for = "location">Location</label> 
 
                         <select name = "location" id = "location">
@@ -29,15 +37,7 @@
                             {% for option in options %}
                                 <option value = "{{option.location.id}}">{{option.location}}</option>
                             {% endfor %}
-                        </select>
-                    </div>
-
-                    <div class = "column">
-                        <label for = "to-date">To</label> 
-
-                        <div class = "to-date">
-                            <input type = "date" value = "" id = "to-date" name = "to_date" required>                            
-                        </div>  
+                        </select>  
 
                         <label for = "hosting-agency">Hosting Agency</label> 
 
@@ -82,37 +82,43 @@
         <div class = "line" id = "results"></div>
 
         {% for intervention in results %}
-            <div class = "intervention">
-                <div class = "card-header" onclick = "toggleBody(this)">
-                    <header>{{intervention.title | default:'None available'}}</header>
-                </div>
-
-                <div class = "card-body">
-                    <div class = "field">
-                        <div class = "column">
-                            <label for = "intervention-date">Intervention Date</label> 
-                                
-                            <div class = "intervention-date">
-                                <input type = "text" value = "{{intervention.intervention_date | date:'M. j, Y' | default:'None available'}}" id = "intervention-date" name = "intervention_date" readonly>
+            <div class = "intervention" id = "intervention-results">
+                <div class = "list">
+                    <a href = "{% url 'Contributor Service Intervention Read' intervention.id %}">
+                        <div class = "field">
+                            <div class = "column">
+                                <div class = "intervention-gallery">
+                                    <img class = "gallery-photo" src = "{{intervention.intervention_photo.url}}">
+                                </div>  
+                            </div>
+                            
+                            <div class = "column">
+                                <label for = "hosting-agency">Hosting Agency</label> 
                                     
-                                <i class = "fa-solid fa-calendar-check"></i>
+                                <div class = "hosting-agency">
+                                    <input type = "text" value = "{{intervention.hosting_agency | default:'None available'}}" id = "hosting-agency" name = "hosting_agency" readonly>
+                                        
+                                    <i class = "fa-solid fa-users"></i>
+                                </div>
+
+                                <label for = "intervention-date">Intervention Date</label> 
+                                    
+                                <div class = "intervention-date">
+                                    <input type = "text" value = "{{intervention.intervention_date | date:'M. j, Y' | default:'None available'}}" id = "intervention-date" name = "intervention_date" readonly>
+                                        
+                                    <i class = "fa-solid fa-calendar-check"></i>
+                                </div>
+
+                                <label for = "location">Location</label> 
+                                    
+                                <div class = "location">
+                                    <input type = "text" value = "{{intervention.location | default:'None available'}}" id = "location" name = "location" readonly>
+                                        
+                                    <i class = "fa-solid fa-location-dot"></i>
+                                </div>
                             </div>
                         </div>
-
-                        <div class = "column">
-                            <label for = "location">Location</label> 
-
-                            <div class = "location">
-                                <input type = "text" value = "{{intervention.location | default:'None available'}}" id = "location" name = "location" readonly>
-
-                                <i class = "fa-solid fa-location-dot"></i>      
-                            </div>  
-                        </div>
-                    </div>
-
-                    <div class = "button">
-                        <a class = "read-intervention" href = "{% url 'Contributor Service Intervention Read' intervention.id %}">Read</a>
-                    </div>    
+                    </a>
                 </div>
             </div>
         {% endfor %}
@@ -121,56 +127,45 @@
         <div class = "line" id = "records"></div>
 
         {% for intervention in records %}
-            <div class = "intervention">
-                <div class = "card-header" onclick = "toggleBody(this)">
-                    <header>{{intervention.title | default:'None available'}}</header>
-                </div>
-
-                <div class = "card-body">
-                    <div class = "field">
-                        <div class = "column">
-                            <label for = "intervention-date">Intervention Date</label> 
-                                
-                            <div class = "intervention-date">
-                                <input type = "text" value = "{{intervention.intervention_date | date:'M. j, Y' | default:'None available'}}" id = "intervention-date" name = "intervention_date" readonly>
+            <div class = "intervention" id = "intervention-records">
+                <div class = "list">
+                    <a href = "{% url 'Contributor Service Intervention Read' intervention.id %}">
+                        <div class = "field">
+                            <div class = "column">
+                                <div class = "intervention-gallery">
+                                    <img class = "gallery-photo" src = "{{intervention.intervention_photo.url}}">
+                                </div>  
+                            </div>
+                            
+                            <div class = "column">
+                                <label for = "hosting-agency">Hosting Agency</label> 
                                     
-                                <i class = "fa-solid fa-calendar-check"></i>
+                                <div class = "hosting-agency">
+                                    <input type = "text" value = "{{intervention.hosting_agency | default:'None available'}}" id = "hosting-agency" name = "hosting_agency" readonly>
+                                        
+                                    <i class = "fa-solid fa-users"></i>
+                                </div>
+
+                                <label for = "intervention-date">Intervention Date</label> 
+                                    
+                                <div class = "intervention-date">
+                                    <input type = "text" value = "{{intervention.intervention_date | date:'M. j, Y' | default:'None available'}}" id = "intervention-date" name = "intervention_date" readonly>
+                                        
+                                    <i class = "fa-solid fa-calendar-check"></i>
+                                </div>
+
+                                <label for = "location">Location</label> 
+                                    
+                                <div class = "location">
+                                    <input type = "text" value = "{{intervention.location | default:'None available'}}" id = "location" name = "location" readonly>
+                                        
+                                    <i class = "fa-solid fa-location-dot"></i>
+                                </div>
                             </div>
                         </div>
-
-                        <div class = "column">
-                            <label for = "location">Location</label> 
-
-                            <div class = "location">
-                                <input type = "text" value = "{{intervention.location | default:'None available'}}" id = "location" name = "location" readonly>
-
-                                <i class = "fa-solid fa-location-dot"></i>      
-                            </div>  
-                        </div>
-                    </div>
-
-                    <div class = "button">
-                        <a class = "read-intervention" href = "{% url 'Contributor Service Intervention Read' intervention.id %}">Read</a>
-                    </div>    
+                    </a>
                 </div>
             </div>
         {% endfor %}
     {% endif %}
-
-    <script>
-        function toggleBody(element){
-            var body = element.nextElementSibling;
-            
-            if(body.style.display === "none" || body.style.display === ""){
-                body.style.borderBottomLeftRadius = "5px";
-
-                body.style.borderBottomTopRadius = "5px";
-                
-                body.style.display = "grid";
-            
-            } else{
-                body.style.display = "none";
-            };
-        };
-    </script>
 {% endblock content %}

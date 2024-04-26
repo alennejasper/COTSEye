@@ -63,6 +63,20 @@
                     </div>
                 </div>
 
+                <div class = "column">
+                    <label for = "location">Location</label> 
+
+                    <select name = "location" id = "location">
+                        <option disabled selected value = "">Choose location</option>
+
+                        {% for location in locations %}
+
+                        <option value="{{location.id}}">{{location}}</option>
+                        
+                        {% endfor %}
+                    </select>
+                </div>
+
                 <div class = "map">
                     <div class = "report-map">
                     </div>
@@ -379,6 +393,8 @@
 
                     const longitude = information.get("longitude");
 
+                    const location = information.get("location");
+
                     const size = information.get("size");
 
                     const depth = information.get("depth");
@@ -407,6 +423,8 @@
                         latitude: parseFloat(latitude),
 
                         longitude: parseFloat(longitude),
+
+                        location: parseInt(location),
 
                         size: parseInt(size),
 

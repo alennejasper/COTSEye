@@ -19,6 +19,14 @@
                             <input type = "date" value = "" id = "from-date" name = "from_date" required>                            
                         </div>
 
+                        <label for = "to-date">To</label> 
+
+                        <div class = "to-date">
+                            <input type = "date" value = "" id = "to-date" name = "to_date" required>                            
+                        </div>
+                    </div>
+
+                    <div class = "column">
                         <label for = "location">Location</label> 
 
                         <select name = "location" id = "location">
@@ -30,14 +38,6 @@
                                 <option value = "{{option.location.id}}">{{option.location}}</option>
                             {% endfor %}
                         </select>
-                    </div>
-
-                    <div class = "column">
-                        <label for = "to-date">To</label> 
-
-                        <div class = "to-date">
-                            <input type = "date" value = "" id = "to-date" name = "to_date" required>                            
-                        </div>  
 
                         <label for = "statustype">Status Type</label> 
 

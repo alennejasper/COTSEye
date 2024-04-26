@@ -103,7 +103,7 @@ self.addEventListener("fetch", event => {
     event.respondWith(
         caches.match(event.request).then(response => {
             if(response){
-                const expiration = 10 * 60 * 1000;
+                const expiration = 1 * 60 * 1000;
 
                 const today = new Date().getTime();
                 

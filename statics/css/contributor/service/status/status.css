@@ -331,7 +331,7 @@
 }
 
 .status#status-filter .card-body .field .column label[for = "to-date"]{
-    margin-top: 0px;
+    margin-top: 15px;
     display: inline-block;
     font-family: "Overlock";
     font-weight: 400;
@@ -515,7 +515,7 @@
 }
 
 .status#status-filter .card-body .field .column label[for = "location"]{
-    margin-top: 15px;
+    margin-top: 0px;
     display: inline-block;
     font-family: "Overlock";
     font-weight: 400;
@@ -563,8 +563,8 @@
 .status#status-filter .card-body .field .column select[name = "location"]{
     padding-left: 10px !important;
     padding-right: 40px !important;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
+    padding-top: 6px !important;
+    padding-bottom: 6px !important;
     width: 100%;
     border: 1px solid #B2BEB5;
     border-radius: 5px; 
@@ -591,8 +591,8 @@
     .status#status-filter .card-body .field .column select[name = "location"]{
         padding-left: 10px !important;
         padding-right: 38px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
+        padding-top: 6px !important;
+        padding-bottom: 6px !important;
         width: 100%;
         border: 1px solid #B2BEB5;
         border-radius: 5px; 
@@ -613,8 +613,8 @@
     .status#status-filter .card-body .field .column select[name = "location"]{
         padding-left: 10px !important;
         padding-right: 36px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
+        padding-top: 6px !important;
+        padding-bottom: 6px !important;
         width: 100%;
         border: 1px solid #B2BEB5;
         border-radius: 5px; 
@@ -635,8 +635,8 @@
     .status#status-filter .card-body .field .column select[name = "location"]{
         padding-left: 10px !important;
         padding-right: 34px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
+        padding-top: 6px !important;
+        padding-bottom: 6px !important;
         width: 100%;
         border: 1px solid #B2BEB5;
         border-radius: 5px; 

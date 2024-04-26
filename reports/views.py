@@ -22,7 +22,7 @@ import json
 def PublicServicePostFeed(request):
     username = "public/everyone"
 
-    options = Post.objects.all()
+    options = PostStatus.objects.all()
 
     records = Post.objects.filter(post_status = 1)
 
@@ -30,19 +30,13 @@ def PublicServicePostFeed(request):
     
     if request.method == "GET":
         from_date = request.GET.get("from_date")
-
-        from_date = datetime.datetime.strptime(from_date, "%Y-%m-%d") if from_date else None
         
         to_date = request.GET.get("to_date")
 
-        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
-
-        depth = request.GET.get("depth")
-
-        weather = request.GET.get("weather")
+        post_status = request.GET.get("post_status")
 
         if from_date and to_date:
-            results = Post.objects.filter(user = request.user.user, post_status = 1, capture_date__range = [from_date, to_date])
+            results = Post.objects.filter(capture_date__range = [from_date, to_date])
 
         elif from_date and to_date and to_date < from_date:
             username = "public/everyone"
@@ -50,49 +44,33 @@ def PublicServicePostFeed(request):
             messages.error(request, username + ", " + "date range is not valid.")
         
         elif not from_date and not to_date:
-            messages.error(request, "Date range is not valid.")
+            messages.error(request, username + ", " + "date range is not valid.")
 
         elif not from_date or not to_date:
-            messages.error(request, "Date range is not valid.")
-        
-        if depth and not depth == "each_depth":
-            results = Post.objects.filter(post_status = 1, post_observation__depth = depth)
+            messages.error(request, username + ", " + "date range is not valid.")
+
+        if post_status and not post_status == "each_poststatus":
+            results = Post.objects.filter(capture_date__range = [from_date, to_date], post_status = post_status)
     
-        elif not depth and depth == "each_depth":
-            results = Post.objects.filter(post_status = 1)
+        elif not post_status and post_status == "each_poststatus":
+            results = Post.objects.all()
 
-        elif not depth and not depth == "each_depth":
+        elif not post_status and not post_status == "each_poststatus":
             username = "public/everyone"
 
-            messages.error(request, username + ", " + "depth is not valid.")
+            messages.error(request, username + ", " + "post status is not valid.")
         
-        elif not depth or not depth == "each_depth":
+        elif not post_status or not post_status == "each_poststatus":
             username = "public/everyone"
 
-            messages.error(request, username + ", " + "depth is not valid.")
+            messages.error(request, username + ", " + "post status is not valid.")  
 
-        if weather and not weather == "each_weather":
-            results = Post.objects.filter(post_status = 1, post_observation__weather = weather)
-    
-        elif not weather and weather == "each_weather":
-            results = Post.objects.filter(post_status = 1)
-
-        elif not weather and not weather == "each_weather":
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "weather is not valid.")
-        
-        elif not weather or not weather == "each_weather":
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "weather is not valid.")  
-
-        if not from_date and not to_date and not depth and not weather:
+        if not from_date and not to_date and not post_status:
             username = "public/everyone"
 
             messages.error(request, username + ", " + "information filter is empty within COTSEye.")
         
-        elif not from_date or not to_date or not depth or not weather:
+        elif not from_date or not to_date or not post_status:
             username = "public/everyone"
 
             messages.error(request, username + ", " + "information filter is incomplete within COTSEye.")
@@ -144,6 +122,8 @@ def ContributorServiceReportCapture(request):
     coordinates_form = CoordinatesForm()
 
     postobservation_form = PostObservationForm()
+        
+    locations = Location.objects.all()
 
     depths = Depth.objects.all()
 
@@ -171,6 +151,14 @@ def ContributorServiceReportCapture(request):
 
             coordinates = Coordinates.objects.create(latitude = coordinates.latitude, longitude = coordinates.longitude)
             
+            location = request.POST.get("location")
+
+            try:
+                post.location = Location.objects.get(id = location)
+            
+            except:
+                post.location = None
+
             depth = request.POST.get("depth")
 
             try:
@@ -189,8 +177,8 @@ def ContributorServiceReportCapture(request):
 
             post_observation = PostObservation.objects.create(size = post_observation.size, depth = post_observation.depth, density = post_observation.density, weather = post_observation.weather)
             
-            if Coordinates.objects.filter(latitude = coordinates.latitude, longitude = coordinates.longitude).exists() and PostObservation.objects.filter(size = post_observation.size, depth = post_observation.depth, density = post_observation.density, weather = post_observation.weather).exists():
-                post = Post.objects.create(user = user, description = post.description, capture_date = post.capture_date, coordinates = coordinates, post_status = post_status, post_observation = post_observation)
+            if Coordinates.objects.filter(latitude = coordinates.latitude, longitude = coordinates.longitude).exists() and Location.objects.filter(id = location).exists() and PostObservation.objects.filter(size = post_observation.size, depth = post_observation.depth, density = post_observation.density, weather = post_observation.weather).exists():
+                post = Post.objects.create(user = user, description = post.description, capture_date = post.capture_date, coordinates = coordinates, location = post.location, post_status = post_status, post_observation = post_observation)
 
                 post_photos = request.FILES.getlist("post_photos")
 
@@ -204,6 +192,9 @@ def ContributorServiceReportCapture(request):
                 messages.success(request, username + ", " + "your information input was recorded online for COTSEye.")
                 
                 return redirect("Contributor Service Home")
+            
+            else:
+                messages.error(request, "Information input is not valid.")
         
         else:
             messages.error(request, "Information input is not valid.")
@@ -231,6 +222,8 @@ def ContributorServiceReportChoose(request):
 
     postobservation_form = PostObservationForm()
 
+    locations = Location.objects.all()
+
     depths = Depth.objects.all()
 
     weathers = Weather.objects.all()
@@ -257,6 +250,14 @@ def ContributorServiceReportChoose(request):
 
             coordinates = Coordinates.objects.create(latitude = coordinates.latitude, longitude = coordinates.longitude)
             
+            location = request.POST.get("location")
+
+            try:
+                post.location = Location.objects.get(id = location)
+            
+            except:
+                post.location = None
+
             depth = request.POST.get("depth")
 
             try:
@@ -275,8 +276,8 @@ def ContributorServiceReportChoose(request):
 
             post_observation = PostObservation.objects.create(size = post_observation.size, depth = post_observation.depth, density = post_observation.density, weather = post_observation.weather)
             
-            if Coordinates.objects.filter(latitude = coordinates.latitude, longitude = coordinates.longitude).exists() and Coordinates.objects.filter(latitude = coordinates.latitude, longitude = coordinates.longitude).exists() and PostObservation.objects.filter(size = post_observation.size, depth = post_observation.depth, density = post_observation.density, weather = post_observation.weather).exists():
-                post = Post.objects.create(user = user, description = post.description, capture_date = post.capture_date, coordinates = coordinates, post_status = post_status, post_observation = post_observation)
+            if Coordinates.objects.filter(latitude = coordinates.latitude, longitude = coordinates.longitude).exists() and Location.objects.filter(id = location).exists() and Coordinates.objects.filter(latitude = coordinates.latitude, longitude = coordinates.longitude).exists() and PostObservation.objects.filter(size = post_observation.size, depth = post_observation.depth, density = post_observation.density, weather = post_observation.weather).exists():
+                post = Post.objects.create(user = user, description = post.description, capture_date = post.capture_date, coordinates = coordinates, location = post.location, post_status = post_status, post_observation = post_observation)
 
                 post_photos = request.FILES.getlist("post_photos")
         
@@ -290,6 +291,9 @@ def ContributorServiceReportChoose(request):
                 messages.success(request, username + ", " + "your information input was recorded online for COTSEye.")
                 
                 return redirect("Contributor Service Home")
+
+            else:
+                messages.error(request, "Information input is not valid.")
         
         else:
             messages.error(request, "Information input is not valid.")
@@ -303,7 +307,7 @@ def ContributorServiceReportChoose(request):
         
         post_form = PostForm() 
 
-    context = {"username": username, "coordinates_form": coordinates_form, "depths": depths, "weathers": weathers, "postobservation_form": postobservation_form, "post_form": post_form}
+    context = {"username": username, "locations": locations, "coordinates_form": coordinates_form, "depths": depths, "weathers": weathers, "postobservation_form": postobservation_form, "post_form": post_form}
     
     return render(request, "contributor/service/report/choose.html", context)
 
@@ -329,6 +333,8 @@ def ContributorServiceReportFetch(request):
 
         longitude = information.get("longitude")
 
+        location = information.get("location")
+
         size = information.get("size")
 
         depth = information.get("depth")
@@ -340,12 +346,14 @@ def ContributorServiceReportFetch(request):
         depth = Depth.objects.get(id = depth) if depth else None
 
         weather = Weather.objects.get(id = weather) if weather else None
+
+        location = Location.objects.get(id = location) if location else None
                 
         coordinates = Coordinates.objects.create(latitude = latitude, longitude = longitude)
 
         post_observation = PostObservation.objects.create(size = size, depth = depth, density = density, weather = weather)
 
-        post = Post.objects.create(user = user, capture_date = capture_date, description = description, coordinates = coordinates, post_observation = post_observation)
+        post = Post.objects.create(user = user, capture_date = capture_date, description = description, coordinates = coordinates, location = location, post_observation = post_observation)
 
         for post_photo in post_photos:
             format, string = post_photo.split(";base64,")
@@ -357,9 +365,6 @@ def ContributorServiceReportFetch(request):
             photo = PostPhoto.objects.create(post_photo = post_photo)
                 
             post.post_photos.add(photo)
-        
-        officers = User.objects.filter(account__usertype_id = 2)
-
 
 
 @login_required(login_url = "Contributor Service Login")
@@ -415,7 +420,7 @@ def ContributorServiceReportCaptureUpdate(request, id):
             
             messages.success(request, username + ", " + "your information input was updated for COTSEye.")
             
-            return redirect("Contributor Service Post Uncertain")
+            return redirect("Contributor Service Post Draft")
 
         else:
             messages.error(request, "Information input is not valid.")
@@ -475,7 +480,7 @@ def ContributorServiceReportChooseUpdate(request, id):
             
             messages.success(request, username + ", " + "your information input was updated for COTSEye.")
             
-            return redirect("Contributor Service Post Uncertain")
+            return redirect("Contributor Service Post Draft")
 
         else:
             messages.error(request, "Information input is not valid.")
@@ -516,6 +521,8 @@ def ContributorServiceReportUpdateFetch(request):
             latitude = information.get("latitude")
             
             longitude = information.get("longitude")
+
+            location = information.get("location")
             
             size = information.get("size")
             
@@ -531,6 +538,8 @@ def ContributorServiceReportUpdateFetch(request):
 
             weather = Weather.objects.get(id = weather) if weather else None
 
+            location = Weather.objects.get(id = location) if location else None
+
             post_observation = PostObservation.objects.create(size = size, depth = depth, density = density, weather = weather)
             
             post = Post.objects.get(id = id, user = user)
@@ -542,6 +551,8 @@ def ContributorServiceReportUpdateFetch(request):
             post.coordinates.delete()
 
             post.coordinates = coordinates
+
+            post.location = location
 
             post.post_observation.delete()
 
@@ -575,69 +586,21 @@ def ContributorServiceReportUpdateFetch(request):
 def ContributorServicePost(request):
     username = request.user.username
 
-    valid_posts = Post.objects.filter(user = request.user.user, post_status = 1)
+    options = PostStatus.objects.all()
 
-    try:
-        valid_date = Post.objects.filter(user = request.user.user, post_status = 1).latest("capture_date")
-        
-    except:
-        valid_date = None
-
-    invalid_posts = Post.objects.filter(user = request.user.user, post_status = 2)
-
-    try:
-        invalid_date = Post.objects.filter(user = request.user.user, post_status = 2).latest("capture_date")
-        
-    except:
-        invalid_date = None
-
-    uncertain_posts = Post.objects.filter(user = request.user.user, post_status = 3)
-
-    try:
-        uncertain_date = Post.objects.filter(user = request.user.user, post_status = 3).latest("capture_date")
-
-    except:
-        uncertain_date = None
-    
-    draft_posts = Post.objects.filter(user = request.user.user, post_status = 4)
-
-    try:
-        draft_date = Post.objects.filter(user = request.user.user, post_status = 4).latest("capture_date")
-
-    except:
-        draft_date = None
-
-    context = {"username": username, "valid_posts": valid_posts, "valid_date": valid_date, "invalid_posts": invalid_posts, "invalid_date": invalid_date, "uncertain_posts": uncertain_posts, "uncertain_date": uncertain_date, "draft_posts": draft_posts, "draft_date": draft_date}
-    
-    return render(request, "contributor/service/post/post.html", context)
-
-
-@login_required(login_url = "Contributor Service Login")
-@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
-def ContributorServicePostFeed(request):
-    username = request.user.username
-
-    options = Post.objects.all()
-
-    records = Post.objects.filter(post_status = 1)
+    records = Post.objects.filter(user = request.user.user)
 
     results = None
     
     if request.method == "GET":
         from_date = request.GET.get("from_date")
-
-        from_date = datetime.datetime.strptime(from_date, "%Y-%m-%d") if from_date else None
         
         to_date = request.GET.get("to_date")
 
-        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
-
-        depth = request.GET.get("depth")
-
-        weather = request.GET.get("weather")
+        post_status = request.GET.get("post_status")
 
         if from_date and to_date:
-            results = Post.objects.filter(user = request.user.user, post_status = 1, capture_date__range = [from_date, to_date])
+            results = Post.objects.filter(capture_date__range = [from_date, to_date])
 
         elif from_date and to_date and to_date < from_date:
             username = request.user.username
@@ -645,49 +608,144 @@ def ContributorServicePostFeed(request):
             messages.error(request, username + ", " + "date range is not valid.")
         
         elif not from_date and not to_date:
-            messages.error(request, "Date range is not valid.")
+            messages.error(request, username + ", " + "date range is not valid.")
 
         elif not from_date or not to_date:
-            messages.error(request, "Date range is not valid.")
-        
-        if depth and not depth == "each_depth":
-            results = Post.objects.filter(post_status = 1, post_observation__depth = depth)
+            messages.error(request, username + ", " + "date range is not valid.")
+
+        if post_status and not post_status == "each_poststatus":
+            results = Post.objects.filter(capture_date__range = [from_date, to_date], post_status = post_status)
     
-        elif not depth and depth == "each_depth":
-            results = Post.objects.filter(post_status = 1)
+        elif not post_status and post_status == "each_poststatus":
+            results = Post.objects.all()
 
-        elif not depth and not depth == "each_depth":
+        elif not post_status and not post_status == "each_poststatus":
             username = request.user.username
 
-            messages.error(request, username + ", " + "depth is not valid.")
+            messages.error(request, username + ", " + "post status is not valid.")
         
-        elif not depth or not depth == "each_depth":
+        elif not post_status or not post_status == "each_poststatus":
             username = request.user.username
 
-            messages.error(request, username + ", " + "depth is not valid.")
+            messages.error(request, username + ", " + "post status is not valid.")  
 
-        if weather and not weather == "each_weather":
-            results = Post.objects.filter(post_status = 1, post_observation__weather = weather)
-    
-        elif not weather and weather == "each_weather":
-            results = Post.objects.filter(post_status = 1)
-
-        elif not weather and not weather == "each_weather":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "weather is not valid.")
-        
-        elif not weather or not weather == "each_weather":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "weather is not valid.")  
-
-        if not from_date and not to_date and not depth and not weather:
+        if not from_date and not to_date and not post_status:
             username = request.user.username
 
             messages.error(request, username + ", " + "information filter is empty within COTSEye.")
         
-        elif not from_date or not to_date or not depth or not weather:
+        elif not from_date or not to_date or not post_status:
+            username = request.user.username
+
+            messages.error(request, username + ", " + "information filter is incomplete within COTSEye.")
+
+        if results is None:
+            username = request.user.username
+
+            messages.info(request, username + ", " + "kindly filter posts within COTSEye to generate for reports today.")
+
+        elif not results:
+            username = request.user.username
+
+            messages.error(request, username + ", " + "information input is impossible within COTSEye.")
+
+    context = {"username": username, "records": records, "results": results, "options": options}
+    
+    return render(request, "contributor/service/post/post.html", context)
+
+
+@login_required(login_url = "Contributor Service Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
+def ContributorServicePostRead(request, id):
+    username = request.user.username
+
+    scheme = request.scheme
+
+    host = request.META["HTTP_HOST"]
+
+    try:
+        valid_post = Post.objects.get(id = id, user = request.user.user, post_status = 1)
+    
+    except:
+        valid_post = None
+
+    try:
+        invalid_post = Post.objects.get(id = id, user = request.user.user, post_status = 2)
+    
+    except:
+        invalid_post = None
+
+    try:
+        pending_post = Post.objects.get(id = id, user = request.user.user, post_status = 3)
+    
+    except:
+        pending_post = None
+
+    try:
+        draft_post = Post.objects.get(id = id, user = request.user.user, post_status = 4)
+    
+    except:
+        draft_post = None
+    
+    context = {"username": username, "scheme": scheme, "host": host, "valid_post": valid_post, "invalid_post": invalid_post, "pending_post": pending_post, "draft_post": draft_post}
+    
+    return render(request, "contributor/service/post/read.html", context)
+
+
+@login_required(login_url = "Contributor Service Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
+def ContributorServicePostFeed(request):
+    username = request.user.username
+
+    options = PostStatus.objects.all()
+
+    records = Post.objects.filter(post_status = 1)
+
+    results = None
+    
+    if request.method == "GET":
+        from_date = request.GET.get("from_date")
+        
+        to_date = request.GET.get("to_date")
+
+        post_status = request.GET.get("post_status")
+
+        if from_date and to_date:
+            results = Post.objects.filter(capture_date__range = [from_date, to_date])
+
+        elif from_date and to_date and to_date < from_date:
+            username = request.user.username
+
+            messages.error(request, username + ", " + "date range is not valid.")
+        
+        elif not from_date and not to_date:
+            messages.error(request, username + ", " + "date range is not valid.")
+
+        elif not from_date or not to_date:
+            messages.error(request, username + ", " + "date range is not valid.")
+
+        if post_status and not post_status == "each_poststatus":
+            results = Post.objects.filter(capture_date__range = [from_date, to_date], post_status = post_status)
+    
+        elif not post_status and post_status == "each_poststatus":
+            results = Post.objects.all()
+
+        elif not post_status and not post_status == "each_poststatus":
+            username = request.user.username
+
+            messages.error(request, username + ", " + "post status is not valid.")
+        
+        elif not post_status or not post_status == "each_poststatus":
+            username = request.user.username
+
+            messages.error(request, username + ", " + "post status is not valid.")  
+
+        if not from_date and not to_date and not post_status:
+            username = request.user.username
+
+            messages.error(request, username + ", " + "information filter is empty within COTSEye.")
+        
+        elif not from_date or not to_date or not post_status:
             username = request.user.username
 
             messages.error(request, username + ", " + "information filter is incomplete within COTSEye.")
@@ -719,224 +777,6 @@ def ContributorServicePostFeedRead(request, id):
     valid_post = Post.objects.get(id = id, post_status = 1)
     
     context = {"username": username, "scheme": scheme, "host": host, "valid_post": valid_post}
-    
-    return render(request, "contributor/service/post/read.html", context)
-
-
-@login_required(login_url = "Contributor Service Login")
-@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
-def ContributorServicePostValid(request):
-    username = request.user.username
-
-    options = Post.objects.all()
-
-    records = Post.objects.filter(user = request.user.user, post_status = 1)
-
-    results = None
-    
-    if request.method == "GET":
-        from_date = request.GET.get("from_date")
-
-        from_date = datetime.datetime.strptime(from_date, "%Y-%m-%d") if from_date else None
-        
-        to_date = request.GET.get("to_date")
-
-        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
-
-        depth = request.GET.get("depth")
-
-        weather = request.GET.get("weather")
-
-        if from_date and to_date:
-            results = Post.objects.filter(post_status = 1, capture_date__range = [from_date, to_date])
-
-        elif from_date and to_date and to_date < from_date:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "date range is not valid.")
-        
-        elif not from_date and not to_date:
-            messages.error(request, "Date range is not valid.")
-
-        elif not from_date or not to_date:
-            messages.error(request, "Date range is not valid.")
-        
-        if depth and not depth == "each_depth":
-            results = Post.objects.filter(post_status = 1, post_observation__depth = depth)
-    
-        elif not depth and depth == "each_depth":
-            results = Post.objects.filter(post_status = 1)
-
-        elif not depth and not depth == "each_depth":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "depth is not valid.")
-        
-        elif not depth or not depth == "each_depth":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "depth is not valid.")
-
-        if weather and not weather == "each_weather":
-            results = Post.objects.filter(post_status = 1, post_observation__weather = weather)
-    
-        elif not weather and weather == "each_weather":
-            results = Post.objects.filter(post_status = 1)
-
-        elif not weather and not weather == "each_weather":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "weather is not valid.")
-        
-        elif not weather or not weather == "each_weather":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "weather is not valid.")  
-
-        if not from_date and not to_date and not depth and not weather:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information filter is empty within COTSEye.")
-        
-        elif not from_date or not to_date or not depth or not weather:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information filter is incomplete within COTSEye.")
-
-        if results is None:
-            username = request.user.username
-
-            messages.info(request, username + ", " + "kindly filter posts within COTSEye to generate for reports today.")
-
-        elif not results:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information input is impossible within COTSEye.")
-
-    context = {"username": username, "records": records, "results": results, "options": options}
-    
-    return render(request, "contributor/service/post/valid.html", context)
-
-
-@login_required(login_url = "Contributor Service Login")
-@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
-def ContributorServicePostValidRead(request, id):
-    username = request.user.username
-
-    scheme = request.scheme
-
-    host = request.META["HTTP_HOST"]
-
-    valid_post = Post.objects.get(id = id, post_status = 1)
-    
-    context = {"username": username, "scheme": scheme, "host": host, "valid_post": valid_post}
-    
-    return render(request, "contributor/service/post/read.html", context)
-
-
-@login_required(login_url = "Contributor Service Login")
-@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
-def ContributorServicePostInvalid(request):  
-    username = request.user.username
-
-    options = Post.objects.all()
-    
-    records = Post.objects.filter(user = request.user.user, post_status = 2)
-
-    results = None
-    
-    if request.method == "GET":
-        from_date = request.GET.get("from_date")
-
-        from_date = datetime.datetime.strptime(from_date, "%Y-%m-%d") if from_date else None
-        
-        to_date = request.GET.get("to_date")
-
-        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
-
-        depth = request.GET.get("depth")
-
-        weather = request.GET.get("weather")
-
-        if from_date and to_date:
-            results = Post.objects.filter(user = request.user.user, post_status = 2, capture_date__range = [from_date, to_date])
-
-        elif from_date and to_date and to_date < from_date:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "date range is not valid.")
-        
-        elif not from_date and not to_date:
-            messages.error(request, "Date range is not valid.")
-
-        elif not from_date or not to_date:
-            messages.error(request, "Date range is not valid.")
-        
-        if depth and not depth == "each_depth":
-            results = Post.objects.filter(user = request.user.user, post_status = 2, post_observation__depth = depth)
-    
-        elif not depth and depth == "each_depth":
-            results = Post.objects.filter(user = request.user.user, post_status = 2)
-
-        elif not depth and not depth == "each_depth":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "depth is not valid.")
-        
-        elif not depth or not depth == "each_depth":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "depth is not valid.")
-
-        if weather and not weather == "each_weather":
-            results = Post.objects.filter(user = request.user.user, post_status = 2, post_observation__weather = weather)
-    
-        elif not weather and weather == "each_weather":
-            results = Post.objects.filter(user = request.user.user, post_status = 2)
-
-        elif not weather and not weather == "each_weather":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "weather is not valid.")
-        
-        elif not weather or not weather == "each_weather":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "weather is not valid.")  
-
-        if not from_date and not to_date and not depth and not weather:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information filter is empty within COTSEye.")
-        
-        elif not from_date or not to_date or not depth or not weather:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information filter is incomplete within COTSEye.")
-
-        if results is None:
-            username = request.user.username
-
-            messages.info(request, username + ", " + "kindly filter posts within COTSEye to generate for reports today.")
-
-        elif not results:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information input is impossible within COTSEye.")
-
-    context = {"username": username, "records": records, "results": results, "options": options}
-    
-    return render(request, "contributor/service/post/invalid.html", context)
-
-
-@login_required(login_url = "Contributor Service Login")
-@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
-def ContributorServicePostInvalidRead(request, id):
-    username = request.user.username
-
-    invalid_post = Post.objects.get(id = id, user = request.user.user, post_status = 2)
-    
-    context = {"username": username, "invalid_post": invalid_post}
     
     return render(request, "contributor/service/post/read.html", context)
 
@@ -989,221 +829,6 @@ def ContributorServicePostInvalidDeleteFetch(request):
                 post_photo.delete()
             
             post.delete()
-
-
-@login_required(login_url = "Contributor Service Login")
-@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
-def ContributorServicePostUncertain(request):
-    username = request.user.username
-
-    options = Post.objects.all()
-
-    records = Post.objects.filter(user = request.user.user, post_status = 3)
-
-    results = None
-    
-    if request.method == "GET":
-        from_date = request.GET.get("from_date")
-
-        from_date = datetime.datetime.strptime(from_date, "%Y-%m-%d") if from_date else None
-        
-        to_date = request.GET.get("to_date")
-
-        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
-
-        depth = request.GET.get("depth")
-
-        weather = request.GET.get("weather")
-
-        if from_date and to_date:
-            results = Post.objects.filter(user = request.user.user, post_status = 3, capture_date__range = [from_date, to_date])
-
-        elif from_date and to_date and to_date < from_date:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "date range is not valid.")
-        
-        elif not from_date and not to_date:
-            messages.error(request, "Date range is not valid.")
-
-        elif not from_date or not to_date:
-            messages.error(request, "Date range is not valid.")
-        
-        if depth and not depth == "each_depth":
-            results = Post.objects.filter(user = request.user.user, post_status = 3, post_observation__depth = depth)
-    
-        elif not depth and depth == "each_depth":
-            results = Post.objects.filter(user = request.user.user, post_status = 3)
-
-        elif not depth and not depth == "each_depth":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "depth is not valid.")
-        
-        elif not depth or not depth == "each_depth":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "depth is not valid.")
-
-        if weather and not weather == "each_weather":
-            results = Post.objects.filter(user = request.user.user, post_status = 3, post_observation__weather = weather)
-    
-        elif not weather and weather == "each_weather":
-            results = Post.objects.filter(user = request.user.user, post_status = 3)
-
-        elif not weather and not weather == "each_weather":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "weather is not valid.")
-        
-        elif not weather or not weather == "each_weather":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "weather is not valid.")  
-
-        if not from_date and not to_date and not depth and not weather:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information filter is empty within COTSEye.")
-        
-        elif not from_date or not to_date or not depth or not weather:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information filter is incomplete within COTSEye.")
-
-        if results is None:
-            username = request.user.username
-
-            messages.info(request, username + ", " + "kindly filter posts within COTSEye to generate for reports today.")
-
-        elif not results:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information input is impossible within COTSEye.")
-
-    context = {"username": username, "records": records, "results": results, "options": options}
-
-    return render(request, "contributor/service/post/uncertain.html", context)
-
-
-@login_required(login_url = "Contributor Service Login")
-@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
-def ContributorServicePostUncertainRead(request, id):
-    username = request.user.username
-
-    uncertain_post = Post.objects.get(id = id, user = request.user.user, post_status = 3)
-    
-    context = {"username": username, "uncertain_post": uncertain_post}
-    
-    return render(request, "contributor/service/post/read.html", context)
-
-
-@login_required(login_url = "Contributor Service Login")
-@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
-def ContributorServicePostDraft(request):
-    username = request.user.username
-
-    options = Post.objects.all()
-
-    records = Post.objects.filter(user = request.user.user, post_status = 4)
-
-    results = None
-    
-    if request.method == "GET":
-        from_date = request.GET.get("from_date")
-
-        from_date = datetime.datetime.strptime(from_date, "%Y-%m-%d") if from_date else None
-        
-        to_date = request.GET.get("to_date")
-
-        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
-
-        depth = request.GET.get("depth")
-
-        weather = request.GET.get("weather")
-
-        if not any(message.level in [messages.INFO, messages.SUCCESS, messages.ERROR] for message in messages.get_messages(request)):
-            if from_date and to_date:
-                results = Post.objects.filter(user = request.user.user, post_status = 4, capture_date__range = [from_date, to_date])
-
-            elif from_date and to_date and to_date < from_date:
-                username = request.user.username
-
-                messages.error(request, username + ", " + "date range is not valid.")
-            
-            elif not from_date and not to_date:
-                messages.error(request, "Date range is not valid.")
-
-            elif not from_date or not to_date:
-                messages.error(request, "Date range is not valid.")
-            
-            if depth and not depth == "each_depth":
-                results = Post.objects.filter(user = request.user.user, post_status = 4, post_observation__depth = depth)
-        
-            elif not depth and depth == "each_depth":
-                results = Post.objects.filter(user = request.user.user, post_status = 4)
-
-            elif not depth and not depth == "each_depth":
-                username = request.user.username
-
-                messages.error(request, username + ", " + "depth is not valid.")
-            
-            elif not depth or not depth == "each_depth":
-                username = request.user.username
-
-                messages.error(request, username + ", " + "depth is not valid.")
-
-            if weather and not weather == "each_weather":
-                results = Post.objects.filter(user = request.user.user, post_status = 4, post_observation__weather = weather)
-        
-            elif not weather and weather == "each_weather":
-                results = Post.objects.filter(user = request.user.user, post_status = 4)
-
-            elif not weather and not weather == "each_weather":
-                username = request.user.username
-
-                messages.error(request, username + ", " + "weather is not valid.")
-            
-            elif not weather or not weather == "each_weather":
-                username = request.user.username
-
-                messages.error(request, username + ", " + "weather is not valid.")  
-
-            if not from_date and not to_date and not depth and not weather:
-                username = request.user.username
-
-                messages.error(request, username + ", " + "information filter is empty within COTSEye.")
-            
-            elif not from_date or not to_date or not depth or not weather:
-                username = request.user.username
-
-                messages.error(request, username + ", " + "information filter is incomplete within COTSEye.")
-
-            if results is None:
-                username = request.user.username
-
-                messages.info(request, username + ", " + "kindly filter posts within COTSEye to generate for reports today.")
-
-            elif not results:
-                username = request.user.username
-
-                messages.error(request, username + ", " + "information input is impossible within COTSEye.")
-
-    context = {"username": username, "records": records, "results": results, "options": options}
-
-    return render(request, "contributor/service/post/draft.html", context)
-
-
-@login_required(login_url = "Contributor Service Login")
-@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
-def ContributorServicePostDraftRead(request, id):
-    username = request.user.username
-
-    draft_post = Post.objects.get(id = id, user = request.user.user, post_status = 4)
-    
-    context = {"username": username, "draft_post": draft_post}
-    
-    return render(request, "contributor/service/post/read.html", context)
 
 
 @login_required(login_url = "Contributor Service Login")
@@ -1625,7 +1250,7 @@ def OfficerControlStatisticsPost(request):
             messages.error(request, username + ", " + "user is not valid.") 
 
         if post_status and not post_status == "each_poststatus":
-            results = Post.objects.filter(post_status = post_status)[:50]
+            results = Post.objects.filter(capture_date__range = [from_date, to_date], post_status = post_status)[:50]
     
         elif not post_status and post_status == "each_poststatus":
             results = Post.objects.all()[:50]
@@ -1641,10 +1266,10 @@ def OfficerControlStatisticsPost(request):
             messages.error(request, username + ", " + "post status is not valid.") 
         
         if depth and not depth == "each_depth":
-            results = Post.objects.filter(post_observation__depth = depth)
+            results = Post.objects.filter(capture_date__range = [from_date, to_date], post_observation__depth = depth)
     
         elif not depth and depth == "each_depth":
-            results = Post.objects.all()
+            results = Post.objects.all()[:50]
 
         elif not depth and not depth == "each_depth":
             username = request.user.username
@@ -1657,10 +1282,10 @@ def OfficerControlStatisticsPost(request):
             messages.error(request, username + ", " + "depth is not valid.")
 
         if weather and not weather == "each_weather":
-            results = Post.objects.filter(post_observation__weather = weather)
+            results = Post.objects.filter(capture_date__range = [from_date, to_date], post_observation__weather = weather)
     
         elif not weather and weather == "each_weather":
-            results = Post.objects.all()
+            results = Post.objects.all()[:50]
 
         elif not weather and not weather == "each_weather":
             username = request.user.username
@@ -2281,7 +1906,7 @@ def AdministratorControlStatisticsPost(request):
             messages.error(request, username + ", " + "user is not valid.") 
 
         if post_status and not post_status == "each_poststatus":
-            results = Post.objects.filter(post_status = post_status)[:50]
+            results = Post.objects.filter(capture_date__range = [from_date, to_date], post_status = post_status)[:50]
     
         elif not post_status and post_status == "each_poststatus":
             results = Post.objects.all()[:50]
@@ -2297,10 +1922,10 @@ def AdministratorControlStatisticsPost(request):
             messages.error(request, username + ", " + "post status is not valid.") 
         
         if depth and not depth == "each_depth":
-            results = Post.objects.filter(post_observation__depth = depth)
+            results = Post.objects.filter(capture_date__range = [from_date, to_date], post_observation__depth = depth)
     
         elif not depth and depth == "each_depth":
-            results = Post.objects.all()
+            results = Post.objects.all()[:50]
 
         elif not depth and not depth == "each_depth":
             username = request.user.username
@@ -2313,10 +1938,10 @@ def AdministratorControlStatisticsPost(request):
             messages.error(request, username + ", " + "depth is not valid.")
 
         if weather and not weather == "each_weather":
-            results = Post.objects.filter(post_observation__weather = weather)
+            results = Post.objects.filter(capture_date__range = [from_date, to_date], post_observation__weather = weather)
     
         elif not weather and weather == "each_weather":
-            results = Post.objects.all()
+            results = Post.objects.all()[:50]
 
         elif not weather and not weather == "each_weather":
             username = request.user.username

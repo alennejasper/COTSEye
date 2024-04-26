@@ -46,40 +46,7 @@
     box-shadow: 0 0 0 1px #B2BEB5 !important;
 }
 
-.post#valid .card-header{
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    border-top-left-radius: 5px !important;
-    border-top-right-radius: 5px !important;
-    background-color: #698F3F;
-    display: grid;
-}
-
-.post#invalid .card-header{
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    border-top-left-radius: 5px !important;
-    border-top-right-radius: 5px !important;
-    background-color: #C90016;
-    display: grid;
-}
-
-.post#uncertain .card-header{
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    border-top-left-radius: 5px !important;
-    border-top-right-radius: 5px !important;
-    background-color: #C39C26;
-    display: grid;
-}
-
-.post#draft .card-header{
+.post#post-filter .card-header{
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 15px;
@@ -90,7 +57,7 @@
     display: grid;
 }
 
-.post .card-header header{
+.post#post-filter .card-header header{
     font-family: "Philosopher";
     font-weight: 700;
     font-size: 22px !important;
@@ -100,7 +67,7 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-header header{
+    .post#post-filter .card-header header{
         font-family: "Philosopher";
         font-weight: 700;
         font-size: 20px !important;
@@ -111,7 +78,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-header header{
+    .post#post-filter .card-header header{
         font-family: "Philosopher";
         font-weight: 700;
         font-size: 18px !important;
@@ -122,7 +89,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-header header{
+    .post#post-filter .card-header header{
         font-family: "Philosopher";
         font-weight: 700;
         font-size: 16px !important;
@@ -132,7 +99,7 @@
     }
 }
 
-.post .card-body{
+.post#post-filter .card-body{
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 15px;
@@ -144,41 +111,41 @@
     background-color: #FFFFFF;
 }
 
-.post .card-body .field{
+.post#post-filter .card-body .field{
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
 }
 
 @media screen and (min-width: 446px) and (max-width: 775px){
-    .post .card-body .field{        
+    .post#post-filter .card-body .field{        
         grid-template-columns: 100%;
         gap: 0px;
     }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field{        
+    .post#post-filter .card-body .field{        
         grid-template-columns: 100%;
         gap: 0px;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field{        
+    .post#post-filter .card-body .field{        
         grid-template-columns: 100%;
         gap: 0px;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field{        
+    .post#post-filter .card-body .field{        
         grid-template-columns: 100%;
         gap: 0px;
     }
 }
 
-.post .card-body .field .column label[for = "valid-posts"]{
+.post#post-filter .card-body .field .column label[for = "from-date"]{
     margin-top: 0px;
     display: inline-block;
     font-family: "Overlock";
@@ -188,8 +155,8 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column label[for = "valid-posts"]{
-        margin-top: 15px !important;
+    .post#post-filter .card-body .field .column label[for = "from-date"]{
+        margin-top: 0px;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
@@ -199,8 +166,8 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column label[for = "valid-posts"]{
-        margin-top: 15px !important;
+    .post#post-filter .card-body .field .column label[for = "from-date"]{
+        margin-top: 0px;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
@@ -210,8 +177,8 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column label[for = "valid-posts"]{
-        margin-top: 15px !important;
+    .post#post-filter .card-body .field .column label[for = "from-date"]{
+        margin-top: 0px;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
@@ -220,13 +187,13 @@
     }
 }
 
-.post .card-body .field .column .valid-posts{
+.post#post-filter .card-body .field .column .from-date{
     position: relative;
 }
 
-.post .card-body .field .column .valid-posts input{
+.post#post-filter .card-body .field .column .from-date input[type = "date"]{
     padding-left: 10px !important;
-    padding-right: 40px !important;
+    padding-right: 10px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -238,16 +205,19 @@
     font-weight: 700 !important;
     font-size: 20px !important;   
     color: #154360 !important;
+    background: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '20' height = '20' viewBox = '0 0 448 512' fill = '%23154360'> <path d = 'M96 32V64H48C21.5 64 0 85.5 0 112v48H448V112c0-26.5-21.5-48-48-48H352V32c0-17.7-14.3-32-32-32s-32 14.3-32 32V64H160V32c0-17.7-14.3-32-32-32S96 14.3 96 32zM448 192H0V464c0 26.5 21.5 48 48 48H400c26.5 0 48-21.5 48-48V192zM224 248c13.3 0 24 10.7 24 24v56h56c13.3 0 24 10.7 24 24s-10.7 24-24 24H248v56c0 13.3-10.7 24-24 24s-24-10.7-24-24V376H144c-13.3 0-24-10.7-24-24s10.7-24 24-24h56V272c0-13.3 10.7-24 24-24z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center; 
 }
 
-.post .card-body .field .column .valid-posts input:focus{
+.post#post-filter .card-body .field .column .from-date input[type = "date"]:focus{
     border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column .valid-posts input{
+    .post#post-filter .card-body .field .column .from-date input[type = "date"]{
         padding-left: 10px !important;
-        padding-right: 38px !important;
+        padding-right: 10px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -259,13 +229,16 @@
         font-weight: 700 !important;
         font-size: 18px !important;   
         color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '18' height = '18' viewBox = '0 0 448 512' fill = '%23154360'> <path d = 'M96 32V64H48C21.5 64 0 85.5 0 112v48H448V112c0-26.5-21.5-48-48-48H352V32c0-17.7-14.3-32-32-32s-32 14.3-32 32V64H160V32c0-17.7-14.3-32-32-32S96 14.3 96 32zM448 192H0V464c0 26.5 21.5 48 48 48H400c26.5 0 48-21.5 48-48V192zM224 248c13.3 0 24 10.7 24 24v56h56c13.3 0 24 10.7 24 24s-10.7 24-24 24H248v56c0 13.3-10.7 24-24 24s-24-10.7-24-24V376H144c-13.3 0-24-10.7-24-24s10.7-24 24-24h56V272c0-13.3 10.7-24 24-24z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column .valid-posts input{
+    .post#post-filter .card-body .field .column .from-date input[type = "date"]{
         padding-left: 10px !important;
-        padding-right: 36px !important;
+        padding-right: 10px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -277,13 +250,16 @@
         font-weight: 700 !important;
         font-size: 16px !important;   
         color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '16' height = '16' viewBox = '0 0 448 512' fill = '%23154360'> <path d = 'M96 32V64H48C21.5 64 0 85.5 0 112v48H448V112c0-26.5-21.5-48-48-48H352V32c0-17.7-14.3-32-32-32s-32 14.3-32 32V64H160V32c0-17.7-14.3-32-32-32S96 14.3 96 32zM448 192H0V464c0 26.5 21.5 48 48 48H400c26.5 0 48-21.5 48-48V192zM224 248c13.3 0 24 10.7 24 24v56h56c13.3 0 24 10.7 24 24s-10.7 24-24 24H248v56c0 13.3-10.7 24-24 24s-24-10.7-24-24V376H144c-13.3 0-24-10.7-24-24s10.7-24 24-24h56V272c0-13.3 10.7-24 24-24z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column .valid-posts input{
+    .post#post-filter .card-body .field .column .from-date input[type = "date"]{
         padding-left: 10px !important;
-        padding-right: 34px !important;
+        padding-right: 10px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -295,61 +271,66 @@
         font-weight: 700 !important;
         font-size: 14px !important;   
         color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '14' height = '14' viewBox = '0 0 448 512' fill = '%23154360'> <path d = 'M96 32V64H48C21.5 64 0 85.5 0 112v48H448V112c0-26.5-21.5-48-48-48H352V32c0-17.7-14.3-32-32-32s-32 14.3-32 32V64H160V32c0-17.7-14.3-32-32-32S96 14.3 96 32zM448 192H0V464c0 26.5 21.5 48 48 48H400c26.5 0 48-21.5 48-48V192zM224 248c13.3 0 24 10.7 24 24v56h56c13.3 0 24 10.7 24 24s-10.7 24-24 24H248v56c0 13.3-10.7 24-24 24s-24-10.7-24-24V376H144c-13.3 0-24-10.7-24-24s10.7-24 24-24h56V272c0-13.3 10.7-24 24-24z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
     }
 }
 
-.post .card-body .field .column .valid-posts i{
-    right: 10px;
-    top: 50%;
-    position: absolute;
-    display: grid;
-    place-items: center;
-    font-size: 20px;
+/* .post#post-filter .card-body .field .column .from-date input[type = "date"]::-webkit-calendar-picker-indicator{
+    filter: invert(22%) sepia(7%) saturate(6538%) hue-rotate(164deg) brightness(89%) contrast(90%);
+}
+
+.post#post-filter .card-body .field .column .from-date input[type = "date"]:inpost::-webkit-datetime-edit{
+    color: #154360 !important;
+}
+
+.post#post-filter .card-body .field .column .from-date input[type = "date"]::-webkit-datetime-edit-day-field{
     color: #154360;
-    transform: translateY(-50%);
+    background-color: #FFFFFF;
+    outline: none;
 }
 
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column .valid-posts i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 18px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
+.post#post-filter .card-body .field .column .from-date input[type = "date"]::-webkit-datetime-edit-month-field{
+    color: #154360;
+    background-color: #FFFFFF;
+    outline: none;
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column .valid-posts i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 16px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
+.post#post-filter .card-body .field .column .from-date input[type = "date"]::-webkit-datetime-edit-year-field{
+    color: #154360;
+    background-color: #FFFFFF;
+    outline: none;
 }
 
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column .valid-posts i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 14px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
+.post#post-filter .card-body .field .column .from-date input[type = "date"]::-webkit-datetime-edit-day-field:focus{
+    background-color: #154360 !important;
+    color: #FFFFFF !important;
+    outline: none;
 }
 
-.post .card-body .field .column label[for = "valid-date"]{
-    margin-top: 0px;
+.post#post-filter .card-body .field .column .from-date input[type = "date"]::-webkit-datetime-edit-month-field:focus{
+    background-color: #154360 !important;
+    color: #FFFFFF !important;
+    outline: none;
+}
+
+.post#post-filter .card-body .field .column .from-date input[type = "date"]::-webkit-datetime-edit-year-field:focus{
+    background-color: #154360 !important;
+    color: #FFFFFF !important;
+    outline: none;
+} */
+
+.post#post-filter .card-body .field .column .from-date input[type = "date"]::-webkit-inner-spin-button{
+    display: none !important;
+}
+
+.post#post-filter .card-body .field .column .from-date input[type = "date"]::-webkit-calendar-picker-indicator{
+    opacity: 0 !important;
+}
+
+.post#post-filter .card-body .field .column label[for = "to-date"]{
+    margin-top: 15px;
     display: inline-block;
     font-family: "Overlock";
     font-weight: 400;
@@ -358,177 +339,7 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column label[for = "valid-date"]{
-        margin-top: 0px;
-        display: inline-block;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 18px !important;
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column label[for = "valid-date"]{
-        margin-top: 0px;
-        display: inline-block;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 16px !important;
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column label[for = "valid-date"]{
-        margin-top: 0px;
-        display: inline-block;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 14px !important;
-        color: #154360 !important;
-    }
-}
-
-.post .card-body .field .column .valid-date{
-    position: relative;
-}
-
-.post .card-body .field .column .valid-date input{
-    padding-left: 10px !important;
-    padding-right: 40px !important;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
-    width: 100%;
-    border: 1px solid #B2BEB5;
-    border-radius: 5px; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
-    outline: none !important;
-    font-family: "Philosopher";
-    font-weight: 700 !important;
-    font-size: 20px !important;   
-    color: #154360 !important;
-}
-
-.post .card-body .field .column .valid-date input:focus{
-    border-bottom-width: 2.5px !important;
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column .valid-date input{
-        padding-left: 10px !important;
-        padding-right: 38px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Philosopher";
-        font-weight: 700 !important;
-        font-size: 18px !important;   
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column .valid-date input{
-        padding-left: 10px !important;
-        padding-right: 36px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Philosopher";
-        font-weight: 700 !important;
-        font-size: 16px !important;   
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column .valid-date input{
-        padding-left: 10px !important;
-        padding-right: 34px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Philosopher";
-        font-weight: 700 !important;
-        font-size: 14px !important;   
-        color: #154360 !important;
-    }
-}
-
-.post .card-body .field .column .valid-date i{
-    right: 10px;
-    top: 50%;
-    position: absolute;
-    display: grid;
-    place-items: center;
-    font-size: 20px;
-    color: #154360;
-    transform: translateY(-50%);
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column .valid-date i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 18px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column .valid-date i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 16px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column .valid-date i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 14px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-.post .card-body .field .column label[for = "invalid-posts"]{
-    margin-top: 0px;
-    display: inline-block;
-    font-family: "Overlock";
-    font-weight: 400;
-    font-size: 20px !important;
-    color: #154360 !important;
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column label[for = "invalid-posts"]{
+    .post#post-filter .card-body .field .column label[for = "to-date"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -539,7 +350,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column label[for = "invalid-posts"]{
+    .post#post-filter .card-body .field .column label[for = "to-date"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -550,7 +361,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column label[for = "invalid-posts"]{
+    .post#post-filter .card-body .field .column label[for = "to-date"]{
         margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
@@ -560,13 +371,13 @@
     }
 }
 
-.post .card-body .field .column .invalid-posts{
+.post#post-filter .card-body .field .column .to-date{
     position: relative;
 }
 
-.post .card-body .field .column .invalid-posts input{
+.post#post-filter .card-body .field .column .to-date input[type = "date"]{
     padding-left: 10px !important;
-    padding-right: 40px !important;
+    padding-right: 10px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
@@ -578,16 +389,19 @@
     font-weight: 700 !important;
     font-size: 20px !important;   
     color: #154360 !important;
+    background: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '20' height = '20' viewBox = '0 0 448 512' fill = '%23154360'> <path d = 'M96 32V64H48C21.5 64 0 85.5 0 112v48H448V112c0-26.5-21.5-48-48-48H352V32c0-17.7-14.3-32-32-32s-32 14.3-32 32V64H160V32c0-17.7-14.3-32-32-32S96 14.3 96 32zM448 192H0V464c0 26.5 21.5 48 48 48H400c26.5 0 48-21.5 48-48V192zM224 248c13.3 0 24 10.7 24 24v56h56c13.3 0 24 10.7 24 24s-10.7 24-24 24H248v56c0 13.3-10.7 24-24 24s-24-10.7-24-24V376H144c-13.3 0-24-10.7-24-24s10.7-24 24-24h56V272c0-13.3 10.7-24 24-24z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center; 
 }
 
-.post .card-body .field .column .invalid-posts input:focus{
+.post#post-filter .card-body .field .column .to-date input[type = "date"]:focus{
     border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column .invalid-posts input{
+    .post#post-filter .card-body .field .column .to-date input[type = "date"]{
         padding-left: 10px !important;
-        padding-right: 38px !important;
+        padding-right: 10px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -599,13 +413,16 @@
         font-weight: 700 !important;
         font-size: 18px !important;   
         color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '18' height = '18' viewBox = '0 0 448 512' fill = '%23154360'> <path d = 'M96 32V64H48C21.5 64 0 85.5 0 112v48H448V112c0-26.5-21.5-48-48-48H352V32c0-17.7-14.3-32-32-32s-32 14.3-32 32V64H160V32c0-17.7-14.3-32-32-32S96 14.3 96 32zM448 192H0V464c0 26.5 21.5 48 48 48H400c26.5 0 48-21.5 48-48V192zM224 248c13.3 0 24 10.7 24 24v56h56c13.3 0 24 10.7 24 24s-10.7 24-24 24H248v56c0 13.3-10.7 24-24 24s-24-10.7-24-24V376H144c-13.3 0-24-10.7-24-24s10.7-24 24-24h56V272c0-13.3 10.7-24 24-24z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column .invalid-posts input{
+    .post#post-filter .card-body .field .column .to-date input[type = "date"]{
         padding-left: 10px !important;
-        padding-right: 36px !important;
+        padding-right: 10px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -617,13 +434,16 @@
         font-weight: 700 !important;
         font-size: 16px !important;   
         color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '16' height = '16' viewBox = '0 0 448 512' fill = '%23154360'> <path d = 'M96 32V64H48C21.5 64 0 85.5 0 112v48H448V112c0-26.5-21.5-48-48-48H352V32c0-17.7-14.3-32-32-32s-32 14.3-32 32V64H160V32c0-17.7-14.3-32-32-32S96 14.3 96 32zM448 192H0V464c0 26.5 21.5 48 48 48H400c26.5 0 48-21.5 48-48V192zM224 248c13.3 0 24 10.7 24 24v56h56c13.3 0 24 10.7 24 24s-10.7 24-24 24H248v56c0 13.3-10.7 24-24 24s-24-10.7-24-24V376H144c-13.3 0-24-10.7-24-24s10.7-24 24-24h56V272c0-13.3 10.7-24 24-24z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column .invalid-posts input{
+    .post#post-filter .card-body .field .column .to-date input[type = "date"]{
         padding-left: 10px !important;
-        padding-right: 34px !important;
+        padding-right: 10px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: 100%;
@@ -635,61 +455,66 @@
         font-weight: 700 !important;
         font-size: 14px !important;   
         color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '14' height = '14' viewBox = '0 0 448 512' fill = '%23154360'> <path d = 'M96 32V64H48C21.5 64 0 85.5 0 112v48H448V112c0-26.5-21.5-48-48-48H352V32c0-17.7-14.3-32-32-32s-32 14.3-32 32V64H160V32c0-17.7-14.3-32-32-32S96 14.3 96 32zM448 192H0V464c0 26.5 21.5 48 48 48H400c26.5 0 48-21.5 48-48V192zM224 248c13.3 0 24 10.7 24 24v56h56c13.3 0 24 10.7 24 24s-10.7 24-24 24H248v56c0 13.3-10.7 24-24 24s-24-10.7-24-24V376H144c-13.3 0-24-10.7-24-24s10.7-24 24-24h56V272c0-13.3 10.7-24 24-24z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
     }
 }
 
-.post .card-body .field .column .invalid-posts i{
-    right: 10px;
-    top: 50%;
-    position: absolute;
-    display: grid;
-    place-items: center;
-    font-size: 20px;
+/* .post#post-filter .card-body .field .column .to-date input[type = "date"]::-webkit-calendar-picker-indicator{
+    filter: invert(22%) sepia(7%) saturate(6538%) hue-rotate(164deg) brightness(89%) contrast(90%);
+}
+
+.post#post-filter .card-body .field .column .to-date input[type = "date"]:inpost::-webkit-datetime-edit{
+    color: #154360 !important;
+}
+
+.post#post-filter .card-body .field .column .to-date input[type = "date"]::-webkit-datetime-edit-day-field{
     color: #154360;
-    transform: translateY(-50%);
+    background-color: #FFFFFF;
+    outline: none;
 }
 
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column .invalid-posts i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 18px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
+.post#post-filter .card-body .field .column .to-date input[type = "date"]::-webkit-datetime-edit-month-field{
+    color: #154360;
+    background-color: #FFFFFF;
+    outline: none;
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column .invalid-posts i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 16px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
+.post#post-filter .card-body .field .column .to-date input[type = "date"]::-webkit-datetime-edit-year-field{
+    color: #154360;
+    background-color: #FFFFFF;
+    outline: none;
 }
 
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column .invalid-posts i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 14px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
+.post#post-filter .card-body .field .column .to-date input[type = "date"]::-webkit-datetime-edit-day-field:focus{
+    background-color: #154360 !important;
+    color: #FFFFFF !important;
+    outline: none;
 }
 
-.post .card-body .field .column label[for = "invalid-date"]{
-    margin-top: 0px;
+.post#post-filter .card-body .field .column .to-date input[type = "date"]::-webkit-datetime-edit-month-field:focus{
+    background-color: #154360 !important;
+    color: #FFFFFF !important;
+    outline: none;
+}
+
+.post#post-filter .card-body .field .column .to-date input[type = "date"]::-webkit-datetime-edit-year-field:focus{
+    background-color: #154360 !important;
+    color: #FFFFFF !important;
+    outline: none;
+} */
+
+.post#post-filter .card-body .field .column .to-date input[type = "date"]::-webkit-inner-spin-button{
+    display: none !important;
+}
+
+.post#post-filter .card-body .field .column .to-date input[type = "date"]::-webkit-calendar-picker-indicator{
+    opacity: 0 !important;
+}
+
+.post#post-filter .card-body .field .column label[for = "location"]{
+    margin-top: 15px;
     display: inline-block;
     font-family: "Overlock";
     font-weight: 400;
@@ -698,8 +523,8 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column label[for = "invalid-date"]{
-        margin-top: 0px;
+    .post#post-filter .card-body .field .column label[for = "location"]{
+        margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
@@ -709,8 +534,8 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column label[for = "invalid-date"]{
-        margin-top: 0px;
+    .post#post-filter .card-body .field .column label[for = "location"]{
+        margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
@@ -720,8 +545,8 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column label[for = "invalid-date"]{
-        margin-top: 0px;
+    .post#post-filter .card-body .field .column label[for = "location"]{
+        margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
@@ -730,11 +555,11 @@
     }
 }
 
-.post .card-body .field .column .invalid-date{
+.post#post-filter .card-body .field .column .location{
     position: relative;
 }
 
-.post .card-body .field .column .invalid-date input{
+.post#post-filter .card-body .field .column select[name = "location"]{
     padding-left: 10px !important;
     padding-right: 40px !important;
     padding-top: 5px !important;
@@ -743,122 +568,20 @@
     border: 1px solid #B2BEB5;
     border-radius: 5px; 
     box-shadow: 0 0 0 1px #B2BEB5 !important;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
     outline: none !important;
     font-family: "Philosopher";
     font-weight: 700 !important;
     font-size: 20px !important;   
     color: #154360 !important;
+    background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '20' height = '20' viewBox = '0 0 576 512' fill = '%23154360'> <path d = 'M151.6 469.6C145.5 476.2 137 480 128 480s-17.5-3.8-23.6-10.4l-88-96c-11.9-13-11.1-33.3 2-45.2s33.3-11.1 45.2 2L96 365.7V64c0-17.7 14.3-32 32-32s32 14.3 32 32V365.7l32.4-35.4c11.9-13 32.2-13.9 45.2-2s13.9 32.2 2 45.2l-88 96zM320 480c-17.7 0-32-14.3-32-32s14.3-32 32-32h32c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32H544c17.7 0 32 14.3 32 32s-14.3 32-32 32H320z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center; 
 }
 
-.post .card-body .field .column .invalid-date input:focus{
-    border-bottom-width: 2.5px !important;
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column .invalid-date input{
-        padding-left: 10px !important;
-        padding-right: 38px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Philosopher";
-        font-weight: 700 !important;
-        font-size: 18px !important;   
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column .invalid-date input{
-        padding-left: 10px !important;
-        padding-right: 36px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Philosopher";
-        font-weight: 700 !important;
-        font-size: 16px !important;   
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column .invalid-date input{
-        padding-left: 10px !important;
-        padding-right: 34px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Philosopher";
-        font-weight: 700 !important;
-        font-size: 14px !important;   
-        color: #154360 !important;
-    }
-}
-
-.post .card-body .field .column .invalid-date i{
-    right: 10px;
-    top: 50%;
-    position: absolute;
-    display: grid;
-    place-items: center;
-    font-size: 20px;
-    color: #154360;
-    transform: translateY(-50%);
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column .invalid-date i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 18px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column .invalid-date i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 16px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column .invalid-date i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 14px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-.post .card-body .field .column label[for = "uncertain-posts"]{
+.post#post-filter .card-body .field .column label[for = "location"]{
     margin-top: 0px;
     display: inline-block;
     font-family: "Overlock";
@@ -868,8 +591,8 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column label[for = "uncertain-posts"]{
-        margin-top: 15px !important;
+    .post#post-filter .card-body .field .column label[for = "location"]{
+        margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
@@ -879,8 +602,8 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column label[for = "uncertain-posts"]{
-        margin-top: 15px !important;
+    .post#post-filter .card-body .field .column label[for = "location"]{
+        margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
@@ -890,8 +613,8 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column label[for = "uncertain-posts"]{
-        margin-top: 15px !important;
+    .post#post-filter .card-body .field .column label[for = "location"]{
+        margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
@@ -900,36 +623,43 @@
     }
 }
 
-.post .card-body .field .column .uncertain-posts{
+.post#post-filter .card-body .field .column .location{
     position: relative;
 }
 
-.post .card-body .field .column .uncertain-posts input{
+.post#post-filter .card-body .field .column select[name = "location"]{
     padding-left: 10px !important;
     padding-right: 40px !important;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
+    padding-top: 6px !important;
+    padding-bottom: 6px !important;
     width: 100%;
     border: 1px solid #B2BEB5;
     border-radius: 5px; 
     box-shadow: 0 0 0 1px #B2BEB5 !important;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
     outline: none !important;
     font-family: "Philosopher";
     font-weight: 700 !important;
     font-size: 20px !important;   
     color: #154360 !important;
+    background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '20' height = '20' viewBox = '0 0 384 512' fill = '%23154360'> <path d = 'M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z'/></svg>");
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-position: right 10px center; 
 }
 
-.post .card-body .field .column .uncertain-posts input:focus{
+.post#post-filter .card-body .field .column select[name = "location"]:focus{
     border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column .uncertain-posts input{
+    .post#post-filter .card-body .field .column select[name = "location"]{
         padding-left: 10px !important;
         padding-right: 38px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
+        padding-top: 6px !important;
+        padding-bottom: 6px !important;
         width: 100%;
         border: 1px solid #B2BEB5;
         border-radius: 5px; 
@@ -939,15 +669,19 @@
         font-weight: 700 !important;
         font-size: 18px !important;   
         color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '18' height = '18' viewBox = '0 0 384 512' fill = '%23154360'> <path d = 'M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z'/></svg>");
+        background-size: 18px 18px;
+        background-repeat: no-repeat;
+        background-position: right 10px center;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column .uncertain-posts input{
+    .post#post-filter .card-body .field .column select[name = "location"]{
         padding-left: 10px !important;
         padding-right: 36px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
+        padding-top: 6px !important;
+        padding-bottom: 6px !important;
         width: 100%;
         border: 1px solid #B2BEB5;
         border-radius: 5px; 
@@ -957,15 +691,19 @@
         font-weight: 700 !important;
         font-size: 16px !important;   
         color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '16' height = '16' viewBox = '0 0 384 512' fill = '%23154360'> <path d = 'M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z'/></svg>");
+        background-size: 16px 16px;
+        background-repeat: no-repeat;
+        background-position: right 10px center;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column .uncertain-posts input{
+    .post#post-filter .card-body .field .column select[name = "location"]{
         padding-left: 10px !important;
         padding-right: 34px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
+        padding-top: 6px !important;
+        padding-bottom: 6px !important;
         width: 100%;
         border: 1px solid #B2BEB5;
         border-radius: 5px; 
@@ -975,61 +713,15 @@
         font-weight: 700 !important;
         font-size: 14px !important;   
         color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '14' height = '14' viewBox = '0 0 384 512' fill = '%23154360'> <path d = 'M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z'/></svg>");
+        background-size: 14px 14px;
+        background-repeat: no-repeat;
+        background-position: right 10px center;
     }
 }
 
-.post .card-body .field .column .uncertain-posts i{
-    right: 10px;
-    top: 50%;
-    position: absolute;
-    display: grid;
-    place-items: center;
-    font-size: 20px;
-    color: #154360;
-    transform: translateY(-50%);
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column .uncertain-posts i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 18px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column .uncertain-posts i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 16px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column .uncertain-posts i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 14px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-.post .card-body .field .column label[for = "uncertain-date"]{
-    margin-top: 0px;
+.post#post-filter .card-body .field .column label[for = "post-status"]{
+    margin-top: 15px;
     display: inline-block;
     font-family: "Overlock";
     font-weight: 400;
@@ -1038,8 +730,8 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column label[for = "uncertain-date"]{
-        margin-top: 0px;
+    .post#post-filter .card-body .field .column label[for = "post-status"]{
+        margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
@@ -1049,8 +741,8 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column label[for = "uncertain-date"]{
-        margin-top: 0px;
+    .post#post-filter .card-body .field .column label[for = "post-status"]{
+        margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
@@ -1060,8 +752,8 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column label[for = "uncertain-date"]{
-        margin-top: 0px;
+    .post#post-filter .card-body .field .column label[for = "post-status"]{
+        margin-top: 15px;
         display: inline-block;
         font-family: "Overlock";
         font-weight: 400;
@@ -1070,11 +762,11 @@
     }
 }
 
-.post .card-body .field .column .uncertain-date{
+.post#post-filter .card-body .field .column .post-status{
     position: relative;
 }
 
-.post .card-body .field .column .uncertain-date input{
+.post#post-filter .card-body .field .column select[name = "post_status"]{
     padding-left: 10px !important;
     padding-right: 40px !important;
     padding-top: 5px !important;
@@ -1083,19 +775,25 @@
     border: 1px solid #B2BEB5;
     border-radius: 5px; 
     box-shadow: 0 0 0 1px #B2BEB5 !important;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
     outline: none !important;
     font-family: "Philosopher";
     font-weight: 700 !important;
     font-size: 20px !important;   
     color: #154360 !important;
+    background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '20' height = '20' viewBox = '0 0 448 512' fill = '%23154360'> <path d = 'M64 32C64 14.3 49.7 0 32 0S0 14.3 0 32V64 368 480c0 17.7 14.3 32 32 32s32-14.3 32-32V352l64.3-16.1c41.1-10.3 84.6-5.5 122.5 13.4c44.2 22.1 95.5 24.8 141.7 7.4l34.7-13c12.5-4.7 20.8-16.6 20.8-30V66.1c0-23-24.2-38-44.8-27.7l-9.6 4.8c-46.3 23.2-100.8 23.2-147.1 0c-35.1-17.6-75.4-22-113.5-12.5L64 48V32z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center; 
 }
 
-.post .card-body .field .column .uncertain-date input:focus{
+.post#post-filter .card-body .field .column select[name = "post_status"]:focus{
     border-bottom-width: 2.5px !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column .uncertain-date input{
+    .post#post-filter .card-body .field .column select[name = "post_status"]{
         padding-left: 10px !important;
         padding-right: 38px !important;
         padding-top: 5px !important;
@@ -1109,11 +807,14 @@
         font-weight: 700 !important;
         font-size: 18px !important;   
         color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '18' height = '18' viewBox = '0 0 448 512' fill = '%23154360'> <path d = 'M64 32C64 14.3 49.7 0 32 0S0 14.3 0 32V64 368 480c0 17.7 14.3 32 32 32s32-14.3 32-32V352l64.3-16.1c41.1-10.3 84.6-5.5 122.5 13.4c44.2 22.1 95.5 24.8 141.7 7.4l34.7-13c12.5-4.7 20.8-16.6 20.8-30V66.1c0-23-24.2-38-44.8-27.7l-9.6 4.8c-46.3 23.2-100.8 23.2-147.1 0c-35.1-17.6-75.4-22-113.5-12.5L64 48V32z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column .uncertain-date input{
+    .post#post-filter .card-body .field .column select[name = "post_status"]{
         padding-left: 10px !important;
         padding-right: 36px !important;
         padding-top: 5px !important;
@@ -1127,11 +828,14 @@
         font-weight: 700 !important;
         font-size: 16px !important;   
         color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '16' height = '16' viewBox = '0 0 448 512' fill = '%23154360'> <path d = 'M64 32C64 14.3 49.7 0 32 0S0 14.3 0 32V64 368 480c0 17.7 14.3 32 32 32s32-14.3 32-32V352l64.3-16.1c41.1-10.3 84.6-5.5 122.5 13.4c44.2 22.1 95.5 24.8 141.7 7.4l34.7-13c12.5-4.7 20.8-16.6 20.8-30V66.1c0-23-24.2-38-44.8-27.7l-9.6 4.8c-46.3 23.2-100.8 23.2-147.1 0c-35.1-17.6-75.4-22-113.5-12.5L64 48V32z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column .uncertain-date input{
+    .post#post-filter .card-body .field .column select[name = "post_status"]{
         padding-left: 10px !important;
         padding-right: 34px !important;
         padding-top: 5px !important;
@@ -1145,400 +849,13 @@
         font-weight: 700 !important;
         font-size: 14px !important;   
         color: #154360 !important;
+        background-image: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '14' height = '14' viewBox = '0 0 448 512' fill = '%23154360'> <path d = 'M64 32C64 14.3 49.7 0 32 0S0 14.3 0 32V64 368 480c0 17.7 14.3 32 32 32s32-14.3 32-32V352l64.3-16.1c41.1-10.3 84.6-5.5 122.5 13.4c44.2 22.1 95.5 24.8 141.7 7.4l34.7-13c12.5-4.7 20.8-16.6 20.8-30V66.1c0-23-24.2-38-44.8-27.7l-9.6 4.8c-46.3 23.2-100.8 23.2-147.1 0c-35.1-17.6-75.4-22-113.5-12.5L64 48V32z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
     }
 }
 
-.post .card-body .field .column .uncertain-date i{
-    right: 10px;
-    top: 50%;
-    position: absolute;
-    display: grid;
-    place-items: center;
-    font-size: 20px;
-    color: #154360;
-    transform: translateY(-50%);
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column .uncertain-date i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 18px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column .uncertain-date i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 16px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column .uncertain-date i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 14px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-.post .card-body .field .column label[for = "draft-posts"]{
-    margin-top: 0px;
-    display: inline-block;
-    font-family: "Overlock";
-    font-weight: 400;
-    font-size: 20px !important;
-    color: #154360 !important;
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column label[for = "draft-posts"]{
-        margin-top: 15px !important;
-        display: inline-block;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 18px !important;
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column label[for = "draft-posts"]{
-        margin-top: 15px !important;
-        display: inline-block;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 16px !important;
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column label[for = "draft-posts"]{
-        margin-top: 15px !important;
-        display: inline-block;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 14px !important;
-        color: #154360 !important;
-    }
-}
-
-.post .card-body .field .column .draft-posts{
-    position: relative;
-}
-
-.post .card-body .field .column .draft-posts input{
-    padding-left: 10px !important;
-    padding-right: 40px !important;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
-    width: 100%;
-    border: 1px solid #B2BEB5;
-    border-radius: 5px; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
-    outline: none !important;
-    font-family: "Philosopher";
-    font-weight: 700 !important;
-    font-size: 20px !important;   
-    color: #154360 !important;
-}
-
-.post .card-body .field .column .draft-posts input:focus{
-    border-bottom-width: 2.5px !important;
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column .draft-posts input{
-        padding-left: 10px !important;
-        padding-right: 38px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Philosopher";
-        font-weight: 700 !important;
-        font-size: 18px !important;   
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column .draft-posts input{
-        padding-left: 10px !important;
-        padding-right: 36px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Philosopher";
-        font-weight: 700 !important;
-        font-size: 16px !important;   
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column .draft-posts input{
-        padding-left: 10px !important;
-        padding-right: 34px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Philosopher";
-        font-weight: 700 !important;
-        font-size: 14px !important;   
-        color: #154360 !important;
-    }
-}
-
-.post .card-body .field .column .draft-posts i{
-    right: 10px;
-    top: 50%;
-    position: absolute;
-    display: grid;
-    place-items: center;
-    font-size: 20px;
-    color: #154360;
-    transform: translateY(-50%);
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column .uncertain-posts i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 18px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column .draft-posts i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 16px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column .draft-posts i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 14px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-.post .card-body .field .column label[for = "draft-date"]{
-    margin-top: 0px;
-    display: inline-block;
-    font-family: "Overlock";
-    font-weight: 400;
-    font-size: 20px !important;
-    color: #154360 !important;
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column label[for = "draft-date"]{
-        margin-top: 0px;
-        display: inline-block;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 18px !important;
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column label[for = "draft-date"]{
-        margin-top: 0px;
-        display: inline-block;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 16px !important;
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column label[for = "draft-date"]{
-        margin-top: 0px;
-        display: inline-block;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 14px !important;
-        color: #154360 !important;
-    }
-}
-
-.post .card-body .field .column .draft-date{
-    position: relative;
-}
-
-.post .card-body .field .column .draft-date input{
-    padding-left: 10px !important;
-    padding-right: 40px !important;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
-    width: 100%;
-    border: 1px solid #B2BEB5;
-    border-radius: 5px; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
-    outline: none !important;
-    font-family: "Philosopher";
-    font-weight: 700 !important;
-    font-size: 20px !important;   
-    color: #154360 !important;
-}
-
-.post .card-body .field .column .draft-date input:focus{
-    border-bottom-width: 2.5px !important;
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column .draft-date input{
-        padding-left: 10px !important;
-        padding-right: 38px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Philosopher";
-        font-weight: 700 !important;
-        font-size: 18px !important;   
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column .draft-date input{
-        padding-left: 10px !important;
-        padding-right: 36px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Philosopher";
-        font-weight: 700 !important;
-        font-size: 16px !important;   
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column .draft-date input{
-        padding-left: 10px !important;
-        padding-right: 34px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Philosopher";
-        font-weight: 700 !important;
-        font-size: 14px !important;   
-        color: #154360 !important;
-    }
-}
-
-.post .card-body .field .column .draft-date i{
-    right: 10px;
-    top: 50%;
-    position: absolute;
-    display: grid;
-    place-items: center;
-    font-size: 20px;
-    color: #154360;
-    transform: translateY(-50%);
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .field .column .draft-date i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 18px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .field .column .draft-date i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 16px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .field .column .draft-date i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 14px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-.post .card-body .button{
+.post#post-filter .card-body .button{
     margin-left: auto;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
@@ -1546,7 +863,7 @@
     height: 100% !important;
 }
 
-.post .card-body .button a.browse-posts{
+.post#post-filter .card-body .button a.filter-posts{
     padding-left: 10px !important;
     padding-right: 10px !important;
     padding-top: 5px !important;
@@ -1564,13 +881,13 @@
     cursor: pointer;
 }
 
-.post .card-body .button a.browse-posts:hover{
+.post#post-filter .card-body .button a.filter-posts:hover{
     background-color: #10354C !important;
     color: #B2BEB5 !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .post .card-body .button a{
+    .post#post-filter .card-body .button a{
         font-family: "Overlock";
         font-weight: 400;
         font-size: 18px !important;
@@ -1580,7 +897,7 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .post .card-body .button a{
+    .post#post-filter .card-body .button a{
         font-family: "Overlock";
         font-weight: 400;
         font-size: 16px !important;
@@ -1590,7 +907,1349 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .post .card-body .button a{
+    .post#post-filter .card-body .button a{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #FFFFFF !important;
+        text-decoration: none;
+    }
+}
+
+.line#records{
+    margin-bottom: 30px;
+    position: relative;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    background-color: #B2BEB5;
+}
+
+.line#records::before{
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    content: "RECORDS";
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px;
+    background-color: #FFFFFF;
+    color: #154659;
+    transform: translate(-50%, -50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .line#records::before{
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        content: "RECORDS";
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px;
+        background-color: #FFFFFF;
+        color: #154659;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .line#records::before{
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        content: "RECORDS";
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px;
+        background-color: #FFFFFF;
+        color: #154659;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.line#results{
+    margin-bottom: 30px;
+    position: relative;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    background-color: #B2BEB5;
+}
+
+.line#results::before{
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    content: "RESULTS";
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px;
+    background-color: #FFFFFF;
+    color: #154659;
+    transform: translate(-50%, -50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .line#results::before{
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        content: "RESULTS";
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px;
+        background-color: #FFFFFF;
+        color: #154659;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .line#results::before{
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        content: "RESULTS";
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px;
+        background-color: #FFFFFF;
+        color: #154659;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .line#results::before{
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        content: "RECORDS";
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px;
+        background-color: #FFFFFF;
+        color: #154659;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.post#post-records .list a{
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 100%;
+    display: grid !important;
+    background-color: #FFFFFF;
+    text-decoration: none;
+}
+
+.post#post-records .list .field{
+    display: grid;
+    grid-template-columns: 100%;
+    gap: 15px;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .post#post-records .list .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#post-records .list .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#post-records .list .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#post-records .list .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
+}
+
+.post#post-records .list .post-gallery{
+    margin-top: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #698F3F;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    white-space: nowrap;
+}
+
+.post#post-records .list .post-gallery .gallery-photo{
+    margin-right: 30px;
+    width: 100%;
+    height: 25vw;
+    place-items: center;
+    object-fit: cover;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+}
+
+.post#post-records .list .post-gallery .gallery-photo:last-child{
+    margin-right: 0px !important;
+}
+
+.post#post-records .list .field .column label[for = "user"]{
+    margin-top: 0px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#post-records .list .field .column label[for = "user"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#post-records .list .field .column label[for = "user"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#post-records .list .field .column label[for = "user"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.post#post-records .list .field .column .user{
+    position: relative;
+}
+
+.post#post-records .list .field .column .user input{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.post#post-records .list .field .column .user input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#post-records .list .field .column .user input{
+        padding-left: 10px !important;
+        padding-right: 38px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#post-records .list .field .column .user input{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#post-records .list .field .column .user input{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.post#post-records .list .field .column .user i{
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#post-records .list .field .column .user i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#post-records .list .field .column .user i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#post-records .list .field .column .user i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+.post#post-records .list .field .column label[for = "capture-date"]{
+    margin-top: 15px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#post-records .list .field .column label[for = "capture-date"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#post-records .list .field .column label[for = "capture-date"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#post-records .list .field .column label[for = "capture-date"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.post#post-records .list .field .column .capture-date{
+    position: relative;
+}
+
+.post#post-records .list .field .column .capture-date input{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.post#post-records .list .field .column .capture-date input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#post-records .list .field .column .capture-date input{
+        padding-left: 10px !important;
+        padding-right: 38px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#post-records .list .field .column .capture-date input{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#post-records .list .field .column .capture-date input{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.post#post-records .list .field .column .capture-date i{
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#post-records .list .field .column .capture-date i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#post-records .list .field .column .capture-date i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#post-records .list .field .column .capture-date i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+.post#post-records .list .field .column label[for = "location"]{
+    margin-top: 15px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#post-records .list .field .column label[for = "location"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#post-records .list .field .column label[for = "location"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#post-records .list .field .column label[for = "location"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.post#post-records .list .field .column .location{
+    position: relative;
+}
+
+.post#post-records .list .field .column .location input{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.post#post-records .list .field .column .location input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#post-records .list .field .column .location input{
+        padding-left: 10px !important;
+        padding-right: 38px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#post-records .list .field .column .location input{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#post-records .list .field .column .location input{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.post#post-records .list .field .column .location i{
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#post-records .list .field .column .location i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#post-records .list .field .column .location i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#post-records .list .field .column .location i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+.post#post-results .list a{
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 100%;
+    display: grid !important;
+    background-color: #FFFFFF;
+    text-decoration: none;
+}
+
+.post#post-results .list .field{
+    display: grid;
+    grid-template-columns: 100%;
+    gap: 15px;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .post#post-results .list .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#post-results .list .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#post-results .list .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#post-results .list .field{        
+        grid-template-columns: 100%;
+        gap: 0px;
+    }
+}
+
+.post#post-results .list .post-gallery{
+    margin-top: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #698F3F;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    white-space: nowrap;
+}
+
+.post#post-results .list .post-gallery .gallery-photo{
+    margin-right: 30px;
+    width: 100%;
+    height: 25vw;
+    place-items: center;
+    object-fit: cover;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px !important;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+}
+
+.post#post-results .list .post-gallery .gallery-photo:last-child{
+    margin-right: 0px !important;
+}
+
+.post#post-results .list .field .column label[for = "user"]{
+    margin-top: 0px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#post-results .list .field .column label[for = "user"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#post-results .list .field .column label[for = "user"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#post-results .list .field .column label[for = "user"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.post#post-results .list .field .column .user{
+    position: relative;
+}
+
+.post#post-results .list .field .column .user input{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.post#post-results .list .field .column .user input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#post-results .list .field .column .user input{
+        padding-left: 10px !important;
+        padding-right: 38px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#post-results .list .field .column .user input{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#post-results .list .field .column .user input{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.post#post-results .list .field .column .user i{
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#post-results .list .field .column .user i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#post-results .list .field .column .user i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#post-results .list .field .column .user i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+.post#post-results .list .field .column label[for = "capture-date"]{
+    margin-top: 15px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#post-results .list .field .column label[for = "capture-date"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#post-results .list .field .column label[for = "capture-date"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#post-results .list .field .column label[for = "capture-date"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.post#post-results .list .field .column .capture-date{
+    position: relative;
+}
+
+.post#post-results .list .field .column .capture-date input{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.post#post-results .list .field .column .capture-date input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#post-results .list .field .column .capture-date input{
+        padding-left: 10px !important;
+        padding-right: 38px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#post-results .list .field .column .capture-date input{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#post-results .list .field .column .capture-date input{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.post#post-results .list .field .column .capture-date i{
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#post-results .list .field .column .capture-date i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#post-results .list .field .column .capture-date i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#post-results .list .field .column .capture-date i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+.post#post-results .list .field .column label[for = "location"]{
+    margin-top: 15px;
+    display: inline-block;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #154360 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#post-results .list .field .column label[for = "location"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#post-results .list .field .column label[for = "location"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#post-results .list .field .column label[for = "location"]{
+        margin-top: 15px !important;
+        display: inline-block;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #154360 !important;
+    }
+}
+
+.post#post-results .list .field .column .location{
+    position: relative;
+}
+
+.post#post-results .list .field .column .location input{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Philosopher";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #154360 !important;
+}
+
+.post#post-results .list .field .column .location input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#post-results .list .field .column .location input{
+        padding-left: 10px !important;
+        padding-right: 38px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#post-results .list .field .column .location input{
+        padding-left: 10px !important;
+        padding-right: 36px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 16px !important;   
+        color: #154360 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#post-results .list .field .column .location input{
+        padding-left: 10px !important;
+        padding-right: 34px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        width: 100%;
+        border: 1px solid #B2BEB5;
+        border-radius: 5px; 
+        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        outline: none !important;
+        font-family: "Philosopher";
+        font-weight: 700 !important;
+        font-size: 14px !important;   
+        color: #154360 !important;
+    }
+}
+
+.post#post-results .list .field .column .location i{
+    right: 10px;
+    top: 50%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #154360;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post#post-results .list .field .column .location i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post#post-results .list .field .column .location i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post#post-results .list .field .column .location i{
+        right: 10px;
+        top: 50%;
+        position: absolute;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        color: #154360;
+        transform: translateY(-50%);
+    }
+}
+
+.button{
+    margin-left: auto;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: fit-content;
+    height: 100% !important;
+}
+
+.button a.create-report{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    border: 1px solid #B2BEB5; 
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    outline: none !important;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 20px;
+    color: #FFFFFF !important;
+    background-color: #154360 !important;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.button a.create-report:hover{
+    background-color: #10354C !important;
+    color: #B2BEB5 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .button a{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #FFFFFF !important;
+        text-decoration: none;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .button a{
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #FFFFFF !important;
+        text-decoration: none;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .button a{
         font-family: "Overlock";
         font-weight: 400;
         font-size: 14px !important;

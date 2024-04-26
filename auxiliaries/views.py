@@ -67,7 +67,7 @@ def PublicServiceAnnouncementRead(request, id):
     host = request.META["HTTP_HOST"]
 
 
-    announcement = Announcement.objects.filter(id = id)
+    announcement = Announcement.objects.get(id = id)
 
     context = {"username": username, "scheme": scheme, "host": host, "announcement": announcement}
 
@@ -311,7 +311,7 @@ def ContributorServiceAnnouncementRead(request, id):
 
     host = request.META["HTTP_HOST"]
 
-    announcement = Announcement.objects.filter(id = id)
+    announcement = Announcement.objects.get(id = id)
 
     context = {"username": username, "scheme": scheme, "host": host, "announcement": announcement}
 

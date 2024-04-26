@@ -1,13 +1,13 @@
-{% extends "Contributor/service/index/index.html" %}
+{% extends "contributor/service/index/index.html" %}
 {% load static %}
 
 {% block content %}
-    <div class = "post" id = "valid-filter">
+    <div class = "post" id = "post-filter">
         <form action = "" class = "post-form" method = "GET">
             {% csrf_token %}
 
             <div class = "card-header">
-                <header>Filter valid posts</header>
+                <header>Filter posts</header>
             </div>
 
             <div class = "card-body">
@@ -19,37 +19,37 @@
                             <input type = "date" value = "" id = "from-date" name = "from_date" required>                            
                         </div>
 
-                        <label for = "depth">Depth</label> 
-
-                        <select name = "depth" id = "depth">
-                            <option disabled selected value>Choose depth</option>
-
-                            <option value = "each_depth">Each depth</option>
-
-                            {% for option in options %}
-                                <option value = "{{option.post_observation.depth.id}}">{{option.post_observation.depth}}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-
-                    <div class = "column">
                         <label for = "to-date">To</label> 
 
                         <div class = "to-date">
                             <input type = "date" value = "" id = "to-date" name = "to_date" required>                            
                         </div>  
+                    </div>
 
-                        <label for = "weather">Weather</label> 
+                    <div class = "column">
+                        <label for = "location">Location</label> 
 
-                        <select name = "weather" id = "weather">
-                            <option disabled selected value>Choose weather</option>
+                        <select name = "location" id = "lcoation">
+                            <option disabled selected value>Choose location</option>
 
-                            <option value = "each_weather">Each weather</option>
+                            <option value = "each_location">Each location</option>
 
                             {% for option in options %}
-                                <option value = "{{option.post_observation.weather.id}}">{{option.post_observation.weather}}</option>
+                                <option value = "{{option.id}}">{{option}}</option>
                             {% endfor %}
                         </select>
+                        
+                        <!-- <label for = "post-status">Post Status</label> 
+
+                        <select name = "post_status" id = "post-status">
+                            <option disabled selected value>Choose post status</option>
+
+                            <option value = "each_poststatus">Each post status</option>
+
+                            {% for option in options %}
+                                <option value = "{{option.id}}">{{option}}</option>
+                            {% endfor %}
+                        </select> -->
                     </div>
                 </div>
 
@@ -82,37 +82,45 @@
         <div class = "line" id = "results"></div>
 
         {% for post in results %}
-            <div class = "post" id = "valid-results">
-                <div class = "card-header" onclick = "toggleBody(this)">
-                    <header class = "preview">{{post.description}}</header>
-                </div>
-
-                <div class = "card-body">
-                    <div class = "field">
-                        <div class = "column">
-                            <label for = "capture-date">Capture Date</label> 
-
-                            <div class = "capture-date">
-                                <input type = "text" value = "{{post.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}" id = "capture-date" name = "capture-date" readonly>
-
-                                <i class = "fa-solid fa-calendar-day"></i>
-                            </div>  
-                        </div>
-
-                        <div class = "column">
-                            <label for = "coordinates">Coordinates</label> 
-                                
-                            <div class = "coordinates">
-                                <input type = "text" value = "{{post.coordinates.latitude | default:'0'}}° N, {{post.coordinates.longitude | default:'0'}}° E" id = "coordinates" name = "coordinates" readonly>
+            <div class = "post" id = "post-results">
+                <div class = "list">
+                    <a href = "{% url 'Contributor Service Post Feed Read' post.id %}">
+                        <div class = "field">
+                            <div class = "column">
+                                <div class = "post-gallery">
+                                    {% for post_photo in post.post_photos.all %}
+                                        <img class = "gallery-photo" src = "{{post_photo.post_photo.url}}">
+                                    {% endfor %}      
+                                </div>  
+                            </div>
+                            
+                            <div class = "column">
+                                <label for = "user">User</label> 
                                     
-                                <i class = "fa-solid fa-location-dot"></i>
+                                <div class = "user">
+                                    <input type = "text" value = "{{post.user | default:'None available'}}" id = "user" name = "user" readonly>
+                                        
+                                    <i class = "fa-solid fa-user"></i>
+                                </div>
+
+                                <label for = "capture-date">Capture Date</label> 
+                                    
+                                <div class = "capture-date">
+                                    <input type = "text" value = "{{post.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}" id = "capture-date" name = "capture_date" readonly>
+                                        
+                                    <i class = "fa-solid fa-calendar-check"></i>
+                                </div>
+
+                                <label for = "location">Location</label> 
+                                    
+                                <div class = "location">
+                                    <input type = "text" value = "{{post.location | default:'None available'}}" id = "location" name = "location" readonly>
+                                        
+                                    <i class = "fa-solid fa-location-dot"></i>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class = "button">
-                        <a class = "read-post" href = "{% url 'Contributor Service Post Feed Read' post.id %}">Read</a>
-                    </div>    
+                    </a>
                 </div>
             </div>
         {% endfor %}
@@ -121,56 +129,47 @@
         <div class = "line" id = "records"></div>
 
         {% for post in records %}
-            <div class = "post" id = "valid-records">
-                <div class = "card-header" onclick = "toggleBody(this)">
-                    <header class = "preview">{{post.description}}</header>
-                </div>
-
-                <div class = "card-body">
-                    <div class = "field">
-                        <div class = "column">
-                            <label for = "capture-date">Capture Date</label> 
-
-                            <div class = "capture-date">
-                                <input type = "text" value = "{{post.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}" id = "capture-date" name = "capture-date" readonly>
-
-                                <i class = "fa-solid fa-calendar-day"></i>
-                            </div>  
-                        </div>
-
-                        <div class = "column">
-                            <label for = "coordinates">Coordinates</label> 
-                                
-                            <div class = "coordinates">
-                                <input type = "text" value = "{{post.coordinates.latitude | default:'0'}}° N, {{post.coordinates.longitude | default:'0'}}° E" id = "coordinates" name = "coordinates" readonly>
+            <div class = "post" id = "post-records">
+                <div class = "list">
+                    <a href = "{% url 'Contributor Service Post Feed Read' post.id %}">
+                        <div class = "field">
+                            <div class = "column">
+                                <div class = "post-gallery">
+                                    {% for post_photo in post.post_photos.all %}
+                                        <img class = "gallery-photo" src = "{{post_photo.post_photo.url}}">
+                                    {% endfor %}      
+                                </div>  
+                            </div>
+                            
+                            <div class = "column">
+                                <label for = "user">User</label> 
                                     
-                                <i class = "fa-solid fa-location-dot"></i>
+                                <div class = "user">
+                                    <input type = "text" value = "{{post.user | default:'None available'}}" id = "user" name = "user" readonly>
+                                        
+                                    <i class = "fa-solid fa-user"></i>
+                                </div>
+
+                                <label for = "capture-date">Capture Date</label> 
+                                    
+                                <div class = "capture-date">
+                                    <input type = "text" value = "{{post.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}" id = "capture-date" name = "capture_date" readonly>
+                                        
+                                    <i class = "fa-solid fa-calendar-check"></i>
+                                </div>
+
+                                <label for = "location">Location</label> 
+                                    
+                                <div class = "location">
+                                    <input type = "text" value = "{{post.location | default:'None available'}}" id = "location" name = "location" readonly>
+                                        
+                                    <i class = "fa-solid fa-location-dot"></i>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class = "button">
-                        <a class = "read-post" href = "{% url 'Contributor Service Post Feed Read' post.id %}">Read</a>
-                    </div>    
+                    </a>
                 </div>
             </div>
         {% endfor %}
     {% endif %}
-
-    <script>
-        function toggleBody(element){
-            var body = element.nextElementSibling;
-            
-            if(body.style.display === "none" || body.style.display === ""){
-                body.style.borderBottomLeftRadius = "5px";
-
-                body.style.borderBottomTopRadius = "5px";
-                
-                body.style.display = "grid";
-            
-            } else{
-                body.style.display = "none";
-            };
-        };
-    </script>
 {% endblock content %}

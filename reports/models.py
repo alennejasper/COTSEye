@@ -3,6 +3,7 @@ from django.core.validators import MinValueValidator
 from django.db import models
 from django.utils.html import mark_safe
 from authentications.models import User
+from managements.models import Location
 
 import datetime
 
@@ -40,7 +41,7 @@ class Coordinates(models.Model):
 class PostStatus(models.Model):
     is_valid = models.BooleanField(default = False, help_text = "Designates that the post can be pinned into the contributors site.", verbose_name = "Valid")
     is_invalid = models.BooleanField(default = False, help_text = "Designates that the post cannot be pinned into the contributors site.", verbose_name = "Invalid")
-    is_uncertain = models.BooleanField(default = False, help_text = "Designates that the post is under review to be pinned into the contributors site.", verbose_name = "Uncertain")
+    is_pending = models.BooleanField(default = False, help_text = "Designates that the post is under review to be pinned into the contributors site.", verbose_name = "Pending")
     is_draft = models.BooleanField(default = False, help_text = "Designates that the post is under draft to be reviewed for the contributors site.", verbose_name = "Draft")
    
     class Meta:
@@ -55,8 +56,8 @@ class PostStatus(models.Model):
         elif self.is_invalid == True:
             return "Invalid"
         
-        elif self.is_uncertain == True:
-            return "Uncertain"
+        elif self.is_pending == True:
+            return "Pending"
         
         elif self.is_draft == True:
             return "Draft"
@@ -129,6 +130,7 @@ class Post(models.Model):
     capture_date = models.DateTimeField(default = datetime.datetime.now(), help_text = "Designates the capture date and time of the post.", verbose_name = "Capture Date")
     post_photos = models.ManyToManyField(PostPhoto, blank = True, through = "PostGallery", help_text = "Designates the foreign key of the Post Photo model.", verbose_name = "Post Photos")
     coordinates = models.ForeignKey(Coordinates, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Coordinates model.", verbose_name = "Coordinates")
+    location = models.ForeignKey(Location, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Location model.", verbose_name = "Location")
     post_status = models.ForeignKey(PostStatus, on_delete = models.CASCADE, default = 4, help_text = "Designates the foreign key of the Post Status model.", verbose_name = "Post Status")
     post_observation = models.ForeignKey(PostObservation, null = True, blank = True, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Post Observation model.", verbose_name = "Post Observation")
 

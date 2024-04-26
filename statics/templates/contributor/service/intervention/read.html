@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-    {% for intervention in intervention %}
+    {% if intervention %}
         <div class = "intervention">
             <div class = "card-body">
                 <header>{{intervention.title | default:'None available'}}</header>
@@ -24,7 +24,7 @@
                 </div>
             </div>
         </div>
-    {% endfor %}
+    {% endif %}
 
     <script>
         {% if intervention %}
