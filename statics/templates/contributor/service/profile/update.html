@@ -3,6 +3,12 @@
 
 {% block content %}
     {% if user %}
+        <div class = "fixed inset-0 z-[-10] h-screen w-full">
+            <img src = "/statics/assets/bg-2.jpg" class = "h-full w-full object-cover top-[-5rem]">
+        </div>
+
+        <h1 class = "my-[2rem] text-center font-bold text-[3rem] text-white">UPDATE PROFILE</h1>
+        
         <div class = "update">
             <form action = "" class = "profile-form" method = "POST" enctype = "multipart/form-data">
                 {% csrf_token %}
@@ -52,9 +58,12 @@
                         </div>
                     </div>
             
-                    <div class = "button">
-                        <a class = "save-profile" type = "submit">Save</a>
-                    </div>   
+                   <div class = "flex justify-end  w-full items-center">
+                        <div  class = "text-center  w-[10rem] bg-[#003755] hover:bg-white hover:border-[#003755] border-2 p-2 rounded-full font-bold text-white hover:text-[#003755]">
+                            <a class = "save-profile" type = "submit">Save</a>
+                        </div>   
+                   </div>
+                   </div>
                 </div>
             </form>
         </div>
@@ -74,9 +83,10 @@
 
     <script>
         const browsePhoto = document.querySelector(".browse-photo")
+        
         const profilePhoto = document.querySelector(".profile-photo")
 
-        browsePhoto.addEventListener("change", (event)=>{
+        browsePhoto.addEventListener("change", (event)=> {
             const photoObject = event.target.files[0]
 
             profilePhoto.src = URL.createObjectURL(photoObject)
@@ -84,7 +94,7 @@
     </script>
 
     <script>
-        document.querySelector(".profile-photo").addEventListener("click", () =>{
+        document.querySelector(".profile-photo").addEventListener("click", () => {
             document.querySelector("input[type = 'file']").click();
         });
     </script>

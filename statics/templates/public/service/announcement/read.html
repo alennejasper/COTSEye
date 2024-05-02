@@ -3,22 +3,37 @@
 
 {% block content %}
     {% if announcement %}
-        <div class = "announcement">
-            <div class = "card-body">
-                <header>{{announcement.title | default:'None available'}}</header>
+        <div class = "w-full mt-[2rem]">
+            <div class = "fixed inset-0 z-[-10] h-screen w-full">
+                <img src = "/statics/assets/bg-2.jpg" class = "h-full w-full object-cover top-[-5rem]" >
+            </div>
 
-                <p><i class = "fa-solid fa-feather"></i>{{announcement.user | default:'None available'}}</p>
+            <h1 class = "my-[2rem] text-center font-bold text-[3rem] text-white">{{announcement.title | default:'None available'}}</h1>
 
-                <p><i class = "fa-solid fa-calendar-check"></i>{{announcement.release_date | date:'M. j, Y, g:i a' | default:'None available'}}</p>
 
-                <p><i class = "fa-solid fa-location-dot"></i>{{announcement.place | default:'None available'}}</p>
+            <div class = "w-full flex justify-center flex-col bg-white rounded-md p-4">
 
-                <img src = "{{announcement.announcement_photo.url}}">
+                <div class = "flex justify-between w-full items-center">
 
-                <p>{{announcement.context | default:'None available'}}</p>
+                    <p class = "text-[#003755] flex gap-2 items-center"><i class = "fa-solid fa-feather"></i>{{announcement.user | default:'None available'}}</p>
 
-                <div class = "buttons">
-                    <a class = "share-announcement" target = "blank">Share</a>
+                    <p class = "text-[#003755] flex gap-2 items-center"><i class = "fa-solid fa-calendar-check"></i>{{announcement.release_date | date:'M. j, Y, g:i a' | default:'None available'}}</p>
+                </div>
+
+                <div class = "w-full flex justify-center relative">
+                    <img class = "h-[90%] w-[90%] object-cover my-[2rem] block" src = "{{announcement.announcement_photo.url}}">
+
+                    <div class = "bg-black bg-opacity-70 absolute bottom-0 p-2 w-full flex items-center h-[6rem]">
+                        
+                        <p class = "text-2xl font-bold text-white">{{announcement.place | default:'None available'}}</p>
+                    </div>
+                </div>
+                <p class = "my-4">{{announcement.context | default:'None available'}}</p>
+
+                <div class = "w-full justify-end flex my-[2rem]">
+                    <div class = "rounded-full w-[8rem] text-center buttons cursor-pointer bg-[#003755] hover:bg-white hover:border-[#003755] border-2 p-2 font-bold text-white hover:text-[#003755]">
+                        <a class = "share-announcement" target="blank">Share</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -27,7 +42,7 @@
     <script>
         {% if announcement %}
             const link = encodeURI("{{scheme}}://{{host}}{% url 'Public Service Announcement Read' announcement.id %}");
-        
+
             const facebook = document.querySelector(".share-announcement");
 
             facebook.href = "https://www.facebook.com/share.php?u=" + link;

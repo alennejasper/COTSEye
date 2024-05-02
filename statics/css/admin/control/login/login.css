@@ -45,6 +45,7 @@
     display: grid;
     grid-template-columns: 100%;
     place-items: center;
+    /* position: relative; */
 
 }
 

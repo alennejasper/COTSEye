@@ -2,123 +2,72 @@
 {% load static %}
 
 {% block content %}
-    <div class = "post" id = "post-filter">
-        <form action = "" class = "post-form" method = "GET">
-            {% csrf_token %}
+    <div class = "w-dvw" id = "post-filter">
+        <div class = "fixed inset-0 z-[-10] h-screen w-full">
+            <img src = "/statics/assets/bg-2.jpg" class = "h-full w-full object-cover top-[-5rem]" alt="">
+        </div>
 
-            <div class = "card-header">
-                <header>Filter posts</header>
-            </div>
+        <div class = "my-[2rem] flex flex-col w-full px-[1.8rem] items-center justify-center relative text-center">
+            <h1 class = "font-bold text-[3rem] text-white text-center">MY POSTS</h1>
 
-            <div class = "card-body">
-                <div class = "field">
-                    <div class = "column">
-                        <label for = "from-date">From</label> 
-                            
-                        <div class = "from-date">
-                            <input type = "date" value = "" id = "from-date" name = "from_date" required>                            
-                        </div>
+            <div class = "p-2 min-[360px]:absolute right-5">
+                <button onclick="showDropdownOptions()" class = "flex flex-row justify-between px-2 py-2 text-white rounded-md shadow focus:outline-none focus:border-[#003755]">
+                    <span class = "text-white text-2xl"><i class="fa-solid fa-sliders"></i></span>
+                </button>
 
-                        <label for = "to-date">To</label> 
+                <form action = "" class = "post-form" method = "GET">
+                    {% csrf_token %}
 
-                        <div class = "to-date">
-                            <input type = "date" value = "" id = "to-date" name = "to_date" required>                            
-                        </div>  
+                    <div id = "options" class = "hidden absolute left-[-9rem] z-20 w-48 py-2 mt-[1rem] bg-white rounded-lg shadow-xl">
+                        <a name = "post_status" href = "?post_status=1" type = "submit" class = "filter-posts block px-4 py-2 text-gray-800 hover:text-[#003755]">Valid Posts</a>
+                        
+                        <a name = "post_status" href = "?post_status=2" type = "submit" class = "filter-posts block px-4 py-2 text-gray-800 hover:text-[#003755]">Invalid Posts</a>
+
+                        <a name = "post_status" href = "?post_status=3" type = "submit" class = "filter-posts block px-4 py-2 text-gray-800 hover:text-[#003755]">Pending Posts</a>
                     </div>
-
-                    <div class = "column">
-                        <label for = "location">Location</label> 
-
-                        <select name = "location" id = "location" required>
-                            <option disabled selected value>Choose location</option>
-
-                            <option value = "each_location">Each location</option>
-
-                            {% for option in options %}
-                                <option value = "{{option.id}}">{{option}}</option>
-                            {% endfor %}
-                        </select>
-
-                        <label for = "post-status">Post Status</label> 
-
-                        <select name = "post_status" id = "post-status">
-                            <option disabled selected value>Choose post status</option>
-
-                            <option value = "each_poststatus">Each post status</option>
-
-                            {% for option in options %}
-                                <option value = "{{option.id}}">{{option}}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                </div>
-
-                <div class = "button">
-                    <a class = "filter-posts" type = "submit">Filter</a>
-                </div>    
+                </form>
             </div>
-        </form>
+        </div>
     </div>
+
 
     {% if messages %}
         {% for message in messages %}
-            {% if message.tags == "info" %}<script>Swal.fire({title: "Hey!", text: "{{message}}", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}})</script>
-            
-            {% elif message.tags == "success" %}<script>Swal.fire({title: "Yay!", text: "{{message}}", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}})</script>
-            
-            {% else %}<script>Swal.fire({title: "Oops!", text: "{{message}}", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}})</script>
-            
-            {% endif %}    
+            {% if message.tags == "info" %}
+                <script>Swal.fire({ title: "Hey!", text: "{{message}}", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: { confirmButton: "info-button", title: "title" } })</script>
+            {% elif message.tags == "success" %}
+                <script>Swal.fire({ title: "Yay!", text: "{{message}}", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: { confirmButton: "success-button", title: "title" } })</script>
+            {% else %}
+                <script>Swal.fire({ title: "Oops!", text: "{{message}}", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: { confirmButton: "error-button", title: "title" } })</script>
+            {% endif %}
         {% endfor %}
     {% endif %}
 
-    <script>
-        document.querySelector(".filter-posts").onclick = function() {
-            document.querySelector(".post-form").submit();
-        }
-    </script>
+    <div class = "w-full flex justify-start items-start">
+        <h1 class = "font-bold border-l-4 border-white pl-2 text-white">VALID, INVALID, OR, PENDING</h1>
+    </div>
 
     {% if results %}
-        <div class = "line" id = "results"></div>
-
         {% for post in results %}
-            <div class = "post" id = "post-results">
-                <div class = "list">
+            <div class = "border-2 min-h-[20rem] w-full rounded-2xl mt-[2rem] p-4 bg-white">
+                <div class = "w-full">
                     <a href = "{% url 'Contributor Service Post Read' post.id %}">
-                        <div class = "field">
-                            <div class = "column">
-                                <div class = "post-gallery">
-                                    {% for post_photo in post.post_photos.all %}
-                                        <img class = "gallery-photo" src = "{{post_photo.post_photo.url}}">
-                                    {% endfor %}      
-                                </div>  
+                        <div class = "flex items-center w-full gap-2 h-full p-2 flex-col">
+                            <div class = "flex w-full flex-col min-[320px]:flex-column min-[320px]:justify-between my-2">
+                                <h1 class = "font-semibold flex gap-2 items-center text-[#003755]"><i class = "fa-regular fa-user"></i>@{{post.user | default:'None available'}}<h1>
+                                
+                                    <p class = "font-semibold flex gap-2 items-center text-[#003755]"> <i class = "fa-solid fa-calendar-days"></i>{{post.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}</p>
                             </div>
-                            
-                            <div class = "column">
-                                <label for = "user">User</label> 
-                                    
-                                <div class = "user">
-                                    <input type = "text" value = "{{post.user | default:'None available'}}" id = "user" name = "user" readonly>
-                                        
-                                    <i class = "fa-solid fa-user"></i>
-                                </div>
 
-                                <label for = "capture-date">Capture Date</label> 
-                                    
-                                <div class = "capture-date">
-                                    <input type = "text" value = "{{post.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}" id = "capture-date" name = "capture_date" readonly>
-                                        
-                                    <i class = "fa-solid fa-calendar-check"></i>
-                                </div>
+                            <div class="relative w-full h-full">
+                                {% for post_photo in post.post_photos.all %}
+                                    <img class = "w-full h-[15rem] object-cover" src = "{{post_photo.post_photo.url}}">
+                                {% endfor %}
 
-                                <label for = "location">Location</label> 
-                                    
-                                <div class = "location">
-                                    <input type = "text" value = "{{post.location | default:'None available'}}" id = "location" name = "location" readonly>
-                                        
-                                    <i class = "fa-solid fa-location-dot"></i>
-                                </div>
+                                <p class = "font-semibold absolute bottom-0 h-[4rem] bg-black bg-opacity-75 w-full flex items-center text-white text-2xl px-2">{{post.coordinates | default:'None available'}}</p>
                             </div>
+
+                            <button class = "my-[1rem] border-2 w-full min-[320px]:w-[15rem] h-[3rem] bg-[#003755] text-white font-bold hover:bg-white hover:border-[#003755] hover:text-[#003755] text-center cursor-pointer px-4 rounded-full">READ MORE</button>
                         </div>
                     </a>
                 </div>
@@ -126,46 +75,25 @@
         {% endfor %}
 
     {% else %}
-        <div class = "line" id = "records"></div>
-
         {% for post in records %}
-            <div class = "post" id = "post-records">
-                <div class = "list">
+            <div class = "border-2 min-h-[20rem] w-full rounded-2xl mt-[2rem] p-4 bg-white">
+                <div class = "w-full ">
                     <a href = "{% url 'Contributor Service Post Read' post.id %}">
-                        <div class = "field">
-                            <div class = "column">
-                                <div class = "post-gallery">
-                                    {% for post_photo in post.post_photos.all %}
-                                        <img class = "gallery-photo" src = "{{post_photo.post_photo.url}}">
-                                    {% endfor %}      
-                                </div>  
+                        <div class = "flex items-center w-full gap-2 h-full p-2 flex-col">
+                            <div class = "flex w-full flex-col min-[320px]:flex-row min-[320px]:justify-between my-2">
+                                <h1 class = "font-semibold flex gap-2 items-center text-[#003755]"><i class = "fa-regular fa-user"></i>@{{post.user | default:'None available'}}<h1>
+                                <p class = "font-semibold flex gap-2 items-center text-[#003755]"> <i class = "fa-solid fa-calendar-days"></i>{{post.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}</p>
                             </div>
-                            
-                            <div class = "column">
-                                <label for = "user">User</label> 
-                                    
-                                <div class = "user">
-                                    <input type = "text" value = "{{post.user | default:'None available'}}" id = "user" name = "user" readonly>
-                                        
-                                    <i class = "fa-solid fa-user"></i>
-                                </div>
 
-                                <label for = "capture-date">Capture Date</label> 
-                                    
-                                <div class = "capture-date">
-                                    <input type = "text" value = "{{post.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}" id = "capture-date" name = "capture_date" readonly>
-                                        
-                                    <i class = "fa-solid fa-calendar-check"></i>
-                                </div>
+                            <div class = "relative w-full h-full">
+                                {% for post_photo in post.post_photos.all %}
+                                    <img class = "w-full h-[18rem] object-cover" src = "{{post_photo.post_photo.url}}">
+                                {% endfor %}
 
-                                <label for = "location">Location</label> 
-                                    
-                                <div class = "location">
-                                    <input type = "text" value = "{{post.location | default:'None available'}}" id = "location" name = "location" readonly>
-                                        
-                                    <i class = "fa-solid fa-location-dot"></i>
-                                </div>
+                                <p class = "text-lg min-[490px]:text-2xl font-semibold absolute bottom-0 h-[5rem] bg-black bg-opacity-75 w-full flex items-center text-white px-2">{{post.coordinates | default:'None available'}}</p>
                             </div>
+
+                            <button class = "my-[1rem] border-2 w-full min-[320px]:w-[15rem] h-[3rem] bg-[#003755] text-white font-bold hover:bg-white hover:border-[#003755] hover:text-[#003755] text-center cursor-pointer px-4 rounded-full">READ MORE</button>
                         </div>
                     </a>
                 </div>
@@ -173,7 +101,29 @@
         {% endfor %}
     {% endif %}
 
-    <div class = "button">
-        <a class = "create-report" href = "{% url 'Contributor Service Report' %}">Create post</a>
+    <div class = "flex gap-4 mt-[5rem] h-fit flex-col min-[320px]:flex-row">
+        <form action = "" class = "post-form" method = "GET">
+            {% csrf_token %}
+
+            <div class = "border-2 w-fit h-fit border-[#003755] bg-[#003755] text-white font-bold hover:bg-white hover:border-[#003755] hover:text-[#003755] text-center cursor-pointer p-2 rounded-lg">
+                <a name = "post_status" href = "?post_status=4"  type = "submit">Draft Posts</a>
+            </div>
+        </form>
+
+        <div class = "border-2 w-full min-[320px]:w-[15rem] h-fit border-[#003755] bg-[#003755] text-white font-bold hover:bg-white hover:border-[#003755] hover:text-[#003755] text-center cursor-pointer p-2 rounded-lg">
+            <a href = "{% url 'Contributor Service Report' %}">Create post</a>
+        </div>
     </div>
+
+    <script>
+        document.querySelectorAll(".filter-posts").onclick = function (){
+            document.querySelector(".post-form").submit();
+        }
+    </script>
+
+    <script>
+        function showDropdownOptions(){
+            document.getElementById("options").classList.toggle("hidden");
+        }
+    </script>
 {% endblock content %}

@@ -13,48 +13,9 @@ from reports.models import Post
 def PublicServiceAnnouncement(request):
     username = "public/everyone"
 
-    records = Announcement.objects.all()
+    announcements = Announcement.objects.all()
 
-    results = None
-
-    if request.method == "GET":
-        from_date = request.GET.get("from_date")
-
-        from_date = datetime.datetime.strptime(from_date, "%Y-%m-%d") if from_date else None
-        
-        to_date = request.GET.get("to_date")
-
-        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
-
-        if from_date and to_date:
-            results = Announcement.objects.filter(release_date__range = [from_date, to_date])
-        
-        elif not from_date or not to_date:
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "date range is not valid.") 
-        
-        elif from_date and to_date and to_date < from_date:
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "date range is not valid.")
-
-        elif not from_date and not to_date:
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "information filter is empty within COTSEye.")
-
-        if results is None:
-            username = "public/everyone"
-
-            messages.info(request, username + ", " + "kindly filter announcements within COTSEye to check for updates today.")
-
-        elif not results:
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "information input is impossible within COTSEye.")
-
-    context = {"username": username, "records": records, "results": results}
+    context = {"username": username, "announcements": announcements}
 
     return render(request, "public/service/announcement/announcement.html", context)
 
@@ -66,7 +27,6 @@ def PublicServiceAnnouncementRead(request, id):
 
     host = request.META["HTTP_HOST"]
 
-
     announcement = Announcement.objects.get(id = id)
 
     context = {"username": username, "scheme": scheme, "host": host, "announcement": announcement}
@@ -77,32 +37,9 @@ def PublicServiceAnnouncementRead(request, id):
 def PublicServiceInquiry(request):
     username = "public/everyone"
 
-    records = Inquiry.objects.all()
+    inquiries = Inquiry.objects.all()
 
-    results = None
-
-    if request.method == "GET":
-        keyword = request.GET.get("keyword")
-
-        if keyword:
-            results = Inquiry.objects.filter(question__icontains = keyword)
-
-        elif not keyword:
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "keyword is not valid.")
-
-        if results is None:
-            username = "public/everyone"
-
-            messages.info(request, username + ", " + "kindly search inquiries within COTSEye to read for guide today.")
-
-        elif not results:
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "information input is impossible within COTSEye.")
-
-    context = {"username": username, "records": records, "results": results}
+    context = {"username": username, "inquiries": inquiries}
 
     return render(request, "public/service/inquiry/inquiry.html", context)
 
@@ -130,125 +67,11 @@ def PublicServiceResource(request):
 
     resource_links = ResourceLink.objects.all()
 
-    try:
-        links_date = ResourceLink.objects.all().latest("resource__release_date")
-
-        links_date = links_date.resource.release_date
-
-    except:
-        links_date = ""
-
     resource_files = ResourceFile.objects.all()
-
-    try:
-        files_date = ResourceFile.objects.all().latest("resource__release_date")
-
-        files_date = files_date.resource.release_date
-        
-    except:
-        files_date = ""
     
-    context = {"username": username, "resource_links": resource_links, "links_date": links_date, "resource_files": resource_files, "files_date": files_date}
+    context = {"username": username, "resource_links": resource_links, "resource_files": resource_files}
     
     return render(request, "public/service/resource/resource.html", context)
-
-
-def PublicServiceResourceLink(request):
-    username = "public/everyone"
-
-    records = ResourceLink.objects.all()
-
-    results = None
-
-    if request.method == "GET":
-        from_date = request.GET.get("from_date")
-
-        from_date = datetime.datetime.strptime(from_date, "%Y-%m-%d") if from_date else None
-        
-        to_date = request.GET.get("to_date")
-
-        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
-
-        if from_date and to_date:
-            results = ResourceLink.objects.filter(resource__release_date__range = [from_date, to_date])
-        
-        elif not from_date or not to_date:
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "date range is not valid.") 
-        
-        elif from_date and to_date and to_date < from_date:
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "date range is not valid.")
-
-        elif not from_date and not to_date:
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "information filter is empty within COTSEye.")
-
-        if results is None:
-            username = "public/everyone"
-
-            messages.info(request, username + ", " + "kindly filter resources within COTSEye to read for knowledge today.")
-
-        elif not results:
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "information input is impossible within COTSEye.")
-
-    context = {"username": username, "records": records, "results": results}
-    
-    return render(request, "public/service/resource/link.html", context)
-
-
-def PublicServiceResourceFile(request):
-    username = "public/everyone"
-
-    records = ResourceFile.objects.all()
-
-    if request.method == "GET":
-        from_date = request.GET.get("from_date")
-
-        from_date = datetime.datetime.strptime(from_date, "%Y-%m-%d") if from_date else None
-        
-        to_date = request.GET.get("to_date")
-
-        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
-
-        results = None
-
-        if from_date and to_date:
-            results = ResourceFile.objects.filter(resource__release_date__range = [from_date, to_date])
-        
-        elif not from_date or not to_date:
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "date range is not valid.") 
-        
-        elif from_date and to_date and to_date < from_date:
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "date range is not valid.")
-
-        elif not from_date and not to_date:
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "information filter is empty within COTSEye.")
-
-        if results is None:
-            username = "public/everyone"
-
-            messages.info(request, username + ", " + "kindly filter resources within COTSEye to read for knowledge today.")
-
-        elif not results:
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "information input is impossible within COTSEye.")
-
-    context = {"username": username, "records": records, "results": results}
-    
-    return render(request, "public/service/resource/file.html", context)
 
 
 @login_required(login_url = "Contributor Service Login")
@@ -256,48 +79,9 @@ def PublicServiceResourceFile(request):
 def ContributorServiceAnnouncement(request):
     username = request.user.username
 
-    records = Announcement.objects.all()
+    announcements = Announcement.objects.all()
 
-    results = None
-
-    if request.method == "GET":
-        from_date = request.GET.get("from_date")
-
-        from_date = datetime.datetime.strptime(from_date, "%Y-%m-%d") if from_date else None
-        
-        to_date = request.GET.get("to_date")
-
-        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
-
-        if from_date and to_date:
-            results = Announcement.objects.filter(release_date__range = [from_date, to_date])
-
-        elif from_date and to_date and to_date < from_date:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "date range is not valid.")
-
-        elif not from_date or not to_date:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "date range is not valid.") 
-
-        elif not from_date and not to_date:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "date range is not valid.")
-        
-        if results is None:
-            username = request.user.username
-
-            messages.info(request, username + ", " + "kindly filter announcements within COTSEye to check for updates today.")
-
-        elif not results:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information input is impossible within COTSEye.")
-
-    context = {"username": username, "records": records, "results": results}
+    context = {"username": username, "announcements": announcements}
 
     return render(request, "contributor/service/announcement/announcement.html", context)
 
@@ -323,32 +107,9 @@ def ContributorServiceAnnouncementRead(request, id):
 def ContributorServiceInquiry(request):
     username = request.user.username
 
-    records = Inquiry.objects.all()
+    inquiries = Inquiry.objects.all()
 
-    results = None
-
-    if request.method == "GET":
-        keyword = request.GET.get("keyword")
-
-        if keyword:
-            results = Inquiry.objects.filter(question__icontains = keyword)
-
-        elif not keyword:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "keyword is not valid.")
-
-        if results is None:
-            username = request.user.username
-
-            messages.info(request, username + ", " + "kindly search inquiries within COTSEye to read for guide today.")
-
-        elif not results:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information input is impossible within COTSEye.")
-
-    context = {"username": username, "records": records, "results": results}
+    context = {"username": username, "inquiries": inquiries}
 
     return render(request, "contributor/service/inquiry/inquiry.html", context)
 
@@ -378,125 +139,11 @@ def ContributorServiceResource(request):
 
     resource_links = ResourceLink.objects.all()
 
-    try:
-        links_date = ResourceLink.objects.latest("resource__release_date")
-        
-    except:
-        links_date = ""
-
     resource_files = ResourceFile.objects.all()
-
-    try:
-        files_date = ResourceFile.objects.latest("resource__release_date")
-        
-    except:
-        files_date = ""
     
-    context = {"username": username, "resource_links": resource_links, "links_date": links_date, "resource_files": resource_files, "files_date": files_date}
+    context = {"username": username, "resource_links": resource_links, "resource_files": resource_files}
     
     return render(request, "contributor/service/resource/resource.html", context)
-
-
-@login_required(login_url = "Contributor Service Login")
-@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
-def ContributorServiceResourceLink(request):
-    username = request.user.username
-
-    records = ResourceLink.objects.all()
-
-    results = None
-
-    if request.method == "GET":
-        from_date = request.GET.get("from_date")
-
-        from_date = datetime.datetime.strptime(from_date, "%Y-%m-%d") if from_date else None
-        
-        to_date = request.GET.get("to_date")
-
-        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
-
-        if from_date and to_date:
-            results = ResourceLink.objects.filter(resource__release_date__range = [from_date, to_date])
-        
-        elif not from_date or not to_date:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "date range is not valid.") 
-        
-        elif from_date and to_date and to_date < from_date:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "date range is not valid.")
-
-        elif not from_date and not to_date:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information filter is empty within COTSEye.")
-
-        if results is None:
-            username = request.user.username
-
-            messages.info(request, username + ", " + "kindly filter resources within COTSEye to read for knowledge today.")
-
-        elif not results:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information input is impossible within COTSEye.")
-
-    context = {"username": username, "records": records, "results": results}
-    
-    return render(request, "contributor/service/resource/link.html", context)
-
-
-@login_required(login_url = "Contributor Service Login")
-@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
-def ContributorServiceResourceFile(request):
-    username = request.user.username
-
-    records = ResourceFile.objects.all()
-
-    results = None
-
-    if request.method == "GET":
-        from_date = request.GET.get("from_date")
-
-        from_date = datetime.datetime.strptime(from_date, "%Y-%m-%d") if from_date else None
-        
-        to_date = request.GET.get("to_date")
-
-        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
-
-        if from_date and to_date:
-            results = ResourceFile.objects.filter(resource__release_date__range = [from_date, to_date])
-        
-        elif not from_date or not to_date:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "date range is not valid.") 
-        
-        elif from_date and to_date and to_date < from_date:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "date range is not valid.")
-
-        elif not from_date and not to_date:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information filter is empty within COTSEye.")
-
-        if results is None:
-            username = request.user.username
-
-            messages.info(request, username + ", " + "kindly filter resources within COTSEye to read for knowledge today.")
-
-        elif not results:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information input is impossible within COTSEye.")
-
-    context = {"username": username, "records": records, "results": results}
-    
-    return render(request, "contributor/service/resource/file.html", context)
 
 
 def ServiceResourceLinkReadRedirect(request, id):

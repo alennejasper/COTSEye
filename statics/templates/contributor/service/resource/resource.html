@@ -2,83 +2,28 @@
 {% load static %}
 
 {% block content %}
-    <div class = "resource" id = "link">
-        <div class = "card-header">
-            <header>Resource links</header>
-        </div>
-
-        <div class = "card-body">
-            <div class = "field">
-                <div class = "column">
-                    <label for = "links-date">Newest Date</label> 
-
-                    <div class = "links-date">
-                        <input type = "text" value = "{{links_date.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}" id = "links-date" name = "links_date" readonly>
-
-                        <i class = "fa-solid fa-calendar-day"></i>
-                    </div>  
-                </div>
-                
-                <div class = "column">
-                    <label for = "resource-links">Resources Count</label> 
-                        
-                    <div class = "resource-links">
-                        <input type = "text" value = "{{resource_links.count | default:'0'}}" id = "resource-links" name = "resource_links" readonly>
-                            
-                        <i class = "fa-solid fa-arrow-up-wide-short"></i>
-                    </div>
-                </div>
-            </div>
-
-            <div class = "button">
-                <a class = "browse-links" href = "{% url 'Contributor Service Resource Link' %}">Browse</a>
-            </div>    
-        </div>
+    <div class = "fixed inset-0 z-[-10] h-screen w-full">
+        <img src = "/statics/assets/bg-2.jpg" class = "h-full w-full object-cover top-[-5rem]">
     </div>
 
-    <div class = "resource" id = "file">
-        <div class = "card-header">
-            <header>Resource files</header>
-        </div>
+    <h1 class = "my-[2rem] text-center font-bold text-[3rem] text-white">RESOURCES</h1>
 
-        <div class = "card-body">
-            <div class = "field">
-                <div class = "column">
-                    <label for = "files-date">Newest Date</label> 
+    <div class = "h-fit my-[4rem] block w-full bg-white rounded-xl p-4 px-[2rem] pt-[2rem]">
+        <div class = "flex gap-4 flex-col">
+            {% for resource in resource_links %}
+                <a href = "{% url 'Service Resource Link Read Redirect' resource.id %}" class = "w-full flex justify-between items-center border-b-2 text-[#003755] border-[#003755] cursor-pointer">
+                    <h3 class = "font-semibold text-md uppercase tracking-wide w-full  mb-2">{{resource.resource.title | default:'None available'}}</h3>
+                    <i class = "fa-solid fa-play"></i>
+                </a>
+            {% endfor %}
 
-                    <div class = "files-date">
-                        <input type = "text" value = "{{files_date.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}" id = "files-date" name = "files_date" readonly>
-
-                        <i class = "fa-solid fa-calendar-day"></i>
-                    </div>  
-                </div>
-
-                <div class = "column">
-                    <label for = "resource-files">Resources Count</label> 
-                        
-                    <div class = "resource-files">
-                        <input type = "text" value = "{{resource_files.count | default:'0'}}" id = "resource-files" name = "resource_files" readonly>
-                            
-                        <i class = "fa-solid fa-arrow-up-wide-short"></i>
-                    </div>
-                </div>
-            </div>
-
-            <div class = "button">
-                <a class = "browse-files" href = "{% url 'Contributor Service Resource File' %}">Browse</a>
-            </div>    
+            {% for resource in resource_files %}
+                <a href = "{% url 'Service Resource File Read Redirect' resource.id %}" class = "w-full flex justify-between items-center border-b-2 text-[#003755] border-[#003755] cursor-pointer">
+                    <h3 class = "font-semibold text-md uppercase tracking-wide w-full  mb-2">{{resource.resource.title | default:'None available'}}</h3>
+                    
+                    <i class = "fa-solid fa-play"></i>
+                </a>
+            {% endfor %}
         </div>
     </div>
-
-    {% if messages %}
-        {% for message in messages %}
-            {% if message.tags == "info" %}<script>Swal.fire({title: "Hey!", text: "{{message}}", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}})</script>
-            
-            {% elif message.tags == "success" %}<script>Swal.fire({title: "Yay!", text: "{{message}}", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}})</script>
-            
-            {% else %}<script>Swal.fire({title: "Oops!", text: "{{message}}", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}})</script>
-            
-            {% endif %}    
-        {% endfor %}
-    {% endif %}
 {% endblock content %}

@@ -200,6 +200,10 @@ def ContributorServiceLogin(request):
 
 
 def ContributorServiceLoginFacebook(request):
+    username = request.user.username
+
+    messages.info(request, username + ", " + "kindly login again in order to be validated by COTSEye today.")
+
     if request.method == "POST":
         username = request.POST.get("username")
 
@@ -225,6 +229,10 @@ def ContributorServiceLoginFacebook(request):
 
 
 def ContributorServiceLoginGoogle(request):
+    username = request.user.username
+
+    messages.info(request, username + ", " + "kindly login again in order to be validated by COTSEye today.")
+
     if request.method == "POST":
         username = request.POST.get("username")
 
@@ -280,7 +288,27 @@ def ContributorServiceProfile(request):
 
     username = request.user.username
 
-    context = {"user": user, "username": username}
+    records = Post.objects.filter(user = request.user.user)
+
+    results = None
+    
+    if request.method == "GET":
+        post_status  = request.GET.get("post_status")
+
+        if post_status :
+            results = Post.objects.filter(user = request.user.user, post_status = post_status)
+    
+        elif results is None:
+            username = request.user.username
+
+            messages.info(request, username + ", " + "kindly filter posts within COTSEye to generate for reports today.")
+
+        elif not results:
+            username = request.user.username
+
+            messages.error(request, username + ", " + "information input is impossible within COTSEye.")
+
+    context = {"user": user, "username": username, "records": records, "results": results}
 
     return render(request, "contributor/service/profile/profile.html", context)
 
@@ -519,6 +547,10 @@ def OfficerControlLogin(request):
 
 
 def OfficerControlLoginFacebook(request):
+    username = request.user.username
+
+    messages.info(request, username + ", " + "kindly login again in order to be validated by COTSEye today.")
+
     if request.method == "POST":
         username = request.POST.get("username")
         
@@ -544,6 +576,10 @@ def OfficerControlLoginFacebook(request):
 
 
 def OfficerControlLoginGoogle(request):
+    username = request.user.username
+
+    messages.info(request, username + ", " + "kindly login again in order to be validated by COTSEye today.")
+    
     if request.method == "POST":
         username = request.POST.get("username")
         

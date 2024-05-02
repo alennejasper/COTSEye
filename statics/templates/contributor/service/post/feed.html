@@ -2,174 +2,46 @@
 {% load static %}
 
 {% block content %}
-    <div class = "post" id = "post-filter">
-        <form action = "" class = "post-form" method = "GET">
-            {% csrf_token %}
-
-            <div class = "card-header">
-                <header>Filter posts</header>
-            </div>
-
-            <div class = "card-body">
-                <div class = "field">
-                    <div class = "column">
-                        <label for = "from-date">From</label> 
-                            
-                        <div class = "from-date">
-                            <input type = "date" value = "" id = "from-date" name = "from_date" required>                            
-                        </div>
-
-                        <label for = "to-date">To</label> 
-
-                        <div class = "to-date">
-                            <input type = "date" value = "" id = "to-date" name = "to_date" required>                            
-                        </div>  
-                    </div>
-
-                    <div class = "column">
-                        <label for = "location">Location</label> 
-
-                        <select name = "location" id = "lcoation">
-                            <option disabled selected value>Choose location</option>
-
-                            <option value = "each_location">Each location</option>
-
-                            {% for option in options %}
-                                <option value = "{{option.id}}">{{option}}</option>
-                            {% endfor %}
-                        </select>
-                        
-                        <!-- <label for = "post-status">Post Status</label> 
-
-                        <select name = "post_status" id = "post-status">
-                            <option disabled selected value>Choose post status</option>
-
-                            <option value = "each_poststatus">Each post status</option>
-
-                            {% for option in options %}
-                                <option value = "{{option.id}}">{{option}}</option>
-                            {% endfor %}
-                        </select> -->
-                    </div>
-                </div>
-
-                <div class = "button">
-                    <a class = "filter-posts" type = "submit">Filter</a>
-                </div>    
-            </div>
-        </form>
+    <div class = "fixed inset-0 z-[-10] h-screen w-full">
+        <img src = "/statics/assets/bg-2.jpg" class = "h-full w-full object-cover top-[-5rem]">
     </div>
 
-    {% if messages %}
-        {% for message in messages %}
-            {% if message.tags == "info" %}<script>Swal.fire({title: "Hey!", text: "{{message}}", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}})</script>
-            
-            {% elif message.tags == "success" %}<script>Swal.fire({title: "Yay!", text: "{{message}}", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}})</script>
-            
-            {% else %}<script>Swal.fire({title: "Oops!", text: "{{message}}", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}})</script>
-            
-            {% endif %}    
-        {% endfor %}
-    {% endif %}
+
+    <div class = "my-[2rem] flex flex-col w-full px-[1.8rem] items-center justify-center relative text-center">
+        <h1 class = "font-bold text-[3rem] text-white text-center">COTSEYE</h1>
+    </div>
 
     <script>
-        document.querySelector(".filter-posts").onclick = function() {
+        document.querySelector(".filter-posts").onclick = function () {
             document.querySelector(".post-form").submit();
         }
     </script>
 
-    {% if results %}
-        <div class = "line" id = "results"></div>
 
-        {% for post in results %}
-            <div class = "post" id = "post-results">
-                <div class = "list">
-                    <a href = "{% url 'Contributor Service Post Feed Read' post.id %}">
-                        <div class = "field">
-                            <div class = "column">
-                                <div class = "post-gallery">
-                                    {% for post_photo in post.post_photos.all %}
-                                        <img class = "gallery-photo" src = "{{post_photo.post_photo.url}}">
-                                    {% endfor %}      
-                                </div>  
-                            </div>
-                            
-                            <div class = "column">
-                                <label for = "user">User</label> 
-                                    
-                                <div class = "user">
-                                    <input type = "text" value = "{{post.user | default:'None available'}}" id = "user" name = "user" readonly>
-                                        
-                                    <i class = "fa-solid fa-user"></i>
-                                </div>
+    {% for post in valid_posts %}
+        <div class = "w-full mb-[2rem] border-2 rounded-lg px-4 bg-white">
+            <div class="flex w-full flex-col min-[450px]:flex-row min-[450px]:justify-between my-2">
+                <p class="flex items-center gap-2 text-[#003755]"><i class="fa-solid fa-user"></i>{{post.user | default:'None available'}}</p>
 
-                                <label for = "capture-date">Capture Date</label> 
-                                    
-                                <div class = "capture-date">
-                                    <input type = "text" value = "{{post.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}" id = "capture-date" name = "capture_date" readonly>
-                                        
-                                    <i class = "fa-solid fa-calendar-check"></i>
-                                </div>
+                <p class="flex items-center gap-2 text-[#003755]"><i class="fa-solid fa-calendar-check"></i>{{post.capture_date | default:'None available'}}</p>
+            </div>
 
-                                <label for = "location">Location</label> 
-                                    
-                                <div class = "location">
-                                    <input type = "text" value = "{{post.location | default:'None available'}}" id = "location" name = "location" readonly>
-                                        
-                                    <i class = "fa-solid fa-location-dot"></i>
-                                </div>
-                            </div>
+
+            <div class = "flex items-center justify-center">
+                <div class = "w-full flex justify-center flex-col items-center">
+                    <div class = "w-full h-full flex justify-start flex-col items-start relative">
+                        <img class = "h-[18rem] w-full object-cover" src= "{{post.post_photos.first.post_photo.url | default:'None available'}}">
+
+                        <div class="w-full flex items-center absolute bg-black bg-opacity-70 text-white bottom-0 p-4 h-[30%]">
+                            <h1 class="font-semibold text-lg min-[490px]:text-2xl">{{post.description | default:'None available'}}</h1>
                         </div>
-                    </a>
+                    </div>
+
+                    <div class = "flex justify-center w-full my-[2rem]">
+                        <a href = "{% url 'Contributor Service Post Feed Read' post.id %}"><button class = "w-[10rem] bg-[#003755] hover:bg-white hover:border-[#003755] border-2 p-2 rounded-full font-bold text-white hover:text-[#003755]">Read More</button></a>
+                    </div>
                 </div>
             </div>
-        {% endfor %}
-
-    {% else %}
-        <div class = "line" id = "records"></div>
-
-        {% for post in records %}
-            <div class = "post" id = "post-records">
-                <div class = "list">
-                    <a href = "{% url 'Contributor Service Post Feed Read' post.id %}">
-                        <div class = "field">
-                            <div class = "column">
-                                <div class = "post-gallery">
-                                    {% for post_photo in post.post_photos.all %}
-                                        <img class = "gallery-photo" src = "{{post_photo.post_photo.url}}">
-                                    {% endfor %}      
-                                </div>  
-                            </div>
-                            
-                            <div class = "column">
-                                <label for = "user">User</label> 
-                                    
-                                <div class = "user">
-                                    <input type = "text" value = "{{post.user | default:'None available'}}" id = "user" name = "user" readonly>
-                                        
-                                    <i class = "fa-solid fa-user"></i>
-                                </div>
-
-                                <label for = "capture-date">Capture Date</label> 
-                                    
-                                <div class = "capture-date">
-                                    <input type = "text" value = "{{post.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}" id = "capture-date" name = "capture_date" readonly>
-                                        
-                                    <i class = "fa-solid fa-calendar-check"></i>
-                                </div>
-
-                                <label for = "location">Location</label> 
-                                    
-                                <div class = "location">
-                                    <input type = "text" value = "{{post.location | default:'None available'}}" id = "location" name = "location" readonly>
-                                        
-                                    <i class = "fa-solid fa-location-dot"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        {% endfor %}
-    {% endif %}
+        </div>
+    {% endfor %}
 {% endblock content %}

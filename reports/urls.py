@@ -9,17 +9,9 @@ urlpatterns = [
 
     path("contributor/service/report/", views.ContributorServiceReport, name = "Contributor Service Report"),
 
-    path("contributor/service/report/capture/", views.ContributorServiceReportCapture, name = "Contributor Service Report Capture"),
-
-    path("contributor/service/report/choose/", views.ContributorServiceReportChoose, name = "Contributor Service Report Choose"),
-
     path("contributor/service/report/fetch/", views.ContributorServiceReportFetch, name = "Contributor Service Report Fetch"),
 
     path("contributor/service/report/update/<int:id>", views.ContributorServiceReportUpdate, name = "Contributor Service Report Update"),
-
-    path("contributor/service/report/capture/update/<int:id>/", views.ContributorServiceReportCaptureUpdate, name = "Contributor Service Report Capture Update"),
-
-    path("contributor/service/report/choose/update/<int:id>/", views.ContributorServiceReportChooseUpdate, name = "Contributor Service Report Choose Update"),
 
     path("contributor/service/report/update/fetch/", views.ContributorServiceReportUpdateFetch, name = "Contributor Service Report Update Fetch"),
 

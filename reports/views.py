@@ -22,70 +22,9 @@ import json
 def PublicServicePostFeed(request):
     username = "public/everyone"
 
-    options = PostStatus.objects.all()
+    valid_posts = Post.objects.filter(post_status = 1)
 
-    records = Post.objects.filter(post_status = 1)
-
-    results = None
-    
-    if request.method == "GET":
-        from_date = request.GET.get("from_date")
-        
-        to_date = request.GET.get("to_date")
-
-        post_status = request.GET.get("post_status")
-
-        if from_date and to_date:
-            results = Post.objects.filter(capture_date__range = [from_date, to_date])
-
-        elif from_date and to_date and to_date < from_date:
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "date range is not valid.")
-        
-        elif not from_date and not to_date:
-            messages.error(request, username + ", " + "date range is not valid.")
-
-        elif not from_date or not to_date:
-            messages.error(request, username + ", " + "date range is not valid.")
-
-        if post_status and not post_status == "each_poststatus":
-            results = Post.objects.filter(capture_date__range = [from_date, to_date], post_status = post_status)
-    
-        elif not post_status and post_status == "each_poststatus":
-            results = Post.objects.all()
-
-        elif not post_status and not post_status == "each_poststatus":
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "post status is not valid.")
-        
-        elif not post_status or not post_status == "each_poststatus":
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "post status is not valid.")  
-
-        if not from_date and not to_date and not post_status:
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "information filter is empty within COTSEye.")
-        
-        elif not from_date or not to_date or not post_status:
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "information filter is incomplete within COTSEye.")
-
-        if results is None:
-            username = "public/everyone"
-
-            messages.info(request, username + ", " + "kindly filter posts within COTSEye to generate for reports today.")
-
-        elif not results:
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "information input is impossible within COTSEye.")
-
-    context = {"username": username, "records": records, "results": results, "options": options}
+    context = {"username": username, "valid_posts": valid_posts}
     
     return render(request, "public/service/post/feed.html", context)
 
@@ -109,120 +48,9 @@ def PublicServicePostFeedRead(request, id):
 def ContributorServiceReport(request):
     username = request.user.username
 
-    context = {"username": username}
-    
-    return render(request, "contributor/service/report/report.html", context)
-
-
-@login_required(login_url = "Contributor Service Login")
-@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
-def ContributorServiceReportCapture(request):
-    username = request.user.username
-
     coordinates_form = CoordinatesForm()
 
     postobservation_form = PostObservationForm()
-        
-    locations = Location.objects.all()
-
-    depths = Depth.objects.all()
-
-    weathers = Weather.objects.all()
-
-    post_form = PostForm()
-    
-    if request.method == "POST":
-        coordinates_form = CoordinatesForm(request.POST)
-
-        postobservation_form = PostObservationForm(request.POST)
-
-        post_form =  PostForm(request.POST, request.FILES)
-
-        if coordinates_form.is_valid() and postobservation_form.is_valid() and post_form.is_valid():
-            coordinates = coordinates_form.save(commit = False)
-
-            post_observation = postobservation_form.save(commit = False)
-
-            post = post_form.save(commit = False)
-
-            user = request.user.user
-
-            post_status = PostStatus.objects.get(id = 4)
-
-            coordinates = Coordinates.objects.create(latitude = coordinates.latitude, longitude = coordinates.longitude)
-            
-            location = request.POST.get("location")
-
-            try:
-                post.location = Location.objects.get(id = location)
-            
-            except:
-                post.location = None
-
-            depth = request.POST.get("depth")
-
-            try:
-                post_observation.depth = Depth.objects.get(id = depth)
-
-            except:
-                post_observation.depth = None
-
-            weather = request.POST.get("weather")
-
-            try:
-                post_observation.weather = Weather.objects.get(id = weather)
-            
-            except:
-                post_observation.weather = None
-
-            post_observation = PostObservation.objects.create(size = post_observation.size, depth = post_observation.depth, density = post_observation.density, weather = post_observation.weather)
-            
-            if Coordinates.objects.filter(latitude = coordinates.latitude, longitude = coordinates.longitude).exists() and Location.objects.filter(id = location).exists() and PostObservation.objects.filter(size = post_observation.size, depth = post_observation.depth, density = post_observation.density, weather = post_observation.weather).exists():
-                post = Post.objects.create(user = user, description = post.description, capture_date = post.capture_date, coordinates = coordinates, location = post.location, post_status = post_status, post_observation = post_observation)
-
-                post_photos = request.FILES.getlist("post_photos")
-
-                for post_photo in post_photos:
-                    photo = PostPhoto.objects.create(post_photo = post_photo)
-                    
-                    post.post_photos.add(photo)
-
-                username = request.user.username
-                
-                messages.success(request, username + ", " + "your information input was recorded online for COTSEye.")
-                
-                return redirect("Contributor Service Home")
-            
-            else:
-                messages.error(request, "Information input is not valid.")
-        
-        else:
-            messages.error(request, "Information input is not valid.")
-            
-            messages.error(request, coordinates_form.errors, postobservation_form.errors, post_form.errors)
-
-    else:
-        coordinates_form = CoordinatesForm()
-        
-        postobservation_form = PostObservationForm()
-        
-        post_form = PostForm() 
-
-    context = {"username": username, "coordinates_form": coordinates_form, "depths": depths, "weathers": weathers, "postobservation_form": postobservation_form, "post_form": post_form}
-    
-    return render(request, "contributor/service/report/capture.html", context)
-
-
-@login_required(login_url = "Contributor Service Login")
-@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
-def ContributorServiceReportChoose(request):    
-    username = request.user.username
-
-    coordinates_form = CoordinatesForm()
-
-    postobservation_form = PostObservationForm()
-
-    locations = Location.objects.all()
 
     depths = Depth.objects.all()
 
@@ -246,17 +74,15 @@ def ContributorServiceReportChoose(request):
 
             user = request.user.user
 
-            post_status = PostStatus.objects.get(id = 4)
+            action = request.POST.get("action")
+
+            if action == "save and submit":
+                post_status = PostStatus.objects.get(id = 3)
+
+            else:
+                post_status = PostStatus.objects.get(id = 4)
 
             coordinates = Coordinates.objects.create(latitude = coordinates.latitude, longitude = coordinates.longitude)
-            
-            location = request.POST.get("location")
-
-            try:
-                post.location = Location.objects.get(id = location)
-            
-            except:
-                post.location = None
 
             depth = request.POST.get("depth")
 
@@ -276,11 +102,11 @@ def ContributorServiceReportChoose(request):
 
             post_observation = PostObservation.objects.create(size = post_observation.size, depth = post_observation.depth, density = post_observation.density, weather = post_observation.weather)
             
-            if Coordinates.objects.filter(latitude = coordinates.latitude, longitude = coordinates.longitude).exists() and Location.objects.filter(id = location).exists() and Coordinates.objects.filter(latitude = coordinates.latitude, longitude = coordinates.longitude).exists() and PostObservation.objects.filter(size = post_observation.size, depth = post_observation.depth, density = post_observation.density, weather = post_observation.weather).exists():
-                post = Post.objects.create(user = user, description = post.description, capture_date = post.capture_date, coordinates = coordinates, location = post.location, post_status = post_status, post_observation = post_observation)
-
+            if Coordinates.objects.filter(latitude = coordinates.latitude, longitude = coordinates.longitude).exists() and Coordinates.objects.filter(latitude = coordinates.latitude, longitude = coordinates.longitude).exists() and PostObservation.objects.filter(size = post_observation.size, depth = post_observation.depth, density = post_observation.density, weather = post_observation.weather).exists():
+                post = Post.objects.create(user = user, description = post.description, capture_date = post.capture_date, coordinates = coordinates, post_status = post_status, post_observation = post_observation)
+                
                 post_photos = request.FILES.getlist("post_photos")
-        
+
                 for post_photo in post_photos:
                     photo = PostPhoto.objects.create(post_photo = post_photo)
                     
@@ -307,9 +133,9 @@ def ContributorServiceReportChoose(request):
         
         post_form = PostForm() 
 
-    context = {"username": username, "locations": locations, "coordinates_form": coordinates_form, "depths": depths, "weathers": weathers, "postobservation_form": postobservation_form, "post_form": post_form}
+    context = {"username": username, "coordinates_form": coordinates_form, "depths": depths, "weathers": weathers, "postobservation_form": postobservation_form, "post_form": post_form}
     
-    return render(request, "contributor/service/report/choose.html", context)
+    return render(request, "contributor/service/report/report.html", context)
 
 
 @login_required(login_url = "Contributor Service Login")
@@ -372,78 +198,6 @@ def ContributorServiceReportFetch(request):
 def ContributorServiceReportUpdate(request, id):
     username = request.user.username
 
-    draft_post = Post.objects.get(id = id, post_status = 4)
-
-    context = {"username": username, "draft_post": draft_post}
-    
-    return render(request, "contributor/service/report/report.html", context)
-
-
-@login_required(login_url = "Contributor Service Login")
-@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
-def ContributorServiceReportCaptureUpdate(request, id):
-    username = request.user.username
-
-    draft_post = Post.objects.get(id = id, post_status = 4)   
-
-    depths = Depth.objects.all()
-
-    weathers = Weather.objects.all()
-
-    if request.method == "POST":
-        coordinates_form = CoordinatesForm(request.POST, instance = draft_post.coordinates)
-        
-        postobservation_form = PostObservationForm(request.POST, instance = draft_post.post_observation)
-        
-        post_form =  PostForm(request.POST, request.FILES, instance = draft_post)
-
-        if coordinates_form.is_valid() and postobservation_form.is_valid() and post_form.is_valid():
-            coordinates_form.save()
-            
-            postobservation_form.save()
-           
-            post_form.save()
-
-            for post_photo in draft_post.post_photos.all():
-                draft_post.post_photos.remove(post_photo)
-
-                post_photo.delete()
-
-            post_photos = request.FILES.getlist("post_photos")
-
-            for post_photo in post_photos:
-                photo = PostPhoto.objects.create(post_photo = post_photo)
-
-                draft_post.post_photos.add(photo)
-
-            username = request.user.username
-            
-            messages.success(request, username + ", " + "your information input was updated for COTSEye.")
-            
-            return redirect("Contributor Service Post Draft")
-
-        else:
-            messages.error(request, "Information input is not valid.")
-            
-            messages.error(request, coordinates_form.errors, postobservation_form.errors, post_form.errors)
-        
-    else:
-        coordinates_form = CoordinatesForm(instance = draft_post.coordinates)
-        
-        postobservation_form = PostObservationForm(instance = draft_post.post_observation)
-        
-        post_form = PostForm(instance = draft_post)       
-
-    context = {"username": username, "draft_post": draft_post, "coordinates_form": coordinates_form, "depths": depths, "weathers": weathers, "postobservation_form": postobservation_form, "post_form": post_form}
-    
-    return render(request, "contributor/service/report/capture.html", context)
-
-
-@login_required(login_url = "Contributor Service Login")
-@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
-def ContributorServiceReportChooseUpdate(request, id):
-    username = request.user.username
-
     draft_post = Post.objects.get(id = id, post_status = 4)   
 
     depths = Depth.objects.all()
@@ -496,7 +250,7 @@ def ContributorServiceReportChooseUpdate(request, id):
 
     context = {"username": username, "draft_post": draft_post, "coordinates_form": coordinates_form, "depths": depths, "weathers": weathers, "postobservation_form": postobservation_form, "post_form": post_form}
     
-    return render(request, "contributor/service/report/choose.html", context)
+    return render(request, "contributor/service/report/report.html", context)
 
 
 @login_required(login_url = "Contributor Service Login")
@@ -586,60 +340,17 @@ def ContributorServiceReportUpdateFetch(request):
 def ContributorServicePost(request):
     username = request.user.username
 
-    options = PostStatus.objects.all()
-
     records = Post.objects.filter(user = request.user.user)
 
     results = None
     
     if request.method == "GET":
-        from_date = request.GET.get("from_date")
-        
-        to_date = request.GET.get("to_date")
+        post_status  = request.GET.get("post_status")
 
-        post_status = request.GET.get("post_status")
-
-        if from_date and to_date:
-            results = Post.objects.filter(capture_date__range = [from_date, to_date])
-
-        elif from_date and to_date and to_date < from_date:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "date range is not valid.")
-        
-        elif not from_date and not to_date:
-            messages.error(request, username + ", " + "date range is not valid.")
-
-        elif not from_date or not to_date:
-            messages.error(request, username + ", " + "date range is not valid.")
-
-        if post_status and not post_status == "each_poststatus":
-            results = Post.objects.filter(capture_date__range = [from_date, to_date], post_status = post_status)
+        if post_status :
+            results = Post.objects.filter(user = request.user.user, post_status = post_status)
     
-        elif not post_status and post_status == "each_poststatus":
-            results = Post.objects.all()
-
-        elif not post_status and not post_status == "each_poststatus":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "post status is not valid.")
-        
-        elif not post_status or not post_status == "each_poststatus":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "post status is not valid.")  
-
-        if not from_date and not to_date and not post_status:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information filter is empty within COTSEye.")
-        
-        elif not from_date or not to_date or not post_status:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information filter is incomplete within COTSEye.")
-
-        if results is None:
+        elif results is None:
             username = request.user.username
 
             messages.info(request, username + ", " + "kindly filter posts within COTSEye to generate for reports today.")
@@ -649,7 +360,7 @@ def ContributorServicePost(request):
 
             messages.error(request, username + ", " + "information input is impossible within COTSEye.")
 
-    context = {"username": username, "records": records, "results": results, "options": options}
+    context = {"username": username, "records": records, "results": results}
     
     return render(request, "contributor/service/post/post.html", context)
 
@@ -697,70 +408,9 @@ def ContributorServicePostRead(request, id):
 def ContributorServicePostFeed(request):
     username = request.user.username
 
-    options = PostStatus.objects.all()
+    valid_posts = Post.objects.filter(post_status = 1)
 
-    records = Post.objects.filter(post_status = 1)
-
-    results = None
-    
-    if request.method == "GET":
-        from_date = request.GET.get("from_date")
-        
-        to_date = request.GET.get("to_date")
-
-        post_status = request.GET.get("post_status")
-
-        if from_date and to_date:
-            results = Post.objects.filter(capture_date__range = [from_date, to_date])
-
-        elif from_date and to_date and to_date < from_date:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "date range is not valid.")
-        
-        elif not from_date and not to_date:
-            messages.error(request, username + ", " + "date range is not valid.")
-
-        elif not from_date or not to_date:
-            messages.error(request, username + ", " + "date range is not valid.")
-
-        if post_status and not post_status == "each_poststatus":
-            results = Post.objects.filter(capture_date__range = [from_date, to_date], post_status = post_status)
-    
-        elif not post_status and post_status == "each_poststatus":
-            results = Post.objects.all()
-
-        elif not post_status and not post_status == "each_poststatus":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "post status is not valid.")
-        
-        elif not post_status or not post_status == "each_poststatus":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "post status is not valid.")  
-
-        if not from_date and not to_date and not post_status:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information filter is empty within COTSEye.")
-        
-        elif not from_date or not to_date or not post_status:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information filter is incomplete within COTSEye.")
-
-        if results is None:
-            username = request.user.username
-
-            messages.info(request, username + ", " + "kindly filter posts within COTSEye to generate for reports today.")
-
-        elif not results:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information input is impossible within COTSEye.")
-
-    context = {"username": username, "records": records, "results": results, "options": options}
+    context = {"username": username, "valid_posts": valid_posts}
     
     return render(request, "contributor/service/post/feed.html", context)
 
