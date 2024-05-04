@@ -361,10 +361,7 @@
             updateCoordinates(defaultLatitude, defaultLongitude);
 
             fetchLocation();
-            
-            //Geo Decoder
-            L.control.locate().addTo(map);
-
+        
             var geocoder = L.Control.geocoder({
                 defaultMarkGeocode: false,
                 
@@ -374,8 +371,6 @@
                 report.setLatLng(latlng);
                 
                 map.setView(latlng, 16);
-
-                var popupContent = e.geocode.name;
     
                 var popupInput = document.getElementById("location");
 
