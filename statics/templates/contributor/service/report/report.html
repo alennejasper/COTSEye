@@ -73,7 +73,7 @@
                         Capture with camera
                     </label>
 
-                    <input type = "file" class = "post-photo2 w-full border-2 p-2 rounded-md absolute inset-0 opacity-0" name = "post_photos" id = "post-photo2" accept = "image/*" capture = "environment">
+                    <input type = "file" class = "post-photo2 w-full border-2 p-2 rounded-md absolute inset-0 opacity-0" name = "post_photos_capture" id = "post-photo2" accept = "image/*" capture = "environment">
                 </div>
 
                 <div class = "w-full p-2 my-2 cursor-pointer flex-col flex items-center justify-center bg-[#003755] hover:bg-[#00375594] relative h-[8rem] !text-white">
@@ -83,7 +83,7 @@
                         Choose an image
                     </label>
 
-                    <input type = "file" class = "post-photo w-full border-2 p-2 rounded-md absolute inset-0 opacity-0" name = "post_photos" id = "post-photo" accept = "image/*">
+                    <input type = "file" class = "post-photo w-full border-2 p-2 rounded-md absolute inset-0 opacity-0" name = "post_photos_choose" id = "post-photo" accept = "image/*">
                 </div>
             </div>
 
@@ -110,8 +110,8 @@
 
             <h1 class = "my-[2rem] text-center font-semibold text-[2rem] text-[#003755]">LOCATION</h1>
 
-            <div class = "location h-[2.5rem] border-2 p-2 rounded-md my-2 w-full" name = "location" id = "location">
-                <input class = "w-full" type = "text" value = "" id = "location" name = "location">
+            <div class = "location h-[2.5rem] border-2 p-2 rounded-md my-2 w-full" name = "location">
+                <input class = "w-full" type = "text" id = "location" name = "location">
             </div>
 
             <div class = "map w-full">
@@ -288,9 +288,6 @@
             document.querySelector(".post-photo").click();
         });
 
-        document.querySelector(".capture-photo").addEventListener("click", function(){
-            document.querySelector(".post-photo2").click();
-        });
     </script>
 
     <script>
@@ -319,6 +316,14 @@
         });
     </script>
 
+    <script src = "https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+    <script src = "https://cdn.jsdelivr.net/npm/leaflet-geosearch/dist/geosearch.min.js"></script>
+
+    <script src = "https://cdn.jsdelivr.net/npm/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+    <script src = "https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@v0.74.0/dist/L.Control.Locate.min.js" charset="utf-8"></script>
+
     <script>
         var map;
 
@@ -327,7 +332,7 @@
         function revealMap(){
             var starfish = L.icon({iconUrl: "{% static 'assets/icons/marker.png' %}", iconSize: [30, 30], iconAnchor: [15, 15]});
 
-            var report = L.marker([5.9656, 125.1929], {draggable: true, icon: starfish});
+            report = L.marker([5.9656, 125.1929], {draggable: true, icon: starfish});
 
             var reportMap = document.getElementsByClassName("report-map")[0];
             
@@ -336,41 +341,79 @@
             map = L.map(reportMap, {zoomControl: true, scrollWheelZoom: false, dragging: true, maxBounds: [[5.3, 124.3],[6.3, 126.3]], layers: [background, report]}).setView([5.9656, 125.1929], 11);
 
             map.attributionControl.setPosition("bottomleft");
-
-            function updateCoordinates(){
-                var latitude = report.getLatLng().lat.toFixed(6);
-
-                var longitude = report.getLatLng().lng.toFixed(6);
-
-                document.getElementById("latitude").value = latitude;
                 
-                document.getElementById("longitude").value = longitude;
-            }
-
-            updateCoordinates();
-
-            report.on("drag", updateCoordinates);
-
-            report.on("dragend", function (e){
-                var position = report.getLatLng();
-
-                document.getElementById("latitude").value = position.lat.toFixed(6);
+            report.on("drag", function(event){
+                var position = event.target.getLatLng();
                 
-                document.getElementById("longitude").value = position.lng.toFixed(6);
+                updateCoordinates(position.lat, position.lng);
             });
 
-            document.getElementById("latitude").addEventListener("input", function (){
-                var lat = parseFloat(this.value);
-
-                report.setLatLng([lat, report.getLatLng().lng]);
+            report.on("dragend", function(event){
+                var position = event.target.getLatLng();
+                
+                updateCoordinates(position.lat, position.lng);
             });
 
-            document.getElementById("longitude").addEventListener("input", function (){
-                var lng = parseFloat(this.value);
+            var defaultLatitude = report.getLatLng().lat;
 
-                report.setLatLng([report.getLatLng().lat, lng]);
+            var defaultLongitude = report.getLatLng().lng;
+
+            updateCoordinates(defaultLatitude, defaultLongitude);
+
+            fetchLocation();
+            
+            //Geo Decoder
+            L.control.locate().addTo(map);
+
+            var geocoder = L.Control.geocoder({
+                defaultMarkGeocode: false,
+                
+            }).on("markgeocode", function (e){
+                var latlng = e.geocode.center;
+                
+                report.setLatLng(latlng);
+                
+                map.setView(latlng, 16);
+
+                var popupContent = e.geocode.name;
+    
+                var popupInput = document.getElementById("location");
+
+                document.getElementById("location").value = popupContent;
+                
+                report.bindPopup(popupContent).openPopup();
+
+                var latitudeInput = document.getElementById("latitude");
+                
+                var longitudeInput = document.getElementById("longitude");
+                
+                latitudeInput.value = latlng.lat.toFixed(6);
+                
+                longitudeInput.value = latlng.lng.toFixed(6);
+
+                map.panTo(latlng);
+
+                popupInput.value = popupContent;
+            }).addTo(map);
+
+            var provider = new GeoSearch.OpenStreetMapProvider();
+
+            var searchControl = new GeoSearch.GeoSearchControl({
+                provider: provider,
             });
+
+            searchControl.addTo(map);
         }
+
+        function updateCoordinates(latitude, longitude){
+            var latitudeInput = document.getElementById("latitude");
+
+            var longitudeInput = document.getElementById("longitude");
+
+            latitudeInput.value = latitude.toFixed(6);
+            
+            longitudeInput.value = longitude.toFixed(6);
+        };
 
         window.addEventListener("load", function (){
             revealMap();
@@ -391,7 +434,7 @@
                 navigator.geolocation.getCurrentPosition(checkPosition);
                 
             } else{
-                Swal.fire({title: "Oops!", text: "The location is not supported and cannot be given to COTSEye.", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}});
+                Swal.fire({title: "Oops!", text: "The location is not supported and cannot be given to COTSEye.", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}});                
             };
         };
 
@@ -411,7 +454,9 @@
             if (latitude < minimumLatitude || latitude > maximumLatitude || longitude < minimumLongitude || longitude > maximumLongitude){
                 Swal.fire({title: "Oops!", text: "The location given to COTSEye incorporated coordinates out of bounds.", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}});
                 
-                document.querySelector(".capture-photo2").addEventListener("click", function(){
+                document.querySelector(".post-photo2").addEventListener("click", function(){
+                    event.preventDefault();
+                    
                     Swal.fire({title: "Oops!", text: "The location given to COTSEye incorporated coordinates out of bounds.", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}});
                 });
 
@@ -419,7 +464,7 @@
                 updateCoordinates(latitude, longitude);
 
                 report.setLatLng([latitude, longitude]);
-                
+
                 map.setView([latitude, longitude], 11);
 
                 document.querySelector(".capture-photo").addEventListener("click", function(){

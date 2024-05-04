@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.files.base import ContentFile
@@ -105,7 +105,11 @@ def ContributorServiceReport(request):
             if Coordinates.objects.filter(latitude = coordinates.latitude, longitude = coordinates.longitude).exists() and Coordinates.objects.filter(latitude = coordinates.latitude, longitude = coordinates.longitude).exists() and PostObservation.objects.filter(size = post_observation.size, depth = post_observation.depth, density = post_observation.density, weather = post_observation.weather).exists():
                 post = Post.objects.create(user = user, description = post.description, capture_date = post.capture_date, coordinates = coordinates, post_status = post_status, post_observation = post_observation)
                 
-                post_photos = request.FILES.getlist("post_photos")
+                post_photos_capture = request.FILES.getlist("post_photos_capture")
+
+                post_photos_choose = request.FILES.getlist("post_photos_choose")
+
+                post_photos = post_photos_capture + post_photos_choose
 
                 for post_photo in post_photos:
                     photo = PostPhoto.objects.create(post_photo = post_photo)
@@ -340,28 +344,21 @@ def ContributorServiceReportUpdateFetch(request):
 def ContributorServicePost(request):
     username = request.user.username
 
-    records = Post.objects.filter(user = request.user.user)
+    records = None
 
     results = None
-    
+
     if request.method == "GET":
-        post_status  = request.GET.get("post_status")
+        post_status = request.GET.get("post_status")
 
-        if post_status :
-            results = Post.objects.filter(user = request.user.user, post_status = post_status)
-    
-        elif results is None:
-            username = request.user.username
+        if post_status in ["1", "2", "3", "4"]:
+            results = Post.objects.filter(post_status = post_status)
 
-            messages.info(request, username + ", " + "kindly filter posts within COTSEye to generate for reports today.")
+        else:
+            results = Post.objects.all()
+        
+    context = {"username": username, "records": records, "results": results, "post_status": post_status}
 
-        elif not results:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information input is impossible within COTSEye.")
-
-    context = {"username": username, "records": records, "results": results}
-    
     return render(request, "contributor/service/post/post.html", context)
 
 

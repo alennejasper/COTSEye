@@ -19,35 +19,42 @@
                     {% csrf_token %}
 
                     <div id = "options" class = "hidden absolute left-[-9rem] z-20 w-48 py-2 mt-[1rem] bg-white rounded-lg shadow-xl">
-                        <a name = "post_status" href = "?post_status=1" type = "submit" class = "filter-posts block px-4 py-2 text-gray-800 hover:text-[#003755]">Valid Posts</a>
+                        <a name = "post_status" href = "?post_status=1" class = "filter-posts block px-4 py-2 text-gray-800 hover:text-[#003755]">Valid Posts</a>
                         
-                        <a name = "post_status" href = "?post_status=2" type = "submit" class = "filter-posts block px-4 py-2 text-gray-800 hover:text-[#003755]">Invalid Posts</a>
+                        <a name = "post_status" href = "?post_status=2" class = "filter-posts block px-4 py-2 text-gray-800 hover:text-[#003755]">Invalid Posts</a>
 
-                        <a name = "post_status" href = "?post_status=3" type = "submit" class = "filter-posts block px-4 py-2 text-gray-800 hover:text-[#003755]">Pending Posts</a>
+                        <a name = "post_status" href = "?post_status=3" class = "filter-posts block px-4 py-2 text-gray-800 hover:text-[#003755]">Pending Posts</a>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 
-
-    {% if messages %}
-        {% for message in messages %}
-            {% if message.tags == "info" %}
-                <script>Swal.fire({ title: "Hey!", text: "{{message}}", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: { confirmButton: "info-button", title: "title" } })</script>
-            {% elif message.tags == "success" %}
-                <script>Swal.fire({ title: "Yay!", text: "{{message}}", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: { confirmButton: "success-button", title: "title" } })</script>
-            {% else %}
-                <script>Swal.fire({ title: "Oops!", text: "{{message}}", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: { confirmButton: "error-button", title: "title" } })</script>
-            {% endif %}
-        {% endfor %}
-    {% endif %}
-
-    <div class = "w-full flex justify-start items-start">
-        <h1 class = "font-bold border-l-4 border-white pl-2 text-white">VALID, INVALID, OR, PENDING</h1>
-    </div>
-
     {% if results %}
+        {% if post_status %}
+            <div class = "w-full flex justify-start items-start">
+                <h1 class = "font-bold border-l-4 border-white pl-2 text-white">
+                    {% if post_status == "1" %}
+                        VALID
+                    {% elif post_status == "2" %}
+                        INVALID
+                    {% elif post_status == "3" %}
+                        PENDING
+                    {% elif post_status == "4" %}
+                        DRAFT
+                    {% else %}
+                        VALID, INVALID, PENDING, OR DRAFT
+                    {% endif %}
+                </h1>
+            </div>
+        {% else %}
+            <div class = "w-full flex justify-start items-start">
+                <h1 class = "font-bold border-l-4 border-white pl-2 text-white">
+                    VALID, INVALID, PENDING, OR DRAFT
+                </h1>
+            </div>
+        {% endif %}
+
         {% for post in results %}
             <div class = "border-2 min-h-[20rem] w-full rounded-2xl mt-[2rem] p-4 bg-white">
                 <div class = "w-full">
@@ -56,7 +63,7 @@
                             <div class = "flex w-full flex-col min-[320px]:flex-column min-[320px]:justify-between my-2">
                                 <h1 class = "font-semibold flex gap-2 items-center text-[#003755]"><i class = "fa-regular fa-user"></i>@{{post.user | default:'None available'}}<h1>
                                 
-                                    <p class = "font-semibold flex gap-2 items-center text-[#003755]"> <i class = "fa-solid fa-calendar-days"></i>{{post.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}</p>
+                                <p class = "font-semibold flex gap-2 items-center text-[#003755]"><i class = "fa-solid fa-calendar-days"></i>{{post.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}</p>
                             </div>
 
                             <div class="relative w-full h-full">
@@ -75,30 +82,36 @@
         {% endfor %}
 
     {% else %}
-        {% for post in records %}
-            <div class = "border-2 min-h-[20rem] w-full rounded-2xl mt-[2rem] p-4 bg-white">
-                <div class = "w-full ">
-                    <a href = "{% url 'Contributor Service Post Read' post.id %}">
-                        <div class = "flex items-center w-full gap-2 h-full p-2 flex-col">
-                            <div class = "flex w-full flex-col min-[320px]:flex-row min-[320px]:justify-between my-2">
-                                <h1 class = "font-semibold flex gap-2 items-center text-[#003755]"><i class = "fa-regular fa-user"></i>@{{post.user | default:'None available'}}<h1>
-                                <p class = "font-semibold flex gap-2 items-center text-[#003755]"> <i class = "fa-solid fa-calendar-days"></i>{{post.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}</p>
-                            </div>
-
-                            <div class = "relative w-full h-full">
-                                {% for post_photo in post.post_photos.all %}
-                                    <img class = "w-full h-[18rem] object-cover" src = "{{post_photo.post_photo.url}}">
-                                {% endfor %}
-
-                                <p class = "text-lg min-[490px]:text-2xl font-semibold absolute bottom-0 h-[5rem] bg-black bg-opacity-75 w-full flex items-center text-white px-2">{{post.coordinates | default:'None available'}}</p>
-                            </div>
-
-                            <button class = "my-[1rem] border-2 w-full min-[320px]:w-[15rem] h-[3rem] bg-[#003755] text-white font-bold hover:bg-white hover:border-[#003755] hover:text-[#003755] text-center cursor-pointer px-4 rounded-full">READ MORE</button>
-                        </div>
-                    </a>
-                </div>
+        {% if records %}
+            <div class = "w-full flex justify-start items-start">
+                <h1 class = "font-bold border-l-4 border-white pl-2 text-white">VALID, INVALID, OR, PENDING</h1>
             </div>
-        {% endfor %}
+
+            {% for post in records %}
+                <div class = "border-2 min-h-[20rem] w-full rounded-2xl mt-[2rem] p-4 bg-white">
+                    <div class = "w-full ">
+                        <a href = "{% url 'Contributor Service Post Read' post.id %}">
+                            <div class = "flex items-center w-full gap-2 h-full p-2 flex-col">
+                                <div class = "flex w-full flex-col min-[320px]:flex-row min-[320px]:justify-between my-2">
+                                    <h1 class = "font-semibold flex gap-2 items-center text-[#003755]"><i class = "fa-regular fa-user"></i>@{{post.user | default:'None available'}}<h1>
+                                    <p class = "font-semibold flex gap-2 items-center text-[#003755]"> <i class = "fa-solid fa-calendar-days"></i>{{post.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}</p>
+                                </div>
+
+                                <div class = "relative w-full h-full">
+                                    {% for post_photo in post.post_photos.all %}
+                                        <img class = "w-full h-[18rem] object-cover" src = "{{post_photo.post_photo.url}}">
+                                    {% endfor %}
+
+                                    <p class = "text-lg min-[490px]:text-2xl font-semibold absolute bottom-0 h-[5rem] bg-black bg-opacity-75 w-full flex items-center text-white px-2">{{post.coordinates | default:'None available'}}</p>
+                                </div>
+
+                                <button class = "my-[1rem] border-2 w-full min-[320px]:w-[15rem] h-[3rem] bg-[#003755] text-white font-bold hover:bg-white hover:border-[#003755] hover:text-[#003755] text-center cursor-pointer px-4 rounded-full">READ MORE</button>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
     {% endif %}
 
     <div class = "flex gap-4 mt-[5rem] h-fit flex-col min-[320px]:flex-row">
@@ -106,19 +119,17 @@
             {% csrf_token %}
 
             <div class = "border-2 w-fit h-fit border-[#003755] bg-[#003755] text-white font-bold hover:bg-white hover:border-[#003755] hover:text-[#003755] text-center cursor-pointer p-2 rounded-lg">
-                <a name = "post_status" href = "?post_status=4"  type = "submit">Draft Posts</a>
+                <a name = "post_status" href = "?post_status=4" class = "filter-posts">Draft Posts</a>
             </div>
         </form>
-
-        <div class = "border-2 w-full min-[320px]:w-[15rem] h-fit border-[#003755] bg-[#003755] text-white font-bold hover:bg-white hover:border-[#003755] hover:text-[#003755] text-center cursor-pointer p-2 rounded-lg">
-            <a href = "{% url 'Contributor Service Report' %}">Create post</a>
-        </div>
     </div>
 
     <script>
-        document.querySelectorAll(".filter-posts").onclick = function (){
-            document.querySelector(".post-form").submit();
-        }
+        document.querySelectorAll(".filter-posts").forEach(function (element) {
+            element.onclick = function () {
+                document.querySelector(".post-form").submit();
+            };
+        });
     </script>
 
     <script>
