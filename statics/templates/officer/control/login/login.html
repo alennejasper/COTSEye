@@ -118,7 +118,7 @@
                     
                     $recaptcha.setAttribute("required", "required");
                 
-                    Swal.fire({title: "Oops!", text: "reCAPTCHA is not valid. Kindly check the reCAPTCHA and try again.", icon: "error", iconColor: "#C90016", confirmButtonColor: "#C90016"});
+                    Swal.fire({title: "Oops!", text: "reCAPTCHA is not valid. Kindly check the reCAPTCHA and try again.", icon: "error", iconColor: "#C90016", confirmButtonColor: "#C90016"}).then(() => {$recaptcha.removeAttribute("required")});
                 };
             });
 		};
