@@ -43,7 +43,7 @@
         
                 var postMap = document.getElementsByClassName("post-map")[0];
         
-                var background = L.tileLayer("http://{s}.google.com/vt?lyrs=s,h&x={x}&y={y}&z={z}", {minZoom: 11, maxZoom: 15, subdomains:["mt0", "mt1", "mt2", "mt3"], attribution: "Google"});
+                var background = L.tileLayer("http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}", {minZoom: 11, maxZoom: 15, subdomains:["mt0", "mt1", "mt2", "mt3"], attribution: "Google"});
         
                 var map = L.map(postMap, {zoomControl: true, scrollWheelZoom: false, dragging: true, maxBounds: [[5.3, 124.3], [6.3, 126.3]], layers: [background, posts]}).setView([{{original.coordinates.latitude}}, {{original.coordinates.longitude}}], 11);
                 

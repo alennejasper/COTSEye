@@ -6,7 +6,7 @@
         <div class = "w-full text-center my-[2rem] flex items-center justify-center flex-col">
             <h1 class = "text-center font-bold text-[3rem] tracking-widest">COTSEYE</h1>
             
-            <p class = "w-[80%]">Discover latest announcements, interventions, statuses, and posts here.</p>
+            <p class = "w-[80%]">Empowering coral reef preservation, one captured crown-of-thorns starfish at a time.</p>
 
             <div class="w-[4rem] h-[10px] bg-blue-600 mt-[2rem] block">
 
@@ -153,7 +153,7 @@
 
                 var map = document.getElementsByClassName("map")[0];
 
-                var background = L.tileLayer("http://{s}.google.com/vt?lyrs=s,h&x={x}&y={y}&z={z}", {minZoom: 11, maxZoom: 15, subdomains:["mt0", "mt1", "mt2", "mt3"], attribution: "Google"});
+                var background = L.tileLayer("http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}", {minZoom: 11, maxZoom: 15, subdomains:["mt0", "mt1", "mt2", "mt3"], attribution: "Google"});
 
                 var map = L.map(map, {zoomControl: true, scrollWheelZoom: false, dragging: true, maxBounds: [[5.266008, 124.277344], [6.489983, 126.035156]], layers: [background, map_posts]}).setView([5.9656, 125.1929], 11);
                 
