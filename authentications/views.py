@@ -39,10 +39,20 @@ def PublicServiceHome(request):
             return redirect("admin:index")
 
     else:
-        if not any(message.level in [messages.INFO, messages.SUCCESS, messages.ERROR] for message in messages.get_messages(request)):
-            messages.info(request, username + ", " + "kindly see announcements within COTSEye to check for updates today.")
+        try:
+            map_posts = Post.objects.filter(post_status = 1)
 
-    context = {"username": username, "latest_announcements": latest_announcements, "latest_interventions": latest_interventions, "valid_posts": valid_posts}
+            map_statuses = Status.objects.all()
+    
+        except:
+            map_posts = None
+
+            map_statuses = None
+
+    if not any(message.level in [messages.INFO, messages.SUCCESS, messages.ERROR] for message in messages.get_messages(request)):
+        messages.info(request, username + ", " + "kindly see announcements within COTSEye to check for updates today.")
+
+    context = {"username": username, "map_posts": map_posts, "map_statuses": map_statuses, "latest_announcements": latest_announcements, "latest_interventions": latest_interventions, "valid_posts": valid_posts}
     
     return render(request, "public/service/home/home.html", context)
 
@@ -275,8 +285,18 @@ def ContributorServiceHome(request):
     latest_interventions = Intervention.objects.all().order_by("-intervention_date")[:3]
 
     valid_posts = Post.objects.filter(post_status = 1).order_by("-capture_date")[:3]
+
+    try:
+        map_posts = Post.objects.filter(post_status = 1)
+
+        map_statuses = Status.objects.all()
+
+    except:
+        map_posts = None
+
+        map_statuses = None
     
-    context = {"username": username, "latest_announcements": latest_announcements, "latest_interventions": latest_interventions, "valid_posts": valid_posts}
+    context = {"username": username, "map_posts": map_posts, "map_statuses": map_statuses, "latest_announcements": latest_announcements, "latest_interventions": latest_interventions, "valid_posts": valid_posts}
 
     return render(request, "contributor/service/home/home.html", context)
 
