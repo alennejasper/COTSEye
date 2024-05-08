@@ -2,13 +2,9 @@
 {% load static %}
 
 {% block content %}
-    <div class = "fixed inset-0 z-[-10] h-screen w-full">
-        <img src = "/statics/assets/bg-2.jpg" class = "h-full w-full object-cover top-[-5rem]">
-    </div>
+    <h1 class = "my-[2rem] text-center font-bold text-[3rem] text-black">RESOURCES</h1>
 
-    <h1 class = "my-[2rem] text-center font-bold text-[3rem] text-white">RESOURCES</h1>
-
-    <div class = "h-fit my-[4rem] block w-full bg-white rounded-xl p-4 px-[2rem] pt-[2rem]">
+    <div class = "h-fit block w-full bg-white rounded-xl p-4 px-[2rem] pt-[2rem]">
         <div class = "flex gap-4 flex-col">
             {% for resource in resource_links %}
                 <a href = "{% url 'Service Resource Link Read Redirect' resource.id %}" class = "w-full flex justify-between items-center border-b-2 text-[#003755] border-[#003755] cursor-pointer">

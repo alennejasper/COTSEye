@@ -27,6 +27,10 @@
 
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/public/service/index/index.css' %}">
 
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/public/service/home/home.css' %}">
+
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/public/service/map/map.css' %}">
+
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/public/service/report/choose.css' %}">
 
         <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">   
@@ -62,37 +66,11 @@
         }
     </style>
 
-    <body class = "bg-[#0C0C0C]">
-        <nav>
-            <div class = "navigation-bar">
-                <a href = "{% url 'Public Service Home' %}">
-                    <img class = "h-full w-[4rem]" src = "{% static 'assets/logo.jpg' %}" alt = "navigation-logo">
-                </a>
-            
-                <div class="navigation-menu">
-                    <div>
-                        <ul class = "sidelinks fixed right-0 h-dvh z-20 bg-white min-[330px]:w-[80%] top-0 flex flex-col items-end gap-4">
-                           <div class = "flex flex-col mt-[8rem] gap-4 text-end">
-                            <li class = "hover:text-[#003755]"><a href = "{% url 'Public Service Map' %}">COTS map</a></li>
+    <body style = "background-color: #FFFFFF;">
+        <nav class = "navigation-topbar">
+            <a href = "{% url 'Contributor Service Home' %}"><img src = "{% static 'assets/logo.jpg' %}"></a>
 
-                            <li class = "hover:text-[#003755]"><a href = "{% url 'Public Service Post Feed' %}">COTS eye</a></li>
-                                                        
-                            <li class = "hover:text-[#003755]"><a href = "{% url 'Public Service Inquiry' %}">FAQS</a></li>
-                            
-                            <li class = "hover:text-[#003755]"><a href = "{% url 'Public Service Resource' %}">Resources</a></li>
-                            
-                            <li class = "hover:text-[#003755]"><a href = "{% url 'Public Service Announcement' %}">Announcements</a></li>
-                            
-                            <li class = "hover:text-[#003755]"><a href = "{% url 'Public Service Intervention' %}">Intervention programs</a></li>
-                           </div>
-                        </ul>
-                    </div>
-            
-                    <a class = "bg-black hover:bg-[#003755] p-[1.30rem] text-center !text-white" href = "{% url 'Contributor Service Login' %}">Login</a>
-                    
-                    <img src = "/statics/assets/navigation.png"  class = "opened-side text-[#003755] z-50 w-[2rem] h-[3rem]" id = "toggleButton">
-                </div>
-            </div>
+            <a href = "{% url 'Contributor Service Login' %}"><img src = "{% static 'assets/icons/logo.png' %}"></a>
         </nav>
     
 
@@ -102,12 +80,36 @@
     
             {% endblock content %}
         </div>
+
+        <nav class = "fixed inset-x-0 bottom-0 bg-white shadow-lg text-center">
+            <div class = "flex justify-around">
+                <a href = "{% url 'Public Service Home' %}" class="flex flex-col items-center p-2" aria-label = "Home">
+                    <i class="fas fa-home fa-lg"></i>
+                </a>
+
+                <a href = "{% url 'Public Service Post Feed' %}" class="flex flex-col items-center p-2" aria-label = "Post Feed">
+                    <i class = "fas fa-eye fa-lg"></i>
+                </a>
+
+                <a href = "{% url 'Public Service Map' %}" class="flex flex-col items-center p-2" aria-label = "Map">
+                    <i class = "fas fa-map-marked-alt fa-lg"></i>
+                </a>
+
+                <a href = "{% url 'Public Service Announcement' %}" class="flex flex-col items-center p-2" aria-label = "Announcements">
+                    <i class = "fas fa-bullhorn fa-lg"></i>
+                </a>
+                
+                <a href = "{% url 'Public Service Resource' %}" class="flex flex-col items-center p-2" aria-label = "Resources">
+                    <i class = "fas fa-book fa-lg"></i>
+                </a>
+            </div>
+        </nav>
     </body>
 
     <script>
-        const toggleButton = document.getElementById('toggleButton');
+        const toggleButton = document.getElementById("toggleButton");
         
-        const sideLinks = document.querySelector('.sidelinks');
+        const sideLinks = document.querySelector(".sidelinks");
 
         toggleButton.addEventListener("click", function(){
             sideLinks.classList.toggle("show");

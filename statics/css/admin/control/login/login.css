@@ -1,16 +1,13 @@
-@import url("https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Overlock:wght@400;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap");
 
 
 *{
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    scrollbar-width: thin !important;
-    scrollbar-color: #698F3F #154360 !important;
     transition: all 0.25s ease;
-}
 
+}
 
 ::-webkit-scrollbar{
     width: 5px !important;
@@ -19,20 +16,20 @@
 
 ::-webkit-scrollbar-track{
     border-radius: 5px;
-    border: 1px solid #B2BEB5; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
-    background: #154360 !important; 
+    border: 1px solid #003755; 
+    box-shadow: 0 0 0 1px #003755 !important;
+    background: #FFFFFF !important; 
 }
 
 ::-webkit-scrollbar-thumb{
     border-radius: 5px;
-    border: 1px solid #B2BEB5; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
-    background: #698F3F !important;
+    border: 1px solid #003755; 
+    box-shadow: 0 0 0 1px #003755 !important;
+    background: #FFFFFF !important;
 }
 
 ::-webkit-scrollbar-thumb:hover{
-    background: #557433 !important;
+    background: #002C44 !important;
 }
 
 
@@ -89,7 +86,7 @@
 }
 
 .login .card-header header{
-    font-family: "Philosopher";
+    font-family: "Poppins";
     font-weight: 700;
     font-size: 22px !important;
     color: #FFFFFF;
@@ -99,7 +96,7 @@
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .login .card-header header{
-        font-family: "Philosopher";
+        font-family: "Poppins";
         font-weight: 700;
         font-size: 20px !important;
         color: #FFFFFF;
@@ -110,7 +107,7 @@
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .login .card-header header{
-        font-family: "Philosopher";
+        font-family: "Poppins";
         font-weight: 700;
         font-size: 18px !important;
         color: #FFFFFF;
@@ -121,7 +118,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .login .card-header header{
-        font-family: "Philosopher";
+        font-family: "Poppins";
         font-weight: 700;
         font-size: 16px !important;
         color: #FFFFFF;
@@ -149,7 +146,7 @@
 .login .card-body form .field .column label[for = "username"]{
     margin-top: 0px;
     display: inline-block;
-    font-family: "Overlock";
+    font-family: "Poppins";
     font-weight: 400;
     font-size: 20px !important;
     color: #154360 !important;
@@ -159,7 +156,7 @@
     .login .card-body form .field .column label[for = "username"]{
         margin-top: 0px;
         display: inline-block;
-        font-family: "Overlock";
+        font-family: "Poppins";
         font-weight: 400;
         font-size: 18px !important;
         color: #154360 !important;
@@ -170,7 +167,7 @@
     .login .card-body form .field .column label[for = "username"]{
         margin-top: 0px;
         display: inline-block;
-        font-family: "Overlock";
+        font-family: "Poppins";
         font-weight: 400;
         font-size: 16px !important;
         color: #154360 !important;
@@ -181,7 +178,7 @@
     .login .card-body form .field .column label[for = "username"]{
         margin-top: 0px;
         display: inline-block;
-        font-family: "Overlock";
+        font-family: "Poppins";
         font-weight: 400;
         font-size: 14px !important;
         color: #154360 !important;
@@ -202,7 +199,7 @@
     border-radius: 5px; 
     box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
-    font-family: "Philosopher";
+    font-family: "Poppins";
     font-weight: 700 !important;
     font-size: 20px !important;   
     color: #154360 !important;
@@ -223,7 +220,7 @@
         border-radius: 5px; 
         box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Poppins";
         font-weight: 700 !important;
         font-size: 18px !important;   
         color: #154360 !important;
@@ -241,7 +238,7 @@
         border-radius: 5px; 
         box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Poppins";
         font-weight: 700 !important;
         font-size: 16px !important;   
         color: #154360 !important;
@@ -259,7 +256,7 @@
         border-radius: 5px; 
         box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Poppins";
         font-weight: 700 !important;
         font-size: 14px !important;   
         color: #154360 !important;
@@ -319,7 +316,7 @@
 .login .card-body form .field .column label[for = "password1"]{
     margin-top: 15px;
     display: inline-block;
-    font-family: "Overlock";
+    font-family: "Poppins";
     font-weight: 400;
     font-size: 20px !important;
     color: #154360 !important;
@@ -329,7 +326,7 @@
     .login .card-body form .field .column label[for = "password1"]{
         margin-top: 15px;
         display: inline-block;
-        font-family: "Overlock";
+        font-family: "Poppins";
         font-weight: 400;
         font-size: 18px !important;
         color: #154360 !important;
@@ -340,7 +337,7 @@
     .login .card-body form .field .column label[for = "password1"]{
         margin-top: 15px;
         display: inline-block;
-        font-family: "Overlock";
+        font-family: "Poppins";
         font-weight: 400;
         font-size: 16px !important;
         color: #154360 !important;
@@ -351,7 +348,7 @@
     .login .card-body form .field .column label[for = "password1"]{
         margin-top: 15px;
         display: inline-block;
-        font-family: "Overlock";
+        font-family: "Poppins";
         font-weight: 400;
         font-size: 14px !important;
         color: #154360 !important;
@@ -372,7 +369,7 @@
     border-radius: 5px; 
     box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
-    font-family: "Philosopher";
+    font-family: "Poppins";
     font-weight: 700 !important;
     font-size: 20px !important;   
     color: #154360 !important;
@@ -393,7 +390,7 @@
         border-radius: 5px; 
         box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Poppins";
         font-weight: 700 !important;
         font-size: 18px !important;   
         color: #154360 !important;
@@ -411,7 +408,7 @@
         border-radius: 5px; 
         box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Poppins";
         font-weight: 700 !important;
         font-size: 16px !important;   
         color: #154360 !important;
@@ -429,7 +426,7 @@
         border-radius: 5px; 
         box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Poppins";
         font-weight: 700 !important;
         font-size: 14px !important;   
         color: #154360 !important;
@@ -540,16 +537,16 @@
     border-radius: 5px;
     box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
-    font-family: "Overlock";
+    font-family: "Poppins";
     font-weight: 400;
     font-size: 20px !important;
-    background-color: #698F3F !important;
+    background-color: #003755 !important;
     color: #FFFFFF !important;
     cursor: pointer;
 }
 
 .login .card-body form button:hover{
-    background-color: #557433 !important;
+    background-color: #002C44 !important;
     color: #B2BEB5 !important;
 }
 
@@ -566,10 +563,10 @@
         border-radius: 5px;
         box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Overlock";
+        font-family: "Poppins";
         font-weight: 400;
         font-size: 18px !important;
-        background-color: #698F3F !important;
+        background-color: #003755 !important;
         color: #FFFFFF !important;
         cursor: pointer;
     }
@@ -588,10 +585,10 @@
         border-radius: 5px;
         box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Overlock";
+        font-family: "Poppins";
         font-weight: 400;
         font-size: 16px !important;
-        background-color: #698F3F !important;
+        background-color: #003755 !important;
         color: #FFFFFF !important;
         cursor: pointer;
     }
@@ -610,10 +607,10 @@
         border-radius: 5px;
         box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Overlock";
+        font-family: "Poppins";
         font-weight: 400;
         font-size: 14px !important;
-        background-color: #698F3F !important;
+        background-color: #003755 !important;
         color: #FFFFFF !important;
         cursor: pointer;
     }
@@ -622,7 +619,7 @@
 .login .card-body .register{
     margin-top: 15px;
     display: inline-block;
-    font-family: "Overlock";
+    font-family: "Poppins";
     font-weight: 400;
     font-size: 20px;
     color: #154659;
@@ -632,7 +629,7 @@
     .login .card-body .register{
         margin-top: 15px;
         display: inline-block;
-        font-family: "Overlock";
+        font-family: "Poppins";
         font-weight: 400;
         font-size: 18px;
         color: #154659;
@@ -643,7 +640,7 @@
     .login .card-body .register{
         margin-top: 15px;
         display: inline-block;
-        font-family: "Overlock";
+        font-family: "Poppins";
         font-weight: 400;
         font-size: 16px;
         color: #154659;
@@ -654,7 +651,7 @@
     .login .card-body .register{
         margin-top: 15px;
         display: inline-block;
-        font-family: "Overlock";
+        font-family: "Poppins";
         font-weight: 400;
         font-size: 14px;
         color: #154659;
@@ -663,18 +660,18 @@
 
 .login .card-body .register a{
     font-size: 20px;
-    color: #698F3F;
+    color: #003755;
     text-decoration: none;
 }
 
 .login .card-body .register a:hover{
-    color: #557433;
+    color: #002C44;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .login .card-body .register a{
         font-size: 18px;
-        color: #698F3F;
+        color: #003755;
         text-decoration: none;
     }
 }
@@ -682,7 +679,7 @@
 @media screen and (min-width: 349px) and (max-width: 368px){
     .login .card-body .register a{
         font-size: 16px;
-        color: #698F3F;
+        color: #003755;
         text-decoration: none;
     }
 }
@@ -690,7 +687,7 @@
 @media screen and (min-width: 320px) and (max-width: 348px){
     .login .card-body .register a{
         font-size: 14px;
-        color: #698F3F;
+        color: #003755;
         text-decoration: none;
     }
 }
@@ -708,7 +705,7 @@
     left: 50%;
     position: absolute;
     content: "OR";
-    font-family: "Overlock";
+    font-family: "Poppins";
     font-weight: 400;
     font-size: 20px;
     background-color: #FFFFFF;
@@ -722,7 +719,7 @@
         left: 50%;
         position: absolute;
         content: "OR";
-        font-family: "Overlock";
+        font-family: "Poppins";
         font-weight: 400;
         font-size: 18px;
         background-color: #FFFFFF;
@@ -737,7 +734,7 @@
         left: 50%;
         position: absolute;
         content: "OR";
-        font-family: "Overlock";
+        font-family: "Poppins";
         font-weight: 400;
         font-size: 16px;
         background-color: #FFFFFF;
@@ -752,7 +749,7 @@
         left: 50%;
         position: absolute;
         content: "OR";
-        font-family: "Overlock";
+        font-family: "Poppins";
         font-weight: 400;
         font-size: 14px;
         background-color: #FFFFFF;
@@ -837,7 +834,7 @@
 }
 
 .login .card-body .socials button.facebook span{
-    font-family: "Overlock";
+    font-family: "Poppins";
     font-weight: 400;
     font-size: 20px;
     color: #FFFFFF !important;
@@ -845,7 +842,7 @@
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .login .card-body .socials button.facebook span{
-        font-family: "Overlock";
+        font-family: "Poppins";
         font-weight: 400;
         font-size: 18px !important;
         color: #FFFFFF !important;
@@ -854,7 +851,7 @@
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .login .card-body .socials button.facebook span{
-        font-family: "Overlock";
+        font-family: "Poppins";
         font-weight: 400;
         font-size: 16px !important;
         color: #FFFFFF !important;
@@ -863,7 +860,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .login .card-body .socials button.facebook span{
-        font-family: "Overlock";
+        font-family: "Poppins";
         font-weight: 400;
         font-size: 14px !important;
         color: #FFFFFF !important;
@@ -942,7 +939,7 @@
 }
 
 .login .card-body .socials button.google span{
-    font-family: "Overlock";
+    font-family: "Poppins";
     font-weight: 400;
     font-size: 20px;
     color: #154360 !important;
@@ -950,7 +947,7 @@
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .login .card-body .socials button.google span{
-        font-family: "Overlock";
+        font-family: "Poppins";
         font-weight: 400;
         font-size: 18px !important;
         color: #154360 !important;
@@ -959,7 +956,7 @@
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .login .card-body .socials button.google span{
-        font-family: "Overlock";
+        font-family: "Poppins";
         font-weight: 400;
         font-size: 16px !important;
         color: #154360 !important;
@@ -968,7 +965,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .login .card-body .socials button.google span{
-        font-family: "Overlock";
+        font-family: "Poppins";
         font-weight: 400;
         font-size: 14px !important;
         color: #154360 !important;
@@ -1000,7 +997,7 @@ input:autofill{
 div:where(.swal2-container) .swal2-html-container{
     padding: 10px 30px 0em 30px !important;
     margin: 0px !important;
-    font-family: "Overlock" !important;
+    font-family: "Poppins" !important;
     font-weight: 400 !important;
     font-size: 20px !important;
     color: #154360 !important;
@@ -1010,7 +1007,7 @@ div:where(.swal2-container) .swal2-html-container{
     div:where(.swal2-container) .swal2-html-container{
         padding: 10px 30px 0em 30px !important;
         margin: 0px !important;
-        font-family: "Overlock" !important;
+        font-family: "Poppins" !important;
         font-weight: 400 !important;
         font-size: 18px !important;
         color: #154360 !important;
@@ -1021,7 +1018,7 @@ div:where(.swal2-container) .swal2-html-container{
     div:where(.swal2-container) .swal2-html-container{
         padding: 10px 30px 0em 30px !important;
         margin: 0px !important;
-        font-family: "Overlock" !important;
+        font-family: "Poppins" !important;
         font-weight: 400 !important;
         font-size: 16px !important;
         color: #154360 !important;
@@ -1032,7 +1029,7 @@ div:where(.swal2-container) .swal2-html-container{
     div:where(.swal2-container) .swal2-html-container{
         padding: 10px 30px 0em 30px !important;
         margin: 0px !important;
-        font-family: "Overlock" !important;
+        font-family: "Poppins" !important;
         font-weight: 400 !important;
         font-size: 14px !important;
         color: #154360 !important;
@@ -1044,11 +1041,11 @@ div:where(.swal2-icon){
 }
 
 div:where(.swal2-icon).swal2-success .swal2-success-ring{
-    border: 0.25em solid #698F3F !important;
+    border: 0.25em solid #003755 !important;
 }
 
 div:where(.swal2-icon).swal2-success [class ^= swal2-success-line]{
-    background-color: #698F3F !important;
+    background-color: #003755 !important;
 }
 
 div:where(.swal2-icon).swal2-error [class ^= swal2-x-mark-line]{
@@ -1060,7 +1057,7 @@ div:where(.swal2-container) h2:where(.swal2-title){
 }
 
 .title{
-    font-family: "Philosopher" !important;
+    font-family: "Poppins" !important;
     font-weight: 700 !important;
     font-size: 22px !important;   
     color: #154360 !important;
@@ -1069,7 +1066,7 @@ div:where(.swal2-container) h2:where(.swal2-title){
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .title{
-        font-family: "Philosopher" !important;
+        font-family: "Poppins" !important;
         font-weight: 700 !important;
         font-size: 20px !important;   
         color: #154360 !important;
@@ -1079,7 +1076,7 @@ div:where(.swal2-container) h2:where(.swal2-title){
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .title{
-        font-family: "Philosopher" !important;
+        font-family: "Poppins" !important;
         font-weight: 700 !important;
         font-size: 18px !important;   
         color: #154360 !important;
@@ -1089,7 +1086,7 @@ div:where(.swal2-container) h2:where(.swal2-title){
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .title{
-        font-family: "Philosopher" !important;
+        font-family: "Poppins" !important;
         font-weight: 700 !important;
         font-size: 16px !important;   
         color: #154360 !important;
@@ -1123,7 +1120,7 @@ div:where(.swal2-container) div:where(.swal2-actions){
     border-radius: 5px !important;
     box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
-    font-family: "Overlock" !important;
+    font-family: "Poppins" !important;
     font-weight: 400 !important;
     font-size: 20px !important;
     background-color: #154360 !important;
@@ -1149,7 +1146,7 @@ div:where(.swal2-container) div:where(.swal2-actions){
         border-radius: 5px !important;
         box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Overlock" !important;
+        font-family: "Poppins" !important;
         font-weight: 400 !important;
         font-size: 18px !important;
         background-color: #154360 !important;
@@ -1171,7 +1168,7 @@ div:where(.swal2-container) div:where(.swal2-actions){
         border-radius: 5px !important;
         box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Overlock" !important;
+        font-family: "Poppins" !important;
         font-weight: 400 !important;
         font-size: 16px !important;
         background-color: #154360 !important;
@@ -1193,7 +1190,7 @@ div:where(.swal2-container) div:where(.swal2-actions){
         border-radius: 5px !important;
         box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Overlock" !important;
+        font-family: "Poppins" !important;
         font-weight: 400 !important;
         font-size: 14px !important;
         background-color: #154360 !important;
@@ -1219,17 +1216,17 @@ div:where(.swal2-container) div:where(.swal2-actions){
     border-radius: 5px !important;
     box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
-    font-family: "Overlock" !important;
+    font-family: "Poppins" !important;
     font-weight: 400 !important;
     font-size: 20px !important;
-    background-color: #698F3F !important;
+    background-color: #003755 !important;
     color: #FFFFFF !important;
     pointer-events: auto !important;
     cursor: pointer;
 }
 
 .success-button:hover{
-    background-color: #557433 !important;
+    background-color: #002C44 !important;
     color: #B2BEB5 !important;        
 }
 
@@ -1245,10 +1242,10 @@ div:where(.swal2-container) div:where(.swal2-actions){
         border-radius: 5px !important;
         box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Overlock" !important;
+        font-family: "Poppins" !important;
         font-weight: 400 !important;
         font-size: 18px !important;
-        background-color: #698F3F !important;
+        background-color: #003755 !important;
         color: #FFFFFF !important;
         pointer-events: auto !important;
         cursor: pointer;
@@ -1267,10 +1264,10 @@ div:where(.swal2-container) div:where(.swal2-actions){
         border-radius: 5px !important;
         box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Overlock" !important;
+        font-family: "Poppins" !important;
         font-weight: 400 !important;
         font-size: 16px !important;
-        background-color: #698F3F !important;
+        background-color: #003755 !important;
         color: #FFFFFF !important;
         pointer-events: auto !important;
         cursor: pointer;
@@ -1289,10 +1286,10 @@ div:where(.swal2-container) div:where(.swal2-actions){
         border-radius: 5px !important;
         box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Overlock" !important;
+        font-family: "Poppins" !important;
         font-weight: 400 !important;
         font-size: 14px !important;
-        background-color: #698F3F !important;
+        background-color: #003755 !important;
         color: #FFFFFF !important;
         pointer-events: auto !important;
         cursor: pointer;
@@ -1315,7 +1312,7 @@ div:where(.swal2-container) div:where(.swal2-actions){
     border-radius: 5px !important;
     box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
-    font-family: "Overlock" !important;
+    font-family: "Poppins" !important;
     font-weight: 400 !important;
     font-size: 20px !important;
     background-color: #C90016 !important;
@@ -1341,7 +1338,7 @@ div:where(.swal2-container) div:where(.swal2-actions){
         border-radius: 5px !important;
         box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Overlock" !important;
+        font-family: "Poppins" !important;
         font-weight: 400 !important;
         font-size: 18px !important;
         background-color: #C90016 !important;
@@ -1363,7 +1360,7 @@ div:where(.swal2-container) div:where(.swal2-actions){
         border-radius: 5px !important;
         box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Overlock" !important;
+        font-family: "Poppins" !important;
         font-weight: 400 !important;
         font-size: 16px !important;
         background-color: #C90016 !important;
@@ -1385,7 +1382,7 @@ div:where(.swal2-container) div:where(.swal2-actions){
         border-radius: 5px !important;
         box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Overlock" !important;
+        font-family: "Poppins" !important;
         font-weight: 400 !important;
         font-size: 14px !important;
         background-color: #C90016 !important;

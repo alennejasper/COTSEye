@@ -280,9 +280,9 @@ JAZZMIN_SETTINGS = {
 
     "copyright": "Team Rocket",
 
-    "navigation_expanded": False,
+    "navigation_expanded": True,
 
-    "show_sidebar": False,
+    "show_sidebar": True,
 
     "site_brand": "COTSEye",
     

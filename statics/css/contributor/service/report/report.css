@@ -448,3 +448,160 @@ div:where(.swal2-container) div:where(.swal2-actions){
         cursor: pointer;
     }
 }
+
+/* start choose and capture css */
+.tabcontent2{
+    width: 100%;
+    position: relative;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.controls-wrapper{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.control-section{
+    flex: 1 1 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #003755;
+    padding: 10px;
+    cursor: pointer;
+    height: 8rem;
+    color: #FFFFFF;
+}
+
+.control-section:hover{
+    background-color: #002A44;
+}
+
+.control-section i{
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.control-section label{
+    width: 100%;
+    text-align: center;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.invisible-input{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.delete-btn{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: rgb(68, 68, 68);
+    color: #FFFFFF;
+    border: none;
+    cursor: pointer;
+    padding: 3px;
+    border-radius: 50%;
+}
+
+.image-container{
+    display: inline-block;
+    position: relative;
+    margin: 10px;
+}
+
+.image-container img{
+    width: 100px;
+    height: 100px;
+}
+
+.image-container button{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 5px 10px;
+    background-color: red;
+    color: #FFFFFF;
+    border: none;
+    cursor: pointer;
+}
+/* end captrue and choose css */
+
+/* start date css */
+.date-picker-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin: 20px 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.date-picker-container label{
+    color: #003755;
+    font-weight: bold;
+}
+
+.date-picker-container input[type = "datetime-local"]{
+    width: 70%;
+    padding: 8px;
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #333;
+    outline: none;
+}
+
+.date-picker-container input[type = "datetime-local"]:focus{
+    border-color: #003755;
+    box-shadow: 0 0 8px rgba(0,55,85,0.2);
+}
+/* end date css */
+
+/* start coordianates css */
+.coordinates-container{
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.coordinate-input{
+    flex: 1;
+    display: flex;
+    padding: 0 2x;
+}
+
+.coordinate-input input{
+
+    font-size: 0.7rem;
+}
+
+.location-input{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+    margin: 10px 0;
+    padding: 0 10px;
+}
+
+.location-input input{
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 0.3rem;
+}

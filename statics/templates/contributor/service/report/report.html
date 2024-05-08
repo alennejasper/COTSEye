@@ -3,134 +3,97 @@
 
 {% block content %}
     <style>
-        .tabs{
-            overflow: hidden;
-            display: flex;
-            gap: 1rem;
-            margin: 1rem 0
-        }
-
-        .tablink{
-            width: 100%;
-            background-color: white;
-            float: left;
-            border: 1px solid #003755;
-            color: #003755;
-            outline: none;
-            cursor: pointer;
-            padding: 10px 15px;
-            transition: background-color 0.3s;
-            border-radius: 25px;
-
-            font-weight: bold;
-        }
-
-        .tablink:hover{
-            background-color: #003755;
-            color: white;
-        }
-
-        .tablink.active{
-            background-color: #003755;
-        }
-
-        .tabcontent{
-            display: none;
-            padding: 20px;
-            border: 1px solid #ccc;
-            margin-top: -1px;
-            border-radius: 8px;
-        }
-
-        .tabcontent h3{
-            margin-top: 0;
-        }
+        
     </style>
 
+    <!-- Start choose and capture -->
     <div class = "fixed inset-0 z-[-10] h-screen w-full">
         <img src = "/statics/assets/bg-2.jpg" class = "h-full w-full object-cover top-[-5rem]" alt="">
     </div>
 
-    <h1 class = "my-[2rem] text-center font-bold text-[3rem] text-white">CREATE REPORT</h1>
+    <h1 style="font-size:20px;" class = "my-[2rem] text-center text-[1rem] text-black">CREATE REPORT</h1>
 
     <form action = "" class = "report-form bg-white p-2 rounded-lg" method = "POST" enctype = "multipart/form-data">
         {% csrf_token %}
 
-        <div class = "tabs flex flex-col min-[570px]:flex-row text-center">
-            <button class = "tablink active flex gap-2 items-center text-lg text-center justify-center"
-                onclick = "openTab('tab1')">Step 1</button>
-
-            <button class = "tablink flex gap-2 items-center text-lg text-center justify-center"
-                onclick = "openTab('tab2')">Step 2</button>
-        </div>
-
-        <div id = "tab1" class = "tabcontent w-full relative">
-            <div class = "flex flex-col my-4 min-[570px]:flex-row min-[570px]:justify-between gap-1 cursor-pointer">
-                <div class = "w-full p-2 my-2  cursor-pointer flex-col flex items-center justify-center bg-[#003755] hover:bg-[#00375594] relative h-[8rem] !text-white">
-                    <i class = "fa-solid fa-camera text-[2rem]"></i>
-
-                    <label for = "post-photo2" class = "capture-photo hover:border-2 w-full  text-white font-bold hover:bg-white text-center cursor-pointer p-2 rounded-lg">
-                        Capture with camera
-                    </label>
-
-                    <input type = "file" class = "post-photo2 w-full border-2 p-2 rounded-md absolute inset-0 opacity-0" name = "post_photos_capture" id = "post-photo2" accept = "image/*" capture = "environment">
-                </div>
-
-                <div class = "w-full p-2 my-2 cursor-pointer flex-col flex items-center justify-center bg-[#003755] hover:bg-[#00375594] relative h-[8rem] !text-white">
-                    <i class = "fa-solid fa-image text-[2rem]"></i>
-
-                    <label for = "post-photo" class = "browse-photo hover:border-2 w-full  text-white font-bold hover:bg-white  text-center cursor-pointer p-2 rounded-lg">
-                        Choose an image
-                    </label>
-
-                    <input type = "file" class = "post-photo w-full border-2 p-2 rounded-md absolute inset-0 opacity-0" name = "post_photos_choose" id = "post-photo" accept = "image/*">
+        <div id="tab1" class="tabcontent">        
+            <div class="tabcontent2">
+                <div class="controls-wrapper">
+                    <!-- Capture with Camera -->
+                    <div class="control-section">
+                        <i class="fa-solid fa-camera"></i>
+                        <label for="post-photo2" class ="capture-photo">
+                            Capture with camera
+                        </label>
+                        <input type="file" class="invisible-input post-photo2" id="post-photo2" name="post_photos_capture" accept="image/*" capture="environment" multiple>
+                    </div>
+            
+                    <!-- Choose an Image -->
+                    <div class="control-section">
+                        <i class="fa-solid fa-image"></i>
+                        <label for="post-photo" class = "browse-photo">
+                            Choose an image
+                        </label>
+                        <input type="file" class="invisible-input post-photo" id="post-photo" name="post_photos_choose" accept="image/*" multiple>
+                    </div>
                 </div>
             </div>
+            <!-- end choose and capture -->
 
-            <div class = "flex items-center my-4 justify-between w-full flex-col min-[440px]:flex-row h-[4rem] border-2 p-2 rounded-md">
-                <label for = "capture-date">Capture Date</label>
-
-                <div class = "cursor-pointer w-full">
-                    <input class = "w-full" type = "datetime-local" value = "" id = "capture-date" name = "capture_date" required>
-                </div>
+            <!-- start photo w/ delete -->
+            <div class="report-gallery"></div>
+            <!-- end photo w/ delete -->
+        
+            <!-- start date -->
+            <div class="date-picker-container">
+                <label for="capture-date">Capture Date</label>
+                <input type="date" id="capture-date" name="capture_date" required>
             </div>
+            <!-- end date -->
+            
 
-            <div class = "report-gallery my-4">
+            <!-- <div class = "report-gallery my-4">
                 <img class = "gallery-photo" src = "{% static 'assets/posts/default.png' %}">
-            </div>
+            </div> -->
 
-            <div class = "latitude flex justify-between w-full items-center h-[3rem] border-2 rounded-md mb-2 p-4">
-                <input class = "w-full" type = "text" value=  "" id=  "latitude" name = "latitude">
+            <h1 class = "my-[1rem] text-center  text-[1rem] text-[#003755]">LOCATION</h1>
 
-            </div>
-
-            <div class = "longitude flex justify-between w-full items-center h-[3rem] border-2 rounded-md mb-2 p-4">
-                <input class = "w-full" type = "text" value = "" id = "longitude" name = "longitude">
-            </div>
-
-            <h1 class = "my-[2rem] text-center font-semibold text-[2rem] text-[#003755]">LOCATION</h1>
-
-            <div class = "location h-[2.5rem] border-2 p-2 rounded-md my-2 w-full" name = "location">
-                <input class = "w-full" type = "text" id = "location" name = "location">
-            </div>
 
             <div class = "map w-full">
                 <div class=  "report-map w-full">
                 </div>
             </div>
 
-            <div class = "flex w-full justify-end my-4">
-                <div class = "border-2 w-fit h-[3rem] bg-green-500 text-white font-bold hover:bg-white hover:border-green-600 hover:text-green-600 text-center cursor-pointer p-2 rounded-lg">
-                    <a class = "refresh-map" onclick = "refreshMap()">Refresh</a>
+            <div class="coordinates-container">
+                <div class="coordinate-input">
+                    <!-- <label style="font-size: 10px;" for="latitude">Lat:</label> -->
+                    <input type="hidden" id="latitude" name="latitude">
+                </div>
+                <div class="coordinate-input ">
+                    <!-- <label style="font-size: 10px;" for="longitude">Long:</label> -->
+                    <input type="hidden" id="longitude" name="longitude">
                 </div>
             </div>
 
+            <div class="location-input">
+                <input style="font-size: 15px;" id="location" name="location">
+            </div>
+
+
+<!--             <div class = "flex w-full justify-end my-4">
+                <div class = "border-2 w-fit h-[3rem] bg-green-500 text-white font-bold hover:bg-white hover:border-green-600 hover:text-green-600 text-center cursor-pointer p-2 rounded-lg">
+                    <a class = "refresh-map" onclick = "refreshMap()">Refresh</a>
+                </div>
+            </div> -->
+
+
+
             <div class = "flex w-full justify-between items-center my-[1.5rem] h-[6rem] sticky bottom-0 left-0 bg-white z-50 border-">
-                <div class = "border-2 w-[15rem] flex rounded-full justify-center bg-[#003755] text-white font-semibold hover:bg-white hover:border-[#003755] hover:text-[#003755] text-center cursor-pointer p-2">
+                <div class = "border-2 w-[15rem] flex rounded-full justify-center bg-[#003755] text-white hover:bg-white hover:border-[#003755] hover:text-[#003755] text-center cursor-pointer p-2">
                     <a class = "uppercase">Save as draft</a>
                 </div>
 
-                <button type = "button" class = "border-2 w-[15rem] rounded-full bg-[#003755] text-white font-bold hover:bg-white hover:border-[#003755] hover:text-[#003755] text-center cursor-pointer p-2" onclick = "nextTab('tab1')">Next</button>
+                <button type = "button" class = "border-2 w-[15rem] rounded-full bg-[#003755] text-white hover:bg-white hover:border-[#003755] hover:text-[#003755] text-center cursor-pointer p-2" onclick = "nextTab('tab1')">Next</button>
             </div>
         </div>
 
@@ -144,18 +107,22 @@
                 <textarea class = "border-2 p-2 h-[8rem] border-black" type = "text" id = "description" name = "description" required></textarea>
             </div>
 
-            <div class = "flex flex-col gap-4">
-                <div class = "w-full flex flex-col gap-2">
-                    <label class = "font-semibold" for = "density">DENSITY</label>
-                    
-                    <input placeholder = "NUMBER OF COTS" class = "h-[2.5rem] border-2 p-2 border-black" type = "number" value = "" id = "density" name = "density">
-                </div>
+            <h1 class = "my-[2rem] text-center font-semibold text-[2rem] text-[#003755]">OPTIONALS</h1>
 
+            <div class = "flex flex-col gap-4">
                 <div class = "w-full flex flex-col gap-2">
                     <label class = "font-semibold" for = "size">SIZE</label>
                     
-                    <input placeholder = "SIZE OF COTS (ex. 12-15 cm)" class = "h-[2.5rem] border-2 p-2 border-black" type = "number" value = "" id = "size" name = "size">
+                    <input placeholder = "Size of COTS (ex. 12-15 cm)" class = "h-[2.5rem] border-2 p-2 border-black" type = "number" value = "" id = "size" name = "size">
                 </div>
+
+                
+                <div class = "w-full flex flex-col gap-2">
+                    <label class = "font-semibold" for = "density">DENSITY</label>
+                    
+                    <input placeholder = "Estimated Number of COTS (ex. 15)" class = "h-[2.5rem] border-2 p-2 border-black" type = "number" value = "" id = "density" name = "density">
+                </div>
+
 
                 <div class = "w-full flex flex-col gap-2">
                     <label class = "font-semibold" for = "depth">DEPTH</label>
@@ -176,7 +143,7 @@
                         <option disabled selected value>Weather</option>
 
                         {% for weather in weathers %}
-                            <option value = "{{weather.id}}">{{weather}}</option>
+                            <option style = "width: 100vw;" value = "{{weather.id}}">{{weather}}</option>
                         {% endfor %}
                     </select>
                 </div>
@@ -185,6 +152,11 @@
             <input type="hidden" name="action" id="action">
 
             <div class = "flex w-full justify-between my-[1.5rem]">
+                <div class = "tabs border-2 w-[15rem] rounded-full items-center flex justify-center h-[3rem] bg-[#003755] text-white font-semibold hover:bg-white hover:border-[#003755] hover:text-[#003755] text-center cursor-pointer p-2">
+                    <button class = "tablink active flex gap-2 items-center text-lg text-center justify-center"
+                        onclick = "openTab('tab1')">Back</button>
+                </div>
+
                 <div class="border-2 w-[15rem] rounded-full items-center flex justify-center h-[3rem] bg-[#003755] text-white font-semibold hover:bg-white hover:border-[#003755] hover:text-[#003755] text-center cursor-pointer p-2">
                     <a class="save-report uppercase" data-action = "save as draft">Save as draft</a>
                 </div>
@@ -196,23 +168,12 @@
         </div>
     </form>
 
-    {% if messages %}
-        {% for message in messages %}
-            {% if message.tags == "info" %}
-                <script>Swal.fire({ title: "Hey!", text: "{{message}}", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}})</script>
-            {% elif message.tags == "success" %}
-                <script>Swal.fire({ title: "Yay!", text: "{{message}}", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}})</script>
-            {% else %}
-                <script>Swal.fire({ title: "Oops!", text: "{{message}}", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title" }})</script>
-            {% endif %}
-        {% endfor %}
-    {% endif %}
-
     <script>
         function openTab(tabName){
             var i, tabcontent, tablinks;
 
             tabcontent = document.getElementsByClassName("tabcontent");
+
             for (i = 0; i < tabcontent.length; i++){
                 tabcontent[i].style.display = "none";
             }
@@ -239,49 +200,53 @@
         openTab('tab1');
     </script>
 
-    <script>
-        const browsePhoto = document.querySelector(".post-photo");
+<script>
+    const browsePhoto = document.querySelector(".post-photo");
+    const capturePhoto = document.querySelector(".post-photo2");
+    const reportGallery = document.querySelector(".report-gallery");
 
-        const capturePhoto = document.querySelector(".post-photo2");
-        
-        const reportGallery = document.querySelector(".report-gallery");
+    function addImageToGallery(file) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            const photoWrapper = document.createElement("div");
+            photoWrapper.style.position = "relative";
+            photoWrapper.style.display = "inline-block";
+            photoWrapper.style.marginRight = "10px";
 
-        browsePhoto.addEventListener("change", (event) => {
-            const reportFiles = event.target.files;
+            const photoElement = document.createElement("img");
+            photoElement.classList.add("gallery-photo");
+            photoElement.src = event.target.result;
+            photoElement.style.width = "100px";
+            photoElement.style.height = "100px";
 
-            reportGallery.innerHTML = "";
+            const deleteButton = document.createElement("button");
+            deleteButton.textContent = "X";
+            deleteButton.classList.add("delete-btn");
+            deleteButton.onclick = function() {
+                reportGallery.removeChild(photoWrapper);
+            };
 
-            for (let i = 0; i < reportFiles.length; i++){
-                const photoObject = reportFiles[i];
+            photoWrapper.appendChild(photoElement);
+            photoWrapper.appendChild(deleteButton);
+            reportGallery.appendChild(photoWrapper);
+        };
+        reader.readAsDataURL(file);
+    }
 
-                const photoElement = document.createElement("img");
-                
-                photoElement.classList.add("gallery-photo");
-                
-                photoElement.src = URL.createObjectURL(photoObject);
-                
-                reportGallery.appendChild(photoElement);
-            }
-        });
+    function handleFiles(files) {
+        reportGallery.innerHTML = "";  // Clear existing images
+        Array.from(files).forEach(file => addImageToGallery(file));
+    }
 
-        capturePhoto.addEventListener("change", (event) => {
-            const reportFiles = event.target.files;
+    browsePhoto.addEventListener("change", (event) => {
+        handleFiles(event.target.files);
+    });
 
-            reportGallery.innerHTML = "";
+    capturePhoto.addEventListener("change", (event) => {
+        handleFiles(event.target.files);
+    });
+</script>
 
-            for (let i = 0; i < reportFiles.length; i++){
-                const photoObject = reportFiles[i];
-
-                const photoElement = document.createElement("img");
-                
-                photoElement.classList.add("gallery-photo");
-                
-                photoElement.src = URL.createObjectURL(photoObject);
-                
-                reportGallery.appendChild(photoElement);
-            }
-        });
-    </script>
 
     <script>
         document.querySelector(".browse-photo").addEventListener("click", function(){
@@ -332,7 +297,7 @@
         function revealMap(){
             var starfish = L.icon({iconUrl: "{% static 'assets/icons/marker.png' %}", iconSize: [30, 30], iconAnchor: [15, 15]});
 
-            report = L.marker([5.9656, 125.1929], {draggable: true, icon: starfish});
+            var report = L.marker([5.9656, 125.1929], {draggable: true, icon: starfish});
 
             var reportMap = document.getElementsByClassName("report-map")[0];
             
@@ -362,6 +327,8 @@
 
             fetchLocation();
         
+            L.control.locate().addTo(map);
+
             var geocoder = L.Control.geocoder({
                 defaultMarkGeocode: false,
                 
@@ -371,10 +338,12 @@
                 report.setLatLng(latlng);
                 
                 map.setView(latlng, 16);
+
+                var popupContent = e.geocode.name;
     
                 var popupInput = document.getElementById("location");
 
-                document.getElementById("location").value = popupContent;
+                popupInput.value = popupContent;
                 
                 report.bindPopup(popupContent).openPopup();
 
@@ -387,8 +356,6 @@
                 longitudeInput.value = latlng.lng.toFixed(6);
 
                 map.panTo(latlng);
-
-                popupInput.value = popupContent;
             }).addTo(map);
 
             var provider = new GeoSearch.OpenStreetMapProvider();
@@ -447,12 +414,11 @@
             const longitude = position.coords.longitude;
 
             if (latitude < minimumLatitude || latitude > maximumLatitude || longitude < minimumLongitude || longitude > maximumLongitude){
-                Swal.fire({title: "Oops!", text: "The location given to COTSEye incorporated coordinates out of bounds.", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}});
                 
                 document.querySelector(".post-photo2").addEventListener("click", function(){
                     event.preventDefault();
                     
-                    Swal.fire({title: "Oops!", text: "The location given to COTSEye incorporated coordinates out of bounds.", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}});
+                    /* Swal.fire({title: "Oops!", text: "The location given to COTSEye incorporated coordinates out of bounds.", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}}); */
                 });
 
             } else{
@@ -477,7 +443,7 @@
             if (captureButton){
                 captureButton.addEventListener("click", function (event){
                     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
-                        Swal.fire({title: "Oops!", text: "The camera is not supported and cannot be given to COTSEye.", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}});
+                        /* Swal.fire({title: "Oops!", text: "The camera is not supported and cannot be given to COTSEye.", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}}); */
                     };
                 });
             }

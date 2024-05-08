@@ -22,11 +22,9 @@ def PublicServiceHome(request):
 
     username = "public/everyone"
 
-    latest_announcements = Announcement.objects.all().order_by("-release_date")[:3]
+    latest_announcements = Announcement.objects.all().order_by("-release_date")[:1]
 
-    latest_interventions = Intervention.objects.all().order_by("-intervention_date")[:3]
-
-    valid_posts = Post.objects.filter(post_status = 1).order_by("-capture_date")[:3]
+    valid_posts = Post.objects.filter(post_status = 1).order_by("-capture_date")[:1]
 
     if user.is_authenticated:
         if user.usertype_id == 3:
@@ -52,7 +50,7 @@ def PublicServiceHome(request):
     if not any(message.level in [messages.INFO, messages.SUCCESS, messages.ERROR] for message in messages.get_messages(request)):
         messages.info(request, username + ", " + "kindly see announcements within COTSEye to check for updates today.")
 
-    context = {"username": username, "map_posts": map_posts, "map_statuses": map_statuses, "latest_announcements": latest_announcements, "latest_interventions": latest_interventions, "valid_posts": valid_posts}
+    context = {"username": username, "map_posts": map_posts, "map_statuses": map_statuses, "latest_announcements": latest_announcements, "valid_posts": valid_posts}
     
     return render(request, "public/service/home/home.html", context)
 
@@ -280,11 +278,9 @@ def ContributorCheck(account):
 def ContributorServiceHome(request):
     username = request.user.username
 
-    latest_announcements = Announcement.objects.all().order_by("-release_date")[:3]
+    latest_announcements = Announcement.objects.all().order_by("-release_date")[:1]
 
-    latest_interventions = Intervention.objects.all().order_by("-intervention_date")[:3]
-
-    valid_posts = Post.objects.filter(post_status = 1).order_by("-capture_date")[:3]
+    valid_posts = Post.objects.filter(post_status = 1).order_by("-capture_date")[:1]
 
     try:
         map_posts = Post.objects.filter(post_status = 1)
@@ -296,7 +292,7 @@ def ContributorServiceHome(request):
 
         map_statuses = None
     
-    context = {"username": username, "map_posts": map_posts, "map_statuses": map_statuses, "latest_announcements": latest_announcements, "latest_interventions": latest_interventions, "valid_posts": valid_posts}
+    context = {"username": username, "map_posts": map_posts, "map_statuses": map_statuses, "latest_announcements": latest_announcements, "valid_posts": valid_posts}
 
     return render(request, "contributor/service/home/home.html", context)
 
@@ -350,7 +346,7 @@ def ContributorServiceProfileUpdate(request):
 
             messages.success(request, username + ", " + "your information input was recorded online for COTSEye.")
             
-            return redirect("Contributor Service Profile")
+            return redirect("Contributor Service Home")
             
     else:
         profile_form = ProfileForm(request.user.user)

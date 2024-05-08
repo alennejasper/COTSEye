@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Barlow:wght@200;400;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap');
 
 
 *{
@@ -19,14 +20,14 @@
     border-radius: 5px;
     border: 1px solid #003755; 
     box-shadow: 0 0 0 1px #003755 !important;
-    background: white !important; 
+    background: #FFFFFF !important; 
 }
 
 ::-webkit-scrollbar-thumb{
     border-radius: 5px;
     border: 1px solid #003755; 
     box-shadow: 0 0 0 1px #003755 !important;
-    background: white !important;
+    background: #FFFFFF !important;
 }
 
 ::-webkit-scrollbar-thumb:hover{
@@ -37,13 +38,13 @@
 nav{
     width: 100%;
     position: relative;
-    background-color: white;
+    background-color: #FFFFFF;
     z-index: 100;
 }
 
 nav .navigation-bar{
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 16px;
+    padding-right: 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -100,7 +101,7 @@ nav .navigation-bar .navigation-menu .menu{
     min-width: 262px;
     height: 100%;
     position: fixed;
-    background-color: white;
+    background-color: #FFFFFF;
     z-index: 100;
     overflow: auto;
 }
@@ -213,57 +214,57 @@ nav .navigation-bar .opened-side{
 
 
 .content{
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     display: grid;
     grid-template-columns: 100%;
     place-items: center;
+    background-color: #FFFFFF;
    
 }
+
 
 
 .home-map{ 
     margin-top: 15px;
     margin-bottom: 15px;
     width: 100%;
-    height: 100vh;
+    height: 50vh;
 }
 
 @media screen and (min-width: 320px) and (max-width: 935px){
     .home-map{ 
-        height: 75vh;
+        height: 50vh;
     }
 }
 
 .home-map .map{
     width: 100%;
-    height: 100vh;
+    height: 50vh;
     border-radius: 5px; 
     z-index: 1;
 }
 
 @media screen and (min-width: 320px) and (max-width: 935px){
     .home-map .map{
-        height: 75vh;
+        height: 50vh;
     }
 }
 
 .home-map .map .leaflet-left{
-    margin-left: 30px !important;
+    margin-left: 10px !important;
 }
 
 .home-map .map .leaflet-right{
-    margin-right: 30px !important;
+    margin-right: 10px !important;
 }
 
 .home-map .map .leaflet-top{
-    margin-top: 15px !important;
+    margin-top: 10px !important;
 }
 
 .home-map .map .leaflet-bottom{
-    margin-bottom: 15px !important;
+    margin-bottom: 10px !important;
 }
 
 .home-map .map .leaflet-bar{
@@ -846,7 +847,8 @@ nav .navigation-bar .opened-side{
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .home-map .map .leaflet-popup-content{
-        width: 249px !important;
+        width: 280px !important;
+        height: 250px;
         word-break: break-word !important; 
     }
 }
@@ -866,10 +868,8 @@ nav .navigation-bar .opened-side{
 }
 
 .home-map .map .popup{
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
     width: 326px;
     border-radius: 5px !important;
     background-color: #FFFFFF;
@@ -878,7 +878,8 @@ nav .navigation-bar .opened-side{
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .home-map .map .popup{
-        width: 249px !important;
+        width: 280px !important;
+        height: 250px;
         word-break: break-word !important;
     }
 }
@@ -913,7 +914,7 @@ nav .navigation-bar .opened-side{
 }
 
 .home-map .map .popup .popup-header .popup-back{
-    font-size: 30px !important;
+    font-size: 18px !important;
     color: #003755;
     cursor: pointer;
 }
@@ -1103,8 +1104,9 @@ nav .navigation-bar .opened-side{
 }
 
 .home-map .map .popup .popup-header img{
-    width: 30px;
-    height: 30px;
+    margin-right: 5px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
 }
 
@@ -1167,8 +1169,8 @@ nav .navigation-bar .opened-side{
 @media screen and (min-width: 369px) and (max-width: 445px){
     .home-map .map .popup .popup-username p a{
         font-family: "Epilogue";
-        font-weight: 700;
-        font-size: 16px !important;
+        font-weight: 400;
+        font-size: 12px !important;
         color: #003755;
     }
 }
@@ -1194,11 +1196,6 @@ nav .navigation-bar .opened-side{
 .home-map .map .popup .popup-post{
     position: relative;
     display: grid;
-    gap: 15px;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    border-top: 1px solid #B2BEB5;
-    border-bottom: 1px solid #B2BEB5;
     background-color: #FFFFFF;
 }
 
@@ -1211,7 +1208,7 @@ nav .navigation-bar .opened-side{
 
 .home-map .map .popup .popup-post .post-gallery img{
     width: 100%;
-    height: 100%;
+    height: 150px;
     filter: brightness(50%);
 }
 
@@ -1303,9 +1300,8 @@ nav .navigation-bar .opened-side{
 
 .home-map .map .popup .button{
     margin-left: auto;
-    margin-top: 15px;
-    padding-left: 10px !important;
-    padding-right: 10px !important;
+    padding-left: 5px !important;
+    padding-right: 5px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: fit-content;
@@ -1344,7 +1340,7 @@ nav .navigation-bar .opened-side{
     .home-map .map .popup .button a.read-post{
         font-family: "Barlow";
         font-weight: 400;
-        font-size: 16px !important;
+        font-size: 12px !important;
         color: #FFFFFF !important;
         text-decoration: none;
     }
@@ -1372,4 +1368,301 @@ nav .navigation-bar .opened-side{
 
 .home-map .map  .leaflet-popup-tip{
     border-radius: 5px !important;
+}
+
+/* CHAT GPT Bottom Navigation Bar */
+nav.fixed{
+    background: #FFFFFF;
+    border-top: 1px solid #333;
+    padding: 0.5rem 0;
+}
+
+nav.fixed a{
+    color: #333;
+    text-decoration: none;
+}
+
+nav.fixed i{
+    margin-bottom: 0.25rem;
+}
+
+nav.fixed span{
+    font-size: 0.75rem;
+}
+
+@media (max-width: 600px){
+    nav.fixed{
+        padding: 1rem 0;
+    }
+
+    nav.fixed span{
+        display: none;
+    }
+}
+/*END  CHAT GPT Bottom Navigation Bar */
+
+/*Report Button Start */
+.report{
+    width: 50px;
+    height: 50px;
+    bottom: 65px;
+    right: 20px;
+    position: fixed;
+    z-index: 50;
+}
+/*Report Button End */
+
+nav.navigation-topbar{
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #333;
+    z-index: 100;
+}
+
+nav.navigation-topbar > a.logo{
+    height: 17px;
+}
+
+nav.navigation-topbar > a.profile{
+    width: 30px;
+    height: 30px;
+    margin-bottom: 0px !important;
+}
+
+nav.navigation-topbar img.logo{
+    height: 17px !important;
+}
+
+nav.navigation-topbar img.profile{
+    height: 30px !important;
+    margin-bottom: 0px !important;
+}
+
+nav.navigation-topbar img:hover{
+    filter: brightness(75%) !important;
+}
+
+nav.navigation-topbar img:focus{
+    filter: brightness(75%) !important;
+}
+
+nav.navigation-topbar img:active{
+    filter: brightness(75%) !important;
+}
+
+
+.dropdown-content{
+    right: 0px;
+    top: 30px;    
+    min-width: 262px;
+    position: absolute;
+    border-radius: 5px;
+    border: 1px solid #B2BEB5;     
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    background-color: #FFFFFF;
+    display: none;
+    z-index: 100;
+}
+
+.dropdown-content a.dropdown-header{
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    font-family: "Philosopher";
+    font-weight: 700;
+    font-size: 20px;
+    background-color: #154360;
+    color: #FFFFFF;
+    text-align: center;
+    text-decoration: none !important;
+    display: block;
+}
+
+.dropdown-content a.dropdown-header:hover{
+    background-color: #10354C !important;
+    color: #B2BEB5 !important;
+}
+
+.dropdown-content a.dropdown-header:focus{
+    background-color: #10354C !important;
+    color: #B2BEB5 !important;
+}
+
+.dropdown-content a.dropdown-header:active{
+    background-color: #10354C !important;
+    color: #B2BEB5 !important;
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .dropdown-content a.dropdown-header{
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 18px;
+        background-color: #154360;
+        color: #FFFFFF;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .dropdown-content a.dropdown-header{
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 16px;
+        background-color: #154360;
+        color: #FFFFFF;
+    }
+}
+
+i.fa-solid.fa-bell{
+    margin-right: 10px !important;
+    font-size: 16px;
+    color: #154360;
+}
+
+i.fa-solid.fa-users{
+    margin-right: 10px !important;
+    font-size: 16px;
+    color: #154360;
+}
+  
+.dropdown-item{
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    font-family: "Overlock";
+    font-weight: 400;
+    font-size: 18px;
+    background-color: #FFFFFF;
+    color: #154360;
+    text-decoration: none !important;
+    display: block;
+}
+  
+.dropdown-item:hover{
+    background-color: #B2BEB5 !important;
+    color: #10354C !important;
+}
+
+.dropdown-item a:focus{
+    color: #B2BEB5 !important;
+    color: #10354C !important;
+}
+
+.dropdown-item:active{
+    background-color: #B2BEB5 !important;
+    color: #10354C !important;
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .dropdown-item{
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 16px;
+        background-color: #FFFFFF;
+        color: #154360;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .dropdown-item{
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+        font-family: "Overlock";
+        font-weight: 400;
+        font-size: 14px;
+        background-color: #FFFFFF;
+        color: #154360;
+    }
+}
+
+.dropdown-divider{
+    border-radius: 5px;
+    border: 1px solid #B2BEB5; 
+    box-shadow: 0 0 0 1px #B2BEB5 !important;
+}
+
+.dropdown-content a.dropdown-footer{
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    font-family: "Philosopher";
+    font-weight: 700;
+    font-size: 20px;
+    background-color: #154360;
+    color: #FFFFFF;
+    text-align: center;
+    text-decoration: none !important;
+    display: block;
+}
+
+.dropdown-content a.dropdown-footer:hover{
+    background-color: #10354C !important;
+    color: #B2BEB5 !important;
+}
+
+.dropdown-content a.dropdown-footer:focus{
+    background-color: #10354C !important;
+    color: #B2BEB5 !important;
+}
+
+.dropdown-content a.dropdown-footer:active{
+    background-color: #10354C !important;
+    color: #B2BEB5 !important;
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .dropdown-content a.dropdown-footer{
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 18px;
+        background-color: #154360;
+        color: #FFFFFF;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .dropdown-content a.dropdown-footer{
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+        font-family: "Philosopher";
+        font-weight: 700;
+        font-size: 16px;
+        background-color: #154360;
+        color: #FFFFFF;
+    }
+}
+
+.show{
+    display: block;
 }

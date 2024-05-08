@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Overlock:wght@400;700;900&display=swap");
 
 
@@ -3128,7 +3128,7 @@ li.select2-results__option{
 
 #jazzy-actions .object-tools{
     display: none;
-}
+} */
 
 
 .content-wrapper{
@@ -4074,7 +4074,7 @@ li.select2-results__option{
 }
 
 
-.container-fluid{
+/* .container-fluid{
     padding-left: 0px;
     padding-right: 0px;
 }
@@ -6520,4 +6520,4 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 
 input:autofill{
     background: #FFFFFF !important;
-}
+} */

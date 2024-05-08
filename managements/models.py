@@ -59,7 +59,7 @@ class Status(models.Model):
 class Intervention(models.Model):
     title = models.CharField(max_length = 150, help_text = "Designates the title of the intervention.", verbose_name = "Title")
     location = models.ForeignKey(Location, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Location model.", verbose_name = "Location")
-    caught_amount = models.IntegerField(validators = [MinValueValidator(0)], help_text = "Designates the amount of the caught Crown-of-Thorns Starfish at the moment the intervention took place.", verbose_name = "Caught Amount")
+    caught_amount = models.IntegerField(null=True, blank=True, validators = [MinValueValidator(0)], help_text = "Designates the amount of the caught Crown-of-Thorns Starfish at the moment the intervention took place.", verbose_name = "Caught Amount")
     details = models.TextField(max_length = 5000, help_text = "Designates the details of the intervention.", verbose_name = "Details")
     hosting_agency = models.CharField(max_length = 150, help_text = "Designates the name of the hosting agency.", verbose_name = "Hosting Agency")
     intervention_photo = models.ImageField(default = "interventions/default.png", upload_to = "interventions", help_text = "Designates the photo of the intervention.", verbose_name = "Intervention Photo")

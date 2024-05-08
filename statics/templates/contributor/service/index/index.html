@@ -27,7 +27,15 @@
 
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/index/index.css' %}">
 
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/home/home.css' %}">
+
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/map/map.css' %}">
+
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/post/feed.css' %}">
+
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/report/report.css' %}">
+
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/profile/profile.css' %}">
 
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/profile/update.css' %}">
 
@@ -42,7 +50,6 @@
         <script src = "https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
         <script src = "https://cdnjs.cloudflare.com/ajax/libs/exif-js/2.3.0/exif.js"></script>
-
 
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     
@@ -73,62 +80,98 @@
         }
     </style>
 
-    <body class = "bg-[#0C0C0C]">
-        <nav>
-            <div class = "navigation-bar">
-                <a href = "{% url 'Contributor Service Home' %}">
-                    <img class = "h-full w-[4rem]" src = "{% static 'assets/logo.jpg' %}" alt = "navigation-logo">
-                </a>
-            
-                <div class="navigation-menu">
-                    <div>
-                        <ul class = "sidelinks fixed right-0 h-dvh z-20 bg-white min-[330px]:w-[80%] top-0 flex flex-col items-end gap-4">
-                           <div class = "flex flex-col mt-[8rem] gap-4 text-end">
-                            <li class = "hover:text-[#003755]"><a href = "{% url 'Contributor Service Map' %}">COTS map</a></li>
+    <body style = "background-color: #FFFFFF;">
+        <nav class = "navigation-topbar">
+            <a href = "{% url 'Contributor Service Home' %}" class = "logo"><img src = "{% static 'assets/logo.png' %}" class = "logo"></a>
 
-                            <li class = "hover:text-[#003755]"><a href = "{% url 'Contributor Service Post Feed' %}">COTS eye</a></li>
-                            
-                            <li class = "hover:text-[#003755]"><a href = "{% url 'Contributor Service Post' %}">My posts</a></li>
-                            
-                            <li class = "hover:text-[#003755]"><a href = "{% url 'Contributor Service Inquiry' %}">FAQS</a></li>
-                            
-                            <li class = "hover:text-[#003755]"><a href = "{% url 'Contributor Service Resource' %}">Resources</a></li>
-                            
-                            <li class = "hover:text-[#003755]"><a href = "{% url 'Contributor Service Announcement' %}">Announcements</a></li>
-                            
-                            <li class = "hover:text-[#003755]"><a href = "{% url 'Contributor Service Intervention' %}">Intervention programs</a></li>
-                           </div>
-                        </ul>
-                    </div>
-            
-                    <a class = "bg-black hover:bg-[#003755] p-[1.30rem] text-center !text-white" href = "{% url 'Contributor Service Profile' %}">Profile</a>
+            <a onclick = "shownDropdown()" class = "profile"><img src = "{% static 'assets/icons/logo.png' %}" class = "drop profile"></a>
+        </nav>
+
+        <div class = "others">
+            <div class = "dropdown">
+                <div id = "dropdown-content" class = "dropdown-content">
+                    <a class = "dropdown-header" href = "{% url 'Contributor Service Profile' %}">{{username}}</a>
+
+                    <a href = "{% url 'Contributor Service Resource' %}" class = "dropdown-item"><img src = "{% static 'assets/resource.png' %}" style = "height: 25px;">See resources</a>
+                                    
+                    <div class = "dropdown-divider"></div>
                     
-                    <img src = "/statics/assets/navigation.png"  class = "opened-side text-[#003755] z-50 w-[2rem] h-[3rem]" id = "toggleButton">
+                    <a href = "{% url 'Contributor Service Inquiry' %}" class = "dropdown-item"><img src = "{% static 'assets/faqs.png' %}" style = "height: 25px;">See faqs</a>
+                    
+                    <div class = "dropdown-divider"></div>
+                    
+                    <a href = "{% url 'Contributor Service Logout' %}" class = "dropdown-footer">Log out</a>
                 </div>
             </div>
-        </nav>
+        </div>
     
 
-        <div class = "content relative">
+        <div class = "content">
             {% block content %}
     
     
             {% endblock content %}
 
-            <a href = "{% url 'Contributor Service Report' %}"><img src = "/statics/assets/floats.png" class = "h-[3.5rem] w-[3.5rem] cursor-pointer object-cover fixed bottom-10 right-5 z-50"></a>
+            <a href = "{% url 'Contributor Service Report' %}"><img src = "/statics/assets/report.png" class = "report"></a>
         </div>
+
+        <nav class = "fixed inset-x-0 bottom-0 bg-white shadow-lg text-center">
+            <div class = "flex justify-around">
+                <a href = "{% url 'Contributor Service Home' %}" class = "flex flex-col items-center" style = "height: 25px;" aria-label="Home">
+                    <img src = "{% static 'assets/home.png' %}" style = "height: 25px;">
+                </a>
+
+                <a href = "{% url 'Contributor Service Post Feed' %}" class = "flex flex-col items-center" style = "height: 25px;" aria-label="Post Feed">
+                    <img src = "{% static 'assets/cotseye.png' %}" style = "height: 25px;">
+                </a>
+
+                <a href = "{% url 'Contributor Service Map' %}" class = "flex flex-col items-center" style = "height: 25px;" aria-label = "Map">
+                    <img src = "{% static 'assets/map.png' %}" style = "height: 25px;">
+                </a>
+
+                <a href = "{% url 'Contributor Service Announcement' %}" class = "flex flex-col items-center" style = "height: 25px;" aria-label = "Announcements">
+                    <img src = "{% static 'assets/announcement.png' %}" style = "height: 25px;">
+                </a>
+                
+                <a href = "{% url 'Contributor Service Intervention' %}" class = "flex flex-col items-center" style = "height: 25px;" aria-label = "Resources">
+                    <img src = "{% static 'assets/intervention.png' %}" style = "height: 25px;">
+                </a>
+            </div>
+        </nav>
     </body>
 
     <script>
-        const toggleButton = document.getElementById('toggleButton');
+        const toggleButton = document.getElementById("toggleButton");
         
-        const sideLinks = document.querySelector('.sidelinks');
+        const sideLinks = document.querySelector(".sidelinks");
 
         toggleButton.addEventListener("click", function(){
             sideLinks.classList.toggle("show");
 
             toggleButton.classList.add("hidden");
         });
+    </script>
+
+    <script>
+        function shownDropdown(){
+            document.getElementById("dropdown-content").classList.toggle("show");
+        };
+
+        window.onclick = function(event){
+            if (!event.target.matches("img.drop")){
+                var dropdown = document.getElementsByClassName("dropdown-content");
+
+                var amount;
+
+                for (amount = 0; amount < dropdown.length; amount++){
+                    var openDropdown = dropdown[amount];
+                    
+                    if (openDropdown.classList.contains("show")){
+                        openDropdown.classList.remove("show");
+                    };
+                };
+            };
+        };
     </script>
 
     <script type = "text/javascript">if(window.location.hash && window.location.hash === "#_=_"){ window.location.hash = ""; history.pushState("", document.title, window.location.pathname);}</script>

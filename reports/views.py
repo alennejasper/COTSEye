@@ -1893,7 +1893,7 @@ def PostValidReadRedirect(request):
         if usertype == 3:
             object = Post.objects.get()
 
-            return redirect(reverse("Contributor Service Post Valid Read", kwargs = {"id": object.id}))
+            return redirect(reverse("Contributor Service Post Feed Read", kwargs = {"id": object.id}))
 
         elif usertype == 2:
             object = Account.objects.get(id = request.user.id)

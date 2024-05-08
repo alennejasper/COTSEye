@@ -2,13 +2,15 @@
 {% load static %}
 
 {% block content %}
-    <div class = "h-full px-[1rem] w-dvw bg-[#0C0C0C] text-white relative">
-        <div class = "w-full text-center my-[2rem] flex items-center justify-center flex-col">
-            <h1 class = "text-center font-bold text-[3rem] tracking-widest">COTSEYE</h1>
-            
-            <p class = "w-[80%]">Empowering coral reef preservation, one captured crown-of-thorns starfish at a time.</p>
+    <div class = "h-full px-[1rem] w-dvw bg-[#FFFFF text-black relative">
+        <div style = "height: 20px;"></div>
 
-            <div class="w-[4rem] h-[10px] bg-blue-600 mt-[2rem] block">
+        <div class = "w-full text-center my-[2rem] flex items-center justify-center flex-col">
+            <h1 class = "text-center font-bold text-[2rem] tracking-widest">COTSEYE</h1>
+            
+            <p class = "w-[30%]">Empowering coral reef preservation, one captured crown-of-thorns starfish at a time.</p>
+
+            <div class="w-[4rem] h-[0px] bg-#000000-600 mt-[2rem] block">
 
             </div>
         </div>
@@ -224,18 +226,25 @@
             });
         </script>
 
+        <div style = "height: 10px;"></div>
+
+
         <div class = "h-[20rem] w-full relative my-[2rem] rounded-md overflow-hidden">
             <img class = "h-full w-full hover:scale-125 transition-all duration-500 cursor-pointer" src = "/statics/assets/pic1.gif" alt="pic 1">
 
-            <div class = "bg-black bg-opacity-70 absolute bottom-0 h-[50%] p-4">
+            <div class = "bg-black bg-opacity-70 absolute bottom-0 max-h-[50%] p-4 w-full">
                 <h1 class = "font-bold text-2xl text-white">WHAT IS COTS?</h1>
 
-                <p class = "break-words h-full w-full text-white">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias necessitatibus dolorum molestiae natus, asperiores hic repellendus inventore voluptatibus soluta minima id laborum. Veritatis accusantium iste vel ratione</p>
+                <p class = "truncate">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias necessitatibus dolorum molestiae natus, asperiores hic repellendus inventore voluptatibus soluta minima id laborum. Veritatis accusantium iste vel ratione</p>
             </div>
         </div>
 
+        <div style = "height: 30px;"></div>
+
         <div>
             <h1 class = "border-l-4 border-blue-600 font-bold text-start pl-2 text-3xl my-[2rem]">ANNOUNCEMENTS</h1>
+            
+            <div style = "height: 20px;"></div>
 
             {% for announcement in latest_announcements %}
                 <a class = "mb-[2rem] block w-full" href="{% url 'Public Service Announcement Read' announcement.id %}">
@@ -245,7 +254,7 @@
                         <div class = "bg-black bg-opacity-70 absolute bottom-0 max-h-[50%] p-4 w-full">
                             <h1 class = "font-bold text-2xl text-white">{{announcement.title | default:'None available'}}</h1>
                             
-                            <p class = "break-words h-full w-full text-white">{{announcement.context | default:'None available'}}</p>
+                            <p class = "truncate">{{announcement.context | default:'None available'}}</p>
                         </div>
                     </div>
                 </a>
@@ -253,40 +262,19 @@
         </div>
 
         <div>
-            <h1 class = "border-l-4 border-blue-600 font-bold text-start pl-2 text-3xl my-[2rem]">INTERVENTIONS</h1>
+            <h1 class = "border-l-4 border-blue-600 font-bold text-start pl-2 text-3xl my-[2rem]">POSTS</h1>
 
-            {% for intervention in latest_interventions %}
-                <a class = "mb-[2rem] block w-full" href="{% url 'Public Service Intervention Read' intervention.id %}">
-                    <div class = "h-[20rem] w-full relative my-[2rem] rounded-md overflow-hidden">
-                        <img class = "h-full w-full hover:scale-125 transition-all duration-500 cursor-pointer" src={{intervention.intervention_photo.url}}>
-                
-                        <div class = "bg-black bg-opacity-70 absolute bottom-0 max-h-[50%] p-4 w-full">
-                            <h1 class = "font-bold text-2xl text-white">{{intervention.title | default:'None available'}}</h1>
-                            
-                            <p class = "break-words h-full w-full text-white">{{intervention.details | default:'None available'}}</p>
-                        </div>
-                    </div>
-                </a>
-            {% endfor %}
-        </div>
-
-        <div>
-            <h1 class = "border-l-4 border-blue-600 font-bold text-start p-2 text-3xl my-[2rem]">POSTS</h1>
+            <div style = "height: 20px;"></div>
 
             {% for post in valid_posts %}
-                <a class="mb-[2rem] block pl-4" href = "{% url 'Public Service Post Feed Read' post.id %}">
-                    <div class="flex gap-4 w-full items-center border-b-2 border-blue-300 p-2  relative ">
-
-                        <p class="absolute top-5 right-5 text-sm">{{post.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}</p>
-
-
-                        <img class = "h-[10rem] w-[10rem] object-cover" src = "{{post.post_photos.first.post_photo.url}}">
-
-
-                        <div class = "w-full">
-                            <h1 class = "font-bold cursor-pointer">{{post.user | default:'None available'}}</h1>
+                <a class = "mb-[2rem] block w-full" href="{% url 'Public Service Post Feed Read' post.id %}">
+                    <div class = "h-[20rem] w-full relative my-[2rem] rounded-md overflow-hidden">
+                        <img class = "h-full w-full hover:scale-125 transition-all duration-500 cursor-pointer" src={{post.post_photos.first.post_photo.url}}>
+                
+                        <div class = "bg-black bg-opacity-70 absolute bottom-0 max-h-[50%] p-4 w-full">
+                            <h1 class = "font-bold text-2xl text-white">{{post.user | default:'None available'}}</h1>
                             
-                            <p>{{post.description | default:'None available'}}</p>
+                            <p class = "truncate">{{post.location | default:'None available'}}</p>
                         </div>
                     </div>
                 </a>

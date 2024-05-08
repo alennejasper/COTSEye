@@ -2,46 +2,62 @@
 {% load static %}
 
 {% block content %}
-    <div class = "fixed inset-0 z-[-10] h-screen w-full">
-        <img src = "/statics/assets/bg-2.jpg" class = "h-full w-full object-cover top-[-5rem]">
-    </div>
+    <!DOCTYPE html>
+        
+    <html lang = "en"> 
+        <head>
+            <link href = "https://cdn.jsdelivr.net/npm/tailwindcss@2.0.2/dist/tailwind.min.css" rel = "stylesheet">
+            <style>
+                .post-header{
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 12px;
+                    align-items: center;
+                }
 
+                .post-image{
+                    width: 100%;
+                    object-fit: cover;
+                }
 
-    <div class = "my-[2rem] flex flex-col w-full px-[1.8rem] items-center justify-center relative text-center">
-        <h1 class = "font-bold text-[3rem] text-white text-center">COTSEYE</h1>
-    </div>
+                .post-info{
+                    padding: 10px 15px;
+                }
 
-    <script>
-        document.querySelector(".filter-posts").onclick = function () {
-            document.querySelector(".post-form").submit();
-        }
-    </script>
+                .icon{
+                    margin-right: 8px;
+                }
+            </style>
+        </head>
 
+        <body>
+            <div class = "fixed inset-0 z-[-10] h-screen w-full"></div>
 
-    {% for post in valid_posts %}
-        <div class = "w-full mb-[2rem] border-2 rounded-lg px-4 bg-white">
-            <div class="flex w-full flex-col min-[450px]:flex-row min-[450px]:justify-between my-2">
-                <p class="flex items-center gap-2 text-[#003755]"><i class="fa-solid fa-user"></i>{{post.user | default:'None available'}}</p>
-
-                <p class="flex items-center gap-2 text-[#003755]"><i class="fa-solid fa-calendar-check"></i>{{post.capture_date | default:'None available'}}</p>
+            <div class = "flex flex-col w-full px-7 items-center justify-center relative text-center">
+                <h1 style = "margin-bottom: 10px; font-weight: bold;" class = "text-3xl text-black">COTSEYE</h1>
             </div>
 
-
-            <div class = "flex items-center justify-center">
-                <div class = "w-full flex justify-center flex-col items-center">
-                    <div class = "w-full h-full flex justify-start flex-col items-start relative">
-                        <img class = "h-[18rem] w-full object-cover" src= "{{post.post_photos.first.post_photo.url | default:'None available'}}">
-
-                        <div class="w-full flex items-center absolute bg-black bg-opacity-70 text-white bottom-0 p-4 h-[30%]">
-                            <h1 class="font-semibold text-lg min-[490px]:text-2xl">{{post.description | default:'None available'}}</h1>
+            {% for post in valid_posts %}
+                <div class = "w-full border bg-white shadow">
+                    <div class = "post-header">
+                        <p class = "flex items-center text-gray-800"><i class="fas fa-user icon"></i>{{post.user | default:'Anonymous'}}</p>
+                        
+                        <p class = "flex items-center text-gray-800"><i class="fas fa-calendar-check icon"></i>{{post.capture_date | date:"M d, Y" | default:'Date not available'}}</p>
+                    </div>
+                    
+                    <img class = "post-image" src="{{post.post_photos.first.post_photo.url | default:'/statics/assets/posts/default.png'}}" alt = "Post Image">
+                    
+                    <div class = "post-info">
+                        <h1 class = "font-semibold text-lg">{{ post.location | default:'Location not available' }}</h1>
+                        
+                        <div class = "mt-4">
+                            <a href="{% url 'Contributor Service Post Feed Read' post.id %}" class = "see-more">
+                                See more
+                            </a>
                         </div>
                     </div>
-
-                    <div class = "flex justify-center w-full my-[2rem]">
-                        <a href = "{% url 'Contributor Service Post Feed Read' post.id %}"><button class = "w-[10rem] bg-[#003755] hover:bg-white hover:border-[#003755] border-2 p-2 rounded-full font-bold text-white hover:text-[#003755]">Read More</button></a>
-                    </div>
                 </div>
-            </div>
-        </div>
-    {% endfor %}
+            {% endfor %}
+        </body>
+    </html>
 {% endblock content %}

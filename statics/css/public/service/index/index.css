@@ -1,269 +1,43 @@
-@import url("https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@200;400;700&display=swap");
-
-
-*{
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-    transition: all 0.25s ease;
-
-}
-
-::-webkit-scrollbar{
-    width: 5px !important;
-    height: 5px !important;
-}
-
-::-webkit-scrollbar-track{
-    border-radius: 5px;
-    border: 1px solid #003755; 
-    box-shadow: 0 0 0 1px #003755 !important;
-    background: white !important; 
-}
-
-::-webkit-scrollbar-thumb{
-    border-radius: 5px;
-    border: 1px solid #003755; 
-    box-shadow: 0 0 0 1px #003755 !important;
-    background: white !important;
-}
-
-::-webkit-scrollbar-thumb:hover{
-    background: #002C44 !important;
-}
-
-
-nav{
-    width: 100%;
-    position: relative;
-    background-color: white;
-    z-index: 100;
-}
-
-nav .navigation-bar{
-    padding-left: 30px;
-    padding-right: 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-nav .navigation-bar .navigation-logo img{
-    margin-left: 0px;
-    margin-right: 30px;
-    margin-top: 0px;
-    margin-bottom: 0px;   
-    width: 30px !important;
-    height: 30px !important;
-}
-
-nav .navigation-bar .navigation-logo img:hover{
-    opacity: 0.5 !important;
-}
-
-nav .navigation-bar .navigation-logo img:focus{
-    opacity: 0.5 !important;
-}
-
-nav .navigation-bar .navigation-logo img:active{
-    opacity: 0.5 !important;
-}
-
-@media screen and (min-width: 320px) and (max-width: 935px){
-    nav .navigation-bar .navigation-logo img{
-        margin-right: 0px;
-    }
-}
-
-nav .navigation-bar .navigation-menu{
-    display: flex;
-    align-items: center;
-}
-
-nav .navigation-bar .navigation-menu a{
-    margin-left: 30px;
-    margin-right: 30px;
-    font-weight: 700;
-    font-size: 20px !important;
-    color: black;
-    text-decoration: none;
-}
-
-nav .navigation-bar .navigation-menu .menu{
-    display: none;
-    top: 0;
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    min-width: 262px;
-    height: 100%;
-    position: fixed;
-    background-color: white;
-    z-index: 100;
-    overflow: auto;
-}
-
-nav.active .navigation-bar .navigation-menu .menu{
-    right: -0%;
-}
-
-nav .navigation-bar .navigation-menu .menu .toggle{
-    width: 100%;
-    display: block;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}  
-
-nav .navigation-bar i.fa-solid.fa-circle-arrow-left{
-    font-size: 50px !important;
-    color: #003755;
-}
-
-nav .navigation-bar i.fa-solid.fa-circle-arrow-left:hover{
-    color: #003755;
-    cursor: pointer;
-}
-
-nav .navigation-bar i.fa-solid.fa-circle-arrow-left:focus{
-    color: #003755;
-    cursor: pointer;
-}
-
-nav .navigation-bar i.fa-solid.fa-circle-arrow-left:active{
-    color: #003755;
-    cursor: pointer;
-}
-
-nav .navigation-bar .navigation-sidelinks{
-    display: flex;
-    align-items: flex-end;        
-    flex-direction: column;
-}
-
-.navigation-sidelinks li{
-    margin-left: 0px !important;
-    margin-right: 0px !important;
-    margin-top: 0px;
-    margin-bottom: 0px;    
-    list-style: none;
-}
-
-.navigation-sidelinks li a{
-    margin-top: 30px !important;
-    position: relative;
-    font-weight: 700;
-    font-size: 20px !important;
-    color: black;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-}
-
-.navigation-sidelinks li:hover a, .navigation-sidelinks li:hover i{
-    color: #003755 !important;
-    border-bottom: 2px solid #003755 !important;
-    
-}
-
-.navigation-sidelinks li:active a, .navigation-sidelinks li:hover i{
-    color: #003755 !important;
-    border-bottom: 2px solid #003755 !important;
-    
-}
-
-.navigation-sidelinks li:active a, .navigation-sidelinks li:active i{
-    color: #003755 !important;
-    border-bottom: 2px solid #003755 !important;
-    
-}
-
-nav .navigation-bar i.fa-solid.fa-bars{
-    font-size: 30px !important;
-    color: black;
-}
-
-nav .navigation-bar i.fa-solid.fa-bars:hover{
-    color: #003755;
-    cursor: pointer;
-}
-
-nav .navigation-bar i.fa-solid.fa-bars:focus{
-    color: #003755;
-    cursor: pointer;
-}
-
-nav .navigation-bar i.fa-solid.fa-bars:active{
-    color: #003755;
-    cursor: pointer;
-}
-
-nav .navigation-bar .opened-side{
-    font-size: 20px;
-    color: black;
-    cursor: pointer;
-    display: block;
-}
-
-.show{
-    display: block;
-}
-
-
-.content{
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    display: grid;
-    grid-template-columns: 100%;
-    place-items: center;
-   
-}
-
-
 .home-map{ 
     margin-top: 15px;
     margin-bottom: 15px;
     width: 100%;
-    height: 100vh;
+    height: 50vh;
 }
 
 @media screen and (min-width: 320px) and (max-width: 935px){
     .home-map{ 
-        height: 75vh;
+        height: 50vh;
     }
 }
 
 .home-map .map{
     width: 100%;
-    height: 100vh;
+    height: 50vh;
     border-radius: 5px; 
     z-index: 1;
 }
 
 @media screen and (min-width: 320px) and (max-width: 935px){
     .home-map .map{
-        height: 75vh;
+        height: 50vh;
     }
 }
 
 .home-map .map .leaflet-left{
-    margin-left: 30px !important;
+    margin-left: 10px !important;
 }
 
 .home-map .map .leaflet-right{
-    margin-right: 30px !important;
+    margin-right: 10px !important;
 }
 
 .home-map .map .leaflet-top{
-    margin-top: 15px !important;
+    margin-top: 10px !important;
 }
 
 .home-map .map .leaflet-bottom{
-    margin-bottom: 15px !important;
+    margin-bottom: 10px !important;
 }
 
 .home-map .map .leaflet-bar{
@@ -846,7 +620,8 @@ nav .navigation-bar .opened-side{
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .home-map .map .leaflet-popup-content{
-        width: 249px !important;
+        width: 280px !important;
+        height: 250px;
         word-break: break-word !important; 
     }
 }
@@ -866,10 +641,8 @@ nav .navigation-bar .opened-side{
 }
 
 .home-map .map .popup{
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
     width: 326px;
     border-radius: 5px !important;
     background-color: #FFFFFF;
@@ -878,7 +651,8 @@ nav .navigation-bar .opened-side{
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .home-map .map .popup{
-        width: 249px !important;
+        width: 280px !important;
+        height: 250px;
         word-break: break-word !important;
     }
 }
@@ -913,7 +687,7 @@ nav .navigation-bar .opened-side{
 }
 
 .home-map .map .popup .popup-header .popup-back{
-    font-size: 30px !important;
+    font-size: 18px !important;
     color: #003755;
     cursor: pointer;
 }
@@ -1103,8 +877,9 @@ nav .navigation-bar .opened-side{
 }
 
 .home-map .map .popup .popup-header img{
-    width: 30px;
-    height: 30px;
+    margin-right: 5px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
 }
 
@@ -1167,8 +942,8 @@ nav .navigation-bar .opened-side{
 @media screen and (min-width: 369px) and (max-width: 445px){
     .home-map .map .popup .popup-username p a{
         font-family: "Epilogue";
-        font-weight: 700;
-        font-size: 16px !important;
+        font-weight: 400;
+        font-size: 12px !important;
         color: #003755;
     }
 }
@@ -1194,11 +969,6 @@ nav .navigation-bar .opened-side{
 .home-map .map .popup .popup-post{
     position: relative;
     display: grid;
-    gap: 15px;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    border-top: 1px solid #B2BEB5;
-    border-bottom: 1px solid #B2BEB5;
     background-color: #FFFFFF;
 }
 
@@ -1211,7 +981,7 @@ nav .navigation-bar .opened-side{
 
 .home-map .map .popup .popup-post .post-gallery img{
     width: 100%;
-    height: 100%;
+    height: 150px;
     filter: brightness(50%);
 }
 
@@ -1303,9 +1073,8 @@ nav .navigation-bar .opened-side{
 
 .home-map .map .popup .button{
     margin-left: auto;
-    margin-top: 15px;
-    padding-left: 10px !important;
-    padding-right: 10px !important;
+    padding-left: 5px !important;
+    padding-right: 5px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: fit-content;
@@ -1344,7 +1113,7 @@ nav .navigation-bar .opened-side{
     .home-map .map .popup .button a.read-post{
         font-family: "Barlow";
         font-weight: 400;
-        font-size: 16px !important;
+        font-size: 12px !important;
         color: #FFFFFF !important;
         text-decoration: none;
     }

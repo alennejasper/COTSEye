@@ -1,0 +1,42 @@
+.content:has(.profile){
+    padding: 10px;
+}
+
+.profile{
+    margin-bottom: 10px !important;
+}
+
+/* .posts{
+    margin-top: 10px;
+    border-top: 1px solid #333;
+}
+
+.post-choices{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.post-status{
+    margin-top: 10px;
+}
+
+.post{
+    background-color: #FFFFFF;
+}
+
+.origin{
+    justify-content: flex-start;
+}
+
+.button{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    font-family: "Poppins";
+    color: #FFFFFF;
+    background-color: #003755;
+} */

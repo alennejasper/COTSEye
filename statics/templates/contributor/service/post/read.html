@@ -3,23 +3,21 @@
 
 
 {% block content %}
-<div class = "h-full w-dvw justify-center items-center relative px-[2rem]">
-    <div class="fixed inset-0 z-[-10] h-screen w-full">
-        <img src = "/statics/assets/bg1.jpg" class = "h-full w-full object-cover top-[-5rem]">
-    </div>
-
-    <h1 class = "my-[2rem] text-center font-bold text-[3rem] text-white">POSTS DETAILS</h1>
+<div class = "h-full w-full justify-center items-center" style = "margin-top: 30px; margin-bottom: 30px;">
+    <h1 class = "my-[2rem] text-center font-semibold text-[2rem] text-black">POSTS DETAILS</h1>
 
     {% if valid_post %}
         <div class = "w-full p-4 bg-white rounded-2xl my-[2rem]">
-            <div class = "flex w-full justify-between items-center">
+            <div class = "flex w-full justify-between items-center" style = "margin-bottom: 15px;">
                 <div>
-                    <p><i class = "fa-solid fa-flag mr-2"></i>Valid</p>
-
                     <p><i class = "fa-solid fa-user mr-2"></i>{{valid_post.user}}</p>
-                </div>
 
-                <p><i class = "fa-solid fa-calendar-check mr-2"></i>{{valid_post.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <p style="font-size: 12px;"><i class = "fa-solid fa-flag mr-2"></i>Valid</p>
+
+                        <p><i class = "fa-solid fa-calendar-check mr-2"></i>{{valid_post.capture_date | date:'m/d/y' | default:'None available'}}</p>
+                    </div>
+                </div>
             </div>
 
             <div>
@@ -75,20 +73,20 @@
 
     {% if invalid_post %}
         <div class = "w-full p-4 bg-white rounded-2xl my-[2rem]">
-            <div class = "flex w-full justify-between items-center">
+            <div class = "flex w-full justify-between items-center" style = "margin-bottom: 15px;">
                 <div>
                     <p class = "text-[#003755]"><i class = "fa-solid fa-flag mr-2"></i>Invalid</p>
                     
                     <p class = "text-[#003755]"><i class = "fa-solid fa-user mr-2"></i>{{invalid_post.user}}</p>
-                </div>
 
-                <p class = "text-[#003755]"><i class = "fa-solid fa-calendar-check mr-2"></i>{{invalid_post.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}</p>
+                    <p class = "text-[#003755]"><i class = "fa-solid fa-calendar-check mr-2"></i>{{invalid_post.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}</p>
+                </div>
             </div>
 
             <div>
                 <div class = "post-gallery my-[2rem]">
                     {% for post_photo in invalid_post.post_photos.all %}
-                        <img class="h-[15rem] w-full object-cover" src = "{{post_photo.post_photo.url}}">
+                        <img class = "h-[15rem] w-full object-cover" src = "{{post_photo.post_photo.url}}">
                     {% endfor %}
                 </div>
 
@@ -141,14 +139,14 @@
 
     {% if pending_post %}
         <div class = "w-full p-4 bg-white rounded-2xl my-[2rem]">
-            <div class = "flex w-full justify-between items-center">
+            <div class = "flex w-full justify-between items-center" style = "margin-bottom: 15px;">
                 <div>
                     <p><i class = "fa-solid fa-flag mr-2"></i>Pending</p>
 
                     <p><i class = "fa-solid fa-user mr-2"></i>{{pending_post.user}}</p>
-                </div>
 
-                <p><i class="fa-solid fa-calendar-check mr-2"></i>{{pending_post.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}</p>
+                    <p><i class = "fa-solid fa-calendar-check mr-2"></i>{{pending_post.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}</p>
+                </div>
             </div>
 
             <div>
@@ -195,20 +193,19 @@
 
     {% if draft_post %}
         <div class = "w-full p-4 bg-white rounded-2xl my-[2rem]">
-            <div class = "flex w-full justify-between items-center">
+            <div class = "flex w-full justify-between items-center" style = "margin-bottom: 15px;">
                 <div>
                     <p class = "text-[#003755]"><i class="fa-solid fa-flag mr-2"></i>Draft</p>
 
                     <p class = "text-[#003755]"><i class="fa-solid fa-user mr-2"></i>{{draft_post.user}}</p>
+
+                    <p class = "text-[#003755]"><i class = "fa-solid fa-calendar-check mr-2"></i>{{draft_post.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}</p>
                 </div>
-
-                <p class = "text-[#003755]"><i class = "fa-solid fa-calendar-check mr-2"></i>{{draft_post.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}</p>
-
             </div>
             <div>
                 <div class = "post-gallery my-[2rem]">
                     {% for post_photo in draft_post.post_photos.all %}
-                        <img class="h-[15rem] w-full object-cover" src="{{post_photo.post_photo.url}}">
+                        <img class = "h-[15rem] w-full object-cover" src="{{post_photo.post_photo.url}}">
                     {% endfor %}
                 </div>
 
