@@ -20,5 +20,5 @@ class ProfileForm(ModelForm):
     class Meta:
         model = User
         fields = "__all__"
-        exclude = ["account", "date_joined"]
+        exclude = ["account", "joined_date"]
         widgets = {"profile_photo": FileInput()}

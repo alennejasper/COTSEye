@@ -4,7 +4,7 @@
 {% block content %}
     {% if user %}        
         <div class = "update">
-            <h1 class = "my-[2rem] text-center font-bold text-[3rem] text-black">UPDATE PROFILE</h1>
+            <h1>UPDATE PROFILE</h1>
 
             <form action = "" class = "profile-form" method = "POST" enctype = "multipart/form-data">
                 {% csrf_token %}
@@ -54,8 +54,8 @@
                         </div>
                     </div>
             
-                   <div class = "flex justify-end  w-full items-center">
-                        <div class = "text-center  w-[10rem] bg-[#003755] hover:bg-white hover:border-[#003755] border-2 p-2 rounded-full font-bold text-white hover:text-[#003755]">
+                   <div class = "">
+                        <div class = "">
                             <a class = "save-profile" type = "submit">Save</a>
                         </div>   
                    </div>
@@ -189,7 +189,7 @@
 
                 const profile = cotseye_schema.getAll();
 
-                post.onsuccess = (event) => {
+                profile.onsuccess = (event) => {
                     const information = event.target.result;
 
                     if(information && information.length > 0){

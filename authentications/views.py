@@ -304,7 +304,7 @@ def ContributorServiceProfile(request):
 
     username = request.user.username
 
-    records = Post.objects.filter(user = request.user.user)
+    records = Post.objects.filter(user = request.user)
 
     results = None
     
@@ -312,7 +312,7 @@ def ContributorServiceProfile(request):
         post_status  = request.GET.get("post_status")
 
         if post_status :
-            results = Post.objects.filter(user = request.user.user, post_status = post_status)
+            results = Post.objects.filter(user = request.user, post_status = post_status)
     
         elif results is None:
             username = request.user.username
