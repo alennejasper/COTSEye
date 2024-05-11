@@ -647,34 +647,21 @@
 
     <script>
         document.querySelectorAll(".save-report").forEach(item => {
-            item.addEventListener("click", function(event) {
+            item.addEventListener("click", function(event){
                 event.preventDefault();
 
-                if (!navigator.onLine) {
-                    const username = "{{ request.user.username }}";
+                if (!navigator.onLine){
+                    const username = "{{request.user.username}}";
 
-                    Swal.fire({
-                        title: "Hey!",
-                        text: username + ", your information input was recorded offline for COTSEye. Kindly visit the current page again if back online.",
-                        background: "#FFFFFF",
-                        icon: "warning",
-                        iconColor: "#154360",
-                        allowOutsideClick: false,
-                        allowEscapeKey: false,
-                        confirmButtonColor: "#154360",
-                        customClass: {
-                            confirmButton: "info-button",
-                            title: "title"
-                        }
-                    }).then(() => {
-                        location.reload();
-                    });
+                    Swal.fire({title: "Hey!", text: username + ", your information input was recorded offline for COTSEye. Kindly visit the current page again if back online.", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}}).then(() => {location.reload();});
 
-                } else {
+                } else{
                     const action = this.getAttribute("data-action");
+
                     document.getElementById("action").value = action;
+                    
                     document.querySelector(".report-form").submit();
-                }
+                };
             });
         });
     </script>
