@@ -2,10 +2,9 @@
 {% load static %}
 
 {% block content %}
-    <div class = "h-full px-[1rem] w-dvw bg-[#FFFFF text-black relative">
-        <div class = "w-full text-center my-[2rem] flex items-center justify-center flex-col">
-            <h1 class = "text-center font-bold text-[2rem] tracking-widest">COTS MAP</h1>
-            </div>
+    <div class = "map-body">
+        <div class = "map-section">
+            <h1>COTS MAP</h1>
         </div>
 
         <div class = "map-map">
@@ -119,32 +118,35 @@
                 });
 
                 status.addTo(map_statuses);
-
-                var starfish = L.icon({iconUrl: "{% static 'assets/icons/marker.png' %}", iconSize: [30, 30], iconAnchor: [15, 15]});
                 
+                var starfish = L.icon({iconUrl: "{% static 'assets/pin.png' %}", iconSize: [30, 30], iconAnchor: [15, 15]});
+            
                 var map_posts = L.markerClusterGroup({iconCreateFunction: function(cluster){return starfish}, removeOutsideVisibleBounds: false});
-
+            
                 {% for post in map_posts %}
-                    var post = L.marker([{{post.coordinates.latitude}}, {{post.coordinates.longitude}}], {icon: starfish});
+                    var postMarker = L.marker([{{post.coordinates.latitude}}, {{post.coordinates.longitude}}], {icon: starfish});
                     
-                    post.bindPopup("<div class = 'popup'>" + "<div class= 'popup-header'>" + "<img src = '{{post.user.profile_photo.url | default:''}}'>" + "<i class = 'fa-solid fa-square-xmark popup-back'>" + "</i>" + "</div>" + "<div class='popup-username'>" + "<p>" + "From" + ", " + "<a>" + "{{post.user | default:'None available'}}" + "</a>" + "." + "</p>" + "</div>" + "<div class = 'popup-post'>" + "<div class = 'post-gallery'>" + "<img src = '{{post.post_photos.all.first.post_photo.url}}'>" + "<div class = 'post-context'>" + "<p>" + "{{post.capture_date | default:'None available'}}" + "</p>" + "<a>" + "{{post.coordinates | default:'0'}}" + "</a>" + "</div>" + "</div>" + "</div>" + "<div class = 'button'>" + "<a class = 'read-post'>" + "Read" + "</a>" + "</div>", {closeOnClick: false, autoClose: false}).openPopup();
-                    
-                    post.on("popupopen", function(){
-                        var popupBack = document.querySelector(".popup-back");
-                        
-                        popupBack.addEventListener("click", function(){
-                            map.closePopup();
-                        });
-                    });
+                    postMarker.bindPopup("<div class = 'popup'>" + "<div class = 'popup-header'>" +  "<img src = '{{post.user.profile_photo.url | default:''}}'>" +  "<div class='popup-username'>" +  "<p><a>{{post.user | default:'None available'}}</a></p>" + "</div>" + "<i class = 'fa-solid fa-square-xmark popup-back'></i>" + "</div>" + "<div class = 'popup-post'>" + "<div class = 'post-gallery'>" + "<img src = '{{post.post_photos.all.first.post_photo.url}}'>" + "<div class = 'post-context'>" + "<p>{{post.capture_date | default:'None available'}}</p>" + "<a>{{post.coordinates | default:'0'}}</a>" + "</div>" + "</div>" + "</div>" + "<div class = 'button'><a class = 'read-post' href = '{% url 'Contributor Service Post Read' post.id %}'>Read</a></div>", {closeOnClick: false, autoClose: false});
 
-                    post.on("click", function (event){                    
-                        if (!post.isPopupOpen()){
-                            event.target.openPopup();
+                    postMarker.on("popupopen", function(e){
+                        var popup = e.popup;
+                        
+                        var popupBack = popup.getElement().querySelector(".popup-back");
+                        
+                        popupBack.onclick = function(){
+                            popup.close();
                         };
                     });
 
-                    map_posts.addLayer(post);
+                    postMarker.on("click", function(event){                    
+                        if (!this.isPopupOpen()){
+                            this.openPopup();
+                        }
+                    });
+
+                    map_posts.addLayer(postMarker);
                 {% endfor %}
+
 
                 var map = document.getElementsByClassName("map")[0];
 
@@ -219,5 +221,36 @@
             });
         </script>
 
-        <div style = "height: 30px;"></div>
+        <div class = "chart"></div>
+
+        <script>
+            var options = {
+                series: [{
+                    name: 'Series 1',
+                    data: [30, 40, 45, 50, 49, 60, 70, 91]
+                }],
+
+                chart: {
+                    height: 350,
+                    type: 'line',
+                    zoom: {
+                        enabled: false
+                    }
+                },
+
+                title: {
+                    text: 'Sample Line Chart',
+                    align: 'left'
+                },
+
+                xaxis: {
+                    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug']
+                }
+            };
+    
+            var chart = new ApexCharts(document.querySelector(".chart"), options);
+
+            chart.render();
+        </script>
+    </div>
 {% endblock content %}

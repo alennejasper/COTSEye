@@ -3,253 +3,229 @@
 
 
 {% block content %}
-<div class = "h-full w-full justify-center items-center" style = "margin-top: 30px; margin-bottom: 30px;">
-    <h1 class = "my-[2rem] text-center font-semibold text-[2rem] text-black">POSTS DETAILS</h1>
+<div class = "postandfeedread-body">
+    <div class = "postandfeedread-section">
+        <h1>POSTS DETAILS</h1>
+    </div>
 
     {% if valid_post %}
-        <div class = "w-full p-4 bg-white rounded-2xl my-[2rem]">
-            <div class = "flex w-full justify-between items-center" style = "margin-bottom: 15px;">
-                <div>
-                    <p><i class = "fa-solid fa-user mr-2"></i>{{valid_post.user}}</p>
+        <div class = "postandfeedread">
+            <div class = "postandfeedread-header">
+                <p><i class = "fa-solid fa-user"></i>{{valid_post.user}}</p>
 
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <p style="font-size: 12px;"><i class = "fa-solid fa-flag mr-2"></i>Valid</p>
+                <div class = "postandfeedread-status">
+                    <p><i class = "fa-solid fa-flag"></i>Valid</p>
 
-                        <p><i class = "fa-solid fa-calendar-check mr-2"></i>{{valid_post.capture_date | date:'m/d/y' | default:'None available'}}</p>
-                    </div>
+                    <p><i class = "fa-solid fa-calendar-check"></i>{{valid_post.capture_date | date:'m/d/y' | default:'None available'}}</p>
                 </div>
             </div>
 
-            <div>
-                <div class = "post-gallery my-[2rem]">
-                    {% for post_photo in valid_post.post_photos.all %}
-                        <img class = "h-[15rem] w-full object-cover" src = "{{post_photo.post_photo.url}}">
-                    {% endfor %}
+            <div class = "postandfeedread-gallery">
+                {% for post_photo in valid_post.post_photos.all %}
+                    <img src = "{{post_photo.post_photo.url}}">
+                {% endfor %}
+            </div>
+
+            <p><i class = "fa-solid fa-location-dot"></i>{{valid_post.location | default:'None available'}}</p>
+
+            <p>{{valid_post.description | default:'None available'}}</p>
+
+            <div class = "postandfeedread-observation">
+                <h1>POST OBSERVATION</h1>
+
+                <div class = "observation-context">
+                    <p>Size</p>
+
+                    <p>{{valid_post.post_observation.size | default:'0'}}</p>
                 </div>
 
-                <p class = "font-bold my-2"><i class = "fa-solid fa-location-dot mr-2"></i>{{valid_post.coordinates.latitude | default:'0'}}° N, {{valid_post.coordinates.longitude | default:'0'}}° E</p>
+                <div class = "observation-context">
+                    <p>Depth</p>
 
-                <p class = "indent-10">{{valid_post.description | default:'None available'}}</p>
-
-                <div class = "mt-[2rem] flex flex-col">
-                    <h1 class = "font-bold">Post observation</h1>
-
-                    <div class = "p-2 flex gap-4">
-                        <p class = "font-bold">Size</p>
-
-                        <p>{{valid_post.post_observation.size | default:'0'}}</p>
-                    </div>
-
-                    <div class = " p-2 flex gap-4">
-                        <p class = "font-bold">Depth</p>
-
-                        <p>{{valid_post.post_observation.depth | default:'0'}}</p>
-                    </div>
-
-                    <div class = "p-2 flex gap-4">
-                        <p class = "font-bold">Density</p>
-
-                        <p>{{valid_post.post_observation.density | default:'0'}}</p>
-                    </div>
-
-                    <div class = "p-2 flex gap-4">
-                        <p class = "font-bold">Weather</p>
-
-                        <p>{{valid_post.post_observation.weather | default:'None available'}}</p>
-                    </div>
+                    <p>{{valid_post.post_observation.depth | default:'0'}}</p>
                 </div>
 
-                <div class = "flex gap-4 mt-[5rem] justify-between">
-                    <div>
-                    </div>
-                    
-                    <div class = " border-2 w-[10rem] h-[3rem] bg-[#003755] text-white font-bold hover:bg-white hover:border-[#003755] hover:text-[#003755] text-center cursor-pointer p-2 rounded-lg">
-                        <a class = "share-post" target = "blank">Share</a>
-                    </div>
+                <div class = "observation-context">
+                    <p>Density</p>
+
+                    <p>{{valid_post.post_observation.density | default:'0'}}</p>
                 </div>
+
+                <div class = "observation-context">
+                    <p>Weather</p>
+
+                    <p>{{valid_post.post_observation.weather | default:'None available'}}</p>
+                </div>
+            </div>
+
+            <div class = "button">
+                <a class = "share-post" target = "blank">Share</a>
             </div>
         </div>
     {% endif %}
 
     {% if invalid_post %}
-        <div class = "w-full p-4 bg-white rounded-2xl my-[2rem]">
-            <div class = "flex w-full justify-between items-center" style = "margin-bottom: 15px;">
-                <div>
-                    <p class = "text-[#003755]"><i class = "fa-solid fa-flag mr-2"></i>Invalid</p>
-                    
-                    <p class = "text-[#003755]"><i class = "fa-solid fa-user mr-2"></i>{{invalid_post.user}}</p>
+        <div class = "postandfeedread">
+            <div class = "postandfeedread-header">
+                <p><i class = "fa-solid fa-user"></i>{{invalid_post.user}}</p>
 
-                    <p class = "text-[#003755]"><i class = "fa-solid fa-calendar-check mr-2"></i>{{invalid_post.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}</p>
+                <div class = "postandfeedread-status">
+                    <p><i class = "fa-solid fa-flag"></i>Invalid</p>
+
+                    <p><i class = "fa-solid fa-calendar-check"></i>{{invalid_post.capture_date | date:'m/d/y' | default:'None available'}}</p>
                 </div>
             </div>
 
-            <div>
-                <div class = "post-gallery my-[2rem]">
-                    {% for post_photo in invalid_post.post_photos.all %}
-                        <img class = "h-[15rem] w-full object-cover" src = "{{post_photo.post_photo.url}}">
-                    {% endfor %}
+            <div class = "postandfeedread-gallery">
+                {% for post_photo in invalid_post.post_photos.all %}
+                    <img src = "{{post_photo.post_photo.url}}">
+                {% endfor %}
+            </div>
+
+            <p><i class = "fa-solid fa-location-dot"></i>{{invalid_post.location | default:'None available'}}</p>
+
+            <p>{{invalid_post.description | default:'None available'}}</p>
+
+            <div class = "postandfeedread-observation">
+                <h1>POST OBSERVATION</h1>
+
+                <div class = "observation-context">
+                    <p>Size</p>
+
+                    <p>{{invalid_post.post_observation.size | default:'0'}}</p>
                 </div>
 
-                <p class = "font-bold my-2"><i class="fa-solid fa-location-dot mr-2"></i>{{invalid_post.coordinates.latitude | default:'0'}}° N, {{invalid_post.coordinates.longitude | default:'0'}}° E</p>
+                <div class = "observation-context">
+                    <p>Depth</p>
 
-                <p class = "indent-10">{{invalid_post.description | default:'None available'}}</p>
-
-                <div class = "mt-[2rem] flex flex-col">
-                    <h1 class = "font-bold">Post observation</h1>
-
-                    <div class = "p-2 flex gap-4">
-                        <p class = "font-bold">Size</p>
-
-                        <p>{{invalid_post.post_observation.size | default:'0'}}</p>
-                    </div>
-
-                    <div class = "p-2 flex gap-4">
-                        <p class = "font-bold">Depth</p>
-
-                        <p>{{invalid_post.post_observation.depth | default:'0'}}</p>
-                    </div>
-
-                    <div class = "p-2 flex gap-4">
-                        <p class = "font-bold">Density</p>
-
-                        <p>{{invalid_post.post_observation.density | default:'0'}}</p>
-                    </div>
-
-                    <div class = "p-2 flex gap-4">
-                        <p class = "font-bold">Weather</p>
-
-                        <p>{{invalid_post.post_observation.weather | default:'None available'}}</p>
-                    </div>
+                    <p>{{invalid_post.post_observation.depth | default:'0'}}</p>
                 </div>
 
+                <div class = "observation-context">
+                    <p>Density</p>
 
-                <div class = "flex gap-4 mt-[5rem] justify-between">
-                    <div>
-                    </div>
-
-                    <div class = "border-2 w-[10rem] h-[3rem] bg-[#003755] text-white font-bold hover:bg-white hover:border-[#003755] hover:text-[#003755] text-center cursor-pointer p-2 rounded-lg">
-                        <a href = "{% url 'Contributor Service Post Invalid Delete' invalid_post.id %}">Delete</a>
-                    </div>
-
-                
+                    <p>{{invalid_post.post_observation.density | default:'0'}}</p>
                 </div>
+
+                <div class = "observation-context">
+                    <p>Weather</p>
+
+                    <p>{{invalid_post.post_observation.weather | default:'None available'}}</p>
+                </div>
+            </div>
+
+            <div class = "button">
+                <a class = "delete-post" href = "{% url 'Contributor Service Post Invalid Delete' invalid_post.id %}">Delete</a>
             </div>
         </div>
     {% endif %}
 
     {% if pending_post %}
-        <div class = "w-full p-4 bg-white rounded-2xl my-[2rem]">
-            <div class = "flex w-full justify-between items-center" style = "margin-bottom: 15px;">
-                <div>
-                    <p><i class = "fa-solid fa-flag mr-2"></i>Pending</p>
+        <div class = "postandfeedread">
+            <div class = "postandfeedread-header">
+                <p><i class = "fa-solid fa-user"></i>{{pending_post.user}}</p>
 
-                    <p><i class = "fa-solid fa-user mr-2"></i>{{pending_post.user}}</p>
+                <div class = "postandfeedread-status">
+                    <p><i class = "fa-solid fa-flag"></i>Pending</p>
 
-                    <p><i class = "fa-solid fa-calendar-check mr-2"></i>{{pending_post.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}</p>
+                    <p><i class = "fa-solid fa-calendar-check"></i>{{pending_post.capture_date | date:'m/d/y' | default:'None available'}}</p>
                 </div>
             </div>
 
-            <div>
-                <div class = "post-gallery my-[2rem]">
-                    {% for post_photo in pending_post.post_photos.all %}
-                        <img class = "h-[15rem] w-full object-cover" src = "{{post_photo.post_photo.url}}">
-                    {% endfor %}
+            <div class = "postandfeedread-gallery">
+                {% for post_photo in pending_post.post_photos.all %}
+                    <img src = "{{post_photo.post_photo.url}}">
+                {% endfor %}
+            </div>
+
+            <p><i class = "fa-solid fa-location-dot"></i>{{pending_post.location | default:'None available'}}</p>
+
+            <p>{{pending_post.description | default:'None available'}}</p>
+
+            <div class = "postandfeedread-observation">
+                <h1>POST OBSERVATION</h1>
+
+                <div class = "observation-context">
+                    <p>Size</p>
+
+                    <p>{{pending_post.post_observation.size | default:'0'}}</p>
                 </div>
 
-                <p class = "font-bold my-2"><i class = "fa-solid fa-location-dot mr-2"></i>{{pending_post.coordinates.latitude | default:'0'}}° N, {{pending_post.coordinates.longitude | default:'0'}}° E</p>
+                <div class = "observation-context">
+                    <p>Depth</p>
 
-                <p class = "indent-10">{{pending_post.description | default:'None available'}}</p>
+                    <p>{{pending_post.post_observation.depth | default:'0'}}</p>
+                </div>
 
-                <div class = "mt-[2rem] flex flex-col">
-                    <h1 class = "font-bold">Post observation</h1>
+                <div class = "observation-context">
+                    <p>Density</p>
 
-                    <div class = "p-2 flex gap-4">
-                        <p class = "font-bold">Size</p>
+                    <p>{{pending_post.post_observation.density | default:'0'}}</p>
+                </div>
 
-                        <p>{{pending_post.post_observation.size | default:'0'}}</p>
-                    </div>
+                <div class = "observation-context">
+                    <p>Weather</p>
 
-                    <div class = "p-2 flex gap-4">
-                        <p class = "font-bold">Depth</p>
-
-                        <p>{{pending_post.post_observation.depth | default:'0'}}</p>
-                    </div>
-
-                    <div class = "p-2 flex gap-4">
-                        <p class = "font-bold">Density</p>
-
-                        <p>{{pending_post.post_observation.density | default:'0'}}</p>
-                    </div>
-
-                    <div class = "p-2 flex gap-4">
-                        <p class = "font-bold">Weather</p>
-
-                        <p>{{pending_post.post_observation.weather | default:'None available'}}</p>
-                    </div>
+                    <p>{{pending_post.post_observation.weather | default:'None available'}}</p>
                 </div>
             </div>
         </div>
     {% endif %}
 
     {% if draft_post %}
-        <div class = "w-full p-4 bg-white rounded-2xl my-[2rem]">
-            <div class = "flex w-full justify-between items-center" style = "margin-bottom: 15px;">
-                <div>
-                    <p class = "text-[#003755]"><i class="fa-solid fa-flag mr-2"></i>Draft</p>
+        <div class = "postandfeedread">
+            <div class = "postandfeedread-header">
+                <p><i class = "fa-solid fa-user"></i>{{draft_post.user}}</p>
 
-                    <p class = "text-[#003755]"><i class="fa-solid fa-user mr-2"></i>{{draft_post.user}}</p>
+                <div class = "postandfeedread-status">
+                    <p><i class = "fa-solid fa-flag"></i>Draft</p>
 
-                    <p class = "text-[#003755]"><i class = "fa-solid fa-calendar-check mr-2"></i>{{draft_post.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}</p>
+                    <p><i class = "fa-solid fa-calendar-check"></i>{{draft_post.capture_date | date:'m/d/y' | default:'None available'}}</p>
                 </div>
             </div>
-            <div>
-                <div class = "post-gallery my-[2rem]">
-                    {% for post_photo in draft_post.post_photos.all %}
-                        <img class = "h-[15rem] w-full object-cover" src="{{post_photo.post_photo.url}}">
-                    {% endfor %}
+
+            <div class = "postandfeedread-gallery">
+                {% for post_photo in draft_post.post_photos.all %}
+                    <img src = "{{post_photo.post_photo.url}}">
+                {% endfor %}
+            </div>
+
+            <p><i class = "fa-solid fa-location-dot"></i>{{draft_post.location | default:'None available'}}</p>
+
+            <p>{{draft_post.description | default:'None available'}}</p>
+
+            <div class = "postandfeedread-observation">
+                <h1>POST OBSERVATION</h1>
+
+                <div class = "observation-context">
+                    <p>Size</p>
+
+                    <p>{{draft_post.post_observation.size | default:'0'}}</p>
                 </div>
 
-                <p class = "font-bold my-2 text-[#003755]"><i class="fa-solid fa-location-dot mr-2"></i>{{draft_post.coordinates.latitude | default:'0'}}° N, {{draft_post.coordinates.longitude | default:'0'}}° E</p>
+                <div class = "observation-context">
+                    <p>Depth</p>
 
-                <p class = "indent-10">{{draft_post.description | default:'None available'}}</p>
-
-                <div class = "mt-[2rem] flex flex-col">
-                    <h1 class = "font-bold text-[#003755]">Post observation</h1>
-
-                    <div class = "p-2 flex gap-4">
-                        <p class="font-bold">Size</p>
-
-                        <p>{{draft_post.post_observation.size | default:'0'}}</p>
-                    </div>
-
-                    <div class = "p-2 flex gap-4">
-                        <p class = "font-bold">Depth</p>
-
-                        <p>{{draft_post.post_observation.depth | default:'0'}}</p>
-                    </div>
-
-                    <div class = "p-2 flex gap-4">
-                        <p class = "font-bold">Density</p>
-
-                        <p>{{draft_post.post_observation.density | default:'0'}}</p>
-                    </div>
-
-                    <div class = "p-2 flex gap-4">
-                        <p class = "font-bold">Weather</p>
-
-                        <p>{{draft_post.post_observation.weather | default:'None available'}}</p>
-                    </div>
+                    <p>{{draft_post.post_observation.depth | default:'0'}}</p>
                 </div>
 
-                <div class = "flex gap-4 mt-[5rem] justify-between">
-                    <div class = "border-2 w-[10rem] h-[3rem] bg-[#003755] text-white font-bold hover:bg-white hover:border-[#003755] hover:text-[#003755] text-center cursor-pointer p-2 rounded-lg">
-                        <a href = "{% url 'Contributor Service Report Update' draft_post.id %}">Update</a>
-                    </div>
+                <div class = "observation-context">
+                    <p>Density</p>
 
-                    <div class = "border-2 w-[10rem] h-[3rem] bg-[#003755] text-white font-bold hover:bg-white hover:border-[#003755] hover:text-[#003755] text-center cursor-pointer p-2 rounded-lg">
-                        <a href = "{% url 'Contributor Service Post Draft Send' draft_post.id %}">Send</a>
-                    </div>
+                    <p>{{draft_post.post_observation.density | default:'0'}}</p>
                 </div>
+
+                <div class = "observation-context">
+                    <p>Weather</p>
+
+                    <p>{{draft_post.post_observation.weather | default:'None available'}}</p>
+                </div>
+            </div>
+
+            <div class = "button">
+                <a class = "update-post" href = "{% url 'Contributor Service Report Update' draft_post.id %}">Update</a>
+                
+                <a class = "send-post" href = "{% url 'Contributor Service Post Draft Send' draft_post.id %}">Send</a>
             </div>
         </div>
     {% endif %}

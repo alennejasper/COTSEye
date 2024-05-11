@@ -50,14 +50,10 @@ def PublicServiceMap(request):
     try:
         map_posts = Post.objects.filter(post_status = 1)
 
-        map_statuses = Status.objects.all()
-
     except:
         map_posts = None
 
-        map_statuses = None
-
-    context = {"username": username, "map_posts": map_posts, "statuses": map_statuses}
+    context = {"username": username, "map_posts": map_posts}
     
     return render(request, "public/service/map/map.html", context)
 
@@ -122,14 +118,10 @@ def ContributorServiceMap(request):
     try:
         map_posts = Post.objects.filter(post_status = 1)
 
-        map_statuses = Status.objects.all()
-
     except:
         map_posts = None
 
-        map_statuses = None
-
-    context = {"map_posts": map_posts, "map_statuses": map_statuses, "username": username}
+    context = {"map_posts": map_posts, "username": username}
 
     return render(request, "contributor/service/map/map.html", context)
 

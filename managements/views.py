@@ -5,6 +5,7 @@ from django.urls import reverse
 from authentications.views import ContributorCheck, OfficerCheck, AdministratorCheck
 from collections import Counter
 from managements.models import *
+from reports.models import Post
 
 import datetime
 
@@ -971,109 +972,15 @@ def AdministratorControlStatisticsStatus(request):
 
     options = Status.objects.all()
 
-    records = Status.objects.all()
-
     results = None
 
-    try:
-        statuses_count = records.count()
+    caughtoverall_count = None
 
-        statuses_label = "Statuses" + " Count"
-    
-    except:
-        statuses_count = ""
+    barangay = None
 
-        statuses_label = ""
-    
-    try:
-        caughtoverall_count = sum(caught_overall.caught_overall for caught_overall in records)
+    municipality = None
 
-        caughtoverall_label = "Caught Overall" + " Count"
-    
-    except:
-        caughtoverall_count = ""
-
-        caughtoverall_label = ""
-    
-    try:
-        location_distribution = [str(location.location) for location in records]
-
-        location_tally = Counter(location_distribution)
-
-        location_frequency = location_tally.most_common(1)[0][0]
-
-    except:
-        location_frequency = ""
-
-    try:
-        location_firstfrequency = location_tally.most_common(1)[0][1]
-
-        location_firstlabel = location_tally.most_common(1)[0][0] + " Frequency"
-
-    except:
-        location_firstfrequency = ""
-    
-        location_firstlabel = ""
-
-    try:
-        location_secondfrequency = location_tally.most_common(2)[1][1]
-
-        location_secondlabel = location_tally.most_common(2)[1][0] + " Frequency"
-    
-    except:
-        location_secondfrequency = ""
-    
-        location_secondlabel = ""
-
-    try:
-        location_thirdfrequency = location_tally.most_common(3)[2][1] 
-
-        location_thirdlabel = location_tally.most_common(3)[2][0] + " Frequency"
-    
-    except:
-        location_thirdfrequency = ""
-    
-        location_thirdlabel = ""
-    
-    try:
-        statustype_distribution = [str(statustype.statustype) for statustype in records]
-
-        statustype_tally = Counter(statustype_distribution)
-
-        statustype_frequency = statustype_tally.most_common(1)[0][0]
-
-    except:
-        statustype_frequency = ""
-
-    try:
-        statustype_firstfrequency = statustype_tally.most_common(1)[0][1]
-
-        statustype_firstlabel = statustype_tally.most_common(1)[0][0] + " Frequency"
-
-    except:
-        statustype_firstfrequency = ""
-    
-        statustype_firstlabel = ""
-
-    try:
-        statustype_secondfrequency = statustype_tally.most_common(2)[1][1]
-
-        statustype_secondlabel = statustype_tally.most_common(2)[1][0] + " Frequency"
-    
-    except:
-        statustype_secondfrequency = ""
-    
-        statustype_secondlabel = ""
-
-    try:
-        statustype_thirdfrequency = statustype_tally.most_common(3)[2][1] 
-
-        statustype_thirdlabel = statustype_tally.most_common(3)[2][0] + " Frequency"
-    
-    except:
-        statustype_thirdfrequency = ""
-    
-        statustype_thirdlabel = ""
+    capture_count = None
 
     if request.method == "GET":
         from_date = request.GET.get("from_date")
@@ -1085,8 +992,6 @@ def AdministratorControlStatisticsStatus(request):
         to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
 
         location = request.GET.get("location")
-
-        statustype = request.GET.get("statustype")
 
         if from_date and to_date:
             results = Status.objects.filter(onset_date__range = [from_date, to_date])
@@ -1110,7 +1015,7 @@ def AdministratorControlStatisticsStatus(request):
             results = Status.objects.filter(onset_date__range = [from_date, to_date], location = location)
 
         elif not location and location == "each_location":
-            results = Status.objects.all()[:50]
+            results = Status.objects.all(onset_date__range = [from_date, to_date])
         
         elif not location and not location == "each_location":
             username = request.user.username
@@ -1122,28 +1027,12 @@ def AdministratorControlStatisticsStatus(request):
 
             messages.error(request, username + ", " + "location is not valid.")
         
-        if statustype and not statustype == "each_statustype":
-            results = Status.objects.filter(statustype = statustype)
-        
-        elif not statustype and statustype == "each_statustype":
-            results = Status.objects.all()[:50]
-        
-        elif not statustype and not statustype == "each_statustype":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "location is not valid.")
-        
-        elif not statustype or not statustype == "each_statustype":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "location is not valid.")
-
-        if not from_date and not to_date and not location and not statustype:
+        if not from_date and not to_date and not location:
             username = request.user.username
 
             messages.error(request, username + ", " + "information filter is empty within COTSEye.")
         
-        elif not from_date or not to_date or not location or not statustype:
+        elif not from_date or not to_date or not location:
             username = request.user.username
 
             messages.error(request, username + ", " + "information filter is incomplete within COTSEye.")
@@ -1154,113 +1043,39 @@ def AdministratorControlStatisticsStatus(request):
             messages.info(request, username + ", " + "kindly filter statuses within COTSEye to generate for reports today.")
 
         elif results is not None:
-            try:
-                statuses_count = results.count()
+            valid_posts = Post.objects.filter(address = location, post_status = 1)
 
-                statuses_label = "Statuses" + " Count"
-            
-            except:
-                statuses_count = ""
-
-                statuses_label = ""
-            
             try:
                 caughtoverall_count = sum(caught_overall.caught_overall for caught_overall in results)
-
-                caughtoverall_label = "Caught Overall" + " Count"
             
             except:
                 caughtoverall_count = ""
-
-                caughtoverall_label = ""
             
             try:
-                location_distribution = [str(location.location) for location in results]
-
-                location_tally = Counter(location_distribution)
-
-                location_frequency = location_tally.most_common(1)[0][0]
+                barangay = [str(location.location.barangay) for location in results]
 
             except:
-                location_frequency = ""
+                barangay = ""
 
             try:
-                location_firstfrequency = location_tally.most_common(1)[0][1]
-
-                location_firstlabel = location_tally.most_common(1)[0][0] + " Frequency"
+                municipality = [str(location.location.municipality) for location in results]
 
             except:
-                location_firstfrequency = ""
-            
-                location_firstlabel = ""
+                municipality = ""
 
             try:
-                location_secondfrequency = location_tally.most_common(2)[1][1]
-
-                location_secondlabel = location_tally.most_common(2)[1][0] + " Frequency"
+                capture_count = valid_posts.count()
             
             except:
-                location_secondfrequency = ""
-            
-                location_secondlabel = ""
+                capture_count = 0
 
-            try:
-                location_thirdfrequency = location_tally.most_common(3)[2][1] 
-
-                location_thirdlabel = location_tally.most_common(3)[2][0] + " Frequency"
-            
-            except:
-                location_thirdfrequency = ""
-            
-                location_thirdlabel = ""
-            
-            try:
-                statustype_distribution = [str(statustype.statustype) for statustype in results]
-
-                statustype_tally = Counter(statustype_distribution)
-
-                statustype_frequency = statustype_tally.most_common(1)[0][0]
-
-            except:
-                statustype_frequency = ""
-
-            try:
-                statustype_firstfrequency = statustype_tally.most_common(1)[0][1]
-
-                statustype_firstlabel = statustype_tally.most_common(1)[0][0] + " Frequency"
-
-            except:
-                statustype_firstfrequency = ""
-            
-                statustype_firstlabel = ""
-
-            try:
-                statustype_secondfrequency = statustype_tally.most_common(2)[1][1]
-
-                statustype_secondlabel = statustype_tally.most_common(2)[1][0] + " Frequency"
-            
-            except:
-                statustype_secondfrequency = ""
-            
-                statustype_secondlabel = ""
-
-            try:
-                statustype_thirdfrequency = statustype_tally.most_common(3)[2][1] 
-
-                statustype_thirdlabel = statustype_tally.most_common(3)[2][0] + " Frequency"
-            
-            except:
-                statustype_thirdfrequency = ""
-            
-                statustype_thirdlabel = ""
-    
         elif not results:
             username = request.user.username
 
             messages.error(request, username + ", " + "information input is impossible within COTSEye.")
     
 
-    context = {"username": username, "options": options, "records": records, "results": results, "statuses_count": statuses_count, "statuses_label": statuses_label, "caughtoverall_count": caughtoverall_count, "caughtoverall_label": caughtoverall_label, "location_frequency": location_frequency, "location_firstfrequency": location_firstfrequency, "location_firstlabel": location_firstlabel, "location_secondfrequency": location_secondfrequency, "location_secondlabel": location_secondlabel, "location_thirdfrequency": location_thirdfrequency, "location_thirdlabel": location_thirdlabel, "statustype_frequency": statustype_frequency, "statustype_firstfrequency": statustype_firstfrequency, "statustype_firstlabel": statustype_firstlabel, "statustype_secondfrequency": statustype_secondfrequency, "statustype_secondlabel": statustype_secondlabel, "statustype_thirdfrequency": statustype_thirdfrequency, "statustype_thirdlabel": statustype_thirdlabel}
+    context = {"username": username, "options": options, "results": results, "caughtoverall_count": caughtoverall_count, "municipality": municipality, "barangay": barangay, "capture_count": capture_count}
 
     return render(request, "admin/control/status/status.html", context)
 

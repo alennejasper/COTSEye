@@ -4,7 +4,7 @@
 {% block content %}
     {% if user %}        
         <div class = "update">
-            <h1>UPDATE PROFILE</h1>
+            <h1 style = "text-align: center;">UPDATE PROFILE</h1>
 
             <form action = "" class = "profile-form" method = "POST" enctype = "multipart/form-data">
                 {% csrf_token %}
@@ -14,14 +14,14 @@
                         
                     <input type = "file" class = "browse-photo" name = "profile_photo" accept = "image/*">
                             
-                    <p>{{users.account.username}}</p>
+                    <p>{{user.account.username}}</p>
                     
                     <div class = "field">
                         <div class = "column">
                             <label for = "first-name">First Name</label>
                             
                             <div class = "first-name">
-                                <input type = "text" id = "first-name" name = "first_name">
+                                <input type = "text" id = "first-name" value = "{{user.first_name}}" name = "first_name">
                             
                                 <i class = "fa-solid fa-user-tag"></i>
                             </div>
@@ -29,7 +29,7 @@
                             <label for = "last-name">Last Name</label>
             
                             <div class = "last-name">                    
-                                <input type = "text" id = "last-name" name = "last_name">
+                                <input type = "text" id = "last-name" value = "{{user.last_name}}" name = "last_name">
                             
                                 <i class = "fa-solid fa-user-group"></i>
                             </div>
@@ -39,7 +39,7 @@
                             <label for = "email">Email</label>
             
                             <div class = "email">
-                                <input type = "email" id = "email" name = "email">
+                                <input type = "email" id = "email" value = "{{user.email}}" name = "email">
             
                                 <i class = "fa-solid fa-envelope"></i>
                             </div>
@@ -47,7 +47,7 @@
                             <label for = "phone-number">Phone Number</label>
             
                             <div class = "phone-number">
-                                <input type = "number" id = "phone-number" name = "phone_number">
+                                <input type = "number" id = "phone-number" value = "{{user.phone_number}}" name = "phone_number">
             
                                 <i class = "fa-solid fa-phone"></i>
                             </div>

@@ -56,6 +56,8 @@ def ContributorServiceReport(request):
 
     weathers = Weather.objects.all()
 
+    addresses = Location.objects.all()
+
     post_form = PostForm()
     
     if request.method == "POST":
@@ -100,10 +102,18 @@ def ContributorServiceReport(request):
             except:
                 post_observation.weather = None
 
+            address = request.POST.get("address")
+
+            try:
+                post.address = Location.objects.get(id = address)
+
+            except:
+                post.address = None
+
             post_observation = PostObservation.objects.create(size = post_observation.size, depth = post_observation.depth, density = post_observation.density, weather = post_observation.weather)
             
             if Coordinates.objects.filter(latitude = coordinates.latitude, longitude = coordinates.longitude).exists() and Coordinates.objects.filter(latitude = coordinates.latitude, longitude = coordinates.longitude).exists() and PostObservation.objects.filter(size = post_observation.size, depth = post_observation.depth, density = post_observation.density, weather = post_observation.weather).exists():
-                post = Post.objects.create(user = user, description = post.description, capture_date = post.capture_date, coordinates = coordinates, location = post.location, post_status = post_status, post_observation = post_observation)
+                post = Post.objects.create(user = user, description = post.description, capture_date = post.capture_date, coordinates = coordinates, address = post.address, location = post.location, post_status = post_status, post_observation = post_observation)
                 
                 post_photos_capture = request.FILES.getlist("post_photos_capture")
 
@@ -137,7 +147,7 @@ def ContributorServiceReport(request):
         
         post_form = PostForm() 
 
-    context = {"username": username, "coordinates_form": coordinates_form, "depths": depths, "weathers": weathers, "postobservation_form": postobservation_form, "post_form": post_form}
+    context = {"username": username, "coordinates_form": coordinates_form, "depths": depths, "weathers": weathers, "postobservation_form": postobservation_form, "post_form": post_form, "addresses": addresses}
     
     return render(request, "contributor/service/report/report.html", context)
 
@@ -372,25 +382,25 @@ def ContributorServicePostRead(request, id):
     host = request.META["HTTP_HOST"]
 
     try:
-        valid_post = Post.objects.get(id = id, user = request.user.user, post_status = 1)
+        valid_post = Post.objects.get(id = id, user = request.user, post_status = 1)
     
     except:
         valid_post = None
 
     try:
-        invalid_post = Post.objects.get(id = id, user = request.user.user, post_status = 2)
+        invalid_post = Post.objects.get(id = id, user = request.user, post_status = 2)
     
     except:
         invalid_post = None
 
     try:
-        pending_post = Post.objects.get(id = id, user = request.user.user, post_status = 3)
+        pending_post = Post.objects.get(id = id, user = request.user, post_status = 3)
     
     except:
         pending_post = None
 
     try:
-        draft_post = Post.objects.get(id = id, user = request.user.user, post_status = 4)
+        draft_post = Post.objects.get(id = id, user = request.user, post_status = 4)
     
     except:
         draft_post = None

@@ -1,607 +1,375 @@
-form{
+.report-body{
+    position: relative;
+    gap: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
     width: 100%;
+    height: 100%;
+    color: #000000;
 }
 
-.content:has(.report#choose){
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    min-height: unset;
+.report-body .report-section{
+    display: flex;                   
+    align-items: center; 
+    justify-content: center;          
+    flex-direction: column;
+    width: 100%;                     
+    text-align: center;                                   
+}
+
+.report-body .report-section h1{
+    text-align: center;     
+    font-weight: 500;       
+    font-size: 22px;  
+    font-family: "Poppins";      
+    letter-spacing: 2.5px;
+}
+
+.report-body .report-form{
+    width: 100% !important;
+}
+
+.report-body .report-form .controls-wrapper{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.report-body .report-form .controls-wrapper .control-section{
     display: grid;
-    grid-template-columns: 100%;
-    place-items: unset;
+    place-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    height: 100px;
+    background-color: #003755;
+    color: #FFFFFF;
+    cursor: pointer;
 }
 
+.report-body .report-form .controls-wrapper .control-section i{
+    font-size: 20px;
+    color: #FFFFFF;
+    text-align: center;
+}
 
-.map:has(.report-map){ 
+.report-body .report-form .controls-wrapper .control-section label{
+    width: 100%;
+    font-family: "Poppins";
+    font-weight: 400;
+    font-size: 14px;
+    color: #FFFFFF !important;
+    background-color: #003755 !important;
+    text-align: center;
+    cursor: pointer;  
+}
+
+.report-body .report-form .controls-wrapper .control-section input.invisible-input-capture{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.report-body .report-form .controls-wrapper .control-section input.invisible-input-choose{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.report-body .report-form .capture-date{
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+}
+
+.report-body .report-form  .capture-date label{
+    font-family: "Poppins";
+    font-weight: 400;
+    font-size: 14px;
+    color: #003755 !important;
+}
+
+.report-body .report-form  .capture-date input[type = "datetime-local"]{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    border: 1px solid #003755;
+    border-radius: 5px;
+    outline: none;
+    font-family: "Poppins";
+    font-weight: 400;
+    font-size: 14px;
+    color: #003755 !important;
+}
+
+.report-body .report-form .capture-date input[type = "datetime-local"]:focus{
+    border-color: #003755;
+}
+
+.report-body .report-form h1{
+    text-align: center;     
+    font-weight: 500;       
+    font-size: 22px;  
+    font-family: "Poppins";      
+    letter-spacing: 2.5px;
+}
+
+.report-body .report-form .map:has(.report-map){ 
     width: 100%;
     height: 250px;
 }
 
-.report-map{
+.report-body .report-form .report-map{
     margin-top: 0px;
     min-width: 100%;
     height: 250px;
-    border: 1px solid #B2BEB5;
     border-radius: 5px; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;    
     z-index: 1;
 }
 
+.report-body .report-form .location{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.report-body .report-form .location input{
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    border: 1px solid #003755;
+    border-radius: 5px;
+    outline: none;
+    font-family: "Poppins";
+    font-weight: 400;
+    font-size: 14px;
+    color: #003755 !important;
+}
+
+.report-body .report-form .address{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.report-body .report-form .address select{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    border: 1px solid #003755;
+    border-radius: 5px;
+    outline: none;
+    font-family: "Poppins";
+    font-weight: 400;
+    font-size: 14px;
+    color: #003755 !important;
+}
+
+.report-body .report-form .description{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.report-body .report-form .description textarea{
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    height: 250px;
+    border: 1px solid #003755;
+    border-radius: 5px;
+    outline: none;
+    font-family: "Poppins";
+    font-weight: 400;
+    font-size: 14px;
+    color: #003755 !important;
+}
+
+.report-body .report-form .size{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.report-body .report-form .size input{
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    border: 1px solid #003755;
+    border-radius: 5px;
+    outline: none;
+    font-family: "Poppins";
+    font-weight: 400;
+    font-size: 14px;
+    color: #003755 !important;
+}
+
+.report-body .report-form .density{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.report-body .report-form .density input{
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    border: 1px solid #003755;
+    border-radius: 5px;
+    outline: none;
+    font-family: "Poppins";
+    font-weight: 400;
+    font-size: 14px;
+    color: #003755 !important;
+}
+
+.report-body .report-form .depth{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.report-body .report-form .depth select{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    border: 1px solid #003755;
+    border-radius: 5px;
+    outline: none;
+    font-family: "Poppins";
+    font-weight: 400;
+    font-size: 14px;
+    color: #003755 !important;
+}
+
+.report-body .report-form .weather{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.report-body .report-form .weather select{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    border: 1px solid #003755;
+    border-radius: 5px;
+    outline: none;
+    font-family: "Poppins";
+    font-weight: 400;
+    font-size: 14px;
+    color: #003755 !important;
+}
+
+.report-body .report-form .buttons{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.report-body .report-form .save-report{
+    display: grid;
+    place-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    border-radius: 5px;
+    font-family: "Poppins";
+    font-weight: 400;
+    font-size: 14px;
+    color: #FFFFFF !important;
+    background-color: #003755;
+    text-align: center;
+    cursor: pointer;
+}
+
+.report-body .report-form .next-report{
+    display: grid;
+    place-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    border-radius: 5px;
+    font-family: "Poppins";
+    font-weight: 400;
+    font-size: 14px;
+    color: #FFFFFF !important;
+    background-color: #003755;
+    text-align: center;
+    cursor: pointer;
+}
+
+.report-body .report-form .back-report{
+    display: grid;
+    place-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    border-radius: 5px;
+    font-family: "Poppins";
+    font-weight: 400;
+    font-size: 14px;
+    color: #FFFFFF !important;
+    background-color: #003755;
+    text-align: center;
+    cursor: pointer;
+}
+
+.report-body .report-form .submit-report{
+    display: grid;
+    place-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    border-radius: 5px;
+    font-family: "Poppins";
+    font-weight: 400;
+    font-size: 14px;
+    color: #FFFFFF !important;
+    background-color: #003755;
+    text-align: center;
+    cursor: pointer;
+}
+
 input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus input:-webkit-autofill, textarea:-webkit-autofill, textarea:-webkit-autofill:hover textarea:-webkit-autofill:focus, select:-webkit-autofill, select:-webkit-autofill:hover, select:-webkit-autofill:focus{
-    -webkit-text-fill-color: #154360;
+    -webkit-text-fill-color: #003755;
     -webkit-box-shadow: 0 0 0px 1000px #FFFFFF inset;
     transition: background-color 5000s ease-in-out 0s;
 }
 
 input:autofill{
     background: #FFFFFF !important;
-}
-
-
-.swal2-popup{
-    padding-bottom: 15px !important;
-    border-radius: 5px !important;
-    border: 1px solid #B2BEB5 !important; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
-}
-
-.swal2-popup .swal2-styled:focus{
-    box-shadow: none !important;
-}
-
-div:where(.swal2-container) .swal2-html-container{
-    padding: 10px 30px 0em 30px !important;
-    margin: 0px !important;
-    font-family: "Overlock" !important;
-    font-weight: 400 !important;
-    font-size: 20px !important;
-    color: #154360 !important;
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    div:where(.swal2-container) .swal2-html-container{
-        padding: 10px 30px 0em 30px !important;
-        margin: 0px !important;
-        font-family: "Overlock" !important;
-        font-weight: 400 !important;
-        font-size: 18px !important;
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    div:where(.swal2-container) .swal2-html-container{
-        padding: 10px 30px 0em 30px !important;
-        margin: 0px !important;
-        font-family: "Overlock" !important;
-        font-weight: 400 !important;
-        font-size: 16px !important;
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    div:where(.swal2-container) .swal2-html-container{
-        padding: 10px 30px 0em 30px !important;
-        margin: 0px !important;
-        font-family: "Overlock" !important;
-        font-weight: 400 !important;
-        font-size: 14px !important;
-        color: #154360 !important;
-    }
-}
-
-div:where(.swal2-icon){
-    margin: 15px auto 0em auto !important;
-}
-
-div:where(.swal2-icon).swal2-success .swal2-success-ring{
-    border: 0.25em solid #698F3F !important;
-}
-
-div:where(.swal2-icon).swal2-success [class ^= swal2-success-line]{
-    background-color: #698F3F !important;
-}
-
-div:where(.swal2-icon).swal2-error [class ^= swal2-x-mark-line]{
-    background-color: #C90016 !important;
-}
-
-div:where(.swal2-container) h2:where(.swal2-title){
-    padding: 15px 30px 0em 30px !important;
-}
-
-.title{
-    font-family: "Philosopher" !important;
-    font-weight: 700 !important;
-    font-size: 22px !important;   
-    color: #154360 !important;
-    pointer-events: none !important;
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .title{
-        font-family: "Philosopher" !important;
-        font-weight: 700 !important;
-        font-size: 20px !important;   
-        color: #154360 !important;
-        pointer-events: none !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .title{
-        font-family: "Philosopher" !important;
-        font-weight: 700 !important;
-        font-size: 18px !important;   
-        color: #154360 !important;
-        pointer-events: none !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .title{
-        font-family: "Philosopher" !important;
-        font-weight: 700 !important;
-        font-size: 16px !important;   
-        color: #154360 !important;
-        pointer-events: none !important;
-    }
-}
-
-div:where(.swal2-container) div:where(.swal2-actions){
-    margin: 15px auto 0 !important;
-}
-
-.swal2-actions{
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
-    height: fit-content !important;
-}
-
-.info-button{
-    visibility: hidden;
-    font-size: 0px !important;
-}
-
-.info-button::before{
-    padding-left: 10px !important;
-    padding-right: 10px !important;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
-    content: "Ok" !important;
-    visibility: visible !important;
-    border: 1px solid #B2BEB5 !important; 
-    border-radius: 5px !important;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
-    outline: none !important;
-    font-family: "Overlock" !important;
-    font-weight: 400 !important;
-    font-size: 20px !important;
-    background-color: #154360 !important;
-    color: #FFFFFF !important;
-    pointer-events: auto !important;
-    cursor: pointer;
-}
-
-.info-button:hover{
-    background-color: #10354C !important;
-    color: #B2BEB5 !important;        
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .info-button::before{
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        content: "Ok" !important;
-        visibility: visible !important;
-        border: 1px solid #B2BEB5 !important; 
-        border-radius: 5px !important;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Overlock" !important;
-        font-weight: 400 !important;
-        font-size: 18px !important;
-        background-color: #154360 !important;
-        color: #FFFFFF !important;
-        pointer-events: auto !important;
-        cursor: pointer;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .info-button::before{
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        content: "Ok" !important;
-        visibility: visible !important;
-        border: 1px solid #B2BEB5 !important; 
-        border-radius: 5px !important;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Overlock" !important;
-        font-weight: 400 !important;
-        font-size: 16px !important;
-        background-color: #154360 !important;
-        color: #FFFFFF !important;
-        pointer-events: auto !important;
-        cursor: pointer;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .info-button::before{
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        content: "Ok" !important;
-        visibility: visible !important;
-        border: 1px solid #B2BEB5 !important; 
-        border-radius: 5px !important;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Overlock" !important;
-        font-weight: 400 !important;
-        font-size: 14px !important;
-        background-color: #154360 !important;
-        color: #FFFFFF !important;
-        pointer-events: auto !important;
-        cursor: pointer;
-    }
-}
-
-.success-button{
-    visibility: hidden;
-    font-size: 0px !important;
-}
-
-.success-button::before{
-    padding-left: 10px !important;
-    padding-right: 10px !important;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
-    content: "Ok" !important;
-    visibility: visible !important;
-    border: 1px solid #B2BEB5 !important; 
-    border-radius: 5px !important;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
-    outline: none !important;
-    font-family: "Overlock" !important;
-    font-weight: 400 !important;
-    font-size: 20px !important;
-    background-color: #698F3F !important;
-    color: #FFFFFF !important;
-    pointer-events: auto !important;
-    cursor: pointer;
-}
-
-.success-button:hover{
-    background-color: #557433 !important;
-    color: #B2BEB5 !important;        
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .success-button::before{
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        content: "Ok" !important;
-        visibility: visible !important;
-        border: 1px solid #B2BEB5 !important; 
-        border-radius: 5px !important;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Overlock" !important;
-        font-weight: 400 !important;
-        font-size: 18px !important;
-        background-color: #698F3F !important;
-        color: #FFFFFF !important;
-        pointer-events: auto !important;
-        cursor: pointer;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .success-button::before{
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        content: "Ok" !important;
-        visibility: visible !important;
-        border: 1px solid #B2BEB5 !important; 
-        border-radius: 5px !important;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Overlock" !important;
-        font-weight: 400 !important;
-        font-size: 16px !important;
-        background-color: #698F3F !important;
-        color: #FFFFFF !important;
-        pointer-events: auto !important;
-        cursor: pointer;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .success-button::before{
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        content: "Ok" !important;
-        visibility: visible !important;
-        border: 1px solid #B2BEB5 !important; 
-        border-radius: 5px !important;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Overlock" !important;
-        font-weight: 400 !important;
-        font-size: 14px !important;
-        background-color: #698F3F !important;
-        color: #FFFFFF !important;
-        pointer-events: auto !important;
-        cursor: pointer;
-    }
-}
-
-.error-button{
-    visibility: hidden;
-    font-size: 0px !important;
-}
-
-.error-button::before{
-    padding-left: 10px !important;
-    padding-right: 10px !important;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
-    content: "Ok" !important;
-    visibility: visible !important;
-    border: 1px solid #B2BEB5 !important; 
-    border-radius: 5px !important;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
-    outline: none !important;
-    font-family: "Overlock" !important;
-    font-weight: 400 !important;
-    font-size: 20px !important;
-    background-color: #C90016 !important;
-    color: #FFFFFF !important;
-    pointer-events: auto !important;
-    cursor: pointer;
-}
-
-.error-button:hover{
-    background-color: #A00011 !important;
-    color: #B2BEB5 !important;        
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .error-button::before{
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        content: "Ok" !important;
-        visibility: visible !important;
-        border: 1px solid #B2BEB5 !important; 
-        border-radius: 5px !important;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Overlock" !important;
-        font-weight: 400 !important;
-        font-size: 18px !important;
-        background-color: #C90016 !important;
-        color: #FFFFFF !important;
-        pointer-events: auto !important;
-        cursor: pointer;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .error-button::before{
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        content: "Ok" !important;
-        visibility: visible !important;
-        border: 1px solid #B2BEB5 !important; 
-        border-radius: 5px !important;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Overlock" !important;
-        font-weight: 400 !important;
-        font-size: 16px !important;
-        background-color: #C90016 !important;
-        color: #FFFFFF !important;
-        pointer-events: auto !important;
-        cursor: pointer;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .error-button::before{
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        content: "Ok" !important;
-        visibility: visible !important;
-        border: 1px solid #B2BEB5 !important; 
-        border-radius: 5px !important;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Overlock" !important;
-        font-weight: 400 !important;
-        font-size: 14px !important;
-        background-color: #C90016 !important;
-        color: #FFFFFF !important;
-        pointer-events: auto !important;
-        cursor: pointer;
-    }
-}
-
-/* start choose and capture css */
-.tabcontent2{
-    width: 100%;
-    position: relative;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-.controls-wrapper{
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-}
-
-.control-section{
-    flex: 1 1 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #003755;
-    padding: 10px;
-    cursor: pointer;
-    height: 8rem;
-    color: #FFFFFF;
-}
-
-.control-section:hover{
-    background-color: #002A44;
-}
-
-.control-section i{
-    font-size: 2rem;
-    margin-bottom: 10px;
-}
-
-.control-section label{
-    width: 100%;
-    text-align: center;
-    font-weight: 400;
-    cursor: pointer;
-}
-
-.invisible-input{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    cursor: pointer;
-}
-
-.delete-btn{
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    background-color: rgb(68, 68, 68);
-    color: #FFFFFF;
-    border: none;
-    cursor: pointer;
-    padding: 3px;
-    border-radius: 50%;
-}
-
-.image-container{
-    display: inline-block;
-    position: relative;
-    margin: 10px;
-}
-
-.image-container img{
-    width: 100px;
-    height: 100px;
-}
-
-.image-container button{
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 5px 10px;
-    background-color: red;
-    color: #FFFFFF;
-    border: none;
-    cursor: pointer;
-}
-/* end captrue and choose css */
-
-/* start date css */
-.date-picker-container{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    border-radius: 8px;
-    background-color: #FFFFFF;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    margin: 20px 0;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.date-picker-container label{
-    color: #003755;
-    font-weight: bold;
-}
-
-.date-picker-container input[type = "datetime-local"]{
-    width: 70%;
-    padding: 8px;
-    border: 1px solid #CCCCCC;
-    border-radius: 4px;
-    font-size: 16px;
-    color: #333;
-    outline: none;
-}
-
-.date-picker-container input[type = "datetime-local"]:focus{
-    border-color: #003755;
-    box-shadow: 0 0 8px rgba(0,55,85,0.2);
-}
-/* end date css */
-
-/* start coordianates css */
-.coordinates-container{
-    display: flex;
-    gap: 10px;
-    margin-top: 10px;
-}
-
-.coordinate-input{
-    flex: 1;
-    display: flex;
-    padding: 0 2x;
-}
-
-.coordinate-input input{
-
-    font-size: 0.7rem;
-}
-
-.location-input{
-    padding-top: 5px;
-    padding-bottom: 5px;
-    border: 1px solid #CCCCCC;
-    border-radius: 5px;
-    margin: 10px 0;
-    padding: 0 10px;
-}
-
-.location-input input{
-    width: 100%;
-    border: none;
-    outline: none;
-    font-size: 0.3rem;
 }

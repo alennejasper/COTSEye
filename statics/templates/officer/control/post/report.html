@@ -20,71 +20,6 @@
             <button class="btn btn-primary print-button" onclick="printPage()">Print</button>
         </div>
     </div>
-
-    <div class = "status" id = "status-filter">
-        <form action = "" class = "status-form" method = "GET">
-            {% csrf_token %}
-
-            <div class = "card-header">
-                <header>Filter statuses</header>
-            </div>
-
-            <div class = "card-body">
-                <div class = "field">
-                    <div class = "column">
-                        <label for = "from-date">From</label> 
-                            
-                        <div class = "from-date">
-                            <input type = "date" value = "" id = "from-date" name = "from_date" required>                            
-                        </div>
-
-                        <label for = "to-date">To</label> 
-
-                        <div class = "to-date">
-                            <input type = "date" value = "" id = "to-date" name = "to_date" required>                            
-                        </div>
-                    </div>
-
-                    <div class = "column">
-                        <label for = "location">Location</label> 
-
-                        <select name = "location" id = "location">
-                            <option disabled selected value>Choose location</option>
-
-                            <option value = "each_location">Each location</option>
-
-                            {% for option in options %}
-                                <option value = "{{option.location.id}}">{{option.location}}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                </div>
-
-                <div class = "button">
-                    <a class = "filter-statuses" type = "submit">Filter</a>
-                </div>    
-            </div>
-        </form>
-    </div>
-
-    {% if messages %}
-        {% for message in messages %}
-            {% if message.tags == "info" %}<script>Swal.fire({title: "Hey!", text: "{{message}}", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}})</script>
-            
-            {% elif message.tags == "success" %}<script>Swal.fire({title: "Yay!", text: "{{message}}", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}})</script>
-            
-            {% else %}<script>Swal.fire({title: "Oops!", text: "{{message}}", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}})</script>
-            
-            {% endif %}    
-        {% endfor %}
-    {% endif %}
-
-    <script>
-        document.querySelector(".filter-statuses").onclick = function() {
-            document.querySelector(".status-form").submit();
-        }
-    </script>
-
     <div>
         <h2 class="text-center mt-5 text-primary-emphasis">
             insert Logos and Repoprt Title Here (Header)
@@ -107,12 +42,12 @@
               </thead>
               <tbody>
                 <tr>
-                    {% if results %}
-                        <td class="text-center">{{municipality}}</td>
-                        <td class="text-center">{{barangay}}</td>
-                        <td class="text-center">{{capture_count}}</td>
-                        <td class="text-center">{{caughtoverall_count}}</td>
-                    {% endif %}
+                    {% for data in results %}
+                        <td class="text-center">{{data.municipality}}</td>
+                        <td class="text-center">{{data.barangay}}</td>
+                        <td class="text-center">{{data.capture_count}}</td>
+                        <td class="text-center">{{data.caughtoverall_count}}</td>
+                    {% endfor %}
                 </tr>
               </tbody>
         </table>

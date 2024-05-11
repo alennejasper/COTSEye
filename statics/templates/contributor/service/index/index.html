@@ -29,15 +29,19 @@
 
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/home/home.css' %}">
 
-        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/map/map.css' %}">
-
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/post/feed.css' %}">
+
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/post/read.css' %}">
+
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/map/map.css' %}">
 
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/report/report.css' %}">
 
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/profile/profile.css' %}">
 
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/profile/update.css' %}">
+
+        <link href = "https://cdn.jsdelivr.net/npm/tailwindcss@2.0.2/dist/tailwind.min.css" rel = "stylesheet">
 
         <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">   
                
@@ -51,40 +55,26 @@
 
         <script src = "https://cdnjs.cloudflare.com/ajax/libs/exif-js/2.3.0/exif.js"></script>
 
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+        <link rel = "stylesheet" href = "https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
     
-        <link rel="stylesheet" href="https://unpkg.com/leaflet-geosearch/dist/geosearch.css" />
+        <link rel = "stylesheet" href = "https://unpkg.com/leaflet-geosearch/dist/geosearch.css"/>
     
-        <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+        <link rel = "stylesheet" href = "https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css"/>
     
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@v0.74.0/dist/L.Control.Locate.min.css" />
+        <link rel = "stylesheet" href = "https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@v0.74.0/dist/L.Control.Locate.min.css"/>
+
+        <link href = "https://cdn.jsdelivr.net/npm/tailwindcss@2.0.2/dist/tailwind.min.css" rel = "stylesheet">
+
+        <script src = "https://cdn.jsdelivr.net/npm/apexcharts@latest"></script>
 
         <title>COTSEye | Home</title>
     </head>
 
-    <style>
-        .sidelinks{
-            display: none;
-        }
-
-        .sidelinks div li a:hover{
-            color: #003755;
-        }
-
-        .show{
-            display: block;
-        }
-
-        .hidden{
-            display: none;
-        }
-    </style>
-
-    <body style = "background-color: #FFFFFF;">
+    <body>
         <nav class = "navigation-topbar">
             <a href = "{% url 'Contributor Service Home' %}" class = "logo"><img src = "{% static 'assets/logo.png' %}" class = "logo"></a>
 
-            <a onclick = "shownDropdown()" class = "profile"><img src = "{% static 'assets/icons/logo.png' %}" class = "drop profile"></a>
+            <a onclick = "shownDropdown()" class = "profile"><img src = "{{profile_photo.profile_photo.url}}" class = "drop profile"></a>
         </nav>
 
         <div class = "others">
@@ -92,11 +82,15 @@
                 <div id = "dropdown-content" class = "dropdown-content">
                     <a class = "dropdown-header" href = "{% url 'Contributor Service Profile' %}">{{username}}</a>
 
-                    <a href = "{% url 'Contributor Service Resource' %}" class = "dropdown-item"><img src = "{% static 'assets/resource.png' %}" style = "height: 25px;">See resources</a>
+                    <a href = "{% url 'Contributor Service Post' %}" class = "dropdown-item"><img src = "{% static 'assets/mypost.png' %}">My posts</a>
+
+                    <div class = "dropdown-divider"></div>
+
+                    <a href = "{% url 'Contributor Service Resource' %}" class = "dropdown-item"><img src = "{% static 'assets/resource.png' %}">See resources</a>
                                     
                     <div class = "dropdown-divider"></div>
                     
-                    <a href = "{% url 'Contributor Service Inquiry' %}" class = "dropdown-item"><img src = "{% static 'assets/faqs.png' %}" style = "height: 25px;">See faqs</a>
+                    <a href = "{% url 'Contributor Service Inquiry' %}" class = "dropdown-item"><img src = "{% static 'assets/faqs.png' %}">See faqs</a>
                     
                     <div class = "dropdown-divider"></div>
                     
@@ -104,6 +98,83 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function(){
+    
+                const element = document.querySelector(".draggable-report");
+    
+                let positionX = 0, positionY = 0, offsetX = 0, offsetY = 0;
+    
+                let move = false;
+
+                element.onmousedown = function(event){
+                    startDrag(event.clientX, event.clientY);
+                    
+                    document.onmousemove = onMouseMove;
+                    
+                    document.onmouseup = stopDrag;
+                };
+
+                element.ontouchstart = function(event){
+                    var touch = event.touches[0];
+
+                    startDrag(touch.clientX, touch.clientY);
+
+                    document.ontouchmove = onTouchMove;
+
+                    document.ontouchend = stopDrag;
+                };
+
+                function startDrag(x, y){
+                    offsetX = x - element.getBoundingClientRect().left;
+
+                    offsetY = y - element.getBoundingClientRect().top;
+
+                    move = false;
+                };
+
+                function onMouseMove(event){
+                    moveElement(event.clientX, event.clientY);
+                };
+
+                function onTouchMove(event){
+                    var touch = event.touches[0];
+                    
+                    moveElement(touch.clientX, touch.clientY);
+                };
+
+                function moveElement(x, y){
+                    move = true;
+
+                    positionX = x - offsetX;
+
+                    positionY = y - offsetY;
+
+                    element.style.left = positionX + "px";
+
+                    element.style.top = positionY + "px";
+                };
+
+                function stopDrag(){
+                    document.onmousemove = document.onmouseup = document.ontouchmove = document.ontouchend = null;
+                    
+                    if (move){
+                        element.onclick = function(event){
+                            event.preventDefault();
+                        };
+
+                        element.ontouchend = function(event){
+                            event.preventDefault();
+                        };
+
+                    } else{
+                        element.onclick = element.ontouchend = null;
+                    }
+                };
+            });
+
+        </script>
     
 
         <div class = "content">
@@ -112,31 +183,29 @@
     
             {% endblock content %}
 
-            <a href = "{% url 'Contributor Service Report' %}"><img src = "/statics/assets/report.png" class = "report"></a>
+            <a href = "{% url 'Contributor Service Report' %}" class = "draggable-report"><img src = "/statics/assets/report.png" class = "report"></a>
         </div>
 
-        <nav class = "fixed inset-x-0 bottom-0 bg-white shadow-lg text-center">
-            <div class = "flex justify-around">
-                <a href = "{% url 'Contributor Service Home' %}" class = "flex flex-col items-center" style = "height: 25px;" aria-label="Home">
-                    <img src = "{% static 'assets/home.png' %}" style = "height: 25px;">
-                </a>
+        <nav class = "navigation-bottombar">
+            <a href = "{% url 'Contributor Service Home' %}">
+                <img src = "{% static 'assets/home.png' %}">
+            </a>
 
-                <a href = "{% url 'Contributor Service Post Feed' %}" class = "flex flex-col items-center" style = "height: 25px;" aria-label="Post Feed">
-                    <img src = "{% static 'assets/cotseye.png' %}" style = "height: 25px;">
-                </a>
+            <a href = "{% url 'Contributor Service Post Feed' %}">
+                <img src = "{% static 'assets/cotseye.png' %}">
+            </a>
 
-                <a href = "{% url 'Contributor Service Map' %}" class = "flex flex-col items-center" style = "height: 25px;" aria-label = "Map">
-                    <img src = "{% static 'assets/map.png' %}" style = "height: 25px;">
-                </a>
+            <a href = "{% url 'Contributor Service Map' %}">
+                <img src = "{% static 'assets/map.png' %}">
+            </a>
 
-                <a href = "{% url 'Contributor Service Announcement' %}" class = "flex flex-col items-center" style = "height: 25px;" aria-label = "Announcements">
-                    <img src = "{% static 'assets/announcement.png' %}" style = "height: 25px;">
-                </a>
-                
-                <a href = "{% url 'Contributor Service Intervention' %}" class = "flex flex-col items-center" style = "height: 25px;" aria-label = "Resources">
-                    <img src = "{% static 'assets/intervention.png' %}" style = "height: 25px;">
-                </a>
-            </div>
+            <a href = "{% url 'Contributor Service Announcement' %}">
+                <img src = "{% static 'assets/announcement.png' %}">
+            </a>
+            
+            <a href = "{% url 'Contributor Service Intervention' %}">
+                <img src = "{% static 'assets/intervention.png' %}">
+            </a>
         </nav>
     </body>
 

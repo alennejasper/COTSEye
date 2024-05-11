@@ -10,7 +10,7 @@ import datetime
 class Location(models.Model):
     barangay = models.CharField(max_length = 65, help_text = "Designates the name of the barangay.", verbose_name = "Barangay")
     municipality = models.CharField(max_length = 65, help_text = "Designates the name of the municipality.", verbose_name = "Municipality")
-    perimeters = models.TextField(max_length = 15000, help_text = "Designates the perimeters of the location.", verbose_name = "Perimeters")
+    perimeters = models.TextField(null=True, blank=True, max_length = 15000, help_text = "Designates the perimeters of the location.", verbose_name = "Perimeters")
     
     class Meta:
         db_table = "managements_location"
@@ -18,7 +18,7 @@ class Location(models.Model):
         verbose_name_plural = "Locations"
     
     def __str__(self):
-        return "Barangay " + str(self.barangay) + ", " + str(self.municipality)
+        return str(self.barangay) + ", " + str(self.municipality)
 
 
 class StatusType(models.Model):

@@ -1,65 +1,87 @@
-.home-map{ 
-    margin-top: 15px;
-    margin-bottom: 15px;
+.map-body{
+    position: relative;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100vw;
+    height: 100%;
+    color: #000000;
+}
+
+.map-body .map-section{
+    display: flex;                   
+    align-items: center; 
+    justify-content: center;          
+    flex-direction: column;
+    width: 100%;                     
+    text-align: center;                                   
+}
+
+.map-body .map-section h1{
+    text-align: center;     
+    font-weight: 700;       
+    font-size: 22px;        
+    letter-spacing: 2.5px;}
+
+.map-body .map-map{ 
     width: 100%;
-    height: 50vh;
+    height: 100vh;
 }
 
 @media screen and (min-width: 320px) and (max-width: 935px){
-    .home-map{ 
-        height: 50vh;
+    .map-body .map-map{ 
+        height: 375px;
     }
 }
 
-.home-map .map{
+.map-body .map-map .map{
     width: 100%;
-    height: 50vh;
+    height: 100vh;
     border-radius: 5px; 
     z-index: 1;
 }
 
 @media screen and (min-width: 320px) and (max-width: 935px){
-    .home-map .map{
-        height: 50vh;
+    .map-body .map-map .map{
+        height: 375px;
     }
 }
 
-.home-map .map .leaflet-left{
+.map-body .map-map .map .leaflet-left{
     margin-left: 10px !important;
 }
 
-.home-map .map .leaflet-right{
+.map-body .map-map .map .leaflet-right{
     margin-right: 10px !important;
 }
 
-.home-map .map .leaflet-top{
+.map-body .map-map .map .leaflet-top{
     margin-top: 10px !important;
 }
 
-.home-map .map .leaflet-bottom{
+.map-body .map-map .map .leaflet-bottom{
     margin-bottom: 10px !important;
 }
 
-.home-map .map .leaflet-bar{
+.map-body .map-map .map .leaflet-bar{
     border: none !important;
 }
 
-.home-map .map .leaflet-bar a{
+.map-body .map-map .map .leaflet-bar a{
     border: none !important;
 }
 
-.home-map .map .leaflet-control{
+.map-body .map-map .map .leaflet-control{
     margin-left: 0px !important;
     margin-right: 0px !important;
     margin-top: 0px !important;
     margin-bottom: 0px !important;
 }
 
-.home-map .map .leaflet-control-zoom{
+.map-body .map-map .map .leaflet-control-zoom{
     border-radius: 5px !important;
 }
 
-.home-map .map .leaflet-control-zoom a.leaflet-control-zoom-in{
+.map-body .map-map .map .leaflet-control-zoom a.leaflet-control-zoom-in{
     -webkit-user-select: none;
     -ms-user-select: none; 
     user-select: none;
@@ -68,22 +90,22 @@
     text-decoration: none !important;
 }
 
-.home-map .map .leaflet-control-zoom a.leaflet-control-zoom-in:hover{
+.map-body .map-map .map .leaflet-control-zoom a.leaflet-control-zoom-in:hover{
     background-color: #B2BEB5 !important;
     color: #002C44 !important;
 }
 
-.home-map .map .leaflet-control-zoom a.leaflet-control-zoom-in.leaflet-disabled{
+.map-body .map-map .map .leaflet-control-zoom a.leaflet-control-zoom-in.leaflet-disabled{
     background-color: #B2BEB5 !important;
     color: #002C44 !important;
     cursor: default !important;
 }
 
-.home-map .map .leaflet-control-zoom a.leaflet-control-zoom-in.leaflet-disabled span{
+.map-body .map-map .map .leaflet-control-zoom a.leaflet-control-zoom-in.leaflet-disabled span{
     color: #002C44 !important;
 }
 
-.home-map .map .leaflet-control-zoom a.leaflet-control-zoom-out{
+.map-body .map-map .map .leaflet-control-zoom a.leaflet-control-zoom-out{
     -webkit-user-select: none;
     -ms-user-select: none; 
     user-select: none; 
@@ -92,72 +114,72 @@
     text-decoration: none !important;
 }
 
-.home-map .map .leaflet-control-zoom a.leaflet-control-zoom-out:hover{
+.map-body .map-map .map .leaflet-control-zoom a.leaflet-control-zoom-out:hover{
     background-color: #002C44 !important;
     color: #B2BEB5 !important;
 }
 
-.home-map .map .leaflet-control-zoom a.leaflet-control-zoom-out.leaflet-disabled{
+.map-body .map-map .map .leaflet-control-zoom a.leaflet-control-zoom-out.leaflet-disabled{
     background-color: #002C44 !important;
     color: #B2BEB5 !important;
     cursor: default !important;
 }
 
-.home-map .map .leaflet-control-zoom a.leaflet-control-zoom-out.leaflet-disabled span{
+.map-body .map-map .map .leaflet-control-zoom a.leaflet-control-zoom-out.leaflet-disabled span{
     color: #B2BEB5 !important;
 }
 
-.home-map .map .legend{
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 15px;
-    padding-bottom: 15px;
+.map-body .map-map .map .legend{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     width: 100%;
     border-radius: 5px;
     background-color: #FFFFFF;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .home-map .map .legend{
+    .map-body .map-map .map .legend{
         padding-left: 10px;
         padding-right: 10px;
-        padding-top: 5px;
-        padding-bottom: 5px;
+        padding-top: 10px;
+        padding-bottom: 10px;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .home-map .map .legend{
+    .map-body .map-map .map .legend{
         padding-left: 10px;
         padding-right: 10px;
-        padding-top: 5px;
-        padding-bottom: 5px;
+        padding-top: 10px;
+        padding-bottom: 10px;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .home-map .map .legend{
+    .map-body .map-map .map .legend{
         padding-left: 10px;
         padding-right: 10px;
-        padding-top: 5px;
-        padding-bottom: 5px;
+        padding-top: 10px;
+        padding-bottom: 10px;
     }
 }
 
-.home-map .map .legend .popup-header p{
+.map-body .map-map .map .legend .popup-header p{
     margin-top: 0px !important;
     margin-bottom: 0px !important;
-    font-family: "Barlow";
+    font-family: "Poppins";
     font-weight: 400;
-    font-size: 16px !important;
+    font-size: 22px !important;
     color: #003755;
     text-align: center;
     cursor: default;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .home-map .map .legend .popup-header p{
-        font-family: "Barlow";
+    .map-body .map-map .map .legend .popup-header p{
+        font-family: "Poppins";
         font-weight: 400;
         font-size: 14px !important;
         color: #003755;
@@ -165,8 +187,8 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .home-map .map .legend .popup-header p{
-        font-family: "Barlow";
+    .map-body .map-map .map .legend .popup-header p{
+        font-family: "Poppins";
         font-weight: 400;
         font-size: 12px !important;
         color: #003755;
@@ -174,27 +196,27 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .home-map .map .legend .popup-header p{
-        font-family: "Barlow";
+    .map-body .map-map .map .legend .popup-header p{
+        font-family: "Poppins";
         font-weight: 400;
-        font-size: 10px !important;
+        font-size: 12px !important;
         color: #003755;
     }
 }
 
-.home-map .map .legend .popup-header p a{
+.map-body .map-map .map .legend .popup-header p a{
     margin-top: 0px !important;
     margin-bottom: 0px !important;
-    font-family: "Epilogue";
+    font-family: "Poppins";
     font-weight: 700;
-    font-size: 16px !important;
+    font-size: 22px !important;
     color: #003755;
     cursor: default;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .home-map .map .legend .popup-header p a{
-        font-family: "Epilogue";
+    .map-body .map-map .map .legend .popup-header p a{
+        font-family: "Poppins";
         font-weight: 700;
         font-size: 14px !important;
         color: #003755;
@@ -202,8 +224,8 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .home-map .map .legend .popup-header p a{
-        font-family: "Epilogue";
+    .map-body .map-map .map .legend .popup-header p a{
+        font-family: "Poppins";
         font-weight: 700;
         font-size: 12px !important;
         color: #003755;
@@ -211,277 +233,277 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .home-map .map .legend .popup-header p a{
-        font-family: "Epilogue";
+    .map-body .map-map .map .legend .popup-header p a{
+        font-family: "Poppins";
         font-weight: 700;
-        font-size: 10px !important;
+        font-size: 12px !important;
         color: #003755;
     }
 }
 
-.home-map .map .legend .popup-statistics{
+.map-body .map-map .map .legend .popup-statistics{
     display: grid;
     grid-template-columns: auto auto;
     align-items: center;
     justify-content: flex-start;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
-.home-map .map .legend .popup-statistics:last-child{
+.map-body .map-map .map .legend .popup-statistics:last-child{
     margin-bottom: 0px;
 }
 
-.home-map .map .legend .popup-statistics i{
+.map-body .map-map .map .legend .popup-statistics i{
     margin-right: 10px;
     width: 30px; 
     height: 30px;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .home-map .map .legend .popup-statistics i{
+    .map-body .map-map .map .legend .popup-statistics i{
         width: 15px; 
         height: 15px;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .home-map .map .legend .popup-statistics i{
+    .map-body .map-map .map .legend .popup-statistics i{
         width: 15px; 
         height: 15px;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .home-map .map .legend .popup-statistics i{
+    .map-body .map-map .map .legend .popup-statistics i{
         width: 15px; 
         height: 15px;
     }
 }
 
-.home-map .map .legend .popup-statistics p{
+.map-body .map-map .map .legend .popup-statistics p{
     margin-top: 0px !important;
     margin-bottom: 0px !important;
-    font-family: "Barlow";
+    font-family: "Poppins";
     font-weight: 400;
-    font-size: 16px !important;
+    font-size: 22px !important;
     color: #003755;
     cursor: default;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .home-map .map .legend .popup-statistics p{
-        font-family: "Barlow";
+    .map-body .map-map .map .legend .popup-statistics p{
+        font-family: "Poppins";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #003755;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .map-body .map-map .map .legend .popup-statistics p{
+        font-family: "Poppins";
         font-weight: 400;
         font-size: 14px !important;
         color: #003755;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .home-map .map .legend .popup-statistics p{
-        font-family: "Barlow";
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .map-body .map-map .map .legend .popup-statistics p{
+        font-family: "Poppins";
         font-weight: 400;
         font-size: 12px !important;
         color: #003755;
     }
 }
 
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .home-map .map .legend .popup-statistics p{
-        font-family: "Barlow";
-        font-weight: 400;
-        font-size: 10px !important;
-        color: #003755;
-    }
-}
-
-.home-map .map .legend .popup-statistics p a{
+.map-body .map-map .map .legend .popup-statistics p a{
     display: inline-block !important;
     margin-top: 0px !important;
     margin-bottom: 0px !important;
-    font-family: "Epilogue";
+    font-family: "Poppins";
     font-weight: 700;
-    font-size: 16px !important;
+    font-size: 22px !important;
     color: #003755;
     cursor: default;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .home-map .map .legend .popup-statistics p a{
-        font-family: "Epilogue";
+    .map-body .map-map .map .legend .popup-statistics p a{
+        font-family: "Poppins";
+        font-weight: 700;
+        font-size: 16px !important;
+        color: #003755;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .map-body .map-map .map .legend .popup-statistics p a{
+        font-family: "Poppins";
         font-weight: 700;
         font-size: 14px !important;
         color: #003755;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .home-map .map .legend .popup-statistics p a{
-        font-family: "Epilogue";
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .map-body .map-map .map .legend .popup-statistics p a{
+        font-family: "Poppins";
         font-weight: 700;
         font-size: 12px !important;
         color: #003755;
     }
 }
 
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .home-map .map .legend .popup-statistics p a{
-        font-family: "Epilogue";
-        font-weight: 700;
-        font-size: 10px !important;
-        color: #003755;
-    }
-}
-
-.home-map .map .leaflet-control-attribution{
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 15px;
-    padding-bottom: 15px;
+.map-body .map-map .map .leaflet-control-attribution{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     width: 100%;
     border-radius: 5px;
-    font-family: "Barlow";
+    font-family: "Poppins";
     font-weight: 400;
-    font-size: 16px !important;
+    font-size: 22px !important;
     background: #FFFFFF !important;
     color: #003755;
     cursor: default;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .home-map .map .leaflet-control-attribution{
+    .map-body .map-map .map .leaflet-control-attribution{
         padding-left: 10px;
         padding-right: 10px;
-        padding-top: 5px;
-        padding-bottom: 5px;
-        font-family: "Barlow";
+        padding-top: 10px;
+        padding-bottom: 10px;
+        font-family: "Poppins";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #003755;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .map-body .map-map .map .leaflet-control-attribution{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        font-family: "Poppins";
         font-weight: 400;
         font-size: 14px !important;
         color: #003755;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .home-map .map .leaflet-control-attribution{
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .map-body .map-map .map .leaflet-control-attribution{
         padding-left: 10px;
         padding-right: 10px;
-        padding-top: 5px;
-        padding-bottom: 5px;
-        font-family: "Barlow";
+        padding-top: 10px;
+        padding-bottom: 10px;
+        font-family: "Poppins";
         font-weight: 400;
         font-size: 12px !important;
         color: #003755;
     }
 }
 
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .home-map .map .leaflet-control-attribution{
-        padding-left: 10px;
-        padding-right: 10px;
-        padding-top: 5px;
-        padding-bottom: 5px;
-        font-family: "Barlow";
-        font-weight: 400;
-        font-size: 10px !important;
-        color: #003755;
-    }
-}
-
-.home-map .map .leaflet-control-attribution a{
+.map-body .map-map .map .leaflet-control-attribution a{
     margin-top: 0px !important;
     margin-bottom: 0px !important;
-    font-family: "Epilogue";
+    font-family: "Poppins";
     font-weight: 700;
-    font-size: 16px !important;
+    font-size: 22px !important;
     color: #003755;
     cursor: default;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .home-map .map .leaflet-control-attribution a{
-        font-family: "Epilogue";
+    .map-body .map-map .map .leaflet-control-attribution a{
+        font-family: "Poppins";
+        font-weight: 700;
+        font-size: 16px !important;
+        color: #003755;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .map-body .map-map .map .leaflet-control-attribution a{
+        font-family: "Poppins";
         font-weight: 700;
         font-size: 14px !important;
         color: #003755;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .home-map .map .leaflet-control-attribution a{
-        font-family: "Epilogue";
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .map-body .map-map .map .leaflet-control-attribution a{
+        font-family: "Poppins";
         font-weight: 700;
         font-size: 12px !important;
         color: #003755;
     }
 }
 
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .home-map .map .leaflet-control-attribution a{
-        font-family: "Epilogue";
-        font-weight: 700;
-        font-size: 10px !important;
-        color: #003755;
-    }
-}
-
-.home-map .map .leaflet-control-attribution a svg{
+.map-body .map-map .map .leaflet-control-attribution a svg{
     display: none !important;
 }
 
-.home-map .map .leaflet-control-attribution span{
+.map-body .map-map .map .leaflet-control-attribution span{
     margin-top: 0px !important;
     margin-bottom: 0px !important;
-    font-family: "Barlow";
+    font-family: "Poppins";
     font-weight: 400;
-    font-size: 16px !important;
+    font-size: 22px !important;
     color: #003755;
     cursor: default;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .home-map .map .leaflet-control-attribution span{
-        font-family: "Barlow";
+    .map-body .map-map .map .leaflet-control-attribution span{
+        font-family: "Poppins";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #003755;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .map-body .map-map .map .leaflet-control-attribution span{
+        font-family: "Poppins";
         font-weight: 400;
         font-size: 14px !important;
         color: #003755;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .home-map .map .leaflet-control-attribution span{
-        font-family: "Barlow";
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .map-body .map-map .map .leaflet-control-attribution span{
+        font-family: "Poppins";
         font-weight: 400;
         font-size: 12px !important;
         color: #003755;
     }
 }
 
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .home-map .map .leaflet-control-attribution span{
-        font-family: "Barlow";
-        font-weight: 400;
-        font-size: 10px !important;
-        color: #003755;
-    }
-}
-
-.home-map .map .leaflet-control-layers{
+.map-body .map-map .map .leaflet-control-layers{
     border: none !important;
     background: #003755 !important;
 }
 
-.home-map .map .leaflet-control-layers span{
+.map-body .map-map .map .leaflet-control-layers span{
     display: flex !important;
     align-items: center;
     justify-content: flex-start;
 }
 
-.home-map .map .leaflet-touch .leaflet-control-layers-toggle{
+.map-body .map-map .map .leaflet-touch .leaflet-control-layers-toggle{
     border-radius: 5px !important;
     background-color: #003755 !important;
 }
 
-.home-map .map .leaflet-control-layers-expanded{
+.map-body .map-map .map .leaflet-control-layers-expanded{
     padding-left: 0px !important;
     padding-right: 0px !important;
     padding-top: 0px !important;
@@ -490,21 +512,21 @@
     background-color: #003755 !important;
 }
 
-.home-map .map .leaflet-control-layers-list{
+.map-body .map-map .map .leaflet-control-layers-list{
     padding-left: 10px !important;
     padding-right: 10px !important;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
-    font-family: "Barlow" !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    font-family: "Poppins" !important;
     font-weight: 200 !important;
-    font-size: 18px !important;
+    font-size: 22px !important;
     color: #FFFFFF !important;
     text-align: justify;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .home-map .map .leaflet-control-layers-list{
-        font-family: "Barlow";
+    .map-body .map-map .map .leaflet-control-layers-list{
+        font-family: "Poppins";
         font-weight: 200;
         font-size: 16px !important;
         color: #FFFFFF !important;
@@ -513,8 +535,8 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .home-map .map .leaflet-control-layers-list{
-        font-family: "Barlow";
+    .map-body .map-map .map .leaflet-control-layers-list{
+        font-family: "Poppins";
         font-weight: 200;
         font-size: 14px !important;
         color: #FFFFFF !important;
@@ -523,8 +545,8 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .home-map .map .leaflet-control-layers-list{
-        font-family: "Barlow";
+    .map-body .map-map .map .leaflet-control-layers-list{
+        font-family: "Poppins";
         font-weight: 200;
         font-size: 12px !important;
         color: #FFFFFF !important;
@@ -532,7 +554,7 @@
     }
 }
 
-.home-map .map input[type = "checkbox"]{
+.map-body .map-map .map input[type = "checkbox"]{
     display: grid;
     place-content: center;
     -webkit-appearance: none !important;
@@ -545,7 +567,7 @@
     cursor: pointer !important;
 }
 
-.home-map .map input[type = "checkbox"]::before{
+.map-body .map-map .map input[type = "checkbox"]::before{
     content: "";
     border-radius: 5px;
     transform: scale(0);
@@ -553,11 +575,11 @@
     background-color: #003755;
 }
 
-.home-map .map input[type = "checkbox"]:checked::before{
+.map-body .map-map .map input[type = "checkbox"]:checked::before{
     transform: scale(1);
 }
 
-.home-map .map .leaflet-control-layers-list input[type = "checkbox"]{
+.map-body .map-map .map .leaflet-control-layers-list input[type = "checkbox"]{
     margin-right: 10px !important;
     margin-top: 0px !important;
     width: 20px;
@@ -565,39 +587,39 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .home-map .map .leaflet-control-layers-list input[type = "checkbox"]{
+    .map-body .map-map .map .leaflet-control-layers-list input[type = "checkbox"]{
         width: 18px;
         height: 18px;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .home-map .map .leaflet-control-layers-list input[type = "checkbox"]{
+    .map-body .map-map .map .leaflet-control-layers-list input[type = "checkbox"]{
         width: 16px;
         height: 16px;
     }
 }
 
-.home-map .map .leaflet-control-layers-list input[type = "checkbox"]::before{
+.map-body .map-map .map .leaflet-control-layers-list input[type = "checkbox"]::before{
     width: 10px;
     height: 10px;
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .home-map .map .leaflet-control-layers-list input[type = "checkbox"]::before{
+    .map-body .map-map .map .leaflet-control-layers-list input[type = "checkbox"]::before{
         width: 8px;
         height: 8px;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .home-map .map .leaflet-control-layers-list input[type = "checkbox"]::before{
+    .map-body .map-map .map .leaflet-control-layers-list input[type = "checkbox"]::before{
         width: 6px;
         height: 6px;
     }
 }
 
-.home-map .map .leaflet-popup-content-wrapper{
+.map-body .map-map .map .leaflet-popup-content-wrapper{
     margin-left: 0px !important;
     margin-right: 0px !important;
     margin-top: 0px !important;
@@ -607,7 +629,7 @@
     background: none !important;
 }
 
-.home-map .map .leaflet-popup-content{
+.map-body .map-map .map .leaflet-popup-content{
     margin-left: 0px !important;
     margin-right: 0px !important;
     margin-top: 0px !important;
@@ -619,30 +641,31 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .home-map .map .leaflet-popup-content{
-        width: 280px !important;
-        height: 250px;
+    .map-body .map-map .map .leaflet-popup-content{
+        width: 249px !important;
         word-break: break-word !important; 
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .home-map .map .leaflet-popup-content{
+    .map-body .map-map .map .leaflet-popup-content{
         width: 229px !important;
         word-break: break-word !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .home-map .map .leaflet-popup-content{
+    .map-body .map-map .map .leaflet-popup-content{
         width: 200px !important;
         word-break: break-word !important;
     }
 }
 
-.home-map .map .popup{
+.map-body .map-map .map .popup{
     padding-left: 10px;
     padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     width: 326px;
     border-radius: 5px !important;
     background-color: #FFFFFF;
@@ -650,34 +673,33 @@
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .home-map .map .popup{
-        width: 280px !important;
-        height: 250px;
+    .map-body .map-map .map .popup{
+        width: 249px !important;
         word-break: break-word !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .home-map .map .popup{
+    .map-body .map-map .map .popup{
         width: 229px !important;
         word-break: break-word !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .home-map .map .popup{
+    .map-body .map-map .map .popup{
         width: 200px !important;
         word-break: break-word !important;
     }
 }
 
-.home-map .map .popup .popup-header{
+.map-body .map-map .map .popup .popup-header{
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.home-map .map .popup .popup-header i.fa-solid.fa-circle-exclamation{
+.map-body .map-map .map .popup .popup-header i.fa-solid.fa-circle-exclamation{
     font-size: 30px !important;
     color: #003755;
 }
@@ -686,86 +708,95 @@
     display: none !important;
 }
 
-.home-map .map .popup .popup-header .popup-back{
-    font-size: 18px !important;
+.map-body .map-map .map .popup .popup-header .popup-back{
+    font-size: 30px !important;
     color: #003755;
     cursor: pointer;
 }
 
-.home-map .map .popup .popup-header .popup-back:hover{
+.map-body .map-map .map .popup .popup-header .popup-back:hover{
     color: #002C44;
     cursor: pointer;
 }
 
-.home-map .map .popup .popup-header .popup-back:focus{
+.map-body .map-map .map .popup .popup-header .popup-back:focus{
     color: #002C44;
     cursor: pointer;
 }
 
-.home-map .map .popup .popup-header .popup-back:active{
+.map-body .map-map .map .popup .popup-header .popup-back:active{
     color: #002C44;
     cursor: pointer;
 }
 
 .popup .popup-place{
     display: grid;
-    gap: 15px;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    gap: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     width: 100%;
     background-color: #FFFFFF;
 }
 
-.home-map .map .popup .popup-place p{
+.map-body .map-map .map .popup .popup-place p{
     margin-top: 0px !important;
     margin-bottom: 0px !important;
-    font-family: "Barlow";
+    font-family: "Poppins";
     font-weight: 400;
-    font-size: 18px !important;
+    font-size: 22px !important;
     color: #003755;
     cursor: default;
 }
 
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .map-body .map-map .map .popup .popup-place p{
+        font-family: "Poppins";
+        font-weight: 400;
+        font-size: 20px !important;
+        color: #003755;
+    }
+}
+
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .home-map .map .popup .popup-place p{
-        font-family: "Barlow";
+    .map-body .map-map .map .popup .popup-place p{
+        font-family: "Poppins";
+        font-weight: 400;
+        font-size: 18px !important;
+        color: #003755;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .map-body .map-map .map .popup .popup-place p{
+        font-family: "Poppins";
         font-weight: 400;
         font-size: 16px !important;
         color: #003755;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .home-map .map .popup .popup-place p{
-        font-family: "Barlow";
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .map-body .map-map .map .popup .popup-place p{
+        font-family: "Poppins";
         font-weight: 400;
         font-size: 14px !important;
         color: #003755;
     }
 }
 
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .home-map .map .popup .popup-place p{
-        font-family: "Barlow";
-        font-weight: 400;
-        font-size: 12px !important;
-        color: #003755;
-    }
-}
-
-.home-map .map .popup .popup-place p a{
+.map-body .map-map .map .popup .popup-place p a{
     margin-top: 0px !important;
     margin-bottom: 0px !important;
-    font-family: "Epilogue";
+    font-family: "Poppins";
     font-weight: 700;
-    font-size: 18px !important;
+    font-size: 22px !important;
     color: #003755;
     cursor: default;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .home-map .map .popup .popup-place p a{
-        font-family: "Epilogue";
+    .map-body .map-map .map .popup .popup-place p a{
+        font-family: "Poppins";
         font-weight: 700;
         font-size: 16px !important;
         color: #003755;
@@ -773,8 +804,8 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .home-map .map .popup .popup-place p a{
-        font-family: "Epilogue";
+    .map-body .map-map .map .popup .popup-place p a{
+        font-family: "Poppins";
         font-weight: 700;
         font-size: 14px !important;
         color: #003755;
@@ -782,18 +813,18 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .home-map .map .popup .popup-place p a{
-        font-family: "Epilogue";
+    .map-body .map-map .map .popup .popup-place p a{
+        font-family: "Poppins";
         font-weight: 700;
         font-size: 12px !important;
         color: #003755;
     }
 }
 
-.home-map .map .popup .popup-statistics{
-    margin-bottom: 15px;
-    padding-top: 15px;
-    padding-bottom: 15px;
+.map-body .map-map .map .popup .popup-statistics{
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     display: flex;
     align-items: flex-start;        
     flex-direction: column;
@@ -802,19 +833,19 @@
     border-bottom: 1px solid #B2BEB5;
 }
 
-.home-map .map .popup .popup-statistics p{
+.map-body .map-map .map .popup .popup-statistics p{
     margin-top: 0px !important;
     margin-bottom: 0px !important;
-    font-family: "Barlow";
+    font-family: "Poppins";
     font-weight: 400;
-    font-size: 18px !important;
+    font-size: 22px !important;
     color: #003755;
     cursor: default;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .home-map .map .popup .popup-statistics p{
-        font-family: "Barlow";
+    .map-body .map-map .map .popup .popup-statistics p{
+        font-family: "Poppins";
         font-weight: 400;
         font-size: 16px !important;
         color: #003755;
@@ -822,8 +853,8 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .home-map .map .popup .popup-statistics p{
-        font-family: "Barlow";
+    .map-body .map-map .map .popup .popup-statistics p{
+        font-family: "Poppins";
         font-weight: 400;
         font-size: 14px !important;
         color: #003755;
@@ -831,27 +862,27 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .home-map .map .popup .popup-statistics p{
-        font-family: "Barlow";
+    .map-body .map-map .map .popup .popup-statistics p{
+        font-family: "Poppins";
         font-weight: 400;
         font-size: 12px !important;
         color: #003755;
     }
 }
 
-.home-map .map .popup .popup-statistics p a{
+.map-body .map-map .map .popup .popup-statistics p a{
     margin-top: 0px !important;
     margin-bottom: 0px !important;
-    font-family: "Epilogue";
+    font-family: "Poppins";
     font-weight: 700;
-    font-size: 18px !important;
+    font-size: 22px !important;
     color: #003755;
     cursor: default;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .home-map .map .popup .popup-statistics p a{
-        font-family: "Epilogue";
+    .map-body .map-map .map .popup .popup-statistics p a{
+        font-family: "Poppins";
         font-weight: 700;
         font-size: 16px !important;
         color: #003755;
@@ -859,8 +890,8 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .home-map .map .popup .popup-statistics p a{
-        font-family: "Epilogue";
+    .map-body .map-map .map .popup .popup-statistics p a{
+        font-family: "Poppins";
         font-weight: 700;
         font-size: 14px !important;
         color: #003755;
@@ -868,43 +899,43 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .home-map .map .popup .popup-statistics p a{
-        font-family: "Epilogue";
+    .map-body .map-map .map .popup .popup-statistics p a{
+        font-family: "Poppins";
         font-weight: 700;
         font-size: 12px !important;
         color: #003755;
     }
 }
 
-.home-map .map .popup .popup-header img{
-    margin-right: 5px;
-    width: 20px;
-    height: 20px;
+.map-body .map-map .map .popup .popup-header img{
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
 }
 
-.home-map .map .popup .popup-username{
+.map-body .map-map .map .popup .popup-username{
     display: grid;
-    gap: 15px;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    gap: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     width: 100%;
     background-color: #FFFFFF;
 }
 
-.home-map .map .popup .popup-username p{
+.map-body .map-map .map .popup .popup-username p{
     margin-top: 0px !important;
     margin-bottom: 0px !important;
-    font-family: "Barlow";
+    font-family: "Poppins";
     font-weight: 400;
-    font-size: 18px !important;
+    font-size: 22px !important;
     color: #003755;
     cursor: default;
+    word-break: break-all;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .home-map .map .popup .popup-username p{
-        font-family: "Barlow";
+    .map-body .map-map .map .popup .popup-username p{
+        font-family: "Poppins";
         font-weight: 400;
         font-size: 16px !important;
         color: #003755;
@@ -912,8 +943,8 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .home-map .map .popup .popup-username p{
-        font-family: "Barlow";
+    .map-body .map-map .map .popup .popup-username p{
+        font-family: "Poppins";
         font-weight: 400;
         font-size: 14px !important;
         color: #003755;
@@ -921,36 +952,36 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .home-map .map .popup .popup-username p{
-        font-family: "Barlow";
+    .map-body .map-map .map .popup .popup-username p{
+        font-family: "Poppins";
         font-weight: 400;
         font-size: 12px !important;
         color: #003755;
     }
 }
 
-.home-map .map .popup .popup-username p a{
+.map-body .map-map .map .popup .popup-username p a{
     margin-top: 0px !important;
     margin-bottom: 0px !important;
-    font-family: "Epilogue";
+    font-family: "Poppins";
     font-weight: 700;
-    font-size: 18px !important;
+    font-size: 22px !important;
     color: #003755;
     cursor: default;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .home-map .map .popup .popup-username p a{
-        font-family: "Epilogue";
-        font-weight: 400;
-        font-size: 12px !important;
+    .map-body .map-map .map .popup .popup-username p a{
+        font-family: "Poppins";
+        font-weight: 700;
+        font-size: 16px !important;
         color: #003755;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .home-map .map .popup .popup-username p a{
-        font-family: "Epilogue";
+    .map-body .map-map .map .popup .popup-username p a{
+        font-family: "Poppins";
         font-weight: 700;
         font-size: 14px !important;
         color: #003755;
@@ -958,59 +989,64 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .home-map .map .popup .popup-username p a{
-        font-family: "Epilogue";
+    .map-body .map-map .map .popup .popup-username p a{
+        font-family: "Poppins";
         font-weight: 700;
         font-size: 12px !important;
         color: #003755;
     }
 }
 
-.home-map .map .popup .popup-post{
+.map-body .map-map .map .popup .popup-post{
     position: relative;
     display: grid;
+    gap: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top: 1px solid #B2BEB5;
+    border-bottom: 1px solid #B2BEB5;
     background-color: #FFFFFF;
 }
 
-.home-map .map .popup .popup-post .post-gallery{
+.map-body .map-map .map .popup .popup-post .post-gallery{
     position: relative;
     border-radius: 5px;
     overflow: hidden !important;
     cursor: pointer;
 }
 
-.home-map .map .popup .popup-post .post-gallery img{
+.map-body .map-map .map .popup .popup-post .post-gallery img{
     width: 100%;
-    height: 150px;
+    height: 25vh;
     filter: brightness(50%);
 }
 
-.home-map .map .popup .popup-post .post-gallery img:hover{
+.map-body .map-map .map .popup .popup-post .post-gallery img:hover{
     transform: scale(1.25);
 }
 
-.home-map .map .popup .popup-post .post-gallery .post-context{
+.map-body .map-map .map .popup .popup-post .post-gallery .post-context{
     position: absolute;
     bottom: 0;
     left: 0;
     padding-left: 10px;
     padding-right: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
-.home-map .map .popup .popup-post .post-gallery .post-context p{
+.map-body .map-map .map .popup .popup-post .post-gallery .post-context p{
     margin-top: 0px;
     margin-bottom: 0px;
-    font-family: "Barlow";
+    font-family: "Poppins";
     font-weight: 400;
-    font-size: 18px !important;
+    font-size: 22px !important;
     color: #FFFFFF;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .home-map .map .popup .popup-post .post-gallery .post-context p{
-        font-family: "Barlow";
+    .map-body .map-map .map .popup .popup-post .post-gallery .post-context p{
+        font-family: "Poppins";
         font-weight: 400;
         font-size: 16px !important;
         color: #FFFFFF;
@@ -1018,8 +1054,8 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .home-map .map .popup .popup-post .post-gallery .post-context p{
-        font-family: "Barlow";
+    .map-body .map-map .map .popup .popup-post .post-gallery .post-context p{
+        font-family: "Poppins";
         font-weight: 400;
         font-size: 14px !important;
         color: #FFFFFF;
@@ -1027,26 +1063,26 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .home-map .map .popup .popup-post .post-gallery .post-context p{
-        font-family: "Barlow";
+    .map-body .map-map .map .popup .popup-post .post-gallery .post-context p{
+        font-family: "Poppins";
         font-weight: 400;
         font-size: 12px !important;
         color: #FFFFFF;
     }
 }
 
-.home-map .map .popup .popup-post .post-gallery .post-context a{
+.map-body .map-map .map .popup .popup-post .post-gallery .post-context a{
     margin-top: 0px !important;
     margin-bottom: 0px !important;
-    font-family: "Epilogue";
+    font-family: "Poppins";
     font-weight: 700;
-    font-size: 18px !important;
+    font-size: 22px !important;
     color: #FFFFFF;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .home-map .map .popup .popup-post .post-gallery .post-context a{
-        font-family: "Epilogue";
+    .map-body .map-map .map .popup .popup-post .post-gallery .post-context a{
+        font-family: "Poppins";
         font-weight: 700;
         font-size: 16px !important;
         color: #FFFFFF;
@@ -1054,8 +1090,8 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .home-map .map .popup .popup-post .post-gallery .post-context a{
-        font-family: "Epilogue";
+    .map-body .map-map .map .popup .popup-post .post-gallery .post-context a{
+        font-family: "Poppins";
         font-weight: 700;
         font-size: 14px !important;
         color: #FFFFFF;
@@ -1063,65 +1099,66 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .home-map .map .popup .popup-post .post-gallery .post-context a{
-        font-family: "Epilogue";
+    .map-body .map-map .map .popup .popup-post .post-gallery .post-context a{
+        font-family: "Poppins";
         font-weight: 700;
         font-size: 12px !important;
         color: #FFFFFF;
     }
 }
 
-.home-map .map .popup .button{
+.map-body .map-map .map .popup .button{
     margin-left: auto;
-    padding-left: 5px !important;
-    padding-right: 5px !important;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
+    margin-top: 10px;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
     width: fit-content;
     height: fit-content;
     border-radius: 5px;
     background-color: #003755 !important;
 }
 
-.home-map .map .popup .button:hover{
+.map-body .map-map .map .popup .button:hover{
     background-color: #002C44 !important;
     color: #B2BEB5 !important;
     cursor: pointer;
 }
 
-.home-map .map .popup .button:focus{
+.map-body .map-map .map .popup .button:focus{
     background-color: #002C44 !important;
     color: #B2BEB5 !important;
     cursor: pointer;
 }
 
-.home-map .map .popup .button:active{
+.map-body .map-map .map .popup .button:active{
     background-color: #002C44 !important;
     color: #B2BEB5 !important;
     cursor: pointer;
 }
 
-.home-map .map .popup .button a.read-post{
-    font-family: "Barlow";
+.map-body .map-map .map .popup .button a.read-post{
+    font-family: "Poppins";
     font-weight: 400;
-    font-size: 18px;
+    font-size: 22px;
     color: #FFFFFF !important;
     text-decoration: none;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .home-map .map .popup .button a.read-post{
-        font-family: "Barlow";
+    .map-body .map-map .map .popup .button a.read-post{
+        font-family: "Poppins";
         font-weight: 400;
-        font-size: 12px !important;
+        font-size: 16px !important;
         color: #FFFFFF !important;
         text-decoration: none;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .home-map .map .popup .button a.read-post{
-        font-family: "Barlow";
+    .map-body .map-map .map .popup .button a.read-post{
+        font-family: "Poppins";
         font-weight: 400;
         font-size: 14px !important;
         color: #FFFFFF !important;
@@ -1130,8 +1167,8 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .home-map .map .popup .button a.read-post{
-        font-family: "Barlow";
+    .map-body .map-map .map .popup .button a.read-post{
+        font-family: "Poppins";
         font-weight: 400;
         font-size: 12px !important;
         color: #FFFFFF !important;
@@ -1139,6 +1176,6 @@
     }
 }
 
-.home-map .map  .leaflet-popup-tip{
+.map-body .map-map .map  .leaflet-popup-tip{
     border-radius: 5px !important;
 }

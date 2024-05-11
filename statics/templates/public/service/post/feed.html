@@ -2,62 +2,29 @@
 {% load static %}
 
 {% block content %}
-    <!DOCTYPE html>
-        
-    <html lang = "en"> 
-        <head>
-            <link href = "https://cdn.jsdelivr.net/npm/tailwindcss@2.0.2/dist/tailwind.min.css" rel = "stylesheet">
-            <style>
-                .post-header{
-                    display: flex;
-                    justify-content: space-between;
-                    padding: 12px;
-                    align-items: center;
-                }
-
-                .post-image{
-                    width: 100%;
-                    object-fit: cover;
-                }
-
-                .post-info{
-                    padding: 10px 15px;
-                }
-
-                .icon{
-                    margin-right: 8px;
-                }
-            </style>
-        </head>
-
-        <body>
-            <div class = "fixed inset-0 z-[-10] h-screen w-full"></div>
-
-            <div class = "flex flex-col w-full px-7 items-center justify-center relative text-center">
-                <h1 style = "margin-bottom: 10px; font-weight: bold;" class = "text-3xl text-black">COTSEYE</h1>
-            </div>
-
-            {% for post in valid_posts %}
-                <div class = "w-full border bg-white shadow">
-                    <div class = "post-header">
-                        <p class = "flex items-center text-gray-800"><i class="fas fa-user icon"></i>{{post.user | default:'Anonymous'}}</p>
-                        
-                        <p class = "flex items-center text-gray-800"><i class="fas fa-calendar-check icon"></i>{{post.capture_date | date:"M d, Y" | default:'Date not available'}}</p>
-                    </div>
+    <div class = "feed-body">
+        <div class = "feed-section">
+            <h1>POSTS FEED</h1>
+        </div>
+    
+        {% for post in valid_posts %}
+            <div class = "feed">
+                <div class = "feed-header">
+                    <p><i class = "fas fa-user"></i>{{post.user | default:'None available'}}</p>
                     
-                    <img class = "post-image" src="{{post.post_photos.first.post_photo.url | default:'/statics/assets/posts/default.png'}}" alt = "Post Image">
+                    <p><i class = "fas fa-calendar-check"></i>{{post.capture_date | date:"M. d, Y" | default:'None available'}}</p>
+                </div>
+                
+                <img class = "feed-image" src = "{{post.post_photos.first.post_photo.url | default:'None available'}}">
+
+                <div class = "feed-context">
+                    <h1>{{post.location | default:'None available'}}</h1>
                     
-                    <div class = "post-info">
-                        <h1 class = "font-semibold text-lg">{{ post.location | default:'Location not available' }}</h1>
-                        
-                        <div class = "mt-4">
-                            <a href="{% url 'Public Service Post Feed Read' post.id %}" class = "see-more">
-                                See more
-                            </a>
-                        </div>
+                    <div class = "button">
+                        <a href = "{% url 'Public Service Post Feed Read' post.id %}">See more</a>
                     </div>
                 </div>
-            {% endfor %}
-        </body>
-    </html>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock content %}

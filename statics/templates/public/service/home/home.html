@@ -2,17 +2,11 @@
 {% load static %}
 
 {% block content %}
-    <div class = "h-full px-[1rem] w-dvw bg-[#FFFFF text-black relative">
-        <div style = "height: 20px;"></div>
-
-        <div class = "w-full text-center my-[2rem] flex items-center justify-center flex-col">
-            <h1 class = "text-center font-bold text-[2rem] tracking-widest">COTSEYE</h1>
+    <div class = "home-body">
+        <div class = "home-section">
+            <h1>COTSEYE</h1>
             
-            <p class = "w-[30%]">Empowering coral reef preservation, one captured crown-of-thorns starfish at a time.</p>
-
-            <div class="w-[4rem] h-[0px] bg-#000000-600 mt-[2rem] block">
-
-            </div>
+            <p>Empowering coral reef preservation, one captured crown-of-thorns starfish at a time.</p>
         </div>
 
         <div class = "home-map">
@@ -126,32 +120,35 @@
                 });
 
                 status.addTo(map_statuses);
-
-                var starfish = L.icon({iconUrl: "{% static 'assets/icons/marker.png' %}", iconSize: [30, 30], iconAnchor: [15, 15]});
                 
+                var starfish = L.icon({iconUrl: "{% static 'assets/pin.png' %}", iconSize: [30, 30], iconAnchor: [15, 15]});
+            
                 var map_posts = L.markerClusterGroup({iconCreateFunction: function(cluster){return starfish}, removeOutsideVisibleBounds: false});
-
+            
                 {% for post in map_posts %}
-                    var post = L.marker([{{post.coordinates.latitude}}, {{post.coordinates.longitude}}], {icon: starfish});
+                    var postMarker = L.marker([{{post.coordinates.latitude}}, {{post.coordinates.longitude}}], {icon: starfish});
                     
-                    post.bindPopup("<div class = 'popup'>" + "<div class= 'popup-header'>" + "<img src = '{{post.user.profile_photo.url | default:''}}'>" + "<i class = 'fa-solid fa-square-xmark popup-back'>" + "</i>" + "</div>" + "<div class='popup-username'>" + "<p>" + "From" + ", " + "<a>" + "{{post.user | default:'None available'}}" + "</a>" + "." + "</p>" + "</div>" + "<div class = 'popup-post'>" + "<div class = 'post-gallery'>" + "<img src = '{{post.post_photos.all.first.post_photo.url}}'>" + "<div class = 'post-context'>" + "<p>" + "{{post.capture_date | default:'None available'}}" + "</p>" + "<a>" + "{{post.coordinates | default:'0'}}" + "</a>" + "</div>" + "</div>" + "</div>" + "<div class = 'button'>" + "<a class = 'read-post'>" + "Read" + "</a>" + "</div>", {closeOnClick: false, autoClose: false}).openPopup();
-                    
-                    post.on("popupopen", function(){
-                        var popupBack = document.querySelector(".popup-back");
-                        
-                        popupBack.addEventListener("click", function(){
-                            map.closePopup();
-                        });
-                    });
+                    postMarker.bindPopup("<div class = 'popup'>" + "<div class = 'popup-header'>" +  "<img src = '{{post.user.profile_photo.url | default:''}}'>" +  "<div class='popup-username'>" +  "<p><a>{{post.user | default:'None available'}}</a></p>" + "</div>" + "<i class = 'fa-solid fa-square-xmark popup-back'></i>" + "</div>" + "<div class = 'popup-post'>" + "<div class = 'post-gallery'>" + "<img src = '{{post.post_photos.all.first.post_photo.url}}'>" + "<div class = 'post-context'>" + "<p>{{post.capture_date | default:'None available'}}</p>" + "<a>{{post.coordinates | default:'0'}}</a>" + "</div>" + "</div>" + "</div>" + "<div class = 'button'><a class = 'read-post' href = '{% url 'Post Valid Read Redirect' %}'>Read</a></div>", {closeOnClick: false, autoClose: false});
 
-                    post.on("click", function (event){                    
-                        if (!post.isPopupOpen()){
-                            event.target.openPopup();
+                    postMarker.on("popupopen", function(e){
+                        var popup = e.popup;
+                        
+                        var popupBack = popup.getElement().querySelector(".popup-back");
+                        
+                        popupBack.onclick = function(){
+                            popup.close();
                         };
                     });
 
-                    map_posts.addLayer(post);
+                    postMarker.on("click", function(event){                    
+                        if (!this.isPopupOpen()){
+                            this.openPopup();
+                        }
+                    });
+
+                    map_posts.addLayer(postMarker);
                 {% endfor %}
+
 
                 var map = document.getElementsByClassName("map")[0];
 
@@ -226,73 +223,65 @@
             });
         </script>
 
-        <div style = "height: 10px;"></div>
+        <div class = "home-cots">
+            <img src = "/statics/assets/pic1.gif">
 
+            <div class = "cots-context">
+                <h1>WHAT IS COTS?</h1>
 
-        <div class = "h-[20rem] w-full relative my-[2rem] rounded-md overflow-hidden">
-            <img class = "h-full w-full hover:scale-125 transition-all duration-500 cursor-pointer" src = "/statics/assets/pic1.gif" alt="pic 1">
-
-            <div class = "bg-black bg-opacity-70 absolute bottom-0 max-h-[50%] p-4 w-full">
-                <h1 class = "font-bold text-2xl text-white">WHAT IS COTS?</h1>
-
-                <p class = "truncate">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias necessitatibus dolorum molestiae natus, asperiores hic repellendus inventore voluptatibus soluta minima id laborum. Veritatis accusantium iste vel ratione</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias necessitatibus dolorum molestiae natus, asperiores hic repellendus inventore voluptatibus soluta minima id laborum. Veritatis accusantium iste vel ratione</p>
             </div>
         </div>
 
-        <div style = "height: 30px;"></div>
-
-        <div>
-            <h1 class = "border-l-4 border-blue-600 font-bold text-start pl-2 text-3xl my-[2rem]">ANNOUNCEMENTS</h1>
+        <div class = "home-announcement">
+            <h1>ANNOUNCEMENTS</h1>
             
-            <div style = "height: 20px;"></div>
+            <div class = "announcement">
+                {% for announcement in latest_announcements %}
+                    <div class = "announcement-gallery">
+                        <a href = "{% url 'Public Service Announcement Read' announcement.id %}">
+                            <img src = "{{announcement.announcement_photo.url}}">
+                        </a>
 
-            {% for announcement in latest_announcements %}
-                <a class = "mb-[2rem] block w-full" href="{% url 'Public Service Announcement Read' announcement.id %}">
-                    <div class = "h-[20rem] w-full relative my-[2rem] rounded-md overflow-hidden">
-                        <img class = "h-full w-full hover:scale-125 transition-all duration-500 cursor-pointer" src={{announcement.announcement_photo.url}}>
-                
-                        <div class = "bg-black bg-opacity-70 absolute bottom-0 max-h-[50%] p-4 w-full">
-                            <h1 class = "font-bold text-2xl text-white">{{announcement.title | default:'None available'}}</h1>
+                        <div class = "announcement-context">
+                            <h1>{{announcement.title | default:'None available'}}</h1>
                             
-                            <p class = "truncate">{{announcement.context | default:'None available'}}</p>
+                            <p>{{announcement.context | default:'None available'}}</p>
                         </div>
                     </div>
-                </a>
             {% endfor %}
+            </div>
         </div>
 
-        <div>
-            <h1 class = "border-l-4 border-blue-600 font-bold text-start pl-2 text-3xl my-[2rem]">POSTS</h1>
+        <div class = "home-post">
+            <h1>POSTS</h1>
 
-            <div style = "height: 20px;"></div>
-
-            {% for post in valid_posts %}
-                <a class = "mb-[2rem] block w-full" href="{% url 'Public Service Post Feed Read' post.id %}">
-                    <div class = "h-[20rem] w-full relative my-[2rem] rounded-md overflow-hidden">
-                        <img class = "h-full w-full hover:scale-125 transition-all duration-500 cursor-pointer" src={{post.post_photos.first.post_photo.url}}>
+            <div class = "post">
+                {% for post in valid_posts %}
+                    <div class = "post-gallery">
+                        <a href="{% url 'Public Service Post Feed Read' post.id %}">
+                            <img src = "{{post.post_photos.first.post_photo.url}}">
+                        </a>
                 
-                        <div class = "bg-black bg-opacity-70 absolute bottom-0 max-h-[50%] p-4 w-full">
-                            <h1 class = "font-bold text-2xl text-white">{{post.user | default:'None available'}}</h1>
+                        <div class = "post-context">
+                            <h1>{{post.user | default:'None available'}}</h1>
                             
-                            <p class = "truncate">{{post.location | default:'None available'}}</p>
+                            <p>{{post.location | default:'None available'}}</p>
                         </div>
                     </div>
-                </a>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
     </div>
 
     {% if messages %}
         {% for message in messages %}
-            {% if message.tags == "info" %}
-                <script>Swal.fire({ title: "Hey!", text: "{{message}}", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: { confirmButton: "info-button", title: "title" } })</script>
-            {% elif message.tags == "success" %}
-                <script>Swal.fire({ title: "Yay!", text: "{{message}}", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: { confirmButton: "success-button", title: "title" } })</script>
-            {% else %}
-                <script>Swal.fire({ title: "Oops!", text: "{{message}}", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: { confirmButton: "error-button", title: "title" } })</script>
+            {% if message.tags == "info" %}<script>Swal.fire({title: "Hey!", text: "{{message}}", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}})</script>
+            {% elif message.tags == "success" %}<script>Swal.fire({title: "Yay!", text: "{{message}}", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}})</script>
+            {% else %}<script>Swal.fire({title: "Oops!", text: "{{message}}", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}})</script>
             {% endif %}
         {% endfor %}
     {% endif %}
 
-    <script type = "text/javascript">if (window.location.hash && window.location.hash === "#_=_") { window.location.hash = ""; history.pushState("", document.title, window.location.pathname);}</script>
+    <script type = "text/javascript">if (window.location.hash && window.location.hash === "#_=_"){window.location.hash = ""; history.pushState("", document.title, window.location.pathname);}</script>
 {% endblock content %}

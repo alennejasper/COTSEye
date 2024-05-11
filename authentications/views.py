@@ -22,9 +22,9 @@ def PublicServiceHome(request):
 
     username = "public/everyone"
 
-    latest_announcements = Announcement.objects.all().order_by("-release_date")[:1]
+    latest_announcements = Announcement.objects.all().order_by("-release_date")[:3]
 
-    valid_posts = Post.objects.filter(post_status = 1).order_by("-capture_date")[:1]
+    valid_posts = Post.objects.filter(post_status = 1).order_by("-capture_date")[:3]
 
     if user.is_authenticated:
         if user.usertype_id == 3:
@@ -278,9 +278,11 @@ def ContributorCheck(account):
 def ContributorServiceHome(request):
     username = request.user.username
 
-    latest_announcements = Announcement.objects.all().order_by("-release_date")[:1]
+    latest_announcements = Announcement.objects.all().order_by("-release_date")[:3]
 
-    valid_posts = Post.objects.filter(post_status = 1).order_by("-capture_date")[:1]
+    valid_posts = Post.objects.filter(post_status = 1).order_by("-capture_date")[:3]
+        
+    profile_photo = User.objects.get(account = request.user)
 
     try:
         map_posts = Post.objects.filter(post_status = 1)
@@ -292,7 +294,7 @@ def ContributorServiceHome(request):
 
         map_statuses = None
     
-    context = {"username": username, "map_posts": map_posts, "map_statuses": map_statuses, "latest_announcements": latest_announcements, "valid_posts": valid_posts}
+    context = {"username": username, "profile_photo": profile_photo, "map_posts": map_posts, "map_statuses": map_statuses, "latest_announcements": latest_announcements, "valid_posts": valid_posts}
 
     return render(request, "contributor/service/home/home.html", context)
 
@@ -304,27 +306,7 @@ def ContributorServiceProfile(request):
 
     username = request.user.username
 
-    records = Post.objects.filter(user = request.user)
-
-    results = None
-    
-    if request.method == "GET":
-        post_status  = request.GET.get("post_status")
-
-        if post_status :
-            results = Post.objects.filter(user = request.user, post_status = post_status)
-    
-        elif results is None:
-            username = request.user.username
-
-            messages.info(request, username + ", " + "kindly filter posts within COTSEye to generate for reports today.")
-
-        elif not results:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information input is impossible within COTSEye.")
-
-    context = {"user": user, "username": username, "records": records, "results": results}
+    context = {"user": user, "username": username}
 
     return render(request, "contributor/service/profile/profile.html", context)
 
