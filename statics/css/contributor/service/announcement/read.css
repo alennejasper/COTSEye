@@ -1,4 +1,4 @@
-.announcementread-body{
+.announcementread{
     position: relative;
     padding-left: 10px;
     padding-right: 10px;
@@ -7,7 +7,7 @@
     color: #000000;
 }
 
-.announcementread-body .announcementread-section{
+.announcementread .announcementread-section{
     display: flex;                   
     align-items: center; 
     justify-content: center;          
@@ -16,26 +16,26 @@
     text-align: center;                                   
 }
 
-.announcementread-body .announcementread-section h1{
+.announcementread .announcementread-section h1{
     text-align: center;     
     font-weight: 700;       
-    font-size: 22px;        
-    letter-spacing: 2.5px;
+    font-size: 22px;  
+    color: #003755;      
 }
 
-.announcementread-body .announcementread{
+.announcementread .announcementread{
     display: grid;
     row-gap: 10px;
 }
 
-.announcementread-body .announcementread .announcementread-header{
+.announcementread .announcementread .announcementread-header{
     display: grid;
     row-gap: 10px;
     padding-top: 10px;
     padding-bottom: 10px;
 }
 
-.announcementread-body .announcementread .announcementread-header p{
+.announcementread .announcementread .announcementread-header p{
     display: flex;
     align-items: center;
     white-space: nowrap;
@@ -47,7 +47,7 @@
     color: #003755;
 }
 
-.announcementread-body .announcementread .announcementread-header img{
+.announcementread .announcementread .announcementread-header img{
     margin-right: 10px !important;
     margin-bottom: 0px !important;
     width: 20px;
@@ -56,13 +56,13 @@
     cursor: pointer;
 }
 
-.announcementread-body .announcementread .announcementread-header i{
+.announcementread .announcementread .announcementread-header i{
     margin-right: 10px;
     font-size: 20px;
     color: #003755;  
 }
 
-.announcementread-body .announcementread .announcementread-gallery{
+.announcementread .announcementread .announcementread-gallery{
     position: relative;
     padding-left: 10px;
     padding-right: 10px;
@@ -73,7 +73,7 @@
     background-color: #FFFFFF;
 }
 
-.announcementread-body .announcementread .announcementread-gallery img{
+.announcementread .announcementread .announcementread-gallery img{
     position: relative;
     display: inline-block;
     place-items: center;
@@ -85,7 +85,7 @@
     overflow: hidden !important;
 }
 
-.announcementread-body .announcementread p{
+.announcementread .announcementread p{
     display: flex;
     align-items: center;
     font-family: "Poppins";
@@ -94,21 +94,23 @@
     color: #003755;
 }
 
-.announcementread-body .announcementread i{
+.announcementread .announcementread i{
     margin-right: 10px;
     font-size: 20px;
     color: #003755;  
 }
 
-.announcementread-body .announcementread .button{
+.announcementread .announcementread .button{
     margin-left: auto;
+    padding-left: 10px;
+    padding-right: 10px;
     padding-top: 10px !important;
     padding-bottom: 10px !important;
     width: fit-content;
     height: 100% !important;
 }
 
-.announcementread-body .announcementread a{
+.announcementread .announcementread a{
     padding-left: 10px !important;
     padding-right: 10px !important;
     padding-top: 10px !important;

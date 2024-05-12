@@ -13,10 +13,7 @@
                 <div class = "postandfeedread-header">
                     <p><img src = "{{valid_post.user.profile_photo.url}}">{{valid_post.user}}</p>
 
-                    <div class = "postandfeedread-status">
-                        <p><i class = "fa-solid fa-flag"></i>Valid</p>
-
-                        <p><i class = "fa-solid fa-calendar-check"></i>{{valid_post.capture_date | date:'m/d/y' | default:'None available'}}</p>
+                        <p>{{valid_post.capture_date | date:'m/d/y' | default:'None available'}}</p>
                     </div>
                 </div>
 
@@ -26,7 +23,10 @@
                     {% endfor %}
                 </div>
 
-                <p><i class = "fa-solid fa-location-dot"></i>{{valid_post.location | default:'None available'}}</p>
+            <div class="origin">
+                <p>{{valid_post.location | default:'None available'}}</p>
+                <p>Valid</p>
+            </div>
 
                 <p>{{valid_post.description | default:'None available'}}</p>
 

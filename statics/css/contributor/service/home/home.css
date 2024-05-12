@@ -1,7 +1,6 @@
 .home-body{
     position: relative;
-    padding-left: 10px;
-    padding-right: 10px;
+
     width: 100vw;
     height: 100%;
     color: #000000;
@@ -60,7 +59,7 @@
 .home-body .home-map .map{
     width: 100%;
     height: 100vh;
-    border-radius: 5px; 
+ 
     z-index: 1;
 }
 
@@ -1211,8 +1210,7 @@
     margin-top: 15px;              
     margin-bottom: 10px;
     height: 250px;                
-    width: 100%;                            
-    border-radius: 5px;       
+    width: 100%;                                
     overflow: hidden;              
 }
 
@@ -1272,10 +1270,6 @@
 
 .home-body .home-announcement .announcement{
     position: relative;
-    padding-left: 3px;
-    padding-right: 3px;
-    padding-top: 3px;
-    padding-bottom: 3px;
     height: 250px;                
     background-color: #FFFFFF;
     overflow-x: auto !important;
@@ -1286,7 +1280,7 @@
 .home-body .home-announcement .announcement-gallery{
     position: relative;
     display: inline-block;
-    margin-right: 30px;
+    margin-right: 1px;
     width: 100%;
     height: 100%;
     overflow: hidden !important;
@@ -1352,10 +1346,6 @@
 
 .home-body .home-post .post{
     position: relative;
-    padding-left: 3px;
-    padding-right: 3px;
-    padding-top: 3px;
-    padding-bottom: 3px;
     height: 250px;                
     background-color: #FFFFFF;
     overflow-x: auto !important;
@@ -1368,7 +1358,7 @@
 .home-body .home-post .post-gallery{
     position: relative;
     display: inline-block;
-    margin-right: 10px;
+    margin-right: 1px;
     width: 100%;
     height: 100%;
     overflow: hidden !important;

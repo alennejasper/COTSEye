@@ -1,7 +1,5 @@
 .postandfeedread-body{
     position: relative;
-    padding-left: 10px;
-    padding-right: 10px;
     width: 100vw;
     height: 100%;
     color: #000000;
@@ -28,8 +26,12 @@
 }
 
 .postandfeedread-body .postandfeedread .postandfeedread-header{
-    display: grid;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     row-gap: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
     padding-top: 10px;
     padding-bottom: 10px;
 }
@@ -61,19 +63,11 @@
     color: #003755;  
 }
 
-.postandfeedread-body .postandfeedread .postandfeedread-header .postandfeedread-status{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
 
 .postandfeedread-body .postandfeedread .postandfeedread-gallery{
     position: relative;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    height: 250px;                
+
+    height: 100%;                
     border-radius: 5px !important;
     background-color: #FFFFFF;
     overflow-x: auto !important;
@@ -86,14 +80,25 @@
     display: inline-block;
     place-items: center;
     object-fit: cover;
-    margin-right: 10px;
+    margin-right: 1px;
     width: 100%;
     height: 100%;
     border-radius: 5px;
     overflow: hidden !important;
 }
 
-.postandfeedread-body .postandfeedread p{
+.origin{
+    display: flex;                   
+    align-items: center; 
+    justify-content: space-between;          
+    width: 100%; 
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px; 
+    padding-bottom: 10px;                                             
+}
+
+.postandfeedread-body .origin p{
     display: flex;
     align-items: center;
     font-family: "Poppins";
@@ -102,20 +107,28 @@
     color: #003755;
 }
 
-.postandfeedread-body .postandfeedread i{
+.postandfeedread-body .origin i{
     margin-right: 10px;
     font-size: 20px;
     color: #003755;  
 }
 
-.postandfeedread-body .postandfeedread .postandfeedread-observation{
+.postandfeedread-body > p{
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: justify;
+}
+
+.postandfeedread-body  .postandfeedread-observation{
     display: grid;
     row-gap: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
     padding-top: 10px;
     padding-bottom: 10px;
 }
 
-.postandfeedread-body .postandfeedread .postandfeedread-observation h1{
+.postandfeedread-body .postandfeedread-observation h1{
     display: flex;
     align-items: center;
     white-space: nowrap;
@@ -127,7 +140,7 @@
     color: #003755;                          
 }
 
-.postandfeedread-body .postandfeedread .postandfeedread-observation p{
+.postandfeedread-body .postandfeedread-observation p{
     display: flex;
     align-items: center;
     white-space: nowrap;
@@ -139,7 +152,7 @@
     color: #003755;
 }
 
-.postandfeedread-body .postandfeedread .postandfeedread-observation h1{
+.postandfeedread-body .postandfeedread-observation h1{
     display: flex;
     align-items: center;
     white-space: nowrap;
@@ -150,13 +163,13 @@
     color: #003755;                          
 }
 
-.postandfeedread-body .postandfeedread .postandfeedread-observation .observation-context{
+.postandfeedread-body .postandfeedread-observation .observation-context{
     display: flex;
     align-items: center;
     justify-content: flex-start;
 }
 
-.postandfeedread-body .postandfeedread .postandfeedread-observation .observation-context p:first-child{
+.postandfeedread-body .postandfeedread-observation .observation-context p:first-child{
     display: flex;
     align-items: center;
     margin-right: 10px;
@@ -169,7 +182,7 @@
     color: #003755;                          
 }
 
-.postandfeedread-body .postandfeedread .postandfeedread-observation .observation-context p:last-child{
+.postandfeedread-body .postandfeedread-observation .observation-context p:last-child{
     display: flex;
     align-items: center;
     white-space: nowrap;
@@ -183,13 +196,12 @@
 
 .feed-body .feed .feed-context .button{
     margin-left: auto;
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
+
     width: fit-content;
     height: 100% !important;
 }
 
-.postandfeedread-body .postandfeedread .postandfeedread-observation a{
+.postandfeedread-body .postandfeedread-observation a{
     padding-left: 10px !important;
     padding-right: 10px !important;
     padding-top: 10px !important;
@@ -205,15 +217,17 @@
     cursor: pointer;  
 }
 
-.postandfeedread-body .postandfeedread .button{
+.postandfeedread-body .button{
     margin-left: auto;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
     padding-top: 10px !important;
     padding-bottom: 10px !important;
     width: fit-content;
     height: 100% !important;
 }
 
-.postandfeedread-body .postandfeedread a{
+.postandfeedread-body a{
     padding-left: 10px !important;
     padding-right: 10px !important;
     padding-top: 10px !important;

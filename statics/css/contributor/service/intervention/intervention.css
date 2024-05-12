@@ -1,7 +1,5 @@
 .intervention-body{
     position: relative;
-    padding-left: 10px;
-    padding-right: 10px;
     width: 100vw;
     height: 100%;
     color: #003755;
@@ -19,12 +17,12 @@
 .intervention-body .intervention-section h1{
     text-align: center;     
     font-weight: 700;       
-    font-size: 36px;        
-    letter-spacing: 2.5px;}
+    font-size: 22px;
+    font-family: "Open Sans";            
+}
 
 .intervention-body .intervention{
     margin-bottom: 10px;
-    border: 1px solid #003755;
 }
 
 .intervention-body .intervention:last-child{
