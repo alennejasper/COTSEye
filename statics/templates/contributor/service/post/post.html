@@ -2,131 +2,64 @@
 {% load static %}
 
 {% block content %}
-    <div class = "w-dvw" id = "post-filter">
-        <div class = "fixed inset-0 z-[-10] h-screen w-full">
-            <img src = "/statics/assets/bg-2.jpg" class = "h-full w-full object-cover top-[-5rem]" alt="">
-        </div>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 
-        <div class = "my-[2rem] flex flex-col w-full px-[1.8rem] items-center justify-center relative text-center">
-            <h1 class = "font-bold text-[3rem] text-white text-center">MY POSTS</h1>
+    <div class = "post-body">
+        <div style="display: flex; align-items: center; justify-content: space-between;"> 
+            <div class = "post-section">
+                <h1>MY POSTS</h1>
+            </div>
 
-            <div class = "p-2 min-[360px]:absolute right-5">
-                <button onclick="showDropdownOptions()" class = "flex flex-row justify-between px-2 py-2 text-white rounded-md shadow focus:outline-none focus:border-[#003755]">
-                    <span class = "text-white text-2xl"><i class="fa-solid fa-sliders"></i></span>
+            <div class = "post-filter">
+                <button onclick = "showDropdownOptions()" class = "filter-button">
+                    <span><i class = "fa-solid fa-sliders"></i></span>
                 </button>
-
+    
                 <form action = "" class = "post-form" method = "GET">
                     {% csrf_token %}
-
-                    <div id = "options" class = "hidden absolute left-[-9rem] z-20 w-48 py-2 mt-[1rem] bg-white rounded-lg shadow-xl">
-                        <a name = "post_status" href = "?post_status=1" class = "filter-posts block px-4 py-2 text-gray-800 hover:text-[#003755]">Valid Posts</a>
+    
+                    <div class = "options" id = "options" class = "hidden">
+                        <a name = "post_status" href = "?post_status=1" class = "filter-posts">Valid Posts</a>
                         
-                        <a name = "post_status" href = "?post_status=2" class = "filter-posts block px-4 py-2 text-gray-800 hover:text-[#003755]">Invalid Posts</a>
-
-                        <a name = "post_status" href = "?post_status=3" class = "filter-posts block px-4 py-2 text-gray-800 hover:text-[#003755]">Pending Posts</a>
+                        <a name = "post_status" href = "?post_status=2" class = "filter-posts">Invalid Posts</a>
+    
+                        <a name = "post_status" href = "?post_status=3" class = "filter-posts">Pending Posts</a>
                     </div>
                 </form>
             </div>
+    
+
         </div>
-    </div>
 
-    {% if results %}
-        {% if post_status %}
-            <div class = "w-full flex justify-start items-start">
-                <h1 class = "font-bold border-l-4 border-white pl-2 text-white">
-                    {% if post_status == "1" %}
-                        VALID
-                    {% elif post_status == "2" %}
-                        INVALID
-                    {% elif post_status == "3" %}
-                        PENDING
-                    {% elif post_status == "4" %}
-                        DRAFT
-                    {% else %}
-                        VALID, INVALID, PENDING, OR DRAFT
-                    {% endif %}
-                </h1>
-            </div>
-        {% else %}
-            <div class = "w-full flex justify-start items-start">
-                <h1 class = "font-bold border-l-4 border-white pl-2 text-white">
-                    VALID, INVALID, PENDING, OR DRAFT
-                </h1>
-            </div>
-        {% endif %}
 
-        {% for post in results %}
-            <div class = "border-2 min-h-[20rem] w-full rounded-2xl mt-[2rem] p-4 bg-white">
-                <div class = "w-full">
-                    <a href = "{% url 'Contributor Service Post Read' post.id %}">
-                        <div class = "flex items-center w-full gap-2 h-full p-2 flex-col">
-                            <div class = "flex w-full flex-col min-[320px]:flex-column min-[320px]:justify-between my-2">
-                                <h1 class = "font-semibold flex gap-2 items-center text-[#003755]"><i class = "fa-regular fa-user"></i>@{{post.user | default:'None available'}}<h1>
-                                
-                                <p class = "font-semibold flex gap-2 items-center text-[#003755]"><i class = "fa-solid fa-calendar-days"></i>{{post.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}</p>
-                            </div>
+        <div class = "post-post">
+            <h1>{% if post_status == "1" %} VALID {% elif post_status == "2" %} INVALID {% elif post_status == "3" %} PENDING {% elif post_status == "4" %} DRAFT {% else %} {% endif %}</h1>
 
-                            <div class="relative w-full h-full">
-                                {% for post_photo in post.post_photos.all %}
-                                    <img class = "w-full h-[15rem] object-cover" src = "{{post_photo.post_photo.url}}">
-                                {% endfor %}
+            {% for post in results %}
+                <div class = "post">
+                    <div class = "post-header">
+                        <p><img src = "{{post.user.profile_photo.url}}">{{post.user | default:'None available'}}</p>
+                        
+                        <p>{{post.capture_date | date:"M. d, Y" | default:'None available'}}</p>
+                    </div>
+                    
+                    <img class = "post-image" src = "{{post.post_photos.first.post_photo.url | default:'None available'}}">
 
-                                <p class = "font-semibold absolute bottom-0 h-[4rem] bg-black bg-opacity-75 w-full flex items-center text-white text-2xl px-2">{{post.coordinates | default:'None available'}}</p>
-                            </div>
-
-                            <button class = "my-[1rem] border-2 w-full min-[320px]:w-[15rem] h-[3rem] bg-[#003755] text-white font-bold hover:bg-white hover:border-[#003755] hover:text-[#003755] text-center cursor-pointer px-4 rounded-full">READ MORE</button>
+                    <div class = "post-context">
+                        <h1>{{post.location | default:'None available'}}</h1>
+                        
+                        <div class = "button">
+                            <a href = "{% url 'Contributor Service Post Read' post.id %}">See more</a>
                         </div>
-                    </a>
-                </div>
-            </div>
-        {% endfor %}
-
-    {% else %}
-        {% if records %}
-            <div class = "w-full flex justify-start items-start">
-                <h1 class = "font-bold border-l-4 border-white pl-2 text-white">VALID, INVALID, OR, PENDING</h1>
-            </div>
-
-            {% for post in records %}
-                <div class = "border-2 min-h-[20rem] w-full rounded-2xl mt-[2rem] p-4 bg-white">
-                    <div class = "w-full ">
-                        <a href = "{% url 'Contributor Service Post Read' post.id %}">
-                            <div class = "flex items-center w-full gap-2 h-full p-2 flex-col">
-                                <div class = "flex w-full flex-col min-[320px]:flex-row min-[320px]:justify-between my-2">
-                                    <h1 class = "font-semibold flex gap-2 items-center text-[#003755]"><i class = "fa-regular fa-user"></i>@{{post.user | default:'None available'}}<h1>
-                                    <p class = "font-semibold flex gap-2 items-center text-[#003755]"> <i class = "fa-solid fa-calendar-days"></i>{{post.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}</p>
-                                </div>
-
-                                <div class = "relative w-full h-full">
-                                    {% for post_photo in post.post_photos.all %}
-                                        <img class = "w-full h-[18rem] object-cover" src = "{{post_photo.post_photo.url}}">
-                                    {% endfor %}
-
-                                    <p class = "text-lg min-[490px]:text-2xl font-semibold absolute bottom-0 h-[5rem] bg-black bg-opacity-75 w-full flex items-center text-white px-2">{{post.coordinates | default:'None available'}}</p>
-                                </div>
-
-                                <button class = "my-[1rem] border-2 w-full min-[320px]:w-[15rem] h-[3rem] bg-[#003755] text-white font-bold hover:bg-white hover:border-[#003755] hover:text-[#003755] text-center cursor-pointer px-4 rounded-full">READ MORE</button>
-                            </div>
-                        </a>
                     </div>
                 </div>
             {% endfor %}
-        {% endif %}
-    {% endif %}
-
-    <div class = "flex gap-4 mt-[5rem] h-fit flex-col min-[320px]:flex-row">
-        <form action = "" class = "post-form" method = "GET">
-            {% csrf_token %}
-
-            <div class = "border-2 w-fit h-fit border-[#003755] bg-[#003755] text-white font-bold hover:bg-white hover:border-[#003755] hover:text-[#003755] text-center cursor-pointer p-2 rounded-lg">
-                <a name = "post_status" href = "?post_status=4" class = "filter-posts">Draft Posts</a>
-            </div>
-        </form>
+        </div>
     </div>
 
     <script>
-        document.querySelectorAll(".filter-posts").forEach(function (element) {
-            element.onclick = function () {
+        document.querySelectorAll(".filter-posts").forEach(function (element){
+            element.onclick = function (){
                 document.querySelector(".post-form").submit();
             };
         });
@@ -134,7 +67,7 @@
 
     <script>
         function showDropdownOptions(){
-            document.getElementById("options").classList.toggle("hidden");
+            document.querySelector(".options").classList.toggle("hidden");
         }
     </script>
 {% endblock content %}

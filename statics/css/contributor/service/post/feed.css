@@ -18,14 +18,12 @@
 
 .feed-body .feed-section h1{
     text-align: center;     
-    font-weight: 700;       
+    font-weight: 650;       
     font-size: 22px;        
-    letter-spacing: 2.5px;}
-
-.feed-body .feed{
-    margin-bottom: 10px;
-    border: 1px solid #003755;
+    font-family: "Open Sans";
+    padding-bottom: 10px;
 }
+
 
 .feed-body .feed:last-child{
     margin-bottom: 0px;
@@ -33,8 +31,9 @@
 }
 
 .feed-body .feed .feed-header{
-    display: grid;
-    row-gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 10px;
@@ -47,10 +46,19 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-family: "Poppins";
+    font-family: "Open Sans";
     font-weight: 400;
-    font-size: 14px !important;
+    font-size: 12px !important;
     color: #003755;
+}
+
+.feed-body .feed .feed-header img{
+    margin-right: 10px !important;
+    margin-bottom: 0px !important;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
 }
 
 .feed-body .feed .feed-header i{
@@ -69,8 +77,9 @@
 .feed-body .feed .feed-context{
     padding-left: 10px;
     padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
 }
 
 .feed-body .feed .feed-context h1{
@@ -78,29 +87,32 @@
     overflow: hidden;
     text-overflow: ellipsis;
     font-family: "Poppins";
-    font-weight: 700;       
-    font-size: 22px;
+    font-weight: 500;      
+    font-size: 15px;
     color: #003755;  
 }
 
 .feed-body .feed .feed-context .button{
+    display: block;
     margin-left: auto;
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
-    width: fit-content;
-    height: 100% !important;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 20px;
+    background-color: #ffffff;
+    color: #000000;
 }
 
 .feed-body .feed .feed-context a{
-    padding-left: 10px !important;
-    padding-right: 10px !important;
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
     border-radius: 5px;
     outline: none !important;
     font-family: "Poppins";
     font-weight: 400;
-    font-size: 14px;
+    font-size: 10px;
     color: #FFFFFF !important;
     background-color: #003755 !important;
     text-decoration: none;

@@ -2,36 +2,27 @@
 {% load static %}
 
 {% block content %}
-    <div class = "w-dvw flex flex-col items-center justify-center p-4">
-        <div class = "fixed inset-0 z-[-10] h-screen w-full">
-            <img src = "/statics/assets/bg-2.jpg" class="h-full w-full object-cover top-[-5rem]" alt="">
+    <div class = "intervention-body">
+        <div class = "intervention-section">
+            <h1>INTERVENTIONS</h1>
         </div>
-
-        <h1 class = "my-[2rem] text-center font-bold text-2xl min-[490px]:text-[3rem] text-white">INTERVENTIONS</h1>
-
+    
         {% for intervention in interventions %}
-            <div class = "w-full py-[1rem] h-fit min-[490px]:h-[30rem] flex flex-col items-center mb-[2rem] border-2 rounded-lg px-4 bg-white" id="announcement-records">
-                <div class="flex w-full flex-col min-[320px]:flex-row min-[320px]:justify-between my-2">
-                    <p class = "text-[#003755] gap-2 flex items-center"><i class="fa-solid fa-user"></i>{{intervention.hosting_agency | default:'None available'}}</p>
+            <div class = "intervention">
+                <div class = "intervention-header">
+                    <p><i class = "fas fa-user"></i>{{intervention.hosting_agency | default:'None available'}}</p>
                     
-                    <p class = "text-[#003755] gap-2 flex items-center"><i class="fa-solid fa-calendar-check"></i>{{intervention.intervention_date | date:'M. j, Y' | default:'None available'}}</p> 
+                    <p><i class = "fas fa-calendar-check"></i>{{intervention.intervention_date | date:"M. d, Y" | default:'None available'}}</p>
                 </div>
+                
+                <img class = "intervention-image" src = "{{intervention.intervention_photo.url | default:'None available'}}">
 
-                <div class = "flex items-center justify-center w-full mt-[1rem]">
-                    <a class = "w-full" href="{% url 'Public Service Intervention Read' intervention.id %}">
-                        <div class = "w-full flex justify-center flex-col items-center">
-                            <div class = "w-full h-full flex justify-start flex-col items-start relative">
-                                <img class = "h-[18rem] w-full object-cover" src="{{intervention.intervention_photo.url}}">
-                                    <div class = "w-full flex items-center absolute bg-black bg-opacity-70 text-white bottom-0 p-0 min-[490px]:p-4 h-[30%]">
-                                        <h1 class = "font-semibold text-sm min-[490px]:text-2xl w-full break-words">{{intervention.title | default:'None available'}}</h1>
-                                    </div>
-                                </div>
-
-                            <div class = "flex justify-center w-full my-[2rem]">
-                                <button class = "w-[10rem] bg-[#003755] hover:bg-white hover:border-[#003755] border-2 p-2 rounded-full font-bold text-white hover:text-[#003755]">Read More</button>
-                            </div>
-                        </div>
-                    </a>
+                <div class = "intervention-context">
+                    <h1>{{intervention.title | default:'None available'}}</h1>
+                    
+                    <div class = "button">
+                        <a href = "{% url 'Public Service Intervention Read' intervention.id %}">See more</a>
+                    </div>
                 </div>
             </div>
         {% endfor %}

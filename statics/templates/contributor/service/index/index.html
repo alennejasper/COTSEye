@@ -35,6 +35,18 @@
 
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/map/map.css' %}">
 
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/announcement/announcement.css' %}">
+
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/intervention/intervention.css' %}">
+
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/intervention/read.css' %}">
+
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/post/post.css' %}">
+
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/resource/resource.css' %}">
+
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/inquiry/inquiry.css' %}">
+
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/report/report.css' %}">
 
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/profile/profile.css' %}">
@@ -58,10 +70,16 @@
         <link rel = "stylesheet" href = "https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
     
         <link rel = "stylesheet" href = "https://unpkg.com/leaflet-geosearch/dist/geosearch.css"/>
+
+        <script src = "https://cdn.jsdelivr.net/npm/leaflet-geosearch/dist/geosearch.min.js"></script>
     
         <link rel = "stylesheet" href = "https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css"/>
     
+        <script src = "https://cdn.jsdelivr.net/npm/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
         <link rel = "stylesheet" href = "https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@v0.74.0/dist/L.Control.Locate.min.css"/>
+
+        <script src = "https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@v0.74.0/dist/L.Control.Locate.min.js" charset="utf-8"></script>
 
         <link href = "https://cdn.jsdelivr.net/npm/tailwindcss@2.0.2/dist/tailwind.min.css" rel = "stylesheet">
 
@@ -70,11 +88,11 @@
         <title>COTSEye | Home</title>
     </head>
 
-    <body>
+    <body style="background-color: rgb(255, 255, 255);">
         <nav class = "navigation-topbar">
             <a href = "{% url 'Contributor Service Home' %}" class = "logo"><img src = "{% static 'assets/logo.png' %}" class = "logo"></a>
 
-            <a onclick = "shownDropdown()" class = "profile"><img src = "{{profile_photo.profile_photo.url}}" class = "drop profile"></a>
+            <a onclick = "shownDropdown()" class = "profile"><img src = "{{user_profile.profile_photo.url}}" class = "drop profile"></a>
         </nav>
 
         <div class = "others">

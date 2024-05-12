@@ -48,6 +48,8 @@ def PublicServicePostFeedRead(request, id):
 def ContributorServiceReport(request):
     username = request.user.username
 
+    user_profile = User.objects.get(account = request.user)
+
     coordinates_form = CoordinatesForm()
 
     postobservation_form = PostObservationForm()
@@ -130,7 +132,7 @@ def ContributorServiceReport(request):
                 
                 messages.success(request, username + ", " + "your information input was recorded online for COTSEye.")
                 
-                return redirect("Contributor Service Home")
+                return redirect("Contributor Service Post")
 
             else:
                 messages.error(request, "Information input is not valid.")
@@ -147,7 +149,7 @@ def ContributorServiceReport(request):
         
         post_form = PostForm() 
 
-    context = {"username": username, "coordinates_form": coordinates_form, "depths": depths, "weathers": weathers, "postobservation_form": postobservation_form, "post_form": post_form, "addresses": addresses}
+    context = {"username": username, "user_profile": user_profile, "coordinates_form": coordinates_form, "depths": depths, "weathers": weathers, "postobservation_form": postobservation_form, "post_form": post_form, "addresses": addresses}
     
     return render(request, "contributor/service/report/report.html", context)
 
@@ -212,6 +214,8 @@ def ContributorServiceReportFetch(request):
 def ContributorServiceReportUpdate(request, id):
     username = request.user.username
 
+    user_profile = User.objects.get(account = request.user)
+
     draft_post = Post.objects.get(id = id, post_status = 4)   
 
     depths = Depth.objects.all()
@@ -262,7 +266,7 @@ def ContributorServiceReportUpdate(request, id):
         
         post_form = PostForm(instance = draft_post)       
 
-    context = {"username": username, "draft_post": draft_post, "coordinates_form": coordinates_form, "depths": depths, "weathers": weathers, "postobservation_form": postobservation_form, "post_form": post_form}
+    context = {"username": username, "user_profile": user_profile, "draft_post": draft_post, "coordinates_form": coordinates_form, "depths": depths, "weathers": weathers, "postobservation_form": postobservation_form, "post_form": post_form}
     
     return render(request, "contributor/service/report/report.html", context)
 
@@ -354,6 +358,8 @@ def ContributorServiceReportUpdateFetch(request):
 def ContributorServicePost(request):
     username = request.user.username
 
+    user_profile = User.objects.get(account = request.user)
+
     records = None
 
     results = None
@@ -367,7 +373,7 @@ def ContributorServicePost(request):
         else:
             results = Post.objects.all()
         
-    context = {"username": username, "records": records, "results": results, "post_status": post_status}
+    context = {"username": username, "user_profile": user_profile, "records": records, "results": results, "post_status": post_status}
 
     return render(request, "contributor/service/post/post.html", context)
 
@@ -377,35 +383,37 @@ def ContributorServicePost(request):
 def ContributorServicePostRead(request, id):
     username = request.user.username
 
+    user_profile = User.objects.get(account = request.user)
+
     scheme = request.scheme
 
     host = request.META["HTTP_HOST"]
 
     try:
-        valid_post = Post.objects.get(id = id, user = request.user, post_status = 1)
+        valid_post = Post.objects.get(id = id, user = request.user.user, post_status = 1)
     
     except:
         valid_post = None
 
     try:
-        invalid_post = Post.objects.get(id = id, user = request.user, post_status = 2)
+        invalid_post = Post.objects.get(id = id, user = request.user.user, post_status = 2)
     
     except:
         invalid_post = None
 
     try:
-        pending_post = Post.objects.get(id = id, user = request.user, post_status = 3)
+        pending_post = Post.objects.get(id = id, user = request.user.user, post_status = 3)
     
     except:
         pending_post = None
 
     try:
-        draft_post = Post.objects.get(id = id, user = request.user, post_status = 4)
+        draft_post = Post.objects.get(id = id, user = request.user.user, post_status = 4)
     
     except:
         draft_post = None
     
-    context = {"username": username, "scheme": scheme, "host": host, "valid_post": valid_post, "invalid_post": invalid_post, "pending_post": pending_post, "draft_post": draft_post}
+    context = {"username": username, "user_profile": user_profile, "scheme": scheme, "host": host, "valid_post": valid_post, "invalid_post": invalid_post, "pending_post": pending_post, "draft_post": draft_post}
     
     return render(request, "contributor/service/post/read.html", context)
 
@@ -415,9 +423,11 @@ def ContributorServicePostRead(request, id):
 def ContributorServicePostFeed(request):
     username = request.user.username
 
+    user_profile = User.objects.get(account = request.user)
+
     valid_posts = Post.objects.filter(post_status = 1)
 
-    context = {"username": username, "valid_posts": valid_posts}
+    context = {"username": username, "user_profile": user_profile, "valid_posts": valid_posts}
     
     return render(request, "contributor/service/post/feed.html", context)
 
@@ -427,13 +437,15 @@ def ContributorServicePostFeed(request):
 def ContributorServicePostFeedRead(request, id):
     username = request.user.username
 
+    user_profile = User.objects.get(account = request.user)
+
     scheme = request.scheme
 
     host = request.META["HTTP_HOST"]
 
     valid_post = Post.objects.get(id = id, post_status = 1)
     
-    context = {"username": username, "scheme": scheme, "host": host, "valid_post": valid_post}
+    context = {"username": username, "user_profile": user_profile, "scheme": scheme, "host": host, "valid_post": valid_post}
     
     return render(request, "contributor/service/post/read.html", context)
 

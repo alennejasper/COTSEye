@@ -2,6 +2,8 @@
 {% load static %}
 
 {% block content %}
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
     <div class = "announcement-body">
         <div class = "announcement-section">
             <h1>ANNOUNCEMENTS</h1>
@@ -10,9 +12,9 @@
         {% for announcement in announcements %}
             <div class = "announcement">
                 <div class = "announcement-header">
-                    <p><i class = "fas fa-user"></i>{{announcement.user | default:'None available'}}</p>
+                    <p><img src = "{{announcement.user.profile_photo.url}}"></i>{{announcement.user | default:'None available'}}</p>
                     
-                    <p><i class = "fas fa-calendar-check"></i>{{announcement.release_date | date:"M. d, Y" | default:'None available'}}</p>
+                    <p>{{announcement.release_date | date:"M. d, Y" | default:'None available'}}</p>
                 </div>
                 
                 <img class = "announcement-image" src = "{{announcement.announcement_photo.url | default:'None available'}}">

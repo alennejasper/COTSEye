@@ -46,6 +46,15 @@
     color: #003755;
 }
 
+.postandfeedread-body .postandfeedread .postandfeedread-header img{
+    margin-right: 10px !important;
+    margin-bottom: 0px !important;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
 .postandfeedread-body .postandfeedread .postandfeedread-header i{
     margin-right: 10px;
     font-size: 20px;

@@ -2,23 +2,19 @@
 {% load static %}
 
 {% block content %}
-    <div class = "w-dvw px-[2rem]" id = "inquiry-search">
-        <div class = "fixed inset-0 z-[-10] h-screen w-full">
-            <img src = "/statics/assets/bg-2.jpg" class = "h-full w-full object-cover top-[-5rem]">
+    <div class = "inquiry-body">
+        <div class = "inquiry-section">
+            <h1>FAQS</h1>
         </div>
 
-        <h1 class = "my-[2rem] text-center font-bold text-[3rem] text-white">FAQS</h1>
-
-        <div class = "h-fit my-[4rem] block w-full bg-white rounded-xl pt-[4rem] px-[2rem]">
-            <div class = "flex gap-4 flex-col">
-                {% for inquiry in inquiries %}
-                    <div class = "w-full items-start flex flex-col justify-start border-b-2 border-blue-700">
-                        <h3 class = "font-bold text-2xl uppercase tracking-wide">{{inquiry.question}}</h3>
-                        
-                        <p class = "text-[#003755] text-lg mb-4">{{inquiry.answer}}</p>
-                    </div>
-                {% endfor %}
-            </div>
+        <div class = "inquiry">
+            {% for inquiry in inquiries %}
+                <div class = "inquiry-context">
+                    <h3>{{inquiry.question}}</h3>
+                    
+                    <p>{{inquiry.answer}}</p>
+                </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock content %}

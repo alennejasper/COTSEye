@@ -18,9 +18,30 @@
 
 .home-body .home-section h1{
     text-align: center;     
-    font-weight: 700;       
-    font-size: 22px;        
-    letter-spacing: 5px;
+    font-weight: 600;       
+    font-size: 24px;        
+    font-family: "Open Sans";
+}
+
+.wic{
+    text-align: left;     
+    font-weight: 600;       
+    font-size: 18px;
+    font-family: "Open Sans";
+    color: #FFFFFF;
+}
+
+
+.home-body .home-section P{
+    text-align: center;
+    padding-left: 39px;    
+    padding-right: 39PX;
+    padding-top: 3px;
+    padding-bottom: 20px;
+    font-weight: 400;       
+    font-size: 13px;        
+    font-family: "Open Sans";
+    color: #505050;
 }
 
 .home-body .home-map{ 
@@ -32,7 +53,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 935px){
     .home-body .home-map{ 
-        height: 300px;
+        height: 500px;
     }
 }
 
@@ -45,7 +66,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 935px){
     .home-body .home-map .map{
-        height: 300px;
+        height: 500px;
     }
 }
 
@@ -930,7 +951,7 @@
     margin-bottom: 0px !important;
     font-family: "Poppins";
     font-weight: 400;
-    font-size: 22px !important;
+    font-size: 18px !important;
     color: #003755;
     cursor: default;
     word-break: break-all;
@@ -976,8 +997,9 @@
 @media screen and (min-width: 369px) and (max-width: 445px){
     .home-body .home-map .map .popup .popup-username p a{
         font-family: "Poppins";
-        font-weight: 700;
-        font-size: 16px !important;
+        padding-left: 5px;
+        font-weight: 400;
+        font-size: 12px !important;
         color: #003755;
     }
 }
@@ -1112,10 +1134,11 @@
 
 .home-body .home-map .map .popup .button{
     margin-left: auto;
-    margin-top: 10px;
+    margin-right: auto;
+    margin-top: 5px;
     padding-left: 10px !important;
     padding-right: 10px !important;
-    padding-top: 10px !important;
+    padding-top: 5px !important;
     padding-bottom: 10px !important;
     width: fit-content;
     height: fit-content;
@@ -1153,7 +1176,7 @@
     .home-body .home-map .map .popup .button a.read-post{
         font-family: "Poppins";
         font-weight: 400;
-        font-size: 16px !important;
+        font-size: 12px !important;
         color: #FFFFFF !important;
         text-decoration: none;
     }
@@ -1185,7 +1208,7 @@
 
 .home-body .home-cots{
     position: relative;           
-    margin-top: 10px;              
+    margin-top: 15px;              
     margin-bottom: 10px;
     height: 250px;                
     width: 100%;                            
@@ -1223,31 +1246,37 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-family: "Poppins";
+    font-family: "Open Sans";
     font-weight: 400;
-    font-size: 16px !important;
+    font-size: 12px !important;
     color: #FFFFFF;
     text-align: justify !important;
     cursor: default;
 }
 
-.home-body .home-announcement > h1{
+.home-body .home-announcement h1{
     margin-top: 10px;
-    margin-bottom: 10px;
-    padding-left: 10px;
-    border-left: 4px solid #003755;
-    font-weight: 700;       
+    margin-bottom: 2px;
+    text-align: left;
+    font-weight: 600;       
     font-size: 28px;        
+}
+
+.home-body .home-announcement h3{
+    margin-top: 22px;
+    text-align: center;
+    margin-bottom: 5px;
+    font-weight: 600;       
+    font-size: 20px;        
 }
 
 .home-body .home-announcement .announcement{
     position: relative;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-top: 3px;
+    padding-bottom: 3px;
     height: 250px;                
-    border-radius: 5px !important;
     background-color: #FFFFFF;
     overflow-x: auto !important;
     overflow-y: hidden !important;
@@ -1260,7 +1289,6 @@
     margin-right: 30px;
     width: 100%;
     height: 100%;
-    border-radius: 5px;
     overflow: hidden !important;
 }
 
@@ -1298,8 +1326,8 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-family: "Poppins";
-    font-weight: 700;       
+    font-family: "Open Sans";
+    font-weight: 600;       
     font-size: 22px;
     color: #FFFFFF;                          
 }
@@ -1315,27 +1343,27 @@
 }
 
 .home-body .home-post > h1{
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding-left: 10px;
-    border-left: 4px solid #003755;
-    font-weight: 700;       
-    font-size: 28px;        
+    margin-top: 18px;
+    text-align: center;
+    margin-bottom: 5px;
+    font-weight: 600;       
+    font-size: 19px; 
 }
 
 .home-body .home-post .post{
     position: relative;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-top: 3px;
+    padding-bottom: 3px;
     height: 250px;                
-    border-radius: 5px !important;
     background-color: #FFFFFF;
     overflow-x: auto !important;
     overflow-y: hidden !important;
     white-space: nowrap;
 }
+
+
 
 .home-body .home-post .post-gallery{
     position: relative;
@@ -1343,7 +1371,6 @@
     margin-right: 10px;
     width: 100%;
     height: 100%;
-    border-radius: 5px;
     overflow: hidden !important;
 }
 
@@ -1381,8 +1408,9 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-family: "Poppins";
-    font-weight: 700;       
+    font-family: "Open Sans";
+    font-weight: 600; 
+    padding-bottom: 3px;      
     font-size: 22px;
     color: #FFFFFF;                          
 }

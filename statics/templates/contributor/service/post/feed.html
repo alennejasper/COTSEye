@@ -2,6 +2,8 @@
 {% load static %}
 
 {% block content %}
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
     <div class = "feed-body">
         <div class = "feed-section">
             <h1>POSTS FEED</h1>
@@ -10,9 +12,9 @@
         {% for post in valid_posts %}
             <div class = "feed">
                 <div class = "feed-header">
-                    <p><i class = "fas fa-user"></i>{{post.user | default:'None available'}}</p>
+                    <p><img src = "{{post.user.profile_photo.url}}">{{post.user | default:'None available'}}</p>
                     
-                    <p><i class = "fas fa-calendar-check"></i>{{post.capture_date | date:"M. d, Y" | default:'None available'}}</p>
+                    <p>{{post.capture_date | date:"M. d, Y" | default:'None available'}}</p>
                 </div>
                 
                 <img class = "feed-image" src = "{{post.post_photos.first.post_photo.url | default:'None available'}}">

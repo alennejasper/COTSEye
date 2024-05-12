@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from authentications.views import ContributorCheck, OfficerCheck, AdministratorCheck
 from collections import Counter
+from authentications.models import User
 from managements.models import *
 from reports.models import Post
 
@@ -39,9 +40,11 @@ def PublicServiceInterventionRead(request, id):
 def ContributorServiceIntervention(request):
     username = request.user.username
 
+    user_profile = User.objects.get(account = request.user)
+
     interventions = Intervention.objects.all()
 
-    context = {"username": username, "interventions": interventions}
+    context = {"username": username, "user_profile": user_profile, "interventions": interventions}
 
     return render(request, "contributor/service/intervention/intervention.html", context)
 
@@ -51,13 +54,15 @@ def ContributorServiceIntervention(request):
 def ContributorServiceInterventionRead(request, id):
     username = request.user.username
 
+    user_profile = User.objects.get(account = request.user)
+
     scheme = request.scheme
 
     host = request.META["HTTP_HOST"]
 
     intervention = Intervention.objects.get(id = id)
 
-    context = {"username": username, "scheme": scheme, "host": host, "intervention": intervention}
+    context = {"username": username, "user_profile": user_profile, "scheme": scheme, "host": host, "intervention": intervention}
 
     return render(request, "contributor/service/intervention/read.html", context)
 

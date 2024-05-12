@@ -40,17 +40,17 @@ def PublicServiceHome(request):
         try:
             map_posts = Post.objects.filter(post_status = 1)
 
-            map_statuses = Status.objects.all()
+            """ map_statuses = Status.objects.all() """
     
         except:
             map_posts = None
 
-            map_statuses = None
+            """ map_statuses = None """
 
     if not any(message.level in [messages.INFO, messages.SUCCESS, messages.ERROR] for message in messages.get_messages(request)):
         messages.info(request, username + ", " + "kindly see announcements within COTSEye to check for updates today.")
 
-    context = {"username": username, "map_posts": map_posts, "map_statuses": map_statuses, "latest_announcements": latest_announcements, "valid_posts": valid_posts}
+    context = {"username": username, "map_posts": map_posts, "latest_announcements": latest_announcements, "valid_posts": valid_posts}
     
     return render(request, "public/service/home/home.html", context)
 
@@ -278,23 +278,23 @@ def ContributorCheck(account):
 def ContributorServiceHome(request):
     username = request.user.username
 
+    user_profile = User.objects.get(account = request.user)
+
     latest_announcements = Announcement.objects.all().order_by("-release_date")[:3]
 
     valid_posts = Post.objects.filter(post_status = 1).order_by("-capture_date")[:3]
         
-    profile_photo = User.objects.get(account = request.user)
-
     try:
         map_posts = Post.objects.filter(post_status = 1)
 
-        map_statuses = Status.objects.all()
+        """ map_statuses = Status.objects.all() """
 
     except:
         map_posts = None
 
-        map_statuses = None
+        """ map_statuses = None """
     
-    context = {"username": username, "profile_photo": profile_photo, "map_posts": map_posts, "map_statuses": map_statuses, "latest_announcements": latest_announcements, "valid_posts": valid_posts}
+    context = {"username": username, "user_profile": user_profile, "map_posts": map_posts, "latest_announcements": latest_announcements, "valid_posts": valid_posts}
 
     return render(request, "contributor/service/home/home.html", context)
 
@@ -306,7 +306,9 @@ def ContributorServiceProfile(request):
 
     username = request.user.username
 
-    context = {"user": user, "username": username}
+    user_profile = User.objects.get(account = request.user)
+
+    context = {"user": user, "username": username, "user_profile": user_profile}
 
     return render(request, "contributor/service/profile/profile.html", context)
 
@@ -317,6 +319,8 @@ def ContributorServiceProfileUpdate(request):
     user = User.objects.get(account = request.user)
 
     username = request.user.username
+
+    user_profile = User.objects.get(account = request.user)
 
     if request.method == "POST":
         profile_form = ProfileForm(request.POST, request.FILES, instance = request.user.user)
@@ -333,7 +337,7 @@ def ContributorServiceProfileUpdate(request):
     else:
         profile_form = ProfileForm(request.user.user)
 
-    context = {"user": user, "username": username, "profile_form": profile_form}
+    context = {"user": user, "username": username, "user_profile": user_profile, "profile_form": profile_form}
     
     return render(request, "contributor/service/profile/update.html", context)
 
@@ -383,9 +387,11 @@ def ContributorServiceProfileUpdateFetch(request):
 def ContributorServiceFallback(request):
     contributor = request.user.username
 
+    contributor_profile = User.objects.get(account = request.user)
+
     fallback = "The COTSEye cannot keep in touch to the requested page today, as such is not found within the cache storage."
 
-    context = {"contributor": contributor, "fallback": fallback}
+    context = {"contributor": contributor, "contributor_profile": contributor_profile, "fallback": fallback}
     
     return render(request, "contributor/service/fallback/fallback.html", context)
 

@@ -363,5 +363,6 @@ nav.navigation-bottombar img:active{
 }
 
 .show{
+    position: fixed;
     display: block;
 }

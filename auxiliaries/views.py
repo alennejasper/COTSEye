@@ -75,9 +75,11 @@ def PublicServiceResource(request):
 def ContributorServiceAnnouncement(request):
     username = request.user.username
 
+    user_profile = User.objects.get(account = request.user)
+
     announcements = Announcement.objects.all()
 
-    context = {"username": username, "announcements": announcements}
+    context = {"username": username, "user_profile": user_profile, "announcements": announcements}
 
     return render(request, "contributor/service/announcement/announcement.html", context)
 
@@ -87,13 +89,15 @@ def ContributorServiceAnnouncement(request):
 def ContributorServiceAnnouncementRead(request, id): 
     username = request.user.username
 
+    user_profile = User.objects.get(account = request.user)
+
     scheme = request.scheme
 
     host = request.META["HTTP_HOST"]
 
     announcement = Announcement.objects.get(id = id)
 
-    context = {"username": username, "scheme": scheme, "host": host, "announcement": announcement}
+    context = {"username": username, "user_profile": user_profile, "scheme": scheme, "host": host, "announcement": announcement}
 
     return render(request, "contributor/service/announcement/read.html", context)
 
@@ -103,9 +107,11 @@ def ContributorServiceAnnouncementRead(request, id):
 def ContributorServiceInquiry(request):
     username = request.user.username
 
+    user_profile = User.objects.get(account = request.user)
+
     inquiries = Inquiry.objects.all()
 
-    context = {"username": username, "inquiries": inquiries}
+    context = {"username": username, "user_profile": user_profile, "inquiries": inquiries}
 
     return render(request, "contributor/service/inquiry/inquiry.html", context)
 
@@ -115,13 +121,15 @@ def ContributorServiceInquiry(request):
 def ContributorServiceMap(request):
     username = request.user.username
 
+    user_profile = User.objects.get(account = request.user)
+
     try:
         map_posts = Post.objects.filter(post_status = 1)
 
     except:
         map_posts = None
 
-    context = {"map_posts": map_posts, "username": username}
+    context = {"map_posts": map_posts, "username": username, "user_profile": user_profile}
 
     return render(request, "contributor/service/map/map.html", context)
 
@@ -129,11 +137,13 @@ def ContributorServiceMap(request):
 def ContributorServiceResource(request):
     username = request.user.username
 
+    user_profile = User.objects.get(account = request.user)
+
     resource_links = ResourceLink.objects.all()
 
     resource_files = ResourceFile.objects.all()
     
-    context = {"username": username, "resource_links": resource_links, "resource_files": resource_files}
+    context = {"username": username, "user_profile": user_profile, "resource_links": resource_links, "resource_files": resource_files}
     
     return render(request, "contributor/service/resource/resource.html", context)
 

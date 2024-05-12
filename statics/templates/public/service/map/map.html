@@ -126,7 +126,7 @@
                 {% for post in map_posts %}
                     var postMarker = L.marker([{{post.coordinates.latitude}}, {{post.coordinates.longitude}}], {icon: starfish});
                     
-                    postMarker.bindPopup("<div class = 'popup'>" + "<div class = 'popup-header'>" +  "<img src = '{{post.user.profile_photo.url | default:''}}'>" +  "<div class='popup-username'>" +  "<p><a>{{post.user | default:'None available'}}</a></p>" + "</div>" + "<i class = 'fa-solid fa-square-xmark popup-back'></i>" + "</div>" + "<div class = 'popup-post'>" + "<div class = 'post-gallery'>" + "<img src = '{{post.post_photos.all.first.post_photo.url}}'>" + "<div class = 'post-context'>" + "<p>{{post.capture_date | default:'None available'}}</p>" + "<a>{{post.coordinates | default:'0'}}</a>" + "</div>" + "</div>" + "</div>" + "<div class = 'button'><a class = 'read-post' href = '{% url 'Contributor Service Post Read' post.id %}'>Read</a></div>", {closeOnClick: false, autoClose: false});
+                    postMarker.bindPopup("<div class = 'popup'>" + "<div class = 'popup-header'>" +  "<img src = '{{post.user.profile_photo.url | default:''}}'>" +  "<div class='popup-username'>" +  "<p><a>{{post.user | default:'None available'}}</a></p>" + "</div>" + "<i class = 'fa-solid fa-square-xmark popup-back'></i>" + "</div>" + "<div class = 'popup-post'>" + "<div class = 'post-gallery'>" + "<img src = '{{post.post_photos.all.first.post_photo.url}}'>" + "<div class = 'post-context'>" + "<p>{{post.capture_date | default:'None available'}}</p>" + "<a>{{post.coordinates | default:'0'}}</a>" + "</div>" + "</div>" + "</div>" + "<div class = 'button'><a class = 'read-post' href = '{% url 'Post Valid Read Redirect' %}'>Read</a></div>", {closeOnClick: false, autoClose: false});
 
                     postMarker.on("popupopen", function(e){
                         var popup = e.popup;
@@ -150,7 +150,7 @@
 
                 var map = document.getElementsByClassName("map")[0];
 
-                var background = L.tileLayer("http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}", {minZoom: 11, maxZoom: 15, subdomains:["mt0", "mt1", "mt2", "mt3"], attribution: "Google"});
+                var background = L.tileLayer("http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}", {minZoom: 11, maxZoom: 15, subdomains:["mt0", "mt1", "mt2", "mt3"]});
 
                 var map = L.map(map, {zoomControl: true, scrollWheelZoom: false, dragging: true, maxBounds: [[5.266008, 124.277344], [6.489983, 126.035156]], layers: [background, map_posts]}).setView([5.9656, 125.1929], 11);
                 
@@ -162,7 +162,7 @@
                     map.panTo(map.unproject(popup), {animate: true});
                 });
 
-                map.attributionControl.setPosition("bottomleft");
+                map.attributionControl.remove();
 
                 var bases = {};
                 
@@ -232,14 +232,14 @@
 
                 chart: {
                     height: 350,
-                    type: 'line',
+                    type: 'bar',
                     zoom: {
                         enabled: false
                     }
                 },
 
                 title: {
-                    text: 'Sample Line Chart',
+                    text: 'Sample Bar Chart',
                     align: 'left'
                 },
 
@@ -247,10 +247,9 @@
                     categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug']
                 }
             };
-    
+
             var chart = new ApexCharts(document.querySelector(".chart"), options);
 
             chart.render();
         </script>
-    </div>
 {% endblock content %}

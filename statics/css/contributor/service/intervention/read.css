@@ -1,0 +1,117 @@
+.intervention-body{
+    position: relative;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100vw;
+    height: 100%;
+    color: #000000;
+}
+
+.intervention-body .intervention-section{
+    display: flex;                   
+    align-items: center; 
+    justify-content: center;          
+    flex-direction: column;
+    width: 100%;                     
+    text-align: center;                                   
+}
+
+.intervention-body .intervention-section h1{
+    text-align: center;     
+    font-weight: 700;       
+    font-size: 22px;        
+    letter-spacing: 2.5px;
+}
+
+.intervention-body .intervention{
+    display: grid;
+    row-gap: 10px;
+    border: unset !important;
+}
+
+.intervention-body .intervention .read-intervention-header{
+    display: grid;
+    row-gap: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.intervention-body .intervention .read-intervention-header p{
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: "Poppins";
+    font-weight: 400;
+    font-size: 14px !important;
+    color: #003755;
+}
+
+.intervention-body .intervention .read-intervention-header i{
+    margin-right: 10px;
+    font-size: 20px;
+    color: #003755;  
+}
+
+.intervention-body .intervention .intervention-gallery{
+    position: relative;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    height: 250px;                
+    border-radius: 5px !important;
+    background-color: #FFFFFF;
+}
+
+.intervention-body .intervention .intervention-gallery img{
+    position: relative;
+    display: inline-block;
+    place-items: center;
+    object-fit: cover;
+    margin-right: 10px;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    overflow: hidden !important;
+}
+
+.intervention-body .intervention p{
+    display: flex;
+    align-items: center;
+    font-family: "Poppins";
+    font-weight: 400;
+    font-size: 14px !important;
+    color: #003755;
+}
+
+.intervention-body .intervention i{
+    margin-right: 10px;
+    font-size: 20px;
+    color: #003755;  
+}
+
+.intervention-body .intervention .button{
+    margin-left: auto;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    width: fit-content;
+    height: 100% !important;
+}
+
+.intervention-body .intervention a{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    border-radius: 5px;
+    outline: none !important;
+    font-family: "Poppins";
+    font-weight: 400;
+    font-size: 14px;
+    color: #FFFFFF !important;
+    background-color: #003755 !important;
+    text-decoration: none;
+    cursor: pointer;  
+}

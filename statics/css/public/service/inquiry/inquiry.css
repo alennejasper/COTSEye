@@ -1,0 +1,57 @@
+.inquiry-body{
+    position: relative;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100vw;
+    height: 100%;
+    color: #000000;
+}
+
+.inquiry-body .inquiry-section{
+    display: flex;                   
+    align-items: center; 
+    justify-content: center;          
+    flex-direction: column;
+    width: 100%;                     
+    text-align: center;                                   
+}
+
+.inquiry-body .inquiry-section h1{
+    text-align: center;     
+    font-weight: 700;       
+    font-size: 22px;     
+    color: #003755;   
+    letter-spacing: 2.5px;
+}
+
+.inquiry-body .inquiry{
+    margin-bottom: 10px;
+}
+
+.inquiry-body .inquiry:last-child{
+    margin-bottom: 0px;
+}
+
+.inquiry-body .inquiry .inquiry-context{
+    display: grid;
+    row-gap: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #003755;
+}
+
+.inquiry-body .inquiry .inquiry-context h3{
+    font-family: "Poppins";
+    font-weight: 700;
+    font-size: 22px !important;
+    color: #003755;
+}
+
+.inquiry-body .inquiry .inquiry-context p{
+    font-family: "Poppins";
+    font-weight: 400;
+    font-size: 14px !important;
+    color: #003755;
+}

@@ -1,0 +1,109 @@
+.announcement-body{
+    position: relative;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100vw;
+    height: 100%;
+    color: #000000;
+}
+
+.announcement-body .announcement-section{
+    display: flex;                   
+    align-items: center; 
+    justify-content: center;          
+    flex-direction: column;
+    width: 100%;                     
+    text-align: center;                                   
+}
+
+.announcement-body .announcement-section h1{
+    text-align: center;     
+    font-weight: 700;       
+    font-size: 22px;        
+    letter-spacing: 2.5px;
+}
+
+.announcement-body .announcement{
+    margin-bottom: 10px;
+    border: 1px solid #003755 !important;
+}
+
+.announcement-body .announcement:last-child{
+    margin-bottom: 0px;
+
+}
+
+.announcement-body .announcement .announcement-header{
+    display: grid;
+    row-gap: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.announcement-body .announcement .announcement-header p{
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: "Poppins";
+    font-weight: 400;
+    font-size: 14px !important;
+    color: #003755;
+}
+
+.announcement-body .announcement .announcement-header i{
+    margin-right: 10px;
+    font-size: 20px;
+    color: #003755;  
+}
+
+.announcement-body .announcement img.announcement-image{
+    place-items: center;
+    object-fit: cover;
+    width: 100%;
+    height: 250px;
+}
+
+.announcement-body .announcement .announcement-context{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.announcement-body .announcement .announcement-context h1{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: "Poppins";
+    font-weight: 700;       
+    font-size: 22px;
+    color: #003755;  
+}
+
+.announcement-body .announcement .announcement-context .button{
+    margin-left: auto;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    width: fit-content;
+    height: 100% !important;
+}
+
+.announcement-body .announcement .announcement-context a{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    border-radius: 5px;
+    outline: none !important;
+    font-family: "Poppins";
+    font-weight: 400;
+    font-size: 14px;
+    color: #FFFFFF !important;
+    background-color: #003755 !important;
+    text-decoration: none;
+    cursor: pointer;  
+}

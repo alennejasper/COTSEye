@@ -2,62 +2,29 @@
 {% load static %}
 
 {% block content %}
-    <!DOCTYPE html>
-        
-    <html lang = "en"> 
-        <head>
-            <link href = "https://cdn.jsdelivr.net/npm/tailwindcss@2.0.2/dist/tailwind.min.css" rel = "stylesheet">
-            <style>
-                .post-header{
-                    display: flex;
-                    justify-content: space-between;
-                    padding: 12px;
-                    align-items: center;
-                }
-
-                .post-image{
-                    width: 100%;
-                    object-fit: cover;
-                }
-
-                .post-info{
-                    padding: 10px 15px;
-                }
-
-                .icon{
-                    margin-right: 8px;
-                }
-            </style>
-        </head>
-
-        <body>
-            <div class = "fixed inset-0 z-[-10] h-screen w-full"></div>
-
-            <div class = "flex flex-col w-full px-7 items-center justify-center relative text-center">
-                <h1 style = "margin-bottom: 10px; font-weight: bold;" class = "text-3xl text-black">ANNOUNCEMENTS</h1>
-            </div>
-
-            {% for announcement in announcements  %}
-                <div class = "w-full border bg-white shadow">
-                    <div class = "post-header">
-                        <p class = "flex items-center text-gray-800"><i class="fas fa-user icon"></i>{{announcement.user | default:'Anonymous'}}</p>
-                        
-                        <p class = "flex items-center text-gray-800"><i class="fas fa-calendar-check icon"></i>{{announcement.release_date | date:"M d, Y" | default:'Date not available'}}</p>
-                    </div>
+    <div class = "announcement-body">
+        <div class = "announcement-section">
+            <h1>ANNOUNCEMENTS</h1>
+        </div>
+    
+        {% if announcement in announcements %}
+            <div class = "announcement">
+                <div class = "announcement-header">
+                    <p><i class = "fas fa-user"></i>{{announcement.user | default:'None available'}}</p>
                     
-                    <img class = "post-image" src="{{announcement.announcement_photo.url | default:'/statics/assets/announcements/default.png'}}" alt = "Post Image">
+                    <p><i class = "fas fa-calendar-check"></i>{{announcement.release_date | date:"M. d, Y" | default:'None available'}}</p>
+                </div>
+                
+                <img class = "announcement-image" src = "{{announcement.announcement_photo.url | default:'None available'}}">
+
+                <div class = "announcement-context">
+                    <h1>{{announcement.place | default:'None available'}}</h1>
                     
-                    <div class = "post-info">
-                        <h1 class = "font-semibold text-lg">{{ announcement.place | default:'Location not available' }}</h1>
-                        
-                        <div class = "mt-4">
-                            <a href="{% url 'Public Service Announcement Read' announcement.id %}" class = "see-more">
-                                See more
-                            </a>
-                        </div>
+                    <div class = "button">
+                        <a href = "{% url 'Public Service Announcement Read' announcement.id %}">See more</a>
                     </div>
                 </div>
-            {% endfor %}
-        </body>
-    </html>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock content %}
