@@ -2,7 +2,6 @@
 {% load static %}
 
 {% block content %}
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
     <div class = "home-body">
         <div class = "home-section">
             <h1>COTSEYE</h1>
@@ -129,7 +128,7 @@
                 {% for post in map_posts %}
                     var postMarker = L.marker([{{post.coordinates.latitude}}, {{post.coordinates.longitude}}], {icon: starfish});
                     
-                    postMarker.bindPopup("<div class = 'popup'>" + "<div class = 'popup-header'>" +  "<img src = '{{post.user.profile_photo.url | default:''}}'>" +  "<div class='popup-username'>" +  "<p><a>{{post.user | default:'None available'}}</a></p>" + "</div>" + "<i class = 'fa-solid fa-square-xmark popup-back'></i>" + "</div>" + "<div class = 'popup-post'>" + "<div class = 'post-gallery'>" + "<img src = '{{post.post_photos.all.first.post_photo.url}}'>" + "<div class = 'post-context'>" + "<p>{{post.capture_date | default:'None available'}}</p>" + "<a>{{post.coordinates | default:'0'}}</a>" + "</div>" + "</div>" + "</div>" + "<div class = 'button'><a class = 'read-post' href = '{% url 'Post Valid Read Redirect' %}'>Read</a></div>", {closeOnClick: false, autoClose: false});
+                    postMarker.bindPopup("<div class = 'popup'>" + "<div class = 'popup-header'>" +  "<img src = '{{post.user.profile_photo.url | default:''}}'>" +  "<div class='popup-username'>" +  "<p><a>{{post.user | default:'None available'}}</a></p>" + "</div>" + "<i class = 'fa-solid fa-square-xmark popup-back'></i>" + "</div>" + "<div class = 'popup-post'>" + "<div class = 'post-gallery'>" + "<img src = '{{post.post_photos.all.first.post_photo.url}}'>" + "<div class = 'post-context'>" + "<p>{{post.capture_date | default:'None available'}}</p>" + "<a>{{post.location | default:'None available'}}</a>" + "</div>" + "</div>" + "</div>" + "<div class = 'button'><a class = 'read-post' href = '{% url 'Post Valid Read Redirect' %}'>Read</a></div>", {closeOnClick: false, autoClose: false});
 
                     postMarker.on("popupopen", function(e){
                         var popup = e.popup;
@@ -172,7 +171,7 @@
                 var overlays = {
                     "Posts": map_posts, 
 
-                    "Statuses": map_statuses
+                    "COTS Status": map_statuses
                 };
 
                 var management = L.control.layers(bases, overlays).addTo(map);
@@ -213,7 +212,7 @@
                 legend.addTo(map);
 
                 map.on("overlayadd overlayremove", function(event){
-                    if (event.name === "Statuses"){
+                    if (event.name === "COTS Status"){
                         legend.update();
                     }
                 });
@@ -225,18 +224,17 @@
         </script>
 
         <div class = "home-cots">
-            <img src = "/statics/assets/cotpic.jpeg">
+            <img src = "{% static 'assets/cotpic.jpeg' %}">
             
-
             <div class = "cots-context">
-                <h2 class="wic">CROWN OF THORNS STARFISH (COTS)</h2>
+                <h1>CROWN-OF-THORNS STARFISH (COTS)</h1>
 
                 <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias necessitatibus dolorum molestiae natus, asperiores hic repellendus inventore voluptatibus soluta minima id laborum. Veritatis accusantium iste vel ratione</p>
             </div>
         </div>
 
         <div class = "home-announcement">
-            <h3>ANNOUNCEMENTS</h3>
+            <h1>ANNOUNCEMENTS</h1>
             
             <div class = "announcement">
                 {% for announcement in latest_announcements %}
@@ -251,12 +249,12 @@
                             <p>{{announcement.context | default:'None available'}}</p>
                         </div>
                     </div>
-            {% endfor %}
+                {% endfor %}
             </div>
         </div>
 
         <div class = "home-post">
-            <h1>PUBLIC POSTS</h1>
+            <h1>CONTRIBUTOR POSTS</h1>
 
             <div class = "post">
                 {% for post in valid_posts %}

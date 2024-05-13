@@ -979,13 +979,7 @@ def AdministratorControlStatisticsStatus(request):
 
     results = None
 
-    caughtoverall_count = None
-
-    barangay = None
-
-    municipality = None
-
-    capture_count = None
+    valid_posts = 0
 
     if request.method == "GET":
         from_date = request.GET.get("from_date")
@@ -1019,8 +1013,12 @@ def AdministratorControlStatisticsStatus(request):
         if location and not location == "each_location":
             results = Status.objects.filter(onset_date__range = [from_date, to_date], location = location)
 
+            valid_posts = Post.objects.filter(location = location, post_status = 1).count()
+
         elif not location and location == "each_location":
             results = Status.objects.all(onset_date__range = [from_date, to_date])
+
+            valid_posts = Post.objects.filter(post_status = 1).count()
         
         elif not location and not location == "each_location":
             username = request.user.username
@@ -1047,40 +1045,13 @@ def AdministratorControlStatisticsStatus(request):
 
             messages.info(request, username + ", " + "kindly filter statuses within COTSEye to generate for reports today.")
 
-        elif results is not None:
-            valid_posts = Post.objects.filter(address = location, post_status = 1)
-
-            try:
-                caughtoverall_count = sum(caught_overall.caught_overall for caught_overall in results)
-            
-            except:
-                caughtoverall_count = ""
-            
-            try:
-                barangay = [str(location.location.barangay) for location in results]
-
-            except:
-                barangay = ""
-
-            try:
-                municipality = [str(location.location.municipality) for location in results]
-
-            except:
-                municipality = ""
-
-            try:
-                capture_count = valid_posts.count()
-            
-            except:
-                capture_count = 0
-
         elif not results:
             username = request.user.username
 
             messages.error(request, username + ", " + "information input is impossible within COTSEye.")
     
 
-    context = {"username": username, "options": options, "results": results, "caughtoverall_count": caughtoverall_count, "municipality": municipality, "barangay": barangay, "capture_count": capture_count}
+    context = {"username": username, "options": options, "results": results, "from_date": from_date, "to_date": to_date, "valid_posts": valid_posts}
 
     return render(request, "admin/control/status/status.html", context)
 

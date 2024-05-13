@@ -3,7 +3,7 @@
 
 
 {% block content %}
-<div class = "announcementread">
+<div class = "announcementread-body">
     <div class = "announcementread-section">
         <h1>ANNOUNCEMENT DETAILS</h1>
     </div>
@@ -13,16 +13,16 @@
             <div class = "announcementread-header">
                 <p><img src = "{{announcement.user.profile_photo.url}}"></i>{{announcement.user | default:'None available'}}</p>
 
-                <p><i class = "fa-solid fa-calendar-check"></i>{{announcement.release_date | date:'M. j, Y' | default:'None available'}}</p>
-
-                <p><i class = "fa-solid fa-arrow-up-short-wide"></i>{{announcement.caught_amount | default:'0'}}</p>
+                <p>{{announcement.release_date | date:'m/d/y' | default:'None available'}}</p>
             </div>
 
             <div class = "announcementread-gallery">
                 <img src = "{{announcement.announcement_photo.url}}">
             </div>
 
-            <p><i class = "fa-solid fa-location-dot"></i>{{announcement.location | default:'None available'}}</p>
+            <div class = "announcementread-origin">
+                <p>{{announcement.location | default:'None available'}}</p>
+            </div>
 
             <p>{{announcement.description | default:'None available'}}</p>
 

@@ -128,7 +128,7 @@
                 {% for post in map_posts %}
                     var postMarker = L.marker([{{post.coordinates.latitude}}, {{post.coordinates.longitude}}], {icon: starfish});
                     
-                    postMarker.bindPopup("<div class = 'popup'>" + "<div class = 'popup-header'>" +  "<img src = '{{post.user.profile_photo.url | default:''}}'>" +  "<div class='popup-username'>" +  "<p><a>{{post.user | default:'None available'}}</a></p>" + "</div>" + "<i class = 'fa-solid fa-square-xmark popup-back'></i>" + "</div>" + "<div class = 'popup-post'>" + "<div class = 'post-gallery'>" + "<img src = '{{post.post_photos.all.first.post_photo.url}}'>" + "<div class = 'post-context'>" + "<p>{{post.capture_date | default:'None available'}}</p>" + "<a>{{post.coordinates | default:'0'}}</a>" + "</div>" + "</div>" + "</div>" + "<div class = 'button'><a class = 'read-post' href = '{% url 'Post Valid Read Redirect' %}'>Read</a></div>", {closeOnClick: false, autoClose: false});
+                    postMarker.bindPopup("<div class = 'popup'>" + "<div class = 'popup-header'>" +  "<img src = '{{post.user.profile_photo.url | default:''}}'>" +  "<div class='popup-username'>" +  "<p><a>{{post.user | default:'None available'}}</a></p>" + "</div>" + "<i class = 'fa-solid fa-square-xmark popup-back'></i>" + "</div>" + "<div class = 'popup-post'>" + "<div class = 'post-gallery'>" + "<img src = '{{post.post_photos.all.first.post_photo.url}}'>" + "<div class = 'post-context'>" + "<p>{{post.capture_date | default:'None available'}}</p>" + "<a>{{post.location | default:'None available'}}</a>" + "</div>" + "</div>" + "</div>" + "<div class = 'button'><a class = 'read-post' href = '{% url 'Post Valid Read Redirect' %}'>Read</a></div>", {closeOnClick: false, autoClose: false});
 
                     postMarker.on("popupopen", function(e){
                         var popup = e.popup;
@@ -171,7 +171,7 @@
                 var overlays = {
                     "Posts": map_posts, 
 
-                    "Statuses": map_statuses
+                    "COTS Status": map_statuses
                 };
 
                 var management = L.control.layers(bases, overlays).addTo(map);
@@ -212,7 +212,7 @@
                 legend.addTo(map);
 
                 map.on("overlayadd overlayremove", function(event){
-                    if (event.name === "Statuses"){
+                    if (event.name === "COTS Status"){
                         legend.update();
                     }
                 });

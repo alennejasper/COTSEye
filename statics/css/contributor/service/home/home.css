@@ -1,6 +1,5 @@
 .home-body{
     position: relative;
-
     width: 100vw;
     height: 100%;
     color: #000000;
@@ -18,29 +17,44 @@
 .home-body .home-section h1{
     text-align: center;     
     font-weight: 600;       
-    font-size: 24px;        
+    font-size: 22px;        
     font-family: "Open Sans";
 }
 
-.wic{
-    text-align: left;     
-    font-weight: 600;       
-    font-size: 18px;
-    font-family: "Open Sans";
-    color: #FFFFFF;
-}
-
-
-.home-body .home-section P{
+.home-body .home-section p{
     text-align: center;
-    padding-left: 39px;    
-    padding-right: 39PX;
-    padding-top: 3px;
+    padding-left: 30px;    
+    padding-right: 30px;
+    padding-top: 5px;
     padding-bottom: 20px;
     font-weight: 400;       
-    font-size: 13px;        
+    font-size: 14px;        
     font-family: "Open Sans";
     color: #505050;
+}
+
+.home-body{
+    position: relative;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100vw;
+    height: 100%;
+    color: #000000;
+}
+
+.home-body .map-section{
+    display: flex;                   
+    align-items: center; 
+    justify-content: center;          
+    flex-direction: column;
+    width: 100%;                     
+    text-align: center;                                   
+}
+
+.home-body .map-section h1{
+    text-align: center;     
+    font-weight: 700;       
+    font-size: 22px;        
 }
 
 .home-body .home-map{ 
@@ -52,20 +66,22 @@
 
 @media screen and (min-width: 320px) and (max-width: 935px){
     .home-body .home-map{ 
-        height: 500px;
+        height: 375px;
     }
 }
 
 .home-body .home-map .map{
+    margin-top: 10px;
+    margin-bottom: 10px;
     width: 100%;
     height: 100vh;
- 
+    border-radius: 5px; 
     z-index: 1;
 }
 
 @media screen and (min-width: 320px) and (max-width: 935px){
     .home-body .home-map .map{
-        height: 500px;
+        height: 375px;
     }
 }
 
@@ -192,75 +208,75 @@
 .home-body .home-map .map .legend .popup-header p{
     margin-top: 0px !important;
     margin-bottom: 0px !important;
-    font-family: "Poppins";
+    font-family: "Open Sans";
     font-weight: 400;
     font-size: 22px !important;
-    color: #003755;
+    color: #000000;
     text-align: center;
     cursor: default;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .home-body .home-map .map .legend .popup-header p{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 400;
         font-size: 14px !important;
-        color: #003755;
+        color: #000000;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .home-body .home-map .map .legend .popup-header p{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 400;
         font-size: 12px !important;
-        color: #003755;
+        color: #000000;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .home-body .home-map .map .legend .popup-header p{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 400;
         font-size: 12px !important;
-        color: #003755;
+        color: #000000;
     }
 }
 
 .home-body .home-map .map .legend .popup-header p a{
     margin-top: 0px !important;
     margin-bottom: 0px !important;
-    font-family: "Poppins";
+    font-family: "Open Sans";
     font-weight: 700;
     font-size: 22px !important;
-    color: #003755;
+    color: #000000;
     cursor: default;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .home-body .home-map .map .legend .popup-header p a{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 700;
         font-size: 14px !important;
-        color: #003755;
+        color: #000000;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .home-body .home-map .map .legend .popup-header p a{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 700;
         font-size: 12px !important;
-        color: #003755;
+        color: #000000;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .home-body .home-map .map .legend .popup-header p a{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 700;
         font-size: 12px !important;
-        color: #003755;
+        color: #000000;
     }
 }
 
@@ -306,37 +322,37 @@
 .home-body .home-map .map .legend .popup-statistics p{
     margin-top: 0px !important;
     margin-bottom: 0px !important;
-    font-family: "Poppins";
+    font-family: "Open Sans";
     font-weight: 400;
     font-size: 22px !important;
-    color: #003755;
+    color: #000000;
     cursor: default;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .home-body .home-map .map .legend .popup-statistics p{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 400;
         font-size: 16px !important;
-        color: #003755;
+        color: #000000;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .home-body .home-map .map .legend .popup-statistics p{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 400;
         font-size: 14px !important;
-        color: #003755;
+        color: #000000;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .home-body .home-map .map .legend .popup-statistics p{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 400;
         font-size: 12px !important;
-        color: #003755;
+        color: #000000;
     }
 }
 
@@ -344,37 +360,37 @@
     display: inline-block !important;
     margin-top: 0px !important;
     margin-bottom: 0px !important;
-    font-family: "Poppins";
+    font-family: "Open Sans";
     font-weight: 700;
     font-size: 22px !important;
-    color: #003755;
+    color: #000000;
     cursor: default;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .home-body .home-map .map .legend .popup-statistics p a{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 700;
         font-size: 16px !important;
-        color: #003755;
+        color: #000000;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .home-body .home-map .map .legend .popup-statistics p a{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 700;
         font-size: 14px !important;
-        color: #003755;
+        color: #000000;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .home-body .home-map .map .legend .popup-statistics p a{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 700;
         font-size: 12px !important;
-        color: #003755;
+        color: #000000;
     }
 }
 
@@ -385,11 +401,11 @@
     padding-bottom: 10px;
     width: 100%;
     border-radius: 5px;
-    font-family: "Poppins";
+    font-family: "Open Sans";
     font-weight: 400;
     font-size: 22px !important;
     background: #FFFFFF !important;
-    color: #003755;
+    color: #000000;
     cursor: default;
 }
 
@@ -399,10 +415,10 @@
         padding-right: 10px;
         padding-top: 10px;
         padding-bottom: 10px;
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 400;
         font-size: 16px !important;
-        color: #003755;
+        color: #000000;
     }
 }
 
@@ -412,10 +428,10 @@
         padding-right: 10px;
         padding-top: 10px;
         padding-bottom: 10px;
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 400;
         font-size: 14px !important;
-        color: #003755;
+        color: #000000;
     }
 }
 
@@ -425,47 +441,47 @@
         padding-right: 10px;
         padding-top: 10px;
         padding-bottom: 10px;
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 400;
         font-size: 12px !important;
-        color: #003755;
+        color: #000000;
     }
 }
 
 .home-body .home-map .map .leaflet-control-attribution a{
     margin-top: 0px !important;
     margin-bottom: 0px !important;
-    font-family: "Poppins";
+    font-family: "Open Sans";
     font-weight: 700;
     font-size: 22px !important;
-    color: #003755;
+    color: #000000;
     cursor: default;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .home-body .home-map .map .leaflet-control-attribution a{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 700;
         font-size: 16px !important;
-        color: #003755;
+        color: #000000;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .home-body .home-map .map .leaflet-control-attribution a{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 700;
         font-size: 14px !important;
-        color: #003755;
+        color: #000000;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .home-body .home-map .map .leaflet-control-attribution a{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 700;
         font-size: 12px !important;
-        color: #003755;
+        color: #000000;
     }
 }
 
@@ -476,37 +492,37 @@
 .home-body .home-map .map .leaflet-control-attribution span{
     margin-top: 0px !important;
     margin-bottom: 0px !important;
-    font-family: "Poppins";
+    font-family: "Open Sans";
     font-weight: 400;
     font-size: 22px !important;
-    color: #003755;
+    color: #000000;
     cursor: default;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .home-body .home-map .map .leaflet-control-attribution span{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 400;
         font-size: 16px !important;
-        color: #003755;
+        color: #000000;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .home-body .home-map .map .leaflet-control-attribution span{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 400;
         font-size: 14px !important;
-        color: #003755;
+        color: #000000;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .home-body .home-map .map .leaflet-control-attribution span{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 400;
         font-size: 12px !important;
-        color: #003755;
+        color: #000000;
     }
 }
 
@@ -540,7 +556,7 @@
     padding-right: 10px !important;
     padding-top: 10px !important;
     padding-bottom: 10px !important;
-    font-family: "Poppins" !important;
+    font-family: "Open Sans" !important;
     font-weight: 200 !important;
     font-size: 22px !important;
     color: #FFFFFF !important;
@@ -549,7 +565,7 @@
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .home-body .home-map .map .leaflet-control-layers-list{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 200;
         font-size: 16px !important;
         color: #FFFFFF !important;
@@ -559,7 +575,7 @@
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .home-body .home-map .map .leaflet-control-layers-list{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 200;
         font-size: 14px !important;
         color: #FFFFFF !important;
@@ -569,7 +585,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .home-body .home-map .map .leaflet-control-layers-list{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 200;
         font-size: 12px !important;
         color: #FFFFFF !important;
@@ -764,83 +780,83 @@
 .home-body .home-map .map .popup .popup-place p{
     margin-top: 0px !important;
     margin-bottom: 0px !important;
-    font-family: "Poppins";
+    font-family: "Open Sans";
     font-weight: 400;
     font-size: 22px !important;
-    color: #003755;
+    color: #000000;
     cursor: default;
 }
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .home-body .home-map .map .popup .popup-place p{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 400;
         font-size: 20px !important;
-        color: #003755;
+        color: #000000;
     }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .home-body .home-map .map .popup .popup-place p{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 400;
         font-size: 18px !important;
-        color: #003755;
+        color: #000000;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .home-body .home-map .map .popup .popup-place p{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 400;
         font-size: 16px !important;
-        color: #003755;
+        color: #000000;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .home-body .home-map .map .popup .popup-place p{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 400;
         font-size: 14px !important;
-        color: #003755;
+        color: #000000;
     }
 }
 
 .home-body .home-map .map .popup .popup-place p a{
     margin-top: 0px !important;
     margin-bottom: 0px !important;
-    font-family: "Poppins";
+    font-family: "Open Sans";
     font-weight: 700;
     font-size: 22px !important;
-    color: #003755;
+    color: #000000;
     cursor: default;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .home-body .home-map .map .popup .popup-place p a{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 700;
         font-size: 16px !important;
-        color: #003755;
+        color: #000000;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .home-body .home-map .map .popup .popup-place p a{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 700;
         font-size: 14px !important;
-        color: #003755;
+        color: #000000;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .home-body .home-map .map .popup .popup-place p a{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 700;
         font-size: 12px !important;
-        color: #003755;
+        color: #000000;
     }
 }
 
@@ -859,74 +875,74 @@
 .home-body .home-map .map .popup .popup-statistics p{
     margin-top: 0px !important;
     margin-bottom: 0px !important;
-    font-family: "Poppins";
+    font-family: "Open Sans";
     font-weight: 400;
     font-size: 22px !important;
-    color: #003755;
+    color: #000000;
     cursor: default;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .home-body .home-map .map .popup .popup-statistics p{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 400;
         font-size: 16px !important;
-        color: #003755;
+        color: #000000;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .home-body .home-map .map .popup .popup-statistics p{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 400;
         font-size: 14px !important;
-        color: #003755;
+        color: #000000;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .home-body .home-map .map .popup .popup-statistics p{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 400;
         font-size: 12px !important;
-        color: #003755;
+        color: #000000;
     }
 }
 
 .home-body .home-map .map .popup .popup-statistics p a{
     margin-top: 0px !important;
     margin-bottom: 0px !important;
-    font-family: "Poppins";
+    font-family: "Open Sans";
     font-weight: 700;
     font-size: 22px !important;
-    color: #003755;
+    color: #000000;
     cursor: default;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .home-body .home-map .map .popup .popup-statistics p a{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 700;
         font-size: 16px !important;
-        color: #003755;
+        color: #000000;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .home-body .home-map .map .popup .popup-statistics p a{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 700;
         font-size: 14px !important;
-        color: #003755;
+        color: #000000;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .home-body .home-map .map .popup .popup-statistics p a{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 700;
         font-size: 12px !important;
-        color: #003755;
+        color: #000000;
     }
 }
 
@@ -946,28 +962,32 @@
 }
 
 .home-body .home-map .map .popup .popup-username p{
+    margin-left: 10px !important;
+    margin-right: 10px !important;
     margin-top: 0px !important;
     margin-bottom: 0px !important;
-    font-family: "Poppins";
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: "Open Sans";
     font-weight: 400;
-    font-size: 18px !important;
-    color: #003755;
+    font-size: 22px !important;
+    color: #000000;
     cursor: default;
-    word-break: break-all;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .home-body .home-map .map .popup .popup-username p{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 400;
         font-size: 16px !important;
-        color: #003755;
+        color: #000000;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .home-body .home-map .map .popup .popup-username p{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 400;
         font-size: 14px !important;
         color: #003755;
@@ -976,48 +996,47 @@
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .home-body .home-map .map .popup .popup-username p{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 400;
         font-size: 12px !important;
-        color: #003755;
+        color: #000000;
     }
 }
 
 .home-body .home-map .map .popup .popup-username p a{
     margin-top: 0px !important;
     margin-bottom: 0px !important;
-    font-family: "Poppins";
+    font-family: "Open Sans";
     font-weight: 700;
     font-size: 22px !important;
-    color: #003755;
+    color: #000000;
     cursor: default;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .home-body .home-map .map .popup .popup-username p a{
-        font-family: "Poppins";
-        padding-left: 5px;
-        font-weight: 400;
-        font-size: 12px !important;
-        color: #003755;
+        font-family: "Open Sans";
+        font-weight: 700;
+        font-size: 16px !important;
+        color: #000000;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .home-body .home-map .map .popup .popup-username p a{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 700;
         font-size: 14px !important;
-        color: #003755;
+        color: #000000;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .home-body .home-map .map .popup .popup-username p a{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 700;
         font-size: 12px !important;
-        color: #003755;
+        color: #000000;
     }
 }
 
@@ -1062,7 +1081,7 @@
 .home-body .home-map .map .popup .popup-post .post-gallery .post-context p{
     margin-top: 0px;
     margin-bottom: 0px;
-    font-family: "Poppins";
+    font-family: "Open Sans";
     font-weight: 400;
     font-size: 22px !important;
     color: #FFFFFF;
@@ -1070,7 +1089,7 @@
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .home-body .home-map .map .popup .popup-post .post-gallery .post-context p{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 400;
         font-size: 16px !important;
         color: #FFFFFF;
@@ -1079,7 +1098,7 @@
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .home-body .home-map .map .popup .popup-post .post-gallery .post-context p{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 400;
         font-size: 14px !important;
         color: #FFFFFF;
@@ -1088,7 +1107,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .home-body .home-map .map .popup .popup-post .post-gallery .post-context p{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 400;
         font-size: 12px !important;
         color: #FFFFFF;
@@ -1098,7 +1117,7 @@
 .home-body .home-map .map .popup .popup-post .post-gallery .post-context a{
     margin-top: 0px !important;
     margin-bottom: 0px !important;
-    font-family: "Poppins";
+    font-family: "Open Sans";
     font-weight: 700;
     font-size: 22px !important;
     color: #FFFFFF;
@@ -1106,7 +1125,7 @@
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .home-body .home-map .map .popup .popup-post .post-gallery .post-context a{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 700;
         font-size: 16px !important;
         color: #FFFFFF;
@@ -1115,7 +1134,7 @@
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .home-body .home-map .map .popup .popup-post .post-gallery .post-context a{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 700;
         font-size: 14px !important;
         color: #FFFFFF;
@@ -1124,7 +1143,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .home-body .home-map .map .popup .popup-post .post-gallery .post-context a{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 700;
         font-size: 12px !important;
         color: #FFFFFF;
@@ -1133,12 +1152,11 @@
 
 .home-body .home-map .map .popup .button{
     margin-left: auto;
-    margin-right: auto;
-    margin-top: 5px;
+    margin-top: 10px;
     padding-left: 10px !important;
     padding-right: 10px !important;
     padding-top: 5px !important;
-    padding-bottom: 10px !important;
+    padding-bottom: 5px !important;
     width: fit-content;
     height: fit-content;
     border-radius: 5px;
@@ -1164,7 +1182,7 @@
 }
 
 .home-body .home-map .map .popup .button a.read-post{
-    font-family: "Poppins";
+    font-family: "Open Sans";
     font-weight: 400;
     font-size: 22px;
     color: #FFFFFF !important;
@@ -1173,9 +1191,9 @@
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .home-body .home-map .map .popup .button a.read-post{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 400;
-        font-size: 12px !important;
+        font-size: 16px !important;
         color: #FFFFFF !important;
         text-decoration: none;
     }
@@ -1183,7 +1201,7 @@
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .home-body .home-map .map .popup .button a.read-post{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 400;
         font-size: 14px !important;
         color: #FFFFFF !important;
@@ -1193,7 +1211,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .home-body .home-map .map .popup .button a.read-post{
-        font-family: "Poppins";
+        font-family: "Open Sans";
         font-weight: 400;
         font-size: 12px !important;
         color: #FFFFFF !important;
@@ -1201,7 +1219,7 @@
     }
 }
 
-.home-body .home-map .map  .leaflet-popup-tip{
+.home-body .home-map .map .leaflet-popup-tip{
     border-radius: 5px !important;
 }
 
@@ -1225,18 +1243,22 @@
 }
 
 .home-body .home-cots .cots-context{
-    background-color: rgba(0, 0, 0, 0.7);  
     position: absolute;                    
     bottom: 0;                            
     max-height: 50%;                       
     padding: 1rem;                         
-    width: 100%;                          
+    width: 100%;           
+    background-color: rgba(0, 0, 0, 0.75);                 
 }
 
 .home-body .home-cots .cots-context h1{
-    font-size: 22px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: "Open Sans";
     font-weight: 700;       
-    color: #FFFFFF;                          
+    font-size: 22px;
+    color: #FFFFFF;   
 }
 
 .home-body .home-cots .cots-context p{
@@ -1246,25 +1268,17 @@
     white-space: nowrap;
     font-family: "Open Sans";
     font-weight: 400;
-    font-size: 12px !important;
+    font-size: 14px !important;
     color: #FFFFFF;
     text-align: justify !important;
     cursor: default;
 }
 
-.home-body .home-announcement h1{
-    margin-top: 10px;
-    margin-bottom: 2px;
-    text-align: left;
-    font-weight: 600;       
-    font-size: 28px;        
-}
-
-.home-body .home-announcement h3{
-    margin-top: 22px;
+.home-body .home-announcement > h1{
+    margin-top: 20px;
     text-align: center;
     margin-bottom: 5px;
-    font-weight: 600;       
+    font-weight: 700;       
     font-size: 20px;        
 }
 
@@ -1280,7 +1294,7 @@
 .home-body .home-announcement .announcement-gallery{
     position: relative;
     display: inline-block;
-    margin-right: 1px;
+    margin-right: 10px;
     width: 100%;
     height: 100%;
     overflow: hidden !important;
@@ -1313,7 +1327,7 @@
     padding-bottom: 10px;
     width: 100%; 
     max-height: 50%; 
-    background-color: rgba(0, 0, 0, 0.7);  
+    background-color: rgba(0, 0, 0, 0.75);  
 }
 
 .home-body .home-announcement .announcement-gallery .announcement-context > h1{
@@ -1321,7 +1335,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     font-family: "Open Sans";
-    font-weight: 600;       
+    font-weight: 700;       
     font-size: 22px;
     color: #FFFFFF;                          
 }
@@ -1330,18 +1344,18 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-family: "Poppins";
+    font-family: "Open Sans";
     font-weight: 400;
     font-size: 14px !important;
     color: #FFFFFF;
 }
 
 .home-body .home-post > h1{
-    margin-top: 18px;
+    margin-top: 20px;
     text-align: center;
     margin-bottom: 5px;
-    font-weight: 600;       
-    font-size: 19px; 
+    font-weight: 700;       
+    font-size: 20px; 
 }
 
 .home-body .home-post .post{
@@ -1353,12 +1367,10 @@
     white-space: nowrap;
 }
 
-
-
 .home-body .home-post .post-gallery{
     position: relative;
     display: inline-block;
-    margin-right: 1px;
+    margin-right: 10px;
     width: 100%;
     height: 100%;
     overflow: hidden !important;
@@ -1391,16 +1403,16 @@
     padding-bottom: 10px;
     width: 100%; 
     max-height: 50%; 
-    background-color: rgba(0, 0, 0, 0.7);  
+    background-color: rgba(0, 0, 0, 0.75);  
 }
 
 .home-body .home-post .post-gallery .post-context > h1{
+    padding-bottom: 3px;      
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     font-family: "Open Sans";
     font-weight: 600; 
-    padding-bottom: 3px;      
     font-size: 22px;
     color: #FFFFFF;                          
 }
@@ -1409,7 +1421,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-family: "Poppins";
+    font-family: "Open Sans";
     font-weight: 400;
     font-size: 14px !important;
     color: #FFFFFF;

@@ -40,17 +40,17 @@ def PublicServiceHome(request):
         try:
             map_posts = Post.objects.filter(post_status = 1)
 
-            """ map_statuses = Status.objects.all() """
+            map_statuses = Status.objects.all()
     
         except:
             map_posts = None
 
-            """ map_statuses = None """
+            map_statuses = None
 
     if not any(message.level in [messages.INFO, messages.SUCCESS, messages.ERROR] for message in messages.get_messages(request)):
         messages.info(request, username + ", " + "kindly see announcements within COTSEye to check for updates today.")
 
-    context = {"username": username, "map_posts": map_posts, "latest_announcements": latest_announcements, "valid_posts": valid_posts}
+    context = {"username": username, "map_posts": map_posts, "map_statuses": map_statuses, "latest_announcements": latest_announcements, "valid_posts": valid_posts}
     
     return render(request, "public/service/home/home.html", context)
 
@@ -287,14 +287,14 @@ def ContributorServiceHome(request):
     try:
         map_posts = Post.objects.filter(post_status = 1)
 
-        """ map_statuses = Status.objects.all() """
+        map_statuses = Status.objects.all()
 
     except:
         map_posts = None
 
-        """ map_statuses = None """
+        map_statuses = None
     
-    context = {"username": username, "user_profile": user_profile, "map_posts": map_posts, "latest_announcements": latest_announcements, "valid_posts": valid_posts}
+    context = {"username": username, "user_profile": user_profile, "map_posts": map_posts, "map_statuses": map_statuses, "latest_announcements": latest_announcements, "valid_posts": valid_posts}
 
     return render(request, "contributor/service/home/home.html", context)
 

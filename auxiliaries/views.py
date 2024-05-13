@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.db.models import Max
 from django.http import FileResponse
 from django.shortcuts import render, redirect
 from django.utils.encoding import smart_str
@@ -50,10 +51,18 @@ def PublicServiceMap(request):
     try:
         map_posts = Post.objects.filter(post_status = 1)
 
+        map_statuses = Status.objects.all()
+
+        map_graphs = Status.objects.order_by("location", "-onset_date").distinct("location")[:5]
+
     except:
         map_posts = None
 
-    context = {"username": username, "map_posts": map_posts}
+        map_statuses = None
+
+        map_graphs = None
+
+    context = {"username": username, "map_posts": map_posts, "map_statuses": map_statuses, "map_graphs": map_graphs}
     
     return render(request, "public/service/map/map.html", context)
 
@@ -126,10 +135,18 @@ def ContributorServiceMap(request):
     try:
         map_posts = Post.objects.filter(post_status = 1)
 
+        map_statuses = Status.objects.all()
+
+        map_graphs = Status.objects.order_by("location", "-onset_date").distinct("location")[:5]
+
     except:
         map_posts = None
 
-    context = {"map_posts": map_posts, "username": username, "user_profile": user_profile}
+        map_statuses = None
+
+        map_graphs = None
+
+    context = {"username": username, "user_profile": user_profile, "map_posts": map_posts, "map_statuses": map_statuses, "map_graphs": map_graphs}
 
     return render(request, "contributor/service/map/map.html", context)
 

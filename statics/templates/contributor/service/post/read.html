@@ -13,8 +13,7 @@
                 <div class = "postandfeedread-header">
                     <p><img src = "{{valid_post.user.profile_photo.url}}">{{valid_post.user}}</p>
 
-                        <p>{{valid_post.capture_date | date:'m/d/y' | default:'None available'}}</p>
-                    </div>
+                    <p>{{valid_post.capture_date | date:'m/d/y' | default:'None available'}}</p>
                 </div>
 
                 <div class = "postandfeedread-gallery">
@@ -23,10 +22,11 @@
                     {% endfor %}
                 </div>
 
-            <div class="origin">
-                <p>{{valid_post.location | default:'None available'}}</p>
-                <p>Valid</p>
-            </div>
+                <div class = "postandfeedread-origin">
+                    <p>{{valid_post.location | default:'None available'}}</p>
+                    
+                    <p>{{valid_post.post_status | default:'None available'}}</p>
+                </div>
 
                 <p>{{valid_post.description | default:'None available'}}</p>
 
@@ -69,11 +69,7 @@
                 <div class = "postandfeedread-header">
                     <p><img src = "{{invalid_post.user.profile_photo.url}}">{{invalid_post.user}}</p>
 
-                    <div class = "postandfeedread-status">
-                        <p><i class = "fa-solid fa-flag"></i>Invalid</p>
-
-                        <p><i class = "fa-solid fa-calendar-check"></i>{{invalid_post.capture_date | date:'m/d/y' | default:'None available'}}</p>
-                    </div>
+                    <p>{{invalid_post.capture_date | date:'m/d/y' | default:'None available'}}</p>
                 </div>
 
                 <div class = "postandfeedread-gallery">
@@ -82,7 +78,11 @@
                     {% endfor %}
                 </div>
 
-                <p><i class = "fa-solid fa-location-dot"></i>{{invalid_post.location | default:'None available'}}</p>
+                <div class = "postandfeedread-origin">
+                    <p>{{invalid_post.location | default:'None available'}}</p>
+                    
+                    <p>{{invalid_post.post_status | default:'None available'}}</p>
+                </div>
 
                 <p>{{invalid_post.description | default:'None available'}}</p>
 
@@ -125,11 +125,7 @@
                 <div class = "postandfeedread-header">
                     <p><img src = "{{pending_post.user.profile_photo.url}}">{{pending_post.user}}</p>
 
-                    <div class = "postandfeedread-status">
-                        <p><i class = "fa-solid fa-flag"></i>Pending</p>
-
-                        <p><i class = "fa-solid fa-calendar-check"></i>{{pending_post.capture_date | date:'m/d/y' | default:'None available'}}</p>
-                    </div>
+                    <p>{{pending_post.capture_date | date:'m/d/y' | default:'None available'}}</p>
                 </div>
 
                 <div class = "postandfeedread-gallery">
@@ -138,7 +134,11 @@
                     {% endfor %}
                 </div>
 
-                <p><i class = "fa-solid fa-location-dot"></i>{{pending_post.location | default:'None available'}}</p>
+                <div class = "postandfeedread-origin">
+                    <p>{{pending_post.location | default:'None available'}}</p>
+                    
+                    <p>{{pending_post.post_status | default:'None available'}}</p>
+                </div>
 
                 <p>{{pending_post.description | default:'None available'}}</p>
 
@@ -177,11 +177,7 @@
                 <div class = "postandfeedread-header">
                     <p><img src = "{{draft_post.user.profile_photo.url}}">{{draft_post.user}}</p>
 
-                    <div class = "postandfeedread-status">
-                        <p><i class = "fa-solid fa-flag"></i>Draft</p>
-
-                        <p><i class = "fa-solid fa-calendar-check"></i>{{draft_post.capture_date | date:'m/d/y' | default:'None available'}}</p>
-                    </div>
+                    <p>{{draft_post.capture_date | date:'m/d/y' | default:'None available'}}</p>
                 </div>
 
                 <div class = "postandfeedread-gallery">
@@ -190,7 +186,11 @@
                     {% endfor %}
                 </div>
 
-                <p><i class = "fa-solid fa-location-dot"></i>{{draft_post.location | default:'None available'}}</p>
+                <div class = "postandfeedread-origin">
+                    <p>{{draft_post.location | default:'None available'}}</p>
+                    
+                    <p>{{draft_post.post_status | default:'None available'}}</p>
+                </div>
 
                 <p>{{draft_post.description | default:'None available'}}</p>
 

@@ -1,866 +1,228 @@
-.update{
-    margin-bottom: 30px;
+.profileupdate-body{
+    position: relative;
+    gap: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
     width: 100%;
-    display: grid;
-    grid-column: 1;
+    height: 100%;
+    color: #000000;
 }
 
-.update .card-body{
-    margin-bottom: 15px;
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    border: 1px solid #B2BEB5;
-    display: grid;
-    gap: 15px;
-    background-color: #FFFFFF;
+.profileupdate-body .profileupdate-section{
+    display: flex;                   
+    align-items: center; 
+    justify-content: center;          
+    flex-direction: column;
+    row-gap: 10px;
+    width: 100%;                     
+    text-align: center;                                   
 }
 
-.update .card-body p{
-    font-family: "Poppins";
-    font-weight: 700;
-    font-size: 48px;
-    color: #154360 !important;
-    text-align: center;
-    white-space: normal;
-    overflow: auto;
+.profileupdate-body .profileupdate-section h1{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: "Open Sans";    
+    font-weight: 700;       
+    font-size: 22px;     
+    color: #000000;   
+    text-align: center;  
 }
 
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .update .card-body p{
-        font-family: "Poppins";
-        font-weight: 700;
-        font-size: 36px !important;
-        color: #154360;
-        text-align: center;
-        white-space: normal; 
-        overflow: auto;
-    }
+.profileupdate-body .profileupdate-user{
+    display: flex;                   
+    align-items: center; 
+    justify-content: center;          
+    flex-direction: column;
+    row-gap: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;                     
+    text-align: center;                                   
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .update .card-body p{
-        font-family: "Poppins";
-        font-weight: 700;
-        font-size: 28px !important;
-        color: #154360;
-        text-align: center;
-        white-space: normal; 
-        overflow: auto;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .update .card-body p{
-        font-family: "Poppins";
-        font-weight: 700;
-        font-size: 26px !important;
-        color: #154360;
-        text-align: center;
-        white-space: normal; 
-        overflow: auto;
-    }
-}
-
-.update .card-body img{
-    margin-left: auto !important;
-    margin-right: auto !important; 
-    width: 200px;
-    height: 200px;
-    align-items: center;
-    object-fit: cover;
-    border: 1px solid #B2BEB5;
-    border-radius: 50% !important;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
+.profileupdate-body .profileupdate-user img{
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
     cursor: pointer;
 }
 
-.update .card-body .browse-photo{
+.profileupdate-body .profileupdate-user .browse-photo{
     display: none;
 }
 
-.update .card-body .field{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
+.profileupdate-body .profileupdate-user h1{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: "Open Sans";    
+    font-weight: 700;       
+    font-size: 20px;     
+    color: #000000;   
+    text-align: center;  
 }
 
-@media screen and (min-width: 446px) and (max-width: 775px){
-    .update .card-body .field{        
-        grid-template-columns: 100%;
-        gap: 0px;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .update .card-body .field{        
-        grid-template-columns: 100%;
-        gap: 0px;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .update .card-body .field{        
-        grid-template-columns: 100%;
-        gap: 0px;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .update .card-body .field{        
-        grid-template-columns: 100%;
-        gap: 0px;
-    }
-}
-
-.update .card-body .field .column label[for = "first-name"]{
-    margin-top: 0px;
-    display: inline-block;
-    font-family: "Poppins";
+.profileupdate-body .profileupdate-user p{
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: "Open Sans";
     font-weight: 400;
-    font-size: 20px !important;
-    color: #154360 !important;
+    font-size: 14px !important;
+    color: #000000;
+    text-transform: uppercase;
 }
 
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .update .card-body .field .column label[for = "first-name"]{
-        margin-top: 0px;
-        display: inline-block;
-        font-family: "Poppins";
-        font-weight: 400;
-        font-size: 18px !important;
-        color: #154360 !important;
-    }
+.profileupdate-body .profile-form{
+    width: 100% !important;
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .update .card-body .field .column label[for = "first-name"]{
-        margin-top: 0px;
-        display: inline-block;
-        font-family: "Poppins";
-        font-weight: 400;
-        font-size: 16px !important;
-        color: #154360 !important;
-    }
+.profileupdate-body .profile-form .first-name{
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .update .card-body .field .column label[for = "first-name"]{
-        margin-top: 0px;
-        display: inline-block;
-        font-family: "Poppins";
-        font-weight: 400;
-        font-size: 14px !important;
-        color: #154360 !important;
-    }
+.profileupdate-body .profile-form .first-name label{
+    font-family: "Open Sans";
+    font-weight: 400;
+    font-size: 14px;
+    color: #000000 !important;
 }
 
-.update .card-body .field .column .first-name{
-    position: relative;
+.profileupdate-body .profile-form .first-name input{
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    border: 1px solid #003755;
+    border-radius: 5px;
+    outline: none;
+    font-family: "Open Sans";
+    font-weight: 700;
+    font-size: 20px;
+    color: #000000 !important;
 }
 
-.update .card-body .field .column .first-name input{
-    padding-left: 10px !important;
-    padding-right: 40px !important;
+.profileupdate-body .profile-form .last-name{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.profileupdate-body .profile-form .last-name label{
+    font-family: "Open Sans";
+    font-weight: 400;
+    font-size: 14px;
+    color: #000000 !important;
+}
+
+.profileupdate-body .profile-form .last-name input{
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    border: 1px solid #003755;
+    border-radius: 5px;
+    outline: none;
+    font-family: "Open Sans";
+    font-weight: 700;
+    font-size: 20px;
+    color: #000000 !important;
+}
+
+.profileupdate-body .profile-form .email{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.profileupdate-body .profile-form .email label{
+    font-family: "Open Sans";
+    font-weight: 400;
+    font-size: 14px;
+    color: #000000 !important;
+}
+
+.profileupdate-body .profile-form .email input{
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    border: 1px solid #003755;
+    border-radius: 5px;
+    outline: none;
+    font-family: "Open Sans";
+    font-weight: 700;
+    font-size: 20px;
+    color: #000000 !important;
+}
+
+.profileupdate-body .profile-form .phone-number{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.profileupdate-body .profile-form .phone-number label{
+    font-family: "Open Sans";
+    font-weight: 400;
+    font-size: 14px;
+    color: #000000 !important;
+}
+
+.profileupdate-body .profile-form .phone-number input{
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    border: 1px solid #003755;
+    border-radius: 5px;
+    outline: none;
+    font-family: "Open Sans";
+    font-weight: 700;
+    font-size: 20px;
+    color: #000000 !important;
+}
+
+.profileupdate-body .profile-form .button{
+    display: flex;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
-    border: 1px solid #B2BEB5;
-    border-radius: 5px; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
-    outline: none !important;
-    font-family: "Poppins";
-    font-weight: 700 !important;
-    font-size: 20px !important;   
-    color: #154360 !important;
 }
 
-.update .card-body .field .column .first-name input:focus{
-    border-bottom-width: 2.5px !important;
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .update .card-body .field .column .first-name input{
-        padding-left: 10px !important;
-        padding-right: 38px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Poppins";
-        font-weight: 700 !important;
-        font-size: 18px !important;   
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .update .card-body .field .column .first-name input{
-        padding-left: 10px !important;
-        padding-right: 36px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Poppins";
-        font-weight: 700 !important;
-        font-size: 16px !important;   
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .update .card-body .field .column .first-name input{
-        padding-left: 10px !important;
-        padding-right: 34px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Poppins";
-        font-weight: 700 !important;
-        font-size: 14px !important;   
-        color: #154360 !important;
-    }
-}
-
-.update .card-body .field .column .first-name i{
-    right: 10px;
-    top: 50%;
-    position: absolute;
-    display: grid;
-    place-items: center;
-    font-size: 20px;
-    color: #154360;
-    transform: translateY(-50%);
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .update .card-body .field .column .first-name i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 18px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .update .card-body .field .column .first-name i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 16px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .update .card-body .field .column .first-name i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 14px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-.update .card-body .field .column label[for = "last-name"]{
-    margin-top: 15px;
-    display: inline-block;
-    font-family: "Poppins";
-    font-weight: 400;
-    font-size: 20px !important;
-    color: #154360 !important;
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .update .card-body .field .column label[for = "last-name"]{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Poppins";
-        font-weight: 400;
-        font-size: 18px !important;
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .update .card-body .field .column label[for = "last-name"]{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Poppins";
-        font-weight: 400;
-        font-size: 16px !important;
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .update .card-body .field .column label[for = "last-name"]{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Poppins";
-        font-weight: 400;
-        font-size: 14px !important;
-        color: #154360 !important;
-    }
-}
-
-.update .card-body .field .column .last-name{
-    position: relative;
-}
-
-.update .card-body .field .column .last-name input{
-    padding-left: 10px !important;
-    padding-right: 40px !important;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
-    width: 100%;
-    border: 1px solid #B2BEB5;
-    border-radius: 5px; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
-    outline: none !important;
-    font-family: "Poppins";
-    font-weight: 700 !important;
-    font-size: 20px !important;   
-    color: #154360 !important;
-}
-
-.update .card-body .field .column .last-name input:focus{
-    border-bottom-width: 2.5px !important;
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .update .card-body .field .column .last-name input{
-        padding-left: 10px !important;
-        padding-right: 38px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Poppins";
-        font-weight: 700 !important;
-        font-size: 18px !important;   
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .update .card-body .field .column .last-name input{
-        padding-left: 10px !important;
-        padding-right: 36px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Poppins";
-        font-weight: 700 !important;
-        font-size: 16px !important;   
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .update .card-body .field .column .last-name input{
-        padding-left: 10px !important;
-        padding-right: 34px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Poppins";
-        font-weight: 700 !important;
-        font-size: 14px !important;   
-        color: #154360 !important;
-    }
-}
-
-.update .card-body .field .column .last-name i{
-    right: 10px;
-    top: 50%;
-    position: absolute;
-    display: grid;
-    place-items: center;
-    font-size: 20px;
-    color: #154360;
-    transform: translateY(-50%);
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .update .card-body .field .column .last-name i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 18px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .update .card-body .field .column .last-name i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 16px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .update .card-body .field .column .last-name i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 14px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-.update .card-body .field .column label[for = "email"]{
-    margin-top: 0px;
-    display: inline-block;
-    font-family: "Poppins";
-    font-weight: 400;
-    font-size: 20px !important;
-    color: #154360 !important;
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .update .card-body .field .column label[for = "email"]{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Poppins";
-        font-weight: 400;
-        font-size: 18px !important;
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .update .card-body .field .column label[for = "email"]{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Poppins";
-        font-weight: 400;
-        font-size: 16px !important;
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .update .card-body .field .column label[for = "email"]{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Poppins";
-        font-weight: 400;
-        font-size: 14px !important;
-        color: #154360 !important;
-    }
-}
-
-.update .card-body .field .column .email{
-    position: relative;
-}
-
-.update .card-body .field .column .email input{
-    padding-left: 10px !important;
-    padding-right: 40px !important;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
-    width: 100%;
-    border: 1px solid #B2BEB5;
-    border-radius: 5px; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
-    outline: none !important;
-    font-family: "Poppins";
-    font-weight: 700 !important;
-    font-size: 20px !important;   
-    color: #154360 !important;
-}
-
-.update .card-body .field .column .email input:focus{
-    border-bottom-width: 2.5px !important;
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .update .card-body .field .column .email input{
-        padding-left: 10px !important;
-        padding-right: 38px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Poppins";
-        font-weight: 700 !important;
-        font-size: 18px !important;   
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .update .card-body .field .column .email input{
-        padding-left: 10px !important;
-        padding-right: 36px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Poppins";
-        font-weight: 700 !important;
-        font-size: 16px !important;   
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .update .card-body .field .column .email input{
-        padding-left: 10px !important;
-        padding-right: 34px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Poppins";
-        font-weight: 700 !important;
-        font-size: 14px !important;   
-        color: #154360 !important;
-    }
-}
-
-.update .card-body .field .column .email i{
-    right: 10px;
-    top: 50%;
-    position: absolute;
-    display: grid;
-    place-items: center;
-    font-size: 20px;
-    color: #154360;
-    transform: translateY(-50%);
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .update .card-body .field .column .email i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 18px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .update .card-body .field .column .email i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 16px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .update .card-body .field .column .email i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 14px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-.update .card-body .field .column label[for = "phone-number"]{
-    margin-top: 15px;
-    display: inline-block;
-    font-family: "Poppins";
-    font-weight: 400;
-    font-size: 20px !important;
-    color: #154360 !important;
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .update .card-body .field .column label[for = "phone-number"]{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Poppins";
-        font-weight: 400;
-        font-size: 18px !important;
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .update .card-body .field .column label[for = "phone-number"]{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Poppins";
-        font-weight: 400;
-        font-size: 16px !important;
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .update .card-body .field .column label[for = "phone-number"]{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Poppins";
-        font-weight: 400;
-        font-size: 14px !important;
-        color: #154360 !important;
-    }
-}
-
-.update .card-body .field .column .phone-number{
-    position: relative;
-}
-
-.update .card-body .field .column .phone-number input{
-    padding-left: 10px !important;
-    padding-right: 40px !important;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
-    width: 100%;
-    border: 1px solid #B2BEB5;
-    border-radius: 5px; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
-    outline: none !important;
-    font-family: "Poppins";
-    font-weight: 700 !important;
-    font-size: 20px !important;   
-    color: #154360 !important;
-}
-
-.update .card-body .field .column .phone-number input:focus{
-    border-bottom-width: 2.5px !important;
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .update .card-body .field .column .phone-number input{
-        padding-left: 10px !important;
-        padding-right: 38px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Poppins";
-        font-weight: 700 !important;
-        font-size: 18px !important;   
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .update .card-body .field .column .phone-number input{
-        padding-left: 10px !important;
-        padding-right: 36px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Poppins";
-        font-weight: 700 !important;
-        font-size: 16px !important;   
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .update .card-body .field .column .phone-number input{
-        padding-left: 10px !important;
-        padding-right: 34px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Poppins";
-        font-weight: 700 !important;
-        font-size: 14px !important;   
-        color: #154360 !important;
-    }
-}
-
-.update .card-body .field .column .phone-number i{
-    right: 10px;
-    top: 50%;
-    position: absolute;
-    display: grid;
-    place-items: center;
-    font-size: 20px;
-    color: #154360;
-    transform: translateY(-50%);
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .update .card-body .field .column .phone-number i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 18px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .update .card-body .field .column .phone-number i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 16px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .update .card-body .field .column .phone-number i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 14px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-.update .card-body .button{
-    margin-left: auto;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
-    width: fit-content;
-    height: 100% !important;
-}
-
-.update .card-body .button a.save-profile{
+.profileupdate-body .profile-form .button a{
     padding-left: 10px !important;
     padding-right: 10px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
-    border: 1px solid #B2BEB5; 
+    width: 100%;
     border-radius: 5px;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
-    font-family: "Poppins";
+    font-family: "Open Sans";
+    text-align: center;                                   
     font-weight: 400;
-    font-size: 20px;
+    font-size: 14px;
     color: #FFFFFF !important;
-    background-color: #698F3F !important;
+    background-color: #003755 !important;
     text-decoration: none;
-    cursor: pointer;
-}
-
-.update .card-body .button a.save-profile:hover{
-    background-color: #557433 !important;
-    color: #B2BEB5 !important;
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .update .card-body .button a{
-        font-family: "Poppins";
-        font-weight: 400;
-        font-size: 18px !important;
-        color: #FFFFFF !important;
-        text-decoration: none;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .update .card-body .button a{
-        font-family: "Poppins";
-        font-weight: 400;
-        font-size: 16px !important;
-        color: #FFFFFF !important;
-        text-decoration: none;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .update .card-body .button a{
-        font-family: "Poppins";
-        font-weight: 400;
-        font-size: 14px !important;
-        color: #FFFFFF !important;
-        text-decoration: none;
-    }
+    cursor: pointer;  
 }
 
 input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus input:-webkit-autofill, textarea:-webkit-autofill, textarea:-webkit-autofill:hover textarea:-webkit-autofill:focus, select:-webkit-autofill, select:-webkit-autofill:hover, select:-webkit-autofill:focus{
-    -webkit-text-fill-color: #154360;
+    -webkit-text-fill-color: #003755;
     -webkit-box-shadow: 0 0 0px 1000px #FFFFFF inset;
     transition: background-color 5000s ease-in-out 0s;
 }
 
 input:autofill{
     background: #FFFFFF !important;
+}
+
+select::-ms-expand{
+    display: none !important;
 }

@@ -3,28 +3,28 @@
 
 
 {% block content %}
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-
-    <div class = "readintervention-body">
-        <div class = "intervention-section">
+    <div class = "interventionread-body">
+        <div class = "interventionread-section">
             <h1>INTERVENTION DETAILS</h1>
         </div>
 
         {% if intervention %}
-            <div class = "intervention">
-                <div class = "read-intervention-header">
+            <div class = "interventionread">
+                <div class = "interventionread-header">
                     <p><i class = "fa-solid fa-user"></i>{{intervention.hosting_agency | default:'None available'}}</p>
 
-                    <p><i class = "fa-solid fa-calendar-check"></i>{{intervention.intervention_date | date:'M. j, Y' | default:'None available'}}</p>
-
-                    <p><i class = "fa-solid fa-arrow-up-short-wide"></i>{{intervention.caught_amount | default:'0'}}</p>
+                    <p><i class = "fa-solid fa-calendar-check"></i>{{intervention.intervention_date | date:'m/d/y' | default:'None available'}}</p>
                 </div>
 
-                <div class = "intervention-gallery">
+                <div class = "interventionread-gallery">
                     <img src = "{{intervention.intervention_photo.url}}">
                 </div>
 
-                <p><i class = "fa-solid fa-location-dot"></i>{{intervention.location | default:'None available'}}</p>
+                <div class = "interventionread-origin">
+                    <p>{{intervention.location | default:'None available'}}</p>
+
+                    <p>{{intervention.caught_amount | default:'0'}} COTS caught</p>
+                </div>
 
                 <p>{{intervention.description | default:'None available'}}</p>
 

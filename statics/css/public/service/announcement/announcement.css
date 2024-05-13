@@ -1,7 +1,5 @@
 .announcement-body{
     position: relative;
-    padding-left: 10px;
-    padding-right: 10px;
     width: 100vw;
     height: 100%;
     color: #000000;
@@ -11,21 +9,19 @@
     display: flex;                   
     align-items: center; 
     justify-content: center;          
-    flex-direction: column;
     width: 100%;                     
     text-align: center;                                   
 }
 
 .announcement-body .announcement-section h1{
-    text-align: center;     
+    font-family: "Open Sans"; 
     font-weight: 700;       
-    font-size: 22px;        
-    letter-spacing: 2.5px;
+    font-size: 22px;     
+    text-align: center;  
 }
 
 .announcement-body .announcement{
     margin-bottom: 10px;
-    border: 1px solid #003755 !important;
 }
 
 .announcement-body .announcement:last-child{
@@ -34,8 +30,9 @@
 }
 
 .announcement-body .announcement .announcement-header{
-    display: grid;
-    row-gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 10px;
@@ -45,13 +42,22 @@
 .announcement-body .announcement .announcement-header p{
     display: flex;
     align-items: center;
-    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-family: "Poppins";
-    font-weight: 400;
+    white-space: nowrap;
+    font-family: "Open Sans";
+    font-weight: 700;
     font-size: 14px !important;
-    color: #003755;
+    color: #000000;
+}
+
+.announcement-body .announcement .announcement-header img{
+    margin-right: 10px !important;
+    margin-bottom: 0px !important;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
 }
 
 .announcement-body .announcement .announcement-header i{
@@ -68,6 +74,10 @@
 }
 
 .announcement-body .announcement .announcement-context{
+    display: grid;
+    align-items: center;
+    grid-template-columns: auto auto;
+    gap: 10px;
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 10px;
@@ -78,16 +88,16 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-family: "Poppins";
+    font-family: "Open Sans";
     font-weight: 700;       
-    font-size: 22px;
-    color: #003755;  
+    font-size: 14px;
+    color: #000000;  
 }
 
 .announcement-body .announcement .announcement-context .button{
     margin-left: auto;
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
     width: fit-content;
     height: 100% !important;
 }
@@ -95,15 +105,18 @@
 .announcement-body .announcement .announcement-context a{
     padding-left: 10px !important;
     padding-right: 10px !important;
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
     border-radius: 5px;
     outline: none !important;
-    font-family: "Poppins";
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: "Open Sans";
     font-weight: 400;
     font-size: 14px;
     color: #FFFFFF !important;
     background-color: #003755 !important;
     text-decoration: none;
-    cursor: pointer;  
+    cursor: pointer;
 }

@@ -25,11 +25,14 @@
 }
 
 .profile-body .profile-section h1{
-    text-align: center;     
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: "Open Sans";    
     font-weight: 700;       
     font-size: 22px;     
-    color: #003755;   
-    letter-spacing: 2.5px;
+    color: #000000;   
+    text-align: center;  
 }
 
 .profile-body .profile-section p{
@@ -38,10 +41,10 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-family: "Poppins";
+    font-family: "Open Sans";
     font-weight: 400;
     font-size: 14px !important;
-    color: #003755;
+    color: #000000;
     text-transform: uppercase;
 }
 
@@ -59,10 +62,10 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-family: "Poppins";
-    font-size: 22px;
-    font-weight: 700;       
-    color: #003755;                          
+    font-family: "Open Sans";
+    font-size: 14px;
+    font-weight: 400;       
+    color: #000000;                          
 }
 
 .profile-body .profile-details .profile-context p:last-child{
@@ -71,28 +74,28 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-family: "Poppins";
-    font-size: 14px;
-    font-weight: 400;       
-    color: #003755;                          
+    font-family: "Open Sans";
+    font-size: 20px;
+    font-weight: 700;       
+    color: #000000;                          
 }
 
 .profile-body .button{
     display: flex;
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
     width: 100%;
 }
 
 .profile-body a{
     padding-left: 10px !important;
     padding-right: 10px !important;
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
     width: 100%;
     border-radius: 5px;
     outline: none !important;
-    font-family: "Poppins";
+    font-family: "Open Sans";
     text-align: center;                                   
     font-weight: 400;
     font-size: 14px;

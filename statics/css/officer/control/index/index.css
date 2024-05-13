@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;900&display=swap");
+
 /* @import url("https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Overlock:wght@400;700;900&display=swap");
 
@@ -3142,925 +3144,1162 @@ li.select2-results__option{
     padding-bottom: 30px;
 }
 
-.map:has(.officer-map){ 
-    margin-bottom: 30px;
+.home-map{ 
     width: 100%;
-    height: 100%;
+    height: 100vh;
 }
 
-.officer-map{
-    height: 750px;
-    border: 1px solid #B2BEB5;
+@media screen and (min-width: 320px) and (max-width: 935px){
+    .home-map{ 
+        height: 375px;
+    }
+}
+
+.home-map .map{
+    width: 100%;
+    height: 100vh;
     border-radius: 5px; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
     z-index: 1;
 }
 
-@media screen and (min-width: 320px) and (max-width: 775px){
-    .officer-map{
-        height: 250px;
+@media screen and (min-width: 320px) and (max-width: 935px){
+    .home-map .map{
+        height: 375px;
     }
 }
 
-.leaflet-control-zoom{
-    border: 1px solid #B2BEB5 !important;
+.home-map .map .leaflet-left{
+    margin-left: 10px !important;
+}
+
+.home-map .map .leaflet-right{
+    margin-right: 10px !important;
+}
+
+.home-map .map .leaflet-top{
+    margin-top: 10px !important;
+}
+
+.home-map .map .leaflet-bottom{
+    margin-bottom: 10px !important;
+}
+
+.home-map .map .leaflet-bar{
+    border: none !important;
+}
+
+.home-map .map .leaflet-bar a{
+    border: none !important;
+}
+
+.home-map .map .leaflet-control{
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+}
+
+.home-map .map .leaflet-control-zoom{
+    border-radius: 5px !important;
+}
+
+.home-map .map .leaflet-control-zoom a.leaflet-control-zoom-in{
+    -webkit-user-select: none;
+    -ms-user-select: none; 
+    user-select: none;
+    background-color: #FFFFFF !important;
+    color: #003755 !important;
+    text-decoration: none !important;
+}
+
+.home-map .map .leaflet-control-zoom a.leaflet-control-zoom-in:hover{
+    background-color: #B2BEB5 !important;
+    color: #002C44 !important;
+}
+
+.home-map .map .leaflet-control-zoom a.leaflet-control-zoom-in.leaflet-disabled{
+    background-color: #B2BEB5 !important;
+    color: #002C44 !important;
+    cursor: default !important;
+}
+
+.home-map .map .leaflet-control-zoom a.leaflet-control-zoom-in.leaflet-disabled span{
+    color: #002C44 !important;
+}
+
+.home-map .map .leaflet-control-zoom a.leaflet-control-zoom-out{
+    -webkit-user-select: none;
+    -ms-user-select: none; 
+    user-select: none; 
+    background-color: #003755 !important;
+    color: #FFFFFF !important;
+    text-decoration: none !important;
+}
+
+.home-map .map .leaflet-control-zoom a.leaflet-control-zoom-out:hover{
+    background-color: #002C44 !important;
+    color: #B2BEB5 !important;
+}
+
+.home-map .map .leaflet-control-zoom a.leaflet-control-zoom-out.leaflet-disabled{
+    background-color: #002C44 !important;
+    color: #B2BEB5 !important;
+    cursor: default !important;
+}
+
+.home-map .map .leaflet-control-zoom a.leaflet-control-zoom-out.leaflet-disabled span{
+    color: #B2BEB5 !important;
+}
+
+.home-map .map .legend{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
     border-radius: 5px;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    background-color: #FFFFFF;
 }
 
-.leaflet-control-zoom a.leaflet-control-zoom-in{
-    border-bottom: 1px solid #B2BEB5 !important;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
-    -webkit-user-select: none;
-    -ms-user-select: none; 
-    user-select: none; 
-    background-color: #698F3F !important;
-    color: #FFFFFF !important;
-    text-decoration: none !important;
-}
-
-.leaflet-control-zoom a.leaflet-control-zoom-in:hover{
-    border-bottom: 1px solid #B2BEB5 !important;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
-    -webkit-user-select: none;
-    -ms-user-select: none; 
-    user-select: none; 
-    background-color: #557433 !important;
-    color: #B2BEB5 !important;
-    text-decoration: none !important;
-}
-
-.leaflet-control-zoom a.leaflet-control-zoom-in.leaflet-disabled{
-    border-bottom: 1px solid #B2BEB5 !important;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
-    background-color: #557433 !important;
-    color: #B2BEB5 !important;
-    cursor: default !important;
-}
-
-.leaflet-control-zoom a.leaflet-control-zoom-out{
-    border-top: none !important;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
-    -webkit-user-select: none;
-    -ms-user-select: none; 
-    user-select: none; 
-    background-color: #C90016 !important;
-    color: #FFFFFF !important;
-    text-decoration: none !important;
-}
-
-.leaflet-control-zoom a.leaflet-control-zoom-out:hover{
-    border-top: none !important;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
-    -webkit-user-select: none;
-    -ms-user-select: none; 
-    user-select: none; 
-    background-color: #A00011 !important;
-    color: #FFFFFF !important;
-    text-decoration: none !important;
-}
-
-.leaflet-control-zoom a.leaflet-control-zoom-out.leaflet-disabled{
-    border-top: none !important;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
-    background-color: #A00011 !important;
-    color: #B2BEB5 !important;
-    cursor: default !important;
-}
-
-.leaflet-disabled span{
-    color: #B2BEB5 !important;
-}
-
-.leaflet-control-attribution a{
-    font-family: "Philosopher";
-    font-weight: 700;
-    font-size: 18px !important;
-    background-color: #698F3F !important;
-    color: #FFFFFF !important;
-    text-align: center;
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-map .map .legend{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .leaflet-control-attribution a{
-        font-family: "Philosopher";
-        font-weight: 700;
-        font-size: 16px !important;
-        background-color: #698F3F !important;
-        color: #FFFFFF !important;
-        text-align: center;
+    .home-map .map .legend{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .leaflet-control-attribution a{
-        font-family: "Philosopher";
-        font-weight: 700;
-        font-size: 14px !important;
-        background-color: #698F3F !important;
-        color: #FFFFFF !important;
-        text-align: center;
+    .home-map .map .legend{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
     }
 }
 
-.leaflet-control-attribution span{
-    font-size: 20px !important;
-    background-color: #698F3F !important;
-    color: #FFFFFF !important;
-    text-align: center;
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .leaflet-control-attribution span{
-        font-size: 18px !important;
-        background-color: #698F3F !important;
-        color: #FFFFFF !important;
-        text-align: center;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .leaflet-control-attribution span{
-        font-size: 16px !important;
-        background-color: #698F3F !important;
-        color: #FFFFFF !important;
-        text-align: center;
-    }
-}
-
-.leaflet-control-attribution{
-    padding-left: 10px !important;
-    padding-right: 10px !important;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
-    font-family: "Overlook";
+.home-map .map .legend .popup-header p{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    font-family: "Open Sans";
     font-weight: 400;
-    font-size: 16px !important;
-    background-color: #698F3F !important;
-    color: #FFFFFF !important;
+    font-size: 22px !important;
+    color: #000000;
     text-align: center;
+    cursor: default;
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .leaflet-control-attribution{
-        font-family: "Overlook";
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-map .map .legend .popup-header p{
+        font-family: "Open Sans";
         font-weight: 400;
         font-size: 14px !important;
-        background-color: #698F3F !important;
-        color: #FFFFFF !important;
-        text-align: center;
+        color: #000000;
     }
 }
 
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .leaflet-control-attribution{
-        font-family: "Overlook";
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-map .map .legend .popup-header p{
+        font-family: "Open Sans";
         font-weight: 400;
         font-size: 12px !important;
-        background-color: #698F3F !important;
-        color: #FFFFFF !important;
-        text-align: center;
+        color: #000000;
     }
 }
 
-.leaflet-touch .leaflet-control-layers-toggle{
-    border-radius: 5px !important;
-    border: 1px solid #B2BEB5 !important; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
-    background-color: #154360 !important;
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-map .map .legend .popup-header p{
+        font-family: "Open Sans";
+        font-weight: 400;
+        font-size: 12px !important;
+        color: #000000;
+    }
 }
 
-.leaflet-control-layers-expanded{
+.home-map .map .legend .popup-header p a{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    font-family: "Open Sans";
+    font-weight: 700;
+    font-size: 22px !important;
+    color: #000000;
+    cursor: default;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-map .map .legend .popup-header p a{
+        font-family: "Open Sans";
+        font-weight: 700;
+        font-size: 14px !important;
+        color: #000000;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-map .map .legend .popup-header p a{
+        font-family: "Open Sans";
+        font-weight: 700;
+        font-size: 12px !important;
+        color: #000000;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-map .map .legend .popup-header p a{
+        font-family: "Open Sans";
+        font-weight: 700;
+        font-size: 12px !important;
+        color: #000000;
+    }
+}
+
+.home-map .map .legend .popup-statistics{
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+}
+
+.home-map .map .legend .popup-statistics:last-child{
+    margin-bottom: 0px;
+}
+
+.home-map .map .legend .popup-statistics i{
+    margin-right: 10px;
+    width: 30px; 
+    height: 30px;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-map .map .legend .popup-statistics i{
+        width: 15px; 
+        height: 15px;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-map .map .legend .popup-statistics i{
+        width: 15px; 
+        height: 15px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-map .map .legend .popup-statistics i{
+        width: 15px; 
+        height: 15px;
+    }
+}
+
+.home-map .map .legend .popup-statistics p{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    font-family: "Open Sans";
+    font-weight: 400;
+    font-size: 22px !important;
+    color: #000000;
+    cursor: default;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-map .map .legend .popup-statistics p{
+        font-family: "Open Sans";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #000000;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-map .map .legend .popup-statistics p{
+        font-family: "Open Sans";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #000000;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-map .map .legend .popup-statistics p{
+        font-family: "Open Sans";
+        font-weight: 400;
+        font-size: 12px !important;
+        color: #000000;
+    }
+}
+
+.home-map .map .legend .popup-statistics p a{
+    display: inline-block !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    font-family: "Open Sans";
+    font-weight: 700;
+    font-size: 22px !important;
+    color: #000000;
+    cursor: default;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-map .map .legend .popup-statistics p a{
+        font-family: "Open Sans";
+        font-weight: 700;
+        font-size: 16px !important;
+        color: #000000;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-map .map .legend .popup-statistics p a{
+        font-family: "Open Sans";
+        font-weight: 700;
+        font-size: 14px !important;
+        color: #000000;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-map .map .legend .popup-statistics p a{
+        font-family: "Open Sans";
+        font-weight: 700;
+        font-size: 12px !important;
+        color: #000000;
+    }
+}
+
+.home-map .map .leaflet-control-attribution{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    border-radius: 5px;
+    font-family: "Open Sans";
+    font-weight: 400;
+    font-size: 22px !important;
+    background: #FFFFFF !important;
+    color: #000000;
+    cursor: default;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-map .map .leaflet-control-attribution{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        font-family: "Open Sans";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #000000;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-map .map .leaflet-control-attribution{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        font-family: "Open Sans";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #000000;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-map .map .leaflet-control-attribution{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        font-family: "Open Sans";
+        font-weight: 400;
+        font-size: 12px !important;
+        color: #000000;
+    }
+}
+
+.home-map .map .leaflet-control-attribution a{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    font-family: "Open Sans";
+    font-weight: 700;
+    font-size: 22px !important;
+    color: #000000;
+    cursor: default;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-map .map .leaflet-control-attribution a{
+        font-family: "Open Sans";
+        font-weight: 700;
+        font-size: 16px !important;
+        color: #000000;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-map .map .leaflet-control-attribution a{
+        font-family: "Open Sans";
+        font-weight: 700;
+        font-size: 14px !important;
+        color: #000000;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-map .map .leaflet-control-attribution a{
+        font-family: "Open Sans";
+        font-weight: 700;
+        font-size: 12px !important;
+        color: #000000;
+    }
+}
+
+.home-map .map .leaflet-control-attribution a svg{
+    display: none !important;
+}
+
+.home-map .map .leaflet-control-attribution span{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    font-family: "Open Sans";
+    font-weight: 400;
+    font-size: 22px !important;
+    color: #000000;
+    cursor: default;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-map .map .leaflet-control-attribution span{
+        font-family: "Open Sans";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #000000;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-map .map .leaflet-control-attribution span{
+        font-family: "Open Sans";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #000000;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-map .map .leaflet-control-attribution span{
+        font-family: "Open Sans";
+        font-weight: 400;
+        font-size: 12px !important;
+        color: #000000;
+    }
+}
+
+.home-map .map .leaflet-control-layers{
+    border: none !important;
+    background: #003755 !important;
+}
+
+.home-map .map .leaflet-control-layers span{
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.home-map .map .leaflet-touch .leaflet-control-layers-toggle{
+    border-radius: 5px !important;
+    background-color: #003755 !important;
+}
+
+.home-map .map .leaflet-control-layers-expanded{
     padding-left: 0px !important;
     padding-right: 0px !important;
     padding-top: 0px !important;
     padding-bottom: 0px !important;
     border-radius: 5px !important;
-    border: 1px solid #B2BEB5 !important; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
-    background-color: #154360 !important;
+    background-color: #003755 !important;
 }
 
-.leaflet-control-layers-list{
+.home-map .map .leaflet-control-layers-list{
     padding-left: 10px !important;
     padding-right: 10px !important;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
-    font-family: "Philosopher";
-    font-weight: 700;
-    font-size: 18px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    font-family: "Open Sans" !important;
+    font-weight: 200 !important;
+    font-size: 22px !important;
     color: #FFFFFF !important;
     text-align: justify;
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .leaflet-control-layers-list{
-        font-family: "Philosopher";
-        font-weight: 700;
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-map .map .leaflet-control-layers-list{
+        font-family: "Open Sans";
+        font-weight: 200;
         font-size: 16px !important;
         color: #FFFFFF !important;
         text-align: justify;
     }
 }
 
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .leaflet-control-layers-list{
-        font-family: "Philosopher";
-        font-weight: 700;
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-map .map .leaflet-control-layers-list{
+        font-family: "Open Sans";
+        font-weight: 200;
         font-size: 14px !important;
         color: #FFFFFF !important;
         text-align: justify;
     }
 }
 
-.leaflet-control-layers-list label{
-    margin-bottom: 0px !important;
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-map .map .leaflet-control-layers-list{
+        font-family: "Open Sans";
+        font-weight: 200;
+        font-size: 12px !important;
+        color: #FFFFFF !important;
+        text-align: justify;
+    }
 }
 
-.leaflet-control-layers-list input[type = "checkbox"]{
-    margin-top: 5px;
+.home-map .map input[type = "checkbox"]{
+    display: grid;
+    place-content: center;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    outline: none !important;
+    border-radius: 5px;
+    border: 1px solid #B2BEB5;
+    background-color: #FFFFFF;
+    cursor: pointer !important;
+}
+
+.home-map .map input[type = "checkbox"]::before{
+    content: "";
+    border-radius: 5px;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    background-color: #003755;
+}
+
+.home-map .map input[type = "checkbox"]:checked::before{
+    transform: scale(1);
+}
+
+.home-map .map .leaflet-control-layers-list input[type = "checkbox"]{
     margin-right: 10px !important;
-    width: 18px;
-    height: 18px;
-    float: left !important;
+    margin-top: 0px !important;
+    width: 20px;
+    height: 20px;
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .leaflet-control-layers-list input[type = "checkbox"]{
-        margin-top: 2.5px;
+    .home-map .map .leaflet-control-layers-list input[type = "checkbox"]{
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-map .map .leaflet-control-layers-list input[type = "checkbox"]{
         width: 16px;
         height: 16px;
     }
 }
 
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .leaflet-control-layers-list input[type = "checkbox"]{
-        margin-top: 2.5px;
-        width: 14px;
-        height: 14px;
-    }
-}
-
-.leaflet-control-layers-list input[type = "checkbox"]::before{
+.home-map .map .leaflet-control-layers-list input[type = "checkbox"]::before{
     width: 10px;
     height: 10px;
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .leaflet-control-layers-list input[type = "checkbox"]::before{
+    .home-map .map .leaflet-control-layers-list input[type = "checkbox"]::before{
         width: 8px;
         height: 8px;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .leaflet-control-layers-list input[type = "checkbox"]::before{
+    .home-map .map .leaflet-control-layers-list input[type = "checkbox"]::before{
         width: 6px;
         height: 6px;
     }
 }
 
-.leaflet-popup{
-    margin-bottom: 15px !important;
-}
-
-.leaflet-popup-content-wrapper{
+.home-map .map .leaflet-popup-content-wrapper{
     margin-left: 0px !important;
     margin-right: 0px !important;
     margin-top: 0px !important;
     margin-bottom: 0px !important;
-    border: 1px solid #B2BEB5 !important;
     border-radius: 5px !important;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    box-shadow: none !important;
+    background: none !important;
 }
 
-.leaflet-popup-content{
+.home-map .map .leaflet-popup-content{
     margin-left: 0px !important;
     margin-right: 0px !important;
     margin-top: 0px !important;
     margin-bottom: 0px !important;
-    width: 326px !important;
     display: grid !important;
     grid-column: 1 !important;
+    width: 326px !important;
+    word-break: break-word !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .leaflet-popup-content{
+    .home-map .map .leaflet-popup-content{
         width: 249px !important;
+        word-break: break-word !important; 
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .leaflet-popup-content{
+    .home-map .map .leaflet-popup-content{
         width: 229px !important;
+        word-break: break-word !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .leaflet-popup-content{
+    .home-map .map .leaflet-popup-content{
         width: 200px !important;
+        word-break: break-word !important;
     }
 }
 
-.popup .card-header{
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    border-top-left-radius: 5px !important;
-    border-top-right-radius: 5px !important;
-    background-color: #154360;
-    display: grid;
-}
-
-.popup .card-header header.preview{
-    font-family: "Philosopher";
-    font-weight: 700;
-    font-size: 22px !important;
-    color: #FFFFFF;
-    white-space: nowrap !important; 
-    overflow: hidden !important;
-    text-overflow: ellipsis;
+.home-map .map .popup{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 326px;
+    border-radius: 5px !important;
+    background-color: #FFFFFF;
+    word-break: break-word !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .popup .card-header header.preview{
-        font-family: "Philosopher";
-        font-weight: 700;
-        font-size: 20px !important;
-        color: #FFFFFF;
-        white-space: nowrap !important; 
-        overflow: hidden !important;
-        text-overflow: ellipsis;
+    .home-map .map .popup{
+        width: 249px !important;
+        word-break: break-word !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .popup .card-header header.preview{
-        font-family: "Philosopher";
-        font-weight: 700;
-        font-size: 18px !important;
-        color: #FFFFFF;
-        white-space: nowrap !important; 
-        overflow: hidden !important;
-        text-overflow: ellipsis;
+    .home-map .map .popup{
+        width: 229px !important;
+        word-break: break-word !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .popup .card-header header.preview{
-        font-family: "Philosopher";
-        font-weight: 700;
-        font-size: 16px !important;
-        color: #FFFFFF;
-        white-space: nowrap !important; 
-        overflow: hidden !important;
-        text-overflow: ellipsis;
+    .home-map .map .popup{
+        width: 200px !important;
+        word-break: break-word !important;
     }
+}
+
+.home-map .map .popup .popup-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.home-map .map .popup .popup-header i.fa-solid.fa-circle-exclamation{
+    font-size: 30px !important;
+    color: #003755;
 }
 
 .leaflet-popup-close-button{
     display: none !important;
 }
 
-.popup .card-body{
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    width: 100%;
-    border-bottom-left-radius: 5px !important;
-    border-bottom-right-radius: 5px !important;
-    display: grid;
-    gap: 15px;
-    background-color: #FFFFFF;
-}
-
-.popup .card-body .field{
-    display: grid;
-    grid-template-columns: 100%;
-    gap: 30px;
-}
-
-@media screen and (min-width: 446px) and (max-width: 775px){
-    .popup .card-body .field{        
-        grid-template-columns: 100%;
-        gap: 0px;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .popup .card-body .field{        
-        grid-template-columns: 100%;
-        gap: 0px;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .popup .card-body .field{        
-        grid-template-columns: 100%;
-        gap: 0px;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .popup .card-body .field{        
-        grid-template-columns: 100%;
-        gap: 0px;
-    }
-}
-
-.popup .card-body .field .column label[for = "capture-date"]{
-    margin-top: 0px;
-    display: inline-block;
-    font-family: "Overlock";
-    font-weight: 400;
-    font-size: 20px !important;
-    color: #154360 !important;
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .popup .card-body .field .column label[for = "capture-date"]{
-        margin-top: 0px;
-        display: inline-block;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 18px !important;
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .popup .card-body .field .column label[for = "capture-date"]{
-        margin-top: 0px;
-        display: inline-block;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 16px !important;
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .popup .card-body .field .column label[for = "capture-date"]{
-        margin-top: 0px;
-        display: inline-block;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 14px !important;
-        color: #154360 !important;
-    }
-}
-
-.popup .card-body .field .column .capture-date{
-    position: relative;
-}
-
-.popup .card-body .field .column .capture-date input{
-    padding-left: 10px !important;
-    padding-right: 40px !important;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
-    width: 100%;
-    border: 1px solid #B2BEB5;
-    border-radius: 5px; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
-    outline: none !important;
-    font-family: "Philosopher";
-    font-weight: 700 !important;
-    font-size: 20px !important;   
-    color: #154360 !important;
-}
-
-.popup .card-body .field .column .capture-date input:focus{
-    border-bottom-width: 2.5px !important;
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .popup .card-body .field .column .capture-date input{
-        padding-left: 10px !important;
-        padding-right: 38px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Philosopher";
-        font-weight: 700 !important;
-        font-size: 18px !important;   
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .popup .card-body .field .column .capture-date input{
-        padding-left: 10px !important;
-        padding-right: 36px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Philosopher";
-        font-weight: 700 !important;
-        font-size: 16px !important;   
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .popup .card-body .field .column .capture-date input{
-        padding-left: 10px !important;
-        padding-right: 34px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Philosopher";
-        font-weight: 700 !important;
-        font-size: 14px !important;   
-        color: #154360 !important;
-    }
-}
-
-.popup .card-body .field .column .capture-date i{
-    right: 10px;
-    top: 50%;
-    position: absolute;
-    display: grid;
-    place-items: center;
-    font-size: 20px;
-    color: #154360;
-    transform: translateY(-50%);
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .popup .card-body .field .column .capture-date i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 18px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .popup .card-body .field .column .capture-date i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 16px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .popup .card-body .field .column .capture-date i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 14px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-.popup .card-body .field .column label[for = "coordinates"]{
-    margin-top: 15px;
-    display: inline-block;
-    font-family: "Overlock";
-    font-weight: 400;
-    font-size: 20px !important;
-    color: #154360 !important;
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .popup .card-body .field .column label[for = "coordinates"]{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 18px !important;
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .popup .card-body .field .column label[for = "coordinates"]{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 16px !important;
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .popup .card-body .field .column label[for = "coordinates"]{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 14px !important;
-        color: #154360 !important;
-    }
-}
-
-.popup .card-body .field .column .coordinates{
-    position: relative;
-}
-
-.popup .card-body .field .column .coordinates input{
-    padding-left: 10px !important;
-    padding-right: 40px !important;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
-    width: 100%;
-    border: 1px solid #B2BEB5;
-    border-radius: 5px; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
-    outline: none !important;
-    font-family: "Philosopher";
-    font-weight: 700 !important;
-    font-size: 20px !important;   
-    color: #154360 !important;
-}
-
-.popup .card-body .field .column .coordinates input:focus{
-    border-bottom-width: 2.5px !important;
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .popup .card-body .field .column .coordinates input{
-        padding-left: 10px !important;
-        padding-right: 38px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Philosopher";
-        font-weight: 700 !important;
-        font-size: 18px !important;   
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .popup .card-body .field .column .coordinates input{
-        padding-left: 10px !important;
-        padding-right: 36px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Philosopher";
-        font-weight: 700 !important;
-        font-size: 16px !important;   
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .popup .card-body .field .column .coordinates input{
-        padding-left: 10px !important;
-        padding-right: 34px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Philosopher";
-        font-weight: 700 !important;
-        font-size: 14px !important;   
-        color: #154360 !important;
-    }
-}
-
-.popup .card-body .field .column .coordinates i{
-    right: 10px;
-    top: 50%;
-    position: absolute;
-    display: grid;
-    place-items: center;
-    font-size: 20px;
-    color: #154360;
-    transform: translateY(-50%);
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .popup .card-body .field .column .coordinates i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 18px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .popup .card-body .field .column .coordinates i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 16px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .popup .card-body .field .column .coordinates i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 14px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-.popup .card-body .button{
-    margin-left: auto;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
-    width: fit-content;
-    height: 100% !important;
-}
-
-.popup .card-body .button a.read-post{
-    padding-left: 10px !important;
-    padding-right: 10px !important;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
-    border: 1px solid #B2BEB5; 
-    border-radius: 5px;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
-    outline: none !important;
-    font-family: "Overlock";
-    font-weight: 400;
-    font-size: 20px;
-    color: #FFFFFF !important;
-    background-color: #154360 !important;
-    text-decoration: none;
+.home-map .map .popup .popup-header .popup-back{
+    font-size: 30px !important;
+    color: #003755;
     cursor: pointer;
 }
 
-.popup .card-body .button a.read-post:hover{
-    background-color: #10354C !important;
-    color: #B2BEB5 !important;
+.home-map .map .popup .popup-header .popup-back:hover{
+    color: #002C44;
+    cursor: pointer;
+}
+
+.home-map .map .popup .popup-header .popup-back:focus{
+    color: #002C44;
+    cursor: pointer;
+}
+
+.home-map .map .popup .popup-header .popup-back:active{
+    color: #002C44;
+    cursor: pointer;
+}
+
+.popup .popup-place{
+    display: grid;
+    gap: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    background-color: #FFFFFF;
+}
+
+.home-map .map .popup .popup-place p{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    font-family: "Open Sans";
+    font-weight: 400;
+    font-size: 22px !important;
+    color: #000000;
+    cursor: default;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home-map .map .popup .popup-place p{
+        font-family: "Open Sans";
+        font-weight: 400;
+        font-size: 20px !important;
+        color: #000000;
+    }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .popup .card-body .button a{
-        font-family: "Overlock";
+    .home-map .map .popup .popup-place p{
+        font-family: "Open Sans";
         font-weight: 400;
         font-size: 18px !important;
-        color: #FFFFFF !important;
-        text-decoration: none;
+        color: #000000;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .popup .card-body .button a{
-        font-family: "Overlock";
+    .home-map .map .popup .popup-place p{
+        font-family: "Open Sans";
         font-weight: 400;
         font-size: 16px !important;
-        color: #FFFFFF !important;
-        text-decoration: none;
+        color: #000000;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .popup .card-body .button a{
-        font-family: "Overlock";
+    .home-map .map .popup .popup-place p{
+        font-family: "Open Sans";
         font-weight: 400;
         font-size: 14px !important;
-        color: #FFFFFF !important;
-        text-decoration: none;
+        color: #000000;
     }
 }
 
-.leaflet-popup-tip{
-    border: 1px solid #B2BEB5 !important;
-    border-radius: 5px !important;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
+.home-map .map .popup .popup-place p a{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    font-family: "Open Sans";
+    font-weight: 700;
+    font-size: 22px !important;
+    color: #000000;
+    cursor: default;
 }
 
-.datum{
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-map .map .popup .popup-place p a{
+        font-family: "Open Sans";
+        font-weight: 700;
+        font-size: 16px !important;
+        color: #000000;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-map .map .popup .popup-place p a{
+        font-family: "Open Sans";
+        font-weight: 700;
+        font-size: 14px !important;
+        color: #000000;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-map .map .popup .popup-place p a{
+        font-family: "Open Sans";
+        font-weight: 700;
+        font-size: 12px !important;
+        color: #000000;
+    }
+}
+
+.home-map .map .popup .popup-statistics{
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    align-items: flex-start;        
+    flex-direction: column;
+    gap: 15px;
+    border-top: 1px solid #B2BEB5;
+    border-bottom: 1px solid #B2BEB5;
+}
+
+.home-map .map .popup .popup-statistics p{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    font-family: "Open Sans";
+    font-weight: 400;
+    font-size: 22px !important;
+    color: #000000;
+    cursor: default;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-map .map .popup .popup-statistics p{
+        font-family: "Open Sans";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #000000;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-map .map .popup .popup-statistics p{
+        font-family: "Open Sans";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #000000;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-map .map .popup .popup-statistics p{
+        font-family: "Open Sans";
+        font-weight: 400;
+        font-size: 12px !important;
+        color: #000000;
+    }
+}
+
+.home-map .map .popup .popup-statistics p a{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    font-family: "Open Sans";
+    font-weight: 700;
+    font-size: 22px !important;
+    color: #000000;
+    cursor: default;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-map .map .popup .popup-statistics p a{
+        font-family: "Open Sans";
+        font-weight: 700;
+        font-size: 16px !important;
+        color: #000000;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-map .map .popup .popup-statistics p a{
+        font-family: "Open Sans";
+        font-weight: 700;
+        font-size: 14px !important;
+        color: #000000;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-map .map .popup .popup-statistics p a{
+        font-family: "Open Sans";
+        font-weight: 700;
+        font-size: 12px !important;
+        color: #000000;
+    }
+}
+
+.home-map .map .popup .popup-header img{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.home-map .map .popup .popup-username{
+    display: grid;
+    gap: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    background-color: #FFFFFF;
+}
+
+.home-map .map .popup .popup-username p{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    font-family: "Open Sans";
+    font-weight: 400;
+    font-size: 22px !important;
+    color: #000000;
+    cursor: default;
+    word-break: break-all;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-map .map .popup .popup-username p{
+        font-family: "Open Sans";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #000000;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-map .map .popup .popup-username p{
+        font-family: "Open Sans";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #003755;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-map .map .popup .popup-username p{
+        font-family: "Open Sans";
+        font-weight: 400;
+        font-size: 12px !important;
+        color: #000000;
+    }
+}
+
+.home-map .map .popup .popup-username p a{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    font-family: "Open Sans";
+    font-weight: 700;
+    font-size: 22px !important;
+    color: #000000;
+    cursor: default;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-map .map .popup .popup-username p a{
+        font-family: "Open Sans";
+        font-weight: 700;
+        font-size: 16px !important;
+        color: #000000;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-map .map .popup .popup-username p a{
+        font-family: "Open Sans";
+        font-weight: 700;
+        font-size: 14px !important;
+        color: #000000;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-map .map .popup .popup-username p a{
+        font-family: "Open Sans";
+        font-weight: 700;
+        font-size: 12px !important;
+        color: #000000;
+    }
+}
+
+.home-map .map .popup .popup-post{
+    position: relative;
+    display: grid;
+    gap: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top: 1px solid #B2BEB5;
+    border-bottom: 1px solid #B2BEB5;
+    background-color: #FFFFFF;
+}
+
+.home-map .map .popup .popup-post .post-gallery{
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden !important;
+    cursor: pointer;
+}
+
+.home-map .map .popup .popup-post .post-gallery img{
+    width: 100%;
+    height: 25vh;
+    filter: brightness(50%);
+}
+
+.home-map .map .popup .popup-post .post-gallery img:hover{
+    transform: scale(1.25);
+}
+
+.home-map .map .popup .popup-post .post-gallery .post-context{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.home-map .map .popup .popup-post .post-gallery .post-context p{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-family: "Open Sans";
+    font-weight: 400;
+    font-size: 22px !important;
+    color: #FFFFFF;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-map .map .popup .popup-post .post-gallery .post-context p{
+        font-family: "Open Sans";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #FFFFFF;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-map .map .popup .popup-post .post-gallery .post-context p{
+        font-family: "Open Sans";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #FFFFFF;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-map .map .popup .popup-post .post-gallery .post-context p{
+        font-family: "Open Sans";
+        font-weight: 400;
+        font-size: 12px !important;
+        color: #FFFFFF;
+    }
+}
+
+.home-map .map .popup .popup-post .post-gallery .post-context a{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    font-family: "Open Sans";
+    font-weight: 700;
+    font-size: 22px !important;
+    color: #FFFFFF;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-map .map .popup .popup-post .post-gallery .post-context a{
+        font-family: "Open Sans";
+        font-weight: 700;
+        font-size: 16px !important;
+        color: #FFFFFF;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-map .map .popup .popup-post .post-gallery .post-context a{
+        font-family: "Open Sans";
+        font-weight: 700;
+        font-size: 14px !important;
+        color: #FFFFFF;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-map .map .popup .popup-post .post-gallery .post-context a{
+        font-family: "Open Sans";
+        font-weight: 700;
+        font-size: 12px !important;
+        color: #FFFFFF;
+    }
+}
+
+.home-map .map .popup .button{
+    margin-left: auto;
+    margin-top: 10px;
     padding-left: 10px !important;
     padding-right: 10px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
-    border: 1px solid #B2BEB5 !important; 
-    border-radius: 5px !important;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
-    font-family: "Overlook";
+    width: fit-content;
+    height: fit-content;
+    border-radius: 5px;
+    background-color: #003755 !important;
+}
+
+.home-map .map .popup .button:hover{
+    background-color: #002C44 !important;
+    color: #B2BEB5 !important;
+    cursor: pointer;
+}
+
+.home-map .map .popup .button:focus{
+    background-color: #002C44 !important;
+    color: #B2BEB5 !important;
+    cursor: pointer;
+}
+
+.home-map .map .popup .button:active{
+    background-color: #002C44 !important;
+    color: #B2BEB5 !important;
+    cursor: pointer;
+}
+
+.home-map .map .popup .button a.read-post{
+    font-family: "Open Sans";
     font-weight: 400;
-    font-size: 16px !important;
+    font-size: 22px;
     color: #FFFFFF !important;
-    background-color: #154360;
-    text-align: justify;
+    text-decoration: none;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-map .map .popup .button a.read-post{
+        font-family: "Open Sans";
+        font-weight: 400;
+        font-size: 16px !important;
+        color: #FFFFFF !important;
+        text-decoration: none;
+    }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .datum{
-        font-family: "Overlook";
+    .home-map .map .popup .button a.read-post{
+        font-family: "Open Sans";
         font-weight: 400;
         font-size: 14px !important;
         color: #FFFFFF !important;
-        text-align: justify;
+        text-decoration: none;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .datum{
-        font-family: "Overlook";
+    .home-map .map .popup .button a.read-post{
+        font-family: "Open Sans";
         font-weight: 400;
         font-size: 12px !important;
         color: #FFFFFF !important;
-        text-align: justify;
+        text-decoration: none;
     }
 }
 
-.datum p{
-    margin-bottom: 0px !important;
-}
-
-.datum header{
-    font-family: "Philosopher";
-    font-weight: 700;
-    font-size: 18px !important;
-    color: #FFFFFF !important;
-    text-align: justify;
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .datum header{
-        font-family: "Philosopher";
-        font-weight: 700;
-        font-size: 16px !important;
-        color: #FFFFFF !important;
-        text-align: justify;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .datum header{
-        font-family: "Philosopher";
-        font-weight: 700;
-        font-size: 14px !important;
-        color: #FFFFFF !important;
-        text-align: justify;
-    }
-}
-
-.datum i{
-    font-family: "Philosopher";
-    font-weight: 700;
-    font-size: 18px !important;
-    color: #FFFFFF !important;
-    text-align: justify;
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .datum i{
-        font-family: "Philosopher";
-        font-weight: 700;
-        font-size: 16px !important;
-        color: #FFFFFF !important;
-        text-align: justify;
-    }
+.home-map .map  .leaflet-popup-tip{
+    border-radius: 5px !important;
 }
 
 

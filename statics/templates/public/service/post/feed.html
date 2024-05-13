@@ -10,9 +10,9 @@
         {% for post in valid_posts %}
             <div class = "feed">
                 <div class = "feed-header">
-                    <p><i class = "fas fa-user"></i>{{post.user | default:'None available'}}</p>
+                    <p><img src = "{{post.user.profile_photo.url}}">{{post.user | default:'None available'}}</p>
                     
-                    <p><i class = "fas fa-calendar-check"></i>{{post.capture_date | date:"M. d, Y" | default:'None available'}}</p>
+                    <p>{{post.capture_date | date:'m/d/y' | default:'None available'}}</p>
                 </div>
                 
                 <img class = "feed-image" src = "{{post.post_photos.first.post_photo.url | default:'None available'}}">

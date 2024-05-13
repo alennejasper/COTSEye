@@ -20,8 +20,7 @@
     text-align: center;     
     font-weight: 700;       
     font-size: 22px;     
-    color: #003755;   
-    letter-spacing: 2.5px;
+    color: #000000;   
 }
 
 .resource-body .resource{
@@ -45,10 +44,10 @@
 }
 
 .resource-body .resource .resource-context h3{
-    font-family: "Poppins";
+    font-family: "Open Sans";
     font-weight: 700;
     font-size: 14px !important;
-    color: #003755;
+    color: #000000;
 }
 
 .resource-body .resource .resource-context i{

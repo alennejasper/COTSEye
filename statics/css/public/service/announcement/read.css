@@ -1,7 +1,5 @@
 .announcementread-body{
     position: relative;
-    padding-left: 10px;
-    padding-right: 10px;
     width: 100vw;
     height: 100%;
     color: #000000;
@@ -11,16 +9,17 @@
     display: flex;                   
     align-items: center; 
     justify-content: center;          
-    flex-direction: column;
+    padding-top: 10px;
+    padding-bottom: 10px;      
     width: 100%;                     
     text-align: center;                                   
 }
 
 .announcementread-body .announcementread-section h1{
-    text-align: center;     
+    font-family: "Open Sans";
     font-weight: 700;       
     font-size: 22px;        
-    letter-spacing: 2.5px;
+    text-align: center;     
 }
 
 .announcementread-body .announcementread{
@@ -29,8 +28,12 @@
 }
 
 .announcementread-body .announcementread .announcementread-header{
-    display: grid;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     row-gap: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
     padding-top: 10px;
     padding-bottom: 10px;
 }
@@ -41,27 +44,28 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-family: "Poppins";
-    font-weight: 400;
+    font-family: "Open Sans";
+    font-weight: 700;
     font-size: 14px !important;
-    color: #003755;
+    color: #000000;
 }
 
-.announcementread-body .announcementread .announcementread-header i{
-    margin-right: 10px;
-    font-size: 20px;
-    color: #003755;  
+.announcementread-body .announcementread .announcementread-header img{
+    margin-right: 10px !important;
+    margin-bottom: 0px !important;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
 }
 
 .announcementread-body .announcementread .announcementread-gallery{
     position: relative;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    height: 250px;                
-    border-radius: 5px !important;
+    height: 100%;                
     background-color: #FFFFFF;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    white-space: nowrap;
 }
 
 .announcementread-body .announcementread .announcementread-gallery img{
@@ -69,32 +73,105 @@
     display: inline-block;
     place-items: center;
     object-fit: cover;
-    margin-right: 10px;
+    margin-right: 1px;
     width: 100%;
     height: 100%;
-    border-radius: 5px;
     overflow: hidden !important;
 }
 
-.announcementread-body .announcementread p{
-    display: flex;
-    align-items: center;
-    font-family: "Poppins";
-    font-weight: 400;
-    font-size: 14px !important;
-    color: #003755;
+.announcementread-body .announcementread .announcementread-origin{
+    display: flex;                   
+    align-items: center; 
+    justify-content: space-between;          
+    width: 100%; 
+    padding-left: 10px;
+    padding-right: 10px;                                          
 }
 
-.announcementread-body .announcementread i{
+.announcementread-body .announcementread .announcementread-origin p{
+    display: flex;
+    align-items: center;
+    font-family: "Open Sans";
+    font-weight: 700;
+    font-size: 14px !important;
+    color: #000000;
+}
+
+.announcementread-body .announcementread .origin i{
     margin-right: 10px;
     font-size: 20px;
     color: #003755;  
 }
 
+.announcementread-body .announcementread > p{
+    padding-left: 10px;
+    padding-right: 10px;
+    font-family: "Open Sans";
+    font-size: 14px;
+    font-weight: 400;       
+    color: #000000;
+    text-align: justify;
+}
+
+.announcementread-body .announcementread .announcementread-observation{
+    display: grid;
+    row-gap: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.announcementread-body .announcementread .announcementread-observation h1{
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: "Open Sans";
+    font-size: 22px;
+    font-weight: 700;       
+    color: #000000;                          
+    text-align: center;
+}
+
+.announcementread-body .announcementread .announcementread-observation .observation-context{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.announcementread-body .announcementread .announcementread-observation .observation-context p:first-child{
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: "Open Sans";
+    font-size: 14px;
+    font-weight: 700;       
+    color: #000000;                          
+}
+
+.announcementread-body .announcementread .announcementread-observation .observation-context p:last-child{
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: "Open Sans";
+    font-size: 14px;
+    font-weight: 400;       
+    color: #000000;                          
+}
+
 .announcementread-body .announcementread .button{
     margin-left: auto;
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
     width: fit-content;
     height: 100% !important;
 }
@@ -102,11 +179,14 @@
 .announcementread-body .announcementread a{
     padding-left: 10px !important;
     padding-right: 10px !important;
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
     border-radius: 5px;
     outline: none !important;
-    font-family: "Poppins";
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: "Open Sans";
     font-weight: 400;
     font-size: 14px;
     color: #FFFFFF !important;

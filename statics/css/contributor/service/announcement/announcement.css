@@ -1,6 +1,5 @@
 .announcement-body{
     position: relative;
-
     width: 100vw;
     height: 100%;
     color: #000000;
@@ -10,23 +9,19 @@
     display: flex;                   
     align-items: center; 
     justify-content: center;          
-    flex-direction: column;
     width: 100%;                     
     text-align: center;                                   
 }
 
 .announcement-body .announcement-section h1{
-    text-align: center;     
+    font-family: "Open Sans"; 
     font-weight: 700;       
     font-size: 22px;     
-    padding-bottom: 20px;  
-    font-family: "Open Sans"; 
-
+    text-align: center;  
 }
 
 .announcement-body .announcement{
     margin-bottom: 10px;
-    border: 1px solid #003755 !;
 }
 
 .announcement-body .announcement:last-child{
@@ -47,13 +42,13 @@
 .announcement-body .announcement .announcement-header p{
     display: flex;
     align-items: center;
-    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-family: "Poppins";
+    white-space: nowrap;
+    font-family: "Open Sans";
     font-weight: 400;
     font-size: 14px !important;
-    color: #003755;
+    color: #000000;
 }
 
 .announcement-body .announcement .announcement-header img{
@@ -79,10 +74,10 @@
 }
 
 .announcement-body .announcement .announcement-context{
-    padding-left: 10px;
-    display: flex;
+    display: grid;
     align-items: center;
-    justify-content: space-between;
+    grid-template-columns: auto auto;
+    gap: 10px;
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 10px;
@@ -93,10 +88,10 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-family: "Poppins";
-    font-weight: 500;       
-    font-size: 18spx;
-    color: #003755;  
+    font-family: "Open Sans";
+    font-weight: 400;       
+    font-size: 14px;
+    color: #000000;  
 }
 
 .announcement-body .announcement .announcement-context .button{
@@ -114,11 +109,14 @@
     padding-bottom: 5px !important;
     border-radius: 5px;
     outline: none !important;
-    font-family: "Poppins";
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: "Open Sans";
     font-weight: 400;
-    font-size: 12px;
+    font-size: 14px;
     color: #FFFFFF !important;
     background-color: #003755 !important;
     text-decoration: none;
-    cursor: pointer;  
+    cursor: pointer;
 }

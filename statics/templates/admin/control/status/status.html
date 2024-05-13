@@ -106,158 +106,152 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                    {% if results %}
-                        <td class="text-center">{{municipality}}</td>
-                        <td class="text-center">{{barangay}}</td>
-                        <td class="text-center">{{capture_count}}</td>
-                        <td class="text-center">{{caughtoverall_count}}</td>
-                    {% endif %}
-                </tr>
+                    {% for result in results %}
+                        <tr>
+                            <td class="text-center">{{result.location.barangay}}</td>
+                        
+                            <td class="text-center">{{result.location.municipality}}</td>
+                                                    
+                            <td class="text-center">{{valid_posts}}</td>
+
+                            <td class="text-center">{{result.caught_overall}}</td>
+                        </tr>
+                    {% endfor %}
               </tbody>
         </table>
     </div>
     <div class="text-center mt-5 mb-5">
         <h2 class="text-center text-info">
-            Total No. of Caught COTS as of April
+            Total No. of Caught COTS as of {{from_date | date:'m/d/y'}} to {{to_date | date:'m/d/y'}}
         </h2>
     </div>
-    <div>
-        <div id="status_chart"></div>
-    </div>
-    <script>
-        function printPage() {
-            window.print();
-        }
+    <div class = "map-graph"></div>
 
-    (function () {
-        'use strict';
+        <script>
+            var categories = [];
 
-        var config = {
-            colors: {
-                headingColor: '#1E1E1E',
-                axisColor: '#1E1E1E',
-                borderColor: '#D9D9D973',
-                primary: '#16DBCC',
-                info: '#16DBCC'
-            }
-        };
+            var data = [];
 
-        let cardColor, headingColor, axisColor, borderColor;
+            {% for result in results %}
+                categories.push("{{result.location.barangay}}, {{result.location.municipality}}");
 
-        cardColor = config.colors.primary;
-        headingColor = config.colors.headingColor;
-        axisColor = config.colors.axisColor;
-        borderColor = config.colors.borderColor;
-        // --------------------------------------------------------------------
-        const status_chartEl = document.querySelector('#status_chart');
+                data.push({
+                    x: "{{result.location.barangay}}, {{result.location.municipality}}",
 
-        if (typeof status_chartEl !== 'undefined' && status_chartEl !== null) {
-            const status_chartOptions = {
-                series: [
-                    {
-                        name: 'Sample Data',
-                        data: [1,2,3,4,5]
-                    }
-                ],
+                    y: {{result.caught_overall}}, fillColor: {{result.caught_overall}} < 25 ? "#698F3F" : {{result.caught_overall}} < 75 ? "#F4C430" : "#C90016"
+                });
+            {% endfor %}
+        
+            var configurations = {
+                series: [{
+                    name: "Caught Overall",
+
+                    data: data
+                }],
+
                 chart: {
+                    fontFamily: "Open Sans",
+
                     height: 500,
-                    width: 1000,
-                    stacked: true,
-                    type: 'bar',
-                    toolbar: { show: false }
+                    
+                    type: "bar",
+
+                    toolbar: {
+                        show: false
+                    },
+
+                    zoom: {
+                        enabled: false
+                    },
                 },
+
+                legend: {
+                    show: false  
+                },
+
                 plotOptions: {
                     bar: {
-                        horizontal: false,
-                        columnWidth: '50%',
-                        borderRadius: 7,
-                        startingShape: 'rounded',
-                        endingShape: 'rounded'
-                    }
-                },
-                colors: [config.colors.primary, config.colors.info],
-                dataLabels: {
-                    enabled: true,
-                    offsetX: 6,
-                    style: {
-                    fontSize: '10px',
-                    fontWeight: '700',
-                    colors: ['#fff'],
-                    fontFamily: 'roboto'
-                    },
-                },
-                legend: {
-                    show: true,
-                    horizontalAlign: 'left',
-                    position: 'top',
-                    markers: {
-                        height: 8,
-                        width: 8,
-                        radius: 12,
-                        offsetX: -3
-                    },
-                    labels: {
-                        colors: axisColor
-                    },
-                    itemMargin: {
-                        horizontal: 10
-                    }
-                },
-                grid: {
-                    borderColor: borderColor,
-                    padding: {
-                        top: 0,
-                        bottom: -8,
-                        left: 20,
-                        right: 20
-                    }
-                },
-                xaxis: {
-                    categories: ["Data", "Data", "Data", "Data", "Data"],
-                    labels: {
-                        style: {
-                            fontSize: '13px',
-                            colors: axisColor,
-                            lineHeight: '1.5',
-                            fontFamily: 'roboto'
-                        }
-                    },
-                    axisTicks: {
-                        show: false
-                    },
-                    axisBorder: {
-                        show: false
-                    }
-                },
-                yaxis: {
-                    labels: {
-                        style: {
-                            fontSize: '13px',
-                            colors: axisColor
-                        }
-                    }
-                },
-                responsive: [
-                ],
-                states: {
-                    hover: {
-                        filter: {
-                            type: 'none'
-                        }
-                    },
-                    active: {
-                        filter: {
-                            type: 'none'
-                        }
-                    }
-                }
-            };
+                        distributed: true,
 
-            const status_chart = new ApexCharts(status_chartEl, status_chartOptions);
-            status_chart.render();
-        }
-    })();
-    </script>
+                        colors: {
+                            ranges: [{
+                                from: 0,
+
+                                to: 24,
+
+                                color: "#698F3F"
+
+                            }, {
+                                from: 25,
+
+                                to: 74,
+
+                                color: "#F4C430"
+
+                            }, {
+                                from: 75,
+
+                                to: undefined,
+
+                                color: "#C90016"
+                            }]
+                        }
+                    }
+                },
+
+                tooltip: {
+                    style: {
+                        fontSize: '14px',
+                    }
+                },
+
+                xaxis: {
+                    categories: categories,
+
+                    title: {
+                        text: "Coastal Barangays",
+
+                        style: {
+                            fontSize: "14px",
+
+                            fontWeight: "700",
+                        }
+                    },
+
+                    labels: {
+                        style: {
+                            fontSize: "14px", 
+
+                            fontWeight: "400"
+                        }
+                    }
+                },
+
+                yaxis: {
+                    title: {
+                        text: "COTS Caught",
+
+                        style: {
+                            fontSize: "14px",
+
+                            fontWeight: "700",
+                        }
+                    },
+
+                    labels: {
+                        style: {
+                            fontSize: "14px", 
+
+                            fontWeight: "400"
+                        }
+                    }
+                },
+            };
+        
+            var graph = new ApexCharts(document.querySelector(".map-graph"), configurations);
+            
+            graph.render();
+        </script>
+</script>
 </body>
 </html>

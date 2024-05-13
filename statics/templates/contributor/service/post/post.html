@@ -5,42 +5,37 @@
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 
     <div class = "post-body">
-        <div style="display: flex; align-items: center; justify-content: space-between;"> 
-            <div class = "post-section">
-                <h1>MY POSTS</h1>
-            </div>
-
-            <div class = "post-filter">
-                <button onclick = "showDropdownOptions()" class = "filter-button">
-                    <span><i class = "fa-solid fa-sliders"></i></span>
-                </button>
-    
-                <form action = "" class = "post-form" method = "GET">
-                    {% csrf_token %}
-    
-                    <div class = "options" id = "options" class = "hidden">
-                        <a name = "post_status" href = "?post_status=1" class = "filter-posts">Valid Posts</a>
-                        
-                        <a name = "post_status" href = "?post_status=2" class = "filter-posts">Invalid Posts</a>
-    
-                        <a name = "post_status" href = "?post_status=3" class = "filter-posts">Pending Posts</a>
-                    </div>
-                </form>
-            </div>
-    
-
+        <div class = "post-section">
+            <h1>{% if post_status == "1" %} VALID POSTS {% elif post_status == "2" %} INVALID POSTS {% elif post_status == "3" %} PENDING POSTS {% elif post_status == "4" %} DRAFT POSTS {% else %} MY POSTS {% endif %}</h1>
         </div>
 
+        <div class = "post-filter">
+            <button onclick = "showDropdownOptions()" class = "filter-button">
+                <span><i class = "fa-solid fa-sliders"></i></span>
+            </button>
+
+            <form action = "" class = "post-form" method = "GET">
+                {% csrf_token %}
+
+                <div class = "options" id = "options" class = "hidden">
+                    <a name = "post_status" href = "?post_status=1" class = "filter-posts">Valid Posts</a>
+                    
+                    <a name = "post_status" href = "?post_status=2" class = "filter-posts">Invalid Posts</a>
+
+                    <a name = "post_status" href = "?post_status=3" class = "filter-posts">Pending Posts</a>
+                
+                    <a name = "post_status" href = "?post_status=4" class = "filter-posts">Draft Posts</a>
+                </div>
+            </form>
+        </div>
 
         <div class = "post-post">
-            <h1>{% if post_status == "1" %} VALID {% elif post_status == "2" %} INVALID {% elif post_status == "3" %} PENDING {% elif post_status == "4" %} DRAFT {% else %} {% endif %}</h1>
-
             {% for post in results %}
                 <div class = "post">
                     <div class = "post-header">
                         <p><img src = "{{post.user.profile_photo.url}}">{{post.user | default:'None available'}}</p>
                         
-                        <p>{{post.capture_date | date:"M. d, Y" | default:'None available'}}</p>
+                        <p>{{post.capture_date | date:'m/d/y' | default:'None available'}}</p>
                     </div>
                     
                     <img class = "post-image" src = "{{post.post_photos.first.post_photo.url | default:'None available'}}">

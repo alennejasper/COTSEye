@@ -1,4 +1,4 @@
-{% extends "contributor/service/index/index.html" %}
+{% extends "public/service/index/index.html" %}
 {% load static %}
 
 {% block content %}
@@ -126,7 +126,7 @@
                 {% for post in map_posts %}
                     var postMarker = L.marker([{{post.coordinates.latitude}}, {{post.coordinates.longitude}}], {icon: starfish});
                     
-                    postMarker.bindPopup("<div class = 'popup'>" + "<div class = 'popup-header'>" +  "<img src = '{{post.user.profile_photo.url | default:''}}'>" +  "<div class='popup-username'>" +  "<p><a>{{post.user | default:'None available'}}</a></p>" + "</div>" + "<i class = 'fa-solid fa-square-xmark popup-back'></i>" + "</div>" + "<div class = 'popup-post'>" + "<div class = 'post-gallery'>" + "<img src = '{{post.post_photos.all.first.post_photo.url}}'>" + "<div class = 'post-context'>" + "<p>{{post.capture_date | default:'None available'}}</p>" + "<a>{{post.coordinates | default:'0'}}</a>" + "</div>" + "</div>" + "</div>" + "<div class = 'button'><a class = 'read-post' href = '{% url 'Post Valid Read Redirect' %}'>Read</a></div>", {closeOnClick: false, autoClose: false});
+                    postMarker.bindPopup("<div class = 'popup'>" + "<div class = 'popup-header'>" +  "<img src = '{{post.user.profile_photo.url | default:''}}'>" +  "<div class='popup-username'>" +  "<p><a>{{post.user | default:'None available'}}</a></p>" + "</div>" + "<i class = 'fa-solid fa-square-xmark popup-back'></i>" + "</div>" + "<div class = 'popup-post'>" + "<div class = 'post-gallery'>" + "<img src = '{{post.post_photos.all.first.post_photo.url}}'>" + "<div class = 'post-context'>" + "<p>{{post.capture_date | default:'None available'}}</p>" + "<a>{{post.location | default:'None available'}}</a>" + "</div>" + "</div>" + "</div>" + "<div class = 'button'><a class = 'read-post' href = '{% url 'Post Valid Read Redirect' %}'>Read</a></div>", {closeOnClick: false, autoClose: false});
 
                     postMarker.on("popupopen", function(e){
                         var popup = e.popup;
@@ -169,7 +169,7 @@
                 var overlays = {
                     "Posts": map_posts, 
 
-                    "Statuses": map_statuses
+                    "COTS Status": map_statuses
                 };
 
                 var management = L.control.layers(bases, overlays).addTo(map);
@@ -210,7 +210,7 @@
                 legend.addTo(map);
 
                 map.on("overlayadd overlayremove", function(event){
-                    if (event.name === "Statuses"){
+                    if (event.name === "COTS Status"){
                         legend.update();
                     }
                 });
@@ -221,35 +221,133 @@
             });
         </script>
 
-        <div class = "chart"></div>
+        <h1>COTS STATUS GRAPH</h1>
+
+        <div class = "map-graph"></div>
 
         <script>
-            var options = {
+            var categories = [];
+
+            var data = [];
+        
+            {% for map_status in map_graphs %}
+                categories.push("{{map_status.location}}");
+
+                data.push({
+                    x: "{{map_status.location}}",
+
+                    y: {{map_status.caught_overall}}, fillColor: {{map_status.caught_overall}} < 25 ? "#698F3F" : {{map_status.caught_overall}} < 75 ? "#F4C430" : "#C90016"
+                });
+            {% endfor %}
+        
+            var configurations = {
                 series: [{
-                    name: 'Series 1',
-                    data: [30, 40, 45, 50, 49, 60, 70, 91]
+                    name: "Caught Overall",
+
+                    data: data
                 }],
 
                 chart: {
-                    height: 350,
-                    type: 'bar',
+                    fontFamily: "Open Sans",
+
+                    height: 500,
+                    
+                    type: "bar",
+
+                    toolbar: {
+                        show: false
+                    },
+
                     zoom: {
                         enabled: false
+                    },
+                },
+
+                legend: {
+                    show: false  
+                },
+
+                plotOptions: {
+                    bar: {
+                        distributed: true,
+
+                        colors: {
+                            ranges: [{
+                                from: 0,
+
+                                to: 24,
+
+                                color: "#698F3F"
+
+                            }, {
+                                from: 25,
+
+                                to: 74,
+
+                                color: "#F4C430"
+
+                            }, {
+                                from: 75,
+
+                                to: undefined,
+
+                                color: "#C90016"
+                            }]
+                        }
                     }
                 },
 
-                title: {
-                    text: 'Sample Bar Chart',
-                    align: 'left'
+                tooltip: {
+                    style: {
+                        fontSize: '14px',
+                    }
                 },
 
                 xaxis: {
-                    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug']
-                }
+                    categories: categories,
+
+                    title: {
+                        text: "Coastal Barangays",
+
+                        style: {
+                            fontSize: "14px",
+
+                            fontWeight: "700",
+                        }
+                    },
+
+                    labels: {
+                        style: {
+                            fontSize: "14px", 
+
+                            fontWeight: "400"
+                        }
+                    }
+                },
+
+                yaxis: {
+                    title: {
+                        text: "COTS Caught",
+
+                        style: {
+                            fontSize: "14px",
+
+                            fontWeight: "700",
+                        }
+                    },
+
+                    labels: {
+                        style: {
+                            fontSize: "14px", 
+
+                            fontWeight: "400"
+                        }
+                    }
+                },
             };
-
-            var chart = new ApexCharts(document.querySelector(".chart"), options);
-
-            chart.render();
+        
+            var graph = new ApexCharts(document.querySelector(".map-graph"), configurations);
+            
+            graph.render();
         </script>
 {% endblock content %}

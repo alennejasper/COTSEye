@@ -4,15 +4,15 @@ from reports.models import Post
 
 def coordinates(request):
     try:
-        posts = Post.objects.filter(post_status = 1)
+        map_posts = Post.objects.filter(post_status = 1)
 
-        statuses = Status.objects.all()
+        map_statuses = Status.objects.all()
     
     except:
-        posts = None
+        map_posts = None
 
-        statuses = None
+        map_statuses = None
 
-    context = {"posts": posts, "statuses": statuses}
+    context = {"map_posts": map_posts, "map_statuses": map_statuses}
     
     return (context)

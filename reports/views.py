@@ -50,6 +50,8 @@ def ContributorServiceReport(request):
 
     user_profile = User.objects.get(account = request.user)
 
+    locations = Location.objects.all()
+
     coordinates_form = CoordinatesForm()
 
     postobservation_form = PostObservationForm()
@@ -57,8 +59,6 @@ def ContributorServiceReport(request):
     depths = Depth.objects.all()
 
     weathers = Weather.objects.all()
-
-    addresses = Location.objects.all()
 
     post_form = PostForm()
     
@@ -104,18 +104,18 @@ def ContributorServiceReport(request):
             except:
                 post_observation.weather = None
 
-            address = request.POST.get("address")
+            location = request.POST.get("location")
 
             try:
-                post.address = Location.objects.get(id = address)
+                post.location = Location.objects.get(id = location)
 
             except:
-                post.address = None
+                post.location = None
 
             post_observation = PostObservation.objects.create(size = post_observation.size, depth = post_observation.depth, density = post_observation.density, weather = post_observation.weather)
             
             if Coordinates.objects.filter(latitude = coordinates.latitude, longitude = coordinates.longitude).exists() and Coordinates.objects.filter(latitude = coordinates.latitude, longitude = coordinates.longitude).exists() and PostObservation.objects.filter(size = post_observation.size, depth = post_observation.depth, density = post_observation.density, weather = post_observation.weather).exists():
-                post = Post.objects.create(user = user, description = post.description, capture_date = post.capture_date, coordinates = coordinates, address = post.address, location = post.location, post_status = post_status, post_observation = post_observation)
+                post = Post.objects.create(user = user, description = post.description, capture_date = post.capture_date, coordinates = coordinates, location = post.location, post_status = post_status, post_observation = post_observation)
                 
                 post_photos_capture = request.FILES.getlist("post_photos_capture")
 
@@ -149,7 +149,7 @@ def ContributorServiceReport(request):
         
         post_form = PostForm() 
 
-    context = {"username": username, "user_profile": user_profile, "coordinates_form": coordinates_form, "depths": depths, "weathers": weathers, "postobservation_form": postobservation_form, "post_form": post_form, "addresses": addresses}
+    context = {"username": username, "user_profile": user_profile, "locations": locations, "coordinates_form": coordinates_form, "depths": depths, "weathers": weathers, "postobservation_form": postobservation_form, "post_form": post_form}
     
     return render(request, "contributor/service/report/report.html", context)
 
@@ -368,10 +368,10 @@ def ContributorServicePost(request):
         post_status = request.GET.get("post_status")
 
         if post_status in ["1", "2", "3", "4"]:
-            results = Post.objects.filter(post_status = post_status)
+            results = Post.objects.filter(user = request.user.user, post_status = post_status)
 
         else:
-            results = Post.objects.all()
+            results = Post.objects.filter(user = request.user.user)
         
     context = {"username": username, "user_profile": user_profile, "records": records, "results": results, "post_status": post_status}
 

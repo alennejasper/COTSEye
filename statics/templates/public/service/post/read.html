@@ -1,4 +1,4 @@
-{% extends "public/service/index/index.html" %}
+{% extends "contributor/service/index/index.html" %}
 {% load static %}
 
 
@@ -11,13 +11,9 @@
         {% if valid_post %}
             <div class = "postandfeedread">
                 <div class = "postandfeedread-header">
-                    <p><i class = "fa-solid fa-user"></i>{{valid_post.user}}</p>
+                    <p><img src = "{{valid_post.user.profile_photo.url}}">{{valid_post.user}}</p>
 
-                    <div class = "postandfeedread-status">
-                        <p><i class = "fa-solid fa-flag"></i>Valid</p>
-
-                        <p><i class = "fa-solid fa-calendar-check"></i>{{valid_post.capture_date | date:'m/d/y' | default:'None available'}}</p>
-                    </div>
+                    <p>{{valid_post.capture_date | date:'m/d/y' | default:'None available'}}</p>
                 </div>
 
                 <div class = "postandfeedread-gallery">
@@ -26,7 +22,11 @@
                     {% endfor %}
                 </div>
 
-                <p><i class = "fa-solid fa-location-dot"></i>{{valid_post.location | default:'None available'}}</p>
+                <div class = "postandfeedread-origin">
+                    <p>{{valid_post.location | default:'None available'}}</p>
+                    
+                    <p>{{valid_post.post_status | default:'None available'}}</p>
+                </div>
 
                 <p>{{valid_post.description | default:'None available'}}</p>
 
@@ -67,7 +67,7 @@
 
     <script>
         {% if valid_post %}
-            const link = encodeURI("{{scheme}}://{{host}}{% url 'Public Service Post Feed Read' valid_post.id %}");
+            const link = encodeURI("{{scheme}}://{{host}}{% url 'Contributor Service Post Read' valid_post.id %}");
 
             const facebook = document.querySelector(".share-post");
 

@@ -1,10 +1,8 @@
 .feed-body{
     position: relative;
-    padding-left: 10px;
-    padding-right: 10px;
     width: 100vw;
     height: 100%;
-    color: #003755;
+    color: #000000;
 }
 
 .feed-body .feed-section{
@@ -12,29 +10,31 @@
     align-items: center; 
     justify-content: center;          
     flex-direction: column;
+    padding-top: 10px !important; 
+    padding-bottom: 10px !important; 
     width: 100%;                     
     text-align: center;                                   
 }
 
 .feed-body .feed-section h1{
-    text-align: center;     
+    font-family: "Open Sans"; 
     font-weight: 700;       
-    font-size: 36px;        
-    letter-spacing: 2.5px;}
+    font-size: 22px;     
+    text-align: center;     
+}
 
 .feed-body .feed{
     margin-bottom: 10px;
-    border: 1px solid #003755;
 }
 
 .feed-body .feed:last-child{
     margin-bottom: 0px;
-
 }
 
 .feed-body .feed .feed-header{
-    display: grid;
-    row-gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 10px;
@@ -47,10 +47,19 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-family: "Poppins";
+    font-family: "Open Sans";
     font-weight: 400;
     font-size: 14px !important;
-    color: #003755;
+    color: #000000;
+}
+
+.feed-body .feed .feed-header img{
+    margin-right: 10px !important;
+    margin-bottom: 0px !important;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
 }
 
 .feed-body .feed .feed-header i{
@@ -63,10 +72,14 @@
     place-items: center;
     object-fit: cover;
     width: 100%;
-    height: 250px;
+    height: 100%;
 }
 
 .feed-body .feed .feed-context{
+    display: grid;
+    align-items: center;
+    grid-template-columns: auto auto;
+    gap: 10px;
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 10px;
@@ -77,16 +90,16 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-family: "Poppins";
-    font-weight: 700;       
-    font-size: 22px;
-    color: #003755;  
+    font-family: "Open Sans";
+    font-weight: 400;       
+    font-size: 14px;
+    color: #000000;  
 }
 
 .feed-body .feed .feed-context .button{
     margin-left: auto;
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
     width: fit-content;
     height: 100% !important;
 }
@@ -94,11 +107,14 @@
 .feed-body .feed .feed-context a{
     padding-left: 10px !important;
     padding-right: 10px !important;
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
     border-radius: 5px;
     outline: none !important;
-    font-family: "Poppins";
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: "Open Sans";
     font-weight: 400;
     font-size: 14px;
     color: #FFFFFF !important;
