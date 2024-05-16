@@ -833,8 +833,10 @@
     </script>
 
     <script>
-        document.querySelector(".save-report").addEventListener("click", function(event){
-            document.querySelector(".save-report button").click();
+        document.querySelectorAll(".save-report").forEach(function(element) {
+            element.addEventListener("click", function(event) {
+                document.querySelector(".save-report button").click();
+            });
         });
     </script>
 
@@ -913,6 +915,8 @@
                 document.querySelector(".save-report").addEventListener("click", (event) => {
                     const information = new FormData(form);
 
+                    const action = information.get("action");
+
                     const captureDate = information.get("capture_date");
 
                     const description = information.get("description");
@@ -939,6 +943,8 @@
                         {% endif %}        
 
                         user: parseInt(user),
+
+                        action: action,
 
                         capture_date: new Date(captureDate),
                         
@@ -1001,7 +1007,9 @@
                                     const username = "{{request.user.username}}";
 
                                     Swal.fire({title: "Yay!", text: username + ", " + "your information input recorded offline was delivered to COTSEye.", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}}).then(() => {
-                                        window.location.href = "{% url 'Contributor Service Home' %}";
+                                        disableOnBeforeUnload();
+
+                                        window.location.href = "{% url 'Contributor Service Post' %}";
                                     });
                                 };
                             });
@@ -1029,7 +1037,9 @@
                                     const username = "{{request.user.username}}";
 
                                     Swal.fire({title: "Yay!", text: username + ", " + "your information input recorded offline was delivered to COTSEye.", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}}).then(() => {
-                                        window.location.href = "{% url 'Contributor Service Home' %}";
+                                        disableOnBeforeUnload();
+
+                                        window.location.href = "{% url 'Contributor Service Post' %}";
                                     });
                                 };
                             });

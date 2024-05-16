@@ -83,8 +83,7 @@ def ContributorServiceReport(request):
             user = request.user.user
 
             action = request.POST.get("action")
-            print(f"Action value received: {action}")
-            print(action == "save and submit")
+
             if action == "save and submit":
                 post_status = PostStatus.objects.get(id = 3)
 
@@ -200,6 +199,14 @@ def ContributorServiceReportFetch(request):
 
         weather = information.get("weather")
 
+        action = information.POST.get("action")
+            
+        if action == "save and submit":
+            post_status = PostStatus.objects.get(id = 3)
+
+        else:
+            post_status = PostStatus.objects.get(id = 4)
+
         depth = Depth.objects.get(id = depth) if depth else None
 
         weather = Weather.objects.get(id = weather) if weather else None
@@ -210,7 +217,7 @@ def ContributorServiceReportFetch(request):
 
         post_observation = PostObservation.objects.create(size = size, depth = depth, density = density, weather = weather)
 
-        post = Post.objects.create(user = user, capture_date = capture_date, description = description, coordinates = coordinates, location = location, post_observation = post_observation)
+        post = Post.objects.create(user = user, capture_date = capture_date, description = description, coordinates = coordinates, location = location, post_status = post_status, post_observation = post_observation)
 
         for post_photo in post_photos:
             format, string = post_photo.split(";base64,")
