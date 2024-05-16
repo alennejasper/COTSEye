@@ -1,58 +1,8 @@
-from configurations.admin import officer, admin
+from configurations.admin import admin
 from managements.models import *
 
 
 # Register your models here.
-class LocationAdmin(admin.ModelAdmin):
-    class Media:   
-        css = {
-            "all": ["css/officer/control/index/index.css"]
-        }
-
-    def has_module_permission(self, request):
-        return request.user.usertype_id == 1 or request.user.usertype_id == 2
-
-officer.register(Location, LocationAdmin)
-
-
-class StatusTypeAdmin(admin.ModelAdmin):
-    class Media:   
-        css = {
-            "all": ["css/officer/control/index/index.css"]
-        }
-
-    def has_module_permission(self, request):
-        return request.user.usertype_id == 1 or request.user.usertype_id == 2
-
-officer.register(StatusType, StatusTypeAdmin)
-
-
-class StatusAdmin(admin.ModelAdmin):
-    class Media:   
-        css = {
-            "all": ["css/officer/control/index/index.css"]
-        }
-
-    def has_module_permission(self, request):
-        return request.user.usertype_id == 1 or request.user.usertype_id == 2
-
-officer.register(Status, StatusAdmin)
-
-
-class InterventionAdmin(admin.ModelAdmin):
-    class Media:   
-        css = {
-            "all": ["css/officer/control/index/index.css"]
-        }
-
-    def has_module_permission(self, request):
-        return request.user.usertype_id == 1 or request.user.usertype_id == 2
-    
-    readonly_fields = ["gallery_photo"]
-
-officer.register(Intervention, InterventionAdmin)
-
-
 class LocationAdmin(admin.ModelAdmin):
     class Media:   
         css = {

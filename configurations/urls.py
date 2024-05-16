@@ -23,13 +23,11 @@ from django.conf.urls.static import static
 from django.urls import path, include
 from django.views.generic import TemplateView
 from authentications import views
-from configurations.admin import officer, admin
+from configurations.admin import admin
 
 urlpatterns = [        
     path("admin/control/", admin.site.urls),
-    
-    path("officer/control/", officer.urls),
-    
+        
     path("", include("allauth.urls")),
     
     path("", include("authentications.urls")),

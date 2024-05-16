@@ -25,5 +25,7 @@ urlpatterns = [
 
     path("contributor/service/fallback/", views.ContributorServiceFallback, name = "Contributor Service Fallback"),
     
-    path("contributor/service/logout/", views.ContributorServiceLogout, name = "Contributor Service Logout"),                    
+    path("contributor/service/logout/", views.ContributorServiceLogout, name = "Contributor Service Logout"),       
+
+    path("officer/control/home/", views.OfficerControlHome, name = "Officer Control Home"),
 ]

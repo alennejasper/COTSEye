@@ -10,6 +10,8 @@ import datetime
 class Location(models.Model):
     barangay = models.CharField(max_length = 65, help_text = "Designates the name of the barangay.", verbose_name = "Barangay")
     municipality = models.CharField(max_length = 65, help_text = "Designates the name of the municipality.", verbose_name = "Municipality")
+    latitude = models.DecimalField(null = True, blank = True, max_digits = 27, decimal_places = 7, help_text = "Designates the latitude of the location.", verbose_name = "Latitude")
+    longitude = models.DecimalField(null = True, blank = True, max_digits = 27, decimal_places = 7, help_text = "Designates the longitude of the location.", verbose_name = "Longitude")
     perimeters = models.TextField(null = True, blank = True, max_length = 15000, help_text = "Designates the perimeters of the location.", verbose_name = "Perimeters")
     
     class Meta:

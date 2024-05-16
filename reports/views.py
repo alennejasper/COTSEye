@@ -1,22 +1,24 @@
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.files.base import ContentFile
 from django.core.mail import EmailMultiAlternatives
 from django.db.models import Q
+from django.http import JsonResponse
 from django.template.loader import render_to_string
 from django.urls import reverse
 from django.utils.html import strip_tags
+from django.views.decorators.csrf import csrf_exempt
 from authentications.models import Account
 from authentications.views import ContributorCheck, OfficerCheck, AdministratorCheck
 from collections import Counter
+from managements.models import Location
 from reports.models import *
 from reports.forms import CoordinatesForm, PostObservationForm, PostForm
 
 import base64
 import datetime
 import json
-
 
 # Create your views here.
 def PublicServicePostFeed(request):
@@ -56,6 +58,8 @@ def ContributorServiceReport(request):
 
     postobservation_form = PostObservationForm()
 
+    sizes = Size.objects.all()
+
     depths = Depth.objects.all()
 
     weathers = Weather.objects.all()
@@ -88,6 +92,14 @@ def ContributorServiceReport(request):
 
             coordinates = Coordinates.objects.create(latitude = coordinates.latitude, longitude = coordinates.longitude)
 
+            size = request.POST.get("size")
+
+            try:
+                post_observation.size = Size.objects.get(id = size)
+
+            except:
+                post_observation.size = None
+
             depth = request.POST.get("depth")
 
             try:
@@ -104,7 +116,7 @@ def ContributorServiceReport(request):
             except:
                 post_observation.weather = None
 
-            location = request.POST.get("location")
+            location = request.POST.get("barangay")
 
             try:
                 post.location = Location.objects.get(id = location)
@@ -149,7 +161,7 @@ def ContributorServiceReport(request):
         
         post_form = PostForm() 
 
-    context = {"username": username, "user_profile": user_profile, "locations": locations, "coordinates_form": coordinates_form, "depths": depths, "weathers": weathers, "postobservation_form": postobservation_form, "post_form": post_form}
+    context = {"username": username, "user_profile": user_profile, "locations": locations, "coordinates_form": coordinates_form, "sizes": sizes, "depths": depths, "weathers": weathers, "postobservation_form": postobservation_form, "post_form": post_form}
     
     return render(request, "contributor/service/report/report.html", context)
 
@@ -175,7 +187,7 @@ def ContributorServiceReportFetch(request):
 
         longitude = information.get("longitude")
 
-        location = information.get("location")
+        location = information.get("barangay")
 
         size = information.get("size")
 
@@ -218,6 +230,10 @@ def ContributorServiceReportUpdate(request, id):
 
     draft_post = Post.objects.get(id = id, post_status = 4)   
 
+    locations = Location.objects.all()
+
+    sizes = Size.objects.all()
+
     depths = Depth.objects.all()
 
     weathers = Weather.objects.all()
@@ -233,15 +249,27 @@ def ContributorServiceReportUpdate(request, id):
             coordinates_form.save()
             
             postobservation_form.save()
-           
+
+            post = post_form.save(commit = False)
+
+            location = request.POST.get("barangay")
+
+            try:
+                post.location = Location.objects.get(id = location)
+
+            except:
+                post.location = None
+
             post_form.save()
 
             for post_photo in draft_post.post_photos.all():
-                draft_post.post_photos.remove(post_photo)
-
                 post_photo.delete()
                 
-            post_photos = request.FILES.getlist("post_photos")
+            post_photos_capture = request.FILES.getlist("post_photos_capture")
+
+            post_photos_choose = request.FILES.getlist("post_photos_choose")
+            
+            post_photos = post_photos_capture + post_photos_choose
 
             for post_photo in post_photos:
                 photo = PostPhoto.objects.create(post_photo = post_photo)
@@ -252,7 +280,7 @@ def ContributorServiceReportUpdate(request, id):
             
             messages.success(request, username + ", " + "your information input was updated for COTSEye.")
             
-            return redirect("Contributor Service Post Draft")
+            return redirect("Contributor Service Post")
 
         else:
             messages.error(request, "Information input is not valid.")
@@ -266,7 +294,7 @@ def ContributorServiceReportUpdate(request, id):
         
         post_form = PostForm(instance = draft_post)       
 
-    context = {"username": username, "user_profile": user_profile, "draft_post": draft_post, "coordinates_form": coordinates_form, "depths": depths, "weathers": weathers, "postobservation_form": postobservation_form, "post_form": post_form}
+    context = {"username": username, "user_profile": user_profile, "draft_post": draft_post, "locations": locations, "coordinates_form": coordinates_form, "sizes": sizes, "depths": depths, "weathers": weathers, "postobservation_form": postobservation_form, "post_form": post_form}
     
     return render(request, "contributor/service/report/report.html", context)
 
@@ -594,662 +622,6 @@ def ContributorServicePostDraftSendFetch(request):
         messages.success(request, username + ", " + "your information input was sent to COTSEye.")
     
         return redirect("Contributor Service Post Draft")
-
-
-@login_required(login_url = "officer:Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "officer:Officer Control Login")
-def OfficerControlStatisticsPost(request):
-    username = request.user.username
-
-    options = Post.objects.all()
-
-    records = Post.objects.all()
-
-    results = None
-
-    try:
-        posts_count = records.count()
-
-        posts_label = "Posts" + " Count"
-    
-    except:
-        posts_count = ""
-
-        posts_label = ""
-
-    try:
-        users_count = records.values("user").distinct().count()
-
-        users_label = "Users" + " Count"
-    
-    except:
-        users_count = ""
-
-        users_label = ""
-
-    try:
-        user_distribution = [str(user.user) for user in records]
-
-        user_tally = Counter(user_distribution)
-        
-        user_frequency = user_tally.most_common(1)[0][0]
-    
-    except:
-        user_frequency = ""
-    
-    try:
-        user_firstfrequency = user_tally.most_common(1)[0][1]
-
-        user_firstlabel = user_tally.most_common(1)[0][0] + " Frequency"
-
-    except:
-        user_firstfrequency = ""
-    
-        user_firstlabel = ""
-    
-    try:
-        user_secondfrequency = user_tally.most_common(2)[1][1]
-
-        user_secondlabel = user_tally.most_common(2)[1][0] + " Frequency"
-    
-    except:
-        user_secondfrequency = ""
-    
-        user_secondlabel = ""
-    
-    try:
-        user_thirdfrequency = size_tally.most_common(3)[2][1] 
-
-        user_thirdlabel = size_tally.most_common(3)[2][0] + " Frequency"
-    
-    except:
-        user_thirdfrequency = ""
-    
-        user_thirdlabel = ""
-
-    try:
-        poststatus_distribution = [str(post_status.post_status) for post_status in records]
-
-        poststatus_tally = Counter(poststatus_distribution)
-
-        poststatus_frequency = poststatus_tally.most_common(1)[0][0]
-
-    except:
-        poststatus_frequency = ""
-
-    try:
-        poststatus_firstfrequency = poststatus_tally.most_common(1)[0][1]
-
-        poststatus_firstlabel = poststatus_tally.most_common(1)[0][0] + " Frequency"
-
-    except:
-        poststatus_firstfrequency = ""
-    
-        poststatus_firstlabel = ""
-
-    try:
-        poststatus_secondfrequency = poststatus_tally.most_common(2)[1][1]
-
-        poststatus_secondlabel = poststatus_tally.most_common(2)[1][0] + " Frequency"
-    
-    except:
-        poststatus_secondfrequency = ""
-    
-        poststatus_secondlabel = ""
-
-    try:
-        poststatus_thirdfrequency = poststatus_tally.most_common(3)[2][1] 
-
-        poststatus_thirdlabel = poststatus_tally.most_common(3)[2][0] + " Frequency"
-    
-    except:
-        poststatus_thirdfrequency = ""
-    
-        poststatus_thirdlabel = ""
-
-    try:
-        size_distribution = [str(post_observation.post_observation.size) for post_observation in records]
-
-        size_tally = Counter(size_distribution)
-
-        size_frequency = size_tally.most_common(1)[0][0]
-
-    except:
-        size_frequency = ""
-    
-    try:
-        size_firstfrequency = size_tally.most_common(1)[0][1]
-
-        size_firstlabel = size_tally.most_common(1)[0][0] + " / Centimeter Frequency"
-
-    except:
-        size_firstfrequency = ""
-    
-        size_firstlabel = ""
-    
-    try:
-        size_secondfrequency = size_tally.most_common(2)[1][1]
-
-        size_secondlabel = size_tally.most_common(2)[1][0] + " / Centimeter Frequency"
-    
-    except:
-        size_secondfrequency = ""
-    
-        size_secondlabel = ""
-    
-    try:
-        size_thirdfrequency = size_tally.most_common(3)[2][1] 
-
-        size_thirdlabel = size_tally.most_common(3)[2][0] + " / Centimeter Frequency"
-    
-    except:
-        size_thirdfrequency = ""
-    
-        size_thirdlabel = ""
-
-    try:
-        density_distribution = [str(post_observation.post_observation.density) for post_observation in records]
-
-        density_tally = Counter(density_distribution)
-
-        density_frequency = density_tally.most_common(1)[0][0]
-    
-    except:
-        density_frequency = ""
-    
-    try:
-        density_firstfrequency = density_tally.most_common(1)[0][1]
-
-        density_firstlabel = density_tally.most_common(1)[0][0] + " / Square Meter Frequency"
-
-    except:
-        density_firstfrequency = ""
-    
-        density_firstlabel = ""
-    
-    try:
-        density_secondfrequency = density_tally.most_common(2)[1][1]
-
-        density_secondlabel = density_tally.most_common(2)[1][0] + " / Square Meter Frequency"
-    
-    except:
-        density_secondfrequency = ""
-    
-        density_secondlabel = ""
-    
-    try:
-        density_thirdfrequency = density_tally.most_common(3)[2][1] 
-
-        density_thirdlabel = density_tally.most_common(3)[2][0] + " / Square Meter Frequency"
-    
-    except:
-        density_thirdfrequency = ""
-    
-        density_thirdlabel = ""
-
-    try:
-        depth_distribution = [str(post_observation.post_observation.depth) for post_observation in records]
-
-        depth_tally = Counter(depth_distribution)
-
-        depth_frequency = depth_tally.most_common(1)[0][0]
-    
-    except:
-        depth_frequency = ""
-    
-    try:
-        depth_firstfrequency = depth_tally.most_common(1)[0][1]
-
-        depth_firstlabel = depth_tally.most_common(1)[0][0] + " Frequency"
-
-    except:
-        depth_firstfrequency = ""
-    
-        depth_firstlabel = ""
-    
-    try:
-        depth_secondfrequency = depth_tally.most_common(2)[1][1]
-
-        depth_secondlabel = depth_tally.most_common(2)[1][0] + " Frequency"
-    
-    except:
-        depth_secondfrequency = ""
-    
-        depth_secondlabel = ""
-    
-    try:
-        depth_thirdfrequency = depth_tally.most_common(3)[2][1] 
-
-        depth_thirdlabel = depth_tally.most_common(3)[2][0] + " Frequency"
-    
-    except:
-        depth_thirdfrequency = ""
-    
-        depth_thirdlabel = ""
-
-    try:
-        weather_distribution = [str(post_observation.post_observation.weather) for post_observation in records]
-
-        weather_tally = Counter(weather_distribution)
-
-        weather_frequency = weather_tally.most_common(1)[0][0]
-
-    except:
-        weather_frequency = ""
-    
-    try:
-        weather_firstfrequency = weather_tally.most_common(1)[0][1]
-
-        weather_firstlabel = weather_tally.most_common(1)[0][0] + " Frequency"
-
-    except:
-        weather_firstfrequency = ""
-    
-        weather_firstlabel = ""
-    
-    try:
-        weather_secondfrequency = weather_tally.most_common(2)[1][1]
-
-        weather_secondlabel = weather_tally.most_common(2)[1][0] + " Frequency"
-    
-    except:
-        weather_secondfrequency = ""
-    
-        weather_secondlabel = ""
-    
-    try:
-        weather_thirdfrequency = weather_tally.most_common(3)[2][1] 
-
-        weather_thirdlabel = weather_tally.most_common(3)[2][0] + " Frequency"
-    
-    except:
-        weather_thirdfrequency = ""
-    
-        weather_thirdlabel = ""
-
-    if request.method == "GET":
-        from_date = request.GET.get("from_date")
-
-        from_date = datetime.datetime.strptime(from_date, "%Y-%m-%d") if from_date else None
-        
-        to_date = request.GET.get("to_date")
-
-        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
-
-        user = request.GET.get("user")
-
-        post_status = request.GET.get("post_status")
-
-        depth = request.GET.get("depth")
-
-        weather = request.GET.get("weather")
-
-        if from_date and to_date:
-            results = Post.objects.filter(capture_date__range = [from_date, to_date])
-        
-        elif from_date and to_date and to_date < from_date:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "date range is not valid.")
-
-        elif not from_date and not to_date:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "date range is not valid.") 
-        
-        elif not from_date or not to_date:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "date range is not valid.") 
-
-        if user and not user == "each_user":
-            results = Post.objects.filter(user = user)
-
-        elif not user and user == "each_user":
-            results = Post.objects.all()
-        
-        elif not user and not user == "each_user":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "user is not valid.")
-        
-        elif not user or not user == "each_user":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "user is not valid.") 
-
-        if post_status and not post_status == "each_poststatus":
-            results = Post.objects.filter(capture_date__range = [from_date, to_date], post_status = post_status)[:50]
-    
-        elif not post_status and post_status == "each_poststatus":
-            results = Post.objects.all()[:50]
-
-        elif not post_status and not post_status == "each_poststatus":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "post status is not valid.")
-        
-        elif not post_status or not post_status == "each_poststatus":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "post status is not valid.") 
-        
-        if depth and not depth == "each_depth":
-            results = Post.objects.filter(capture_date__range = [from_date, to_date], post_observation__depth = depth)
-    
-        elif not depth and depth == "each_depth":
-            results = Post.objects.all()[:50]
-
-        elif not depth and not depth == "each_depth":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "depth is not valid.")
-        
-        elif not depth or not depth == "each_depth":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "depth is not valid.")
-
-        if weather and not weather == "each_weather":
-            results = Post.objects.filter(capture_date__range = [from_date, to_date], post_observation__weather = weather)
-    
-        elif not weather and weather == "each_weather":
-            results = Post.objects.all()[:50]
-
-        elif not weather and not weather == "each_weather":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "weather is not valid.")
-        
-        elif not weather or not weather == "each_weather":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "weather is not valid.")  
-
-        if not from_date and not to_date and not user and not post_status and not depth and not weather:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information filter is empty within COTSEye.")
-        
-        elif not from_date or not to_date or not user or not post_status or not depth or not weather:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information filter is incomplete within COTSEye.")
-
-        if results is None:
-            username = request.user.username
-
-            messages.info(request, username + ", " + "kindly filter posts within COTSEye to generate for reports today.")
-        
-        elif results is not None:
-            try:
-                posts_count = results.count()
-
-                posts_label = "Posts" + " Count"
-    
-            except:
-                posts_count = ""
-
-                posts_label = ""
-
-            try:
-                users_count = results.values("user").distinct().count()
-
-                users_label = "Users" + " Count"
-        
-            except:
-                users_count = ""
-
-                users_label = ""
-
-            try:
-                user_distribution = [str(user.user) for user in results]
-
-                user_tally = Counter(user_distribution)
-                
-                user_frequency = user_tally.most_common(1)[0][0]
-            
-            except:
-                user_frequency = ""
-            
-            try:
-                user_firstfrequency = user_tally.most_common(1)[0][1]
-
-                user_firstlabel = user_tally.most_common(1)[0][0] + " Frequency"
-
-            except:
-                user_firstfrequency = ""
-            
-                user_firstlabel = ""
-            
-            try:
-                user_secondfrequency = user_tally.most_common(2)[1][1]
-
-                user_secondlabel = user_tally.most_common(2)[1][0] + " Frequency"
-            
-            except:
-                user_secondfrequency = ""
-            
-                user_secondlabel = ""
-            
-            try:
-                user_thirdfrequency = size_tally.most_common(3)[2][1] 
-
-                user_thirdlabel = size_tally.most_common(3)[2][0] + " Frequency"
-            
-            except:
-                user_thirdfrequency = ""
-            
-                user_thirdlabel = ""
-
-            try:
-                poststatus_distribution = [str(post_status.post_status) for post_status in results]
-
-                poststatus_tally = Counter(poststatus_distribution)
-
-                poststatus_frequency = poststatus_tally.most_common(1)[0][0]
-
-            except:
-                poststatus_frequency = ""
-
-            try:
-                poststatus_firstfrequency = poststatus_tally.most_common(1)[0][1]
-
-                poststatus_firstlabel = poststatus_tally.most_common(1)[0][0] + " Frequency"
-
-            except:
-                poststatus_firstfrequency = ""
-            
-                poststatus_firstlabel = ""
-
-            try:
-                poststatus_secondfrequency = poststatus_tally.most_common(2)[1][1]
-
-                poststatus_secondlabel = poststatus_tally.most_common(2)[1][0] + " Frequency"
-            
-            except:
-                poststatus_secondfrequency = ""
-            
-                poststatus_secondlabel = ""
-
-            try:
-                poststatus_thirdfrequency = poststatus_tally.most_common(3)[2][1] 
-
-                poststatus_thirdlabel = poststatus_tally.most_common(3)[2][0] + " Frequency"
-            
-            except:
-                poststatus_thirdfrequency = ""
-            
-                poststatus_thirdlabel = ""
-
-            try:
-                size_distribution = [str(post_observation.post_observation.size) for post_observation in results]
-
-                size_tally = Counter(size_distribution)
-
-                size_frequency = size_tally.most_common(1)[0][0]
-
-            except:
-                size_frequency = ""
-            
-            try:
-                size_firstfrequency = size_tally.most_common(1)[0][1]
-
-                size_firstlabel = size_tally.most_common(1)[0][0] + " / Centimeter Frequency"
-
-            except:
-                size_firstfrequency = ""
-            
-                size_firstlabel = ""
-            
-            try:
-                size_secondfrequency = size_tally.most_common(2)[1][1]
-
-                size_secondlabel = size_tally.most_common(2)[1][0] + " / Centimeter Frequency"
-            
-            except:
-                size_secondfrequency = ""
-            
-                size_secondlabel = ""
-            
-            try:
-                size_thirdfrequency = size_tally.most_common(3)[2][1] 
-
-                size_thirdlabel = size_tally.most_common(3)[2][0] + " / Centimeter Frequency"
-            
-            except:
-                size_thirdfrequency = ""
-            
-                size_thirdlabel = ""
-
-            try:
-                density_distribution = [str(post_observation.post_observation.density) for post_observation in results]
-
-                density_tally = Counter(density_distribution)
-
-                density_frequency = density_tally.most_common(1)[0][0]
-            
-            except:
-                density_frequency = ""
-            
-            try:
-                density_firstfrequency = density_tally.most_common(1)[0][1]
-
-                density_firstlabel = density_tally.most_common(1)[0][0] + " / Square Meter Frequency"
-
-            except:
-                density_firstfrequency = ""
-            
-                density_firstlabel = ""
-            
-            try:
-                density_secondfrequency = density_tally.most_common(2)[1][1]
-
-                density_secondlabel = density_tally.most_common(2)[1][0] + " / Square Meter Frequency"
-            
-            except:
-                density_secondfrequency = ""
-            
-                density_secondlabel = ""
-            
-            try:
-                density_thirdfrequency = density_tally.most_common(3)[2][1] 
-
-                density_thirdlabel = density_tally.most_common(3)[2][0] + " / Square Meter Frequency"
-            
-            except:
-                density_thirdfrequency = ""
-            
-                density_thirdlabel = ""
-
-            try:
-                depth_distribution = [str(post_observation.post_observation.depth) for post_observation in results]
-
-                depth_tally = Counter(depth_distribution)
-
-                depth_frequency = depth_tally.most_common(1)[0][0]
-            
-            except:
-                depth_frequency = ""
-            
-            try:
-                depth_firstfrequency = depth_tally.most_common(1)[0][1]
-
-                depth_firstlabel = depth_tally.most_common(1)[0][0] + " Frequency"
-
-            except:
-                depth_firstfrequency = ""
-            
-                depth_firstlabel = ""
-            
-            try:
-                depth_secondfrequency = depth_tally.most_common(2)[1][1]
-
-                depth_secondlabel = depth_tally.most_common(2)[1][0] + " Frequency"
-            
-            except:
-                depth_secondfrequency = ""
-            
-                depth_secondlabel = ""
-            
-            try:
-                depth_thirdfrequency = depth_tally.most_common(3)[2][1] 
-
-                depth_thirdlabel = depth_tally.most_common(3)[2][0] + " Frequency"
-            
-            except:
-                depth_thirdfrequency = ""
-            
-                depth_thirdlabel = ""
-
-            try:
-                weather_distribution = [str(post_observation.post_observation.weather) for post_observation in results]
-
-                weather_tally = Counter(weather_distribution)
-
-                weather_frequency = weather_tally.most_common(1)[0][0]
-
-            except:
-                weather_frequency = ""
-            
-            try:
-                weather_firstfrequency = weather_tally.most_common(1)[0][1]
-
-                weather_firstlabel = weather_tally.most_common(1)[0][0] + " Frequency"
-
-            except:
-                weather_firstfrequency = ""
-            
-                weather_firstlabel = ""
-            
-            try:
-                weather_secondfrequency = weather_tally.most_common(2)[1][1]
-
-                weather_secondlabel = weather_tally.most_common(2)[1][0] + " Frequency"
-            
-            except:
-                weather_secondfrequency = ""
-            
-                weather_secondlabel = ""
-            
-            try:
-                weather_thirdfrequency = weather_tally.most_common(3)[2][1] 
-
-                weather_thirdlabel = weather_tally.most_common(3)[2][0] + " Frequency"
-            
-            except:
-                weather_thirdfrequency = ""
-            
-                weather_thirdlabel = ""
-
-        elif not results:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information input is impossible within COTSEye.")
-
-    context = {"username": username, "options": options, "records": records, "results": results, "posts_count": posts_count, "posts_label": posts_label, "users_count": users_count, "users_label": users_label, "user_frequency": user_frequency, "user_firstfrequency": user_firstfrequency, "user_firstlabel": user_firstlabel, "user_secondfrequency": user_secondfrequency, "user_secondlabel": user_secondlabel, "user_thirdfrequency": user_thirdfrequency, "user_thirdlabel": user_thirdlabel, "poststatus_frequency": poststatus_frequency, "poststatus_firstfrequency": poststatus_firstfrequency, "poststatus_firstlabel": poststatus_firstlabel, "poststatus_secondfrequency": poststatus_secondfrequency, "poststatus_secondlabel": poststatus_secondlabel, "poststatus_thirdfrequency": poststatus_thirdfrequency, "poststatus_thirdlabel": poststatus_thirdlabel, "size_frequency": size_frequency, "size_firstfrequency": size_firstfrequency, "size_firstlabel": size_firstlabel, "size_secondfrequency": size_secondfrequency, "size_secondlabel": size_secondlabel, "size_thirdfrequency": size_thirdfrequency, "size_thirdlabel": size_thirdlabel, "density_frequency": density_frequency, "density_firstfrequency": density_firstfrequency, "density_firstlabel": density_firstlabel, "density_secondfrequency": density_secondfrequency, "density_secondlabel": density_secondlabel, "density_thirdfrequency": density_thirdfrequency, "density_thirdlabel": density_thirdlabel, "depth_frequency": depth_frequency, "depth_firstfrequency": depth_firstfrequency, "depth_firstlabel": depth_firstlabel, "depth_secondfrequency": depth_secondfrequency, "depth_secondlabel": depth_secondlabel, "depth_thirdfrequency": depth_thirdfrequency, "depth_thirdlabel": depth_thirdlabel, "weather_frequency": weather_frequency, "weather_firstfrequency": weather_firstfrequency, "weather_firstlabel": weather_firstlabel, "weather_secondfrequency": weather_secondfrequency, "weather_secondlabel": weather_secondlabel, "weather_thirdfrequency": weather_thirdfrequency, "weather_thirdlabel": weather_thirdlabel}
-
-    return render(request, "officer/control/post/post.html", context)
 
 
 @login_required(login_url = "admin:Administrator Control Login")
@@ -1906,6 +1278,60 @@ def AdministratorControlStatisticsPost(request):
     context = {"username": username, "options": options, "records": records, "results": results, "posts_count": posts_count, "posts_label": posts_label, "users_count": users_count, "users_label": users_label, "user_frequency": user_frequency, "user_firstfrequency": user_firstfrequency, "user_firstlabel": user_firstlabel, "user_secondfrequency": user_secondfrequency, "user_secondlabel": user_secondlabel, "user_thirdfrequency": user_thirdfrequency, "user_thirdlabel": user_thirdlabel, "poststatus_frequency": poststatus_frequency, "poststatus_firstfrequency": poststatus_firstfrequency, "poststatus_firstlabel": poststatus_firstlabel, "poststatus_secondfrequency": poststatus_secondfrequency, "poststatus_secondlabel": poststatus_secondlabel, "poststatus_thirdfrequency": poststatus_thirdfrequency, "poststatus_thirdlabel": poststatus_thirdlabel, "size_frequency": size_frequency, "size_firstfrequency": size_firstfrequency, "size_firstlabel": size_firstlabel, "size_secondfrequency": size_secondfrequency, "size_secondlabel": size_secondlabel, "size_thirdfrequency": size_thirdfrequency, "size_thirdlabel": size_thirdlabel, "density_frequency": density_frequency, "density_firstfrequency": density_firstfrequency, "density_firstlabel": density_firstlabel, "density_secondfrequency": density_secondfrequency, "density_secondlabel": density_secondlabel, "density_thirdfrequency": density_thirdfrequency, "density_thirdlabel": density_thirdlabel, "depth_frequency": depth_frequency, "depth_firstfrequency": depth_firstfrequency, "depth_firstlabel": depth_firstlabel, "depth_secondfrequency": depth_secondfrequency, "depth_secondlabel": depth_secondlabel, "depth_thirdfrequency": depth_thirdfrequency, "depth_thirdlabel": depth_thirdlabel, "weather_frequency": weather_frequency, "weather_firstfrequency": weather_firstfrequency, "weather_firstlabel": weather_firstlabel, "weather_secondfrequency": weather_secondfrequency, "weather_secondlabel": weather_secondlabel, "weather_thirdfrequency": weather_thirdfrequency, "weather_thirdlabel": weather_thirdlabel}
 
     return render(request, "admin/control/post/post.html", context)
+
+
+def OfficerControlSighting(request):
+    posts = Post.objects.exclude(post_status = 4)
+
+    locations = Location.objects.all()
+
+    results = None
+
+    if request.method == "POST":
+        from_date = request.POST.get("from_date")
+
+        from_date = datetime.datetime.strptime(from_date, "%Y-%m-%d") if from_date else None
+        
+        to_date = request.POST.get("to_date")
+
+        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
+
+        location = request.POST.get("location")
+
+        if from_date and to_date:
+            results = Post.objects.filter(capture_date__range = [from_date, to_date])
+        
+        if location:
+            results = Post.objects.filter(capture_date__range = [from_date, to_date], location = location)
+
+        if results is None:
+            username = request.user.username
+
+            messages.info(request, username + ", " + "kindly filter posts within COTSEye to generate for reports today.")
+
+    context = {"posts": posts, "locations": locations, "results": results}
+    
+    return render(request, 'officer/control/sighting/sighting.html', context)
+
+
+def change_status(request):
+    if request.method == 'POST' and request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        post_id = request.POST.get('post_id')
+        post = get_object_or_404(Post, id=post_id)
+        post.post_status = PostStatus.objects.get(id = 1)
+        post.save()
+        return JsonResponse({'success': True})
+    return JsonResponse({'success': False}, status=400)
+
+
+def invalid_status(request):
+    if request.method == 'POST' and request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        post_id = request.POST.get('post_id')
+        post = get_object_or_404(Post, id=post_id)
+        post.post_status = PostStatus.objects.get(id = 2)
+        post.save()
+        return JsonResponse({'success': True})
+    return JsonResponse({'success': False}, status=400)
 
 
 def PostValidReadRedirect(request):

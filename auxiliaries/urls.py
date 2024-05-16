@@ -23,6 +23,12 @@ urlpatterns = [
 
     path("contributor/service/map/", views.ContributorServiceMap, name = "Contributor Service Map"),
 
+    path("officer/control/announcement", views.OfficerControlAnnouncement, name = "Officer Control Announcement"),
+
+    path("officer/control/announcement/add", views.officercontroladdannouncement, name = "Officer Control Add Announcement"),
+
+    path("officer/control/announcement/add", views.officercontroladdannouncement, name = "Officer Control Update Announcement"),
+
     path("service/resource/link/read/<int:id>/redirect/", views.ServiceResourceLinkReadRedirect, name = "Service Resource Link Read Redirect"),
 
     path("service/resource/file/read/<int:id>/redirect/", views.ServiceResourceFileReadRedirect, name = "Service Resource File Read Redirect")

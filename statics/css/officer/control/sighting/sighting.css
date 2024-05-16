@@ -1,0 +1,97 @@
+.filter-container{
+    padding: 1rem;
+    border-radius: 0.25rem;
+    background-color: #F8F9FA;
+}
+
+.table-container{
+    padding: 1rem;
+    border-radius: 0.25rem;
+    background-color: #FFFFFF;
+}
+
+.table-hover tbody tr:hover{
+    background-color: #F1F1F1;
+}
+
+.pagination .page-link{
+    color: #007BFF;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.pagination .page-link:hover{
+    color: #FFFFFF;
+    background-color: #0056B3;
+}
+
+.pagination .active .page-link{
+    border-color: #007BFF;
+    color: #FFFFFF;
+    background-color: #2A67A8;
+}
+
+.form-check{
+    margin-bottom: 0px !important;
+}
+
+.form-check-input:hover{
+    cursor: pointer;
+}
+
+.button-container{
+    display: flex;
+    gap: 5px;
+}
+
+.btn-primary:hover{
+    border-color: #0056B3;
+    background-color: #0056B3;
+}
+
+.btn-update, .btn-valid, .btn-invalid{
+    color: #FFFFFF;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    margin-right: 5px;
+}
+
+.btn-update{
+    background-color: #007BFF;
+}
+
+.btn-update:hover{
+    background-color: #0056b3;
+    cursor: pointer;
+}
+
+.btn-valid{
+    background-color: #28a745;
+}
+
+.btn-valid:hover{
+    background-color: #218838;
+    cursor: pointer;
+}
+
+.btn-invalid{
+    background-color: #dc3545;
+}
+
+.btn-invalid:hover{
+    background-color: #c82333;
+    cursor: pointer;
+}
+
+.status-pending{
+    color: #ffc107;
+}
+
+.status-valid{
+    color: #28a745;
+}
+
+.status-invalid{
+    color: #DC3545;
+}

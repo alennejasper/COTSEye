@@ -616,6 +616,11 @@ def OfficerCheck(account):
             return False
     
 
+def OfficerControlHome(request):
+    context = {}
+    
+    return render(request, "officer/control/home/home.html", context)
+
 @login_required(login_url = "officer:Officer Control Login")
 @user_passes_test(OfficerCheck, login_url = "officer:Officer Control Login")
 def OfficerControlStatistics(request):

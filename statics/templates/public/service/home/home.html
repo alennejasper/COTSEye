@@ -233,6 +233,26 @@
             </div>
         </div>
 
+        <div class = "home-post">
+            <h1>LATEST POSTS</h1>
+
+            <div class = "post">
+                {% for post in valid_posts %}
+                    <div class = "post-gallery">
+                        <a href="{% url 'Public Service Post Feed Read' post.id %}">
+                            <img src = "{{post.post_photos.first.post_photo.url}}">
+                        </a>
+                
+                        <div class = "post-context">
+                            <h1>{{post.user | default:'None available'}}</h1>
+                            
+                            <p>{{post.location | default:'None available'}}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
         <div class = "home-announcement">
             <h1>ANNOUNCEMENTS</h1>
             
@@ -250,26 +270,6 @@
                         </div>
                     </div>
             {% endfor %}
-            </div>
-        </div>
-
-        <div class = "home-post">
-            <h1>POSTS</h1>
-
-            <div class = "post">
-                {% for post in valid_posts %}
-                    <div class = "post-gallery">
-                        <a href="{% url 'Public Service Post Feed Read' post.id %}">
-                            <img src = "{{post.post_photos.first.post_photo.url}}">
-                        </a>
-                
-                        <div class = "post-context">
-                            <h1>{{post.user | default:'None available'}}</h1>
-                            
-                            <p>{{post.location | default:'None available'}}</p>
-                        </div>
-                    </div>
-                {% endfor %}
             </div>
         </div>
     </div>

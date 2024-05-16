@@ -1,0 +1,74 @@
+{% extends "officer/control/index/index.html" %}
+
+{% block content %}
+<div class="container-fluid mt-3">
+    <h1 class="text-center">Update Announcement</h1>
+    
+    <div class="card mt-4">
+        <div class="card-body">
+            <form id="announcementForm">
+                <div class="form-group">
+                    <label for="announcementTitle">Title</label>
+                    <input type="text" class="form-control" id="announcementTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="announcementDate">Date</label>
+                    <input type="date" class="form-control" id="announcementDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="announcementLocation">Location</label>
+                    <input type="text" class="form-control" id="announcementLocation" required>
+                </div>
+                <div class="form-group">
+                    <label for="announcementDescription">Description</label>
+                    <textarea class="form-control" id="announcementDescription" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="announcementUser">Posted By</label>
+                    <input type="text" class="form-control" id="announcementUser" required>
+                </div>
+                <div class="form-group">
+                    <label for="announcementPhoto">Photo</label>
+                    <input type="file" class="form-control-file" id="announcementPhoto">
+                </div>
+                <button type="submit" class="btn btn-primary">Update Announcement</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const index = urlParams.get('index');
+        let announcements = JSON.parse(localStorage.getItem('announcements')) || [];
+
+        if (index !== null && announcements[index]) {
+            let announcement = announcements[index];
+            document.getElementById('announcementTitle').value = announcement.title;
+            document.getElementById('announcementDate').value = announcement.date;
+            document.getElementById('announcementLocation').value = announcement.location;
+            document.getElementById('announcementDescription').value = announcement.description;
+            document.getElementById('announcementUser').value = announcement.user;
+            // Handle photo loading if required
+        }
+
+        document.getElementById('announcementForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            let title = document.getElementById('announcementTitle').value;
+            let date = document.getElementById('announcementDate').value;
+            let location = document.getElementById('announcementLocation').value;
+            let description = document.getElementById('announcementDescription').value;
+            let user = document.getElementById('announcementUser').value;
+            let photo = document.getElementById('announcementPhoto').files[0];
+
+            let updatedAnnouncement = { title, date, location, description, user, photo };
+            announcements[index] = updatedAnnouncement;
+            localStorage.setItem('announcements', JSON.stringify(announcements));
+
+            window.location.href = '{% url "Officer Control Announcement" %}';
+        });
+    });
+</script>
+{% endblock %}

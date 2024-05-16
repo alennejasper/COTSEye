@@ -2,7 +2,16 @@
     position: relative;
     width: 100vw;
     height: 100%;
-    color: #000000;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .home-body{
+        position: relative;
+        padding-left: 10px;
+        padding-right: 10px;
+        width: 100vw;
+        height: 100%;
+    }
 }
 
 .home-body .home-section{
@@ -16,9 +25,18 @@
 
 .home-body .home-section h1{
     text-align: center;     
-    font-weight: 600;       
-    font-size: 22px;        
+    font-weight: 700;       
+    font-size: 36px;        
     font-family: "Open Sans";
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .home-body .home-section h1{
+        text-align: center;     
+        font-weight: 700;       
+        font-size: 22px;        
+        font-family: "Open Sans";
+    }
 }
 
 .home-body .home-section p{
@@ -28,18 +46,23 @@
     padding-top: 5px;
     padding-bottom: 20px;
     font-weight: 400;       
-    font-size: 14px;        
+    font-size: 22px;        
     font-family: "Open Sans";
     color: #505050;
 }
 
-.home-body{
-    position: relative;
-    padding-left: 10px;
-    padding-right: 10px;
-    width: 100vw;
-    height: 100%;
-    color: #000000;
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .home-body .home-section p{
+        text-align: center;
+        padding-left: 30px;    
+        padding-right: 30px;
+        padding-top: 5px;
+        padding-bottom: 20px;
+        font-weight: 400;       
+        font-size: 14px;        
+        font-family: "Open Sans";
+        color: #505050;
+    }
 }
 
 .home-body .map-section{
@@ -1225,14 +1248,27 @@
 
 .home-body .home-cots{
     position: relative;           
-    margin-top: 15px;              
-    margin-bottom: 10px;
-    height: 250px;                
+    margin-top: 30px;              
+    margin-bottom: 30px;
+    height: 500px;                
     width: 100%;                                
     overflow: hidden;              
 }
 
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .home-body .home-cots{
+        position: relative;           
+        margin-top: 15px;              
+        margin-bottom: 10px;
+        height: 250px;                
+        width: 100%;                                
+        overflow: hidden;              
+    }
+}
+
 .home-body .home-cots img{
+    place-items: center;
+    object-fit: cover;
     height: 100%;              
     width: 100%;               
     transition: all 0.5s;
@@ -1246,7 +1282,7 @@
     position: absolute;                    
     bottom: 0;                            
     max-height: 50%;                       
-    padding: 1rem;                         
+    padding: 10px;                         
     width: 100%;           
     background-color: rgba(0, 0, 0, 0.75);                 
 }
@@ -1257,8 +1293,20 @@
     text-overflow: ellipsis;
     font-family: "Open Sans";
     font-weight: 700;       
-    font-size: 22px;
+    font-size: 36px;
     color: #FFFFFF;   
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .home-body .home-cots .cots-context h1{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-family: "Open Sans";
+        font-weight: 700;       
+        font-size: 22px;
+        color: #FFFFFF;   
+    }
 }
 
 .home-body .home-cots .cots-context p{
@@ -1268,103 +1316,64 @@
     white-space: nowrap;
     font-family: "Open Sans";
     font-weight: 400;
-    font-size: 14px !important;
+    font-size: 22px !important;
     color: #FFFFFF;
     text-align: justify !important;
     cursor: default;
 }
 
-.home-body .home-announcement > h1{
-    margin-top: 20px;
-    text-align: center;
-    margin-bottom: 5px;
-    font-weight: 700;       
-    font-size: 20px;        
-}
-
-.home-body .home-announcement .announcement{
-    position: relative;
-    height: 250px;                
-    background-color: #FFFFFF;
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-    white-space: nowrap;
-}
-
-.home-body .home-announcement .announcement-gallery{
-    position: relative;
-    display: inline-block;
-    margin-right: 10px;
-    width: 100%;
-    height: 100%;
-    overflow: hidden !important;
-}
-
-.home-body .home-announcement .announcement-gallery:last-child{
-    margin-right: 0px !important;
-}
-
-.home-body .home-announcement .announcement-gallery a img{
-    place-items: center;
-    object-fit: cover;
-    margin-right: 10px;
-    height: 100%;              
-    width: 100%;               
-    transition: all 0.5s;
-}
-
-.home-body .home-announcement .announcement-gallery a img:hover{
-    transform: scale(1.25);
-}
-
-.home-body .home-announcement .announcement-gallery .announcement-context{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    width: 100%; 
-    max-height: 50%; 
-    background-color: rgba(0, 0, 0, 0.75);  
-}
-
-.home-body .home-announcement .announcement-gallery .announcement-context > h1{
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-family: "Open Sans";
-    font-weight: 700;       
-    font-size: 22px;
-    color: #FFFFFF;                          
-}
-
-.home-body .home-announcement .announcement-gallery .announcement-context p{
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-family: "Open Sans";
-    font-weight: 400;
-    font-size: 14px !important;
-    color: #FFFFFF;
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .home-body .home-cots .cots-context p{
+        position: relative;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-family: "Open Sans";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #FFFFFF;
+        text-align: justify !important;
+        cursor: default;
+    }
 }
 
 .home-body .home-post > h1{
-    margin-top: 20px;
+    margin-top: 30px;
     text-align: center;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
+    font-family: "Open Sans";
     font-weight: 700;       
-    font-size: 20px; 
+    font-size: 28px; 
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .home-body .home-post > h1{
+        margin-top: 20px;
+        text-align: center;
+        margin-bottom: 5px;
+        font-weight: 700;       
+        font-size: 20px; 
+    }
 }
 
 .home-body .home-post .post{
     position: relative;
-    height: 250px;                
+    height: 500px;                
     background-color: #FFFFFF;
     overflow-x: auto !important;
     overflow-y: hidden !important;
     white-space: nowrap;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .home-body .home-post .post{
+        position: relative;
+        height: 250px;                
+        background-color: #FFFFFF;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        white-space: nowrap;
+    }
 }
 
 .home-body .home-post .post-gallery{
@@ -1413,8 +1422,21 @@
     text-overflow: ellipsis;
     font-family: "Open Sans";
     font-weight: 600; 
-    font-size: 22px;
+    font-size: 36px;
     color: #FFFFFF;                          
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .home-body .home-post .post-gallery .post-context > h1{
+        padding-bottom: 3px;      
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-family: "Open Sans";
+        font-weight: 600; 
+        font-size: 22px;
+        color: #FFFFFF;                          
+    }
 }
 
 .home-body .home-post .post-gallery .post-context p{
@@ -1423,6 +1445,140 @@
     text-overflow: ellipsis;
     font-family: "Open Sans";
     font-weight: 400;
-    font-size: 14px !important;
+    font-size: 22px !important;
     color: #FFFFFF;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .home-body .home-post .post-gallery .post-context p{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-family: "Open Sans";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #FFFFFF;
+    }
+}
+
+.home-body .home-announcement > h1{
+    margin-top: 30px;
+    text-align: center;
+    margin-bottom: 15px;
+    font-family: "Open Sans";
+    font-weight: 700;       
+    font-size: 28px;        
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .home-body .home-announcement > h1{
+        margin-top: 20px;
+        text-align: center;
+        margin-bottom: 5px;
+        font-weight: 700;       
+        font-size: 20px;        
+    }
+}
+
+.home-body .home-announcement .announcement{
+    position: relative;
+    height: 500px;                
+    background-color: #FFFFFF;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    white-space: nowrap;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .home-body .home-announcement .announcement{
+        position: relative;
+        height: 250px;                
+        background-color: #FFFFFF;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        white-space: nowrap;
+    }
+}
+
+.home-body .home-announcement .announcement-gallery{
+    position: relative;
+    display: inline-block;
+    margin-right: 10px;
+    width: 100%;
+    height: 100%;
+    overflow: hidden !important;
+}
+
+.home-body .home-announcement .announcement-gallery:last-child{
+    margin-right: 0px !important;
+}
+
+.home-body .home-announcement .announcement-gallery a img{
+    place-items: center;
+    object-fit: cover;
+    margin-right: 10px;
+    height: 100%;              
+    width: 100%;               
+    transition: all 0.5s;
+}
+
+.home-body .home-announcement .announcement-gallery a img:hover{
+    transform: scale(1.25);
+}
+
+.home-body .home-announcement .announcement-gallery .announcement-context{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%; 
+    max-height: 50%; 
+    background-color: rgba(0, 0, 0, 0.75);  
+}
+
+.home-body .home-announcement .announcement-gallery .announcement-context > h1{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: "Open Sans";
+    font-weight: 700;       
+    font-size: 36px;
+    color: #FFFFFF;                          
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .home-body .home-announcement .announcement-gallery .announcement-context > h1{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-family: "Open Sans";
+        font-weight: 700;       
+        font-size: 22px;
+        color: #FFFFFF;                          
+    }
+}
+
+.home-body .home-announcement .announcement-gallery .announcement-context p{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: "Open Sans";
+    font-weight: 400;
+    font-size: 22px !important;
+    color: #FFFFFF;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .home-body .home-announcement .announcement-gallery .announcement-context p{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-family: "Open Sans";
+        font-weight: 400;
+        font-size: 14px !important;
+        color: #FFFFFF;
+    }
 }

@@ -63,6 +63,26 @@ class PostStatus(models.Model):
             return "Draft"
 
 
+class Size(models.Model):
+    is_small = models.BooleanField(default = False, help_text = "Designates that the size is small.", verbose_name = "Small")
+    is_medium = models.BooleanField(default = False, help_text = "Designates that the size is medium.", verbose_name = "Medium")
+    is_large = models.BooleanField(default = False, help_text = "Designates that the size is large.", verbose_name = "Large")
+   
+    class Meta:
+        db_table = "reports_size"
+        verbose_name = "Size"
+        verbose_name_plural = "Sizes"
+    
+    def __str__(self):
+        if self.is_small == True:
+            return "Small (below 6 inches)"
+        
+        elif self.is_medium == True:
+            return "Medium (6in to 12 inches)"
+        
+        elif self.is_large == True:
+            return "Large (above 12 inches)"
+        
 class Depth(models.Model):
     is_deep = models.BooleanField(default = False, help_text = "Designates that the depth is deep.", verbose_name = "Deep")
     is_moderate = models.BooleanField(default = False, help_text = "Designates that the depth is moderate.", verbose_name = "Moderate")
@@ -75,13 +95,13 @@ class Depth(models.Model):
     
     def __str__(self):
         if self.is_deep == True:
-            return "Deep"
+            return "Deep (10 feet above)"
         
         elif self.is_moderate == True:
-            return "Moderate"
+            return "Moderate (5 feet to 10 feet)"
         
         elif self.is_shallow == True:
-            return "Shallow"
+            return "Shallow (5 feet below)"
         
 class Weather(models.Model):
     is_sunny = models.BooleanField(default = False, help_text = "Designates that the weather is sunny.", verbose_name = "Sunny")
@@ -111,7 +131,7 @@ class Weather(models.Model):
             return "Stormy"
 
 class PostObservation(models.Model):
-    size = models.IntegerField(validators = [MinValueValidator(0)], null = True, blank = True, help_text = "Designates the size of the Crown-of-Thorns Starfish at the moment the post taken.", verbose_name = "Size / Centimeter")
+    size = models.ForeignKey(Size, on_delete = models.CASCADE, null = True, blank = True, help_text = "Designates the foreign key of the Size model.", verbose_name = "Size")
     depth = models.ForeignKey(Depth, on_delete = models.CASCADE, null = True, blank = True, help_text = "Designates the foreign key of the Depth model.", verbose_name = "Depth")
     density = models.IntegerField(validators = [MinValueValidator(0)], null = True, blank = True, help_text = "Designates the density of the Crown-of-Thorns Starfish at the moment the post taken.", verbose_name = "Density / Square Meter")
     weather = models.ForeignKey(Weather, on_delete = models.CASCADE, null = True, blank = True, help_text = "Designates the foreign key of the Weather model.", verbose_name = "Weather")

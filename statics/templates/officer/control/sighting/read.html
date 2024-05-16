@@ -1,0 +1,17 @@
+{% extends "officer/control/index/index.html" %}
+
+{% block content %}
+<div class="container-fluid mt-3">
+    <h2>Update Sighting</h2>
+    <div class="card">
+        <div class="card-body">
+            <p><strong>Post:</strong> {{ post.description }}</p>
+            <p><strong>Created Date:</strong> {{ post.capture_date|date:"Y-m-d H:i" }}</p>
+            <p><strong>Contributor:</strong> {{ post.user }}</p>
+            <p><strong>Location:</strong> {{ post.location.barangay }}</p>
+            <p><strong>Municipality:</strong> {{ post.location.municipality }}</p>
+            <p><strong>Status:</strong> {{ post.post_status }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

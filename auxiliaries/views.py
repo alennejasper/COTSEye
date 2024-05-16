@@ -165,6 +165,17 @@ def ContributorServiceResource(request):
     return render(request, "contributor/service/resource/resource.html", context)
 
 
+def OfficerControlAnnouncement(request):
+    return render(request, "officer/control/announcement/announcement.html")
+
+
+def officercontroladdannouncement(request):
+    return render(request, "officer/control/announcement/addannouncement.html")
+
+def officercontroladdannouncement(request):
+    return render(request, "officer/control/announcement/updateannouncement.html")
+
+
 def ServiceResourceLinkReadRedirect(request, id):
     if request.user.is_authenticated:
         usertype = request.user.usertype_id

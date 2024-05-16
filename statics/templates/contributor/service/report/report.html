@@ -2,153 +2,333 @@
 {% load static %}
 
 {% block content %}
-    <div class = "report-body">
-        <div class = "report-section">
-            <h1>CREATE REPORT</h1>
+    {% if draft_post %} 
+        <div class = "report-body">
+            <div class = "report-section">
+                <h1>CREATE REPORT</h1>
+            </div>
+
+            <form action = "" class = "report-form" method = "POST" enctype = "multipart/form-data">
+                {% csrf_token %}
+
+                <div id = "first-tab" class = "tab-content">        
+                    <div class = "controls-wrapper">
+                        <div class = "control-section">
+                            <i class = "fa-solid fa-camera"></i>
+
+                            <label for = "post-photo-capture" class = "capture-photo">
+                                Capture with camera
+                            </label>
+
+                            <input type = "file" class = "invisible-input-capture post-photo-capture" id = "post-photo-capture" name = "post_photos_capture" accept = "image/*" capture = "environment" required>
+                        </div>
+                
+                        <div class = "control-section">
+                            <i class = "fa-solid fa-image"></i>
+
+                            <label for = "post-photo-choose" class = "browse-photo">
+                                Choose an image
+                            </label>
+
+                            <input type = "file" class = "invisible-input-choose post-photo-choose" id = "post-photo-choose" name = "post_photos_choose" accept = "image/*" multiple required>
+                        </div>
+                    </div>
+                    
+                    <div class = "report-gallery"></div>
+                
+                    <div class = "capture-date">
+                        <label for = "capture-date">Capture Date</label>
+
+                        <input type = "datetime-local" id = "capture-date" value = "{{draft_post.capture_date | date:'Y-m-d\TH:i'}}" name = "capture_date" required>
+                    </div>            
+
+                    <h1>MAP</h1>
+
+                    <div class = "map">
+                        <div class=  "report-map">
+                        </div>
+                    </div>
+
+                    <div class = "coordinates">
+                        <input type = "hidden" id = "latitude" value = "{{draft_post.coordinates.latitude}}" name = "latitude" required>
+
+                        <input type = "hidden" id = "longitude" value = "{{draft_post.coordinates.longitude}}" name = "longitude" required>
+                    </div>
+
+                    <div class = "barangay">
+                        <label for = "barangay">Barangay</label>
+                        
+                        <select name = "barangay" id = "barangay" required>
+                            <option hidden selected value>Drag the map pin for barangay.</option>
+
+                            {% for location in locations %}
+                                <option value = "{{location.id}}" {% if location.id == draft_post.location.id %} selected {% endif %}>{{location.barangay}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class = "municipality">
+                        <label for = "municipality">Municipality</label>
+                        
+                        <select name = "municipality" id = "municipality" required>
+                            <option hidden selected value>Drag the map pin for municipality.</option>
+
+                            {% for location in locations %}
+                                <option value = "{{location.id}}" {% if location.id == draft_post.location.id %} selected {% endif %}>{{location.municipality}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class = "buttons">
+                        <div class = "save-report">
+                            <a data-action = "save as draft" onclick = "disableOnBeforeUnload()">Save as draft</a>
+                        </div>
+
+                        <button type = "button" class = "next-report" onclick = "nextTab('first-tab')">Next</button>
+                    </div>
+                </div>
+
+                <div id = "second-tab" class = "tab-content" style = "display: none;">
+                    <div class = "description">
+                        <label for = "description">Sighting Description</label>
+
+                        <textarea placeholder = "Describe the sighting of COTS here." type = "text" id = "description" name = "description" required>{{draft_post.description}}</textarea>
+                    </div>
+
+                    <div class = "size">
+                        <label for = "size">Average sie of COTS</label>
+                        
+                        <select name = "size" id = "size">
+                            <option disabled selected value>Select sighting COTS size here.</option>
+
+                            {% for size in sizes %}
+                                <option value = "{{size.id}}" {% if size.id == draft_post.post_observation.size.id %} selected {% endif %}>{{size}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class = "density">
+                        <label for = "density">Approximate COTS Density</label>
+                        
+                        <input placeholder = "Estimated number of COTS per square meter. Ex. 15" type = "number" value = "{{draft_post.post_observation.density}}" id = "density" name = "density">
+                    </div>
+
+                    <div class = "depth">
+                        <label for = "depth">Depth</label>
+                        
+                        <select name = "depth" id = "depth">
+                            <option disabled selected value = "{{draft_post.post_observation.depth}}">Select sighting depth here.</option>
+
+                            {% for depth in depths %}
+                                <option value = "{{depth.id}}" {% if depth.id == draft_post.post_observation.depth.id %} selected {% endif %}>{{depth}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class = "weather">
+                        <label for = "weather">Weather Condition</label>
+                        
+                        <select name = "weather" id = "weather">
+                            <option disabled hidden selected value = "{{draft_post.post_observation.weather}}">Weather condition during the sighting.</option>
+
+                            {% for weather in weathers %}
+                                <option value = "{{weather.id}}">{{weather}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <input type = "hidden" name = "action" id = "action">
+
+                    <div class = "buttons">
+                        <button type = "button" class = "back-report" onclick = "openTab('first-tab')">Back</button>
+
+                        <div class = "save-report">
+                            <a data-action = "save as draft" onclick = "disableOnBeforeUnload()">Save as draft</a>
+                        </div>
+
+                        <div class = "save-report">
+                            <a data-action = "save and submit" onclick = "disableOnBeforeUnload()">Submit Report</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            {% if messages %}
+                {% for message in messages %}
+                    {% if message.tags == "info" %}<script>Swal.fire({title: "Hey!", text: "{{message}}", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}})</script>
+                    
+                    {% elif message.tags == "success" %}<script>Swal.fire({title: "Yay!", text: "{{message}}", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}})</script>
+                    
+                    {% else %}<script>Swal.fire({title: "Oops!", text: "{{message}}", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}})</script>
+                    
+                    {% endif %}    
+                {% endfor %}
+            {% endif %}
         </div>
-
-        <form action = "" class = "report-form" method = "POST" enctype = "multipart/form-data">
-            {% csrf_token %}
-
-            <div id = "first-tab" class = "tab-content">        
-                <div class = "controls-wrapper">
-                    <div class = "control-section">
-                        <i class = "fa-solid fa-camera"></i>
-
-                        <label for = "post-photo-capture" class = "capture-photo">
-                            Capture with camera
-                        </label>
-
-                        <input type = "file" class = "invisible-input-capture post-photo-capture" id = "post-photo-capture" name = "post_photos_capture" accept = "image/*" capture = "environment" required>
-                    </div>
-            
-                    <div class = "control-section">
-                        <i class = "fa-solid fa-image"></i>
-
-                        <label for = "post-photo-choose" class = "browse-photo">
-                            Choose an image
-                        </label>
-
-                        <input type = "file" class = "invisible-input-choose post-photo-choose" id = "post-photo-choose" name = "post_photos_choose" accept = "image/*" multiple required>
-                    </div>
-                </div>
-                
-                <div class = "report-gallery"></div>
-            
-                <div class = "capture-date">
-                    <label for = "capture-date">Capture Date</label>
-
-                    <input type = "datetime-local" id = "capture-date" name = "capture_date" required>
-                </div>            
-
-                <h1>MAP</h1>
-
-                <div class = "map">
-                    <div class=  "report-map">
-                    </div>
-                </div>
-
-                <div class = "coordinates">
-                    <input type = "hidden" id = "latitude" name = "latitude" required>
-
-                    <input type = "hidden" id = "longitude" name = "longitude" required>
-                </div>
-
-                <div class = "location">
-                    <label for = "location">Location</label>
-                    
-                    <select name = "location" id = "location" required>
-                        <option disabled selected value>Drag the map pin for location.</option>
-
-                        {% for location in locations %}
-                            <option disabled value = "{{location.id}}">{{location}}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-
-                <div class = "buttons">
-                    <div class = "save-report">
-                        <a>Save as draft</a>
-                    </div>
-
-                    <button type = "button" class = "next-report" onclick = "nextTab('first-tab')">Next</button>
-                </div>
+    {% else %}
+        <div class = "report-body">
+            <div class = "report-section">
+                <h1>CREATE REPORT</h1>
             </div>
 
-            <div id = "second-tab" class = "tab-content" style = "display: none;">
-                <div class = "description">
-                    <label for = "description">Description</label>
+            <form action = "" class = "report-form" method = "POST" enctype = "multipart/form-data">
+                {% csrf_token %}
 
-                    <textarea placeholder = "Describe the COTS sighting here." type = "text" id = "description" name = "description" required></textarea>
-                </div>
+                <div id = "first-tab" class = "tab-content">        
+                    <div class = "controls-wrapper">
+                        <div class = "control-section">
+                            <i class = "fa-solid fa-camera"></i>
 
-                <h1>OPTIONALS</h1>
+                            <label for = "post-photo-capture" class = "capture-photo">
+                                Capture with camera
+                            </label>
 
-                <div class = "size">
-                    <label for = "size">Size</label>
+                            <input type = "file" class = "invisible-input-capture post-photo-capture" id = "post-photo-capture" name = "post_photos_capture" accept = "image/*" capture = "environment" required>
+                        </div>
+                
+                        <div class = "control-section">
+                            <i class = "fa-solid fa-image"></i>
+
+                            <label for = "post-photo-choose" class = "browse-photo">
+                                Choose an image
+                            </label>
+
+                            <input type = "file" class = "invisible-input-choose post-photo-choose" id = "post-photo-choose" name = "post_photos_choose" accept = "image/*" multiple required>
+                        </div>
+                    </div>
                     
-                    <input placeholder = "Place the size of COTS by centimeters here (ex. 12)." type = "number" value = "" id = "size" name = "size">
-                </div>
+                    <div class = "report-gallery"></div>
+                
+                    <div class = "capture-date">
+                        <label for = "capture-date">Capture Date</label>
 
-                    
-                <div class = "density">
-                    <label for = "density">Density</label>
-                    
-                    <input placeholder = "Place the estimated number of COTS  here (ex. 15)." type = "number" value = "" id = "density" name = "density">
-                </div>
+                        <input type = "datetime-local" id = "capture-date" name = "capture_date" required>
+                    </div>            
 
-                <div class = "depth">
-                    <label for = "depth">DEPTH</label>
-                    
-                    <select name = "depth" id = "depth">
-                        <option disabled selected value>Select sighting depth here.</option>
+                    <h1>MAP</h1>
 
-                        {% for depth in depths %}
-                            <option value="{{depth.id}}">{{depth}}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-
-                <div class = "weather">
-                    <label for = "weather">WEATHER</label>
-                    
-                    <select name = "weather" id = "weather">
-                        <option disabled selected value>Select current sighting weather here.</option>
-
-                        {% for weather in weathers %}
-                            <option value = "{{weather.id}}">{{weather}}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-
-                <input type = "hidden" name = "action" id = "action">
-
-                <div class = "buttons">
-                    <button type = "button" class = "back-report" onclick = "openTab('first-tab')">Back to previous</button>
-
-                    <div class = "save-report">
-                        <a data-action = "save as draft">Save as draft</a>
+                    <div class = "map">
+                        <div class=  "report-map">
+                        </div>
                     </div>
 
-                    <div class = "save-report">
-                        <a data-action = "save and submit">Save and submit</a>
+                    <div class = "coordinates">
+                        <input type = "hidden" id = "latitude" name = "latitude" required>
+
+                        <input type = "hidden" id = "longitude" name = "longitude" required>
+                    </div>
+
+                    <div class = "barangay">
+                        <label for = "barangay">Barangay</label>
+                        
+                        <select name = "barangay" id = "barangay" required>
+                            <option hidden selected value>Drag the map pin for barangay.</option>
+
+                            {% for location in locations %}
+                                <option value = "{{location.id}}">{{location.barangay}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class = "municipality">
+                        <label for = "municipality">Municipality</label>
+                        
+                        <select name = "municipality" id = "municipality" required>
+                            <option hidden selected value>Drag the map pin for municipality.</option>
+
+                            {% for location in locations %}
+                                <option value = "{{location.id}}">{{location.municipality}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class = "buttons">
+                        <div class = "save-report">
+                            <a data-action = "save as draft" onclick = "disableOnBeforeUnload()">Save as draft</a>
+                        </div>
+
+                        <button type = "button" class = "next-report" onclick = "nextTab('first-tab')">Next</button>
                     </div>
                 </div>
-            </div>
-        </form>
 
-        {% if messages %}
-            {% for message in messages %}
-                {% if message.tags == "info" %}<script>Swal.fire({title: "Hey!", text: "{{message}}", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}})</script>
-                
-                {% elif message.tags == "success" %}<script>Swal.fire({title: "Yay!", text: "{{message}}", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}})</script>
-                
-                {% else %}<script>Swal.fire({title: "Oops!", text: "{{message}}", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}})</script>
-                
-                {% endif %}    
-            {% endfor %}
-        {% endif %}
-    </div>
+                <div id = "second-tab" class = "tab-content" style = "display: none;">
+                    <div class = "description">
+                        <label for = "description">Sighting Description</label>
+
+                        <textarea placeholder = "Describe the sighting of COTS here." type = "text" id = "description" name = "description" required></textarea>
+                    </div>
+
+                    <div class = "size">
+                        <label for = "size">Average sie of COTS</label>
+                        
+                        <select name = "size" id = "size">
+                            <option disabled selected value>Select sighting COTS size here.</option>
+
+                            {% for size in sizes %}
+                                <option value = "{{size.id}}">{{size}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class = "density">
+                        <label for = "density">Approximate COTS Density</label>
+                        
+                        <input placeholder = "Estimated number of COTS per square meter. Ex. 15" type = "number" id = "density" name = "density">
+                    </div>
+
+                    <div class = "depth">
+                        <label for = "depth">Depth</label>
+                        
+                        <select name = "depth" id = "depth">
+                            <option disabled selected value>Select sighting depth here.</option>
+
+                            {% for depth in depths %}
+                                <option value = "{{depth.id}}">{{depth}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class = "weather">
+                        <label for = "weather">Weather Condition</label>
+                        
+                        <select name = "weather" id = "weather">
+                            <option disabled hidden selected value>Weather condition during the sighting.</option>
+
+                            {% for weather in weathers %}
+                                <option value = "{{weather.id}}">{{weather}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <input type = "hidden" name = "action" id = "action">
+
+                    <div class = "buttons">
+                        <button type = "button" class = "back-report" onclick = "openTab('first-tab')">Back</button>
+
+                        <div class = "save-report">
+                            <a data-action = "save as draft" onclick = "disableOnBeforeUnload()">Save as draft</a>
+                        </div>
+
+                        <div class = "save-report">
+                            <a data-action = "save and submit" onclick = "disableOnBeforeUnload()">Submit Report</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            {% if messages %}
+                {% for message in messages %}
+                    {% if message.tags == "info" %}<script>Swal.fire({title: "Hey!", text: "{{message}}", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}})</script>
+                    
+                    {% elif message.tags == "success" %}<script>Swal.fire({title: "Yay!", text: "{{message}}", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}})</script>
+                    
+                    {% else %}<script>Swal.fire({title: "Oops!", text: "{{message}}", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}})</script>
+                    
+                    {% endif %}    
+                {% endfor %}
+            {% endif %}
+        </div>
+    {% endif %} 
 
     <script>
         function openTab(tabName){
@@ -186,171 +366,169 @@
         });
     </script>
 
-    <script>
-        const browsePhoto = document.querySelector(".post-photo-choose");
+<script>
+    const existingPhotos = [
+        {% for photo in draft_post.post_photos.all %}
+            "{{ photo.post_photo.url }}",
+        {% endfor %}
+    ];
 
-        const capturePhoto = document.querySelector(".post-photo-capture");
+    const browsePhoto = document.querySelector(".post-photo-choose");
 
-        var reportGallery = document.querySelector(".report-gallery");
+    const capturePhoto = document.querySelector(".post-photo-capture");
+    
+    var reportGallery = document.querySelector(".report-gallery");
+    
+    let photoWrapper = null;
 
-        let photoWrapper = null;
+    function updateGalleryVisibility(){
+        if (photoWrapper && photoWrapper.children.length === 0){
+            reportGallery.style.display = "none";
 
-        function updateGalleryVisibility(){
-            if (photoWrapper && photoWrapper.children.length === 0){
-                reportGallery.style.display = "none";
-
-                reportGallery.style.paddingTop = "0px";
-
-                reportGallery.style.paddingBottom = "0px";
-
-
-            } else{
-                reportGallery.style.display = "block";
-
-                reportGallery.style.paddingTop = "10px";
-
-                reportGallery.style.paddingBottom = "10px";
-            };
+            reportGallery.style.paddingTop = "0px";
+            
+            reportGallery.style.paddingBottom = "0px";
+        
+        } else{
+            reportGallery.style.display = "block";
+        
+            reportGallery.style.paddingTop = "10px";
+        
+            reportGallery.style.paddingBottom = "10px";
         };
+    };
 
-        function updateLastPhotoContainerMargin(){
-            const photoContainers = photoWrapper.querySelectorAll("div");
-
-            photoContainers.forEach(container => {
-                container.style.marginRight = "10px";
-            });
-
-            if (photoContainers.length > 0){
-                photoContainers[photoContainers.length - 1].style.marginRight = "0px";
-            };
-
-            updateGalleryVisibility();
-        }
-
-        function addImageToGallery(file){
-            const reader = new FileReader();
-
-            reader.onload = function(event){
-                if (!photoWrapper){
-                    photoWrapper = document.createElement("div");
-
-                    photoWrapper.classList.add("gallery-photo");
-
-                    photoWrapper.style.position = "relative";
-                    
-                    photoWrapper.style.paddingLeft = "10px";
-
-                    photoWrapper.style.paddingRight = "10px";
-
-                    photoWrapper.style.paddingTop = "10px";
-
-                    photoWrapper.style.paddingBottom = "10px";
-
-                    photoWrapper.style.height = "250px";
-
-                    photoWrapper.style.borderRadius = "5px";
-
-                    photoWrapper.style.backgroundColor = "#FFFFFF";
-
-                    photoWrapper.style.overflowX = "auto";
-
-                    photoWrapper.style.overflowY = "hidden";
-
-                    photoWrapper.style.whiteSpace = "nowrap";
-
-                    reportGallery.appendChild(photoWrapper);
-                };
-
-                const photoContainer = document.createElement("div");
-            
-                photoContainer.style.position = "relative";
-            
-                photoContainer.style.display = "inline-block";
-
-                photoContainer.style.marginRight = "10px";
-            
-                photoContainer.style.width = "100%"; 
-            
-                photoContainer.style.height = "100%";
-            
-                photoElement = document.createElement("img");
-                
-                photoElement.src = event.target.result;
-                
-                photoElement.style.placeItems = "center";
-
-                photoElement.style.objectFit = "cover";
-
-                photoElement.style.width = "100%";
-                
-                photoElement.style.height = "100%";
-
-                photoElement.style.borderRadius = "5px";
-
-                photoElement.style.overflow = "hidden";
-
-                const deleteButton = document.createElement("i");                
-                
-                deleteButton.classList.add("fas", "fa-trash");
-
-                deleteButton.style.position = "absolute";
-
-                deleteButton.style.top = "10px";
-
-                deleteButton.style.right = "10px";
-
-                deleteButton.style.paddingLeft = "10px";
-
-                deleteButton.style.paddingRight = "10px";
-
-                deleteButton.style.paddingTop = "10px";
-
-                deleteButton.style.paddingBottom = "10px";
-
-                deleteButton.style.fontSize = "20px";
-
-                deleteButton.style.color = "#FFFFFF";
-
-                deleteButton.style.cursor = "pointer";
-                
-                deleteButton.onclick = function(){
-                    photoWrapper.removeChild(photoElement.parentNode);
-
-                    updateLastPhotoContainerMargin();
-                };
-                
-                photoWrapper.appendChild(photoElement);
-
-                photoWrapper.appendChild(deleteButton);       
-                
-                photoContainer.appendChild(photoElement);
-            
-                photoContainer.appendChild(deleteButton);
-            
-                photoWrapper.appendChild(photoContainer);
-
-                updateLastPhotoContainerMargin();
-            };
-
-            reader.readAsDataURL(file);
-        };
-
-        function handleFiles(files){
-            photoWrapper = null
-
-            reportGallery.innerHTML = "";
-
-            Array.from(files).forEach(file => addImageToGallery(file));
-        }
-
-        browsePhoto.addEventListener("change", (event) => {
-            handleFiles(event.target.files);
+    function updateLastPhotoContainerMargin(){
+        const photoContainers = photoWrapper.querySelectorAll("div");
+        photoContainers.forEach(container => {
+            container.style.marginRight = "10px";
         });
 
-        capturePhoto.addEventListener("change", (event) => {
-            handleFiles(event.target.files);
-        });
-    </script>
+        if (photoContainers.length > 0){
+            photoContainers[photoContainers.length - 1].style.marginRight = "0px";
+        };
+
+        updateGalleryVisibility();
+    }
+
+    function addImageToGallery(url){
+        if (!photoWrapper){
+            photoWrapper = document.createElement("div");
+
+            photoWrapper.classList.add("gallery-photo");
+            
+            photoWrapper.style.position = "relative";
+            
+            photoWrapper.style.paddingLeft = "10px";
+            
+            photoWrapper.style.paddingRight = "10px";
+            
+            photoWrapper.style.paddingTop = "10px";
+            
+            photoWrapper.style.paddingBottom = "10px";
+            
+            photoWrapper.style.height = "250px";
+            
+            photoWrapper.style.borderRadius = "5px";
+            
+            photoWrapper.style.backgroundColor = "#FFFFFF";
+            
+            photoWrapper.style.overflowX = "auto";
+            
+            photoWrapper.style.overflowY = "hidden";
+            
+            photoWrapper.style.whiteSpace = "nowrap";
+            
+            reportGallery.appendChild(photoWrapper);
+        };
+
+        const photoContainer = document.createElement("div");
+        
+        photoContainer.style.position = "relative";
+        
+        photoContainer.style.display = "inline-block";
+        
+        photoContainer.style.marginRight = "10px";
+        
+        photoContainer.style.width = "100%"; 
+        
+        photoContainer.style.height = "100%";
+
+        const photoElement = document.createElement("img");
+        
+        photoElement.src = url;
+        
+        photoElement.style.placeItems = "center";
+        
+        photoElement.style.objectFit = "cover";
+        
+        photoElement.style.width = "100%";
+        
+        photoElement.style.height = "100%";
+        
+        photoElement.style.borderRadius = "5px";
+        
+        photoElement.style.overflow = "hidden";
+
+        const deleteButton = document.createElement("i");
+        
+        deleteButton.classList.add("fas", "fa-trash");
+        
+        deleteButton.style.position = "absolute";
+        
+        deleteButton.style.top = "10px";
+        
+        deleteButton.style.right = "10px";
+        
+        deleteButton.style.paddingLeft = "10px";
+        
+        deleteButton.style.paddingRight = "10px";
+        
+        deleteButton.style.paddingTop = "10px";
+        
+        deleteButton.style.paddingBottom = "10px";
+        
+        deleteButton.style.fontSize = "20px";
+        
+        deleteButton.style.color = "#FFFFFF";
+        
+        deleteButton.style.cursor = "pointer";
+        
+        deleteButton.onclick = function(){
+            photoWrapper.removeChild(photoElement.parentNode);
+        
+            updateLastPhotoContainerMargin();
+        };
+        
+        photoContainer.appendChild(photoElement);
+        
+        photoContainer.appendChild(deleteButton);
+        
+        photoWrapper.appendChild(photoContainer);
+        
+        updateLastPhotoContainerMargin();
+    };
+
+    function handleFiles(files){
+        photoWrapper = null
+        
+        reportGallery.innerHTML = "";
+        
+        Array.from(files).forEach(file => addImageToGallery(URL.createObjectURL(file)));
+    }
+
+    browsePhoto.addEventListener("change", (event) => {
+        handleFiles(event.target.files);
+    });
+
+    capturePhoto.addEventListener("change", (event) => {
+        handleFiles(event.target.files);
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        existingPhotos.forEach(url => addImageToGallery(url));
+    });
+</script>
 
     <script>
         document.querySelector(".post-photo-choose").addEventListener("change", function(){
@@ -379,39 +557,63 @@
     </script>
 
     <script>
-        var map;
+        document.addEventListener("DOMContentLoaded", function(){
+            const barangaySelect = document.getElementById("barangay");
 
+            const municipalitySelect = document.getElementById("municipality");
+
+            barangaySelect.addEventListener("change", function(){
+                const selectedId = barangaySelect.value;
+
+                for (let i = 0; i < municipalitySelect.options.length; i++){
+                    if (municipalitySelect.options[i].value === selectedId){
+                        municipalitySelect.selectedIndex = i;
+
+                        break;
+                    };
+                };
+            });
+        });
+    </script>
+    
+    <script>
+        var map;
+        
         var report;
 
         function revealMap(){
-            var starfish = L.icon({iconUrl: "{% static 'assets/pin.png' %}", iconSize: [30, 30], iconAnchor: [15, 15]});
+            if (map){
+                return;
+            }
 
+            var starfish = L.icon({iconUrl: "{% static 'assets/pin.png' %}", iconSize: [30, 30], iconAnchor: [15, 15]});
+            
             report = L.marker([5.9656, 125.1929], {draggable: true, icon: starfish});
             
             var reportMap = document.getElementsByClassName("report-map")[0];
+            
+            var background = L.tileLayer("http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}", {minZoom: 11, maxZoom: 15, subdomains: ["mt0", "mt1", "mt2", "mt3"], attribution: "Google"});
 
-            var background = L.tileLayer("http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}", {minZoom: 11, maxZoom: 15, subdomains:["mt0","mt1","mt2","mt3"], attribution: "Google"});
-
-            map = L.map(reportMap, {zoomControl: true, scrollWheelZoom: false, dragging: true, maxBounds: [[5.3, 124.3],[6.3, 126.3]], layers: [background, report]}).setView([5.9656, 125.1929], 11);
-
+            map = L.map(reportMap, {zoomControl: true, scrollWheelZoom: false, dragging: true, maxBounds: [[5.3, 124.3],[6.3, 126.3]], layers: [background, report]}).setView([5.9656, 125.1929], 20);
+            
             map.attributionControl.remove();
 
             {% for location in locations %}
                 var originalCoordinates = {{location.perimeters|safe}};
-                
-                var swappedCoordinates = swapCoordinates(originalCoordinates);
 
+                var swappedCoordinates = swapCoordinates(originalCoordinates);
+                
                 var polygon = L.polygon(swappedCoordinates, {color: "transparent", fillColor: "transparent", fillOpacity: 0}).addTo(map);
                 
                 polygon.locationId = {{location.id}};
-
+                
                 polygon.locationName = "{{location}}";
             {% endfor %}
-                
+
             report.on("drag", function(event){
                 var position = event.target.getLatLng();
-                
-                updateCoordinates(position.lat, position.lng);                
+
+                updateCoordinates(position.lat, position.lng);
             });
 
             report.on("dragend", function(event){
@@ -419,14 +621,20 @@
                 
                 updateCoordinates(position.lat, position.lng);
 
-                var selectElement = document.getElementById("location");
-    
+                var selectElement = document.getElementById("barangay");
+
                 selectElement.value = "";
+
+                var selectElement2 = document.getElementById("municipality");
+
+                selectElement2.value = "";
 
                 map.eachLayer(function(layer){
                     if (layer instanceof L.Polygon){
                         if (layer.getBounds().contains(position) && layer.locationId){
                             selectElement.value = layer.locationId;
+
+                            selectElement2.value = layer.locationId;
 
                             return;
                         }
@@ -434,12 +642,36 @@
                 });
             });
 
+            var barangayCoordinates = {
+                {% for location in locations %}
+                    "{{location.id}}": [{{location.latitude}}, {{location.longitude}}],
+                {% endfor %}
+            };
+
+            function updateMarker(barangayId){
+                if (barangayCoordinates[barangayId]){
+                    var coordinates = barangayCoordinates[barangayId];
+
+                    map.setView(coordinates, 15);
+                    
+                    report.setLatLng(coordinates);
+                    
+                    updateCoordinates(coordinates[0], coordinates[1]);
+                }
+            }
+
+            document.getElementById("barangay").addEventListener("change", function(){
+                var barangayId = this.value;
+                
+                updateMarker(barangayId);
+            });
+
             var defaultLatitude = report.getLatLng().lat;
 
             var defaultLongitude = report.getLatLng().lng;
-
+            
             updateCoordinates(defaultLatitude, defaultLongitude);
-
+            
             fetchLocation(defaultLatitude, defaultLongitude);
         };
 
@@ -447,11 +679,11 @@
             var latitudeInput = document.getElementById("latitude");
 
             var longitudeInput = document.getElementById("longitude");
-
+            
             latitudeInput.value = latitude.toFixed(6);
             
             longitudeInput.value = longitude.toFixed(6);
-        };
+        }
 
         function swapCoordinates(coordinates){
             return coordinates.map(function(ring){
@@ -459,7 +691,7 @@
                     return [point[1], point[0]];
                 });
             });
-        };
+        }
 
         window.addEventListener("load", function (){
             revealMap();
@@ -605,8 +837,6 @@
     <script>
         document.querySelectorAll(".save-report").forEach(item => {
             item.addEventListener("click", function(event){
-                event.preventDefault();
-
                 if (!navigator.onLine){
                     const username = "{{request.user.username}}";
 
@@ -624,11 +854,14 @@
     </script>
 
     <script>
-        window.onbeforeunload = function(event) {
+        window.onbeforeunload = function(event){
             event.preventDefault(); 
-            
-            event.returnValue = ""; 
 
+            event.returnValue = ""; 
+        };
+
+        function disableOnBeforeUnload(){
+            window.onbeforeunload = null;
         };
     </script>
 
@@ -672,8 +905,6 @@
                 const postPhotos = [];
 
                 document.querySelector(".save-report").addEventListener("click", (event) => {
-                    event.preventDefault();
-
                     const information = new FormData(form);
 
                     const captureDate = information.get("capture_date");

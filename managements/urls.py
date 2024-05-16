@@ -9,5 +9,9 @@ urlpatterns = [
 
     path("contributor/service/intervention/", views.ContributorServiceIntervention, name = "Contributor Service Intervention"),
 
-    path("contributor/service/intervention/read/<int:id>/", views.ContributorServiceInterventionRead, name = "Contributor Service Intervention Read")
+    path("contributor/service/intervention/read/<int:id>/", views.ContributorServiceInterventionRead, name = "Contributor Service Intervention Read"),
+
+    path("officer/control/intervention/", views.OfficerControlIntervention, name = "Officer Control Intervention"),
+
+    path("officer/control/status/", views.OfficerControlStatus, name = "Officer Control Status"),
 ]

@@ -31,5 +31,11 @@ urlpatterns = [
 
     path("contributor/service/post/draft/send/fetch/", views.ContributorServicePostDraftSendFetch, name = "Contributor Service Post Draft Send Fetch"),
 
+    path("officer/control/sighting/", views.OfficerControlSighting, name = "Officer Control Sighting"),
+
+    path('sightings/change_status/', views.change_status, name='change_status'),
+
+    path('sightings/invalid_status/', views.invalid_status, name='invalid_status'),
+    
     path("service/post/valid/read/redirect/", views.PostValidReadRedirect, name = "Post Valid Read Redirect"),
 ]

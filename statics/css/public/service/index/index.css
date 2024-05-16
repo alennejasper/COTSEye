@@ -33,6 +33,10 @@
 }
 
 
+body{
+    background: #FFFFFF;
+}
+
 nav{
     width: 100%;
     position: relative;
@@ -50,35 +54,86 @@ nav.navigation-topbar{
     top: 0;
     padding-left: 15px;
     padding-right: 15px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     width: 100%;
     background-color: #FFFFFF;
     border-bottom: 1px solid #003755;
     z-index: 100;
 }
 
+@media screen and (min-width: 320px) and (max-width: 775px){
+    nav.navigation-topbar{
+        position: fixed;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        left: 0;          
+        right: 0;
+        top: 0;
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        width: 100%;
+        background-color: #FFFFFF;
+        border-bottom: 1px solid #003755;
+        z-index: 100;
+    }
+}
+
 nav.navigation-topbar > a.logo{
-    height: 20px;
+    height: 30px;
     cursor: pointer; 
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    nav.navigation-topbar > a.logo{
+        height: 20px;
+        cursor: pointer; 
+    }
 }
 
 nav.navigation-topbar > a.profile{
     margin-bottom: 0px !important;
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     cursor: pointer; 
 }
 
+@media screen and (min-width: 320px) and (max-width: 775px){
+    nav.navigation-topbar > a.profile{
+        margin-bottom: 0px !important;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        cursor: pointer; 
+    }
+}
+
 nav.navigation-topbar img.logo{
-    height: 20px !important;
+    height: 30px !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    nav.navigation-topbar img.logo{
+        height: 20px !important;
+    }
 }
 
 nav.navigation-topbar img.profile{
     margin-bottom: 0px !important;
-    height: 20px !important;
+    height: 30px !important;
     border-radius: 50%;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    nav.navigation-topbar img.profile{
+        margin-bottom: 0px !important;
+        height: 20px !important;
+        border-radius: 50%;
+    }
 }
 
 nav.navigation-topbar img:hover{
@@ -97,13 +152,25 @@ nav.navigation-topbar img:active{
 .content{
     padding-left: 10px;
     padding-right: 10px;
-    padding-top: 60px;
-    padding-bottom: 60px;
+    padding-top: 80px;
+    padding-bottom: 80px;
     display: grid;
     grid-template-columns: 100%;
     place-items: center;
     background-color: #FFFFFF;
-   
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .content{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 60px;
+        padding-bottom: 60px;
+        display: grid;
+        grid-template-columns: 100%;
+        place-items: center;
+        background-color: #FFFFFF;
+    }
 }
 
 nav.navigation-bottombar{
@@ -116,24 +183,60 @@ nav.navigation-bottombar{
     bottom: 0;
     padding-left: 15px;
     padding-right: 15px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     width: 100%;
     background-color: #FFFFFF;
     border-top: 1px solid #003755;
     z-index: 100;
 }
 
+@media screen and (min-width: 320px) and (max-width: 775px){
+    nav.navigation-bottombar{
+        position: fixed;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        left: 0;          
+        right: 0; 
+        bottom: 0;
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        width: 100%;
+        background-color: #FFFFFF;
+        border-top: 1px solid #003755;
+        z-index: 100;
+    }
+}
+
 nav.navigation-bottombar a{
-    width: 20px;
-    height: 20px !important;
+    width: 30px;
+    height: 30px !important;
     color: #003755;
     text-decoration: none;
 }
 
+@media screen and (min-width: 320px) and (max-width: 775px){
+    nav.navigation-bottombar a{
+        width: 20px;
+        height: 20px !important;
+        color: #003755;
+        text-decoration: none;
+    }
+}
+
 nav.navigation-bottombar img{
-    width: 20px;
-    height: 20px !important;
+    width: 30px;
+    height: 30px !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    nav.navigation-bottombar img{
+        width: 20px;
+        height: 20px !important;
+    }
 }
 
 nav.navigation-bottombar img:hover{
@@ -155,7 +258,7 @@ nav.navigation-bottombar img:active{
     bottom: 60px;
     width: 50px; 
     height: 50px;
-    cursor: move; 
+    cursor: pointer; 
     z-index: 1000;
 }
 
@@ -163,7 +266,6 @@ nav.navigation-bottombar img:active{
     width: 100%;
     height: 100%;
 }
-
 
 .report img:hover{
     filter: brightness(50%);
@@ -219,7 +321,7 @@ nav.navigation-bottombar img:active{
     color: #B2BEB5 !important;
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
+@media screen and (min-width: 369px) and (max-width: 445px){
     .dropdown-content a.dropdown-header{
         padding-left: 10px !important;
         padding-right: 10px !important;
@@ -233,7 +335,7 @@ nav.navigation-bottombar img:active{
     }
 }
 
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 349px) and (max-width: 368px){
     .dropdown-content a.dropdown-header{
         padding-left: 10px !important;
         padding-right: 10px !important;
@@ -242,6 +344,20 @@ nav.navigation-bottombar img:active{
         font-family: "Open Sans";
         font-weight: 700;
         font-size: 18px;
+        background-color: #003755;
+        color: #FFFFFF;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .dropdown-content a.dropdown-header{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+        font-family: "Open Sans";
+        font-weight: 700;
+        font-size: 16px;
         background-color: #003755;
         color: #FFFFFF;
     }
@@ -278,7 +394,7 @@ nav.navigation-bottombar img:active{
     color: #002C44 !important;
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
+@media screen and (min-width: 369px) and (max-width: 445px){
     .dropdown-item{
         padding-left: 10px !important;
         padding-right: 10px !important;
@@ -292,7 +408,7 @@ nav.navigation-bottombar img:active{
     }
 }
 
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 349px) and (max-width: 368px){
     .dropdown-item{
         padding-left: 10px !important;
         padding-right: 10px !important;
@@ -306,10 +422,32 @@ nav.navigation-bottombar img:active{
     }
 }
 
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .dropdown-item{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+        font-family: "Open Sans";
+        font-weight: 400;
+        font-size: 12px;
+        background-color: #FFFFFF;
+        color: #003755;
+    }
+}
+
 .dropdown-item img{
-    width: 20px !important;
-    height: 20px !important;
+    width: 30px !important;
+    height: 30px !important;
     margin-right: 10px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .dropdown-item img{
+        width: 20px !important;
+        height: 20px !important;
+        margin-right: 10px;
+    }
 }
 
 .dropdown-item img:hover{
@@ -359,7 +497,7 @@ nav.navigation-bottombar img:active{
     color: #B2BEB5 !important;
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
+@media screen and (min-width: 369px) and (max-width: 445px){
     .dropdown-content a.dropdown-footer{
         padding-left: 10px !important;
         padding-right: 10px !important;
@@ -373,7 +511,7 @@ nav.navigation-bottombar img:active{
     }
 }
 
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 349px) and (max-width: 368px){
     .dropdown-content a.dropdown-footer{
         padding-left: 10px !important;
         padding-right: 10px !important;
@@ -382,6 +520,20 @@ nav.navigation-bottombar img:active{
         font-family: "Open Sans";
         font-weight: 700;
         font-size: 18px;
+        background-color: #003755;
+        color: #FFFFFF;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .dropdown-content a.dropdown-footer{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+        font-family: "Open Sans";
+        font-weight: 700;
+        font-size: 16px;
         background-color: #003755;
         color: #FFFFFF;
     }

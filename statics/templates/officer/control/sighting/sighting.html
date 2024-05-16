@@ -1,0 +1,401 @@
+{% extends "officer/control/index/index.html" %}
+
+{% block content %}
+<div class = "container-fluid mt-3">
+    <div class = "row">
+        <div class = "col-12 col-md-3">
+            <div class = "filter-container mb-3">
+                <p class = "fs-3 mb-3">Filter</p>
+
+                <select id = "locationFilter" class = "form-select form-select-sm mb-3">
+                    <option value = "">Location</option>
+
+                    {% for location in locations %}
+                        <option value = "{{location.barangay}}">{{location}}</option>
+                    {% endfor %}
+                </select>
+
+                <p class = "mb-1">Date</p>
+
+                <div class = "mb-3">
+                    <label for = "dateFrom" class = "form-label">From:</label>
+
+                    <input type = "date" id = "dateFrom" name = "dateFrom" class = "form-control form-control-sm">
+                </div>
+
+                <div class = "mb-3">
+                    <label for = "dateTo" class = "form-label">To:</label>
+
+                    <input type = "date" id = "dateTo" name = "dateTo" class = "form-control form-control-sm">
+                </div>
+
+                <p class = "mb-1">Status</p>
+
+                <div class = "form-check mb-2">
+                    <input class = "form-check-input" type= "radio" name = "status" id = "statusPending" value = "Pending">
+
+                    <label class = "form-check-label" for = "statusPending">Pending</label>
+                </div>
+
+                <div class = "form-check mb-2">
+                    <input class = "form-check-input" type = "radio" name = "status" id = "statusValid" value = "Valid">
+                    <label class = "form-check-label" for = "statusValid">Valid</label>
+                </div>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="radio" name="status" id="statusInvalid" value="Invalid">
+                    <label class="form-check-label" for="statusInvalid">Invalid</label>
+                </div>
+
+                <button type = "button" class = "btn btn-primary mt-3 w-100" onclick = "applyFilter()">Apply Filter</button>
+                
+                <button type = "button" class = "btn btn-secondary mt-3 w-100" onclick = "resetFilter()">Reset Filter</button>
+            </div>
+        </div>
+
+        <div class = "col-12 col-md-9">
+            <div class = "table-container mb-3">
+                <h2>All Sightings</h2>
+
+                <table class = "table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope = "col">Post</th>
+                            
+                            <th scope = "col">Created Date</th>
+                            
+                            <th scope = "col">Contributor</th>
+                            
+                            <th scope = "col">Location</th>
+                            
+                            <th scope = "col">Municipality</th>
+                            
+                            <th scope = "col">Status</th>
+                            
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody class = "table-group-divider" id = "sightingsTable">
+                        {% for post in posts %}
+                            <tr data-id = "{{post.id}}">
+                                <td>{{post.description}}</td>
+
+                                <td>{{post.capture_date}}</td>
+
+                                <td>{{post.user}}</td>
+
+                                <td>{{post.location.barangay}}</td>
+
+                                <td>{{post.location.municipality}}</td>
+                                <td class="{{ post.post_status|lower }}">{{ post.post_status }}</td>
+                                <td>
+                                    <div class="button-container">
+                                        <button class="btn-valid" onclick="changeStatus({{ post.id }})">Valid</button>
+                                        <button class="btn-invalid" onclick="invalidStatus({{ post.id }})">Invalid</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center" id="pagination">
+                        <li class="page-item" id="previousPage">
+                            <a class="page-link" href="#" onclick="changePage('prev')">Previous</a>
+                        </li>
+                        <!-- Page numbers will be inserted here by JavaScript -->
+                        <li class="page-item" id="nextPage">
+                            <a class="page-link" href="#" onclick="changePage('next')">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    const sightingsData = [
+        {% for post in posts %}
+            { id: {{ post.id }}, post: "{{ post.description }}", date: "{{ post.capture_date }}", user: "{{ post.user }}", location: "{{ post.location.barangay }}", municipality: "{{ post.location.municipality }}", status: "{{ post.post_status }}" },     
+        {% endfor %}
+    ];
+
+    let currentPage = 1;
+    const rowsPerPage = 10;
+    let filteredData = sightingsData;
+
+    function displayTableData(page) {
+        const tableBody = document.getElementById('sightingsTable');
+        tableBody.innerHTML = '';
+
+        const start = (page - 1) * rowsPerPage;
+        const end = start + rowsPerPage;
+        const pageData = filteredData.slice(start, end);
+
+        pageData.forEach(item => {
+            const statusClass = getStatusClass(item.status);
+            const row = `<tr data-id="${item.id}">
+                <td>${item.post}</td>
+                <td>${item.date}</td>
+                <td>${item.user}</td>
+                <td>${item.location}</td>
+                <td>${item.municipality}</td>
+                <td class="${statusClass}">${item.status}</td>
+                <td>
+                    <div class="button-container">
+                        <button class="btn-valid" onclick="changeStatus(${item.id})">Valid</button>
+                        <button class="btn-invalid" onclick="invalidStatus(${item.id})">Invalid</button>
+                    </div>
+                </td>
+            </tr>`;
+            tableBody.innerHTML += row;
+        });
+
+        document.getElementById('previousPage').classList.toggle('disabled', page === 1);
+        document.getElementById('nextPage').classList.toggle('disabled', end >= filteredData.length);
+    }
+
+    function changePage(direction) {
+        if (direction === 'prev' && currentPage > 1) {
+            currentPage--;
+        } else if (direction === 'next' && (currentPage * rowsPerPage) < filteredData.length) {
+            currentPage++;
+        }
+        displayTableData(currentPage);
+        updatePagination();
+    }
+
+    function updatePagination() {
+        const pagination = document.getElementById('pagination');
+        const totalPages = Math.ceil(filteredData.length / rowsPerPage);
+        
+        // Clear existing page numbers
+        pagination.innerHTML = `
+            <li class="page-item" id="previousPage">
+                <a class="page-link" href="#" onclick="changePage('prev')">Previous</a>
+            </li>
+            <li class="page-item" id="nextPage">
+                <a class="page-link" href="#" onclick="changePage('next')">Next</a>
+            </li>
+        `;
+
+        // Insert page numbers
+        for (let i = 1; i <= totalPages; i++) {
+            const pageItem = document.createElement('li');
+            pageItem.className = 'page-item' + (i === currentPage ? ' active' : '');
+            pageItem.innerHTML = `<a class="page-link" href="#" onclick="goToPage(${i})">${i}</a>`;
+            pagination.insertBefore(pageItem, document.getElementById('nextPage'));
+        }
+    }
+
+    function goToPage(page) {
+        currentPage = page;
+        displayTableData(currentPage);
+        updatePagination();
+    }
+
+    function parseDate(dateString) {
+        try {
+            console.log('Parsing date string:', dateString);
+
+            // Split date and time parts using regular expressions to handle the comma
+            const dateTimeRegex = /(\w+ \d+, \d+), (\d+:\d+ [ap]\.m\.)/;
+            const match = dateTimeRegex.exec(dateString);
+
+            if (!match) {
+                throw new Error('Invalid date format');
+            }
+
+            const [_, datePart, timePart] = match;
+            console.log('Date Part:', datePart);
+            console.log('Time Part:', timePart);
+
+            const [month, dayWithComma, year] = datePart.split(' ');
+            const day = dayWithComma.replace(',', '');
+            if (!month || !day || !year) {
+                throw new Error('Invalid date format');
+            }
+
+            console.log('Month:', month);
+            console.log('Day:', day);
+            console.log('Year:', year);
+
+            // Split time and period (a.m./p.m.)
+            const [time, period] = timePart.split(' ');
+            if (!time || !period) {
+                throw new Error('Invalid time format');
+            }
+
+            console.log('Time:', time);
+            console.log('Period:', period);
+
+            let [hours, minutes] = time.split(':').map(Number);
+            if (isNaN(hours) || isNaN(minutes)) {
+                throw new Error('Invalid time format');
+            }
+
+            console.log('Hours:', hours);
+            console.log('Minutes:', minutes);
+
+            // Convert to 24-hour format
+            if (period.toLowerCase() === 'p.m.' && hours < 12) {
+                hours += 12;
+            } else if (period.toLowerCase() === 'a.m.' && hours === 12) {
+                hours = 0;
+            }
+
+            // Convert month name to month number
+            const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            const monthIndex = monthNames.indexOf(month);
+            if (monthIndex === -1) {
+                throw new Error('Invalid month');
+            }
+
+            return new Date(year, monthIndex, parseInt(day), hours, minutes);
+        } catch (error) {
+            console.error('Failed to parse date:', error);
+            return null;
+        }
+    }
+
+
+    function applyFilter() {
+    const location = document.getElementById('locationFilter').value;
+    const dateFrom = document.getElementById('dateFrom').value;
+    const dateTo = document.getElementById('dateTo').value;
+    const status = document.querySelector('input[name="status"]:checked')?.value;
+
+    console.log('Applying filter with:');
+    console.log('Location:', location);
+    console.log('Date From:', dateFrom);
+    console.log('Date To:', dateTo);
+    console.log('Status:', status);
+
+    // Parse dateFrom and dateTo as Date objects if they are set
+    const dateFromObj = dateFrom ? new Date(dateFrom) : null;
+    const dateToObj = dateTo ? new Date(dateTo) : null;
+
+    filteredData = sightingsData.filter(item => {
+        console.log('Filtering item:', item);
+        const itemDateObj = parseDate(item.date);
+        console.log('Item Date:', itemDateObj);
+
+        const locationMatch = !location || item.location === location;
+        const dateFromMatch = !dateFrom || itemDateObj >= dateFromObj;
+        const dateToMatch = !dateTo || itemDateObj <= dateToObj;
+        const statusMatch = !status || item.status === status;
+
+
+        console.log('date', item.date)
+        console.log('Location Match:', locationMatch);
+        console.log('Date From Match:', dateFromMatch);
+        console.log('Date To Match:', dateToMatch);
+        console.log('Status Match:', statusMatch);
+
+        return locationMatch && dateFromMatch && dateToMatch && statusMatch;
+    });
+
+    console.log('Filtered Data:', filteredData);
+
+    currentPage = 1;
+    displayTableData(currentPage);
+    updatePagination();
+}
+
+
+    function resetFilter() {
+        document.getElementById('locationFilter').value = '';
+        document.getElementById('dateFrom').value = '';
+        document.getElementById('dateTo').value = '';
+        const checkedStatus = document.querySelector('input[name="status"]:checked');
+        if (checkedStatus) {
+            checkedStatus.checked = false;
+        }
+
+        filteredData = sightingsData;
+        currentPage = 1;
+        displayTableData(currentPage);
+        updatePagination();
+    }
+
+    function selectAll(checkbox) {
+        const checkboxes = document.querySelectorAll('.rowCheckbox');
+        checkboxes.forEach((cb) => {
+            cb.checked = checkbox.checked;
+        });
+    }
+
+    function updateRow(index) {
+        alert(`Update row: ${index + 1}`);
+        // Add your update logic here
+    }
+
+    function confirmChangeStatus(post_id, status) {
+        const confirmation = confirm(`Are you sure you want to mark this entry as ${status}?`);
+        if (confirmation) {
+            changeStatus(post_id, status);
+        }
+    }
+
+    function changeStatus(postId){
+        $.ajax({
+            type: 'POST',
+            url: '{% url "change_status" %}',
+            data: {
+                'post_id': postId,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function(response) {
+                if (response.success) {
+                    location.reload();  
+                    consolo.log("this is valid")
+                } else {
+                    alert('Failed to change status.');
+                }
+            }
+        });
+    }
+
+    function invalidStatus(postId){
+        $.ajax({
+            type: 'POST',
+            url: '{% url "invalid_status" %}',
+            data: {
+                'post_id': postId,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function(response) {
+                if (response.success) {
+                    location.reload();  // Optionally reload the page to reflect changes
+                } else {
+                    alert('Failed to change status.');
+                }
+            }
+        });
+    }
+
+    function getStatusClass(status) {
+        switch(status) {
+            case 'Pending': return 'status-pending';
+            case 'Valid': return 'status-valid';
+            case 'Invalid': return 'status-invalid';
+            default: return '';
+        }
+    }
+
+    function formatDate(dateString) {
+        const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
+        return new Date(dateString).toLocaleDateString(undefined, options);
+    }
+
+    // Display the first page of data on initial load
+    document.addEventListener('DOMContentLoaded', () => {
+        displayTableData(currentPage);
+        updatePagination();
+    });
+</script>
+
+{% endblock %}
