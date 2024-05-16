@@ -14,7 +14,7 @@ import datetime
 def PublicServiceIntervention(request):
     username = "public/everyone"
 
-    interventions = Intervention.objects.all()
+    interventions = Intervention.objects.all().order_by("-intervention_date")
 
     context = {"username": username, "interventions": interventions}
 
@@ -42,7 +42,7 @@ def ContributorServiceIntervention(request):
 
     user_profile = User.objects.get(account = request.user)
 
-    interventions = Intervention.objects.all()
+    interventions = Intervention.objects.all().order_by("-intervention_date")
 
     context = {"username": username, "user_profile": user_profile, "interventions": interventions}
 

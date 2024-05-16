@@ -153,7 +153,7 @@ class Post(models.Model):
     location = models.ForeignKey(Location, null = True, blank = True, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Location model.", verbose_name = "Location")
     post_status = models.ForeignKey(PostStatus, on_delete = models.CASCADE, default = 4, help_text = "Designates the foreign key of the Post Status model.", verbose_name = "Post Status")
     post_observation = models.ForeignKey(PostObservation, null = True, blank = True, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Post Observation model.", verbose_name = "Post Observation")
-
+    creation_date = models.DateTimeField(default = datetime.datetime.now(), help_text = "Designates the creation date and time of the post.", verbose_name = "Creation Date")
     class Meta:
         db_table = "reports_post"
         verbose_name = "Post"

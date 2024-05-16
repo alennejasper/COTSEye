@@ -13,7 +13,7 @@
 
                 <div id = "first-tab" class = "tab-content">        
                     <div class = "controls-wrapper">
-                        <div class = "control-section">
+                        <div class = "control-section capture">
                             <i class = "fa-solid fa-camera"></i>
 
                             <label for = "post-photo-capture" class = "capture-photo">
@@ -23,7 +23,7 @@
                             <input type = "file" class = "invisible-input-capture post-photo-capture" id = "post-photo-capture" name = "post_photos_capture" accept = "image/*" capture = "environment" required>
                         </div>
                 
-                        <div class = "control-section">
+                        <div class = "control-section choose">
                             <i class = "fa-solid fa-image"></i>
 
                             <label for = "post-photo-choose" class = "browse-photo">
@@ -81,7 +81,7 @@
 
                     <div class = "buttons">
                         <div class = "save-report">
-                            <a data-action = "save as draft" onclick = "disableOnBeforeUnload()">Save as draft</a>
+                            <button type = "submit" value = "save as draft" onclick = "setActionValue(this.value); disableOnBeforeUnload();">Save as draft</a>
                         </div>
 
                         <button type = "button" class = "next-report" onclick = "nextTab('first-tab')">Next</button>
@@ -96,7 +96,7 @@
                     </div>
 
                     <div class = "size">
-                        <label for = "size">Average sie of COTS</label>
+                        <label for = "size">Average Size of COTS</label>
                         
                         <select name = "size" id = "size">
                             <option disabled selected value>Select sighting COTS size here.</option>
@@ -143,11 +143,11 @@
                         <button type = "button" class = "back-report" onclick = "openTab('first-tab')">Back</button>
 
                         <div class = "save-report">
-                            <a data-action = "save as draft" onclick = "disableOnBeforeUnload()">Save as draft</a>
+                            <button type = "submit" value = "save as draft" onclick = "setActionValue(this.value); disableOnBeforeUnload();">Save as draft</a>
                         </div>
 
                         <div class = "save-report">
-                            <a data-action = "save and submit" onclick = "disableOnBeforeUnload()">Submit Report</a>
+                            <button type = "submit" value = "save and submit" onclick = "setActionValue(this.value); disableOnBeforeUnload();">Submit Report</a>
                         </div>
                     </div>
                 </div>
@@ -165,6 +165,7 @@
                 {% endfor %}
             {% endif %}
         </div>
+
     {% else %}
         <div class = "report-body">
             <div class = "report-section">
@@ -176,7 +177,7 @@
 
                 <div id = "first-tab" class = "tab-content">        
                     <div class = "controls-wrapper">
-                        <div class = "control-section">
+                        <div class = "control-section capture">
                             <i class = "fa-solid fa-camera"></i>
 
                             <label for = "post-photo-capture" class = "capture-photo">
@@ -186,7 +187,7 @@
                             <input type = "file" class = "invisible-input-capture post-photo-capture" id = "post-photo-capture" name = "post_photos_capture" accept = "image/*" capture = "environment" required>
                         </div>
                 
-                        <div class = "control-section">
+                        <div class = "control-section choose">
                             <i class = "fa-solid fa-image"></i>
 
                             <label for = "post-photo-choose" class = "browse-photo">
@@ -244,7 +245,7 @@
 
                     <div class = "buttons">
                         <div class = "save-report">
-                            <a data-action = "save as draft" onclick = "disableOnBeforeUnload()">Save as draft</a>
+                            <button type = "submit" value = "save as draft" onclick = "setActionValue(this.value); disableOnBeforeUnload();">Save as draft</a>
                         </div>
 
                         <button type = "button" class = "next-report" onclick = "nextTab('first-tab')">Next</button>
@@ -259,7 +260,7 @@
                     </div>
 
                     <div class = "size">
-                        <label for = "size">Average sie of COTS</label>
+                        <label for = "size">Average Size of COTS</label>
                         
                         <select name = "size" id = "size">
                             <option disabled selected value>Select sighting COTS size here.</option>
@@ -300,17 +301,18 @@
                         </select>
                     </div>
 
-                    <input type = "hidden" name = "action" id = "action">
+                    <input type="hidden" name="action" id="action">
+                    <div id="action-value-display" style="margin-top: 20px; font-weight: bold;"></div>
 
                     <div class = "buttons">
-                        <button type = "button" class = "back-report" onclick = "openTab('first-tab')">Back</button>
-
+                        <button type="button" class = "back-report" onclick = "openTab('first-tab')">Back</button>
+            
                         <div class = "save-report">
-                            <a data-action = "save as draft" onclick = "disableOnBeforeUnload()">Save as draft</a>
+                            <button type = "submit" value = "save as draft" onclick = "setActionValue(this.value); disableOnBeforeUnload();">Save as draft</button>
                         </div>
-
+            
                         <div class = "save-report">
-                            <a data-action = "save and submit" onclick = "disableOnBeforeUnload()">Submit Report</a>
+                            <button type = "submit" value="save and submit" onclick = "setActionValue(this.value); disableOnBeforeUnload();">Submit Report</button>
                         </div>
                     </div>
                 </div>
@@ -357,178 +359,176 @@
     </script>
 
     <script>
-        document.querySelector(".browse-photo").addEventListener("click", function(event){
-            event.preventDefault();
-
+        document.querySelector(".control-section.choose").addEventListener("click", function(event){
             document.querySelector(".post-photo-choose").click();
 
             document.querySelector(".post-photo-capture").removeAttribute("required");
         });
     </script>
 
-<script>
-    const existingPhotos = [
-        {% for photo in draft_post.post_photos.all %}
-            "{{ photo.post_photo.url }}",
-        {% endfor %}
-    ];
+    <script>
+        const existingPhotos = [
+            {% for photo in draft_post.post_photos.all %}
+                "{{ photo.post_photo.url }}",
+            {% endfor %}
+        ];
 
-    const browsePhoto = document.querySelector(".post-photo-choose");
+        const browsePhoto = document.querySelector(".post-photo-choose");
 
-    const capturePhoto = document.querySelector(".post-photo-capture");
-    
-    var reportGallery = document.querySelector(".report-gallery");
-    
-    let photoWrapper = null;
+        const capturePhoto = document.querySelector(".post-photo-capture");
+        
+        var reportGallery = document.querySelector(".report-gallery");
+        
+        let photoWrapper = null;
 
-    function updateGalleryVisibility(){
-        if (photoWrapper && photoWrapper.children.length === 0){
-            reportGallery.style.display = "none";
+        function updateGalleryVisibility(){
+            if (photoWrapper && photoWrapper.children.length === 0){
+                reportGallery.style.display = "none";
 
-            reportGallery.style.paddingTop = "0px";
+                reportGallery.style.paddingTop = "0px";
+                
+                reportGallery.style.paddingBottom = "0px";
             
-            reportGallery.style.paddingBottom = "0px";
-        
-        } else{
-            reportGallery.style.display = "block";
-        
-            reportGallery.style.paddingTop = "10px";
-        
-            reportGallery.style.paddingBottom = "10px";
-        };
-    };
-
-    function updateLastPhotoContainerMargin(){
-        const photoContainers = photoWrapper.querySelectorAll("div");
-        photoContainers.forEach(container => {
-            container.style.marginRight = "10px";
-        });
-
-        if (photoContainers.length > 0){
-            photoContainers[photoContainers.length - 1].style.marginRight = "0px";
+            } else{
+                reportGallery.style.display = "block";
+            
+                reportGallery.style.paddingTop = "10px";
+            
+                reportGallery.style.paddingBottom = "10px";
+            };
         };
 
-        updateGalleryVisibility();
-    }
+        function updateLastPhotoContainerMargin(){
+            const photoContainers = photoWrapper.querySelectorAll("div");
+            photoContainers.forEach(container => {
+                container.style.marginRight = "10px";
+            });
 
-    function addImageToGallery(url){
-        if (!photoWrapper){
-            photoWrapper = document.createElement("div");
+            if (photoContainers.length > 0){
+                photoContainers[photoContainers.length - 1].style.marginRight = "0px";
+            };
 
-            photoWrapper.classList.add("gallery-photo");
-            
-            photoWrapper.style.position = "relative";
-            
-            photoWrapper.style.paddingLeft = "10px";
-            
-            photoWrapper.style.paddingRight = "10px";
-            
-            photoWrapper.style.paddingTop = "10px";
-            
-            photoWrapper.style.paddingBottom = "10px";
-            
-            photoWrapper.style.height = "250px";
-            
-            photoWrapper.style.borderRadius = "5px";
-            
-            photoWrapper.style.backgroundColor = "#FFFFFF";
-            
-            photoWrapper.style.overflowX = "auto";
-            
-            photoWrapper.style.overflowY = "hidden";
-            
-            photoWrapper.style.whiteSpace = "nowrap";
-            
-            reportGallery.appendChild(photoWrapper);
-        };
+            updateGalleryVisibility();
+        }
 
-        const photoContainer = document.createElement("div");
-        
-        photoContainer.style.position = "relative";
-        
-        photoContainer.style.display = "inline-block";
-        
-        photoContainer.style.marginRight = "10px";
-        
-        photoContainer.style.width = "100%"; 
-        
-        photoContainer.style.height = "100%";
+        function addImageToGallery(url){
+            if (!photoWrapper){
+                photoWrapper = document.createElement("div");
 
-        const photoElement = document.createElement("img");
-        
-        photoElement.src = url;
-        
-        photoElement.style.placeItems = "center";
-        
-        photoElement.style.objectFit = "cover";
-        
-        photoElement.style.width = "100%";
-        
-        photoElement.style.height = "100%";
-        
-        photoElement.style.borderRadius = "5px";
-        
-        photoElement.style.overflow = "hidden";
+                photoWrapper.classList.add("gallery-photo");
+                
+                photoWrapper.style.position = "relative";
+                
+                photoWrapper.style.paddingLeft = "10px";
+                
+                photoWrapper.style.paddingRight = "10px";
+                
+                photoWrapper.style.paddingTop = "10px";
+                
+                photoWrapper.style.paddingBottom = "10px";
+                
+                photoWrapper.style.height = "250px";
+                
+                photoWrapper.style.borderRadius = "5px";
+                
+                photoWrapper.style.backgroundColor = "#FFFFFF";
+                
+                photoWrapper.style.overflowX = "auto";
+                
+                photoWrapper.style.overflowY = "hidden";
+                
+                photoWrapper.style.whiteSpace = "nowrap";
+                
+                reportGallery.appendChild(photoWrapper);
+            };
 
-        const deleteButton = document.createElement("i");
-        
-        deleteButton.classList.add("fas", "fa-trash");
-        
-        deleteButton.style.position = "absolute";
-        
-        deleteButton.style.top = "10px";
-        
-        deleteButton.style.right = "10px";
-        
-        deleteButton.style.paddingLeft = "10px";
-        
-        deleteButton.style.paddingRight = "10px";
-        
-        deleteButton.style.paddingTop = "10px";
-        
-        deleteButton.style.paddingBottom = "10px";
-        
-        deleteButton.style.fontSize = "20px";
-        
-        deleteButton.style.color = "#FFFFFF";
-        
-        deleteButton.style.cursor = "pointer";
-        
-        deleteButton.onclick = function(){
-            photoWrapper.removeChild(photoElement.parentNode);
-        
+            const photoContainer = document.createElement("div");
+            
+            photoContainer.style.position = "relative";
+            
+            photoContainer.style.display = "inline-block";
+            
+            photoContainer.style.marginRight = "10px";
+            
+            photoContainer.style.width = "100%"; 
+            
+            photoContainer.style.height = "100%";
+
+            const photoElement = document.createElement("img");
+            
+            photoElement.src = url;
+            
+            photoElement.style.placeItems = "center";
+            
+            photoElement.style.objectFit = "cover";
+            
+            photoElement.style.width = "100%";
+            
+            photoElement.style.height = "100%";
+            
+            photoElement.style.borderRadius = "5px";
+            
+            photoElement.style.overflow = "hidden";
+
+            const deleteButton = document.createElement("i");
+            
+            deleteButton.classList.add("fas", "fa-trash");
+            
+            deleteButton.style.position = "absolute";
+            
+            deleteButton.style.top = "10px";
+            
+            deleteButton.style.right = "10px";
+            
+            deleteButton.style.paddingLeft = "10px";
+            
+            deleteButton.style.paddingRight = "10px";
+            
+            deleteButton.style.paddingTop = "10px";
+            
+            deleteButton.style.paddingBottom = "10px";
+            
+            deleteButton.style.fontSize = "20px";
+            
+            deleteButton.style.color = "#FFFFFF";
+            
+            deleteButton.style.cursor = "pointer";
+            
+            deleteButton.onclick = function(){
+                photoWrapper.removeChild(photoElement.parentNode);
+            
+                updateLastPhotoContainerMargin();
+            };
+            
+            photoContainer.appendChild(photoElement);
+            
+            photoContainer.appendChild(deleteButton);
+            
+            photoWrapper.appendChild(photoContainer);
+            
             updateLastPhotoContainerMargin();
         };
-        
-        photoContainer.appendChild(photoElement);
-        
-        photoContainer.appendChild(deleteButton);
-        
-        photoWrapper.appendChild(photoContainer);
-        
-        updateLastPhotoContainerMargin();
-    };
 
-    function handleFiles(files){
-        photoWrapper = null
-        
-        reportGallery.innerHTML = "";
-        
-        Array.from(files).forEach(file => addImageToGallery(URL.createObjectURL(file)));
-    }
+        function handleFiles(files){
+            photoWrapper = null
+            
+            reportGallery.innerHTML = "";
+            
+            Array.from(files).forEach(file => addImageToGallery(URL.createObjectURL(file)));
+        }
 
-    browsePhoto.addEventListener("change", (event) => {
-        handleFiles(event.target.files);
-    });
+        browsePhoto.addEventListener("change", (event) => {
+            handleFiles(event.target.files);
+        });
 
-    capturePhoto.addEventListener("change", (event) => {
-        handleFiles(event.target.files);
-    });
+        capturePhoto.addEventListener("change", (event) => {
+            handleFiles(event.target.files);
+        });
 
-    document.addEventListener("DOMContentLoaded", function() {
-        existingPhotos.forEach(url => addImageToGallery(url));
-    });
-</script>
+        document.addEventListener("DOMContentLoaded", function() {
+            existingPhotos.forEach(url => addImageToGallery(url));
+        });
+    </script>
 
     <script>
         document.querySelector(".post-photo-choose").addEventListener("change", function(){
@@ -737,9 +737,7 @@
                 });
 
             } else{
-                document.querySelector(".capture-photo").addEventListener("click", function(event){
-                    event.preventDefault();
-
+                document.querySelector(".control-section.capture").addEventListener("click", function(event){
                     document.querySelector(".post-photo-capture").click();
 
                     document.querySelector(".post-photo-choose").removeAttribute("required");
@@ -835,33 +833,41 @@
     </script>
 
     <script>
-        document.querySelectorAll(".save-report").forEach(item => {
-            item.addEventListener("click", function(event){
-                if (!navigator.onLine){
-                    const username = "{{request.user.username}}";
-
-                    Swal.fire({title: "Hey!", text: username + ", your information input was recorded offline for COTSEye. Kindly visit the current page again if back online.", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}}).then(() => {location.reload();});
-
-                } else{
-                    const action = this.getAttribute("data-action");
-
-                    document.getElementById("action").value = action;
-                    
-                    document.querySelector(".report-form").submit();
-                };
-            });
+        document.querySelector(".save-report").addEventListener("click", function(event){
+            document.querySelector(".save-report button").click();
         });
     </script>
 
     <script>
         window.onbeforeunload = function(event){
-            event.preventDefault(); 
+            event.preventDefault();
 
-            event.returnValue = ""; 
+            event.returnValue = "";
         };
 
         function disableOnBeforeUnload(){
             window.onbeforeunload = null;
+        };
+
+        function setActionValue(actionName){
+            document.getElementById("action").value = actionName;
+            
+            disableOnBeforeUnload();
+
+            document.querySelectorAll(".save-report").forEach(item => {
+                item.addEventListener("click", function(event){
+                    event.preventDefault();
+
+                    if (!navigator.onLine){
+                        const username = "{{request.user.username}}";
+
+                        Swal.fire({title: "Hey!", text: username + ", your information input was recorded offline for COTSEye. Kindly visit the current page again if back online.", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}}).then(() => {location.reload();});
+
+                    } else{
+                        document.querySelector(".report-form").submit();
+                    };
+                });
+            });
         };
     </script>
 

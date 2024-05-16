@@ -2,19 +2,21 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.db.models import Max
 from django.http import FileResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.encoding import smart_str
 from auxiliaries.models import *
 from authentications.views import ContributorCheck
 from managements.models import Status
 from reports.models import Post
+from auxiliaries.forms import AnnouncementForm
+from django.http import JsonResponse
 
 
 # Create your views here.
 def PublicServiceAnnouncement(request):
     username = "public/everyone"
 
-    announcements = Announcement.objects.all()
+    announcements = Announcement.objects.all().order_by("-announcement_date")
 
     context = {"username": username, "announcements": announcements}
 
@@ -86,7 +88,7 @@ def ContributorServiceAnnouncement(request):
 
     user_profile = User.objects.get(account = request.user)
 
-    announcements = Announcement.objects.all()
+    announcements = Announcement.objects.all().order_by("-announcement_date")
 
     context = {"username": username, "user_profile": user_profile, "announcements": announcements}
 
@@ -166,14 +168,47 @@ def ContributorServiceResource(request):
 
 
 def OfficerControlAnnouncement(request):
-    return render(request, "officer/control/announcement/announcement.html")
+    announcements = Announcement.objects.all()
+
+    context = {"announcements": announcements}
+
+    return render(request, "officer/control/announcement/announcement.html", context)
 
 
+def officer_control_announcement(request, pk):
+    announcement = get_object_or_404(Announcement, pk=pk)
+    other_announcements = Announcement.objects.exclude(pk=pk)
+    return render(request, "officer/control/announcement/specific_announcement.html", {
+        'announcement': announcement,
+        'other_announcements': other_announcements
+    })
 def officercontroladdannouncement(request):
-    return render(request, "officer/control/announcement/addannouncement.html")
+    if request.method == 'POST':
+        form = AnnouncementForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('Officer Control Announcement')  # Redirect to the list of announcements or wherever you want
+    else:
+        form = AnnouncementForm()
+    return render(request, "officer/control/announcement/addannouncement.html", {'form': form})
 
-def officercontroladdannouncement(request):
-    return render(request, "officer/control/announcement/updateannouncement.html")
+def officercontrolupdateannouncement(request, pk):
+    announcement = get_object_or_404(Announcement, pk=pk)
+    if request.method == 'POST':
+        form = AnnouncementForm(request.POST, request.FILES, instance=announcement)
+        if form.is_valid():
+            form.save()
+            return redirect('Officer Control Announcement')
+    else:
+        form = AnnouncementForm(instance=announcement)
+    return render(request, "officer/control/announcement/updateannouncement.html", {'form': form, 'announcement': announcement})
+
+def officercontroldeleteannouncement(request, pk):
+    announcement = get_object_or_404(Announcement, pk=pk)
+    if request.method == 'DELETE':
+        announcement.delete()
+        return JsonResponse({'success': True})
+    return JsonResponse({'success': False})
 
 
 def ServiceResourceLinkReadRedirect(request, id):

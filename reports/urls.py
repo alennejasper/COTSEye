@@ -33,9 +33,11 @@ urlpatterns = [
 
     path("officer/control/sighting/", views.OfficerControlSighting, name = "Officer Control Sighting"),
 
-    path('sightings/change_status/', views.change_status, name='change_status'),
+    path("officer/control/sighting/read/<int:id>/", views.OfficerControlSightingRead, name = "Officer Control Sighting Read"),
 
-    path('sightings/invalid_status/', views.invalid_status, name='invalid_status'),
+    path("sightings/control/sighting/valid/", views.OfficerControlSightingValid, name = "Officer Control Sighting Valid"),
+
+    path("sightings/control/sighting/invalid", views.OfficerControlSightingInvalid, name = "Officer Control Sighting Invalid"),
     
     path("service/post/valid/read/redirect/", views.PostValidReadRedirect, name = "Post Valid Read Redirect"),
 ]

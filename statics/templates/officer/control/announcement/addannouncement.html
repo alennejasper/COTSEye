@@ -6,31 +6,16 @@
     
     <div class="card mt-4">
         <div class="card-body">
-            <form id="announcementForm">
+            <form id="announcementForm" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                
+                
                 <div class="form-group">
-                    <label for="announcementTitle">Title</label>
-                    <input type="text" class="form-control" id="announcementTitle" required>
+                    <h2>Photo Preview</h2>
+                    <img id="photoPreview" src="#" alt="Image Preview" style="display: none; max-width: 100%; height: auto; margin:12px;">
                 </div>
-                <div class="form-group">
-                    <label for="announcementDate">Date</label>
-                    <input type="date" class="form-control" id="announcementDate" required>
-                </div>
-                <div class="form-group">
-                    <label for="announcementLocation">Location</label>
-                    <input type="text" class="form-control" id="announcementLocation" required>
-                </div>
-                <div class="form-group">
-                    <label for="announcementDescription">Description</label>
-                    <textarea class="form-control" id="announcementDescription" rows="3" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="announcementUser">Posted By</label>
-                    <input type="text" class="form-control" id="announcementUser" required>
-                </div>
-                <div class="form-group">
-                    <label for="announcementPhoto">Photo</label>
-                    <input type="file" class="form-control-file" id="announcementPhoto">
-                </div>
+                
                 <button type="submit" class="btn btn-primary">Add Announcement</button>
             </form>
         </div>
@@ -38,6 +23,27 @@
 </div>
 
 <script>
+    document.getElementById('announcementPhoto').addEventListener('change', function(event) {
+        const photoPreview = document.getElementById('photoPreview');
+        const file = event.target.files[0];
+        
+        if (file) {
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                photoPreview.src = e.target.result;
+                photoPreview.style.display = 'block';
+            }
+            
+            reader.readAsDataURL(file);
+        } else {
+            photoPreview.src = '#';
+            photoPreview.style.display = 'none';
+        }
+    });
+</script>
+
+<!-- <script>
     document.getElementById('announcementForm').addEventListener('submit', function(event) {
         event.preventDefault();
         
@@ -56,5 +62,5 @@
 
         window.location.href = '{% url "Officer Control Announcement" %}';
     });
-</script>
+</script> -->
 {% endblock %}

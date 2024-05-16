@@ -188,6 +188,13 @@
     padding-bottom: 10px;
 }
 
+.report-body .report-form .barangay label{
+    font-family: "Open Sans";
+    font-weight: 400;
+    font-size: 14px;
+    color: #003755 !important;
+}
+
 .report-body .report-form .barangay select{
     padding-left: 5px;
     padding-right: 5px;
@@ -206,6 +213,13 @@
 .report-body .report-form .municipality{
     padding-top: 10px;
     padding-bottom: 10px;
+}
+
+.report-body .report-form .municipality label{
+    font-family: "Open Sans";
+    font-weight: 400;
+    font-size: 14px;
+    color: #003755 !important;
 }
 
 .report-body .report-form .municipality select{
@@ -232,6 +246,13 @@
     padding-bottom: 10px;
 }
 
+.report-body .report-form .description label{
+    font-family: "Open Sans";
+    font-weight: 400;
+    font-size: 14px;
+    color: #003755 !important;
+}
+
 .report-body .report-form .description textarea{
     padding-left: 5px;
     padding-right: 5px;
@@ -253,6 +274,13 @@
     padding-bottom: 10px;
 }
 
+.report-body .report-form .size label{
+    font-family: "Open Sans";
+    font-weight: 400;
+    font-size: 14px;
+    color: #003755 !important;
+}
+
 .report-body .report-form .size select{
     padding-top: 10px;
     padding-bottom: 10px;
@@ -269,6 +297,13 @@
 .report-body .report-form .density{
     padding-top: 10px;
     padding-bottom: 10px;
+}
+
+.report-body .report-form .density label{
+    font-family: "Open Sans";
+    font-weight: 400;
+    font-size: 14px;
+    color: #003755 !important;
 }
 
 .report-body .report-form .density input{
@@ -291,6 +326,13 @@
     padding-bottom: 10px;
 }
 
+.report-body .report-form .depth label{
+    font-family: "Open Sans";
+    font-weight: 400;
+    font-size: 14px;
+    color: #003755 !important;
+}
+
 .report-body .report-form .depth select{
     padding-top: 10px;
     padding-bottom: 10px;
@@ -307,6 +349,13 @@
 .report-body .report-form .weather{
     padding-top: 10px;
     padding-bottom: 10px;
+}
+
+.report-body .report-form .weather label{
+    font-family: "Open Sans";
+    font-weight: 400;
+    font-size: 14px;
+    color: #003755 !important;
 }
 
 .report-body .report-form .weather select{
@@ -348,6 +397,15 @@
     cursor: pointer;
 }
 
+.report-body .report-form .save-report button{
+    border: none;
+    font-family: "Open Sans";
+    font-weight: 400;
+    font-size: 14px;
+    color: #FFFFFF !important;
+    background: none;
+}
+
 .report-body .report-form .next-report{
     display: grid;
     place-items: center;
@@ -364,6 +422,15 @@
     background-color: #003755;
     text-align: center;
     cursor: pointer;
+}
+
+.report-body .report-form .next-report button{
+    border: none;
+    font-family: "Open Sans";
+    font-weight: 400;
+    font-size: 14px;
+    color: #FFFFFF !important;
+    background: none;
 }
 
 .report-body .report-form .back-report{
@@ -384,22 +451,13 @@
     cursor: pointer;
 }
 
-.report-body .report-form .submit-report{
-    display: grid;
-    place-items: center;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    width: 100%;
-    border-radius: 5px;
+.report-body .report-form .back-report button{
+    border: none;
     font-family: "Open Sans";
     font-weight: 400;
     font-size: 14px;
     color: #FFFFFF !important;
-    background-color: #003755;
-    text-align: center;
-    cursor: pointer;
+    background: none;
 }
 
 input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus input:-webkit-autofill, textarea:-webkit-autofill, textarea:-webkit-autofill:hover textarea:-webkit-autofill:focus, select:-webkit-autofill, select:-webkit-autofill:hover, select:-webkit-autofill:focus{

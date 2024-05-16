@@ -48,7 +48,7 @@
     background-color: #0056B3;
 }
 
-.btn-update, .btn-valid, .btn-invalid{
+.btn-read, .btn-valid, .btn-invalid, .btn-read{
     color: #FFFFFF;
     border: none;
     padding: 5px 10px;
@@ -57,11 +57,11 @@
     margin-right: 5px;
 }
 
-.btn-update{
+.btn-read{
     background-color: #007BFF;
 }
 
-.btn-update:hover{
+.btn-read:hover{
     background-color: #0056b3;
     cursor: pointer;
 }

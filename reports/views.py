@@ -26,7 +26,7 @@ def PublicServicePostFeed(request):
 
     valid_posts = Post.objects.filter(post_status = 1)
 
-    context = {"username": username, "valid_posts": valid_posts}
+    context = {"username": username, "valid_posts": valid_posts}.order_by("-creation_date")
     
     return render(request, "public/service/post/feed.html", context)
 
@@ -83,7 +83,8 @@ def ContributorServiceReport(request):
             user = request.user.user
 
             action = request.POST.get("action")
-
+            print(f"Action value received: {action}")
+            print(action == "save and submit")
             if action == "save and submit":
                 post_status = PostStatus.objects.get(id = 3)
 
@@ -126,6 +127,8 @@ def ContributorServiceReport(request):
 
             post_observation = PostObservation.objects.create(size = post_observation.size, depth = post_observation.depth, density = post_observation.density, weather = post_observation.weather)
             
+
+            print(f"status {post_status}")
             if Coordinates.objects.filter(latitude = coordinates.latitude, longitude = coordinates.longitude).exists() and Coordinates.objects.filter(latitude = coordinates.latitude, longitude = coordinates.longitude).exists() and PostObservation.objects.filter(size = post_observation.size, depth = post_observation.depth, density = post_observation.density, weather = post_observation.weather).exists():
                 post = Post.objects.create(user = user, description = post.description, capture_date = post.capture_date, coordinates = coordinates, location = post.location, post_status = post_status, post_observation = post_observation)
                 
@@ -142,7 +145,7 @@ def ContributorServiceReport(request):
 
                 username = request.user.username
                 
-                messages.success(request, username + ", " + "your information input was recorded online for COTSEye.")
+                messages.success(request, username + ", "  + "your information input was recorded online for COTSEye.")
                 
                 return redirect("Contributor Service Post")
 
@@ -396,10 +399,10 @@ def ContributorServicePost(request):
         post_status = request.GET.get("post_status")
 
         if post_status in ["1", "2", "3", "4"]:
-            results = Post.objects.filter(user = request.user.user, post_status = post_status)
+            results = Post.objects.filter(user = request.user.user, post_status = post_status).order_by("-creation_date")
 
         else:
-            results = Post.objects.filter(user = request.user.user)
+            results = Post.objects.filter(user = request.user.user).order_by("-creation_date")
         
     context = {"username": username, "user_profile": user_profile, "records": records, "results": results, "post_status": post_status}
 
@@ -453,7 +456,7 @@ def ContributorServicePostFeed(request):
 
     user_profile = User.objects.get(account = request.user)
 
-    valid_posts = Post.objects.filter(post_status = 1)
+    valid_posts = Post.objects.filter(post_status = 1).order_by("-creation_date")
 
     context = {"username": username, "user_profile": user_profile, "valid_posts": valid_posts}
     
@@ -1285,53 +1288,63 @@ def OfficerControlSighting(request):
 
     locations = Location.objects.all()
 
-    results = None
-
-    if request.method == "POST":
-        from_date = request.POST.get("from_date")
-
-        from_date = datetime.datetime.strptime(from_date, "%Y-%m-%d") if from_date else None
-        
-        to_date = request.POST.get("to_date")
-
-        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
-
-        location = request.POST.get("location")
-
-        if from_date and to_date:
-            results = Post.objects.filter(capture_date__range = [from_date, to_date])
-        
-        if location:
-            results = Post.objects.filter(capture_date__range = [from_date, to_date], location = location)
-
-        if results is None:
-            username = request.user.username
-
-            messages.info(request, username + ", " + "kindly filter posts within COTSEye to generate for reports today.")
-
-    context = {"posts": posts, "locations": locations, "results": results}
+    context = {"posts": posts, "locations": locations}
     
     return render(request, 'officer/control/sighting/sighting.html', context)
 
 
-def change_status(request):
-    if request.method == 'POST' and request.headers.get('x-requested-with') == 'XMLHttpRequest':
-        post_id = request.POST.get('post_id')
-        post = get_object_or_404(Post, id=post_id)
+def OfficerControlSightingRead(request, id):
+    post = get_object_or_404(Post, id=id)  # Use get_object_or_404 for better error handling
+    other_posts = Post.objects.exclude(id=id).exclude(post_status=4).order_by('-capture_date')[:5]  # Exclude the current post and posts with post_status=4, then get the latest 5 posts
+    post_photos = post.post_photos.all()
+    other_posts_with_photos = []
+    
+    for other_post in other_posts:
+        first_photo = other_post.post_photos.first()  # Get the first photo, if any
+        other_posts_with_photos.append({
+            'post': other_post,
+            'first_photo': first_photo
+        })
+    
+    context = {
+        "post": post,
+        "other_posts_with_photos": other_posts_with_photos,
+        "post_photos": post_photos
+    }
+    
+    return render(request, 'officer/control/sighting/read.html', context)
+
+
+
+
+def OfficerControlSightingValid(request):
+    if request.method == "POST" and request.headers.get("x-requested-with") == "XMLHttpRequest":
+        id = request.POST.get("post_id")
+
+        post = get_object_or_404(Post, id = id)
+
         post.post_status = PostStatus.objects.get(id = 1)
+        
         post.save()
-        return JsonResponse({'success': True})
-    return JsonResponse({'success': False}, status=400)
+        
+        return JsonResponse({"success": True})
+    
+    return JsonResponse({"success": False}, status = 400)
 
 
-def invalid_status(request):
-    if request.method == 'POST' and request.headers.get('x-requested-with') == 'XMLHttpRequest':
-        post_id = request.POST.get('post_id')
-        post = get_object_or_404(Post, id=post_id)
+def OfficerControlSightingInvalid(request):
+    if request.method == "POST" and request.headers.get("x-requested-with") == "XMLHttpRequest":
+        id = request.POST.get("post_id")
+        
+        post = get_object_or_404(Post, id = id)
+        
         post.post_status = PostStatus.objects.get(id = 2)
+        
         post.save()
-        return JsonResponse({'success': True})
-    return JsonResponse({'success': False}, status=400)
+        
+        return JsonResponse({"success": True})
+    
+    return JsonResponse({"success": False}, status = 400)
 
 
 def PostValidReadRedirect(request):

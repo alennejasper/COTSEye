@@ -27,7 +27,11 @@ urlpatterns = [
 
     path("officer/control/announcement/add", views.officercontroladdannouncement, name = "Officer Control Add Announcement"),
 
-    path("officer/control/announcement/add", views.officercontroladdannouncement, name = "Officer Control Update Announcement"),
+    path("officer/control/announcement/update/<int:pk>", views.officercontrolupdateannouncement, name = "Officer Control Update Announcement"),
+
+    path('officer/control/announcement/delete/<int:pk>/', views.officercontroldeleteannouncement, name='Officer Control Delete Announcement'),
+
+    path('officer/control/announcement/<int:pk>/', views.officer_control_announcement, name='Officer Control Announcement'),
 
     path("service/resource/link/read/<int:id>/redirect/", views.ServiceResourceLinkReadRedirect, name = "Service Resource Link Read Redirect"),
 

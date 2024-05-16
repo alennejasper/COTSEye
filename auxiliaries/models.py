@@ -26,8 +26,14 @@ class Announcement(models.Model):
     
     gallery_photo.short_description = "Gallery Photo"
     
+    def get_photo_url(self):
+        if self.announcement_photo and hasattr(self.announcement_photo, 'url'):
+            return self.announcement_photo.url
+        else:
+            return settings.MEDIA_URL + "announcements/default.png"
+        
     def __str__(self):
-        return str(self.title) + " | " + str(self.user)
+        return str(self.title) + " | " + str(self.user) + str(self.announcement_photo.url)
 
 
 class Resource(models.Model):
