@@ -14,4 +14,6 @@ urlpatterns = [
     path("officer/control/intervention/", views.OfficerControlIntervention, name = "Officer Control Intervention"),
 
     path("officer/control/status/", views.OfficerControlStatus, name = "Officer Control Status"),
+
+    path("officer/control/report/", views.OfficerControlReport, name = "Officer Control Report"),
 ]

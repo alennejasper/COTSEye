@@ -16,7 +16,7 @@ from django.http import JsonResponse
 def PublicServiceAnnouncement(request):
     username = "public/everyone"
 
-    announcements = Announcement.objects.all().order_by("-announcement_date")
+    announcements = Announcement.objects.all().order_by("-release_date")
 
     context = {"username": username, "announcements": announcements}
 
@@ -88,7 +88,7 @@ def ContributorServiceAnnouncement(request):
 
     user_profile = User.objects.get(account = request.user)
 
-    announcements = Announcement.objects.all().order_by("-announcement_date")
+    announcements = Announcement.objects.all().order_by("-release_date")
 
     context = {"username": username, "user_profile": user_profile, "announcements": announcements}
 

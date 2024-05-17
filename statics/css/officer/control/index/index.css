@@ -48,8 +48,8 @@ body{
 }
 
 .content{
-    padding-left: 1in;
-    padding-right: 1in;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .container-fluid{

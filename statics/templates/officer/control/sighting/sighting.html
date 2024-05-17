@@ -7,11 +7,19 @@
             <div class="filter-container mb-3">
                 <p class="fs-3 mb-3">Filter</p>
                 <select id="locationFilter" class="form-select form-select-sm mb-3">
-                    <option value="">Location</option>
+                    <option value="">Barangay</option>
                     {% for location in locations %}
-                        <option value="{{location.barangay}}">{{location}}</option>
+                        <option value="{{location.barangay}}">{{location.barangay}}</option>
                     {% endfor %}
                 </select>
+
+                <select id="locationFilter" class="form-select form-select-sm mb-3">
+                    <option value="">Municipality</option>
+                    {% for location in locations %}
+                        <option value="{{location.municipality}}">{{location.municipality}}</option>
+                    {% endfor %}
+                </select>
+
                 <p class="mb-1">Date</p>
                 <div class="mb-3">
                     <label for="dateFrom" class="form-label">From:</label>
@@ -55,7 +63,7 @@
                     <tbody class="table-group-divider" id="sightingsTable">
                         {% for post in posts %}
                             <tr data-id="{{post.id}}">
-                                <td>{{post.creation_date}}</td>
+                                <td>{{post.creation_date|date:'F j, Y, g:i a'}}</td>
                                 <td>{{post.user}}</td>
                                 <td>{{post.location.barangay}}</td>
                                 <td>{{post.location.municipality}}</td>
@@ -90,7 +98,7 @@
 <script>
     const sightingsData = [
         {% for post in posts %}
-            { id: {{post.id}}, date: "{{post.capture_date}}", user: "{{post.user}}", barangay: "{{post.location.barangay}}", municipality: "{{post.location.municipality}}", status: "{{post.post_status}}" },
+            { id: {{post.id}}, date: "{{post.creation_date|date:'F j, Y, g:i a'}}", user: "{{post.user}}", barangay: "{{post.location.barangay}}", municipality: "{{post.location.municipality}}", status: "{{post.post_status}}" },
         {% endfor %}
     ];
 

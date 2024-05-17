@@ -85,7 +85,6 @@
                 updateButton.innerText = 'Update';
                 updateButton.classList.add('btn', 'btn-primary', 'btn-sm', 'mr-2');
                 updateButton.addEventListener('click', function() {
-                    window.location.href = "{% url 'update_view' 1 %}".replace('1', sightings[startIndex + index].id); // Replace with actual id
                 });
                 actionsCell.appendChild(updateButton);
             });

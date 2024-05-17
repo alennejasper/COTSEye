@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.http import HttpResponseRedirect
 from django.urls import reverse, path
 from authentications.views import AdministratorControlLogin, AdministratorControlStatistics, AdministratorControlLogout, ControlHomeRedirect, ControlPasswordRedirect, ControlProfileRedirect
-from managements.views import AdministratorControlStatisticsStatus, AdministratorControlStatisticsIntervention, ControlStatisticsStatusReadRedirect, ControlStatisticsInterventionReadRedirect
+from managements.views import AdministratorControlStatisticsIntervention, ControlStatisticsStatusReadRedirect, ControlStatisticsInterventionReadRedirect
 from reports.views import AdministratorControlStatisticsPost, ControlStatisticsPostReadRedirect
 
 
@@ -35,8 +35,6 @@ class AdministratorSite(admin.AdminSite):
             path("statistics/", AdministratorControlStatistics, name = "Administrator Control Statistics"),
 
             path("statistics/post/", AdministratorControlStatisticsPost, name = "Administrator Control Statistics Post"),
-
-            path("statistics/status/", AdministratorControlStatisticsStatus, name = "Administrator Control Statistics Status"),
 
             path("statistics/intervention/", AdministratorControlStatisticsIntervention, name = "Administrator Control Statistics Intervention"),
             

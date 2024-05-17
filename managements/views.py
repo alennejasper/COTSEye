@@ -75,6 +75,90 @@ def OfficerControlStatus(request):
     return render(request, "officer/control/status/status.html")
 
 
+def OfficerControlReport(request):
+    username = request.user.username
+
+    options = Status.objects.all()
+
+    results = None
+
+    valid_posts = 0
+
+    if request.method == "GET":
+        from_date = request.GET.get("from_date")
+
+        from_date = datetime.datetime.strptime(from_date, "%Y-%m-%d") if from_date else None
+        
+        to_date = request.GET.get("to_date")
+
+        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
+
+        location = request.GET.get("location")
+
+        if from_date and to_date:
+            results = Status.objects.filter(onset_date__range = [from_date, to_date])
+
+        elif from_date and to_date and to_date < from_date:
+            username = request.user.username
+
+            messages.error(request, username + ", " + "date range is not valid.")
+
+        elif not from_date and not to_date:
+            username = request.user.username
+
+            messages.error(request, username + ", " + "date range is not valid.")
+        
+        elif not from_date or not to_date:
+            username = request.user.username
+
+            messages.error(request, username + ", " + "date range is not valid.")
+
+        if location and not location == "each_location":
+            results = Status.objects.filter(onset_date__range = [from_date, to_date], location = location)
+
+            valid_posts = Post.objects.filter(location = location, post_status = 1).count()
+
+        elif not location and location == "each_location":
+            results = Status.objects.all(onset_date__range = [from_date, to_date])
+
+            valid_posts = Post.objects.filter(post_status = 1).count()
+        
+        elif not location and not location == "each_location":
+            username = request.user.username
+
+            messages.error(request, username + ", " + "location is not valid.")
+        
+        elif not location or not location == "each_location":
+            username = request.user.username
+
+            messages.error(request, username + ", " + "location is not valid.")
+        
+        if not from_date and not to_date and not location:
+            username = request.user.username
+
+            messages.error(request, username + ", " + "information filter is empty within COTSEye.")
+        
+        elif not from_date or not to_date or not location:
+            username = request.user.username
+
+            messages.error(request, username + ", " + "information filter is incomplete within COTSEye.")
+        
+        if results is None:
+            username = request.user.username
+
+            messages.info(request, username + ", " + "kindly filter statuses within COTSEye to generate for reports today.")
+
+        elif not results:
+            username = request.user.username
+
+            messages.error(request, username + ", " + "information input is impossible within COTSEye.")
+    
+
+    context = {"username": username, "options": options, "results": results, "from_date": from_date, "to_date": to_date, "valid_posts": valid_posts}
+
+    return render(request, "officer/control/report/report.html", context)
+
+
 @login_required(login_url = "admin:Administrator Control Login")
 @user_passes_test(AdministratorCheck, login_url = "admin:Administrator Control Login")
 def AdministratorControlStatisticsIntervention(request):
@@ -375,91 +459,6 @@ def AdministratorControlStatisticsIntervention(request):
 
     return render(request, "admin/control/intervention/intervention.html", context)
 
-
-@login_required(login_url = "admin:Administrator Control Login")
-@user_passes_test(AdministratorCheck, login_url = "admin:Administrator Control Login")
-def AdministratorControlStatisticsStatus(request):
-    username = request.user.username
-
-    options = Status.objects.all()
-
-    results = None
-
-    valid_posts = 0
-
-    if request.method == "GET":
-        from_date = request.GET.get("from_date")
-
-        from_date = datetime.datetime.strptime(from_date, "%Y-%m-%d") if from_date else None
-        
-        to_date = request.GET.get("to_date")
-
-        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
-
-        location = request.GET.get("location")
-
-        if from_date and to_date:
-            results = Status.objects.filter(onset_date__range = [from_date, to_date])
-
-        elif from_date and to_date and to_date < from_date:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "date range is not valid.")
-
-        elif not from_date and not to_date:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "date range is not valid.")
-        
-        elif not from_date or not to_date:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "date range is not valid.")
-
-        if location and not location == "each_location":
-            results = Status.objects.filter(onset_date__range = [from_date, to_date], location = location)
-
-            valid_posts = Post.objects.filter(location = location, post_status = 1).count()
-
-        elif not location and location == "each_location":
-            results = Status.objects.all(onset_date__range = [from_date, to_date])
-
-            valid_posts = Post.objects.filter(post_status = 1).count()
-        
-        elif not location and not location == "each_location":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "location is not valid.")
-        
-        elif not location or not location == "each_location":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "location is not valid.")
-        
-        if not from_date and not to_date and not location:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information filter is empty within COTSEye.")
-        
-        elif not from_date or not to_date or not location:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information filter is incomplete within COTSEye.")
-        
-        if results is None:
-            username = request.user.username
-
-            messages.info(request, username + ", " + "kindly filter statuses within COTSEye to generate for reports today.")
-
-        elif not results:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information input is impossible within COTSEye.")
-    
-
-    context = {"username": username, "options": options, "results": results, "from_date": from_date, "to_date": to_date, "valid_posts": valid_posts}
-
-    return render(request, "admin/control/status/status.html", context)
 
 def ControlStatisticsStatusReadRedirect(request, object_id):
     object = Status.objects.get(id = object_id)

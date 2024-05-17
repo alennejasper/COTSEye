@@ -5,7 +5,7 @@
     {% if draft_post %} 
         <div class = "report-body">
             <div class = "report-section">
-                <h1>CREATE REPORT</h1>
+                <h1>REPORT A SIGHTING</h1>
             </div>
 
             <form action = "" class = "report-form" method = "POST" enctype = "multipart/form-data">
@@ -360,9 +360,13 @@
 
     <script>
         document.querySelector(".control-section.choose").addEventListener("click", function(event){
-            document.querySelector(".post-photo-choose").click();
+            var chooseInput = document.querySelector(".post-photo-choose");
 
-            document.querySelector(".post-photo-capture").removeAttribute("required");
+            if (event.target !== chooseInput){
+                chooseInput.click();
+
+                document.querySelector(".post-photo-capture").removeAttribute("required");
+            }
         });
     </script>
 
@@ -738,9 +742,15 @@
 
             } else{
                 document.querySelector(".control-section.capture").addEventListener("click", function(event){
-                    document.querySelector(".post-photo-capture").click();
+                    event.preventDefault();
+                    
+                    var captureInput = document.querySelector(".post-photo-capture");
+                    
+                    if (!captureInput.value){
+                        captureInput.click();
 
-                    document.querySelector(".post-photo-choose").removeAttribute("required");
+                        document.querySelector(".post-photo-choose").removeAttribute("required");
+                    }
                 });
 
                 report.setLatLng([latitude, longitude]);
