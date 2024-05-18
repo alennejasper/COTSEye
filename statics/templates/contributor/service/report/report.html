@@ -55,26 +55,27 @@
                         <input type = "hidden" id = "longitude" value = "{{draft_post.coordinates.longitude}}" name = "longitude" required>
                     </div>
 
-                    <div class = "barangay">
-                        <label for = "barangay">Barangay</label>
-                        
-                        <select name = "barangay" id = "barangay" required>
-                            <option hidden selected value>Drag the map pin for barangay.</option>
-
-                            {% for location in locations %}
-                                <option value = "{{location.id}}" {% if location.id == draft_post.location.id %} selected {% endif %}>{{location.barangay}}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-
                     <div class = "municipality">
                         <label for = "municipality">Municipality</label>
                         
-                        <select name = "municipality" id = "municipality" required>
+                        <select name = "municipality" id = "municipality" onchange = "updateBarangay()">
                             <option hidden selected value>Drag the map pin for municipality.</option>
 
                             {% for location in locations %}
                                 <option value = "{{location.id}}" {% if location.id == draft_post.location.id %} selected {% endif %}>{{location.municipality}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class = "barangay">
+                        <label for = "barangay">Barangay</label>
+                        <select name = "barangay" id="barangay" required>
+                            <option hidden selected value>Drag the map pin for barangay.</option>
+
+                            {% for location in locations %}
+                                {% if location.municipality == draft_post.location.municipality %}
+                                    <option value = "{{location.barangay}}" {% if location.id == draft_post.location.id %} selected {% endif %}>{{location.barangay}}</option>
+                                {% endif %}
                             {% endfor %}
                         </select>
                     </div>
@@ -219,27 +220,23 @@
                         <input type = "hidden" id = "longitude" name = "longitude" required>
                     </div>
 
-                    <div class = "barangay">
-                        <label for = "barangay">Barangay</label>
-                        
-                        <select name = "barangay" id = "barangay" required>
-                            <option hidden selected value>Drag the map pin for barangay.</option>
-
-                            {% for location in locations %}
-                                <option value = "{{location.id}}">{{location.barangay}}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-
                     <div class = "municipality">
                         <label for = "municipality">Municipality</label>
                         
-                        <select name = "municipality" id = "municipality" required>
+                        <select id = "municipality" onchange = "updateBarangay()">
                             <option hidden selected value>Drag the map pin for municipality.</option>
 
                             {% for location in locations %}
-                                <option value = "{{location.id}}">{{location.municipality}}</option>
+                                <option value = "{{location.municipality}}">{{location.municipality}}</option>
                             {% endfor %}
+                        </select>
+                    </div>
+                    
+                    <div class = "barangay">
+                        <label for = "barangay">Barangay</label>
+                        
+                        <select id = "barangay">
+                            <option hidden selected value>Drag the map pin for barangay.</option>
                         </select>
                     </div>
 
@@ -646,23 +643,17 @@
                 });
             });
 
+            const locations = [
+                {% for location in locations %}
+                    {id: "{{location.id}}", barangay: "{{location.barangay}}", municipality: "{{location.municipality}}"},
+                {% endfor %}
+            ];
+
             var barangayCoordinates = {
                 {% for location in locations %}
                     "{{location.id}}": [{{location.latitude}}, {{location.longitude}}],
                 {% endfor %}
             };
-
-            function updateMarker(barangayId){
-                if (barangayCoordinates[barangayId]){
-                    var coordinates = barangayCoordinates[barangayId];
-
-                    map.setView(coordinates, 15);
-                    
-                    report.setLatLng(coordinates);
-                    
-                    updateCoordinates(coordinates[0], coordinates[1]);
-                }
-            }
 
             document.getElementById("barangay").addEventListener("change", function(){
                 var barangayId = this.value;
@@ -677,6 +668,56 @@
             updateCoordinates(defaultLatitude, defaultLongitude);
             
             fetchLocation(defaultLatitude, defaultLongitude);
+
+            function updateBarangay(){
+                function updateMarker(barangayId){
+                    if (barangayCoordinates[barangayId]){
+                        var coordinates = barangayCoordinates[barangayId];
+
+                        map.setView(coordinates, 15);
+
+                        report.setLatLng(coordinates);
+
+                        updateCoordinates(coordinates[0], coordinates[1]);
+                    }
+                }
+
+                const locations = [
+                    {% for location in locations %}
+                        {id: "{{location.id}}", barangay: "{{location.barangay}}", municipality: "{{location.municipality}}"},
+                    {% endfor %}
+                ];
+                
+                const municipality = document.getElementById("municipality").value;
+
+                const barangay = document.getElementById("barangay");
+                
+                barangay.innerHTML = "";
+
+                const filteredLocations = locations.filter(location => location.municipality === municipality);
+
+                filteredLocations.forEach(location => {
+                    const option = document.createElement("option");
+                
+                    option.value = location.id; 
+                
+                    option.textContent = location.barangay;
+                
+                    barangay.appendChild(option);
+                });
+
+                if (filteredLocations.length > 0){
+                    updateMarker(filteredLocations[0].id);
+                }
+            }
+
+            document.getElementById("barangay").addEventListener("change", function(){
+                var barangayId = this.value;
+
+                updateMarker(barangayId);
+            });
+
+            document.getElementById("municipality").addEventListener("change", updateBarangay);
         };
 
         function updateCoordinates(latitude, longitude){
@@ -1064,5 +1105,61 @@
                 };
             };
         };
+    </script>
+
+    <script>
+        {% if draft_post %}
+            document.addEventListener("DOMContentLoaded", function(){
+                const locations = [
+                    {% for location in locations %}
+                        {id: "{{location.id}}", barangay: "{{location.barangay}}", municipality: "{{location.municipality}}"},
+                    {% endfor %}
+                ];
+
+                function updateBarangay(){
+                    const municipalitySelect = document.getElementById("municipality");
+
+                    const barangaySelect = document.getElementById("barangay");
+
+                    barangaySelect.innerHTML = "";
+
+                    const selectedMunicipalityId = municipalitySelect.value;
+                    
+                    const selectedMunicipality = locations.find(location => location.id == selectedMunicipalityId).municipality;
+
+                    const filteredLocations = locations.filter(location => location.municipality === selectedMunicipality);
+
+                    filteredLocations.forEach(location => {
+                        const option = document.createElement("option");
+                        
+                        option.value = location.id;
+
+                        option.textContent = location.barangay;
+
+                        barangaySelect.appendChild(option);
+                    });
+
+                    if (filteredLocations.length > 0){
+                        barangaySelect.removeAttribute("disabled");
+                        
+                    } else {
+                        barangaySelect.setAttribute("disabled", "disabled");
+                    }
+                }
+
+                const municipalitySelect = document.getElementById("municipality");
+
+                if (municipalitySelect){
+                    municipalitySelect.addEventListener("change", updateBarangay);
+
+                    updateBarangay();
+                }
+            });
+        {% endif %}
+    </script>
+
+    <script>
+       
+        
     </script>
 {% endblock content %}
