@@ -87,9 +87,38 @@
     <body>
         <nav class = "navigation-topbar">
             <a href = "{% url 'Contributor Service Home' %}" class = "logo"><img src = "{% static 'assets/logo.png' %}" class = "logo"></a>
+            
+            <div class="dropdown contrib-notif">
+                <a class="nav-link text-black position-relative" id="notificationBell" aria-expanded="false">
+                    <i class="fa-solid fa-bell fa-lg"></i>
+                    {% if unread_posts %}
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="notificationCount">
+                            {{ unread_posts|length }}
+                            <span class="visually-hidden">unread messages</span>
+                        </span>
+                    {% endif %}
+                </a>
+                <ul class="dropdown-menu notification-dropdown" id="notificationDropdown">
+                    {% if unread_posts %}
+                        {% for post in unread_posts %}
+                            <li class="contrib-dropdown-item">
+                                <a href="{% url 'Contributor Service Post Read' id=post.id %}" class="unread-post-link" data-post-id="{{ post.id }}">
+                                    {{ post.description|truncatewords:10 }}
+                                </a>
+                                <small class="text-muted">- {{ post.creation_date }}</small>
+                            </li>
+                        {% endfor %}
+                    {% else %}
+                        <li class="contrib-dropdown-item">No unread posts in the last 30 days.</li>
+                    {% endif %}
+                </ul>
+            </div>
+            
+          <a onclick = "shownDropdown()" class = "profile"><img src = "{{user_profile.profile_photo.url}}" class = "drop profile"></a>
 
-            <a onclick = "shownDropdown()" class = "profile"><img src = "{{user_profile.profile_photo.url}}" class = "drop profile"></a>
+            
         </nav>
+        
 
         <div class = "others">
             <div class = "dropdown">
@@ -256,6 +285,60 @@
             };
         };
     </script>
+   <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const notificationBell = document.getElementById('notificationBell');
+        const notificationDropdown = document.getElementById('notificationDropdown');
 
+        notificationBell.addEventListener('click', function (event) {
+            event.stopPropagation();
+            notificationDropdown.classList.toggle('show');
+        });
+
+        document.addEventListener('click', function (event) {
+            if (!notificationDropdown.contains(event.target) && event.target !== notificationBell) {
+                notificationDropdown.classList.remove('show');
+            }
+        });
+
+        const unreadPostLinks = document.querySelectorAll('.unread-post-link');
+        unreadPostLinks.forEach(link => {
+            link.addEventListener('click', function (event) {
+                event.preventDefault();
+                const postId = this.getAttribute('data-post-id');
+                const url = `{% url 'mark_post_as_contrib_read' 0 %}`.replace('0', postId);
+
+                fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        this.parentElement.remove();
+                        const notificationCount = document.getElementById('notificationCount');
+                        if (notificationCount) {
+                            let count = parseInt(notificationCount.innerText);
+                            count--;
+                            if (count > 0) {
+                                notificationCount.innerText = count;
+                            } else {
+                                notificationCount.remove();
+                                const emptyMessage = document.createElement('li');
+                                emptyMessage.classList.add('contrib-dropdown-item');
+                                emptyMessage.innerText = 'No unread posts in the last 30 days.';
+                                notificationDropdown.appendChild(emptyMessage);
+                            }
+                        }
+                        window.location.href = this.href;
+                    }
+                });
+            });
+        });
+    });
+
+   </script>
     <script type = "text/javascript">if(window.location.hash && window.location.hash === "#_=_"){ window.location.hash = ""; history.pushState("", document.title, window.location.pathname);}</script>
 </html>

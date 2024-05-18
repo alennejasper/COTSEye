@@ -543,3 +543,74 @@ nav.navigation-bottombar img:active{
     position: fixed;
     display: block;
 }
+
+
+.notification-dropdown {
+    display: none;
+}
+
+.notification-dropdown.show {
+    display: block;
+}
+
+
+/* Ensure the dropdown is hidden by default */
+.notification-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: white;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding: 10px;
+    min-width: 250px;
+    z-index: 1000;
+}
+
+/* Display the dropdown when it has the 'show' class */
+.notification-dropdown.show {
+    display: block;
+}
+
+/* Style each dropdown item */
+.contrib-dropdown-item {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.contrib-dropdown-item:last-child {
+    border-bottom: none;
+}
+
+/* Style the unread post link */
+.unread-post-link {
+    display: block;
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.unread-post-link:hover {
+    text-decoration: underline;
+}
+
+/* Style the small text for the creation date */
+.contrib-dropdown-item small {
+    display: block;
+    color: #777;
+    margin-top: 5px;
+}
+
+/* Style for the notification bell */
+#notificationBell {
+    cursor: pointer;
+}
+
+#notificationBell .fa-bell {
+    color: #333;
+}
+
+#notificationBell .badge {
+    font-size: 0.75em;
+    font-weight: bold;
+}

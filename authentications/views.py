@@ -11,7 +11,8 @@ from authentications.models import *
 from auxiliaries.models import Announcement
 from managements.models import Status, Intervention
 from reports.models import Post
-
+from django.http import JsonResponse
+from django.utils import timezone
 import base64
 import json
 
@@ -283,6 +284,8 @@ def ContributorServiceHome(request):
     latest_announcements = Announcement.objects.all().order_by("-release_date")[:3]
 
     valid_posts = Post.objects.filter(post_status = 1).order_by("-capture_date")[:3]
+    
+    unread_posts = Post.objects.filter(post_status = 1, contrib_read_status = False, user = request.user.user).order_by("-capture_date")
         
     try:
         map_posts = Post.objects.filter(post_status = 1)
@@ -294,11 +297,26 @@ def ContributorServiceHome(request):
 
         map_statuses = None
     
-    context = {"username": username, "user_profile": user_profile, "map_posts": map_posts, "map_statuses": map_statuses, "latest_announcements": latest_announcements, "valid_posts": valid_posts}
+    context = {"username": username, "user_profile": user_profile, "map_posts": map_posts, "map_statuses": map_statuses, "latest_announcements": latest_announcements, "valid_posts": valid_posts, "unread_posts": unread_posts}
 
     return render(request, "contributor/service/home/home.html", context)
 
 
+def mark_post_as_contrib_read(request, post_id):
+    try:
+        post = Post.objects.get(id = post_id)
+
+        post.contrib_read_status = True
+
+        post.contrib_read_date = timezone.now()
+
+        post.save()
+
+        return JsonResponse({'success': True})
+    
+    except Post.DoesNotExist:
+        return JsonResponse({'success': False, 'error': 'Post not found'})
+    
 @login_required(login_url = "Contributor Service Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
 def ContributorServiceProfile(request):
@@ -308,7 +326,9 @@ def ContributorServiceProfile(request):
 
     user_profile = User.objects.get(account = request.user)
 
-    context = {"user": user, "username": username, "user_profile": user_profile}
+    unread_posts = Post.objects.filter(post_status = 1, contrib_read_status = False, user = request.user.user).order_by("-capture_date")
+
+    context = {"user": user, "username": username, "user_profile": user_profile, "unread_posts": unread_posts}
 
     return render(request, "contributor/service/profile/profile.html", context)
 
@@ -321,6 +341,8 @@ def ContributorServiceProfileUpdate(request):
     username = request.user.username
 
     user_profile = User.objects.get(account = request.user)
+
+    unread_posts = Post.objects.filter(post_status = 1, contrib_read_status = False, user = request.user.user).order_by("-capture_date")
 
     if request.method == "POST":
         profile_form = ProfileForm(request.POST, request.FILES, instance = request.user.user)
@@ -337,7 +359,7 @@ def ContributorServiceProfileUpdate(request):
     else:
         profile_form = ProfileForm(request.user.user)
 
-    context = {"user": user, "username": username, "user_profile": user_profile, "profile_form": profile_form}
+    context = {"user": user, "username": username, "user_profile": user_profile, "profile_form": profile_form, "unread_posts": unread_posts}
     
     return render(request, "contributor/service/profile/update.html", context)
 

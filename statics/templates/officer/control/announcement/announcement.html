@@ -2,133 +2,172 @@
 {% load static %}
 
 {% block content %}
-<div class = "container-fluid mt-3">
-    <div class = "d-flex justify-content-end">
-        <button class = "btn btn-primary mt-4" style = "background-color: rgb(30, 173, 95);" onclick = "window.location.href = '{% url 'Officer Control Add Announcement' %}'">ADD NEW</button>
+<div class="container-fluid mt-3">
+    <div class="d-flex justify-content-end">
+        <button class="btn btn-primary mt-4" style="background-color: rgb(30, 173, 95);" onclick="window.location.href = '{% url 'Officer Control Add Announcement' %}'">ADD NEW</button>
     </div>
 
-    <div class="card mt-4">
-        <div style = "text-align: center; font-weight: 500; font-size: larger;" class = "card-header bg-primary text-white">MANAGE ANNOUNCEMENTS</div>
-        
-        <div class = "card-body">
-            <table class = "table table-bordered table-striped">
-                <thead class = "thead-dark">
-                    <tr>
-                        <th>Title</th>
+    <div class="row">
+        <div class="col-12 col-md-3">
+            <div class="filtercont card">
+                <div class="card-body">
+                    <p class="fs-3 mb-3">Filter</p>
+                    <div class="mb-3">
+                        <label for="searchBar" class="form-label">Search by title:</label>
+                        <input type="text" id="searchBar" class="form-control" placeholder="Search by title...">
+                    </div>
+                    <div class="mb-3">
+                        <label for="userFilter" class="form-label">Filter by user:</label>
+                        <select id="userFilter" class="form-control">
+                            <option value="">Filter by user</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="municipalityFilter" class="form-label">Municipality:</label>
+                        <select id="municipalityFilter" class="form-select form-select-sm mb-3" onchange="updateBarangayOptions()">
+                            <option value="">Municipality</option>
+                            {% for location in locations %}
+                                <option value="{{ location.municipality }}">{{ location.municipality }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="barangayFilter" class="form-label">Barangay:</label>
+                        <select id="barangayFilter" class="form-select form-select-sm mb-3">
+                            <option value="">Select Barangay</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="dateFrom" class="form-label">Date from:</label>
+                        <input type="date" id="dateFrom" name="dateFrom" class="form-control form-control-sm">
+                    </div>
+                    <div class="mb-3">
+                        <label for="dateTo" class="form-label">Date to:</label>
+                        <input type="date" id="dateTo" name="dateTo" class="form-control form-control-sm">
+                    </div>
+                    <button type="button" class="btn btn-primary mt-3" onclick="filterAnnouncements()">Apply Filter</button>
+                    <button type="button" class="btn btn-secondary mt-2" onclick="resetFilter()">Reset Filter</button>
+                </div>
+            </div>
+        </div>
 
-                        <th>Date</th>
-                        
-                        <th>Location</th>
-                        
-                        <th>Description</th>
-                        
-                        <th>Posted By</th>
-                        
-                        <th>Photo</th>
-                        
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-
-                <tbody id = "announcementsTable">
-                </tbody>
-            </table>
-  
-            <nav>
-                <ul class = "pagination justify-content-center" id = "pagination">
-                    <li class = "page-item" id = "previousPage">
-                        <a class = "page-link" href = "#" onclick = "changePage('prev')">Previous</a>
-                    </li>
-                    
-                    <li class = "page-item" id = "nextPage">
-                        <a class = "page-link" href = "#" onclick = "changePage('next')">Next</a>
-                    </li>
-                </ul>
-            </nav>
+        <div class="col-12 col-md-9">
+            <div class="card">
+                <div class="card-header bg-primary text-white" style="text-align: center; font-weight: 500; font-size: larger;">MANAGE ANNOUNCEMENTS</div>
+                <div class="card-body">
+                    <table class="table table-bordered table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Title</th>
+                                <th>Date</th>
+                                <th>Location</th>
+                                <th>Description</th>
+                                <th>Posted By</th>
+                                <th>Photo</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="announcementsTable"></tbody>
+                    </table>
+                    <nav>
+                        <ul class="pagination justify-content-center" id="pagination"></ul>
+                    </nav>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function(){
+    document.addEventListener("DOMContentLoaded", function() {
         const announcements = [
             {% for announcement in announcements %}
-                {id: {{announcement.id}}, title: "{{announcement.title}}", date: "{{announcement.release_date | date:'Y-m-d'}}", location: "{{announcement.place}}", description: "{{announcement.context}}", user: "{{announcement.user}}", photo: "{{announcement.announcement_photo.url}}"},
+                {id: {{ announcement.id }}, title: "{{ announcement.title }}", date: "{{ announcement.release_date | date:'Y-m-d' }}", location: "{{ announcement.location }}", description: "{{ announcement.context }}", user: "{{ announcement.user }}", photo: "{{ announcement.announcement_photo.url }}"},
             {% endfor %}
-        ];  
-   
-        let currentPage = 1;
-        
-        const itemsPerPage = 10;
+        ];
 
-        function displayAnnouncements(page){
+        let currentPage = 1;
+        const itemsPerPage = 10;
+        let filteredAnnouncements = [...announcements];
+
+        // Get unique users for the user filter
+        const users = [...new Set(announcements.map(a => a.user))];
+        const userFilter = document.getElementById('userFilter');
+        users.forEach(user => {
+            const option = document.createElement('option');
+            option.value = user;
+            option.text = user;
+            userFilter.add(option);
+        });
+
+        function displayAnnouncements(page) {
             const startIndex = (page - 1) * itemsPerPage;
             const endIndex = startIndex + itemsPerPage;
-            const paginatedAnnouncements = announcements.slice(startIndex, endIndex);
+            const paginatedAnnouncements = filteredAnnouncements.slice(startIndex, endIndex);
 
             let table = document.getElementById('announcementsTable');
             table.innerHTML = '';
 
             paginatedAnnouncements.forEach((announcement, index) => {
                 let row = table.insertRow();
-                // Create link for the title
+
                 let titleCell = row.insertCell(0);
                 let titleLink = document.createElement('a');
                 titleLink.href = "{% url 'Officer Control Announcement' pk=0 %}".replace('0', announcement.id);
                 titleLink.innerText = announcement.title;
                 titleCell.appendChild(titleLink);
+                
                 row.insertCell(1).innerText = announcement.date;
                 row.insertCell(2).innerText = announcement.location;
                 row.insertCell(3).innerText = announcement.description;
                 row.insertCell(4).innerText = announcement.user;
 
                 let photoCell = row.insertCell(5);
-                    if (announcement.photo) {
-                        let img = document.createElement('img');
-                        img.src = announcement.photo;
-                        img.style.width = '50px';
-                        img.style.height = '50px';
-                        photoCell.appendChild(img);
-                    } else {
-                        photoCell.innerText = 'No Photo';
-                    }
+                if (announcement.photo) {
+                    let img = document.createElement('img');
+                    img.src = announcement.photo;
+                    img.style.width = '50px';
+                    img.style.height = '50px';
+                    photoCell.appendChild(img);
+                } else {
+                    photoCell.innerText = 'No Photo';
+                }
 
                 let actionsCell = row.insertCell(6);
                 let updateButton = document.createElement('button');
-                    updateButton.innerText = 'Update';
-                    updateButton.classList.add('btn', 'btn-primary', 'btn-sm', 'mr-2');
-                    updateButton.addEventListener('click', function() {
-                        window.location.href = "{% url 'Officer Control Update Announcement' pk=0 %}".replace('0', announcement.id);
-
+                updateButton.innerText = 'Update';
+                updateButton.classList.add('btn', 'btn-primary', 'btn-sm', 'mr-2');
+                updateButton.addEventListener('click', function() {
+                    window.location.href = "{% url 'Officer Control Update Announcement' pk=0 %}".replace('0', announcement.id);
                 });
                 actionsCell.appendChild(updateButton);
 
                 let deleteButton = document.createElement('button');
-                    deleteButton.innerText = 'Delete';
-                    deleteButton.classList.add('btn', 'btn-danger', 'btn-sm', 'ml-2');
-                    deleteButton.addEventListener('click', function() {
-                        fetch("{% url 'Officer Control Delete Announcement' pk=0 %}".replace('0', announcement.id), {
-                            method: 'DELETE',
-                            headers: {
-                                'X-CSRFToken': '{{ csrf_token }}',
-                                'Content-Type': 'application/json',
-                            },
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.success) {
-                                announcements.splice(startIndex + index, 1);
-                                displayAnnouncements(currentPage);
-                            } else {
-                                alert('Failed to delete announcement.');
-                            }
-                        });
+                deleteButton.innerText = 'Delete';
+                deleteButton.classList.add('btn', 'btn-danger', 'btn-sm', 'ml-2');
+                deleteButton.addEventListener('click', function() {
+                    fetch("{% url 'Officer Control Delete Announcement' pk=0 %}".replace('0', announcement.id), {
+                        method: 'DELETE',
+                        headers: {
+                            'X-CSRFToken': '{{ csrf_token }}',
+                            'Content-Type': 'application/json',
+                        },
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            filteredAnnouncements.splice(startIndex + index, 1);
+                            displayAnnouncements(currentPage);
+                        } else {
+                            alert('Failed to delete announcement.');
+                        }
                     });
+                });
                 actionsCell.appendChild(deleteButton);
             });
 
             const pagination = document.getElementById('pagination');
-            const totalPages = Math.ceil(announcements.length / itemsPerPage);
+            const totalPages = Math.ceil(filteredAnnouncements.length / itemsPerPage);
             pagination.innerHTML = `
                 <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
                     <a class="page-link" href="#" onclick="changePage('prev')">Previous</a>
@@ -151,7 +190,7 @@
         }
 
         window.changePage = function(action) {
-            const totalPages = Math.ceil(announcements.length / itemsPerPage);
+            const totalPages = Math.ceil(filteredAnnouncements.length / itemsPerPage);
 
             if (action === 'prev' && currentPage > 1) {
                 currentPage--;
@@ -163,6 +202,65 @@
 
             displayAnnouncements(currentPage);
         };
+
+        window.filterAnnouncements = function() {
+            const searchQuery = document.getElementById('searchBar').value.toLowerCase();
+            const userFilterValue = document.getElementById('userFilter').value;
+            const municipalityFilterValue = document.getElementById('municipalityFilter').value;
+            const barangayFilterValue = document.getElementById('barangayFilter').value;
+            const dateFrom = document.getElementById('dateFrom').value;
+            const dateTo = document.getElementById('dateTo').value;
+
+            filteredAnnouncements = announcements.filter(announcement => {
+                const matchesSearch = announcement.title.toLowerCase().includes(searchQuery);
+                const matchesUser = userFilterValue ? announcement.user === userFilterValue : true;
+                const matchesMunicipality = municipalityFilterValue ? announcement.location.includes(municipalityFilterValue) : true;
+                const matchesBarangay = barangayFilterValue ? announcement.location.includes(barangayFilterValue) : true;
+                const matchesDateFrom = dateFrom ? new Date(announcement.date) >= new Date(dateFrom) : true;
+                const matchesDateTo = dateTo ? new Date(announcement.date) <= new Date(dateTo) : true;
+
+                return matchesSearch && matchesUser && matchesMunicipality && matchesBarangay && matchesDateFrom && matchesDateTo;
+            });
+
+            currentPage = 1;
+            displayAnnouncements(currentPage);
+        }
+
+        window.updateBarangayOptions = function() {
+            const municipalityFilter = document.getElementById('municipalityFilter').value;
+            const barangayFilter = document.getElementById('barangayFilter');
+
+            barangayFilter.innerHTML = '<option value="">Select Barangay</option>';
+
+            if (municipalityFilter) {
+                $.ajax({
+                    url: '{% url "get_barangays" %}',
+                    data: {
+                        'municipality': municipalityFilter
+                    },
+                    success: function(data) {
+                        data.forEach(function(barangay) {
+                            const option = document.createElement('option');
+                            option.value = barangay;
+                            option.textContent = barangay;
+                            barangayFilter.appendChild(option);
+                        });
+                    }
+                });
+            }
+        }
+
+        window.resetFilter = function() {
+            document.getElementById('searchBar').value = '';
+            document.getElementById('userFilter').value = '';
+            document.getElementById('municipalityFilter').value = '';
+            document.getElementById('barangayFilter').innerHTML = '<option value="">Select Barangay</option>';
+            document.getElementById('dateFrom').value = '';
+            document.getElementById('dateTo').value = '';
+            filteredAnnouncements = [...announcements];
+            currentPage = 1;
+            displayAnnouncements(currentPage);
+        }
 
         displayAnnouncements(currentPage);
     });

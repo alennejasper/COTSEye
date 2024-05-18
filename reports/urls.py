@@ -40,4 +40,8 @@ urlpatterns = [
     path("sightings/control/sighting/invalid", views.OfficerControlSightingInvalid, name = "Officer Control Sighting Invalid"),
     
     path("service/post/valid/read/redirect/", views.PostValidReadRedirect, name = "Post Valid Read Redirect"),
+
+    path('mark_post_as_read/<int:id>/', views.mark_post_as_read, name='mark_post_as_read'),
+
+   
 ]

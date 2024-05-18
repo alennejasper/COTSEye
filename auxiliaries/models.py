@@ -2,6 +2,7 @@ from django.conf import settings
 from django.utils.html import mark_safe
 from django.db import models
 from authentications.models import User
+from managements.models import Location
 
 import datetime
 
@@ -12,6 +13,7 @@ class Announcement(models.Model):
     title = models.CharField(max_length = 150, help_text = "Designates the title of the announcement.", verbose_name = "Title")
     context = models.TextField(max_length = 5000, help_text = "Designates the context of the announcement.", verbose_name = "Context")
     place = models.CharField(max_length = 150, help_text = "Designates the place of the announcement.", verbose_name = "Place")
+    location = models.ForeignKey(Location, null = True, blank = True, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Location model.", verbose_name = "Location")
     release_date = models.DateTimeField(default = datetime.datetime.now, help_text = "Designates the release date and time of the announcement.", verbose_name = "Release Date")
     announcement_photo = models.ImageField(default = "announcements/default.png", null = True, upload_to = "announcements", help_text = "Designates the photo of the announcement.", verbose_name = "Announcement Photo")
 

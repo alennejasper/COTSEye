@@ -1,23 +1,23 @@
 {% extends "officer/control/index/index.html" %}
 
 {% block content %}
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <div class="container-fluid mt-3">
     <div class="row">
         <div class="col-12 col-md-3">
-            <div class="filter-container mb-3">
+            <div class="filtercont">
                 <p class="fs-3 mb-3">Filter</p>
-                <select id="locationFilter" class="form-select form-select-sm mb-3">
-                    <option value="">Barangay</option>
+                <select id="municipalityFilter" class="form-select form-select-sm mb-3" onchange="updateBarangayOptions()">
+                    <option value="">Municipality</option>
                     {% for location in locations %}
-                        <option value="{{location.barangay}}">{{location.barangay}}</option>
+                        <option value="{{ location.municipality }}">{{ location.municipality }}</option>
                     {% endfor %}
                 </select>
 
-                <select id="locationFilter" class="form-select form-select-sm mb-3">
-                    <option value="">Municipality</option>
-                    {% for location in locations %}
-                        <option value="{{location.municipality}}">{{location.municipality}}</option>
-                    {% endfor %}
+                <select id="barangayFilter" class="form-select form-select-sm mb-3">
+                    <option value="">Select Barangay</option>
                 </select>
 
                 <p class="mb-1">Date</p>
@@ -42,17 +42,18 @@
                     <input class="form-check-input" type="radio" name="status" id="statusInvalid" value="Invalid">
                     <label class="form-check-label" for="statusInvalid">Invalid</label>
                 </div>
-                <button type="button" class="btn btn-primary mt-3 w-100" onclick="applyFilter()">Apply Filter</button>
-                <button type="button" class="btn btn-secondary mt-3 w-100" onclick="resetFilter()">Reset Filter</button>
+                <button type="button" class="filterbutton" onclick="applyFilter()">Apply Filter</button>
+                <button type="button" class="resetbutton" onclick="resetFilter()">Reset Filter</button>
             </div>
         </div>
         <div class="col-12 col-md-9">
             <div class="table-container mb-3">
                 <h2>All Sightings</h2>
+                <br>
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th scope="col">Created Date</th>
+                            <th scope="col">Date Created</th>
                             <th scope="col">Contributor</th>
                             <th scope="col">Barangay</th>
                             <th scope="col">Municipality</th>
@@ -62,17 +63,20 @@
                     </thead>
                     <tbody class="table-group-divider" id="sightingsTable">
                         {% for post in posts %}
-                            <tr data-id="{{post.id}}">
-                                <td>{{post.creation_date|date:'F j, Y, g:i a'}}</td>
-                                <td>{{post.user}}</td>
-                                <td>{{post.location.barangay}}</td>
-                                <td>{{post.location.municipality}}</td>
-                                <td class="{{post.post_status}}">{{post.post_status}}</td>
+                            <tr data-id="{{ post.id }}">
+                                <td>{{ post.creation_date|date:'F j, Y, g:i a' }}</td>
+                                <td>{{ post.user }}</td>
+                                <td>{{ post.location.barangay }}</td>
+                                <td>{{ post.location.municipality }}</td>
+                                <td class="{{ post.post_status }}">{{ post.post_status }}</td>
                                 <td>
                                     <div class="button-container">
-                                        <button class="btn-valid" onclick="changeStatus({{post.id}})">Valid</button>
-                                        <button class="btn-invalid" onclick="invalidStatus({{post.id}})">Invalid</button>
-                                        <button class="btn-read" onclick="location.href='{% url 'Officer Control Sighting Read' post.id %}'">See more</button>
+                                        <select onchange="changeStatus({{ post.id }}, this.value)">
+                                            <option value="">Change Status</option>
+                                            <option value="Valid" {% if post.post_status == "Valid" %}selected{% endif %}>Valid</option>
+                                            <option value="Invalid" {% if post.post_status == "Invalid" %}selected{% endif %}>Invalid</option>
+                                        </select>
+                                        <button class="button-29" onclick="location.href='{% url 'Officer Control Sighting Read' post.id %}'">See more</button>
                                     </div>
                                 </td>
                             </tr>
@@ -95,10 +99,43 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
+
+    const locations = [
+        {% for location in locations %}
+            { barangay: "{{ location.barangay }}", municipality: "{{ location.municipality }}" },
+        {% endfor %}
+    ];
+
+    function updateBarangayOptions() {
+        const municipalityFilter = document.getElementById('municipalityFilter').value;
+        const barangayFilter = document.getElementById('barangayFilter');
+        
+        barangayFilter.innerHTML = '<option value="">Select Barangay</option>';
+
+        if (municipalityFilter) {
+            $.ajax({
+                url: '{% url "get_barangays" %}',
+                data: {
+                    'municipality': municipalityFilter
+                },
+                success: function(data) {
+                    data.forEach(function(barangay) {
+                        const option = document.createElement('option');
+                        option.value = barangay;
+                        option.textContent = barangay;
+                        barangayFilter.appendChild(option);
+                    });
+                }
+            });
+        }
+    }
+
+
     const sightingsData = [
         {% for post in posts %}
-            { id: {{post.id}}, date: "{{post.creation_date|date:'F j, Y, g:i a'}}", user: "{{post.user}}", barangay: "{{post.location.barangay}}", municipality: "{{post.location.municipality}}", status: "{{post.post_status}}" },
+            { id: {{ post.id }}, date: "{{ post.creation_date|date:'F j, Y, g:i a' }}", user: "{{ post.user }}", barangay: "{{ post.location.barangay }}", municipality: "{{ post.location.municipality }}", status: "{{ post.post_status }}" },
         {% endfor %}
     ];
 
@@ -124,9 +161,12 @@
                 <td class="${statusClass}">${item.status}</td>
                 <td>
                     <div class="button-container">
-                        <button class="btn-valid" onclick="changeStatus(${item.id})">Valid</button>
-                        <button class="btn-invalid" onclick="invalidStatus(${item.id})">Invalid</button>
-                        <button class="btn-read" onclick="location.href='${baseUrl}'">See more</button>
+                        <select onchange="changeStatus(${item.id}, this.value)">
+                            <option value="">Change Status</option>
+                            <option value="Valid" ${item.status === "Valid" ? "selected" : ""}>Valid</option>
+                            <option value="Invalid" ${item.status === "Invalid" ? "selected" : ""}>Invalid</option>
+                        </select>
+                        <button class="button-29" onclick="location.href='${baseUrl}'">View</button>
                     </div>
                 </td>
             </tr>`;
@@ -176,7 +216,6 @@
 
     function parseDate(dateString) {
         try {
-            console.log('Parsing date string:', dateString);
             const dateTimeRegex = /(\w+ \d+, \d+), (\d+:\d+ [ap]\.m\.)/;
             const match = dateTimeRegex.exec(dateString);
 
@@ -185,8 +224,6 @@
             }
 
             const [_, datePart, timePart] = match;
-            console.log('Date Part:', datePart);
-            console.log('Time Part:', timePart);
 
             const [month, dayWithComma, year] = datePart.split(' ');
             const day = dayWithComma.replace(',', '');
@@ -194,25 +231,15 @@
                 throw new Error('Invalid date format');
             }
 
-            console.log('Month:', month);
-            console.log('Day:', day);
-            console.log('Year:', year);
-
             const [time, period] = timePart.split(' ');
             if (!time || !period) {
                 throw new Error('Invalid time format');
             }
 
-            console.log('Time:', time);
-            console.log('Period:', period);
-
             let [hours, minutes] = time.split(':').map(Number);
             if (isNaN(hours) || isNaN(minutes)) {
                 throw new Error('Invalid time format');
             }
-
-            console.log('Hours:', hours);
-            console.log('Minutes:', minutes);
 
             if (period.toLowerCase() === 'p.m.' && hours < 12) {
                 hours += 12;
@@ -234,7 +261,8 @@
     }
 
     function applyFilter() {
-        const location = document.getElementById('locationFilter').value;
+        const municipality = document.getElementById('municipalityFilter').value;
+        const barangay = document.getElementById('barangayFilter').value;
         const dateFrom = document.getElementById('dateFrom').value;
         const dateTo = document.getElementById('dateTo').value;
         const status = document.querySelector('input[name="status"]:checked')?.value;
@@ -243,24 +271,16 @@
         const dateToObj = dateTo ? new Date(dateTo) : null;
 
         filteredData = sightingsData.filter(item => {
-            console.log('Filtering item:', item);
             const itemDateObj = parseDate(item.date);
-            console.log('Item Date:', itemDateObj);
 
-            const locationMatch = !location || item.location === location;
+            const municipalityMatch = !municipality || item.municipality === municipality;
+            const barangayMatch = !barangay || item.barangay === barangay;
             const dateFromMatch = !dateFrom || itemDateObj >= dateFromObj;
             const dateToMatch = !dateTo || itemDateObj <= dateToObj;
             const statusMatch = !status || item.status === status;
 
-            console.log('Location Match:', locationMatch);
-            console.log('Date From Match:', dateFromMatch);
-            console.log('Date To Match:', dateToMatch);
-            console.log('Status Match:', statusMatch);
-
-            return locationMatch && dateFromMatch && dateToMatch && statusMatch;
+            return municipalityMatch && barangayMatch && dateFromMatch && dateToMatch && statusMatch;
         });
-
-        console.log('Filtered Data:', filteredData);
 
         currentPage = 1;
         displayTableData(currentPage);
@@ -268,7 +288,8 @@
     }
 
     function resetFilter() {
-        document.getElementById('locationFilter').value = '';
+        document.getElementById('municipalityFilter').value = '';
+        document.getElementById('barangayFilter').innerHTML = '<option value="">Select Barangay</option>';
         document.getElementById('dateFrom').value = '';
         document.getElementById('dateTo').value = '';
         const checkedStatus = document.querySelector('input[name="status"]:checked');
@@ -293,39 +314,42 @@
         alert(`Update row: ${index + 1}`);
     }
 
-    function changeStatus(postId) {
-        $.ajax({
-            type: 'POST',
-            url: '{% url "Officer Control Sighting Valid" %}',
-            data: {
-                'post_id': postId,
-                'csrfmiddlewaretoken': '{{ csrf_token }}'
-            },
-            success: function(response) {
-                if (response.success) {
-                    location.reload();
-                    console.log("This is valid");
-                } else {
-                    alert('Failed to change status.');
-                }
-            }
-        });
-    }
+    function changeStatus(postId, status) {
+        if (!status) return;
 
-    function invalidStatus(postId) {
-        $.ajax({
-            type: 'POST',
-            url: '{% url "Officer Control Sighting Invalid" %}',
-            data: {
-                'post_id': postId,
-                'csrfmiddlewaretoken': '{{ csrf_token }}'
-            },
-            success: function(response) {
-                if (response.success) {
-                    location.reload();
-                } else {
-                    alert('Failed to change status.');
-                }
+        Swal.fire({
+            title: 'Are you sure?',
+            text: `You are about to change the status to "${status}".`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, change it!',
+            cancelButtonText: 'No, keep it'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: 'POST',
+                    url: status === 'Valid' ? '{% url "Officer Control Sighting Valid" %}' : '{% url "Officer Control Sighting Invalid" %}',
+                    data: {
+                        'post_id': postId,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            location.reload();
+                            Swal.fire(
+                                'Changed!',
+                                `The status has been changed to "${status}".`,
+                                'success'
+                            );
+                        } else {
+                            Swal.fire(
+                                'Failed!',
+                                'Failed to change the status.',
+                                'error'
+                            );
+                        }
+                    }
+                });
             }
         });
     }
@@ -349,4 +373,5 @@
         updatePagination();
     });
 </script>
+
 {% endblock %}

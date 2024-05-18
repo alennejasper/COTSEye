@@ -231,14 +231,10 @@
     border: 1px solid #003755;
     border-radius: 5px;
     outline: none;
-    -webkit-appearance: none !important;
-    -moz-appearance: none !important;
-    appearance: none !important;
     font-family: "Open Sans";
     font-weight: 400;
     font-size: 14px;
     color: #003755 !important;
-    pointer-events: none;
 }
 
 .report-body .report-form .description{

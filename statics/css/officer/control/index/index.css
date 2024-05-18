@@ -43,8 +43,8 @@ body{
 }
 
 .bg-primary{
-    padding: 1rem 0;
-    background-color: #78A2CC !important;
+    padding: 8px 0;
+    background-color: radial-gradient(100% 100% at 100% 0, #5affdb 0, #5468ff 100%) !important;
 }
 
 .content{

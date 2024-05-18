@@ -35,5 +35,7 @@ urlpatterns = [
 
     path("service/resource/link/read/<int:id>/redirect/", views.ServiceResourceLinkReadRedirect, name = "Service Resource Link Read Redirect"),
 
-    path("service/resource/file/read/<int:id>/redirect/", views.ServiceResourceFileReadRedirect, name = "Service Resource File Read Redirect")
+    path("service/resource/file/read/<int:id>/redirect/", views.ServiceResourceFileReadRedirect, name = "Service Resource File Read Redirect"),
+    
+    path('get_barangays/', views.get_barangays, name='get_barangays'),
 ]

@@ -90,7 +90,9 @@ def ContributorServiceAnnouncement(request):
 
     announcements = Announcement.objects.all().order_by("-release_date")
 
-    context = {"username": username, "user_profile": user_profile, "announcements": announcements}
+    unread_posts = Post.objects.filter(post_status = 1, contrib_read_status = False, user = request.user.user).order_by("-capture_date")
+
+    context = {"username": username, "user_profile": user_profile, "announcements": announcements, "unread_posts": unread_posts}
 
     return render(request, "contributor/service/announcement/announcement.html", context)
 
@@ -108,7 +110,9 @@ def ContributorServiceAnnouncementRead(request, id):
 
     announcement = Announcement.objects.get(id = id)
 
-    context = {"username": username, "user_profile": user_profile, "scheme": scheme, "host": host, "announcement": announcement}
+    unread_posts = Post.objects.filter(post_status = 1, contrib_read_status = False, user = request.user.user).order_by("-capture_date")
+
+    context = {"username": username, "user_profile": user_profile, "scheme": scheme, "host": host, "announcement": announcement, "unread_posts": unread_posts}
 
     return render(request, "contributor/service/announcement/read.html", context)
 
@@ -122,7 +126,9 @@ def ContributorServiceInquiry(request):
 
     inquiries = Inquiry.objects.all()
 
-    context = {"username": username, "user_profile": user_profile, "inquiries": inquiries}
+    unread_posts = Post.objects.filter(post_status = 1, contrib_read_status = False, user = request.user.user).order_by("-capture_date")
+
+    context = {"username": username, "user_profile": user_profile, "inquiries": inquiries, "unread_posts": unread_posts}
 
     return render(request, "contributor/service/inquiry/inquiry.html", context)
 
@@ -133,6 +139,8 @@ def ContributorServiceMap(request):
     username = request.user.username
 
     user_profile = User.objects.get(account = request.user)
+
+    unread_posts = Post.objects.filter(post_status = 1, contrib_read_status = False, user = request.user.user).order_by("-capture_date")
 
     try:
         map_posts = Post.objects.filter(post_status = 1)
@@ -148,7 +156,7 @@ def ContributorServiceMap(request):
 
         map_graphs = None
 
-    context = {"username": username, "user_profile": user_profile, "map_posts": map_posts, "map_statuses": map_statuses, "map_graphs": map_graphs}
+    context = {"username": username, "user_profile": user_profile, "map_posts": map_posts, "map_statuses": map_statuses, "map_graphs": map_graphs, "unread_posts": unread_posts}
 
     return render(request, "contributor/service/map/map.html", context)
 
@@ -161,8 +169,10 @@ def ContributorServiceResource(request):
     resource_links = ResourceLink.objects.all()
 
     resource_files = ResourceFile.objects.all()
+
+    unread_posts = Post.objects.filter(post_status = 1, contrib_read_status = False, user = request.user.user).order_by("-capture_date")
     
-    context = {"username": username, "user_profile": user_profile, "resource_links": resource_links, "resource_files": resource_files}
+    context = {"username": username, "user_profile": user_profile, "resource_links": resource_links, "resource_files": resource_files, "unread_posts": unread_posts}
     
     return render(request, "contributor/service/resource/resource.html", context)
 
@@ -170,7 +180,9 @@ def ContributorServiceResource(request):
 def OfficerControlAnnouncement(request):
     announcements = Announcement.objects.all()
 
-    context = {"announcements": announcements}
+    locations = Location.objects.all()
+
+    context = {"announcements": announcements, "locations": locations}
 
     return render(request, "officer/control/announcement/announcement.html", context)
 
@@ -182,6 +194,8 @@ def officer_control_announcement(request, pk):
         'announcement': announcement,
         'other_announcements': other_announcements
     })
+
+
 def officercontroladdannouncement(request):
     if request.method == 'POST':
         form = AnnouncementForm(request.POST, request.FILES)
@@ -191,6 +205,11 @@ def officercontroladdannouncement(request):
     else:
         form = AnnouncementForm()
     return render(request, "officer/control/announcement/addannouncement.html", {'form': form})
+
+def get_barangays(request):
+    municipality = request.GET.get('municipality')
+    barangays = Location.objects.filter(municipality=municipality).values_list('barangay', flat=True).distinct()
+    return JsonResponse(list(barangays), safe=False)
 
 def officercontrolupdateannouncement(request, pk):
     announcement = get_object_or_404(Announcement, pk=pk)

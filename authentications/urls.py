@@ -28,4 +28,6 @@ urlpatterns = [
     path("contributor/service/logout/", views.ContributorServiceLogout, name = "Contributor Service Logout"),       
 
     path("officer/control/home/", views.OfficerControlHome, name = "Officer Control Home"),
+
+    path('mark_post_as_contrib_read/<int:post_id>/',views.mark_post_as_contrib_read, name='mark_post_as_contrib_read'),
 ]

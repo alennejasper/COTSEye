@@ -80,7 +80,7 @@
                     </div>
 
                     <div class = "buttons">
-                        <div class = "save-report">
+                        <div class = "save-report first-draft">
                             <button type = "submit" value = "save as draft" onclick = "setActionValue(this.value); disableOnBeforeUnload();">Save as draft</a>
                         </div>
 
@@ -142,11 +142,11 @@
                     <div class = "buttons">
                         <button type = "button" class = "back-report" onclick = "openTab('first-tab')">Back</button>
 
-                        <div class = "save-report">
+                        <div class = "save-report second-draft">
                             <button type = "submit" value = "save as draft" onclick = "setActionValue(this.value); disableOnBeforeUnload();">Save as draft</a>
                         </div>
 
-                        <div class = "save-report">
+                        <div class = "save-report submit">
                             <button type = "submit" value = "save and submit" onclick = "setActionValue(this.value); disableOnBeforeUnload();">Submit Report</a>
                         </div>
                     </div>
@@ -244,7 +244,7 @@
                     </div>
 
                     <div class = "buttons">
-                        <div class = "save-report">
+                        <div class = "save-report first-draft">
                             <button type = "submit" value = "save as draft" onclick = "setActionValue(this.value); disableOnBeforeUnload();">Save as draft</a>
                         </div>
 
@@ -307,11 +307,11 @@
                     <div class = "buttons">
                         <button type="button" class = "back-report" onclick = "openTab('first-tab')">Back</button>
             
-                        <div class = "save-report">
+                        <div class = "save-report second-draft">
                             <button type = "submit" value = "save as draft" onclick = "setActionValue(this.value); disableOnBeforeUnload();">Save as draft</button>
                         </div>
             
-                        <div class = "save-report">
+                        <div class = "save-report submit">
                             <button type = "submit" value="save and submit" onclick = "setActionValue(this.value); disableOnBeforeUnload();">Submit Report</button>
                         </div>
                     </div>
@@ -843,10 +843,16 @@
     </script>
 
     <script>
-        document.querySelectorAll(".save-report").forEach(function(element) {
-            element.addEventListener("click", function(event) {
-                document.querySelector(".save-report button").click();
-            });
+        document.querySelector(".save-report.first-draft").addEventListener("click", function(event){
+            document.querySelector(".save-report button").click();
+        });
+
+        document.querySelector(".save-report.second-draft").addEventListener("click", function(event){
+            document.querySelector(".save-report button").click();
+        });
+
+        document.querySelector(".save-report.submit").addEventListener("click", function(event){
+            document.querySelector(".save-report button").click();
         });
     </script>
 
@@ -866,20 +872,20 @@
             
             disableOnBeforeUnload();
 
-            document.querySelectorAll(".save-report").forEach(item => {
-                item.addEventListener("click", function(event){
-                    event.preventDefault();
+        document.querySelectorAll(".save-report").forEach(item => {
+            item.addEventListener("click", function(event){
+                event.preventDefault();
 
-                    if (!navigator.onLine){
-                        const username = "{{request.user.username}}";
+                if (!navigator.onLine){
+                    const username = "{{request.user.username}}";
 
-                        Swal.fire({title: "Hey!", text: username + ", your information input was recorded offline for COTSEye. Kindly visit the current page again if back online.", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}}).then(() => {location.reload();});
+                    Swal.fire({title: "Hey!", text: username + ", your information input was recorded offline for COTSEye. Kindly visit the current page again if back online.", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}}).then(() => {location.reload();});
 
-                    } else{
-                        document.querySelector(".report-form").submit();
-                    };
-                });
+                } else{
+                    document.querySelector(".report-form").submit();
+                };
             });
+        });
         };
     </script>
 

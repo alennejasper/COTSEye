@@ -15,6 +15,8 @@ from collections import Counter
 from managements.models import Location
 from reports.models import *
 from reports.forms import CoordinatesForm, PostObservationForm, PostForm
+from django.utils import timezone
+from datetime import timedelta
 
 import base64
 import datetime
@@ -51,6 +53,8 @@ def ContributorServiceReport(request):
     username = request.user.username
 
     user_profile = User.objects.get(account = request.user)
+
+    unread_posts = Post.objects.filter(post_status = 1, contrib_read_status = False, user = request.user.user).order_by("-capture_date")
 
     locations = Location.objects.all()
 
@@ -91,7 +95,8 @@ def ContributorServiceReport(request):
                 post_status = PostStatus.objects.get(id = 4)
 
             coordinates = Coordinates.objects.create(latitude = coordinates.latitude, longitude = coordinates.longitude)
-
+            print(f'Action: {action}')
+            print(f'Post Status: {post_status}')
             size = request.POST.get("size")
 
             try:
@@ -163,7 +168,7 @@ def ContributorServiceReport(request):
         
         post_form = PostForm() 
 
-    context = {"username": username, "user_profile": user_profile, "locations": locations, "coordinates_form": coordinates_form, "sizes": sizes, "depths": depths, "weathers": weathers, "postobservation_form": postobservation_form, "post_form": post_form}
+    context = {"username": username, "user_profile": user_profile, "locations": locations, "coordinates_form": coordinates_form, "sizes": sizes, "depths": depths, "weathers": weathers, "postobservation_form": postobservation_form, "post_form": post_form, "unread_posts": unread_posts}
     
     return render(request, "contributor/service/report/report.html", context)
 
@@ -238,6 +243,8 @@ def ContributorServiceReportUpdate(request, id):
 
     user_profile = User.objects.get(account = request.user)
 
+    unread_posts = Post.objects.filter(post_status = 1, contrib_read_status = False, user = request.user.user).order_by("-capture_date")
+
     draft_post = Post.objects.get(id = id, post_status = 4)   
 
     locations = Location.objects.all()
@@ -304,7 +311,7 @@ def ContributorServiceReportUpdate(request, id):
         
         post_form = PostForm(instance = draft_post)       
 
-    context = {"username": username, "user_profile": user_profile, "draft_post": draft_post, "locations": locations, "coordinates_form": coordinates_form, "sizes": sizes, "depths": depths, "weathers": weathers, "postobservation_form": postobservation_form, "post_form": post_form}
+    context = {"username": username, "user_profile": user_profile, "draft_post": draft_post, "locations": locations, "coordinates_form": coordinates_form, "sizes": sizes, "depths": depths, "weathers": weathers, "postobservation_form": postobservation_form, "post_form": post_form, "unread_posts": unread_posts}
     
     return render(request, "contributor/service/report/report.html", context)
 
@@ -398,6 +405,8 @@ def ContributorServicePost(request):
 
     user_profile = User.objects.get(account = request.user)
 
+    unread_posts = Post.objects.filter(post_status = 1, contrib_read_status = False, user = request.user.user).order_by("-capture_date")
+
     records = None
 
     results = None
@@ -411,7 +420,7 @@ def ContributorServicePost(request):
         else:
             results = Post.objects.filter(user = request.user.user).order_by("-creation_date")
         
-    context = {"username": username, "user_profile": user_profile, "records": records, "results": results, "post_status": post_status}
+    context = {"username": username, "user_profile": user_profile, "records": records, "results": results, "post_status": post_status, "unread_posts": unread_posts}
 
     return render(request, "contributor/service/post/post.html", context)
 
@@ -422,6 +431,8 @@ def ContributorServicePostRead(request, id):
     username = request.user.username
 
     user_profile = User.objects.get(account = request.user)
+
+    unread_posts = Post.objects.filter(post_status = 1, contrib_read_status = False, user = request.user.user).order_by("-capture_date")
 
     scheme = request.scheme
 
@@ -451,7 +462,7 @@ def ContributorServicePostRead(request, id):
     except:
         draft_post = None
     
-    context = {"username": username, "user_profile": user_profile, "scheme": scheme, "host": host, "valid_post": valid_post, "invalid_post": invalid_post, "pending_post": pending_post, "draft_post": draft_post}
+    context = {"username": username, "user_profile": user_profile, "scheme": scheme, "host": host, "valid_post": valid_post, "invalid_post": invalid_post, "pending_post": pending_post, "draft_post": draft_post, "unread_posts": unread_posts}
     
     return render(request, "contributor/service/post/read.html", context)
 
@@ -463,9 +474,11 @@ def ContributorServicePostFeed(request):
 
     user_profile = User.objects.get(account = request.user)
 
+    unread_posts = Post.objects.filter(post_status = 1, contrib_read_status = False, user = request.user.user).order_by("-capture_date")
+
     valid_posts = Post.objects.filter(post_status = 1).order_by("-creation_date")
 
-    context = {"username": username, "user_profile": user_profile, "valid_posts": valid_posts}
+    context = {"username": username, "user_profile": user_profile, "valid_posts": valid_posts, "unread_posts": unread_posts}
     
     return render(request, "contributor/service/post/feed.html", context)
 
@@ -477,13 +490,15 @@ def ContributorServicePostFeedRead(request, id):
 
     user_profile = User.objects.get(account = request.user)
 
+    unread_posts = Post.objects.filter(post_status = 1, contrib_read_status = False, user = request.user.user).order_by("-capture_date")
+
     scheme = request.scheme
 
     host = request.META["HTTP_HOST"]
 
     valid_post = Post.objects.get(id = id, post_status = 1)
     
-    context = {"username": username, "user_profile": user_profile, "scheme": scheme, "host": host, "valid_post": valid_post}
+    context = {"username": username, "user_profile": user_profile, "scheme": scheme, "host": host, "valid_post": valid_post, "unread_posts": unread_posts}
     
     return render(request, "contributor/service/post/read.html", context)
 
@@ -1289,39 +1304,48 @@ def AdministratorControlStatisticsPost(request):
 
     return render(request, "admin/control/post/post.html", context)
 
-
 def OfficerControlSighting(request):
     posts = Post.objects.exclude(post_status = 4)
 
     locations = Location.objects.all()
 
-    context = {"posts": posts, "locations": locations}
+    notification_life = timezone.now() - timedelta(days=30)
+
+    unread_posts = Post.objects.filter(read_status = False, creation_date__gte = notification_life)
+
+    context = {"posts": posts, "locations": locations, "unread_posts": unread_posts}
     
     return render(request, 'officer/control/sighting/sighting.html', context)
 
+def mark_post_as_read(request, id):
+    post = Post.objects.get(id = id)
+
+    post.read_status = True
+
+    post.read_date = timezone.now()
+
+    post.save()
+
+    return JsonResponse({"success": True})
+
 
 def OfficerControlSightingRead(request, id):
-    post = get_object_or_404(Post, id=id)  # Use get_object_or_404 for better error handling
-    other_posts = Post.objects.exclude(id=id).exclude(post_status=4).order_by('-capture_date')[:5]  # Exclude the current post and posts with post_status=4, then get the latest 5 posts
+    post = get_object_or_404(Post, id = id)
+
+    other_posts = Post.objects.exclude(id = id).exclude(post_status = 4).order_by("-capture_date")[:5]
+
     post_photos = post.post_photos.all()
-    other_posts_with_photos = []
+
+    other_photos = []
     
     for other_post in other_posts:
-        first_photo = other_post.post_photos.first()  # Get the first photo, if any
-        other_posts_with_photos.append({
-            'post': other_post,
-            'first_photo': first_photo
-        })
-    
-    context = {
-        "post": post,
-        "other_posts_with_photos": other_posts_with_photos,
-        "post_photos": post_photos
-    }
-    
-    return render(request, 'officer/control/sighting/read.html', context)
+        first_photo = other_post.post_photos.first()
 
-
+        other_photos.append({"post": other_post, "first_photo": first_photo})
+    
+    context = {"post": post, "other_posts_with_photos": other_photos, "post_photos": post_photos}
+    
+    return render(request, "officer/control/sighting/read.html", context)
 
 
 def OfficerControlSightingValid(request):

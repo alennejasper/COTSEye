@@ -145,23 +145,27 @@ class PostObservation(models.Model):
         return "OBSERVATION " + str(self.id)
     
 class Post(models.Model):
-    user = models.ForeignKey(User, on_delete = models.CASCADE, help_text = "Designates the foreign key of the User model.", verbose_name = "User")
-    description = models.TextField(max_length = 1500, help_text = "Designates the description of the post.", verbose_name = "Description")
-    capture_date = models.DateTimeField(default = datetime.datetime.now(), help_text = "Designates the capture date and time of the post.", verbose_name = "Capture Date")
-    post_photos = models.ManyToManyField(PostPhoto, blank = True, through = "PostGallery", help_text = "Designates the foreign key of the Post Photo model.", verbose_name = "Post Photos")
-    coordinates = models.ForeignKey(Coordinates, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Coordinates model.", verbose_name = "Coordinates")
-    location = models.ForeignKey(Location, null = True, blank = True, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Location model.", verbose_name = "Location")
-    post_status = models.ForeignKey(PostStatus, on_delete = models.CASCADE, default = 4, help_text = "Designates the foreign key of the Post Status model.", verbose_name = "Post Status")
-    post_observation = models.ForeignKey(PostObservation, null = True, blank = True, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Post Observation model.", verbose_name = "Post Observation")
-    creation_date = models.DateTimeField(default = datetime.datetime.now(), help_text = "Designates the creation date and time of the post.", verbose_name = "Creation Date")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, help_text="Designates the foreign key of the User model.", verbose_name="User")
+    description = models.TextField(max_length=1500, help_text="Designates the description of the post.", verbose_name="Description")
+    capture_date = models.DateTimeField(default=datetime.datetime.now, help_text="Designates the capture date and time of the post.", verbose_name="Capture Date")
+    post_photos = models.ManyToManyField(PostPhoto, blank=True, through="PostGallery", help_text="Designates the foreign key of the Post Photo model.", verbose_name="Post Photos")
+    coordinates = models.ForeignKey(Coordinates, on_delete=models.CASCADE, help_text="Designates the foreign key of the Coordinates model.", verbose_name="Coordinates")
+    location = models.ForeignKey(Location, null=True, blank=True, on_delete=models.CASCADE, help_text="Designates the foreign key of the Location model.", verbose_name="Location")
+    post_status = models.ForeignKey(PostStatus, on_delete=models.CASCADE, default=4, help_text="Designates the foreign key of the Post Status model.", verbose_name="Post Status")
+    post_observation = models.ForeignKey(PostObservation, null=True, blank=True, on_delete=models.CASCADE, help_text="Designates the foreign key of the Post Observation model.", verbose_name="Post Observation")
+    creation_date = models.DateTimeField(default=datetime.datetime.now, help_text="Designates the creation date and time of the post.", verbose_name="Creation Date")
+    read_status = models.BooleanField(default=False, help_text="Indicates whether the post has been read.", verbose_name="Read Status")
+    read_date = models.DateTimeField(null=True, blank=True, help_text="Designates the date and time when the post was read.", verbose_name="Read Date")
+    contrib_read_status = models.BooleanField(default=False, help_text="Indicates whether the post has been read by a contributor.", verbose_name="Contributor Read Status")
+    contrib_read_date = models.DateTimeField(null=True, blank=True, help_text="Designates the date and time when the post was read by a contributor.", verbose_name="Contributor Read Date")
+    
     class Meta:
         db_table = "reports_post"
         verbose_name = "Post"
         verbose_name_plural = "Posts"
 
     def __str__(self):
-        return "POST " + str(self.id) + " | " + str(self.user)
-
+        return f"POST {self.id} | {self.user}"
 
 class PostGallery(models.Model):
     post_photos = models.ForeignKey(PostPhoto, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Post Photos model.", verbose_name = "Post Photo")
