@@ -1318,12 +1318,15 @@ def OfficerControlSighting(request):
     return render(request, 'officer/control/sighting/sighting.html', context)
 
 def mark_post_as_read(request, id):
-    post = Post.objects.get(id = id)
+    post = Post.objects.get(id=id)
 
     post.read_status = True
-
     post.read_date = timezone.now()
 
+    if request.user.usertype.id == 2:
+        post.validated_by = request.user.user
+        
+    print(post.read_status, post.read_date, post.validated_by)
     post.save()
 
     return JsonResponse({"success": True})

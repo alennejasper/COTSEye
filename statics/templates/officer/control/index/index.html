@@ -27,7 +27,10 @@
 
         <script src="https://cdn.jsdelivr.net/npm/apexcharts@latest"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/daterangepicker/3.1/daterangepicker.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    
         <title>COTSEye | Home</title>
     </head>
 
@@ -35,12 +38,12 @@
         <div class="bg-primary">
             <div class="container-fluid d-flex justify-content-between align-items-center flex-wrap">
                 <nav class="nav">
-                    <a class="nav-link active disabled" aria-current="page"><img src="{% static 'assets/logo.png' %}" height="20px"></a>
-                    <a style="font-size: 14px;" class="nav-link text-white" href="{% url 'Officer Control Home' %}">Home</a>
-                    <a style="font-size: 14px;" class="nav-link text-white" href="{% url 'Officer Control Sighting' %}">Sighting</a>
-                    <a style="font-size: 14px;" class="nav-link text-white" href="{% url 'Officer Control Announcement' %}">Announcement</a>
-                    <a style="font-size: 14px;" class="nav-link text-white" href="{% url 'Officer Control Intervention' %}">Intervention</a>
-                    <a style="font-size: 14px;" class="nav-link text-white" href="{% url 'Officer Control Status' %}">Status</a>
+                    <a class="nav-link active disabled" aria-current="page"><img src="{% static 'assets/logo1.png' %}" height="16px"></a>
+                    <a style="font-size: 12px;" class="nav-link text-white" href="{% url 'Officer Control Home' %}">HOME</a>
+                    <a style="font-size: 12px;" class="nav-link text-white" href="{% url 'Officer Control Sighting' %}">SIGHTINGS</a>
+                    <a style="font-size: 12px;" class="nav-link text-white" href="{% url 'Officer Control Announcement' %}">ANNOUNCEMENTS</a>
+                    <a style="font-size: 12px;" class="nav-link text-white" href="{% url 'Officer Control Intervention' %}">INTERVENTIONS</a>
+                    <a style="font-size: 12px;" class="nav-link text-white" href="{% url 'Officer Control Status' %}">STATUS</a>
                 </nav>
 
                 <div class="d-flex align-items-center login-cursor">
@@ -82,6 +85,10 @@
         </div>
 
         <script>
+             $(document).ready(function() {
+                // Initialize Select2 on the select elements
+                $('.select2').select2();
+            });
             document.addEventListener('DOMContentLoaded', function () {
                 const unreadPostLinks = document.querySelectorAll('.unread-post-link');
 

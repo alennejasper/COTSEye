@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <div style="margin: 0.5in; box-sizing: border-box;">
     <div class="d-flex justify-content-end">
         <button style="background-color: rgb(30, 173, 95);" onclick="window.location.href='{% url 'Officer Control Report' %}'" class="btn btn-primary mt-4">GENERATE REPORT</button>
@@ -195,9 +196,173 @@
 
     <h1 style="text-align: center;">COTS STATUS GRAPH</h1>
 
-    <div class="map-graph" style="margin-top: 20px;"></div>
-
+    <div class="container">
+        <h1>Interventions by Location</h1>
+        <div class="form-group">
+            <label for="municipality">Municipality:</label>
+            <select id="municipality" class="form-control" onchange="updateBarangayOptions()">
+                <option value="all">All Municipalities</option>
+                {% for municipality in municipalities %}
+                    <option value="{{ municipality.municipality }}">{{ municipality.municipality }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="barangay">Barangay:</label>
+            <select id="barangay" class="form-control">
+                <option value="all">All Barangays</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="start-date">Start Date:</label>
+            <input type="date" id="start-date" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="end-date">End Date:</label>
+            <input type="date" id="end-date" class="form-control">
+        </div>
+        <button id="filter-button" class="btn btn-primary">Filter</button>
+        <canvas id="myChart"></canvas>
+    </div>
+    
     <script>
+        const chartData = JSON.parse('{{ chart_data|escapejs }}');
+        let labels = new Set();
+        const datasets = [];
+    
+        // Define colors for datasets
+        const colors = [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+        ];
+    
+        Object.keys(chartData).forEach((location, index) => {
+            chartData[location]['onset_dates'].forEach(date => labels.add(date));
+        });
+    
+        labels = Array.from(labels).sort();
+    
+        Object.keys(chartData).forEach((location, index) => {
+            const data = labels.map(date => {
+                const dateIndex = chartData[location]['onset_dates'].indexOf(date);
+                return dateIndex !== -1 ? chartData[location]['caught_overalls'][dateIndex] : 0;  // Fill missing dates with 0
+            });
+    
+            datasets.push({
+                label: location,
+                data: data,
+                borderColor: colors[index % colors.length],  // Assign colors in a round-robin fashion
+                fill: false
+            });
+        });
+    
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: datasets
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                title: {
+                    display: true,
+                    text: 'Caught Overall by Onset Date per Location'
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: true
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Onset Date'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Caught Overall'
+                        },
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    
+        document.getElementById('filter-button').addEventListener('click', () => {
+            const startDate = document.getElementById('start-date').value;
+            const endDate = document.getElementById('end-date').value;
+            const selectedMunicipality = document.getElementById('municipality').value;
+            const selectedBarangay = document.getElementById('barangay').value;
+    
+            let filteredLabels = labels;
+            let filteredDatasets = datasets;
+    
+            if (startDate && endDate) {
+                filteredLabels = labels.filter(date => date >= startDate && date <= endDate);
+            }
+    
+            if (selectedMunicipality !== 'all' || selectedBarangay !== 'all') {
+                filteredDatasets = datasets.map(dataset => {
+                    if ((selectedMunicipality === 'all' || dataset.label.includes(selectedMunicipality)) &&
+                        (selectedBarangay === 'all' || dataset.label.includes(selectedBarangay))) {
+                        return {
+                            ...dataset,
+                            data: filteredLabels.map(date => {
+                                const dateIndex = labels.indexOf(date);
+                                return dataset.data[dateIndex];
+                            })
+                        };
+                    } else {
+                        return null;
+                    }
+                }).filter(dataset => dataset !== null);
+            }
+    
+            myChart.data.labels = filteredLabels;
+            myChart.data.datasets = filteredDatasets;
+            myChart.update();
+        });
+    
+        function updateBarangayOptions() {
+            const municipality = document.getElementById('municipality').value;
+            const barangaySelect = document.getElementById('barangay');
+    
+            barangaySelect.innerHTML = '<option value="all">All Barangays</option>';
+    
+            if (municipality !== 'all') {
+                fetch(`{% url 'get_barangays' %}?municipality=${municipality}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        data.forEach(barangay => {
+                            const option = document.createElement('option');
+                            option.value = barangay;
+                            option.textContent = barangay;
+                            barangaySelect.appendChild(option);
+                        });
+                    });
+            }
+        }
+    </script>
+
+
+
+    <!-- <script>
         var categories = [];
         var data = [];
     
@@ -258,6 +423,6 @@
     
         var graph = new ApexCharts(document.querySelector(".map-graph"), configurations);
         graph.render();
-    </script>
+    </script> -->
 </div>
 {% endblock %}

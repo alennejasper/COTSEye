@@ -3,9 +3,6 @@
 
 {% block content %}
 <div class="container-fluid mt-3">
-    <div class="d-flex justify-content-end">
-        <button class="btn btn-primary mt-4" style="background-color: rgb(30, 173, 95);" onclick="window.location.href = '{% url 'Officer Control Add Announcement' %}'">ADD NEW</button>
-    </div>
 
     <div class="row">
         <div class="col-12 col-md-3">
@@ -18,13 +15,13 @@
                     </div>
                     <div class="mb-3">
                         <label for="userFilter" class="form-label">Filter by user:</label>
-                        <select id="userFilter" class="form-control">
+                        <select id="userFilter" class="form-control select2">
                             <option value="">Filter by user</option>
                         </select>
                     </div>
                     <div class="mb-3">
                         <label for="municipalityFilter" class="form-label">Municipality:</label>
-                        <select id="municipalityFilter" class="form-select form-select-sm mb-3" onchange="updateBarangayOptions()">
+                        <select id="municipalityFilter" class="form-select form-select-sm mb-3 select2" onchange="updateBarangayOptions()">
                             <option value="">Municipality</option>
                             {% for location in locations %}
                                 <option value="{{ location.municipality }}">{{ location.municipality }}</option>
@@ -33,7 +30,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="barangayFilter" class="form-label">Barangay:</label>
-                        <select id="barangayFilter" class="form-select form-select-sm mb-3">
+                        <select id="barangayFilter" class="form-select form-select-sm mb-3 select2">
                             <option value="">Select Barangay</option>
                         </select>
                     </div>
@@ -52,19 +49,22 @@
         </div>
 
         <div class="col-12 col-md-9">
-            <div class="card">
-                <div class="card-header bg-primary text-white" style="text-align: center; font-weight: 500; font-size: larger;">MANAGE ANNOUNCEMENTS</div>
-                <div class="card-body">
+            <div style="border: none;" class="card">
+                <div style="margin-bottom: 13px;" class="manage-announcement">
+                <div style="text-align: left; font-weight: 400; font-size: 15px;">MANAGE ANNOUNCEMENTS</div>
+                <div>
+                    <button class="btn btn-primary" style="background-color: rgb(30, 173, 95);" onclick="window.location.href = '{% url 'Officer Control Add Announcement' %}'">ADD NEW</button>
+                </div>
+            </div>
+                <div style="padding: 0px !important;" class="card-body">
                     <table class="table table-bordered table-striped">
                         <thead class="thead-dark">
                             <tr>
-                                <th>Title</th>
-                                <th>Date</th>
-                                <th>Location</th>
-                                <th>Description</th>
-                                <th>Posted By</th>
-                                <th>Photo</th>
-                                <th>Actions</th>
+                                <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Title</th>
+                                <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Date</th>
+                                <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Location</th>
+                                <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Posted By</th>
+                                <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Actions</th>
                             </tr>
                         </thead>
                         <tbody id="announcementsTable"></tbody>
@@ -79,10 +79,14 @@
 </div>
 
 <script>
+      $(document).ready(function() {
+                // Initialize Select2 on the select elements
+                $('.select2').select2();
+            });
     document.addEventListener("DOMContentLoaded", function() {
         const announcements = [
             {% for announcement in announcements %}
-                {id: {{ announcement.id }}, title: "{{ announcement.title }}", date: "{{ announcement.release_date | date:'Y-m-d' }}", location: "{{ announcement.location }}", description: "{{ announcement.context }}", user: "{{ announcement.user }}", photo: "{{ announcement.announcement_photo.url }}"},
+                {id: {{ announcement.id }}, title: "{{ announcement.title }}", date: "{{ announcement.release_date | date:'Y-m-d' }}", location: "{{ announcement.location }}", user: "{{ announcement.user }}"},
             {% endfor %}
         ];
 
@@ -111,29 +115,16 @@
             paginatedAnnouncements.forEach((announcement, index) => {
                 let row = table.insertRow();
 
-                let titleCell = row.insertCell(0);
-                let titleLink = document.createElement('a');
-                titleLink.href = "{% url 'Officer Control Announcement' pk=0 %}".replace('0', announcement.id);
-                titleLink.innerText = announcement.title;
-                titleCell.appendChild(titleLink);
                 
+                
+                row.insertCell(0).innerText = announcement.title;
                 row.insertCell(1).innerText = announcement.date;
                 row.insertCell(2).innerText = announcement.location;
-                row.insertCell(3).innerText = announcement.description;
-                row.insertCell(4).innerText = announcement.user;
+                row.insertCell(3).innerText = announcement.user;
 
-                let photoCell = row.insertCell(5);
-                if (announcement.photo) {
-                    let img = document.createElement('img');
-                    img.src = announcement.photo;
-                    img.style.width = '50px';
-                    img.style.height = '50px';
-                    photoCell.appendChild(img);
-                } else {
-                    photoCell.innerText = 'No Photo';
-                }
 
-                let actionsCell = row.insertCell(6);
+
+                let actionsCell = row.insertCell(4);
                 let updateButton = document.createElement('button');
                 updateButton.innerText = 'Update';
                 updateButton.classList.add('btn', 'btn-primary', 'btn-sm', 'mr-2');
@@ -164,6 +155,14 @@
                     });
                 });
                 actionsCell.appendChild(deleteButton);
+
+                let seeMoreButton = document.createElement('button');
+                seeMoreButton.innerText = 'See More';
+                seeMoreButton.classList.add('btn', 'btn-info', 'btn-sm', 'ml-2');
+                seeMoreButton.addEventListener('click', function() {
+                    window.location.href = "{% url 'Officer Control Announcement' 0 %}".replace('0', announcement.id);
+                });
+                actionsCell.appendChild(seeMoreButton);
             });
 
             const pagination = document.getElementById('pagination');

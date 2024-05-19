@@ -1,96 +1,148 @@
 {% extends "officer/control/index/index.html" %}
 
 {% block content %}
-<div class="container-fluid mt-3">
+<head>
+    <!-- Other head elements -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    ``
 
+    <!-- Include SweetAlert2 from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<div class="container-fluid mt-3">
     <div class="d-flex justify-content-end">
-        <button style="background-color: rgb(30, 173, 95);" onclick="window.location.href='{% url 'Officer Control Add Announcement' %}'" class="btn btn-primary mt-4">ADD NEW</button>
+        <button style="background-color: rgb(30, 173, 95);" onclick="window.location.href='{% url 'Officer Control Status Add' %}'" class="btn btn-primary mt-4">ADD NEW</button>
     </div>
 
-    <div class="card mt-4">
-        <div style="text-align: center; font-weight: 500; font-size: larger;" class="card-header bg-primary text-white">MANAGE STATUS</div>
-        <div class="card-body">
-            <table class="table table-bordered table-striped">
-                <thead class="thead-dark">
-                    <tr>
-                        <th>Status</th>
-                        <th>Location</th>
-                        <th>Number of COTS</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="sightingsTable">
-                    <!-- Sightings will be added here dynamically -->
-                </tbody>
-            </table>
-            <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-center" id="pagination">
-                    <li class="page-item" id="previousPage">
-                        <a class="page-link" href="#" onclick="changePage('prev')">Previous</a>
-                    </li>
-                    <!-- Page numbers will be inserted here by JavaScript -->
-                    <li class="page-item" id="nextPage">
-                        <a class="page-link" href="#" onclick="changePage('next')">Next</a>
-                    </li>
-                </ul>
-            </nav>
+    <div class="row">
+        <div class="col-12 col-md-3">
+            <div class="filtercont card">
+                <div class="card-body">
+                    <p class="fs-3 mb-3">Filter</p>
+                    <div class="mb-3">
+                        <label for="statusFilter" class="form-label">Filter by status:</label>
+                        <select id="statusFilter" class="form-control select2">
+                            <option value="">Filter by status</option>
+                            {% for status in distinct_statuses %}
+                                <option value="{{ status.statustype }}">{{ status.statustype }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="municipalityFilter" class="form-label">Municipality:</label>
+                        <select id="municipalityFilter" class="form-select form-select-sm mb-3 select2" onchange="updateBarangayOptions()">
+                            <option value="">Municipality</option>
+                            {% for location in locations %}
+                                <option value="{{ location.municipality }}">{{ location.municipality }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="barangayFilter" class="form-label">Barangay:</label>
+                        <select id="barangayFilter" class="form-select form-select-sm mb-3 select2">
+                            <option value="">Select Barangay</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="dateFrom" class="form-label">Date from:</label>
+                        <input type="date" id="dateFrom" name="dateFrom" class="form-control form-control-sm">
+                    </div>
+                    <div class="mb-3">
+                        <label for="dateTo" class="form-label">Date to:</label>
+                        <input type="date" id="dateTo" name="dateTo" class="form-control form-control-sm">
+                    </div>
+                    <button type="button" class="btn btn-primary mt-3" onclick="filterSightings()">Apply Filter</button>
+                    <button type="button" class="btn btn-secondary mt-2" onclick="resetFilter()">Reset Filter</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-9">
+            <div class="card mt-4">
+                <div style="text-align: center; font-weight: 500; font-size: larger;" class="card-header bg-primary text-white">MANAGE STATUS</div>
+                <div class="card-body">
+                    <table class="table table-bordered table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Status</th>
+                                <th>Location</th>
+                                <th>Number of COTS</th>
+                                <th>Onset Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sightingsTable">
+                            <!-- Sightings will be added here dynamically -->
+                        </tbody>
+                    </table>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center" id="pagination">
+                            <li class="page-item" id="previousPage">
+                                <a class="page-link" href="#" onclick="changePage('prev')">Previous</a>
+                            </li>
+                            <!-- Page numbers will be inserted here by JavaScript -->
+                            <li class="page-item" id="nextPage">
+                                <a class="page-link" href="#" onclick="changePage('next')">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const sightings = [
-            { id: 1, status: "Pending", location: "Location 1", cots: 5 },
-            { id: 2, status: "Valid", location: "Location 2", cots: 3 },
-            { id: 3, status: "Invalid", location: "Location 3", cots: 7 },
-            { id: 4, status: "Pending", location: "Location 4", cots: 2 },
-            { id: 5, status: "Valid", location: "Location 5", cots: 4 },
-            { id: 6, status: "Invalid", location: "Location 6", cots: 6 },
-            { id: 7, status: "Pending", location: "Location 7", cots: 1 },
-            { id: 8, status: "Valid", location: "Location 8", cots: 9 },
-            { id: 9, status: "Invalid", location: "Location 9", cots: 8 },
-            { id: 10, status: "Pending", location: "Location 10", cots: 3 },
-            { id: 11, status: "Valid", location: "Location 11", cots: 5 },
-            { id: 12, status: "Invalid", location: "Location 12", cots: 7 },
-            { id: 13, status: "Pending", location: "Location 13", cots: 2 },
-            { id: 14, status: "Valid", location: "Location 14", cots: 4 },
-            { id: 15, status: "Invalid", location: "Location 15", cots: 6 },
-            { id: 16, status: "Pending", location: "Location 16", cots: 1 },
-            { id: 17, status: "Valid", location: "Location 17", cots: 9 },
-            { id: 18, status: "Invalid", location: "Location 18", cots: 8 },
-            { id: 19, status: "Pending", location: "Location 19", cots: 3 },
-            { id: 20, status: "Valid", location: "Location 20", cots: 5 }
-        ];
+    
+    $(document).ready(function() {
+        $('#statusFilter').select2({
+            placeholder: "Filter by status"
+        });
+        $('#municipalityFilter').select2({
+            placeholder: "Municipality"
+        });
+        $('#barangayFilter').select2({
+            placeholder: "Select Barangay"
+        });
+    });
 
+    document.addEventListener('DOMContentLoaded', function() {
+        const statuses = JSON.parse('{{ statuses_json|escapejs }}');
+        let filteredStatuses = statuses;
+        
         let currentPage = 1;
         const itemsPerPage = 10;
 
         function displaySightings(page) {
             const startIndex = (page - 1) * itemsPerPage;
             const endIndex = startIndex + itemsPerPage;
-            const paginatedSightings = sightings.slice(startIndex, endIndex);
+            const paginatedSightings = filteredStatuses.slice(startIndex, endIndex);
 
             let table = document.getElementById('sightingsTable');
             table.innerHTML = '';
 
-            paginatedSightings.forEach((sighting, index) => {
+            paginatedSightings.forEach((status, index) => {
                 let row = table.insertRow();
-                row.insertCell(0).innerText = sighting.status;
-                row.insertCell(1).innerText = sighting.location;
-                row.insertCell(2).innerText = sighting.cots;
+                row.insertCell(0).innerText = status.statustype;
+                row.insertCell(1).innerText = status.location;
+                row.insertCell(2).innerText = status.caught_overall;
+                row.insertCell(3).innerText = status.onset_date;
 
-                let actionsCell = row.insertCell(3);
-                let updateButton = document.createElement('button');
-                updateButton.innerText = 'Update';
-                updateButton.classList.add('btn', 'btn-primary', 'btn-sm', 'mr-2');
-                updateButton.addEventListener('click', function() {
+                let actionsCell = row.insertCell(4);
+
+                let deleteButton = document.createElement('button');
+                deleteButton.innerText = 'Delete';
+                deleteButton.classList.add('btn', 'btn-danger', 'btn-sm', 'ml-2');
+                deleteButton.addEventListener('click', function() {
+                    deleteStatus(status.id);
                 });
-                actionsCell.appendChild(updateButton);
+                actionsCell.appendChild(deleteButton);
             });
 
             const pagination = document.getElementById('pagination');
-            const totalPages = Math.ceil(sightings.length / itemsPerPage);
+            const totalPages = Math.ceil(filteredStatuses.length / itemsPerPage);
             pagination.innerHTML = `
                 <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
                     <a class="page-link" href="#" onclick="changePage('prev')">Previous</a>
@@ -113,7 +165,7 @@
         }
 
         window.changePage = function(action) {
-            const totalPages = Math.ceil(sightings.length / itemsPerPage);
+            const totalPages = Math.ceil(filteredStatuses.length / itemsPerPage);
 
             if (action === 'prev' && currentPage > 1) {
                 currentPage--;
@@ -127,6 +179,113 @@
         };
 
         displaySightings(currentPage);
+
+        window.filterSightings = function() {
+            const statusFilterValue = document.getElementById('statusFilter').value;
+            const municipalityFilterValue = document.getElementById('municipalityFilter').value;
+            const barangayFilterValue = document.getElementById('barangayFilter').value;
+            const dateFrom = document.getElementById('dateFrom').value;
+            const dateTo = document.getElementById('dateTo').value;
+
+            filteredStatuses = statuses.filter(status => {
+                const matchesStatus = statusFilterValue ? status.statustype === statusFilterValue : true;
+                const matchesMunicipality = municipalityFilterValue ? status.location.includes(municipalityFilterValue) : true;
+                const matchesBarangay = barangayFilterValue ? status.location.includes(barangayFilterValue) : true;
+                const matchesDateFrom = dateFrom ? new Date(status.onset_date) >= new Date(dateFrom) : true;
+                const matchesDateTo = dateTo ? new Date(status.onset_date) <= new Date(dateTo) : true;
+
+                return matchesStatus && matchesMunicipality && matchesBarangay && matchesDateFrom && matchesDateTo;
+            });
+
+            currentPage = 1;
+            displaySightings(currentPage);
+        }
+
+        window.resetFilter = function() {
+            document.getElementById('statusFilter').value = '';
+            document.getElementById('municipalityFilter').value = '';
+            document.getElementById('barangayFilter').innerHTML = '<option value="">Select Barangay</option>';
+            document.getElementById('dateFrom').value = '';
+            document.getElementById('dateTo').value = '';
+
+            filteredStatuses = statuses;
+            displaySightings(currentPage);
+        }
+
+        window.updateBarangayOptions = function() {
+            const municipalityFilter = document.getElementById('municipalityFilter').value;
+            const barangayFilter = document.getElementById('barangayFilter');
+
+            barangayFilter.innerHTML = '<option value="">Select Barangay</option>';
+
+            if (municipalityFilter) {
+                $.ajax({
+                    url: '{% url "get_barangays" %}',
+                    data: {
+                        'municipality': municipalityFilter
+                    },
+                    success: function(data) {
+                        data.forEach(function(barangay) {
+                            const option = document.createElement('option');
+                            option.value = barangay;
+                            option.textContent = barangay;
+                            barangayFilter.appendChild(option);
+                        });
+                    }
+                });
+            }
+        }
+
+        window.deleteStatus = function(statusId) {
+            const csrfToken = '{{ csrf_token }}';
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch(`delete/${statusId}`, {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRFToken': csrfToken,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({})
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            Swal.fire(
+                                'Deleted!',
+                                'Status has been deleted.',
+                                'success'
+                            ).then(() => {
+                                window.location.reload();
+                            });
+                        } else {
+                            Swal.fire(
+                                'Failed!',
+                                'Failed to delete status.',
+                                'error'
+                            );
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        Swal.fire(
+                            'Error!',
+                            'An error occurred. Please try again.',
+                            'error'
+                        );
+                    });
+                }
+            });
+        }
     });
 </script>
 {% endblock %}

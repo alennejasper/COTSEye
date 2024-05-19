@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -5,7 +6,15 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/daterangepicker/3.1/daterangepicker.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/min/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/daterangepicker@3.1/daterangepicker.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> <!-- Include Bootstrap JS for tabs -->
     <style>
         @media print {
             .print-button {
@@ -16,242 +25,294 @@
 </head>
 <body>
     <div>
-        <div class="container  mt-3">
+        <div class="container mt-3">
             <button class="btn btn-primary print-button" onclick="printPage()">Print</button>
+            <button class="btn btn-secondary print-button" onclick="exportToPDF()">Export to PDF</button>
         </div>
-    </div>
-
-    <div class = "status" id = "status-filter">
-        <form action = "" class = "status-form" method = "GET">
-            {% csrf_token %}
-
-            <div class = "card-header">
-                <header>Filter statuses</header>
-            </div>
-
-            <div class = "card-body">
-                <div class = "field">
-                    <div class = "column">
-                        <label for = "from-date">From</label> 
-                            
-                        <div class = "from-date">
-                            <input type = "date" value = "" id = "from-date" name = "from_date" required>                            
-                        </div>
-
-                        <label for = "to-date">To</label> 
-
-                        <div class = "to-date">
-                            <input type = "date" value = "" id = "to-date" name = "to_date" required>                            
-                        </div>
-                    </div>
-
-                    <div class = "column">
-                        <label for = "location">Location</label> 
-
-                        <select name = "location" id = "location">
-                            <option disabled selected value>Choose location</option>
-
-                            <option value = "each_location">Each location</option>
-
-                            {% for option in options %}
-                                <option value = "{{option.location.id}}">{{option.location}}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                </div>
-
-                <div class = "button">
-                    <a class = "filter-statuses" type = "submit">Filter</a>
-                </div>    
-            </div>
-        </form>
     </div>
 
     {% if messages %}
         {% for message in messages %}
-            {% if message.tags == "info" %}<script>Swal.fire({title: "Hey!", text: "{{message}}", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}})</script>
-            
-            {% elif message.tags == "success" %}<script>Swal.fire({title: "Yay!", text: "{{message}}", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}})</script>
-            
-            {% else %}<script>Swal.fire({title: "Oops!", text: "{{message}}", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}})</script>
-            
+            {% if message.tags == "info" %}
+                <script>
+                    Swal.fire({
+                        title: "Hey!",
+                        text: "{{ message }}",
+                        background: "#FFFFFF",
+                        icon: "warning",
+                        iconColor: "#154360",
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        confirmButtonColor: "#154360",
+                        customClass: {
+                            confirmButton: "info-button",
+                            title: "title"
+                        }
+                    })
+                </script>
+            {% elif message.tags == "success" %}
+                <script>
+                    Swal.fire({
+                        title: "Yay!",
+                        text: "{{ message }}",
+                        background: "#FFFFFF",
+                        icon: "success",
+                        iconColor: "#698F3F",
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        confirmButtonColor: "#698F3F",
+                        customClass: {
+                            confirmButton: "success-button",
+                            title: "title"
+                        }
+                    })
+                </script>
+            {% else %}
+                <script>
+                    Swal.fire({
+                        title: "Oops!",
+                        text: "{{ message }}",
+                        background: "#FFFFFF",
+                        icon: "error",
+                        iconColor: "#C90016",
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        confirmButtonColor: "#C90016",
+                        customClass: {
+                            confirmButton: "error-button",
+                            title: "title"
+                        }
+                    })
+                </script>
             {% endif %}    
         {% endfor %}
     {% endif %}
 
-    <script>
-        document.querySelector(".filter-statuses").onclick = function() {
-            document.querySelector(".status-form").submit();
-        }
-    </script>
+    <div class="container mt-5 form">
+        <form method="GET" class="row g-3">
+            <div class="col-md-4">
+                <label for="from_date" class="form-label">From Date</label>
+                <input type="date" id="from_date" name="from_date" class="form-control" value="{{ from_date }}">
+            </div>
+            <div class="col-md-4">
+                <label for="to_date" class="form-label">To Date</label>
+                <input type="date" id="to_date" name="to_date" class="form-control" value="{{ to_date }}">
+            </div>
+            <div class="col-md-4">
+                <label for="status" class="form-label">Status</label>
+                <select id="status" name="status" class="form-control">
+                    <option value="">All</option>
+                    {% for option in status_options %}
+                        <option value="{{ option.statustype }}" {% if option.statustype == selected_status %}selected{% endif %}>{{ option.statustype }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-12">
+                <label for="locations" class="form-label">Locations</label>
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    {% for municipality in municipalities %}
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link {% if forloop.first %}active{% endif %}" id="tab-{{ municipality.municipality|slugify }}" data-bs-toggle="tab" data-bs-target="#{{ municipality.municipality|slugify }}" type="button" role="tab" aria-controls="{{ municipality.municipality|slugify }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}">{{ municipality.municipality }}</button>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    {% for municipality in municipalities %}
+                        <div class="tab-pane fade {% if forloop.first %}show active{% endif %}" id="{{ municipality.municipality|slugify }}" role="tabpanel" aria-labelledby="tab-{{ municipality.municipality|slugify }}">
+                            <div class="form-control overflow-auto" style="height: 200px;">
+                                {% for location in location_options %}
+                                    {% if location.municipality == municipality.municipality %}
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="locations" value="{{ location.id }}" id="location{{ location.id }}" {% if location.id in selected_locations %}checked{% endif %}>
+                                            <label class="form-check-label" for="location{{ location.id }}">
+                                                {{ location.barangay }}, {{ location.municipality }}
+                                            </label>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-md-12 text-end mt-3">
+                <button type="submit" class="btn btn-primary">Filter</button>
+            </div>
+        </form>
+    </div>
 
-    <div>
-        <h2 class="text-center mt-5 text-primary-emphasis">
-            insert Logos and Repoprt Title Here (Header)
+    {% if from_date and to_date %}
+    <div class="text-center mt-5 mb-5">
+        <h2 class="text-center text-info">
+            Total No. of Caught COTS as of {{ from_date|date:'m/d/Y' }} to {{ to_date|date:'m/d/Y' }}
         </h2>
     </div>
-    <div>
-        <h2 class="text-center mt-5 text-primary-emphasis">
-            Insert TITLE here
-        </h2>
-    </div>
+    {% endif %}
+
     <div class="container mt-5">
+        <div class="container">
+            <canvas id="myChart"></canvas>
+        </div>
+        
         <table class="table table-bordered border-black">
             <thead>
                 <tr>
-                  <th class="text-center">Municipality</th>
-                  <th class="text-center">Barangay</th>
-                  <th class="text-center">Total No. of Valid Report Sightings</th>
-                  <th class="text-center">Total No. of Cots Captured</th>
+                    <th class="text-center">Date</th>
+                    <th class="text-center">Municipality</th>
+                    <th class="text-center">Barangay</th>
+                    <th class="text-center">Total No. of Cots Captured</th>
                 </tr>
-              </thead>
-              <tbody>
-                    {% for result in results %}
-                        <tr>
-                            <td class="text-center">{{result.location.barangay}}</td>
-                        
-                            <td class="text-center">{{result.location.municipality}}</td>
-                                                    
-                            <td class="text-center">{{valid_posts}}</td>
-
-                            <td class="text-center">{{result.caught_overall}}</td>
-                        </tr>
-                    {% endfor %}
-              </tbody>
+            </thead>
+            <tbody>
+                {% for result in results %}
+                    <tr>
+                        <td class="text-center">{{ result.onset_date }}</td>
+                        <td class="text-center">{{ result.location.municipality }}</td>
+                        <td class="text-center">{{ result.location.barangay }}</td>
+                        <td class="text-center">{{ result.caught_overall }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
         </table>
     </div>
-    <div class="text-center mt-5 mb-5">
-        <h2 class="text-center text-info">
-            Total No. of Caught COTS as of {{from_date | date:'m/d/y'}} to {{to_date | date:'m/d/y'}}
-        </h2>
-    </div>
-    <div class = "map-graph"></div>
 
-        <script>
-            var categories = [];
+    <script>
+        function printPage() {
+            const elementsToHide = document.querySelectorAll('.container.mt-3, .container.mt-5.form');
+            elementsToHide.forEach(element => {
+                element.style.display = 'none';
+            });
+            window.print();
+            elementsToHide.forEach(element => {
+                element.style.display = '';
+            });
+        }
 
-            var data = [];
-
-            {% for result in results %}
-                categories.push("{{result.location.barangay}}, {{result.location.municipality}}");
-
-                data.push({
-                    x: "{{result.location.barangay}}, {{result.location.municipality}}",
-
-                    y: {{result.caught_overall}}, fillColor: {{result.caught_overall}} < 25 ? "#698F3F" : {{result.caught_overall}} < 75 ? "#F4C430" : "#C90016"
-                });
-            {% endfor %}
-        
-            var configurations = {
-                series: [{
-                    name: "Caught Overall",
-
-                    data: data
-                }],
-
-                chart: {
-                    fontFamily: "Open Sans",
-
-                    height: 500,
-                    
-                    type: "bar",
-
-                    toolbar: {
-                        show: false
-                    },
-
-                    zoom: {
-                        enabled: false
-                    },
-                },
-
-                legend: {
-                    show: false  
-                },
-
-                plotOptions: {
-                    bar: {
-                        distributed: true,
-
-                        colors: {
-                            ranges: [{
-                                from: 0,
-
-                                to: 24,
-
-                                color: "#698F3F"
-
-                            }, {
-                                from: 25,
-
-                                to: 74,
-
-                                color: "#F4C430"
-
-                            }, {
-                                from: 75,
-
-                                to: undefined,
-
-                                color: "#C90016"
-                            }]
-                        }
-                    }
-                },
-
-                tooltip: {
-                    style: {
-                        fontSize: '14px',
-                    }
-                },
-
-                xaxis: {
-                    categories: categories,
-
-                    title: {
-                        text: "Coastal Barangays",
-
-                        style: {
-                            fontSize: "14px",
-
-                            fontWeight: "700",
-                        }
-                    },
-
-                    labels: {
-                        style: {
-                            fontSize: "14px", 
-
-                            fontWeight: "400"
-                        }
-                    }
-                },
-
-                yaxis: {
-                    title: {
-                        text: "COTS Caught",
-
-                        style: {
-                            fontSize: "14px",
-
-                            fontWeight: "700",
-                        }
-                    },
-
-                    labels: {
-                        style: {
-                            fontSize: "14px", 
-
-                            fontWeight: "400"
-                        }
-                    }
-                },
-            };
-        
-            var graph = new ApexCharts(document.querySelector(".map-graph"), configurations);
+        async function exportToPDF() {
+            const { jsPDF } = window.jspdf;
+            const pdf = new jsPDF('p', 'pt', 'a4');
+            const elementsToHide = document.querySelectorAll('.print-button, .filter-button, .container.mt-3, .container.mt-5.form');
             
-            graph.render();
-        </script>
-</script>
+            elementsToHide.forEach(element => {
+                element.style.display = 'none';
+            });
+
+            const canvas = await html2canvas(document.body, { scale: 2 });
+            const imgData = canvas.toDataURL('image/png');
+            const imgProps = pdf.getImageProperties(imgData);
+            const pdfWidth = pdf.internal.pageSize.getWidth();
+            const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+            pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+            pdf.save('report.pdf');
+
+            elementsToHide.forEach(element => {
+                element.style.display = '';
+            });
+        }
+
+        const chartData = JSON.parse('{{ chart_data|escapejs }}');
+        let labels = new Set();
+        const datasets = [];
+
+        // Define colors for datasets
+        const colors = [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+        ];
+
+        Object.keys(chartData).forEach((location, index) => {
+            chartData[location]['onset_dates'].forEach(date => labels.add(date));
+        });
+
+        labels = Array.from(labels).sort();
+
+        Object.keys(chartData).forEach((location, index) => {
+            const data = labels.map(date => {
+                const dateIndex = chartData[location]['onset_dates'].indexOf(date);
+                return dateIndex !== -1 ? chartData[location]['caught_overalls'][dateIndex] : 0;  // Fill missing dates with 0
+            });
+
+            datasets.push({
+                label: location,
+                data: data,
+                borderColor: colors[index % colors.length],  // Assign colors in a round-robin fashion
+                fill: false
+            });
+        });
+
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: datasets
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                title: {
+                    display: true,
+                    text: 'Caught Overall by Onset Date per Location'
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: true
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Onset Date'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Caught Overall'
+                        },
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+
+        document.getElementById('filter-button').addEventListener('click', () => {
+            const startDate = document.getElementById('from_date').value;
+            const endDate = document.getElementById('to_date').value;
+
+            if (startDate && endDate) {
+                const filteredLabels = labels.filter(date => date >= startDate && date <= endDate);
+                const filteredDatasets = datasets.map(dataset => {
+                    return {
+                        ...dataset,
+                        data: labels.map(date => {
+                            if (date >= startDate && date <= endDate) {
+                                const dateIndex = labels.indexOf(date);
+                                return dataset.data[dateIndex];
+                            } else {
+                                return null;
+                            }
+                        }).filter(dataPoint => dataPoint !== null)
+                    };
+                });
+
+                myChart.data.labels = filteredLabels;
+                myChart.data.datasets = filteredDatasets;
+                myChart.update();
+            }
+        });
+    </script>
 </body>
 </html>

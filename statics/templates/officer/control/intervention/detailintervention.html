@@ -1,0 +1,48 @@
+{% extends "officer/control/index/index.html" %}
+
+{% block content %}
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-md-8">
+            <h1 class="text-center">Intervention Details</h1>
+    
+            <div class="card mt-4">
+                <div class="card-body">
+                    <div class="card-header-card">
+                        <h2>{{ intervention.title }}</h2>
+                        <a href="{% url 'Officer Control Intervention Update' pk=intervention.id %}" class="btn btn-primary">Edit</a>
+                    </div>
+                    
+                  
+                    <p><strong>Location:</strong> {{ intervention.location }}</p>
+                    <p><strong>Caught Amount:</strong> {{ intervention.caught_amount }}</p>
+                    <p><strong>Details:</strong> {{ intervention.details }}</p>
+                    <p><strong>Hosting Agency:</strong> {{ intervention.hosting_agency }}</p>
+                    <p><strong>Intervention Date:</strong> {{ intervention.intervention_date }}</p>
+                    {% if intervention.intervention_photo %}
+                    <p><strong>Photo:</strong></p>
+                    <img src="{{ intervention.intervention_photo.url }}" alt="Intervention Photo" style="max-width: 100%; height: auto;">
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <h3>Other Interventions</h3>
+            <ul class="list-group">
+                {% for other in other_interventions %}
+                <li class="list-group-item"  style="margin-bottom: 2rem;">
+                    <a href="{% url 'Officer Control Intervention Detail' other.pk %}">
+                        <h5>{{ other.title }}</h5>
+                        
+                    </a>
+                    <p>Location:{{ other.location }}</p>
+                    <p>Date: {{ other.intervention_date }}</p>
+                    <p>Caught Amount: {{ other.caught_amount }}</p>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

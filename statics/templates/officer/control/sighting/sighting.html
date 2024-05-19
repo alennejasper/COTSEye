@@ -2,79 +2,91 @@
 
 {% block content %}
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+<script src = "https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 <div class="container-fluid mt-3">
     <div class="row">
         <div class="col-12 col-md-3">
             <div class="filtercont">
-                <p class="fs-3 mb-3">Filter</p>
-                <select id="municipalityFilter" class="form-select form-select-sm mb-3" onchange="updateBarangayOptions()">
+                <p style="font-size: 17px !important; font-weight: 500; color: rgb(28, 179, 234);" class="fs-3 mb-3">FILTER</p>
+                
+                <select id="municipalityFilter" class="form-select form-select-sm mb-3 select2" onchange="updateBarangayOptions()">
                     <option value="">Municipality</option>
                     {% for location in locations %}
                         <option value="{{ location.municipality }}">{{ location.municipality }}</option>
                     {% endfor %}
                 </select>
-
-                <select id="barangayFilter" class="form-select form-select-sm mb-3">
-                    <option value="">Select Barangay</option>
+                <br>
+                <br>
+                <select id="barangayFilter" class="form-select form-select-sm mb-3 select2">
+                    <option value="">Barangay</option>
                 </select>
 
-                <p class="mb-1">Date</p>
+                <p style="font-size: 15px; color: rgb(28, 186, 234);" scope="col" class="mb-1">Date</p>
+                
                 <div class="mb-3">
                     <label for="dateFrom" class="form-label">From:</label>
                     <input type="date" id="dateFrom" name="dateFrom" class="form-control form-control-sm">
                 </div>
+                
                 <div class="mb-3">
                     <label for="dateTo" class="form-label">To:</label>
                     <input type="date" id="dateTo" name="dateTo" class="form-control form-control-sm">
                 </div>
-                <p class="mb-1">Status</p>
+
+                <p style="font-size: 15px; color: rgb(28, 172, 234);" scope="col" class="mb-1">Status</p>
+                
                 <div class="form-check mb-2">
                     <input class="form-check-input" type="radio" name="status" id="statusPending" value="Pending">
                     <label class="form-check-label" for="statusPending">Pending</label>
                 </div>
+
                 <div class="form-check mb-2">
                     <input class="form-check-input" type="radio" name="status" id="statusValid" value="Valid">
                     <label class="form-check-label" for="statusValid">Valid</label>
                 </div>
+
                 <div class="form-check mb-2">
                     <input class="form-check-input" type="radio" name="status" id="statusInvalid" value="Invalid">
                     <label class="form-check-label" for="statusInvalid">Invalid</label>
                 </div>
+
                 <button type="button" class="filterbutton" onclick="applyFilter()">Apply Filter</button>
                 <button type="button" class="resetbutton" onclick="resetFilter()">Reset Filter</button>
             </div>
         </div>
+
         <div class="col-12 col-md-9">
             <div class="table-container mb-3">
-                <h2>All Sightings</h2>
-                <br>
+                <h2 style="font-size: 19px; color: rgb(52, 144, 242); border-bottom: 1px solid rgba(229, 229, 229); ">ALL SIGHTINGS</h2>
+
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th scope="col">Date Created</th>
-                            <th scope="col">Contributor</th>
-                            <th scope="col">Barangay</th>
-                            <th scope="col">Municipality</th>
-                            <th scope="col">Status</th>
-                            <th></th>
+                            <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Date Created</th>
+                            <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Contributor</th>
+                            <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Barangay</th>
+                            <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Municipality</th>
+                            <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Status</th>
+                            <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Actions</th>
                         </tr>
                     </thead>
+
                     <tbody class="table-group-divider" id="sightingsTable">
                         {% for post in posts %}
                             <tr data-id="{{ post.id }}">
-                                <td>{{ post.creation_date|date:'F j, Y, g:i a' }}</td>
+                                <td>{{ post.creation_date | date:'F j, Y, g:i a' }}</td>
                                 <td>{{ post.user }}</td>
                                 <td>{{ post.location.barangay }}</td>
                                 <td>{{ post.location.municipality }}</td>
-                                <td class="{{ post.post_status }}">{{ post.post_status }}</td>
+                                <td class="{% if post.post_status == 'Valid' %} valid-status {% elif post.post_status == 'Invalid' %} invalid-status {% elif post.post_status == 'Pending' %} pending-status {% endif %}">{{ post.post_status }}</td>
                                 <td>
                                     <div class="button-container">
-                                        <select onchange="changeStatus({{ post.id }}, this.value)">
+                                        <select id="status-select-{{ post.id }}" onchange="changeStatus({{ post.id }}, this.value)" {% if post.post_status in 'Valid' or post.post_status in 'Invalid' %}disabled{% endif %}>
                                             <option value="">Change Status</option>
-                                            <option value="Valid" {% if post.post_status == "Valid" %}selected{% endif %}>Valid</option>
-                                            <option value="Invalid" {% if post.post_status == "Invalid" %}selected{% endif %}>Invalid</option>
+                                            <option value="Valid" {% if post.post_status == 'Valid' %}selected{% endif %}>Valid</option>
+                                            <option value="Invalid" {% if post.post_status == 'Invalid' %}selected{% endif %}>Invalid</option>
                                         </select>
                                         <button class="button-29" onclick="location.href='{% url 'Officer Control Sighting Read' post.id %}'">See more</button>
                                     </div>
@@ -83,6 +95,7 @@
                         {% endfor %}
                     </tbody>
                 </table>
+
                 <nav>
                     <ul class="pagination justify-content-center" id="pagination">
                         <li class="page-item" id="previousPage">
@@ -100,7 +113,20 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
 <script>
+    $(document).ready(function() {
+        // Initialize Select2 on the select elements
+        $('.select2').select2();
+
+        // Disable status change for posts with status "Valid" or "Invalid"
+        {% for post in posts %}
+            if (['Valid', 'Invalid'].includes('{{ post.post_status }}')) {
+                $('#status-select-{{ post.id }}').prop('disabled', true);
+            }
+        {% endfor %}
+    });
 
     const locations = [
         {% for location in locations %}
@@ -109,33 +135,35 @@
     ];
 
     function updateBarangayOptions() {
-        const municipalityFilter = document.getElementById('municipalityFilter').value;
-        const barangayFilter = document.getElementById('barangayFilter');
+        const municipalityFilter = document.getElementById("municipalityFilter").value;
+        const barangayFilter = document.getElementById("barangayFilter");
         
-        barangayFilter.innerHTML = '<option value="">Select Barangay</option>';
+        barangayFilter.innerHTML = "<option value=''>Select Barangay</option>";
 
         if (municipalityFilter) {
             $.ajax({
-                url: '{% url "get_barangays" %}',
+                url: "{% url 'get_barangays' %}",
                 data: {
-                    'municipality': municipalityFilter
+                    "municipality": municipalityFilter
                 },
                 success: function(data) {
                     data.forEach(function(barangay) {
-                        const option = document.createElement('option');
+                        const option = document.createElement("option");
                         option.value = barangay;
                         option.textContent = barangay;
                         barangayFilter.appendChild(option);
                     });
+
+                    // Re-initialize Select2 for the updated barangay options
+                    $('#barangayFilter').select2();
                 }
             });
         }
     }
 
-
     const sightingsData = [
         {% for post in posts %}
-            { id: {{ post.id }}, date: "{{ post.creation_date|date:'F j, Y, g:i a' }}", user: "{{ post.user }}", barangay: "{{ post.location.barangay }}", municipality: "{{ post.location.municipality }}", status: "{{ post.post_status }}" },
+            {id: {{ post.id }}, date: "{{ post.creation_date | date:'F j, Y, g:i a' }}", user: "{{ post.user }}", barangay: "{{ post.location.barangay }}", municipality: "{{ post.location.municipality }}", status: "{{ post.post_status }}"},
         {% endfor %}
     ];
 
@@ -144,15 +172,18 @@
     let filteredData = sightingsData;
 
     function displayTableData(page) {
-        const tableBody = document.getElementById('sightingsTable');
+        const tableBody = document.getElementById("sightingsTable");
         tableBody.innerHTML = "";
+
         const start = (page - 1) * rowsPerPage;
         const end = start + rowsPerPage;
         const pageData = filteredData.slice(start, end);
 
         pageData.forEach(item => {
             const statusClass = getStatusClass(item.status);
-            const baseUrl = "{% url 'Officer Control Sighting Read' id=0 %}".replace('0', item.id);
+            const baseUrl = "{% url 'Officer Control Sighting Read' id=0 %}".replace("0", item.id);
+            const disabled = (item.status === "Valid" || item.status === "Invalid") ? "disabled" : "";
+
             const row = `<tr data-id="${item.id}">
                 <td>${item.date}</td>
                 <td>${item.user}</td>
@@ -161,7 +192,7 @@
                 <td class="${statusClass}">${item.status}</td>
                 <td>
                     <div class="button-container">
-                        <select onchange="changeStatus(${item.id}, this.value)">
+                        <select onchange="changeStatus(${item.id}, this.value)" ${disabled}>
                             <option value="">Change Status</option>
                             <option value="Valid" ${item.status === "Valid" ? "selected" : ""}>Valid</option>
                             <option value="Invalid" ${item.status === "Invalid" ? "selected" : ""}>Invalid</option>
@@ -173,8 +204,8 @@
             tableBody.innerHTML += row;
         });
 
-        document.getElementById('previousPage').classList.toggle('disabled', page === 1);
-        document.getElementById('nextPage').classList.toggle('disabled', end >= filteredData.length);
+        document.getElementById("previousPage").classList.toggle("disabled", page === 1);
+        document.getElementById("nextPage").classList.toggle("disabled", end >= filteredData.length);
     }
 
     function changePage(direction) {
@@ -188,9 +219,8 @@
     }
 
     function updatePagination() {
-        const pagination = document.getElementById('pagination');
+        const pagination = document.getElementById("pagination");
         const totalPages = Math.ceil(filteredData.length / rowsPerPage);
-        
         pagination.innerHTML = `
             <li class="page-item" id="previousPage">
                 <a class="page-link" href="#" onclick="changePage('prev')">Previous</a>
@@ -199,10 +229,9 @@
                 <a class="page-link" href="#" onclick="changePage('next')">Next</a>
             </li>
         `;
-
         for (let i = 1; i <= totalPages; i++) {
-            const pageItem = document.createElement('li');
-            pageItem.className = 'page-item' + (i === currentPage ? ' active' : '');
+            const pageItem = document.createElement("li");
+            pageItem.className = "page-item" + (i === currentPage ? " active" : "");
             pageItem.innerHTML = `<a class="page-link" href="#" onclick="goToPage(${i})">${i}</a>`;
             pagination.insertBefore(pageItem, document.getElementById('nextPage'));
         }
@@ -218,85 +247,71 @@
         try {
             const dateTimeRegex = /(\w+ \d+, \d+), (\d+:\d+ [ap]\.m\.)/;
             const match = dateTimeRegex.exec(dateString);
-
             if (!match) {
-                throw new Error('Invalid date format');
+                throw new Error("Date format is invalid.");
             }
-
             const [_, datePart, timePart] = match;
-
-            const [month, dayWithComma, year] = datePart.split(' ');
-            const day = dayWithComma.replace(',', '');
+            const [month, dayWithComma, year] = datePart.split(" ");
+            const day = dayWithComma.replace(",", "");
             if (!month || !day || !year) {
-                throw new Error('Invalid date format');
+                throw new Error("Date format is invalid.");
             }
-
-            const [time, period] = timePart.split(' ');
+            const [time, period] = timePart.split(" ");
             if (!time || !period) {
-                throw new Error('Invalid time format');
+                throw new Error("Time format is invalid.");
             }
-
-            let [hours, minutes] = time.split(':').map(Number);
+            let [hours, minutes] = time.split(":").map(Number);
             if (isNaN(hours) || isNaN(minutes)) {
-                throw new Error('Invalid time format');
+                throw new Error("Time format is invalid.");
             }
-
             if (period.toLowerCase() === 'p.m.' && hours < 12) {
                 hours += 12;
             } else if (period.toLowerCase() === 'a.m.' && hours === 12) {
                 hours = 0;
             }
-
             const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
             const monthIndex = monthNames.indexOf(month);
             if (monthIndex === -1) {
-                throw new Error('Invalid month');
+                throw new Error("Month format is invalid.");
             }
-
             return new Date(year, monthIndex, parseInt(day), hours, minutes);
         } catch (error) {
-            console.error('Failed to parse date:', error);
+            console.error("Failed to parse date:", error);
             return null;
         }
     }
 
     function applyFilter() {
-        const municipality = document.getElementById('municipalityFilter').value;
-        const barangay = document.getElementById('barangayFilter').value;
-        const dateFrom = document.getElementById('dateFrom').value;
-        const dateTo = document.getElementById('dateTo').value;
-        const status = document.querySelector('input[name="status"]:checked')?.value;
-
+        const municipality = document.getElementById("municipalityFilter").value;
+        const barangay = document.getElementById("barangayFilter").value;
+        const dateFrom = document.getElementById("dateFrom").value;
+        const dateTo = document.getElementById("dateTo").value;
+        const status = document.querySelector("input[name='status']:checked")?.value;
         const dateFromObj = dateFrom ? new Date(dateFrom) : null;
         const dateToObj = dateTo ? new Date(dateTo) : null;
-
         filteredData = sightingsData.filter(item => {
             const itemDateObj = parseDate(item.date);
-
             const municipalityMatch = !municipality || item.municipality === municipality;
             const barangayMatch = !barangay || item.barangay === barangay;
             const dateFromMatch = !dateFrom || itemDateObj >= dateFromObj;
             const dateToMatch = !dateTo || itemDateObj <= dateToObj;
             const statusMatch = !status || item.status === status;
-
             return municipalityMatch && barangayMatch && dateFromMatch && dateToMatch && statusMatch;
         });
-
         currentPage = 1;
         displayTableData(currentPage);
         updatePagination();
     }
 
     function resetFilter() {
-        document.getElementById('municipalityFilter').value = '';
-        document.getElementById('barangayFilter').innerHTML = '<option value="">Select Barangay</option>';
-        document.getElementById('dateFrom').value = '';
-        document.getElementById('dateTo').value = '';
+        document.getElementById("municipalityFilter").value = "";
+        document.getElementById("barangayFilter").innerHTML = "<option value=''>Select Barangay</option>";
+        document.getElementById("dateFrom").value = "";
+        document.getElementById("dateTo").value = "";
         const checkedStatus = document.querySelector('input[name="status"]:checked');
         if (checkedStatus) {
             checkedStatus.checked = false;
         }
-
         filteredData = sightingsData;
         currentPage = 1;
         displayTableData(currentPage);
@@ -316,7 +331,6 @@
 
     function changeStatus(postId, status) {
         if (!status) return;
-
         Swal.fire({
             title: 'Are you sure?',
             text: `You are about to change the status to "${status}".`,
@@ -361,11 +375,6 @@
             case 'Invalid': return 'status-invalid';
             default: return '';
         }
-    }
-
-    function formatDate(dateString) {
-        const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
-        return new Date(dateString).toLocaleDateString(undefined, options);
     }
 
     document.addEventListener('DOMContentLoaded', () => {

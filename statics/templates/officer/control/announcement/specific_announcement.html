@@ -7,7 +7,12 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-body">
-                    <h1 class="card-title">{{ announcement.title }}</h1>
+                    <div class="card-header-card">
+                        <h1 class="card-title">{{ announcement.title }}</h1>
+                        <a href="{% url 'Officer Control Update Announcement' pk=announcement.id %}" class="btn btn-primary">Edit</a>
+                    </div>
+                    
+                   
                     <p class="card-text">{{ announcement.context }}</p>
                     <img src="{{ announcement.announcement_photo.url }}" alt="{{ announcement.title }}" class="img-fluid">
                     <p class="card-text"><small class="text-muted">{{ announcement.release_date }}</small></p>

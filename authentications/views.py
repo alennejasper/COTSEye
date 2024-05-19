@@ -9,12 +9,15 @@ from allauth.socialaccount.signals import social_account_updated
 from authentications.forms import AccountForm, UserForm, ProfileForm
 from authentications.models import *
 from auxiliaries.models import Announcement
-from managements.models import Status, Intervention
+from managements.models import Status, Intervention, Location
 from reports.models import Post
 from django.http import JsonResponse
 from django.utils import timezone
 import base64
 import json
+from django.db.models import F, Value
+from django.db.models.functions import Concat
+
 
 
 # Create your views here.
@@ -639,9 +642,31 @@ def OfficerCheck(account):
     
 
 def OfficerControlHome(request):
-    context = {}
+    # Fetch distinct municipalities
+    municipalities = Location.objects.values('municipality').distinct()
+    
+    # Fetch distinct Location objects with statuses
+    locations = Location.objects.filter(status__isnull=False).distinct()
+    
+    data = {}
+
+    for location in locations:
+        location_str = f"{location.barangay}, {location.municipality}"
+        statuses = Status.objects.filter(location=location).order_by('onset_date')
+        data[location_str] = {
+            'onset_dates': [status.onset_date.strftime('%Y-%m-%d') for status in statuses],
+            'caught_overalls': [status.caught_overall for status in statuses]
+        }
+
+    context = {
+        'chart_data': json.dumps(data),
+        'locations': locations,
+        'municipalities': municipalities
+    }
     
     return render(request, "officer/control/home/home.html", context)
+
+
 
 @login_required(login_url = "officer:Officer Control Login")
 @user_passes_test(OfficerCheck, login_url = "officer:Officer Control Login")

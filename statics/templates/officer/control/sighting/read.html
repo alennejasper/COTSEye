@@ -1,103 +1,112 @@
 {% extends "officer/control/index/index.html" %}
 
 {% block content %}
-    <div class="container-fluid mt-3">
-        <div class="row">
-            <!-- Main post content -->
-            <div class="col-md-8">
-                <div class="card mb-4" style="padding: 12px;">
-                    <div id="postCarousel" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner">
-                            {% for photo in post_photos %}
-                                <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                                    <img src="{{ photo.post_photo.url }}" class="d-block w-100 carousel-image" alt="...">
-                                </div>
-                            {% endfor %}
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#postCarousel" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#postCarousel" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
-                    <div class="card-body">
-                        <p><strong>Contributor: </strong>{{ post.user }}</p>
-                        <p><strong>Barangay: </strong>{{ post.location.barangay }}</p>
-                        <p><strong>Municipality: </strong>{{ post.location.municipality }}</p>
-                        <p><strong>Created Date: </strong>{{ post.creation_date }}</p>
-                        <p><strong>Description: </strong>{{ post.description }}</p>
-                        <p><strong>Status: </strong>{{ post.post_status }}</p>
-                        
-                    </div>
-                    <div class="button-container">
-                        <button class="btn btn-success" onclick="changeStatus({{ post.id }})">Valid</button>
-                        <button class="btn btn-danger" onclick="invalidStatus({{ post.id }})">Invalid</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Sidebar with other posts -->
-            <div class="col-md-4">
-                <h3 class="mt-4">Other Posts</h3>
-                <div class="list-group">
-                    {% for item in other_posts_with_photos %}
-                        <a href="{% url 'Officer Control Sighting Read' item.post.id %}" class="list-group-item list-group-item-action d-flex align-items-center">
-                            {% if item.first_photo %}
-                                <img src="{{ item.first_photo.post_photo.url }}" class="img-thumbnail mr-3" alt="Post photo" style="width: 100px; height: 95px; object-fit: cover; margin-right: 8px;">
-                            {% else %}
-                                <img src="path/to/default_image.jpg" class="img-thumbnail mr-3" alt="No photo available" style="width: 100px; height: auto;">
-                            {% endif %}
-                            <div>
-                                <strong>{{ item.post.user }}</strong><br>
-                                <small>{{ item.post.location.barangay }}, {{ item.post.location.municipality }}</small><br>
-                                <small>{{ item.post.capture_date }}</small>
+<div class="container-fluid mt-3">
+    <div class="row">
+        <!-- Main post content -->
+        <div class="col-md-8">
+            <div class="card mb-4" style="padding: 12px;">
+                <div id="postCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        {% for photo in post_photos %}
+                            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                <img src="{{ photo.post_photo.url }}" class="d-block w-100 carousel-image" alt="...">
                             </div>
-                        </a>
-                    {% endfor %}
+                        {% endfor %}
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#postCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#postCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
                 </div>
+                <div class="card-body">
+                    <p><strong>Contributor: </strong>{{ post.user }}</p>
+                    <p><strong>Barangay: </strong>{{ post.location.barangay }}</p>
+                    <p><strong>Municipality: </strong>{{ post.location.municipality }}</p>
+                    <p><strong>Created Date: </strong>{{ post.creation_date }}</p>
+                    <p><strong>Description: </strong>{{ post.description }}</p>
+                    <p><strong>Status: </strong>{{ post.post_status }}</p>
+                </div>
+                
+                <!-- Button container for non-pending status (all buttons disabled) -->
+                {% if post.post_status != 'Pending' %}
+                <div class="button-container">
+                    <button class="btn btn-success" onclick="changeStatus({{ post.id }})" disabled>Valid</button>
+                    <button class="btn btn-danger" onclick="invalidStatus({{ post.id }})" disabled>Invalid</button>
+                </div>
+                {% else %}
+                <!-- Button container for pending status (buttons enabled) -->
+                <div class="button-container">
+                    <button class="btn btn-success" onclick="changeStatus({{ post.id }})">Valid</button>
+                    <button class="btn btn-danger" onclick="invalidStatus({{ post.id }})">Invalid</button>
+                </div>
+                {% endif %}
             </div>
-            
         </div>
+
+        <!-- Sidebar with other posts -->
+        <div class="col-md-4">
+            <h3 class="mt-4">Other Posts</h3>
+            <div class="list-group">
+                {% for item in other_posts_with_photos %}
+                    <a href="{% url 'Officer Control Sighting Read' item.post.id %}" class="list-group-item list-group-item-action d-flex align-items-center">
+                        {% if item.first_photo %}
+                            <img src="{{ item.first_photo.post_photo.url }}" class="img-thumbnail mr-3" alt="Post photo" style="width: 100px; height: 95px; object-fit: cover; margin-right: 8px;">
+                        {% else %}
+                            <img src="path/to/default_image.jpg" class="img-thumbnail mr-3" alt="No photo available" style="width: 100px; height: auto;">
+                        {% endif %}
+                        <div>
+                            <strong>{{ item.post.user }}</strong><br>
+                            <small>{{ item.post.location.barangay }}, {{ item.post.location.municipality }}</small><br>
+                            <small>{{ item.post.capture_date }}</small>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+        
     </div>
+</div>
 
-    <script>
-        function changeStatus(postId) {
-            $.ajax({
-                type: 'POST',
-                url: '{% url "Officer Control Sighting Valid" %}',
-                data: {
-                    'post_id': postId,
-                    'csrfmiddlewaretoken': '{{ csrf_token }}'
-                },
-                success: function(response) {
-                    if (response.success) {
-                        location.reload();
-                    } else {
-                        alert('Failed to change status.');
-                    }
+<script>
+    function changeStatus(postId) {
+        $.ajax({
+            type: 'POST',
+            url: '{% url "Officer Control Sighting Valid" %}',
+            data: {
+                'post_id': postId,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function(response) {
+                if (response.success) {
+                    location.reload();
+                } else {
+                    alert('Failed to change status.');
                 }
-            });
-        }
+            }
+        });
+    }
 
-        function invalidStatus(postId) {
-            $.ajax({
-                type: 'POST',
-                url: '{% url "Officer Control Sighting Invalid" %}',
-                data: {
-                    'post_id': postId,
-                    'csrfmiddlewaretoken': '{{ csrf_token }}'
-                },
-                success: function(response) {
-                    if (response.success) {
-                        location.reload();
-                    } else {
-                        alert('Failed to change status.');
-                    }
+    function invalidStatus(postId) {
+        $.ajax({
+            type: 'POST',
+            url: '{% url "Officer Control Sighting Invalid" %}',
+            data: {
+                'post_id': postId,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function(response) {
+                if (response.success) {
+                    location.reload();
+                } else {
+                    alert('Failed to change status.');
                 }
-            });
-        }
-    </script>
+            }
+        });
+    }
+</script>
 {% endblock %}

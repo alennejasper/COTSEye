@@ -2,59 +2,45 @@
 
 {% block content %}
 <div class="container-fluid mt-3">
-    <h1 class="text-center">Add New Announcement</h1>
+    <h1 class="text-center">Add Intervention</h1>
     
     <div class="card mt-4">
         <div class="card-body">
-            <form id="announcementForm">
+            <form id="interventionForm" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                
+
+
                 <div class="form-group">
-                    <label for="announcementTitle">Title</label>
-                    <input type="text" class="form-control" id="announcementTitle" required>
+                    <h2>Photo Preview</h2>
+                    <img id="photoPreview" src="#" alt="Image Preview" style="display: none; max-width: 100%; height: auto; margin:12px;">
                 </div>
-                <div class="form-group">
-                    <label for="announcementDate">Date</label>
-                    <input type="date" class="form-control" id="announcementDate" required>
-                </div>
-                <div class="form-group">
-                    <label for="announcementLocation">Location</label>
-                    <input type="text" class="form-control" id="announcementLocation" required>
-                </div>
-                <div class="form-group">
-                    <label for="announcementContext">Context</label>
-                    <textarea class="form-control" id="announcementContext" rows="3" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="announcementHostingAgency">Hosting Agency</label>
-                    <input type="text" class="form-control" id="announcementHostingAgency" required>
-                </div>
-                <div class="form-group">
-                    <label for="announcementPhoto">Photo</label>
-                    <input type="file" class="form-control-file" id="announcementPhoto">
-                </div>
-                <button type="submit" class="btn btn-primary">Add Announcement</button>
+                
+                <button type="submit" class="btn btn-primary">Add Intervention</button>
             </form>
         </div>
     </div>
 </div>
 
 <script>
-    document.getElementById('announcementForm').addEventListener('submit', function(event) {
-        event.preventDefault();
+    document.getElementById('interventionPhoto').addEventListener('change', function(event) {
+        const photoPreview = document.getElementById('photoPreview');
+        const file = event.target.files[0];
         
-        let title = document.getElementById('announcementTitle').value;
-        let date = document.getElementById('announcementDate').value;
-        let location = document.getElementById('announcementLocation').value;
-        let context = document.getElementById('announcementContext').value;
-        let hosting_agency = document.getElementById('announcementHostingAgency').value;
-        let photo = document.getElementById('announcementPhoto').files[0];
-
-        let announcement = { title, date, location, context, hosting_agency, photo };
-
-        let announcements = JSON.parse(localStorage.getItem('announcements')) || [];
-        announcements.push(announcement);
-        localStorage.setItem('announcements', JSON.stringify(announcements));
-
-        window.location.href = '{% url "officer_control_announcement" %}';
+        if (file) {
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                photoPreview.src = e.target.result;
+                photoPreview.style.display = 'block';
+            }
+            
+            reader.readAsDataURL(file);
+        } else {
+            photoPreview.src = '#';
+            photoPreview.style.display = 'none';
+        }
     });
 </script>
 {% endblock %}

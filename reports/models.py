@@ -146,6 +146,7 @@ class PostObservation(models.Model):
     
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, help_text="Designates the foreign key of the User model.", verbose_name="User")
+    validated_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='validated_posts', help_text="Designates the user who validated the post.", verbose_name="Validated By")
     description = models.TextField(max_length=1500, help_text="Designates the description of the post.", verbose_name="Description")
     capture_date = models.DateTimeField(default=datetime.datetime.now, help_text="Designates the capture date and time of the post.", verbose_name="Capture Date")
     post_photos = models.ManyToManyField(PostPhoto, blank=True, through="PostGallery", help_text="Designates the foreign key of the Post Photo model.", verbose_name="Post Photos")

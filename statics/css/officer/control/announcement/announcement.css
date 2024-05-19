@@ -2,4 +2,44 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
+
+} .card-header-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+.card-title {
+    margin: 0; /* Remove default margin */
+}
+.card-header button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 5px 10px;
+}
+
+#announcementsTable td{
+    font-size: 12px;
+    font-family: sans-serif;
+
+}
+
+.btn-primary{
+    font-size: 12px;
+}
+
+.btn-danger{
+    font-size: 12px;
+}
+
+.btn-sm{
+    font-size: 12px;
+}
+
+.manage-announcement{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
