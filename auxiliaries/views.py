@@ -1,11 +1,13 @@
+from datetime import timedelta
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.db.models import Max
 from django.http import FileResponse
 from django.shortcuts import render, redirect, get_object_or_404
+from django.utils import timezone
 from django.utils.encoding import smart_str
 from auxiliaries.models import *
-from authentications.views import ContributorCheck
+from authentications.views import OfficerCheck, ContributorCheck
 from managements.models import Status
 from reports.models import Post
 from auxiliaries.forms import AnnouncementForm
@@ -160,7 +162,8 @@ def ContributorServiceMap(request):
 
     return render(request, "contributor/service/map/map.html", context)
 
-
+@login_required(login_url = "Contributor Service Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
 def ContributorServiceResource(request):
     username = request.user.username
 
@@ -177,57 +180,135 @@ def ContributorServiceResource(request):
     return render(request, "contributor/service/resource/resource.html", context)
 
 
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def OfficerControlAnnouncement(request):
+    notification_life = timezone.now() - timedelta(days = 30) 
+
+    unread_posts = Post.objects.filter(read_status = False, creation_date__gte = notification_life).order_by("-creation_date")[:5]
+
     announcements = Announcement.objects.all()
 
     locations = Location.objects.all()
 
-    context = {"announcements": announcements, "locations": locations}
+    context = {"unread_posts": unread_posts, "announcements": announcements, "locations": locations}
 
     return render(request, "officer/control/announcement/announcement.html", context)
 
 
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def officer_control_announcement(request, pk):
-    announcement = get_object_or_404(Announcement, pk=pk)
-    other_announcements = Announcement.objects.exclude(pk=pk)
-    return render(request, "officer/control/announcement/specific_announcement.html", {
-        'announcement': announcement,
-        'other_announcements': other_announcements
-    })
+    notification_life = timezone.now() - timedelta(days = 30)
 
+    unread_posts = Post.objects.filter(read_status = False, creation_date__gte = notification_life).order_by("-creation_date")[:5]
 
+    announcement = get_object_or_404(Announcement, pk = pk)
+
+    other_announcements = Announcement.objects.exclude(pk = pk)
+
+    context = {"unread_posts": unread_posts, "announcement": announcement, "other_announcements": other_announcements}
+
+    return render(request, "officer/control/announcement/specific_announcement.html", context)
+
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def officercontroladdannouncement(request):
-    if request.method == 'POST':
+    notification_life = timezone.now() - timedelta(days = 30)
+
+    unread_posts = Post.objects.filter(read_status = False, creation_date__gte = notification_life).order_by("-creation_date")[:5]
+
+    locations = Location.objects.all().distinct("municipality")
+
+    if request.method == "POST":
         form = AnnouncementForm(request.POST, request.FILES)
+
         if form.is_valid():
-            form.save()
-            return redirect('Officer Control Announcement')  # Redirect to the list of announcements or wherever you want
+            municipality = request.POST.get("municipality")
+
+            barangay = request.POST.get("barangay")
+
+            try:
+                location = Location.objects.get(municipality = municipality, barangay = barangay)
+
+                announcement = form.save(commit = False)
+
+                announcement.location = location
+
+                announcement.save()
+
+            except Location.DoesNotExist:
+                form.add_error(None, "The selected location does not exist.")
+
+            return redirect("Officer Control Announcement")
+        
     else:
         form = AnnouncementForm()
-    return render(request, "officer/control/announcement/addannouncement.html", {'form': form})
 
+    context = {"unread_posts": unread_posts, "form": form, "locations": locations}
+
+    return render(request, "officer/control/announcement/addannouncement.html", context)
+
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def get_barangays(request):
-    municipality = request.GET.get('municipality')
-    barangays = Location.objects.filter(municipality=municipality).values_list('barangay', flat=True).distinct()
-    return JsonResponse(list(barangays), safe=False)
+    municipality = request.GET.get("municipality")
 
+    barangays = Location.objects.filter(municipality = municipality).values_list("barangay", flat = True).distinct()
+
+    return JsonResponse(list(barangays), safe = False)
+
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def officercontrolupdateannouncement(request, pk):
-    announcement = get_object_or_404(Announcement, pk=pk)
-    if request.method == 'POST':
-        form = AnnouncementForm(request.POST, request.FILES, instance=announcement)
+    notification_life = timezone.now() - timedelta(days = 30)
+
+    unread_posts = Post.objects.filter(read_status = False, creation_date__gte = notification_life).order_by("-creation_date")[:5]
+
+    announcement = get_object_or_404(Announcement, pk = pk)
+
+    locations = Location.objects.all().distinct("municipality")
+
+    if request.method == "POST":
+        form = AnnouncementForm(request.POST, request.FILES, instance = announcement)
+
         if form.is_valid():
-            form.save()
-            return redirect('Officer Control Announcement')
+            municipality = request.POST.get("municipality")
+
+            barangay = request.POST.get("barangay")
+
+            try:
+                location = Location.objects.get(municipality = municipality, barangay = barangay)
+
+                updated_announcement = form.save(commit = False)
+
+                updated_announcement.location = location
+
+                updated_announcement.save()
+
+                return redirect("Officer Control Announcement")
+            
+            except Location.DoesNotExist:
+                form.add_error(None, "The selected location does not exist.")
+
     else:
         form = AnnouncementForm(instance=announcement)
-    return render(request, "officer/control/announcement/updateannouncement.html", {'form': form, 'announcement': announcement})
+    
+    context = {"unread_posts": unread_posts, "form": form, "announcement": announcement, "locations": locations}
 
+    return render(request, "officer/control/announcement/updateannouncement.html", context)
+
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def officercontroldeleteannouncement(request, pk):
-    announcement = get_object_or_404(Announcement, pk=pk)
-    if request.method == 'DELETE':
+    announcement = get_object_or_404(Announcement, pk = pk)
+
+    if request.method == "DELETE":
         announcement.delete()
-        return JsonResponse({'success': True})
-    return JsonResponse({'success': False})
+
+        return JsonResponse({"success": True})
+    
+    return JsonResponse({"success": False})
 
 
 def ServiceResourceLinkReadRedirect(request, id):

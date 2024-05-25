@@ -23,7 +23,7 @@ class AccountManager(BaseUserManager):
         return user
 
     def create_superuser(self, username, password, **other_fields):
-        username = "cotseye/" + username
+        username = username
 
         usertype, created = UserType.objects.get_or_create(is_superuser = True)
 

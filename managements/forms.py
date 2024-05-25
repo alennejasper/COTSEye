@@ -9,21 +9,21 @@ class InterventionForm(forms.ModelForm):
         model = Intervention
         fields = [
             'title',
-            'location',
             'caught_amount',
             'details',
             'hosting_agency',
             'intervention_photo',
-            'intervention_date'
+            'intervention_date',
+            'volunteer_amount'
         ]
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
-            'location': forms.TextInput(attrs={'class': 'form-control'}),
             'caught_amount': forms.NumberInput(attrs={'class': 'form-control'}),
             'details': forms.Textarea(attrs={'class': 'form-control'}),
             'hosting_agency': forms.TextInput(attrs={'class': 'form-control'}),
             'intervention_photo': forms.FileInput(attrs={'class': 'form-control', 'id': 'interventionPhoto'}),
             'intervention_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'volunteer_amount': forms.NumberInput(attrs={'class': 'form-control'}),
         }
 
 class StatusForm(forms.ModelForm):

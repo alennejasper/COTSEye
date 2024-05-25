@@ -1,7 +1,10 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.core.serializers import serialize
+from django.core.serializers.json import DjangoJSONEncoder
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
+from django.utils.dateparse import parse_date
 from authentications.views import ContributorCheck, OfficerCheck, AdministratorCheck
 from collections import Counter
 from authentications.models import User
@@ -13,9 +16,10 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.db.models import Q
 
-import json
 
 import datetime
+import json
+
 
 # Create your views here.
 def PublicServiceIntervention(request):
@@ -77,185 +81,265 @@ def ContributorServiceInterventionRead(request, id):
 
     return render(request, "contributor/service/intervention/read.html", context)
 
-from django.core.serializers import serialize
-
-from django.core.serializers.json import DjangoJSONEncoder
 
 def serialize_interventions(interventions):
     interventions_list = []
+
     for intervention in interventions:
-        interventions_list.append({
-            'id': intervention.id,
-            'title': intervention.title,
-            'intervention_date': intervention.intervention_date,
-            'location': intervention.location.barangay + ", " + intervention.location.municipality,  # Assuming location has a 'name' field
-            'details': intervention.details,
-            'hosting_agency': intervention.hosting_agency,
-        })
-    return json.dumps(interventions_list, cls=DjangoJSONEncoder)
+        interventions_list.append({"id": intervention.id, "title": intervention.title, "intervention_date": intervention.intervention_date, "location": intervention.location.barangay + ", " + intervention.location.municipality, "details": intervention.details, "hosting_agency": intervention.hosting_agency})
+    
+    return json.dumps(interventions_list, cls = DjangoJSONEncoder)
 
+
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def OfficerControlIntervention(request):
-    locations = Location.objects.all()
-    interventions = Intervention.objects.all()
-    interventions_json = serialize_interventions(interventions)
-    hosting_agencies = interventions.values('hosting_agency').distinct()  # Get distinct hosting agencie
+    notification_life = timezone.now() - timedelta(days = 30) 
 
-    context = {
-        'interventions': interventions,
-        'interventions_json': interventions_json,
-        "locations": locations,
-        'hosting_agencies': hosting_agencies,
-    }
+    unread_posts = Post.objects.filter(read_status = False, creation_date__gte = notification_life).order_by("-creation_date")[:5]
+
+    locations = Location.objects.all()
+
+    interventions = Intervention.objects.all()
+
+    interventions_json = serialize_interventions(interventions)
+
+    hosting_agencies = interventions.values("hosting_agency").distinct()
+
+    context = {"unread_posts": unread_posts, "interventions": interventions, "interventions_json": interventions_json, "locations": locations, "hosting_agencies": hosting_agencies}
+    
     return render(request, "officer/control/intervention/intervention.html", context)
 
+from django.utils import timezone
+from datetime import timedelta
 
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def OfficerControlInterventionAdd(request):
-    if request.method == 'POST':
+    notification_life = timezone.now() - timedelta(days = 30)
+
+    unread_posts = Post.objects.filter(read_status=False, creation_date__gte=notification_life).order_by("-creation_date")[:5]
+
+    locations = Location.objects.all().distinct("municipality")
+
+    if request.method == "POST":
         form = InterventionForm(request.POST, request.FILES)
+        
         if form.is_valid():
-            form.save()
-            return redirect('Officer Control Intervention')  # Adjust the redirect as per your URL pattern name
+            municipality = request.POST.get("municipality")
+
+            barangay = request.POST.get("barangay")
+
+            try:
+                location = Location.objects.get(municipality = municipality, barangay = barangay)
+
+                intervention = form.save(commit = False)
+
+                intervention.location = location
+
+                intervention.save()
+
+                return redirect("Officer Control Intervention")
+            
+            except Location.DoesNotExist:
+                form.add_error(None, "The selected location does not exist.")
+
     else:
         form = InterventionForm()
-    
-    return render(request, 'officer/control/intervention/addintervention.html', {'form': form})
+
+    context = {"unread_posts": unread_posts, "form": form, "locations": locations}
+
+    return render(request, "officer/control/intervention/addintervention.html", context)
 
 
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def OfficerControlInterventionUpdate(request, pk):
-    intervention = get_object_or_404(Intervention, pk=pk)
+    notification_life = timezone.now() - timedelta(days = 30)
+
+    unread_posts = Post.objects.filter(read_status = False, creation_date__gte=notification_life).order_by("-creation_date")[:5] 
+
+    intervention = get_object_or_404(Intervention, pk = pk)
+
+    locations = Location.objects.all().distinct("municipality")
     
-    if request.method == 'POST':
-        form = InterventionForm(request.POST, request.FILES, instance=intervention)
+    if request.method == "POST":
+        form = InterventionForm(request.POST, request.FILES, instance = intervention)
+
         if form.is_valid():
-            form.save()
-            return redirect('Officer Control Intervention')  # Adjust the redirect as per your URL pattern name
+            municipality = request.POST.get("municipality")
+
+            barangay = request.POST.get("barangay")
+
+            try:
+                location = Location.objects.get(municipality = municipality, barangay = barangay)
+
+                intervention.location = location
+
+                form.save()
+
+                return redirect("Officer Control Intervention")
+            
+            except Location.DoesNotExist:
+                form.add_error(None, "The selected location does not exist.")
+
     else:
-        form = InterventionForm(instance=intervention)
+        form = InterventionForm(instance = intervention)
     
-    return render(request, 'officer/control/intervention/updateintervention.html', {'form': form, 'update': True, 'intervention': intervention})
+    context = {"unread_posts": unread_posts, "form": form, "update": True, "intervention": intervention, "locations": locations}
+
+    return render(request, "officer/control/intervention/updateintervention.html", context)
 
 
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def OfficerControlInterventionDelete(request, pk):
-    intervention = get_object_or_404(Intervention, id=pk)
-    intervention.delete()
-    return JsonResponse({'success': True})
+    intervention = get_object_or_404(Intervention, id = pk)
 
+    intervention.delete()
+
+    return JsonResponse({"success": True})
+
+
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def OfficerControlInterventionDetail(request, pk):
-    intervention = get_object_or_404(Intervention, id=pk)
-    other_interventions = Intervention.objects.exclude(pk=pk)[:5]
-    return render(request, 'officer/control/intervention/detailintervention.html', {
-        'intervention': intervention,
-        'other_interventions': other_interventions
-    })
+    notification_life = timezone.now() - timedelta(days = 30)
+
+    unread_posts = Post.objects.filter(read_status = False, creation_date__gte = notification_life).order_by("-creation_date")[:5]
+
+    intervention = get_object_or_404(Intervention, id = pk)
+
+    other_interventions = Intervention.objects.exclude(pk = pk)[:5]
+
+    context = {"unread_posts": unread_posts, "intervention": intervention, "other_interventions": other_interventions}
+
+    return render(request, "officer/control/intervention/detailintervention.html", context)
+
 
 def serialize_statuses(statuses):
     statuses_list = []
-    for status in statuses:
-        statuses_list.append({
-            'id': status.id,
-            'statustype': str(status.statustype),
-            'location': status.location.barangay + ", " + status.location.municipality,  # Assuming location has a 'name' field
-            'caught_overall': status.caught_overall,
-            'onset_date': status.onset_date,
-        })
-    return json.dumps(statuses_list, cls=DjangoJSONEncoder)
 
+    for status in statuses:
+        statuses_list.append({"id": status.id, "statustype": str(status.statustype), "location": status.location.barangay + ", " + status.location.municipality, "caught_overall": status.caught_overall, "onset_date": status.onset_date})
+    
+    return json.dumps(statuses_list, cls = DjangoJSONEncoder)
+
+
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def OfficerControlStatus(request):
+    notification_life = timezone.now() - timedelta(days = 30)
+
+    unread_posts = Post.objects.filter(read_status=False, creation_date__gte=notification_life).order_by("-creation_date")[:5]
+
     statuses = Status.objects.all()
-    distinct_statuses = statuses.values('statustype').distinct()
+
+    distinct_statuses = statuses.values("statustype").distinct()
+
     locations = Location.objects.all()
 
     statuses_json = serialize_statuses(statuses)
 
-    context = {
-        'statuses': statuses,
-        'statuses_json': statuses_json,
-        'distinct_statuses': distinct_statuses,
-        'locations': locations,
-    }
+    context = {"unread_posts": unread_posts, "statuses": statuses, "statuses_json": statuses_json, "distinct_statuses": distinct_statuses, "locations": locations}
 
     return render(request, "officer/control/status/status.html", context)
 
-def OfficerControlDeleteStatus(request, status_id):
-    if request.method == 'POST':
-        status = get_object_or_404(Status, id=status_id)
-        status.delete()
-        return JsonResponse({'success': True})
-    return JsonResponse({'success': False}, status=400)
 
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
+def OfficerControlDeleteStatus(request, status_id):
+    if request.method == "POST":
+        status = get_object_or_404(Status, id = status_id)
+
+        status.delete()
+
+        return JsonResponse({"success": True})
+    
+    return JsonResponse({"success": False}, status = 400)
+
+
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def OfficerControlStatusAdd(request):
+    notification_life = timezone.now() - timedelta(days = 30) 
+
+    unread_posts = Post.objects.filter(read_status=False, creation_date__gte=notification_life).order_by("-creation_date")[:5]
+
     if request.method == "POST":
         form = StatusForm(request.POST)
+
         if form.is_valid():
             form.save()
-            return redirect('Officer Control Status')  # Replace 'success_url' with your actual success URL
+
+            return redirect("Officer Control Status")
     else:
         form = StatusForm()
 
-    return render(request, 'officer/control/status/addstatus.html', {'form': form})  # Replace 'your_template.html' with your actual template
+    context = {"unread_posts": unread_posts, "form": form}
 
-from django.utils.dateparse import parse_date
+    return render(request, "officer/control/status/addstatus.html", context) 
 
 
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def OfficerControlReport(request):
     username = request.user.username
 
-    # Initialize filters
-    from_date = request.GET.get('from_date')
-    to_date = request.GET.get('to_date')
-    selected_status = request.GET.get('status')
-    selected_locations = request.GET.getlist('locations')
+    notification_life = timezone.now() - timedelta(days = 30)
+
+    unread_posts = Post.objects.filter(read_status = False, creation_date__gte = notification_life).order_by('-creation_date')[:5]
+
+    from_date = request.GET.get("from_date")
+
+    to_date = request.GET.get("to_date")
+
+    selected_status = request.GET.get("status")
+
+    selected_locations = request.GET.getlist("locations")
 
     if from_date:
         from_date = parse_date(from_date)
+
     if to_date:
         to_date = parse_date(to_date)
 
-    # Filter options
-    status_options = Status.objects.values('statustype').distinct()
+    status_options = Status.objects.values("statustype").distinct()
+
     location_options = Location.objects.all()
 
-    # Query set initialization
     status_query = Q()
+
     if from_date:
-        status_query &= Q(onset_date__gte=from_date)
+        status_query &= Q(onset_date__gte = from_date)
+
     if to_date:
-        status_query &= Q(onset_date__lte=to_date)
+        status_query &= Q(onset_date__lte = to_date)
+
     if selected_status:
-        status_query &= Q(statustype=selected_status)
+        status_query &= Q(statustype = selected_status)
+
     if selected_locations:
         status_query &= Q(location__id__in=selected_locations)
 
     statuses = Status.objects.filter(status_query)
     
-    municipalities = Location.objects.values('municipality').distinct()
+    municipalities = Location.objects.values("municipality").distinct()
 
     locations = Location.objects.filter(status__in=statuses).distinct()
 
     data = {}
+
     results = statuses
 
     for location in locations:
         location_str = f"{location.barangay}, {location.municipality}"
-        location_statuses = statuses.filter(location=location).order_by('onset_date')
-        data[location_str] = {
-            'onset_dates': [status.onset_date.strftime('%Y-%m-%d') for status in location_statuses],
-            'caught_overalls': [status.caught_overall for status in location_statuses]
-        }
 
-    context = {
-        "username": username,
-        'chart_data': json.dumps(data),
-        "status_options": status_options,
-        "location_options": location_options,
-        "results": results,
-        "from_date": from_date,
-        "to_date": to_date,
-        "selected_status": selected_status,
-        "selected_locations": selected_locations,
-        'municipalities': municipalities,
-        'locations': locations,
-    }
+        location_statuses = statuses.filter(location=location).order_by("onset_date")
+
+        data[location_str] = {"onset_dates": [status.onset_date.strftime("%Y-%m-%d") for status in location_statuses], "caught_overalls": [status.caught_overall for status in location_statuses]}
+
+    context = {"username": username, "unread_posts": unread_posts, "chart_data": json.dumps(data), "status_options": status_options, "location_options": location_options, "results": results, "from_date": from_date, "to_date": to_date, "selected_status": selected_status, "selected_locations": selected_locations, "municipalities": municipalities, "locations": locations}
 
     return render(request, "officer/control/report/report.html", context)
 

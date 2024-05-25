@@ -9,18 +9,14 @@ class AnnouncementForm(forms.ModelForm):
         widget=forms.Select(attrs={"class": "form-control", "id": "announcementUser", "required": True}),
         label="User"
     )
-    location = forms.ModelChoiceField(
-        queryset=Location.objects.all(),
-        widget=forms.Select(attrs={"class": "form-control", "id": "announcementLocation", "required": True}),
-        label="Location"
-    )
 
     class Meta:
         model = Announcement
-        fields = ["title", "release_date", "context", "user", "location", "announcement_photo"]
+        fields = ["title", "release_date", "context", "user", "announcement_photo"]
         widgets = {
             "title": forms.TextInput(attrs={"class": "form-control", "id": "announcementTitle", "required": True}),
             "release_date": forms.DateInput(attrs={"class": "form-control", "id": "announcementDate", "type": "date", "required": True}),
             "context": forms.Textarea(attrs={"class": "form-control", "id": "announcementDescription", "rows": 3, "required": True}),
             "announcement_photo": forms.ClearableFileInput(attrs={"class": "form-control-file", "id": "announcementPhoto"})
         }
+

@@ -46,7 +46,7 @@
                                 <label for = "username">Username</label>
 
                                 <div class = "username">
-                                    <input type = "text" id = "username" name = "username" data-initial-value = "cotseye/" oninput = "retainValue(this);" required>
+                                    <input type = "text" id = "username" name = "username" required>
                                 
                                     <i class = "fa-solid fa-user"></i>
                                 </div>
@@ -181,17 +181,6 @@
         checkboxes.click(function(){
             submit.attr("required", !checkboxes.is(":checked"));
         });
-    </script>
-
-    <script>
-        function retainValue(input){
-            if (input.value.length <= "cotseye/".length){
-
-                input.value = "cotseye/";
-
-                input.selectionStart = "cotseye/".length;
-            }
-        }
     </script>
 
     <script>

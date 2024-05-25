@@ -32,6 +32,8 @@ urlpatterns = [
     path("contributor/service/post/draft/send/fetch/", views.ContributorServicePostDraftSendFetch, name = "Contributor Service Post Draft Send Fetch"),
 
     path("officer/control/sighting/", views.OfficerControlSighting, name = "Officer Control Sighting"),
+    
+    path('officer/control/sighting/update/<int:id>/', views.OfficerControlSightingUpdate, name='officer_control_sighting_update'),
 
     path("officer/control/sighting/read/<int:id>/", views.OfficerControlSightingRead, name = "Officer Control Sighting Read"),
 
@@ -43,5 +45,5 @@ urlpatterns = [
 
     path('mark_post_as_read/<int:id>/', views.mark_post_as_read, name='mark_post_as_read'),
 
-   
+    path('api/posts/update/<int:post_id>/', views.update_post, name='update_post'),   
 ]

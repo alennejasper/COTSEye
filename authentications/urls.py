@@ -27,7 +27,17 @@ urlpatterns = [
     
     path("contributor/service/logout/", views.ContributorServiceLogout, name = "Contributor Service Logout"),       
 
+    path("officer/control/register/", views.OfficerControlRegister, name = "Officer Control Register"),
+
+    path("officer/control/login/", views.OfficerControlLogin, name = "Officer Control Login"),
+
+    path("officer/control/login/facebook/", views.OfficerControlLoginFacebook, name = "Officer Control Login Facebook"),
+
+    path("officer/control/login/google/", views.OfficerControlLoginGoogle, name = "Officer Control Login Google"),
+
     path("officer/control/home/", views.OfficerControlHome, name = "Officer Control Home"),
+
+    path("officer/control/logout/", views.OfficerControlLogout, name = "Officer Control Logout"),       
 
     path('mark_post_as_contrib_read/<int:post_id>/',views.mark_post_as_contrib_read, name='mark_post_as_contrib_read'),
 ]

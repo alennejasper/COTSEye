@@ -23,12 +23,15 @@
                     <p class="fs-3 mb-3">Filter</p>
                     <div class="mb-3">
                         <label for="statusFilter" class="form-label">Filter by status:</label>
-                        <select id="statusFilter" class="form-control select2">
-                            <option value="">Filter by status</option>
-                            {% for status in distinct_statuses %}
-                                <option value="{{ status.statustype }}">{{ status.statustype }}</option>
-                            {% endfor %}
-                        </select>
+                        <div class="mb-3">
+                            <label for="statusFilter" class="form-label">Status:</label>
+                            <select id="statusFilter" class="form-control select2">
+                                <option value="">Filter by status</option>
+                                    <option value="Low">Low</option>
+                                    <option value="Moderate">Moderate</option>
+                                    <option value="Critical">Critical</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="municipalityFilter" class="form-label">Municipality:</label>

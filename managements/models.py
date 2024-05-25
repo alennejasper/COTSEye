@@ -25,6 +25,7 @@ class Location(models.Model):
 
 class StatusType(models.Model):
     is_critical = models.BooleanField(default = False, help_text = "Designates that the status is critical.", verbose_name = "Critical")
+    is_high = models.BooleanField(default = False, help_text = "Designates that the status is high.", verbose_name = "High")
     is_moderate = models.BooleanField(default = False, help_text = "Designates that the status is moderate.", verbose_name = "Moderate")
     is_low = models.BooleanField(default = False, help_text = "Designates that the status is low.", verbose_name = "Low")
     
@@ -36,6 +37,9 @@ class StatusType(models.Model):
     def __str__(self):
         if self.is_critical == True:
             return "Critical"
+        
+        if self.is_high == True:
+            return "High"
         
         elif self.is_moderate == True:
             return "Moderate"
@@ -61,6 +65,7 @@ class Status(models.Model):
 class Intervention(models.Model):
     title = models.CharField(max_length = 150, help_text = "Designates the title of the intervention.", verbose_name = "Title")
     location = models.ForeignKey(Location, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Location model.", verbose_name = "Location")
+    volunteer_amount = models.IntegerField(null=True, blank=True, validators = [MinValueValidator(0)], help_text = "Designates the amount of the volunteers at the moment the intervention took place.", verbose_name = "Volunteer Amount")
     caught_amount = models.IntegerField(null=True, blank=True, validators = [MinValueValidator(0)], help_text = "Designates the amount of the caught Crown-of-Thorns Starfish at the moment the intervention took place.", verbose_name = "Caught Amount")
     details = models.TextField(max_length = 5000, help_text = "Designates the details of the intervention.", verbose_name = "Details")
     hosting_agency = models.CharField(max_length = 150, help_text = "Designates the name of the hosting agency.", verbose_name = "Hosting Agency")

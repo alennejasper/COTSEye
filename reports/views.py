@@ -91,12 +91,15 @@ def ContributorServiceReport(request):
             if action == "save and submit":
                 post_status = PostStatus.objects.get(id = 3)
 
-            else:
+            elif action == "save as draft":
                 post_status = PostStatus.objects.get(id = 4)
 
             coordinates = Coordinates.objects.create(latitude = coordinates.latitude, longitude = coordinates.longitude)
-            print(f'Action: {action}')
-            print(f'Post Status: {post_status}')
+            
+            print(f"Action: {action}")
+            
+            print(f"Post Status: {post_status}")
+            
             size = request.POST.get("size")
 
             try:
@@ -133,6 +136,7 @@ def ContributorServiceReport(request):
             
 
             print(f"status {post_status}")
+
             if Coordinates.objects.filter(latitude = coordinates.latitude, longitude = coordinates.longitude).exists() and Coordinates.objects.filter(latitude = coordinates.latitude, longitude = coordinates.longitude).exists() and PostObservation.objects.filter(size = post_observation.size, depth = post_observation.depth, density = post_observation.density, weather = post_observation.weather).exists():
                 post = Post.objects.create(user = user, description = post.description, capture_date = post.capture_date, coordinates = coordinates, location = post.location, post_status = post_status, post_observation = post_observation)
                 
@@ -241,11 +245,11 @@ def ContributorServiceReportFetch(request):
 def ContributorServiceReportUpdate(request, id):
     username = request.user.username
 
-    user_profile = User.objects.get(account = request.user)
+    user_profile = get_object_or_404(User, account = request.user)
 
-    unread_posts = Post.objects.filter(post_status = 1, contrib_read_status = False, user = request.user.user).order_by("-capture_date")
+    unread_posts = Post.objects.filter(post_status = 1, contrib_read_status = False, user=request.user.user).order_by("-capture_date")
 
-    draft_post = Post.objects.get(id = id, post_status = 4)   
+    draft_post = get_object_or_404(Post, id = id, post_status = 4)
 
     locations = Location.objects.all()
 
@@ -257,63 +261,75 @@ def ContributorServiceReportUpdate(request, id):
 
     if request.method == "POST":
         coordinates_form = CoordinatesForm(request.POST, instance = draft_post.coordinates)
-        
+
         postobservation_form = PostObservationForm(request.POST, instance = draft_post.post_observation)
-        
-        post_form =  PostForm(request.POST, request.FILES, instance = draft_post)
+
+        post_form = PostForm(request.POST, request.FILES, instance=draft_post)
 
         if coordinates_form.is_valid() and postobservation_form.is_valid() and post_form.is_valid():
             coordinates_form.save()
-            
+
             postobservation_form.save()
 
             post = post_form.save(commit = False)
-
+            
             location = request.POST.get("barangay")
 
             try:
                 post.location = Location.objects.get(id = location)
 
-            except:
+            except Location.DoesNotExist:
                 post.location = None
 
-            post_form.save()
+            action = request.POST.get("action")
 
-            for post_photo in draft_post.post_photos.all():
-                post_photo.delete()
-                
+            if action == "save and submit":
+                post_status = PostStatus.objects.get(id = 3)
+
+            elif action == "save as draft":
+                post_status = PostStatus.objects.get(id = 4)
+
+            draft_post.post_status = post_status
+
+            post.save()
+
             post_photos_capture = request.FILES.getlist("post_photos_capture")
 
             post_photos_choose = request.FILES.getlist("post_photos_choose")
-            
+
             post_photos = post_photos_capture + post_photos_choose
 
-            for post_photo in post_photos:
-                photo = PostPhoto.objects.create(post_photo = post_photo)
+            if post_photos:
+                draft_post.post_photos.all().delete()
 
-                draft_post.post_photos.add(photo)
+                for post_photo in post_photos:
+                    photo = PostPhoto.objects.create(post_photo = post_photo)
 
-            username = request.user.username
-            
+                    draft_post.post_photos.add(photo)
+
             messages.success(request, username + ", " + "your information input was updated for COTSEye.")
-            
-            return redirect("Contributor Service Post")
 
+            return redirect("Contributor Service Post")
         else:
             messages.error(request, "Information input is not valid.")
-            
-            messages.error(request, coordinates_form.errors, postobservation_form.errors, post_form.errors)
-        
+
+            messages.error(request, coordinates_form.errors)
+
+            messages.error(request, postobservation_form.errors)
+
+            messages.error(request, post_form.errors)
+
     else:
         coordinates_form = CoordinatesForm(instance = draft_post.coordinates)
-        
+
         postobservation_form = PostObservationForm(instance = draft_post.post_observation)
-        
-        post_form = PostForm(instance = draft_post)       
+
+        post_form = PostForm(instance = draft_post)
 
     context = {"username": username, "user_profile": user_profile, "draft_post": draft_post, "locations": locations, "coordinates_form": coordinates_form, "sizes": sizes, "depths": depths, "weathers": weathers, "postobservation_form": postobservation_form, "post_form": post_form, "unread_posts": unread_posts}
-    
+
     return render(request, "contributor/service/report/report.html", context)
+
 
 
 @login_required(login_url = "Contributor Service Login")
@@ -1304,35 +1320,96 @@ def AdministratorControlStatisticsPost(request):
 
     return render(request, "admin/control/post/post.html", context)
 
+
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def OfficerControlSighting(request):
+    notification_life = timezone.now() - timedelta(days = 30) 
+
+    unread_posts = Post.objects.filter(read_status = False, creation_date__gte=notification_life).order_by("-creation_date")[:5]
+
     posts = Post.objects.exclude(post_status = 4)
 
     locations = Location.objects.all()
 
-    notification_life = timezone.now() - timedelta(days=30)
-
-    unread_posts = Post.objects.filter(read_status = False, creation_date__gte = notification_life)
-
-    context = {"posts": posts, "locations": locations, "unread_posts": unread_posts}
+    context = {"unread_posts": unread_posts, "posts": posts, "locations": locations}  
     
     return render(request, 'officer/control/sighting/sighting.html', context)
 
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
+def OfficerControlSightingUpdate(request, id):
+    post = get_object_or_404(Post, id=id)
+    data = {
+        "latitude": post.location.latitude,
+        "longitude": post.location.longitude,
+        "location": {
+            "municipality": post.location.municipality,
+            "barangay": post.location.barangay
+        }
+    }
+    return JsonResponse(data)
+
+
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
+def update_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    data = json.loads(request.body)
+
+    try:
+        # Update location
+        municipality = data.get('municipality')
+        barangay = data.get('barangay')
+        location = get_object_or_404(Location, municipality=municipality, barangay=barangay)
+        post.location = location
+        
+        # Update coordinates
+        latitude = data.get('latitude')
+        longitude = data.get('longitude')
+
+        coordinates_qs = Coordinates.objects.filter(latitude=latitude, longitude=longitude)
+        if coordinates_qs.exists():
+            coordinates = coordinates_qs.first()
+        else:
+            coordinates = Coordinates.objects.create(latitude=latitude, longitude=longitude)
+        
+        post.coordinates = coordinates
+
+        post.save()
+
+        return JsonResponse({'status': 'success'}, status=200)
+    except Exception as e:
+        return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
+    
+
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def mark_post_as_read(request, id):
-    post = Post.objects.get(id=id)
+    post = Post.objects.get(id = id)
 
     post.read_status = True
+
     post.read_date = timezone.now()
 
     if request.user.usertype.id == 2:
         post.validated_by = request.user.user
         
     print(post.read_status, post.read_date, post.validated_by)
+
     post.save()
 
     return JsonResponse({"success": True})
 
 
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def OfficerControlSightingRead(request, id):
+    notification_life = timezone.now() - timedelta(days = 30) 
+
+    unread_posts = Post.objects.filter(read_status=False, creation_date__gte=notification_life).order_by("-creation_date")[:5]
+
+
     post = get_object_or_404(Post, id = id)
 
     other_posts = Post.objects.exclude(id = id).exclude(post_status = 4).order_by("-capture_date")[:5]
@@ -1346,39 +1423,42 @@ def OfficerControlSightingRead(request, id):
 
         other_photos.append({"post": other_post, "first_photo": first_photo})
     
-    context = {"post": post, "other_posts_with_photos": other_photos, "post_photos": post_photos}
+    context = {"unread_posts": unread_posts, "post": post, "other_posts_with_photos": other_photos, "post_photos": post_photos}
     
     return render(request, "officer/control/sighting/read.html", context)
 
 
+@login_required(login_url="Officer Control Login")
+@user_passes_test(OfficerCheck, login_url="Officer Control Login")
 def OfficerControlSightingValid(request):
     if request.method == "POST" and request.headers.get("x-requested-with") == "XMLHttpRequest":
         id = request.POST.get("post_id")
 
-        post = get_object_or_404(Post, id = id)
+        post = get_object_or_404(Post, id=id)
 
-        post.post_status = PostStatus.objects.get(id = 1)
-        
+        post.post_status = PostStatus.objects.get(id=1)
         post.save()
-        
+
         return JsonResponse({"success": True})
-    
-    return JsonResponse({"success": False}, status = 400)
+
+    return JsonResponse({"success": False}, status=400)
 
 
+@login_required(login_url="Officer Control Login")
+@user_passes_test(OfficerCheck, login_url="Officer Control Login")
 def OfficerControlSightingInvalid(request):
     if request.method == "POST" and request.headers.get("x-requested-with") == "XMLHttpRequest":
         id = request.POST.get("post_id")
         
-        post = get_object_or_404(Post, id = id)
-        
-        post.post_status = PostStatus.objects.get(id = 2)
-        
+        post = get_object_or_404(Post, id=id)
+
+        post.post_status = PostStatus.objects.get(id=2)
+       
         post.save()
-        
+
         return JsonResponse({"success": True})
-    
-    return JsonResponse({"success": False}, status = 400)
+
+    return JsonResponse({"success": False}, status=400)
 
 
 def PostValidReadRedirect(request):

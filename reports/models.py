@@ -84,24 +84,28 @@ class Size(models.Model):
             return "Large (above 12 inches)"
         
 class Depth(models.Model):
-    is_deep = models.BooleanField(default = False, help_text = "Designates that the depth is deep.", verbose_name = "Deep")
-    is_moderate = models.BooleanField(default = False, help_text = "Designates that the depth is moderate.", verbose_name = "Moderate")
     is_shallow = models.BooleanField(default = False, help_text = "Designates that the depth is shallow.", verbose_name = "Shallow")
-   
+    is_moderate = models.BooleanField(default = False, help_text = "Designates that the depth is moderate.", verbose_name = "Moderate")
+    is_deep = models.BooleanField(default = False, help_text = "Designates that the depth is deep.", verbose_name = "Deep")
+    is_profound = models.BooleanField(default = False, help_text = "Designates that the depth is profound.", verbose_name = "Profound")
+
     class Meta:
         db_table = "reports_depth"
         verbose_name = "Depth"
         verbose_name_plural = "Depths"
     
     def __str__(self):
+        if self.is_profound == True:
+            return "Profound (20 feet above)"
+        
         if self.is_deep == True:
-            return "Deep (10 feet above)"
+            return "Deep (10 feet to 20 feet)"
         
         elif self.is_moderate == True:
             return "Moderate (5 feet to 10 feet)"
         
         elif self.is_shallow == True:
-            return "Shallow (5 feet below)"
+            return "Shallow (1 to 5 feet below)"
         
 class Weather(models.Model):
     is_sunny = models.BooleanField(default = False, help_text = "Designates that the weather is sunny.", verbose_name = "Sunny")

@@ -17,6 +17,9 @@ import base64
 import json
 from django.db.models import F, Value
 from django.db.models.functions import Concat
+from django.db.models import Sum
+from django.utils import timezone
+from datetime import timedelta
 
 
 
@@ -35,7 +38,7 @@ def PublicServiceHome(request):
             return redirect("Contributor Service Home")
         
         elif user.usertype_id == 2:
-            return redirect("officer:index")
+            return redirect("Officer Control Home")
         
         elif user.usertype_id == 1:
             return redirect("admin:index")
@@ -134,7 +137,7 @@ def ContributorServiceLogin(request):
                     if "email" in sociallogin.account.extra_data:
                         email = sociallogin.account.extra_data["email"]
                         
-                        username = "google/" + email.split("@")[0]
+                        username = email.split("@")[0]
                         
                         sociallogin.account.user.username = username
                         
@@ -169,7 +172,7 @@ def ContributorServiceLogin(request):
                     if "email" in sociallogin.account.extra_data:
                         email = sociallogin.account.extra_data["email"]
                        
-                        username = "facebook/" + email.split("@")[0]
+                        username = email.split("@")[0]
                         
                         sociallogin.account.user.username = username
                        
@@ -459,7 +462,7 @@ def OfficerControlRegister(request):
                 
                 messages.success(request, username + ", " + "your information input was recorded online for COTSEye.")
                 
-                return redirect("officer:Officer Control Login")
+                return redirect("Officer Control Login")
         
         else:
             messages.error(request, "Username exists or is not valid, or passwords are short, entirely numeric, or do not match.")
@@ -487,7 +490,7 @@ def OfficerControlLogin(request):
                 
                 sociallogin.state["save"] = False
                 
-                return redirect("officer:Officer Control Login")
+                return redirect("Officer Control Login")
             
             else:
                 if sociallogin.account.provider == "google":
@@ -498,7 +501,7 @@ def OfficerControlLogin(request):
                     if "email" in sociallogin.account.extra_data:
                         email = sociallogin.account.extra_data["email"]
                         
-                        username = "google/" + email.split("@")[0]
+                        username = email.split("@")[0]
                         
                         sociallogin.account.user.username = username
                         
@@ -522,7 +525,7 @@ def OfficerControlLogin(request):
                 
                 sociallogin.state["save"] = False
                 
-                return redirect("officer:Officer Control Login")
+                return redirect("Officer Control Login")
             
             else:
                 if sociallogin.account.provider == "facebook":
@@ -533,7 +536,7 @@ def OfficerControlLogin(request):
                     if "email" in sociallogin.account.extra_data:
                         email = sociallogin.account.extra_data["email"]
                         
-                        username = "facebook/" + email.split("@")[0]
+                        username = email.split("@")[0]
                         
                         sociallogin.account.user.username = username
                         
@@ -562,7 +565,7 @@ def OfficerControlLogin(request):
             if account.usertype_id == 2:
                 login(request, account)
                 
-                return redirect("officer:index")
+                return redirect("Officer Control Home")
             
             else:
                 messages.error(request, "Username or password is not valid.")
@@ -591,7 +594,7 @@ def OfficerControlLoginFacebook(request):
             if account.usertype_id == 2:
                 login(request, account)
                 
-                return redirect("officer:index")
+                return redirect("Officer Control Home")
             
             else:
                 messages.error(request, "Username or password is not valid.")
@@ -620,7 +623,7 @@ def OfficerControlLoginGoogle(request):
             if account.usertype_id == 2:
                 login(request, account)
                 
-                return redirect("officer:index")
+                return redirect("Officer Control Home")
             
             else:
                 messages.error(request, "Username or password is not valid.")
@@ -641,35 +644,69 @@ def OfficerCheck(account):
             return False
     
 
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def OfficerControlHome(request):
+    municipality_filter = request.GET.get('municipality')
+    start_date_filter = request.GET.get('start_date')
+    end_date_filter = request.GET.get('end_date')
+
     # Fetch distinct municipalities
     municipalities = Location.objects.values('municipality').distinct()
     
-    # Fetch distinct Location objects with statuses
-    locations = Location.objects.filter(status__isnull=False).distinct()
+    # Fetch locations with optional filters
+    locations_query = Location.objects.filter(status__isnull=False)
+    if municipality_filter:
+        locations_query = locations_query.filter(municipality=municipality_filter)
     
+    locations = locations_query.distinct()
+
+    notification_life = timezone.now() - timedelta(days=30) 
+
+    unread_posts = Post.objects.filter(read_status=False, creation_date__gte=notification_life).order_by('-creation_date')[:5]
+
     data = {}
+    total_caught_overall = 0
+
+    barangay_data = []
 
     for location in locations:
         location_str = f"{location.barangay}, {location.municipality}"
-        statuses = Status.objects.filter(location=location).order_by('onset_date')
+        statuses_query = Status.objects.filter(location=location).order_by('onset_date')
+        
+        if start_date_filter and end_date_filter:
+            statuses_query = statuses_query.filter(onset_date__range=[start_date_filter, end_date_filter])
+        
+        caught_overall_sum = statuses_query.aggregate(total_caught_overall=Sum('caught_overall'))['total_caught_overall'] or 0
+        total_caught_overall += caught_overall_sum
         data[location_str] = {
-            'onset_dates': [status.onset_date.strftime('%Y-%m-%d') for status in statuses],
-            'caught_overalls': [status.caught_overall for status in statuses]
+            'onset_dates': [status.onset_date.strftime('%Y-%m-%d') for status in statuses_query],
+            'caught_overalls': [status.caught_overall for status in statuses_query],
+            'caught_overall_sum': caught_overall_sum
         }
+        barangay_data.append({
+            'barangay': location.barangay,
+            'caught_overall_sum': caught_overall_sum
+        })
 
     context = {
         'chart_data': json.dumps(data),
         'locations': locations,
-        'municipalities': municipalities
+        'municipalities': municipalities,
+        "unread_posts": unread_posts,
+        'total_caught_overall': total_caught_overall,
+        'barangay_data': barangay_data,
+        'selected_municipality': municipality_filter,
+        'start_date_filter': start_date_filter,
+        'end_date_filter': end_date_filter
     }
     
     return render(request, "officer/control/home/home.html", context)
 
 
 
-@login_required(login_url = "officer:Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "officer:Officer Control Login")
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def OfficerControlStatistics(request):
     username = request.user.username
 
@@ -708,8 +745,8 @@ def OfficerControlStatistics(request):
     return render(request, "officer/control/statistics/statistics.html", context)
 
 
-@login_required(login_url = "officer:Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "officer:Officer Control Login")
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def OfficerControlLogout(request):
     username = request.user.username
 
@@ -717,7 +754,7 @@ def OfficerControlLogout(request):
     
     messages.success(request, username + ", " + "your account used just now was signed out of COTSEye.")
     
-    return redirect("officer:Officer Control Login")
+    return redirect("Officer Control Login")
 
 
 def AdministratorControlLogin(request):
@@ -809,7 +846,7 @@ def ControlHomeRedirect(request):
     usertype = request.user.usertype_id
 
     if usertype == 2:
-        return redirect(reverse("officer:index"))
+        return redirect(reverse("index"))
     
     elif usertype == 1:
         return redirect(reverse("admin:index"))
@@ -820,13 +857,13 @@ def ControlPasswordRedirect(request):
         usertype = request.user.usertype_id
 
         if usertype == 2:
-            return redirect(reverse("officer:password_change"))
+            return redirect(reverse("password_change"))
         
         elif usertype == 1:
             return redirect(reverse("admin:password_change"))
     
     else:
-        return redirect(reverse("officer:password_change"))
+        return redirect(reverse("password_change"))
 
 def ControlProfileRedirect(request):
     object = Account.objects.get(id = request.user.id)
@@ -835,10 +872,10 @@ def ControlProfileRedirect(request):
         usertype = request.user.usertype_id
 
         if usertype == 2:
-            return redirect(reverse("officer:authentications_account_change", kwargs = {"object_id": object.id}))
+            return redirect(reverse("authentications_account_change", kwargs = {"object_id": object.id}))
 
         elif usertype == 1:
             return redirect(reverse("admin:authentications_account_change", kwargs = {"object_id": object.id}))
     
     else:
-        return redirect(reverse("officer:authentications_account_change", kwargs = {"object_id": object.id}))
+        return redirect(reverse("authentications_account_change", kwargs = {"object_id": object.id}))

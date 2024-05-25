@@ -1,5 +1,5 @@
 {% extends "officer/control/index/index.html" %}
-
+{% load static %}
 {% block content %}
 <div class="container-fluid mt-3">
     <div class="row">
@@ -33,7 +33,8 @@
                 </div>
                 
                 <!-- Button container for non-pending status (all buttons disabled) -->
-                {% if post.post_status != 'Pending' %}
+
+                {% if post.post_status.is_pending != True %}
                 <div class="button-container">
                     <button class="btn btn-success" onclick="changeStatus({{ post.id }})" disabled>Valid</button>
                     <button class="btn btn-danger" onclick="invalidStatus({{ post.id }})" disabled>Invalid</button>
@@ -72,13 +73,23 @@
     </div>
 </div>
 
+
 <script>
     function changeStatus(postId) {
+        var latitude = document.getElementById("latitude").value;
+        var longitude = document.getElementById("longitude").value;
+        var municipality = document.getElementById("municipality").value;
+        var barangay = document.getElementById("barangay").value;
+
         $.ajax({
             type: 'POST',
             url: '{% url "Officer Control Sighting Valid" %}',
             data: {
                 'post_id': postId,
+                'latitude': latitude,
+                'longitude': longitude,
+                'municipality': municipality,
+                'barangay': barangay,
                 'csrfmiddlewaretoken': '{{ csrf_token }}'
             },
             success: function(response) {
@@ -92,11 +103,20 @@
     }
 
     function invalidStatus(postId) {
+        var latitude = document.getElementById("latitude").value;
+        var longitude = document.getElementById("longitude").value;
+        var municipality = document.getElementById("municipality").value;
+        var barangay = document.getElementById("barangay").value;
+
         $.ajax({
             type: 'POST',
             url: '{% url "Officer Control Sighting Invalid" %}',
             data: {
                 'post_id': postId,
+                'latitude': latitude,
+                'longitude': longitude,
+                'municipality': municipality,
+                'barangay': barangay,
                 'csrfmiddlewaretoken': '{{ csrf_token }}'
             },
             success: function(response) {

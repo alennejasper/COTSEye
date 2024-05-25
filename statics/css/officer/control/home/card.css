@@ -1,0 +1,77 @@
+/* static/css/officer/control/home/card.css */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 23%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.card:nth-child(1)  {
+    background-color: #121e26;
+    color: #fff;
+}
+
+.card:nth-child(2)  {
+    background-color: #283635;
+    color: #fff;
+}
+
+.card:nth-child(3)  {
+    background-color: #f4efeb;
+    color: #000;
+}
+
+.card:nth-child(4)  {
+    background-color: #d2c0b2;
+    color: #000;
+}
+
+.card:nth-child(5)  {
+    background-color: #9d6556;
+    color: #fff;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.card-title {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    font-size: 1.2em;
+}
+
+.filter-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.filter-container label {
+    margin-right: 10px;
+}
+
+.filter-container select, 
+.filter-container input[type="date"], 
+.filter-container button {
+    padding: 5px;
+    font-size: 1em;
+}

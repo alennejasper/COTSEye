@@ -1,66 +1,132 @@
 {% extends "officer/control/index/index.html" %}
 
 {% block content %}
-<div class="container-fluid mt-3">
-    <h1 class="text-center">Add New Announcement</h1>
-    
-    <div class="card mt-4">
-        <div class="card-body">
-            <form id="announcementForm" method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ form.as_p }}
+    <div class = "container-fluid mt-3">
+        <h1 class = "text-center">Add New Announcement</h1>
+        
+        <div class = "card mt-4">
+            <div class = "card-body">
+                <form method = "post" enctype = "multipart/form-data">
+                    {% csrf_token %}
+
+                    {{ form.as_p }}
                 
+                    <div class = "mb-3">
+                        <label for = "municipalityFilter" class = "form-label">Municipality:</label>
+                        <select id="municipalityFilter" class="form-select form-select-sm mb-3 select2" onchange = "updateBarangayOptions()">
+                            <option value = "">Municipality</option>
+                            
+                            {% for location in locations %}
+                                <option value = "{{location.municipality}}">{{location.municipality}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
                 
-                <div class="form-group">
-                    <h2>Photo Preview</h2>
-                    <img id="photoPreview" src="#" alt="Image Preview" style="display: none; max-width: 100%; height: auto; margin:12px;">
-                </div>
+                    <div class = "mb-3">
+                        <label for = "barangayFilter" class = "form-label">Barangay:</label>
+                        <select id = "barangayFilter" class = "form-select form-select-sm mb-3 select2" onchange = "setBarangayValue()">
+                            <option value = "">Select Barangay</option>
+                        </select>
+                    </div>
                 
-                <button type="submit" class="btn btn-primary">Add Announcement</button>
-            </form>
+                    <input type = "hidden" id = "id_municipality" name = "municipality">
+
+                    <input type = "hidden" id = "id_barangay" name = "barangay">
+                
+                    <button type = "submit" class = "btn btn-primary">Submit</button>
+                </form>
+                
+                <script type = "text/javascript">
+                    window.updateBarangayOptions = function(){
+                        const municipalityFilter = document.getElementById("municipalityFilter").value;
+
+                        const barangayFilter = document.getElementById("barangayFilter");
+                        
+                        const municipalityInput = document.getElementById("id_municipality");
+                
+                        municipalityInput.value = municipalityFilter;
+                
+                        barangayFilter.innerHTML = "<option value = ''>Select Barangay</option>";
+                
+                        if (municipalityFilter) {
+                            $.ajax({
+                                url: "{% url 'get_barangays' %}",
+
+                                data: {
+                                    "municipality": municipalityFilter
+                                },
+
+                                success: function(data){
+                                    data.forEach(function(barangay){
+                                        const option = document.createElement("option");
+
+                                        option.value = barangay;
+
+                                        option.textContent = barangay;
+
+                                        barangayFilter.appendChild(option);
+                                    });
+                                }
+                            });
+                        }
+                    }
+                
+                    window.setBarangayValue = function(){
+                        const barangayFilter = document.getElementById("barangayFilter");
+
+                        const barangayInput = document.getElementById("id_barangay");
+
+                        barangayInput.value = barangayFilter.value;
+                    }
+                </script>
+            </div>
         </div>
     </div>
-</div>
 
-<script>
-    document.getElementById('announcementPhoto').addEventListener('change', function(event) {
-        const photoPreview = document.getElementById('photoPreview');
-        const file = event.target.files[0];
-        
-        if (file) {
-            const reader = new FileReader();
+    <script>
+        document.getElementById("announcementPhoto").addEventListener("change", function(event){
+
+            const photoPreview = document.getElementById("photoPreview");
+
+            const file = event.target.files[0];
             
-            reader.onload = function(e) {
-                photoPreview.src = e.target.result;
-                photoPreview.style.display = 'block';
+            if (file){
+                const reader = new FileReader();
+                
+                reader.onload = function(e){
+                    photoPreview.src = e.target.result;
+
+                    photoPreview.style.display = "block";
+                }
+                
+                reader.readAsDataURL(file);
+
+            } else{
+                photoPreview.src = "#";
+
+                photoPreview.style.display = "none";
             }
+        });
+    </script>
+
+    <!-- <script>
+        document.getElementById('announcementForm').addEventListener('submit', function(event) {
+            event.preventDefault();
             
-            reader.readAsDataURL(file);
-        } else {
-            photoPreview.src = '#';
-            photoPreview.style.display = 'none';
-        }
-    });
-</script>
+            let title = document.getElementById('announcementTitle').value;
+            let date = document.getElementById('announcementDate').value;
+            let location = document.getElementById('announcementLocation').value;
+            let description = document.getElementById('announcementDescription').value;
+            let user = document.getElementById('announcementUser').value;
+            let photo = document.getElementById('announcementPhoto').files[0];
 
-<!-- <script>
-    document.getElementById('announcementForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-        
-        let title = document.getElementById('announcementTitle').value;
-        let date = document.getElementById('announcementDate').value;
-        let location = document.getElementById('announcementLocation').value;
-        let description = document.getElementById('announcementDescription').value;
-        let user = document.getElementById('announcementUser').value;
-        let photo = document.getElementById('announcementPhoto').files[0];
+            let announcement = { title, date, location, description, user, photo };
 
-        let announcement = { title, date, location, description, user, photo };
+            let announcements = JSON.parse(localStorage.getItem('announcements')) || [];
+            announcements.push(announcement);
+            localStorage.setItem('announcements', JSON.stringify(announcements));
 
-        let announcements = JSON.parse(localStorage.getItem('announcements')) || [];
-        announcements.push(announcement);
-        localStorage.setItem('announcements', JSON.stringify(announcements));
-
-        window.location.href = '{% url "Officer Control Announcement" %}';
-    });
+            window.location.href = '{% url "Officer Control Announcement" %}';
+        });
 </script> -->
 {% endblock %}

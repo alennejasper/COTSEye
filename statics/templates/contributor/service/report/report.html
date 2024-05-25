@@ -5,7 +5,7 @@
     {% if draft_post %} 
         <div class = "report-body">
             <div class = "report-section">
-                <h1>REPORT A SIGHTING</h1>
+                <h1>UPDATE A SIGHTING REPORT DRAFT</h1>
             </div>
 
             <form action = "" class = "report-form" method = "POST" enctype = "multipart/form-data">
@@ -50,32 +50,33 @@
                     </div>
 
                     <div class = "coordinates">
-                        <input type = "hidden" id = "latitude" value = "{{draft_post.coordinates.latitude}}" name = "latitude" required>
+                        <input type = "hidden" id = "latitude" name = "latitude" required>
 
-                        <input type = "hidden" id = "longitude" value = "{{draft_post.coordinates.longitude}}" name = "longitude" required>
+                        <input type = "hidden" id = "longitude" name = "longitude" required>
                     </div>
 
                     <div class = "municipality">
                         <label for = "municipality">Municipality</label>
-                        
-                        <select name = "municipality" id = "municipality" onchange = "updateBarangay()">
-                            <option hidden selected value>Drag the map pin for municipality.</option>
-
+        
+                        <select name="municipality" id="municipality">
+                            <option value="{{draft_post.location.municipality}}" selected>{{draft_post.location.municipality}}</option>
                             {% for location in locations %}
-                                <option value = "{{location.id}}" {% if location.id == draft_post.location.id %} selected {% endif %}>{{location.municipality}}</option>
+                                {% if location.municipality != draft_post.location.municipality %}
+                                    <option value="{{location.municipality}}">{{location.municipality}}</option>
+                                {% endif %}
                             {% endfor %}
                         </select>
+                        
                     </div>
-
+                    
                     <div class = "barangay">
                         <label for = "barangay">Barangay</label>
-                        <select name = "barangay" id="barangay" required>
-                            <option hidden selected value>Drag the map pin for barangay.</option>
+                        
+                        <select name = "barangay" id = "barangay">
+                            <option value = "{{draft_post.location.barangay}}" >{{draft_post.location.barangay}}</option>
 
                             {% for location in locations %}
-                                {% if location.municipality == draft_post.location.municipality %}
-                                    <option value = "{{location.barangay}}" {% if location.id == draft_post.location.id %} selected {% endif %}>{{location.barangay}}</option>
-                                {% endif %}
+                                <option value = "{{location.barangay}}" >{{location.barangay}}</option>
                             {% endfor %}
                         </select>
                     </div>
@@ -139,6 +140,8 @@
                     </div>
 
                     <input type = "hidden" name = "action" id = "action">
+
+                    <div id = "action-value-display" style="margin-top: 20px; font-weight: bold;"></div>
 
                     <div class = "buttons">
                         <button type = "button" class = "back-report" onclick = "openTab('first-tab')">Back</button>
@@ -223,7 +226,7 @@
                     <div class = "municipality">
                         <label for = "municipality">Municipality</label>
                         
-                        <select id = "municipality" onchange = "updateBarangay()">
+                        <select name = "municipality" id = "municipality" onchange = "updateBarangay()">
                             <option hidden selected value>Drag the map pin for municipality.</option>
 
                             {% for location in locations %}
@@ -235,7 +238,7 @@
                     <div class = "barangay">
                         <label for = "barangay">Barangay</label>
                         
-                        <select id = "barangay">
+                        <select name = "barangay" id = "barangay">
                             <option hidden selected value>Drag the map pin for barangay.</option>
                         </select>
                     </div>
@@ -298,8 +301,9 @@
                         </select>
                     </div>
 
-                    <input type="hidden" name="action" id="action">
-                    <div id="action-value-display" style="margin-top: 20px; font-weight: bold;"></div>
+                    <input type = "hidden" name = "action" id = "action">
+
+                    <div id = "action-value-display" style="margin-top: 20px; font-weight: bold;"></div>
 
                     <div class = "buttons">
                         <button type="button" class = "back-report" onclick = "openTab('first-tab')">Back</button>
@@ -401,6 +405,7 @@
 
         function updateLastPhotoContainerMargin(){
             const photoContainers = photoWrapper.querySelectorAll("div");
+
             photoContainers.forEach(container => {
                 container.style.marginRight = "10px";
             });
@@ -709,6 +714,7 @@
                 if (filteredLocations.length > 0){
                     updateMarker(filteredLocations[0].id);
                 }
+                
             }
 
             document.getElementById("barangay").addEventListener("change", function(){
@@ -718,7 +724,13 @@
             });
 
             document.getElementById("municipality").addEventListener("change", updateBarangay);
+
+            {% if draft_post %}
+                updateBarangay();
+            {% endif %}
         };
+
+       
 
         function updateCoordinates(latitude, longitude){
             var latitudeInput = document.getElementById("latitude");
@@ -885,15 +897,15 @@
 
     <script>
         document.querySelector(".save-report.first-draft").addEventListener("click", function(event){
-            document.querySelector(".save-report button").click();
+            document.querySelector(".save-report.first-draft button").click();
         });
 
         document.querySelector(".save-report.second-draft").addEventListener("click", function(event){
-            document.querySelector(".save-report button").click();
+            document.querySelector(".save-report.second-draft button").click();
         });
 
         document.querySelector(".save-report.submit").addEventListener("click", function(event){
-            document.querySelector(".save-report button").click();
+            document.querySelector(".save-report.submit button").click();
         });
     </script>
 
@@ -913,20 +925,20 @@
             
             disableOnBeforeUnload();
 
-        document.querySelectorAll(".save-report").forEach(item => {
-            item.addEventListener("click", function(event){
-                event.preventDefault();
+            document.querySelectorAll(".save-report").forEach(item => {
+                item.addEventListener("click", function(event){
+                    event.preventDefault();
 
-                if (!navigator.onLine){
-                    const username = "{{request.user.username}}";
+                    if (!navigator.onLine){
+                        const username = "{{request.user.username}}";
 
-                    Swal.fire({title: "Hey!", text: username + ", your information input was recorded offline for COTSEye. Kindly visit the current page again if back online.", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}}).then(() => {location.reload();});
+                        Swal.fire({title: "Hey!", text: username + ", your information input was recorded offline for COTSEye. Kindly visit the current page again if back online.", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}}).then(() => {location.reload();});
 
-                } else{
-                    document.querySelector(".report-form").submit();
-                };
+                    } else{
+                        document.querySelector(".report-form").submit();
+                    };
+                });
             });
-        });
         };
     </script>
 
@@ -1105,60 +1117,5 @@
                 };
             };
         };
-    </script>
-
-    <script>
-        {% if draft_post %}
-            document.addEventListener("DOMContentLoaded", function(){
-                const locations = [
-                    {% for location in locations %}
-                        {id: "{{location.id}}", barangay: "{{location.barangay}}", municipality: "{{location.municipality}}"},
-                    {% endfor %}
-                ];
-
-                function updateBarangay(){
-                    const municipalitySelect = document.getElementById("municipality");
-
-                    const barangaySelect = document.getElementById("barangay");
-
-                    barangaySelect.innerHTML = "";
-
-                    const selectedMunicipalityId = municipalitySelect.value;
-                    
-                    const selectedMunicipality = locations.find(location => location.id == selectedMunicipalityId).municipality;
-
-                    const filteredLocations = locations.filter(location => location.municipality === selectedMunicipality);
-
-                    filteredLocations.forEach(location => {
-                        const option = document.createElement("option");
-                        option.value = location.id;
-
-                        option.textContent = location.barangay;
-
-                        barangaySelect.appendChild(option);
-                    });
-
-                    if (filteredLocations.length > 0){
-                        barangaySelect.removeAttribute("disabled");
-                        
-                    } else {
-                        barangaySelect.setAttribute("disabled", "disabled");
-                    }
-                }
-
-                const municipalitySelect = document.getElementById("municipality");
-
-                if (municipalitySelect){
-                    municipalitySelect.addEventListener("change", updateBarangay);
-
-                    updateBarangay();
-                }
-            });
-        {% endif %}
-    </script>
-
-    <script>
-       
-        
-    </script>
+    </script>   
 {% endblock content %}

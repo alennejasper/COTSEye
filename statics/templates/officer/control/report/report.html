@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,12 +17,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> <!-- Include Bootstrap JS for tabs -->
     <style>
-        @media print {
-            .print-button {
-                display: none;
-            }
+    .report-header {
+        display: none;
+    }
+
+    @media print {
+        .report-header {
+            display: block;
         }
+        .print-button, .filter-button {
+            display: none;
+        }
+    }
     </style>
+</style>
+
 </head>
 <body>
     <div>
@@ -150,17 +160,18 @@
     {% endif %}
 
     <div class="container mt-5">
-        <div class="container">
-            <canvas id="myChart"></canvas>
+        <div class ="report-header">
+            <img src = "{% static 'assets/sbps-header.png' %}" width="50%">
         </div>
-        
+
         <table class="table table-bordered border-black">
             <thead>
                 <tr>
                     <th class="text-center">Date</th>
                     <th class="text-center">Municipality</th>
                     <th class="text-center">Barangay</th>
-                    <th class="text-center">Total No. of Cots Captured</th>
+                    <th class="text-center">Volunteers</th>
+                    <th class="text-center">Total No. of Cots Collected</th>
                 </tr>
             </thead>
             <tbody>
@@ -169,6 +180,7 @@
                         <td class="text-center">{{ result.onset_date }}</td>
                         <td class="text-center">{{ result.location.municipality }}</td>
                         <td class="text-center">{{ result.location.barangay }}</td>
+                        <td class="text-center">{{ result.volunteer_amount }}</td>
                         <td class="text-center">{{ result.caught_overall }}</td>
                     </tr>
                 {% endfor %}
@@ -209,110 +221,6 @@
                 element.style.display = '';
             });
         }
-
-        const chartData = JSON.parse('{{ chart_data|escapejs }}');
-        let labels = new Set();
-        const datasets = [];
-
-        // Define colors for datasets
-        const colors = [
-            'rgba(255, 99, 132, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)'
-        ];
-
-        Object.keys(chartData).forEach((location, index) => {
-            chartData[location]['onset_dates'].forEach(date => labels.add(date));
-        });
-
-        labels = Array.from(labels).sort();
-
-        Object.keys(chartData).forEach((location, index) => {
-            const data = labels.map(date => {
-                const dateIndex = chartData[location]['onset_dates'].indexOf(date);
-                return dateIndex !== -1 ? chartData[location]['caught_overalls'][dateIndex] : 0;  // Fill missing dates with 0
-            });
-
-            datasets.push({
-                label: location,
-                data: data,
-                borderColor: colors[index % colors.length],  // Assign colors in a round-robin fashion
-                fill: false
-            });
-        });
-
-        const ctx = document.getElementById('myChart').getContext('2d');
-        const myChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: labels,
-                datasets: datasets
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: true,
-                title: {
-                    display: true,
-                    text: 'Caught Overall by Onset Date per Location'
-                },
-                tooltips: {
-                    mode: 'index',
-                    intersect: false,
-                },
-                hover: {
-                    mode: 'nearest',
-                    intersect: true
-                },
-                scales: {
-                    xAxes: [{
-                        display: true,
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Onset Date'
-                        }
-                    }],
-                    yAxes: [{
-                        display: true,
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Caught Overall'
-                        },
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
-            }
-        });
-
-        document.getElementById('filter-button').addEventListener('click', () => {
-            const startDate = document.getElementById('from_date').value;
-            const endDate = document.getElementById('to_date').value;
-
-            if (startDate && endDate) {
-                const filteredLabels = labels.filter(date => date >= startDate && date <= endDate);
-                const filteredDatasets = datasets.map(dataset => {
-                    return {
-                        ...dataset,
-                        data: labels.map(date => {
-                            if (date >= startDate && date <= endDate) {
-                                const dateIndex = labels.indexOf(date);
-                                return dataset.data[dateIndex];
-                            } else {
-                                return null;
-                            }
-                        }).filter(dataPoint => dataPoint !== null)
-                    };
-                });
-
-                myChart.data.labels = filteredLabels;
-                myChart.data.datasets = filteredDatasets;
-                myChart.update();
-            }
-        });
     </script>
 </body>
 </html>

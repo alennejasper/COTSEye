@@ -10,7 +10,61 @@
                 {% csrf_token %}
                 {{ form.as_p }}
                 
+                <div class="mb-3">
+                    <label for="municipalityFilter" class="form-label">Municipality:</label>
+                    <select id="municipalityFilter" class="form-select form-select-sm mb-3 select2" onchange="updateBarangayOptions()">
+                        <option value="">Municipality</option>
+                        {% for location in locations %}
+                            <option value="{{ location.municipality }}">{{ location.municipality }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            
+                <div class="mb-3">
+                    <label for="barangayFilter" class="form-label">Barangay:</label>
+                    <select id="barangayFilter" class="form-select form-select-sm mb-3 select2" onchange="setBarangayValue()">
+                        <option value="">Select Barangay</option>
+                    </select>
+                </div>
+            
+                <input type="hidden" id="id_municipality" name="municipality">
+                <input type="hidden" id="id_barangay" name="barangay">
 
+                <script type="text/javascript">
+                    window.updateBarangayOptions = function() {
+                        const municipalityFilter = document.getElementById('municipalityFilter').value;
+                        const barangayFilter = document.getElementById('barangayFilter');
+                        const municipalityInput = document.getElementById('id_municipality');
+                
+                        municipalityInput.value = municipalityFilter;
+                
+                        barangayFilter.innerHTML = '<option value="">Select Barangay</option>';
+                
+                        if (municipalityFilter) {
+                            $.ajax({
+                                url: '{% url "get_barangays" %}',
+                                data: {
+                                    'municipality': municipalityFilter
+                                },
+                                success: function(data) {
+                                    data.forEach(function(barangay) {
+                                        const option = document.createElement('option');
+                                        option.value = barangay;
+                                        option.textContent = barangay;
+                                        barangayFilter.appendChild(option);
+                                    });
+                                }
+                            });
+                        }
+                    }
+                
+                    window.setBarangayValue = function() {
+                        const barangayFilter = document.getElementById('barangayFilter');
+                        const barangayInput = document.getElementById('id_barangay');
+                        barangayInput.value = barangayFilter.value;
+                    }
+                </script>
+                
 
                 <div class="form-group">
                     <h2>Photo Preview</h2>

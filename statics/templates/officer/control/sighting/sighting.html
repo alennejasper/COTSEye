@@ -1,8 +1,8 @@
 {% extends "officer/control/index/index.html" %}
-
+{% load static %}
 {% block content %}
 
-<script src = "https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 <div class="container-fluid mt-3">
@@ -59,7 +59,7 @@
 
         <div class="col-12 col-md-9">
             <div class="table-container mb-3">
-                <h2 style="font-size: 19px; color: rgb(52, 144, 242); border-bottom: 1px solid rgba(229, 229, 229); ">ALL SIGHTINGS</h2>
+                <h2 style="font-size: 19px; color: rgb(52, 144, 242); border-bottom: 1px solid rgba(229, 229, 229);">ALL SIGHTINGS</h2>
 
                 <table class="table table-hover">
                     <thead>
@@ -83,11 +83,14 @@
                                 <td class="{% if post.post_status == 'Valid' %} valid-status {% elif post.post_status == 'Invalid' %} invalid-status {% elif post.post_status == 'Pending' %} pending-status {% endif %}">{{ post.post_status }}</td>
                                 <td>
                                     <div class="button-container">
-                                        <select id="status-select-{{ post.id }}" onchange="changeStatus({{ post.id }}, this.value)" {% if post.post_status in 'Valid' or post.post_status in 'Invalid' %}disabled{% endif %}>
-                                            <option value="">Change Status</option>
-                                            <option value="Valid" {% if post.post_status == 'Valid' %}selected{% endif %}>Valid</option>
-                                            <option value="Invalid" {% if post.post_status == 'Invalid' %}selected{% endif %}>Invalid</option>
-                                        </select>
+                                        <a onclick="shownDropdown()"><i class="fa-solid fa-arrow-down drop"></i></a>
+                                        <a onclick="showPopup()"><i class="fa-solid fa-info-circle"></i></a>
+                                        <div class="dropdown">
+                                            <div class="dropdown-content">
+                                                <a class="dropdown-header" value="Valid" onclick="changeStatus({{ post.id }}, 'Valid')">Valid</a>
+                                                <a class="dropdown-footer" value="Invalid" onclick="changeStatus({{ post.id }}, 'Invalid')">Invalid</a>
+                                            </div>
+                                        </div>
                                         <button class="button-29" onclick="location.href='{% url 'Officer Control Sighting Read' post.id %}'">See more</button>
                                     </div>
                                 </td>
@@ -116,29 +119,139 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
 <script>
-    $(document).ready(function() {
-        // Initialize Select2 on the select elements
-        $('.select2').select2();
-
-        // Disable status change for posts with status "Valid" or "Invalid"
-        {% for post in posts %}
-            if (['Valid', 'Invalid'].includes('{{ post.post_status }}')) {
-                $('#status-select-{{ post.id }}').prop('disabled', true);
-            }
-        {% endfor %}
+    function shownDropdown(){
+        event.stopPropagation();
+        const dropdown = event.currentTarget.nextElementSibling.querySelector('.dropdown-content');
+        dropdown.classList.toggle("show");
+    };
+    
+    document.querySelectorAll('.info-icon').forEach(icon => {
+        icon.addEventListener('click', function() {
+            const postId = this.dataset.postId;
+            showPopup(postId);
+        });
     });
 
-    const locations = [
+  
+
+    function showPopup(postId) {
+        fetch(`/officer/control/sighting/update/${postId}/`)
+            .then(response => response.json())
+            .then(data => {
+                Swal.fire({
+                    title: 'Popup Window',
+                    html: `
+                        <div class="map">
+                            <div class="report-map" id="map" style="height: 300px;"></div>
+                        </div>
+
+                        <div class="coordinates">
+                            <input type="hidden" id="latitude" name="latitude" value="${data.latitude}" required>
+                            <input type="hidden" id="longitude" name="longitude" value="${data.longitude}" required>
+                        </div>
+
+                        <div class="municipality">
+                            <label for="municipality">Municipality</label>
+                            <select name="municipality" id="popupMunicipality" onchange="updateBarangayOptions()">
+                                <option value="${data.location.municipality}" selected>${data.location.municipality}</option>
+                                {% for location in locations %}
+                                    {% if location.municipality != data.location.municipality %}
+                                        <option value="{{location.municipality}}">{{location.municipality}}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="barangay">
+                            <label for="barangay">Barangay</label>
+                            <select name="barangay" id="popupBarangay" onchange="updateMarker()">
+                                <option value="${data.location.barangay}" selected>${data.location.barangay}</option>
+                                {% for location in locations %}
+                                    <option value="{{location.barangay}}">{{location.barangay}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <button type="button" onclick="submitPopup(${postId})">Submit</button>
+                    `,
+                    didOpen: () => {
+                        const latitude = parseFloat(document.getElementById('latitude').value);
+                        const longitude = parseFloat(document.getElementById('longitude').value);
+                        revealMap(latitude, longitude);
+                    },
+                    showConfirmButton: false
+                });
+            });
+    }
+
+
+    var map;
+    var report;
+
+    function revealMap(latitude, longitude) {
+        var starfish = L.icon({iconUrl: "{% static 'assets/pin.png' %}", iconSize: [30, 30], iconAnchor: [15, 15]});
+        report = L.marker([latitude, longitude], {draggable: true, icon: starfish});
+        var reportMap = document.getElementsByClassName("report-map")[0];
+        var background = L.tileLayer("http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}", {minZoom: 11, maxZoom: 15, subdomains: ["mt0", "mt1", "mt2", "mt3"], attribution: "Google"});
+
+        map = L.map(reportMap, {zoomControl: true, scrollWheelZoom: false, dragging: true, maxBounds: [[5.3, 124.3], [6.3, 126.3]], layers: [background, report]}).setView([latitude, longitude], 15);
+        map.attributionControl.remove();
+
         {% for location in locations %}
-            { barangay: "{{ location.barangay }}", municipality: "{{ location.municipality }}" },
+            var originalCoordinates = {{location.perimeters|safe}};
+            var swappedCoordinates = swapCoordinates(originalCoordinates);
+            var polygon = L.polygon(swappedCoordinates, {color: "transparent", fillColor: "transparent", fillOpacity: 0}).addTo(map);
+            polygon.locationId = {{location.id}};
+            polygon.locationName = "{{location}}";
         {% endfor %}
-    ];
+
+        report.on("drag", function(event) {
+            var position = event.target.getLatLng();
+            updateCoordinates(position.lat, position.lng);
+        });
+
+        report.on("dragend", function(event) {
+            var position = event.target.getLatLng();
+            updateCoordinates(position.lat, position.lng);
+
+            var selectElement = document.getElementById("barangay");
+            selectElement.value = "";
+
+            var selectElement2 = document.getElementById("municipality");
+            selectElement2.value = "";
+
+            map.eachLayer(function(layer) {
+                if (layer instanceof L.Polygon) {
+                    if (layer.getBounds().contains(position) && layer.locationId) {
+                        selectElement.value = layer.locationId;
+                        selectElement2.value = layer.locationId;
+                        return;
+                    }
+                }
+            });
+        });
+
+        updateBarangayOptions();
+    }
+
+    function updateCoordinates(latitude, longitude) {
+        var latitudeInput = document.getElementById("latitude");
+        var longitudeInput = document.getElementById("longitude");
+        latitudeInput.value = latitude.toFixed(6);
+        longitudeInput.value = longitude.toFixed(6);
+    }
+
+    function swapCoordinates(coordinates) {
+        return coordinates.map(function(ring) {
+            return ring.map(function(point) {
+                return [point[1], point[0]];
+            });
+        });
+    }
 
     function updateBarangayOptions() {
-        const municipalityFilter = document.getElementById("municipalityFilter").value;
-        const barangayFilter = document.getElementById("barangayFilter");
-        
-        barangayFilter.innerHTML = "<option value=''>Select Barangay</option>";
+        const municipalityFilter = document.getElementById("popupMunicipality").value;
+        const barangayFilter = document.getElementById("popupBarangay");
 
         if (municipalityFilter) {
             $.ajax({
@@ -153,19 +266,106 @@
                         option.textContent = barangay;
                         barangayFilter.appendChild(option);
                     });
-
-                    // Re-initialize Select2 for the updated barangay options
                     $('#barangayFilter').select2();
                 }
             });
         }
     }
 
-    const sightingsData = [
-        {% for post in posts %}
-            {id: {{ post.id }}, date: "{{ post.creation_date | date:'F j, Y, g:i a' }}", user: "{{ post.user }}", barangay: "{{ post.location.barangay }}", municipality: "{{ post.location.municipality }}", status: "{{ post.post_status }}"},
+    const barangayCoordinates = {
+        {% for location in locations %}
+            "{{location.barangay}}": [{{location.latitude}}, {{location.longitude}}],
         {% endfor %}
-    ];
+    };
+
+    function updateMarker() {
+        var barangayId = document.getElementById("popupBarangay").value;
+        if (barangayCoordinates[barangayId]) {
+            var coordinates = barangayCoordinates[barangayId];
+            map.setView(coordinates, 15);
+            report.setLatLng(coordinates);
+            updateCoordinates(coordinates[0], coordinates[1]);
+        }
+    }
+
+    function submitPopup(postId) {
+    const municipality = document.getElementById('popupMunicipality').value;
+    const barangay = document.getElementById('popupBarangay').value;
+    const latitude = document.getElementById('latitude').value;
+    const longitude = document.getElementById('longitude').value;
+
+    const data = {
+        municipality: municipality,
+        barangay: barangay,
+        latitude: parseFloat(latitude),
+        longitude: parseFloat(longitude)
+    };
+
+    fetch(`/api/posts/update/${postId}/`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': '{{csrf_token}}' 
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(result => {
+        if (result.status === 'success') {
+            Swal.fire({
+                title: 'Submitted!',
+                text: 'The form has been submitted.',
+                icon: 'success',
+                confirmButtonText: 'Close'
+            });
+        } else {
+            Swal.fire({
+                title: 'Error!',
+                text: result.message,
+                icon: 'error',
+                confirmButtonText: 'Close'
+            });
+        }
+    })
+    .catch(error => {
+        Swal.fire({
+            title: 'Error!',
+            text: 'An error occurred while submitting the form.',
+            icon: 'error',
+            confirmButtonText: 'Close'
+        });
+    });
+}
+
+    window.onclick = function(event) {
+        if (!event.target.matches("i.drop")) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains("show")) {
+                    openDropdown.classList.remove("show");
+                }
+            }
+        }
+    };
+
+    $(document).ready(function() {
+        $('.select2').select2();
+
+        {% for post in posts %}
+            if (['Valid', 'Invalid'].includes('{{ post.post_status }}')) {
+                $('#status-select-{{ post.id }}').prop('disabled', true);
+            }
+        {% endfor %}
+    });
+
+
+    
+        const sightingsData = [
+            {% for post in posts %}
+                {id: {{ post.id }}, date: "{{ post.creation_date | date:'F j, Y, g:i a' }}", user: "{{ post.user }}", barangay: "{{ post.location.barangay }}", municipality: "{{ post.location.municipality }}", status: "{{ post.post_status }}"},
+            {% endfor %}
+        ];
 
     let currentPage = 1;
     const rowsPerPage = 10;
@@ -184,29 +384,33 @@
             const baseUrl = "{% url 'Officer Control Sighting Read' id=0 %}".replace("0", item.id);
             const disabled = (item.status === "Valid" || item.status === "Invalid") ? "disabled" : "";
 
-            const row = `<tr data-id="${item.id}">
-                <td>${item.date}</td>
-                <td>${item.user}</td>
-                <td>${item.barangay}</td>
-                <td>${item.municipality}</td>
-                <td class="${statusClass}">${item.status}</td>
-                <td>
-                    <div class="button-container">
-                        <select onchange="changeStatus(${item.id}, this.value)" ${disabled}>
-                            <option value="">Change Status</option>
-                            <option value="Valid" ${item.status === "Valid" ? "selected" : ""}>Valid</option>
-                            <option value="Invalid" ${item.status === "Invalid" ? "selected" : ""}>Invalid</option>
-                        </select>
-                        <button class="button-29" onclick="location.href='${baseUrl}'">View</button>
-                    </div>
-                </td>
-            </tr>`;
+            const row = `
+                <tr data-id="${item.id}">
+                    <td onclick="window.location.href='${baseUrl}'">${item.date}</td>
+                    <td onclick="window.location.href='${baseUrl}'">${item.user}</td>
+                    <td onclick="window.location.href='${baseUrl}'">${item.barangay}</td>
+                    <td onclick="window.location.href='${baseUrl}'">${item.municipality}</td>
+                    <td class="${statusClass}" onclick="window.location.href='${baseUrl}'">${item.status}</td>
+                    <td>
+                        <div class="button-container">
+                            <a onclick="shownDropdown()"><i class="fa-solid fa-arrow-down drop"></i></a>
+                            <a onclick="showPopup(${item.id})"><i class="fa-solid fa-info-circle"></i></a>
+                            <div class="dropdown">
+                                <div class="dropdown-content">
+                                    <a class="dropdown-header" onclick="changeStatus(${item.id}, 'Valid')">Valid</a>
+                                    <a class="dropdown-footer" onclick="changeStatus(${item.id}, 'Invalid')">Invalid</a>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>`;
             tableBody.innerHTML += row;
         });
 
         document.getElementById("previousPage").classList.toggle("disabled", page === 1);
         document.getElementById("nextPage").classList.toggle("disabled", end >= filteredData.length);
     }
+
 
     function changePage(direction) {
         if (direction === 'prev' && currentPage > 1) {
@@ -316,17 +520,6 @@
         currentPage = 1;
         displayTableData(currentPage);
         updatePagination();
-    }
-
-    function selectAll(checkbox) {
-        const checkboxes = document.querySelectorAll('.rowCheckbox');
-        checkboxes.forEach((cb) => {
-            cb.checked = checkbox.checked;
-        });
-    }
-
-    function updateRow(index) {
-        alert(`Update row: ${index + 1}`);
     }
 
     function changeStatus(postId, status) {
