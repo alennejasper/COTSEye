@@ -1328,7 +1328,7 @@ def OfficerControlSighting(request):
 
     unread_posts = Post.objects.filter(read_status = False, creation_date__gte=notification_life).order_by("-creation_date")[:5]
 
-    posts = Post.objects.exclude(post_status = 4)
+    posts = Post.objects.exclude(post_status = 4).order_by('-creation_date')
 
     locations = Location.objects.all()
 

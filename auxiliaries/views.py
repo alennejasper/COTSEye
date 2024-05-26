@@ -187,7 +187,7 @@ def OfficerControlAnnouncement(request):
 
     unread_posts = Post.objects.filter(read_status = False, creation_date__gte = notification_life).order_by("-creation_date")[:5]
 
-    announcements = Announcement.objects.all()
+    announcements = Announcement.objects.all().order_by('-release_date')
 
     locations = Location.objects.all()
 

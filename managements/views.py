@@ -86,9 +86,17 @@ def serialize_interventions(interventions):
     interventions_list = []
 
     for intervention in interventions:
-        interventions_list.append({"id": intervention.id, "title": intervention.title, "intervention_date": intervention.intervention_date, "location": intervention.location.barangay + ", " + intervention.location.municipality, "details": intervention.details, "hosting_agency": intervention.hosting_agency})
+        interventions_list.append({
+            "id": intervention.id,
+            "title": intervention.title,
+            "intervention_date": intervention.intervention_date,
+            "location": intervention.location.barangay + ", " + intervention.location.municipality,
+            "details": intervention.details,
+            "hosting_agency": intervention.hosting_agency,
+            "volunteer_amount": intervention.volunteer_amount
+        })
     
-    return json.dumps(interventions_list, cls = DjangoJSONEncoder)
+    return json.dumps(interventions_list, cls=DjangoJSONEncoder)
 
 
 @login_required(login_url = "Officer Control Login")
@@ -100,7 +108,7 @@ def OfficerControlIntervention(request):
 
     locations = Location.objects.all()
 
-    interventions = Intervention.objects.all()
+    interventions = Intervention.objects.all().order_by('-intervention_date')
 
     interventions_json = serialize_interventions(interventions)
 
@@ -216,14 +224,20 @@ def OfficerControlInterventionDetail(request, pk):
 
     return render(request, "officer/control/intervention/detailintervention.html", context)
 
-
 def serialize_statuses(statuses):
     statuses_list = []
 
     for status in statuses:
-        statuses_list.append({"id": status.id, "statustype": str(status.statustype), "location": status.location.barangay + ", " + status.location.municipality, "caught_overall": status.caught_overall, "onset_date": status.onset_date})
+        statuses_list.append({
+            "id": status.id,
+            "statustype": str(status.statustype),
+            "location": status.location.barangay + ", " + status.location.municipality,
+            "caught_overall": status.caught_overall,
+            "volunteer_overall": status.volunteer_overall,  # Include volunteer_overall
+            "onset_date": status.onset_date
+        })
     
-    return json.dumps(statuses_list, cls = DjangoJSONEncoder)
+    return json.dumps(statuses_list, cls=DjangoJSONEncoder)
 
 
 @login_required(login_url = "Officer Control Login")
@@ -233,7 +247,7 @@ def OfficerControlStatus(request):
 
     unread_posts = Post.objects.filter(read_status=False, creation_date__gte=notification_life).order_by("-creation_date")[:5]
 
-    statuses = Status.objects.all()
+    statuses = Status.objects.all().order_by('-onset_date')
 
     distinct_statuses = statuses.values("statustype").distinct()
 
@@ -335,7 +349,7 @@ def OfficerControlReport(request):
     for location in locations:
         location_str = f"{location.barangay}, {location.municipality}"
 
-        location_statuses = statuses.filter(location=location).order_by("onset_date")
+        location_statuses = statuses.filter(location = location).order_by("onset_date")
 
         data[location_str] = {"onset_dates": [status.onset_date.strftime("%Y-%m-%d") for status in location_statuses], "caught_overalls": [status.caught_overall for status in location_statuses]}
 

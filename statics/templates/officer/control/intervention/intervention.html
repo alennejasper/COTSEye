@@ -9,14 +9,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/daterangepicker/3.1/daterangepicker.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-
 </head>
 <div class="container-fluid mt-3">
     <div class="d-flex justify-content-end">
         <button style="background-color: rgb(30, 173, 95);" onclick="window.location.href='{% url 'Officer Control Intervention Add' %}'" class="btn btn-primary mt-4">ADD NEW</button>
     </div>
 
-    <div class = "row">
+    <div class="row">
         <div class="col-12 col-md-3">
             <div class="filtercont card">
                 <div class="card-body">
@@ -29,7 +28,6 @@
                         <label for="hostingAgencyFilter" class="form-label">Filter by hosting agency:</label>
                         <select id="hostingAgencyFilter" class="form-control select2">
                             <option value="">Filter by hosting agency</option>
-                            <!-- Add your options here -->
                             {% for agency in hosting_agencies %}
                                 <option value="{{ agency.hosting_agency }}">{{ agency.hosting_agency }}</option>
                             {% endfor %}
@@ -80,8 +78,8 @@
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody id = "interventionsTable">
-                            
+                        <tbody id="interventionsTable">
+                            <!-- Table rows will be dynamically generated here -->
                         </tbody>
                     </table>
                     <nav aria-label="Page navigation example">
@@ -89,8 +87,6 @@
                             <li class="page-item" id="previousPage">
                                 <a class="page-link" href="#" onclick="changePage('prev')">Previous</a>
                             </li>
-                            
-
                             <li class="page-item" id="nextPage">
                                 <a class="page-link" href="#" onclick="changePage('next')">Next</a>
                             </li>
@@ -103,35 +99,32 @@
 </div>
 
 <script>
-
     $(document).ready(function() {
-                // Initialize Select2 on the select elements
-                $('.select2').select2();
-            });
+        // Initialize Select2 on the select elements
+        $('.select2').select2();
+    });
+
     document.addEventListener('DOMContentLoaded', function() {
         const interventions = JSON.parse('{{ interventions_json|escapejs }}');
         let filteredInterventions = interventions;
-
         let currentPage = 1;
         const itemsPerPage = 10;
-
+        console.log(interventions)
         function displayInterventions(page) {
             const startIndex = (page - 1) * itemsPerPage;
             const endIndex = startIndex + itemsPerPage;
             const paginatedInterventions = filteredInterventions.slice(startIndex, endIndex);
-
             let table = document.getElementById('interventionsTable');
             table.innerHTML = '';
 
-            paginatedInterventions.forEach((intervention, index) => {
+            paginatedInterventions.forEach(intervention => {
                 let row = table.insertRow();
                 row.insertCell(0).innerText = intervention.title;
                 row.insertCell(1).innerText = intervention.intervention_date;
                 row.insertCell(2).innerText = intervention.location;
                 row.insertCell(3).innerText = intervention.details;
                 row.insertCell(4).innerText = intervention.hosting_agency;
-
-                row.insertCell(5).innerText = intervention.volunteer_amount;
+                row.insertCell(5).innerText = intervention.volunteer_amount !== undefined ? intervention.volunteer_amount : 'N/A'; // Volunteer Amount column with fallback
 
                 let actionsCell = row.insertCell(6);
                 let updateButton = document.createElement('button');
@@ -184,15 +177,13 @@
 
         window.changePage = function(action) {
             const totalPages = Math.ceil(filteredInterventions.length / itemsPerPage);
-
-            if (action === 'prev' && currentPage > 1){
+            if (action === 'prev' && currentPage > 1) {
                 currentPage--;
             } else if (action === 'next' && currentPage < totalPages) {
                 currentPage++;
             } else if (typeof action === 'number') {
                 currentPage = action;
             }
-
             displayInterventions(currentPage);
         };
 
@@ -236,7 +227,6 @@
         window.updateBarangayOptions = function() {
             const municipalityFilter = document.getElementById('municipalityFilter').value;
             const barangayFilter = document.getElementById('barangayFilter');
-
             barangayFilter.innerHTML = '<option value="">Select Barangay</option>';
 
             if (municipalityFilter) {
@@ -285,7 +275,7 @@
                             'Intervention has been deleted.',
                             'success'
                         ).then(() => {
-                            window.location.href = '{% url "Officer Control Intervention" %}';  // Adjust the redirect as per your URL pattern name
+                            window.location.href = '{% url "Officer Control Intervention" %}';
                         });
                     } else {
                         Swal.fire(

@@ -50,7 +50,8 @@ class StatusType(models.Model):
 class Status(models.Model):
     location = models.ForeignKey(Location, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Location model.", verbose_name = "Location")
     statustype = models.ForeignKey(StatusType, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Status Type model.", verbose_name = "Status Type")
-    caught_overall = models.IntegerField(validators = [MinValueValidator(0)], help_text = "Designates the overall amount of the caught Crown-of-Thorns Starfish at the moment.", verbose_name = "Caught Amount")
+    caught_overall = models.IntegerField(validators = [MinValueValidator(0)], help_text = "Designates the overall amount of the caught Crown-of-Thorns Starfish at the moment.", verbose_name = "Caught Overall")
+    volunteer_overall = models.IntegerField(null=True, blank=True, validators = [MinValueValidator(0)], help_text = "Designates the overall amount of the volunteers at the moment the intervention took place.", verbose_name = "Volunteer Overall")
     onset_date = models.DateField(default = datetime.date.today(), help_text = "Designates the onset date of the outbreak status.", verbose_name = "Onset Date")
 
     class Meta:

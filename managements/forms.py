@@ -49,6 +49,7 @@ class StatusForm(forms.ModelForm):
         # Sum caught amounts for interventions between the latest onset date and the new onset date
         interventions = Intervention.objects.filter(location=location, intervention_date__gt=start_date, intervention_date__lte=onset_date)
         caught_overall = interventions.aggregate(Sum('caught_amount'))['caught_amount__sum'] or 0
+        volunteer_overall = interventions.aggregate(Sum('volunteer_amount'))['volunteer_amount__sum'] or 0
 
         # Determine the status type based on the new caught_overall
         if caught_overall < 100:
@@ -59,6 +60,7 @@ class StatusForm(forms.ModelForm):
             status.statustype = StatusType.objects.get(is_critical=True)
 
         status.caught_overall = caught_overall
+        status.volunteer_overall = volunteer_overall
 
         if commit:
             status.save()

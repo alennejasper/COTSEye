@@ -644,8 +644,8 @@ def OfficerCheck(account):
             return False
     
 
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
+@login_required(login_url="Officer Control Login")
+@user_passes_test(OfficerCheck, login_url="Officer Control Login")
 def OfficerControlHome(request):
     municipality_filter = request.GET.get('municipality')
     start_date_filter = request.GET.get('start_date')
@@ -653,16 +653,15 @@ def OfficerControlHome(request):
 
     # Fetch distinct municipalities
     municipalities = Location.objects.values('municipality').distinct()
-    
+
     # Fetch locations with optional filters
     locations_query = Location.objects.filter(status__isnull=False)
     if municipality_filter:
         locations_query = locations_query.filter(municipality=municipality_filter)
-    
+
     locations = locations_query.distinct()
 
-    notification_life = timezone.now() - timedelta(days=30) 
-
+    notification_life = timezone.now() - timedelta(days=30)
     unread_posts = Post.objects.filter(read_status=False, creation_date__gte=notification_life).order_by('-creation_date')[:5]
 
     data = {}
@@ -673,34 +672,39 @@ def OfficerControlHome(request):
     for location in locations:
         location_str = f"{location.barangay}, {location.municipality}"
         statuses_query = Status.objects.filter(location=location).order_by('onset_date')
-        
+
         if start_date_filter and end_date_filter:
             statuses_query = statuses_query.filter(onset_date__range=[start_date_filter, end_date_filter])
-        
-        caught_overall_sum = statuses_query.aggregate(total_caught_overall=Sum('caught_overall'))['total_caught_overall'] or 0
+
+        latest_status = statuses_query.latest('onset_date')
+        caught_overall_sum = latest_status.caught_overall
         total_caught_overall += caught_overall_sum
+
         data[location_str] = {
-            'onset_dates': [status.onset_date.strftime('%Y-%m-%d') for status in statuses_query],
-            'caught_overalls': [status.caught_overall for status in statuses_query],
+            'onset_dates': [latest_status.onset_date.strftime('%Y-%m-%d')],
+            'caught_overalls': [caught_overall_sum],
             'caught_overall_sum': caught_overall_sum
         }
+
         barangay_data.append({
             'barangay': location.barangay,
-            'caught_overall_sum': caught_overall_sum
+            'municipality': location.municipality,
+            'caught_overall_sum': caught_overall_sum,
+            'latest_onset_date': latest_status.onset_date.strftime('%Y-%m-%d')
         })
 
     context = {
         'chart_data': json.dumps(data),
         'locations': locations,
         'municipalities': municipalities,
-        "unread_posts": unread_posts,
+        'unread_posts': unread_posts,
         'total_caught_overall': total_caught_overall,
         'barangay_data': barangay_data,
         'selected_municipality': municipality_filter,
         'start_date_filter': start_date_filter,
         'end_date_filter': end_date_filter
     }
-    
+
     return render(request, "officer/control/home/home.html", context)
 
 

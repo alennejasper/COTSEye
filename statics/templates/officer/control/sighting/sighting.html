@@ -66,6 +66,7 @@
                         <tr>
                             <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Date Created</th>
                             <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Contributor</th>
+                            <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Phone Number</th>
                             <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Barangay</th>
                             <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Municipality</th>
                             <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Status</th>
@@ -78,6 +79,7 @@
                             <tr data-id="{{ post.id }}">
                                 <td>{{ post.creation_date | date:'F j, Y, g:i a' }}</td>
                                 <td>{{ post.user }}</td>
+                                <td>{{ post.user.phone_number }}</td>
                                 <td>{{ post.location.barangay }}</td>
                                 <td>{{ post.location.municipality }}</td>
                                 <td class="{% if post.post_status == 'Valid' %} valid-status {% elif post.post_status == 'Invalid' %} invalid-status {% elif post.post_status == 'Pending' %} pending-status {% endif %}">{{ post.post_status }}</td>
@@ -363,7 +365,7 @@
     
         const sightingsData = [
             {% for post in posts %}
-                {id: {{ post.id }}, date: "{{ post.creation_date | date:'F j, Y, g:i a' }}", user: "{{ post.user }}", barangay: "{{ post.location.barangay }}", municipality: "{{ post.location.municipality }}", status: "{{ post.post_status }}"},
+                {id: {{ post.id }}, date: "{{ post.creation_date | date:'F j, Y, g:i a' }}", user: "{{ post.user }}", phone_number: "{{ post.user.phone_number }}", barangay: "{{ post.location.barangay }}", municipality: "{{ post.location.municipality }}", status: "{{ post.post_status }}"},
             {% endfor %}
         ];
 
@@ -388,6 +390,7 @@
                 <tr data-id="${item.id}">
                     <td onclick="window.location.href='${baseUrl}'">${item.date}</td>
                     <td onclick="window.location.href='${baseUrl}'">${item.user}</td>
+                    <td onclick="window.location.href='${baseUrl}'">${item.phone_number}</td>
                     <td onclick="window.location.href='${baseUrl}'">${item.barangay}</td>
                     <td onclick="window.location.href='${baseUrl}'">${item.municipality}</td>
                     <td class="${statusClass}" onclick="window.location.href='${baseUrl}'">${item.status}</td>
