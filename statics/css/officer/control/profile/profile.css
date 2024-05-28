@@ -1,0 +1,106 @@
+.profile-body{
+    position: relative;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100vw;
+    height: 100%;
+    color: #000000;
+}
+
+.profile-body .profile-section{
+    display: flex;                   
+    align-items: center; 
+    justify-content: center;          
+    flex-direction: column;
+    row-gap: 10px;
+    width: 100%;                     
+    text-align: center;                                   
+}
+
+.profile-body .profile-section img{
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.profile-body .profile-section h1{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: "Open Sans";    
+    font-weight: 700;       
+    font-size: 22px;     
+    color: #000000;   
+    text-align: center;  
+}
+
+.profile-body .profile-section p{
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: "Open Sans";
+    font-weight: 400;
+    font-size: 14px !important;
+    color: #000000;
+    text-transform: uppercase;
+}
+
+.profile-body .profile-details{
+    display: grid;
+    row-gap: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.profile-body .profile-details .profile-context p:first-child{
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: "Open Sans";
+    font-size: 14px;
+    font-weight: 400;       
+    color: #000000;                          
+}
+
+.profile-body .profile-details .profile-context p:last-child{
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: "Open Sans";
+    font-size: 20px;
+    font-weight: 700;       
+    color: #000000;                          
+}
+
+.profile-body .button{
+    display: flex;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+}
+
+.profile-body a{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border-radius: 5px;
+    outline: none !important;
+    font-family: "Open Sans";
+    text-align: center;                                   
+    font-weight: 400;
+    font-size: 14px;
+    color: #FFFFFF !important;
+    background-color: #003755 !important;
+    text-decoration: none;
+    cursor: pointer;  
+}

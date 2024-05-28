@@ -64,7 +64,7 @@
 
         <div class="col-12 col-md-9">
             <div class="card mt-4">
-                <div style="text-align: center; font-weight: 500; font-size: larger;" class="card-header bg-primary text-white">MANAGE INTERVENTIONS</div>
+                <div style="text-align: center; font-weight: 500; font-size: larger;" class="card-header bg-primary text-white">MANAGE ACTIVITIES</div>
                 <div class="card-body">
                     <table class="table table-bordered table-striped">
                         <thead class="thead-dark">
@@ -72,7 +72,6 @@
                                 <th>Title</th>
                                 <th>Date</th>
                                 <th>Location</th>
-                                <th>Details</th>
                                 <th>Hosting Agency</th>
                                 <th>Volunteers</th>
                                 <th>Actions</th>
@@ -122,11 +121,10 @@
                 row.insertCell(0).innerText = intervention.title;
                 row.insertCell(1).innerText = intervention.intervention_date;
                 row.insertCell(2).innerText = intervention.location;
-                row.insertCell(3).innerText = intervention.details;
-                row.insertCell(4).innerText = intervention.hosting_agency;
-                row.insertCell(5).innerText = intervention.volunteer_amount !== undefined ? intervention.volunteer_amount : 'N/A'; // Volunteer Amount column with fallback
+                row.insertCell(3).innerText = intervention.hosting_agency;
+                row.insertCell(4).innerText = intervention.volunteer_amount !== undefined ? intervention.volunteer_amount : 'N/A'; // Volunteer Amount column with fallback
 
-                let actionsCell = row.insertCell(6);
+                let actionsCell = row.insertCell(5);
                 let updateButton = document.createElement('button');
                 updateButton.innerText = 'Update';
                 updateButton.classList.add('btn', 'btn-primary', 'btn-sm', 'mr-2');
@@ -275,7 +273,7 @@
                             'Intervention has been deleted.',
                             'success'
                         ).then(() => {
-                            window.location.href = '{% url "Officer Control Intervention" %}';
+                            location.reload();  // Reload the page to reflect changes
                         });
                     } else {
                         Swal.fire(

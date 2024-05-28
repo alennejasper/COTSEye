@@ -221,9 +221,11 @@
             });
         </script>
 
-        <h1>COTS STATUS GRAPH</h1>
+        <!-- <h1>COTS STATUS GRAPH</h1> -->
 
-        <div class = "map-graph"></div>
+        {% include 'officer/control/home/card_count.html' %}
+
+        <!-- <div class = "map-graph"></div>
 
         <script>
             var categories = [];
@@ -349,5 +351,5 @@
             var graph = new ApexCharts(document.querySelector(".map-graph"), configurations);
             
             graph.render();
-        </script>
+        </script> -->
 {% endblock content %}

@@ -37,7 +37,11 @@ urlpatterns = [
 
     path("officer/control/home/", views.OfficerControlHome, name = "Officer Control Home"),
 
-    path("officer/control/logout/", views.OfficerControlLogout, name = "Officer Control Logout"),       
+    path("officer/control/profile/", views.OfficerControlProfile, name = "Officer Control Profile"),
+    
+    path("officer/control/profile/update/", views.OfficerControlProfileUpdate, name = "Officer Control Profile Update"),
 
-    path('mark_post_as_contrib_read/<int:post_id>/',views.mark_post_as_contrib_read, name='mark_post_as_contrib_read'),
+    path("officer/control/logout/", views.OfficerControlLogout, name = "Officer Control Logout"),      
+
+    path('posts/', views.post_list, name='post_list'),
 ]

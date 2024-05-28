@@ -12,10 +12,10 @@
             {% endfor %}
         </select>
 
-        <label for="startDateFilter">Start Date:</label>
+        <label for="startDateFilter">From:</label>
         <input type="date" id="startDateFilter" name="start_date" value="{{ start_date_filter|default_if_none:'' }}">
 
-        <label for="endDateFilter">End Date:</label>
+        <label for="endDateFilter">To:</label>
         <input type="date" id="endDateFilter" name="end_date" value="{{ end_date_filter|default_if_none:'' }}">
 
         <button type="submit">Filter</button>
@@ -23,14 +23,16 @@
 </form>
 
 <!-- Barangay Cards -->
+<div class="row !important">
 <div class="card-container">
     {% for barangay in barangay_data %}
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">{{ barangay.barangay }}</h5>
                 <p class="card-text">Caught Overall: {{ barangay.caught_overall_sum }}</p>
-                <p class="card-text">As of:<strong>{{ barangay.latest_onset_date }} </strong> </p>
-            </div>
+<!--                 <p class="card-text">As of:<strong>{{ barangay.latest_onset_date }} </strong> </p>
+ -->            </div>
         </div>
     {% endfor %}
+</div>
 </div>

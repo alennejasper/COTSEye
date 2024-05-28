@@ -1,0 +1,225 @@
+{% extends "officer/control/index/index.html" %}
+{% load static %}
+
+{% block content %}
+    {% if user %} 
+        <div class = "profileupdate-body">
+            <div class = "profileupdate-section">
+                <h1>PROFILE UPDATE</h1>
+            </div>
+
+            <form action = "" class = "profile-form" method = "POST" enctype = "multipart/form-data">
+                {% csrf_token %}
+
+                <div class = "profileupdate-user">
+                    <img class = "profile-photo" src = "{{user.profile_photo.url}}">
+
+                    <input type = "file" class = "browse-photo" name = "profile_photo" accept = "image/*">
+        
+                    <h1>{{user.account.username}}</h1>
+                                
+                    <p>{{user.account.usertype}}</p>
+                </div>
+
+                <div class = "first-name">
+                    <label for = "first-name">First Name</label>
+
+                    <input type = "text" id = "first-name" value = "{{user.first_name}}" name = "first_name" required>
+                </div> 
+
+                <div class = "last-name">
+                    <label for = "last-name">Last Name</label>
+
+                    <input type = "text" id = "last-name" value = "{{user.last_name}}" name = "last_name" required>
+                </div>
+
+                <div class = "email">
+                    <label for = "email">Email</label>
+
+                    <input type = "email" id = "email" value = "{{user.email}}" name = "email" required>
+                </div>
+
+                <div class = "phone-number">
+                    <label for = "phone-number">Phone Number</label>
+
+                    <input type = "number" id = "phone-number" value = "{{user.phone_number}}" name = "phone_number" required>
+                </div>
+
+                <div class = "button">
+                    <a class = "save-profile" type = "submit">Save</a>
+                </div>
+            </form>
+        </div>
+    {% endif %}
+
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == "info" %}<script>Swal.fire({title: "Hey!", text: "{{message}}", icon: "warning", iconColor: "#3B5998", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#3B5998"})</script>
+            
+            {% elif message.tags == "success" %}<script>Swal.fire({title: "Yay!", text: "{{message}}", icon: "success", iconColor: "#2ECC71", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#2ECC71"})</script>
+            
+            {% else %}<script>Swal.fire({title: "Oops!", text: "{{message}}", icon: "error", iconColor: "#E74C3C", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#E74C3C"})</script>
+            
+            {% endif %}    
+        {% endfor %}
+    {% endif %}
+
+    <script>
+        const browsePhoto = document.querySelector(".browse-photo")
+        
+        const profilePhoto = document.querySelector(".profile-photo")
+
+        browsePhoto.addEventListener("change", (event)=> {
+            const photoObject = event.target.files[0]
+
+            profilePhoto.src = URL.createObjectURL(photoObject)
+        })
+    </script>
+
+    <script>
+        document.querySelector(".profile-photo").addEventListener("click", () => {
+            document.querySelector("input[type = 'file']").click();
+        });
+    </script>
+
+    <script>
+        document.querySelector(".save-profile").onclick = function(event){
+            if(!navigator.onLine){
+                const username = "{{request.user.username}}";
+                        
+                Swal.fire({title: "Hey!", text: username + ", " + "your information input was recorded offline for COTSEye. Kindly visit the current page again if back online.", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}}).then(() => {
+                    location.reload();
+                });
+
+            } else{
+                document.querySelector(".profile-form").submit();
+            };
+        };
+    </script>
+
+    <script>
+        window.onbeforeunload = function(event){
+            event.preventDefault(); 
+            
+            event.returnValue = ""; 
+
+        };
+    </script>
+
+    <script>
+        const indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB || window.shimIndexedDB;
+        
+        const request = indexedDB.open("cotseye", 1);
+
+        request.onupgradeneeded = (event) => {
+            const cotseye = event.target.result;
+        
+            cotseye.createObjectStore("cotseye_schema", {autoIncrement: true});
+        };
+
+        request.onsuccess = (event) => {
+            const cotseye = event.target.result;
+
+            const form = document.querySelector(".profile-form");
+
+            const account = "{{request.user.id}}";
+
+            if (!navigator.onLine){
+                document.querySelector(".profile-photo").addEventListener("change", () => {
+                    const file = document.querySelector(".profile-photo").files[0];
+
+                    if (file){
+                        const reader = new FileReader();
+                        
+                        reader.addEventListener("load", (event) => {
+                            profilePhoto.push(event.target.result);
+                        });
+                        
+                        reader.readAsDataURL(file);
+                    };
+                });
+
+                const profilePhoto = [];
+
+                document.querySelector(".save-profile").addEventListener("click", (event) => {
+                    event.preventDefault();
+
+                    const information = new FormData(form);
+
+                    const firstName = information.get("first_name");
+
+                    const lastName = information.get("last_name");
+
+                    const email = information.get("email");
+
+                    const phoneNumber = information.get("phone_number");
+
+                    const transaction = cotseye.transaction("cotseye_schema", "readwrite");
+
+                    const cotseye_schema = transaction.objectStore("cotseye_schema");
+
+                    const profile = {             
+                        account: parseInt(account),
+
+                        first_name: firstName,
+                        
+                        last_name: lastName,
+
+                        profile_photo: profilePhoto,
+
+                        email: email,
+
+                        phone_number: parseInt(phoneNumber)
+                    };
+
+                    cotseye_schema.add(profile);
+                }); 
+            };
+
+            if(navigator.onLine){
+                const transaction = cotseye.transaction("cotseye_schema", "readonly");
+
+                const cotseye_schema = transaction.objectStore("cotseye_schema");
+
+                const profile = cotseye_schema.getAll();
+
+                profile.onsuccess = (event) => {
+                    const information = event.target.result;
+
+                    if(information && information.length > 0){
+                        const json = JSON.stringify(information);
+
+                        const token = "{{csrf_token}}"
+
+                        fetch("{% url 'Contributor Service Profile Update Fetch' %}", {
+                            method: "POST",
+
+                            headers: {"Content-Type": "application/json", "X-CSRFToken": token},
+
+                            body: json
+
+                        }).then(() => {
+                            const request = indexedDB.open("cotseye", 1);
+
+                            request.onsuccess = (event) => {
+                                const cotseye = event.target.result;
+                                
+                                const transaction = cotseye.transaction("cotseye_schema", "readwrite");
+                                
+                                const cotseye_schema = transaction.objectStore("cotseye_schema");
+                                
+                                cotseye_schema.clear();
+
+                                const username = "{{request.user.username}}";
+
+                                Swal.fire({title: "Yay!", text: username + ", " + "your information input recorded offline was delivered to COTSEye.", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}}).then(() => {
+                                    window.location.href = "{% url 'Contributor Service Home' %}";
+                                });
+                            };
+                        });
+                    };
+                };
+            };
+        };
+    </script>
+{% endblock content %}

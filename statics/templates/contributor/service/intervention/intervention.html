@@ -3,27 +3,37 @@
 
 {% block content %}
     <div class = "intervention-body">
-        <div class = "intervention-section">
-            <h1>INTERVENTIONS</h1>
-        </div>
+        <!-- <div class = "intervention-section">
+            <h1>ACTIVITIES</h1>
+        </div> -->
     
         {% for intervention in interventions %}
             <div class = "intervention">
                 <div class = "intervention-header">
-                    <p><i class = "fas fa-user"></i>{{intervention.hosting_agency | default:'None available'}}</p>
-                    
-                    <p></i>{{intervention.intervention_date | date:'m/d/y' | default:'None available'}}</p>
+                    <div style = "display: flex; align-items: center; justify-content: center;">
+                        <i class = "fas fa-user"></i>
+
+                        <div>
+                            <p style="font-weight: 550; font-size: 13px !important; font-family: 'Montserrat' !important;">{{intervention.hosting_agency | default:'None available'}}</p>                    
+
+                            <p style="font-weight: 400; font-size: 9px !important; font-family: 'Montserrat' !important;">{{intervention.location | default:'None available'}}</p>                    
+                        </div>
+                    </div>
+
+                    <p style="font-weight: 400; font-size: 9px !important; font-family: 'Montserrat' !important;">{{intervention.intervention_date | date:'m/d/y' | default:'None available'}}</p>
+
+                    <!-- <p>{{intervention.volunteer_amount | default:'0'}}</p> -->
                 </div>
                 
                 <img class = "intervention-image" src = "{{intervention.intervention_photo.url | default:'None available'}}">
 
-                <div class = "intervention-context">
+                <!-- <div class = "intervention-context">
                     <h1>{{intervention.title | default:'None available'}}</h1>
                     
                     <div class = "button">
-                        <a href = "{% url 'Contributor Service Intervention Read' intervention.id %}">See more</a>
+                        <a href = "{% url 'Contributor Service Intervention Read' intervention.id %}">VIEW</a>
                     </div>
-                </div>
+                </div> -->
             </div>
         {% endfor %}
     </div>

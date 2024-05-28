@@ -17,6 +17,7 @@ from reports.models import *
 from reports.forms import CoordinatesForm, PostObservationForm, PostForm
 from django.utils import timezone
 from datetime import timedelta
+from django.core.paginator import Paginator
 
 import base64
 import datetime
@@ -1399,7 +1400,7 @@ def mark_post_as_read(request, id):
 
     post.save()
 
-    return JsonResponse({"success": True})
+    return redirect("post_list")
 
 
 @login_required(login_url = "Officer Control Login")
@@ -1408,7 +1409,6 @@ def OfficerControlSightingRead(request, id):
     notification_life = timezone.now() - timedelta(days = 30) 
 
     unread_posts = Post.objects.filter(read_status=False, creation_date__gte=notification_life).order_by("-creation_date")[:5]
-
 
     post = get_object_or_404(Post, id = id)
 
@@ -1437,6 +1437,10 @@ def OfficerControlSightingValid(request):
         post = get_object_or_404(Post, id=id)
 
         post.post_status = PostStatus.objects.get(id=1)
+        
+        if request.user.usertype.id == 2:
+            post.validated_by = request.user.user
+
         post.save()
 
         return JsonResponse({"success": True})
@@ -1453,6 +1457,9 @@ def OfficerControlSightingInvalid(request):
         post = get_object_or_404(Post, id=id)
 
         post.post_status = PostStatus.objects.get(id=2)
+
+        if request.user.usertype.id == 2:
+            post.validated_by = request.user.user
        
         post.save()
 
@@ -1460,6 +1467,22 @@ def OfficerControlSightingInvalid(request):
 
     return JsonResponse({"success": False}, status=400)
 
+
+def ServicePostReadMark(request, id):
+    try:
+        post = Post.objects.get(id = id)
+
+        post.contrib_read_status = True
+
+        post.contrib_read_date = timezone.now()
+
+        post.save()
+
+        return redirect("contrib_post_list") 
+    
+    except Post.DoesNotExist:
+        return JsonResponse({"success": False, "error": "COTSEye cannot find the post."})
+    
 
 def PostValidReadRedirect(request):
     if request.user.is_authenticated:
@@ -1503,3 +1526,29 @@ def ControlStatisticsPostReadRedirect(request, object_id):
 
     else:
         return redirect(reverse("officer:reports_post_change", kwargs = {"object_id": object.id}))
+    
+
+@login_required(login_url="Contributor Service Login")
+@user_passes_test(ContributorCheck, login_url="Contributor Service Login")
+def contributor_post_list(request):
+    unread_posts_list = Post.objects.filter(contrib_read_status=False)
+    now = timezone.now()
+    read_posts_list = Post.objects.filter(contrib_read_status=True).filter(
+        contrib_read_date__gte=now - timedelta(days=30),
+        contrib_read_date__lte=now
+    )
+    
+    unread_paginator = Paginator(unread_posts_list, 10)  # Show 10 unread posts per page
+    read_paginator = Paginator(read_posts_list, 10)  # Show 10 read posts per page
+    
+    unread_page_number = request.GET.get('unread_page')
+    read_page_number = request.GET.get('read_page')
+    
+    unread_posts = unread_paginator.get_page(unread_page_number)
+    read_posts = read_paginator.get_page(read_page_number)
+    
+    context = {
+        'unread_posts': unread_posts,
+        'read_posts': read_posts,
+    }
+    return render(request, 'contributor/service/notification/notification.html', context)

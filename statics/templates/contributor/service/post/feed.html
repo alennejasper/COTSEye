@@ -3,27 +3,37 @@
 
 {% block content %}
     <div class = "feed-body">
-        <div class = "feed-section">
+        <!-- <div class = "feed-section">
             <h1>POSTS FEED</h1>
-        </div>
+        </div> -->
     
         {% for post in valid_posts %}
             <div class = "feed">
-                <div class = "feed-header">
-                    <p><img src = "{{post.user.profile_photo.url}}">{{post.user | default:'None available'}}</p>
+                <div class = "feed-header">                    
+                    <div style = "display: flex; align-items: center; justify-content: space-between;">
+                        <img src = "{{post.user.profile_photo.url}}">
+
+                        <div>
+                            <p style="font-weight: 550; font-size: 13px !important;">{{post.user | default:'None available'}}</p>
+
+                            <p style="font-weight:400; font-size: 10px !important;">{{post.location | default:'None available'}}</p>
+                        </div>
+                    </div>
                     
-                    <p>{{post.capture_date | date:'m/d/y' | default:'None available'}}</p>
+                    <p style="font-weight:400; font-size: 9px !important;">{{post.capture_date | date:'m/d/y' | default:'None available'}}</p>
                 </div>
                 
-                <img class = "feed-image" src = "{{post.post_photos.first.post_photo.url | default:'None available'}}">
+                <a href = "{% url 'Contributor Service Post Feed Read' post.id %}">
+                    <img class = "feed-image" src = "{{post.post_photos.first.post_photo.url | default:'None available'}}">
+                </a>
 
-                <div class = "feed-context">
-                    <h1>{{post.location | default:'None available'}}</h1>
+                <!-- <div class = "feed-context">
+                    <h1><i class="fa-solid fa-location-dot"></i>{{post.location | default:'None available'}}</h1>
                     
-                    <div class = "button">
+                    <div class = "button-10">
                         <a href = "{% url 'Contributor Service Post Feed Read' post.id %}">See more</a>
                     </div>
-                </div>
+                </div> -->
             </div>
         {% endfor %}
     </div>

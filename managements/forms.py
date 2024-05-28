@@ -5,6 +5,7 @@ import datetime
 
 
 class InterventionForm(forms.ModelForm):
+    required_css_class = 'required'
     class Meta:
         model = Intervention
         fields = [
@@ -17,22 +18,23 @@ class InterventionForm(forms.ModelForm):
             'volunteer_amount'
         ]
         widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-control'}),
-            'caught_amount': forms.NumberInput(attrs={'class': 'form-control'}),
-            'details': forms.Textarea(attrs={'class': 'form-control'}),
-            'hosting_agency': forms.TextInput(attrs={'class': 'form-control'}),
-            'intervention_photo': forms.FileInput(attrs={'class': 'form-control', 'id': 'interventionPhoto'}),
-            'intervention_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
-            'volunteer_amount': forms.NumberInput(attrs={'class': 'form-control'}),
+            'title': forms.TextInput(attrs={'class': 'form-control', 'required': 'required'}),
+            'caught_amount': forms.NumberInput(attrs={'class': 'form-control', 'required': 'required'}),
+            'details': forms.Textarea(attrs={'class': 'form-control', 'required': 'required'}),
+            'hosting_agency': forms.TextInput(attrs={'class': 'form-control', 'required': 'required'}),
+            'intervention_photo': forms.FileInput(attrs={'class': 'form-control', 'id': 'interventionPhoto', 'required': 'required'}),
+            'intervention_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control', 'required': 'required'}),
+            'volunteer_amount': forms.NumberInput(attrs={'class': 'form-control', 'required': 'required'}),
         }
 
 class StatusForm(forms.ModelForm):
+    required_css_class = 'required'
     class Meta:
         model = Status
         fields = ['location', 'onset_date']
         widgets = {
-            'onset_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
-            'location': forms.Select(attrs={'class': 'form-control'}),
+            'onset_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control', 'required': 'required'}),
+            'location': forms.Select(attrs={'class': 'form-control', 'required': 'required'}),
         }
 
     def save(self, commit=True):

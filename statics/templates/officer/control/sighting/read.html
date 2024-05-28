@@ -10,7 +10,7 @@
                     <div class="carousel-inner">
                         {% for photo in post_photos %}
                             <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                                <img src="{{ photo.post_photo.url }}" class="d-block w-100 carousel-image" alt="...">
+                                <img src="{{ photo.post_photo.url }}" class="d-block w-50 carousel-image" alt="...">
                             </div>
                         {% endfor %}
                     </div>
@@ -76,20 +76,11 @@
 
 <script>
     function changeStatus(postId) {
-        var latitude = document.getElementById("latitude").value;
-        var longitude = document.getElementById("longitude").value;
-        var municipality = document.getElementById("municipality").value;
-        var barangay = document.getElementById("barangay").value;
-
         $.ajax({
             type: 'POST',
             url: '{% url "Officer Control Sighting Valid" %}',
             data: {
                 'post_id': postId,
-                'latitude': latitude,
-                'longitude': longitude,
-                'municipality': municipality,
-                'barangay': barangay,
                 'csrfmiddlewaretoken': '{{ csrf_token }}'
             },
             success: function(response) {
@@ -103,20 +94,11 @@
     }
 
     function invalidStatus(postId) {
-        var latitude = document.getElementById("latitude").value;
-        var longitude = document.getElementById("longitude").value;
-        var municipality = document.getElementById("municipality").value;
-        var barangay = document.getElementById("barangay").value;
-
         $.ajax({
             type: 'POST',
             url: '{% url "Officer Control Sighting Invalid" %}',
             data: {
                 'post_id': postId,
-                'latitude': latitude,
-                'longitude': longitude,
-                'municipality': municipality,
-                'barangay': barangay,
                 'csrfmiddlewaretoken': '{{ csrf_token }}'
             },
             success: function(response) {

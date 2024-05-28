@@ -281,10 +281,10 @@
     position: absolute;
     display: none;
     right: 15px;
-    top: 40px;    
-    min-width: 250px;
+    top: 140px;    
+    max-width: 100px;
     border-radius: 5px;
-    border: 1px solid #003755;     
+    border: 1px solid #167aaf;     
     background-color: #FFFFFF;
     z-index: 100;
 }
@@ -297,7 +297,7 @@
     padding-bottom: 10px !important;
     font-family: "Open Sans";
     font-weight: 700;
-    font-size: 22px;
+    font-size: 15px;
     background-color: #003755;
     color: #FFFFFF;
     text-align: center;
@@ -473,7 +473,7 @@
     padding-bottom: 10px !important;
     font-family: "Open Sans";
     font-weight: 700;
-    font-size: 22px;
+    font-size: 15px;
     background-color: #003755;
     color: #FFFFFF;
     text-align: center;
@@ -541,3 +541,4 @@
     position: fixed;
     display: block;
 }
+

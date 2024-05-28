@@ -121,11 +121,11 @@
 
                 status.addTo(map_statuses);
                 
-                var starfish = L.icon({iconUrl: "{% static 'assets/pin.png' %}", iconSize: [30, 30], iconAnchor: [15, 15]});
-            
-                var map_posts = L.markerClusterGroup({iconCreateFunction: function(cluster){return starfish}, removeOutsideVisibleBounds: false});
-            
                 {% for post in map_posts %}
+                    var starfish = L.icon({iconUrl: "{{post.post_photos.first.post_photo.url}}", iconSize: [30, 30], iconAnchor: [15, 15], className: "custom-leaflet-icon"});
+            
+                    var map_posts = L.markerClusterGroup({iconCreateFunction: function(cluster){return starfish}, removeOutsideVisibleBounds: false});
+            
                     var postMarker = L.marker([{{post.coordinates.latitude}}, {{post.coordinates.longitude}}], {icon: starfish});
                     
                     postMarker.bindPopup("<div class = 'popup'>" + "<div class = 'popup-header'>" +  "<img src = '{{post.user.profile_photo.url | default:''}}'>" +  "<div class='popup-username'>" +  "<p><a>{{post.user | default:'None available'}}</a></p>" + "</div>" + "<i class = 'fa-solid fa-square-xmark popup-back'></i>" + "</div>" + "<div class = 'popup-post'>" + "<div class = 'post-gallery'>" + "<img src = '{{post.post_photos.all.first.post_photo.url}}'>" + "<div class = 'post-context'>" + "<p>{{post.capture_date | default:'None available'}}</p>" + "<a>{{post.location | default:'None available'}}</a>" + "</div>" + "</div>" + "</div>" + "<div class = 'button'><a class = 'read-post' href = '{% url 'Post Valid Read Redirect' %}'>Read</a></div>", {closeOnClick: false, autoClose: false});
@@ -148,7 +148,6 @@
 
                     map_posts.addLayer(postMarker);
                 {% endfor %}
-
 
                 var map = document.getElementsByClassName("map")[0];
 

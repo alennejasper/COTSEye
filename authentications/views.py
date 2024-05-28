@@ -20,6 +20,7 @@ from django.db.models.functions import Concat
 from django.db.models import Sum
 from django.utils import timezone
 from datetime import timedelta
+from django.core.paginator import Paginator
 
 
 
@@ -306,22 +307,6 @@ def ContributorServiceHome(request):
     context = {"username": username, "user_profile": user_profile, "map_posts": map_posts, "map_statuses": map_statuses, "latest_announcements": latest_announcements, "valid_posts": valid_posts, "unread_posts": unread_posts}
 
     return render(request, "contributor/service/home/home.html", context)
-
-
-def mark_post_as_contrib_read(request, post_id):
-    try:
-        post = Post.objects.get(id = post_id)
-
-        post.contrib_read_status = True
-
-        post.contrib_read_date = timezone.now()
-
-        post.save()
-
-        return JsonResponse({'success': True})
-    
-    except Post.DoesNotExist:
-        return JsonResponse({'success': False, 'error': 'Post not found'})
     
 @login_required(login_url = "Contributor Service Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
@@ -708,6 +693,56 @@ def OfficerControlHome(request):
     return render(request, "officer/control/home/home.html", context)
 
 
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
+def OfficerControlProfile(request):
+    user = User.objects.get(account = request.user)
+
+    username = request.user.username
+
+    user_profile = User.objects.get(account = request.user)
+
+    notification_life = timezone.now() - timedelta(days=30)
+    unread_posts = Post.objects.filter(read_status=False, creation_date__gte=notification_life).order_by('-creation_date')[:5]
+
+    context = {"user": user, "username": username, "user_profile": user_profile, "unread_posts": unread_posts}
+
+    return render(request, "officer/control/profile/profile.html", context)
+
+
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
+def OfficerControlProfileUpdate(request):
+    user = User.objects.get(account = request.user)
+
+    username = request.user.username
+
+    user_profile = User.objects.get(account = request.user)
+
+
+    notification_life = timezone.now() - timedelta(days=30)
+    
+    unread_posts = Post.objects.filter(read_status=False, creation_date__gte=notification_life).order_by('-creation_date')[:5]
+    
+    if request.method == "POST":
+        profile_form = ProfileForm(request.POST, request.FILES, instance = request.user.user)
+        
+        if profile_form.is_valid():
+            profile_form.save()
+
+            username = request.user.username
+
+            messages.success(request, username + ", " + "your information input was recorded online for COTSEye.")
+            
+            return redirect("Contributor Service Home")
+            
+    else:
+        profile_form = ProfileForm(request.user.user)
+
+    context = {"user": user, "username": username, "user_profile": user_profile, "profile_form": profile_form, "unread_posts": unread_posts}
+    
+    return render(request, "officer/control/profile/update.html", context)
+
 
 @login_required(login_url = "Officer Control Login")
 @user_passes_test(OfficerCheck, login_url = "Officer Control Login")
@@ -869,6 +904,7 @@ def ControlPasswordRedirect(request):
     else:
         return redirect(reverse("password_change"))
 
+
 def ControlProfileRedirect(request):
     object = Account.objects.get(id = request.user.id)
 
@@ -883,3 +919,29 @@ def ControlProfileRedirect(request):
     
     else:
         return redirect(reverse("authentications_account_change", kwargs = {"object_id": object.id}))
+    
+
+@login_required(login_url="Officer Control Login")
+@user_passes_test(OfficerCheck, login_url="Officer Control Login")
+def post_list(request):
+    unread_posts_list = Post.objects.filter(read_status=False)
+    now = timezone.now()
+    read_posts_list = Post.objects.filter(read_status=True).filter(
+        read_date__gte=now - timedelta(days=30),
+        read_date__lte=now
+    )
+    
+    unread_paginator = Paginator(unread_posts_list, 10)  # Show 10 unread posts per page
+    read_paginator = Paginator(read_posts_list, 10)  # Show 10 read posts per page
+    
+    unread_page_number = request.GET.get('unread_page')
+    read_page_number = request.GET.get('read_page')
+    
+    unread_posts = unread_paginator.get_page(unread_page_number)
+    read_posts = read_paginator.get_page(read_page_number)
+    
+    context = {
+        'unread_posts': unread_posts,
+        'read_posts': read_posts,
+    }
+    return render(request, 'officer/control/notification/notification.html', context)

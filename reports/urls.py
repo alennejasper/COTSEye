@@ -41,9 +41,15 @@ urlpatterns = [
 
     path("sightings/control/sighting/invalid", views.OfficerControlSightingInvalid, name = "Officer Control Sighting Invalid"),
     
+    path("service/post/read/mark/<int:id>/", views.ServicePostReadMark, name = "Service Post Read Mark"),
+
     path("service/post/valid/read/redirect/", views.PostValidReadRedirect, name = "Post Valid Read Redirect"),
 
     path('mark_post_as_read/<int:id>/', views.mark_post_as_read, name='mark_post_as_read'),
 
     path('api/posts/update/<int:post_id>/', views.update_post, name='update_post'),   
+    
+    
+    path("service/posts/", views.contributor_post_list, name="contrib_post_list"),
+
 ]

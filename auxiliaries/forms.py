@@ -4,6 +4,8 @@ from auxiliaries.models import Announcement
 from managements.models import Location
 
 class AnnouncementForm(forms.ModelForm):
+    required_css_class = 'required'
+    
     user = forms.ModelChoiceField(
         queryset=User.objects.all(),
         widget=forms.Select(attrs={"class": "form-control", "id": "announcementUser", "required": True}),

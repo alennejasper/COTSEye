@@ -85,12 +85,12 @@
                                 <td class="{% if post.post_status == 'Valid' %} valid-status {% elif post.post_status == 'Invalid' %} invalid-status {% elif post.post_status == 'Pending' %} pending-status {% endif %}">{{ post.post_status }}</td>
                                 <td>
                                     <div class="button-container">
-                                        <a onclick="shownDropdown()"><i class="fa-solid fa-arrow-down drop"></i></a>
-                                        <a onclick="showPopup()"><i class="fa-solid fa-info-circle"></i></a>
+                                        <a onclick="shownDropdown()"><img width="30px" src = "{% static 'assets/down.png' %}" class = "drop"></a>
+                                        <a onclick="showPopup({{ post.id }})"><i class="fa-solid fa-info-circle"></i></a>
                                         <div class="dropdown">
                                             <div class="dropdown-content">
-                                                <a class="dropdown-header" value="Valid" onclick="changeStatus({{ post.id }}, 'Valid')">Valid</a>
-                                                <a class="dropdown-footer" value="Invalid" onclick="changeStatus({{ post.id }}, 'Invalid')">Invalid</a>
+                                                <a class="dropdown-header" onclick="changeStatus({{ post.id }}, 'Valid')">Valid</a>
+                                                <a class="dropdown-footer" onclick="changeStatus({{ post.id }}, 'Invalid')">Invalid</a>
                                             </div>
                                         </div>
                                         <button class="button-29" onclick="location.href='{% url 'Officer Control Sighting Read' post.id %}'">See more</button>
@@ -117,24 +117,26 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
 <script>
-    function shownDropdown(){
+    function shownDropdown(event){
         event.stopPropagation();
-        const dropdown = event.currentTarget.nextElementSibling.querySelector('.dropdown-content');
+        const dropdown = event.currentTarget.closest('.button-container').querySelector('.dropdown-content');
         dropdown.classList.toggle("show");
     };
-    
-    document.querySelectorAll('.info-icon').forEach(icon => {
-        icon.addEventListener('click', function() {
-            const postId = this.dataset.postId;
-            showPopup(postId);
-        });
-    });
 
-  
+    window.onclick = function(event) {
+        if (!event.target.matches("img.drop")) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains("show")) {
+                    openDropdown.classList.remove("show");
+                }
+            }
+        }
+    };
 
     function showPopup(postId) {
         fetch(`/officer/control/sighting/update/${postId}/`)
@@ -185,7 +187,6 @@
                 });
             });
     }
-
 
     var map;
     var report;
@@ -262,6 +263,7 @@
                     "municipality": municipalityFilter
                 },
                 success: function(data) {
+                    barangayFilter.innerHTML = "";
                     data.forEach(function(barangay) {
                         const option = document.createElement("option");
                         option.value = barangay;
@@ -291,65 +293,53 @@
     }
 
     function submitPopup(postId) {
-    const municipality = document.getElementById('popupMunicipality').value;
-    const barangay = document.getElementById('popupBarangay').value;
-    const latitude = document.getElementById('latitude').value;
-    const longitude = document.getElementById('longitude').value;
+        const municipality = document.getElementById('popupMunicipality').value;
+        const barangay = document.getElementById('popupBarangay').value;
+        const latitude = document.getElementById('latitude').value;
+        const longitude = document.getElementById('longitude').value;
 
-    const data = {
-        municipality: municipality,
-        barangay: barangay,
-        latitude: parseFloat(latitude),
-        longitude: parseFloat(longitude)
-    };
+        const data = {
+            municipality: municipality,
+            barangay: barangay,
+            latitude: parseFloat(latitude),
+            longitude: parseFloat(longitude)
+        };
 
-    fetch(`/api/posts/update/${postId}/`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRFToken': '{{csrf_token}}' 
-        },
-        body: JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(result => {
-        if (result.status === 'success') {
-            Swal.fire({
-                title: 'Submitted!',
-                text: 'The form has been submitted.',
-                icon: 'success',
-                confirmButtonText: 'Close'
-            });
-        } else {
+        fetch(`/api/posts/update/${postId}/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{csrf_token}}' 
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(result => {
+            if (result.status === 'success') {
+                Swal.fire({
+                    title: 'Submitted!',
+                    text: 'The form has been submitted.',
+                    icon: 'success',
+                    confirmButtonText: 'Close'
+                });
+            } else {
+                Swal.fire({
+                    title: 'Error!',
+                    text: result.message,
+                    icon: 'error',
+                    confirmButtonText: 'Close'
+                });
+            }
+        })
+        .catch(error => {
             Swal.fire({
                 title: 'Error!',
-                text: result.message,
+                text: 'An error occurred while submitting the form.',
                 icon: 'error',
                 confirmButtonText: 'Close'
             });
-        }
-    })
-    .catch(error => {
-        Swal.fire({
-            title: 'Error!',
-            text: 'An error occurred while submitting the form.',
-            icon: 'error',
-            confirmButtonText: 'Close'
         });
-    });
-}
-
-    window.onclick = function(event) {
-        if (!event.target.matches("i.drop")) {
-            var dropdowns = document.getElementsByClassName("dropdown-content");
-            for (var i = 0; i < dropdowns.length; i++) {
-                var openDropdown = dropdowns[i];
-                if (openDropdown.classList.contains("show")) {
-                    openDropdown.classList.remove("show");
-                }
-            }
-        }
-    };
+    }
 
     $(document).ready(function() {
         $('.select2').select2();
@@ -361,13 +351,11 @@
         {% endfor %}
     });
 
-
-    
-        const sightingsData = [
-            {% for post in posts %}
-                {id: {{ post.id }}, date: "{{ post.creation_date | date:'F j, Y, g:i a' }}", user: "{{ post.user }}", phone_number: "{{ post.user.phone_number }}", barangay: "{{ post.location.barangay }}", municipality: "{{ post.location.municipality }}", status: "{{ post.post_status }}"},
-            {% endfor %}
-        ];
+    const sightingsData = [
+        {% for post in posts %}
+            {id: {{ post.id }}, date: "{{ post.creation_date | date:'F j, Y, g:i a' }}", user: "{{ post.user }}", phone_number: "{{ post.user.phone_number }}", barangay: "{{ post.location.barangay }}", municipality: "{{ post.location.municipality }}", status: "{{ post.post_status }}"},
+        {% endfor %}
+    ];
 
     let currentPage = 1;
     const rowsPerPage = 10;
@@ -396,7 +384,7 @@
                     <td class="${statusClass}" onclick="window.location.href='${baseUrl}'">${item.status}</td>
                     <td>
                         <div class="button-container">
-                            <a onclick="shownDropdown()"><i class="fa-solid fa-arrow-down drop"></i></a>
+                            <a onclick="shownDropdown(event)"><img height="8px" style="margin-right: 13px" src = "{% static 'assets/down.png' %}" class = "drop"></a>
                             <a onclick="showPopup(${item.id})"><i class="fa-solid fa-info-circle"></i></a>
                             <div class="dropdown">
                                 <div class="dropdown-content">
@@ -413,7 +401,6 @@
         document.getElementById("previousPage").classList.toggle("disabled", page === 1);
         document.getElementById("nextPage").classList.toggle("disabled", end >= filteredData.length);
     }
-
 
     function changePage(direction) {
         if (direction === 'prev' && currentPage > 1) {

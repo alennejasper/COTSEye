@@ -19,7 +19,11 @@
 
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/officer/control/sighting/sighting.css' %}">
 
-        <link rel="stylesheet" type="text/css" href="{% static 'css/officer/control/announcement/announcement.css' %}">
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/officer/control/profile/profile.css' %}">
+
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/officer/control/profile/update.css' %}">
+
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/officer/control/announcement/announcement.css' %}">
 
         <script src = "https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -54,7 +58,7 @@
         <div class = "bg-primary">
             <div class = "container-fluid d-flex justify-content-between align-items-center flex-wrap">
                 <nav class = "nav">
-                    <a class = "nav-link active disabled" aria-current = "page"><img src = "{% static 'assets/logo1.png' %}" height = "16px"></a>
+                    <a class = "nav-link active disabled" aria-current = "page"><img src = "{% static 'assets/icons/header.png' %}" height = "16px"></a>
                     <a style = "font-size: 12px;" class="nav-link text-white" href = "{% url 'Officer Control Home' %}">HOME</a>
                     <a style = "font-size: 12px;" class="nav-link text-white" href = "{% url 'Officer Control Sighting' %}">SIGHTINGS</a>
                     <a style = "font-size: 12px;" class="nav-link text-white" href = "{% url 'Officer Control Announcement' %}">ANNOUNCEMENTS</a>
@@ -65,7 +69,7 @@
                 <div class="d-flex align-items-center login-cursor">
                     <nav class="nav">
                         <div class="dropdown">
-                            <a class="nav-link text-black position-relative" id="notificationBell" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link text-black position-relative" id="notificationBell" href="{% url 'post_list' %}">
                                 <i class="fa-solid fa-bell fa-lg"></i>
                                 {% if unread_posts %}
                                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
@@ -74,7 +78,7 @@
                                     </span>
                                 {% endif %}
                             </a>
-                            <ul class = "dropdown-menu">
+                            <!-- <ul class = "dropdown-menu">
                                 {% if unread_posts %}
                                     {% for post in unread_posts %}
                                         <li class = "dropdown-item">
@@ -89,8 +93,10 @@
                                 {% else %}
                                     <li class = "dropdown-item">No unread posts in the last 30 days.</li>
                                 {% endif %}
-                            </ul>
+                            </ul> -->
                         </div>
+
+                        <a class = "nav-link text-black" href = "{% url 'Officer Control Profile' %}">Profile</a>
 
                         <a class = "nav-link text-black" href = "{% url 'Officer Control Logout' %}">Logout</a>
                     </nav>

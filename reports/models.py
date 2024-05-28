@@ -75,13 +75,13 @@ class Size(models.Model):
     
     def __str__(self):
         if self.is_small == True:
-            return "Small (below 6 inches)"
+            return "1 to 9 inches"
         
         elif self.is_medium == True:
-            return "Medium (6in to 12 inches)"
+            return "10 to 18 inches"
         
         elif self.is_large == True:
-            return "Large (above 12 inches)"
+            return "19 inches and above"
         
 class Depth(models.Model):
     is_shallow = models.BooleanField(default = False, help_text = "Designates that the depth is shallow.", verbose_name = "Shallow")
@@ -96,16 +96,16 @@ class Depth(models.Model):
     
     def __str__(self):
         if self.is_profound == True:
-            return "Profound (20 feet above)"
+            return "21 feet and above"
         
         if self.is_deep == True:
-            return "Deep (10 feet to 20 feet)"
+            return "11 to 20 feet"
         
         elif self.is_moderate == True:
-            return "Moderate (5 feet to 10 feet)"
+            return "6 to 10 feet"
         
         elif self.is_shallow == True:
-            return "Shallow (1 to 5 feet below)"
+            return "1 to 5 feet"
         
 class Weather(models.Model):
     is_sunny = models.BooleanField(default = False, help_text = "Designates that the weather is sunny.", verbose_name = "Sunny")

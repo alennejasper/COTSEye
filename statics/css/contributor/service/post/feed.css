@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap");
+
 .feed-body{
     position: relative;
     width: 100vw;
@@ -17,18 +19,19 @@
 }
 
 .feed-body .feed-section h1{
-    font-family: "Open Sans"; 
+    font-family: "Montserrat"; 
     font-weight: 700;       
     font-size: 22px;     
     text-align: center;     
 }
 
 .feed-body .feed{
-    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #E1E1E1;
 }
 
 .feed-body .feed:last-child{
-    margin-bottom: 0px;
+    padding-bottom: 0px;
 }
 
 .feed-body .feed .feed-header{
@@ -47,17 +50,17 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-family: "Open Sans";
-    font-weight: 400;
-    font-size: 14px !important;
+    font-family: "Montserrat";
+    font-weight: 500;
+    font-size: 13px !important;
     color: #000000;
 }
 
 .feed-body .feed .feed-header img{
     margin-right: 10px !important;
     margin-bottom: 0px !important;
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     cursor: pointer;
 }
@@ -82,7 +85,7 @@
     gap: 10px;
     padding-left: 10px;
     padding-right: 10px;
-    padding-top: 10px;
+    padding-top: 0px;
     padding-bottom: 10px;
 }
 
@@ -90,10 +93,15 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-family: "Open Sans";
-    font-weight: 400;       
+    font-family: "Montserrat";
+    font-weight: 500;       
     font-size: 14px;
     color: #000000;  
+}
+
+.feed-body .feed .feed-context h1 i{
+    margin-right: 6px;
+
 }
 
 .feed-body .feed .feed-context .button{
@@ -114,7 +122,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-family: "Open Sans";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 14px;
     color: #FFFFFF !important;

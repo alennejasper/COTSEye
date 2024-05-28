@@ -1,0 +1,119 @@
+{% extends 'officer/control/index/index.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">Posts</h1>
+
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            Unread Posts
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>User</th>
+                        <th>Description</th>
+                        <th>Capture Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for post in unread_posts %}
+                    <tr>
+                        <td>{{ post.id }}</td>
+                        <td>{{ post.user }}</td>
+                        <td>{{ post.description }}</td>
+                        <td>{{ post.capture_date }}</td>
+                        <td>
+                            <a href="{% url 'Officer Control Sighting Read' id=post.id %}" class="btn btn-sm btn-primary">View</a>
+                            <a href="{% url 'mark_post_as_read' id=post.id %}" class="btn btn-sm btn-primary">Mark as read</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <nav aria-label="Unread posts pagination">
+                <ul class="pagination justify-content-center">
+                    {% if unread_posts.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?unread_page={{ unread_posts.previous_page_number }}{% if read_posts.has_other_pages %}&read_page={{ read_posts.number }}{% endif %}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% for num in unread_posts.paginator.page_range %}
+                    <li class="page-item {% if unread_posts.number == num %}active{% endif %}">
+                        <a class="page-link" href="?unread_page={{ num }}{% if read_posts.has_other_pages %}&read_page={{ read_posts.number }}{% endif %}">{{ num }}</a>
+                    </li>
+                    {% endfor %}
+                    {% if unread_posts.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?unread_page={{ unread_posts.next_page_number }}{% if read_posts.has_other_pages %}&read_page={{ read_posts.number }}{% endif %}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header bg-secondary text-white">
+            Read Posts
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>User</th>
+                        <th>Description</th>
+                        <th>Capture Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for post in read_posts %}
+                    <tr>
+                        <td>{{ post.id }}</td>
+                        <td>{{ post.user }}</td>
+                        <td>{{ post.description }}</td>
+                        <td>{{ post.capture_date }}</td>
+                        <td>
+                            <a href="{% url 'Officer Control Sighting Read' id=post.id %}" class="btn btn-sm btn-primary">View</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <nav aria-label="Read posts pagination">
+                <ul class="pagination justify-content-center">
+                    {% if read_posts.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?read_page={{ read_posts.previous_page_number }}{% if unread_posts.has_other_pages %}&unread_page={{ unread_posts.number }}{% endif %}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% for num in read_posts.paginator.page_range %}
+                    <li class="page-item {% if read_posts.number == num %}active{% endif %}">
+                        <a class="page-link" href="?read_page={{ num }}{% if unread_posts.has_other_pages %}&unread_page={{ unread_posts.number }}{% endif %}">{{ num }}</a>
+                    </li>
+                    {% endfor %}
+                    {% if read_posts.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?read_page={{ read_posts.next_page_number }}{% if unread_posts.has_other_pages %}&unread_page={{ unread_posts.number }}{% endif %}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+{% endblock %}

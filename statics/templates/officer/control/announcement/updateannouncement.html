@@ -13,9 +13,9 @@
                     {% csrf_token %}
                     {{ form.as_p }}
                     <div class="mb-3">
-                        <label for="municipalityFilter" class="form-label">Municipality:</label>
+                        <label for="municipalityFilter" class="form-label required">Municipality:</label>
                         <select id="municipalityFilter" class="form-select form-select-sm mb-3 select2" onchange="updateBarangayOptions()">
-                            <option value="{{ announcement.location.municipality}}">{{ announcement.location.municipality}}</option>
+                            <option value="{{ announcement.location.municipality }}">{{ announcement.location.municipality }}</option>
                             {% for location in locations %}
                                 <option value="{{ location.municipality }}">{{ location.municipality }}</option>
                             {% endfor %}
@@ -23,24 +23,19 @@
                     </div>
                 
                     <div class="mb-3">
-                        <label for="barangayFilter" class="form-label">Barangay:</label>
+                        <label for="barangayFilter" class="form-label required">Barangay:</label>
                         <select id="barangayFilter" class="form-select form-select-sm mb-3 select2" onchange="setBarangayValue()">
-                            <option value="{{ announcement.location.barangay}}">{{ announcement.location.barangay}}</option>
+                            <option value="{{ announcement.location.barangay }}">{{ announcement.location.barangay }}</option>
                         </select>
                     </div>
-                    <input type="hidden" id="id_municipality" name="municipality">
-                    <input type="hidden" id="id_barangay" name="barangay">
+                    <input type="hidden" id="id_municipality" name="municipality" value="{{ announcement.location.municipality }}">
+                    <input type="hidden" id="id_barangay" name="barangay" value="{{ announcement.location.barangay }}">
+            
             
                     <div class="grid-container">
                         <div class="form-group">
-                            <h2>Last Photo</h2>
-                            <div class="form-group">
-                                <img id="OldphotoPreview" src="{{ announcement.announcement_photo.url }}" alt="Old Image Preview" style="max-width: auto; height: 250px;">
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <h2>New Photo</h2>
-                            <img id="photoPreview" src="#" alt="Image Preview" style="display: none; max-width: auto; height: 250px;">
+                            <img id="photoPreview" src="#" alt="Image Preview" style="display: none; max-width: auto; height: 100px;">
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary mt-3">Update Announcement</button>
@@ -86,7 +81,30 @@
     </div>
 </div>
 
+<!-- Include SweetAlert CSS and JavaScript -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
+    document.getElementById('announcementForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, update it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // If confirmed, submit the form
+                event.target.submit();
+            }
+        });
+    });
+
     document.getElementById('announcementPhoto').addEventListener('change', function(event) {
         const photoPreview = document.getElementById('photoPreview');
         const file = event.target.files[0];
@@ -107,39 +125,4 @@
     });
 </script>
 
-<!-- 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const index = urlParams.get('index');
-        let announcements = JSON.parse(localStorage.getItem('announcements')) || [];
-
-        if (index !== null && announcements[index]) {
-            let announcement = announcements[index];
-            document.getElementById('announcementTitle').value = announcement.title;
-            document.getElementById('announcementDate').value = announcement.date;
-            document.getElementById('announcementLocation').value = announcement.location;
-            document.getElementById('announcementDescription').value = announcement.description;
-            document.getElementById('announcementUser').value = announcement.user;
-            // Handle photo loading if required
-        }
-
-        document.getElementById('announcementForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            
-            let title = document.getElementById('announcementTitle').value;
-            let date = document.getElementById('announcementDate').value;
-            let location = document.getElementById('announcementLocation').value;
-            let description = document.getElementById('announcementDescription').value;
-            let user = document.getElementById('announcementUser').value;
-            let photo = document.getElementById('announcementPhoto').files[0];
-
-            let updatedAnnouncement = { title, date, location, description, user, photo };
-            announcements[index] = updatedAnnouncement;
-            localStorage.setItem('announcements', JSON.stringify(announcements));
-
-            window.location.href = '{% url "Officer Control Announcement" %}';
-        });
-    });
-</script> -->
 {% endblock %}

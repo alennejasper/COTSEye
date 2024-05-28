@@ -14,6 +14,8 @@ from auxiliaries.forms import AnnouncementForm
 from django.http import JsonResponse
 
 
+import json
+
 # Create your views here.
 def PublicServiceAnnouncement(request):
     username = "public/everyone"
@@ -52,6 +54,52 @@ def PublicServiceInquiry(request):
 def PublicServiceMap(request):
     username = "public/everyone"
 
+    municipality_filter = request.GET.get('municipality')
+    start_date_filter = request.GET.get('start_date')
+    end_date_filter = request.GET.get('end_date')
+
+    # Fetch distinct municipalities
+    municipalities = Location.objects.values('municipality').distinct()
+
+    # Fetch locations with optional filters
+    locations_query = Location.objects.filter(status__isnull=False)
+    if municipality_filter:
+        locations_query = locations_query.filter(municipality=municipality_filter)
+
+    locations = locations_query.distinct()
+
+    notification_life = timezone.now() - timedelta(days=30)
+    unread_posts = Post.objects.filter(read_status=False, creation_date__gte=notification_life).order_by('-creation_date')[:5]
+
+    data = {}
+    total_caught_overall = 0
+
+    barangay_data = []
+
+    for location in locations:
+        location_str = f"{location.barangay}, {location.municipality}"
+        statuses_query = Status.objects.filter(location=location).order_by('onset_date')
+
+        if start_date_filter and end_date_filter:
+            statuses_query = statuses_query.filter(onset_date__range=[start_date_filter, end_date_filter])
+
+        latest_status = statuses_query.latest('onset_date')
+        caught_overall_sum = latest_status.caught_overall
+        total_caught_overall += caught_overall_sum
+
+        data[location_str] = {
+            'onset_dates': [latest_status.onset_date.strftime('%Y-%m-%d')],
+            'caught_overalls': [caught_overall_sum],
+            'caught_overall_sum': caught_overall_sum
+        }
+
+        barangay_data.append({
+            'barangay': location.barangay,
+            'municipality': location.municipality,
+            'caught_overall_sum': caught_overall_sum,
+            'latest_onset_date': latest_status.onset_date.strftime('%Y-%m-%d')
+        })
+
     try:
         map_posts = Post.objects.filter(post_status = 1)
 
@@ -66,7 +114,15 @@ def PublicServiceMap(request):
 
         map_graphs = None
 
-    context = {"username": username, "map_posts": map_posts, "map_statuses": map_statuses, "map_graphs": map_graphs}
+    context = {"username": username, "map_posts": map_posts, "map_statuses": map_statuses, "map_graphs": map_graphs,'chart_data': json.dumps(data),
+        'locations': locations,
+        'municipalities': municipalities,
+        'unread_posts': unread_posts,
+        'total_caught_overall': total_caught_overall,
+        'barangay_data': barangay_data,
+        'selected_municipality': municipality_filter,
+        'start_date_filter': start_date_filter,
+        'end_date_filter': end_date_filter}
     
     return render(request, "public/service/map/map.html", context)
 
@@ -92,9 +148,13 @@ def ContributorServiceAnnouncement(request):
 
     announcements = Announcement.objects.all().order_by("-release_date")
 
+    scheme = request.scheme
+
+    host = request.META["HTTP_HOST"]
+
     unread_posts = Post.objects.filter(post_status = 1, contrib_read_status = False, user = request.user.user).order_by("-capture_date")
 
-    context = {"username": username, "user_profile": user_profile, "announcements": announcements, "unread_posts": unread_posts}
+    context = {"username": username, "user_profile": user_profile, "announcements": announcements, "unread_posts": unread_posts, "scheme": scheme, "host": host}
 
     return render(request, "contributor/service/announcement/announcement.html", context)
 
@@ -158,7 +218,61 @@ def ContributorServiceMap(request):
 
         map_graphs = None
 
-    context = {"username": username, "user_profile": user_profile, "map_posts": map_posts, "map_statuses": map_statuses, "map_graphs": map_graphs, "unread_posts": unread_posts}
+    municipality_filter = request.GET.get('municipality')
+    start_date_filter = request.GET.get('start_date')
+    end_date_filter = request.GET.get('end_date')
+
+    # Fetch distinct municipalities
+    municipalities = Location.objects.values('municipality').distinct()
+
+    # Fetch locations with optional filters
+    locations_query = Location.objects.filter(status__isnull=False)
+    if municipality_filter:
+        locations_query = locations_query.filter(municipality=municipality_filter)
+
+    locations = locations_query.distinct()
+
+    notification_life = timezone.now() - timedelta(days=30)
+    unread_posts = Post.objects.filter(read_status=False, creation_date__gte=notification_life).order_by('-creation_date')[:5]
+
+    data = {}
+    total_caught_overall = 0
+
+    barangay_data = []
+
+    for location in locations:
+        location_str = f"{location.barangay}, {location.municipality}"
+        statuses_query = Status.objects.filter(location=location).order_by('onset_date')
+
+        if start_date_filter and end_date_filter:
+            statuses_query = statuses_query.filter(onset_date__range=[start_date_filter, end_date_filter])
+
+        latest_status = statuses_query.latest('onset_date')
+        caught_overall_sum = latest_status.caught_overall
+        total_caught_overall += caught_overall_sum
+
+        data[location_str] = {
+            'onset_dates': [latest_status.onset_date.strftime('%Y-%m-%d')],
+            'caught_overalls': [caught_overall_sum],
+            'caught_overall_sum': caught_overall_sum
+        }
+
+        barangay_data.append({
+            'barangay': location.barangay,
+            'municipality': location.municipality,
+            'caught_overall_sum': caught_overall_sum,
+            'latest_onset_date': latest_status.onset_date.strftime('%Y-%m-%d')
+        })
+
+    context = {"username": username, "user_profile": user_profile, "map_posts": map_posts, "map_statuses": map_statuses, "map_graphs": map_graphs, "unread_posts": unread_posts, 'chart_data': json.dumps(data),
+        'locations': locations,
+        'municipalities': municipalities,
+        'unread_posts': unread_posts,
+        'total_caught_overall': total_caught_overall,
+        'barangay_data': barangay_data,
+        'selected_municipality': municipality_filter,
+        'start_date_filter': start_date_filter,
+        'end_date_filter': end_date_filter}
 
     return render(request, "contributor/service/map/map.html", context)
 
