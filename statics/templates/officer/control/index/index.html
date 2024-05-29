@@ -2,143 +2,131 @@
 {% load static %}
 
 <html lang="en">
-    <head>
-        <meta charset = "UTF-8">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/officer/control/index/index.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/officer/control/home/home.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/officer/control/sighting/sighting.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/officer/control/profile/profile.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/officer/control/profile/update.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/officer/control/announcement/announcement.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/exif-js/2.3.0/exif.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-geosearch/dist/geosearch.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@v0.74.0/dist/L.Control.Locate.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts@latest"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/daterangepicker/3.1/daterangepicker.css">
+    <title>COTSEye | Home</title>
+</head>
 
-        <meta name = "viewport" content="width=device-width, initial-scale=1.0">
+<body>
+<div class="bg-primary">
+    <div class="container-fluid d-flex justify-content-between align-items-center flex-wrap">
+        <nav class="nav">
+            <a class="nav-link active disabled" aria-current="page"><img src="{% static 'assets/icons/header.png' %}" height="16px"></a>
+            <a style="font-size: 12px;" class="nav-link text-white" href="{% url 'Officer Control Home' %}">HOME</a>
+            <a style="font-size: 12px;" class="nav-link text-white" href="{% url 'Officer Control Sighting' %}">SIGHTINGS</a>
+            <a style="font-size: 12px;" class="nav-link text-white" href="{% url 'Officer Control Announcement' %}">ANNOUNCEMENTS</a>
+            <a style="font-size: 12px;" class="nav-link text-white" href="{% url 'Officer Control Intervention' %}">INTERVENTIONS</a>
+            <a style="font-size: 12px;" class="nav-link text-white" href="{% url 'Officer Control Status' %}">STATUS</a>
+        </nav>
 
-        <link href = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel = "stylesheet">
-
-        <script src = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-        <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity = "sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin = "anonymous" referrerpolicy = "no-referrer"/>
-        
-        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/officer/control/index/index.css' %}">
-
-        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/officer/control/home/home.css' %}">
-
-        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/officer/control/sighting/sighting.css' %}">
-
-        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/officer/control/profile/profile.css' %}">
-
-        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/officer/control/profile/update.css' %}">
-
-        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/officer/control/announcement/announcement.css' %}">
-
-        <script src = "https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-        <link rel = "stylesheet" href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity = "sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin = ""/>
-        
-        <script src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity = "sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin = ""></script>
-        
-        <script src = "https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
-
-        <script src = "https://cdnjs.cloudflare.com/ajax/libs/exif-js/2.3.0/exif.js"></script>
-
-        <link rel = "stylesheet" href = "https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
-
-        <link rel = "stylesheet" href = "https://unpkg.com/leaflet-geosearch/dist/geosearch.css"/>
-
-        <link rel = "stylesheet" href = "https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css"/>
-
-        <link rel = "stylesheet" href = "https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@v0.74.0/dist/L.Control.Locate.min.css"/>
-
-        <script src = "https://cdn.jsdelivr.net/npm/apexcharts@latest"></script>
-        
-        <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
-        
-        <script src = "https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-
-        <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/daterangepicker/3.1/daterangepicker.css">
-    
-        <title>COTSEye | Home</title>
-    </head>
-
-    <body>
-        <div class = "bg-primary">
-            <div class = "container-fluid d-flex justify-content-between align-items-center flex-wrap">
-                <nav class = "nav">
-                    <a class = "nav-link active disabled" aria-current = "page"><img src = "{% static 'assets/icons/header.png' %}" height = "16px"></a>
-                    <a style = "font-size: 12px;" class="nav-link text-white" href = "{% url 'Officer Control Home' %}">HOME</a>
-                    <a style = "font-size: 12px;" class="nav-link text-white" href = "{% url 'Officer Control Sighting' %}">SIGHTINGS</a>
-                    <a style = "font-size: 12px;" class="nav-link text-white" href = "{% url 'Officer Control Announcement' %}">ANNOUNCEMENTS</a>
-                    <a style = "font-size: 12px;" class="nav-link text-white" href = "{% url 'Officer Control Intervention' %}">INTERVENTIONS</a>
-                    <a style = "font-size: 12px;" class="nav-link text-white" href = "{% url 'Officer Control Status' %}">STATUS</a>
-                </nav>
-
-                <div class="d-flex align-items-center login-cursor">
-                    <nav class="nav">
-                        <div class="dropdown">
-                            <a class="nav-link text-black position-relative" id="notificationBell" href="{% url 'post_list' %}">
-                                <i class="fa-solid fa-bell fa-lg"></i>
-                                {% if unread_posts %}
-                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                        {{ unread_posts|length }}
-                                        <span class="visually-hidden">unread messages</span>
-                                    </span>
-                                {% endif %}
-                            </a>
-                            <!-- <ul class = "dropdown-menu">
-                                {% if unread_posts %}
-                                    {% for post in unread_posts %}
-                                        <li class = "dropdown-item">
-                                            <a href = "{% url 'Officer Control Sighting Read' id=post.id %}" class = "unread-post-link" data-post-id = "{{post.id}}">
-                                                {{post.user}} has sent a post
-                                            </a>
-                                
-                                            <small class = "text-muted">- {{ post.creation_date }}</small>
-                                        </li>
-                                    {% endfor %}
-
-                                {% else %}
-                                    <li class = "dropdown-item">No unread posts in the last 30 days.</li>
-                                {% endif %}
-                            </ul> -->
-                        </div>
-
-                        <a class = "nav-link text-black" href = "{% url 'Officer Control Profile' %}">Profile</a>
-
-                        <a class = "nav-link text-black" href = "{% url 'Officer Control Logout' %}">Logout</a>
-                    </nav>
+        <div class="d-flex align-items-center login-cursor">
+            <nav class="nav">
+                <div class="dropdown">
+                    <a class="nav-link text-black position-relative" id="notificationBell">
+                        <i class="fa-solid fa-bell fa-lg"></i>
+                        {% if unread_posts %}
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                {{ unread_posts|length }}
+                                <span class="visually-hidden">unread messages</span>
+                            </span>
+                        {% endif %}
+                    </a>
+                    <ul class="dropdown-menu" style = "right:10px" id="notificationDropdown">
+                        {% if unread_posts %}
+                            {% for post in unread_posts %}
+                                <li class="dropdown-item">
+                                    <a href="{% url 'Officer Control Sighting Read' id=post.id %}" class="unread-post-link" data-post-id="{{post.id}}">
+                                        {{post.user}} has sent a post
+                                    </a>
+                                    <small class="text-muted">- {{ post.creation_date }}</small>
+                                </li>
+                            {% endfor %}
+                        {% else %}
+                            <li class="dropdown-item">No unread posts in the last 30 days.</li>
+                        {% endif %}
+                        <a href="{% url 'post_list' %}">See more</a>
+                    </ul>
                 </div>
-            </div>
+                <a class="nav-link text-black" href="{% url 'Officer Control Profile' %}">Profile</a>
+                <a class="nav-link text-black" href="{% url 'Officer Control Logout' %}">Logout</a>
+            </nav>
         </div>
+    </div>
+</div>
 
-        <div class="content">
-            {% block content %}
+<div class="content">
+    {% block content %}
+    {% endblock %}
+</div>
 
-            {% endblock %}
-        </div>
+<script>
+    $(document).ready(function() {
+        // Initialize Select2 on the select elements
+        $('.select2').select2();
+    });
 
-        <script>
-             $(document).ready(function() {
-                // Initialize Select2 on the select elements
-                $('.select2').select2();
-            });
-            document.addEventListener('DOMContentLoaded', function () {
-                const unreadPostLinks = document.querySelectorAll('.unread-post-link');
+    document.addEventListener('DOMContentLoaded', function () {
+        const unreadPostLinks = document.querySelectorAll('.unread-post-link');
 
-                unreadPostLinks.forEach(link => {
-                    link.addEventListener('click', function (event) {
-                        event.preventDefault();
-                        const postId = this.getAttribute('data-post-id');
-                        const url = `{% url 'mark_post_as_read' 0 %}`.replace('0', postId);
+        unreadPostLinks.forEach(link => {
+            link.addEventListener('click', function (event) {
+                event.preventDefault();
+                const postId = this.getAttribute('data-post-id');
+                const url = `{% url 'mark_post_as_read' 0 %}`.replace('0', postId);
 
-                        fetch(url, {
-                            method: 'GET',
-                            headers: {
-                                'X-Requested-With': 'XMLHttpRequest',
-                            },
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.success) {
-                                window.location.href = this.href;
-                            }
-                        });
-                    });
+                fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        window.location.href = this.href;
+                    }
                 });
             });
-        </script>
-    </body>
+        });
+
+        // Toggle the dropdown menu on bell icon click
+        const notificationBell = document.getElementById('notificationBell');
+        const notificationDropdown = document.getElementById('notificationDropdown');
+
+        notificationBell.addEventListener('click', function(event) {
+            event.preventDefault();
+            notificationDropdown.classList.toggle('show');
+        });
+
+        document.addEventListener('click', function(event) {
+            if (!notificationBell.contains(event.target) && !notificationDropdown.contains(event.target)) {
+                notificationDropdown.classList.remove('show');
+            }
+        });
+    });
+</script>
+</body>
 </html>

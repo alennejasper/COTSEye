@@ -61,15 +61,27 @@
             <div class="table-container mb-3">
                 <h2 style="font-size: 19px; color: rgb(52, 144, 242); border-bottom: 1px solid rgba(229, 229, 229);">ALL SIGHTINGS</h2>
 
+                <div class="d-flex justify-content-between mb-2">
+                    <div>
+                        <input type="checkbox" id="selectAll" onclick="toggleSelectAll()"> Select All
+                    </div>
+                    <div>
+                        <button class="btn btn-success btn-sm" onclick="bulkChangeStatus('Valid')">Mark as Valid</button>
+                        <button class="btn btn-danger btn-sm" onclick="bulkChangeStatus('Invalid')">Mark as Invalid</button>
+                    </div>
+                </div>
+
                 <table class="table table-hover">
                     <thead>
                         <tr>
+                            <th><input type="checkbox" id="selectAllHeader" onclick="toggleSelectAll()"></th>
                             <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Date Created</th>
                             <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Contributor</th>
                             <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Phone Number</th>
                             <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Barangay</th>
                             <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Municipality</th>
                             <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Status</th>
+                            <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Remarks</th>
                             <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Actions</th>
                         </tr>
                     </thead>
@@ -77,11 +89,13 @@
                     <tbody class="table-group-divider" id="sightingsTable">
                         {% for post in posts %}
                             <tr data-id="{{ post.id }}">
+                                <td><input type="checkbox" class="selectRow"></td>
                                 <td>{{ post.creation_date | date:'F j, Y, g:i a' }}</td>
                                 <td>{{ post.user }}</td>
                                 <td>{{ post.user.phone_number }}</td>
                                 <td>{{ post.location.barangay }}</td>
                                 <td>{{ post.location.municipality }}</td>
+                                <td>{{ post.remarks }}</td>
                                 <td class="{% if post.post_status == 'Valid' %} valid-status {% elif post.post_status == 'Invalid' %} invalid-status {% elif post.post_status == 'Pending' %} pending-status {% endif %}">{{ post.post_status }}</td>
                                 <td>
                                     <div class="button-container">
@@ -171,7 +185,7 @@
                             <select name="barangay" id="popupBarangay" onchange="updateMarker()">
                                 <option value="${data.location.barangay}" selected>${data.location.barangay}</option>
                                 {% for location in locations %}
-                                    <option value="{{location.barangay}}">{{location.barangay}}</option>
+                                    <option id="barangayOption" value="{{location.barangay}}">{{location.barangay}}</option>
                                 {% endfor %}
                             </select>
                         </div>
@@ -182,6 +196,13 @@
                         const latitude = parseFloat(document.getElementById('latitude').value);
                         const longitude = parseFloat(document.getElementById('longitude').value);
                         revealMap(latitude, longitude);
+
+                        document.getElementById("popupBarangay").addEventListener("click", function() {
+                            var barangayId = this.value;
+                            console.log(barangayId)
+                            updateMarker(barangayId);
+                            
+                        });
                     },
                     showConfirmButton: false
                 });
@@ -217,17 +238,17 @@
             var position = event.target.getLatLng();
             updateCoordinates(position.lat, position.lng);
 
-            var selectElement = document.getElementById("barangay");
+            var selectElement = document.getElementById("popupBarangay");
             selectElement.value = "";
 
-            var selectElement2 = document.getElementById("municipality");
+            var selectElement2 = document.getElementById("popupMunicipality");
             selectElement2.value = "";
 
-            map.eachLayer(function(layer) {
-                if (layer instanceof L.Polygon) {
-                    if (layer.getBounds().contains(position) && layer.locationId) {
+            map.eachLayer(function(layer){
+                if (layer instanceof L.Polygon){
+                    if (layer.getBounds().contains(position) && layer.locationId){
                         selectElement.value = layer.locationId;
-                        selectElement2.value = layer.locationId;
+                        setMunicipalityByBarangay(layer.locationId);  // Set the municipality based on the barangay
                         return;
                     }
                 }
@@ -242,6 +263,16 @@
         var longitudeInput = document.getElementById("longitude");
         latitudeInput.value = latitude.toFixed(6);
         longitudeInput.value = longitude.toFixed(6);
+    }
+
+    function updateMarker() {
+        var barangayId = document.getElementById("popupBarangay").value;
+        if (barangayCoordinates[barangayId]) {
+            var coordinates = barangayCoordinates[barangayId];
+            map.setView(coordinates, 15);
+            report.setLatLng(coordinates);
+            updateCoordinates(coordinates[0], coordinates[1]);
+        }
     }
 
     function swapCoordinates(coordinates) {
@@ -274,6 +305,7 @@
                 }
             });
         }
+       
     }
 
     const barangayCoordinates = {
@@ -282,16 +314,25 @@
         {% endfor %}
     };
 
-    function updateMarker() {
-        var barangayId = document.getElementById("popupBarangay").value;
-        if (barangayCoordinates[barangayId]) {
-            var coordinates = barangayCoordinates[barangayId];
-            map.setView(coordinates, 15);
-            report.setLatLng(coordinates);
-            updateCoordinates(coordinates[0], coordinates[1]);
-        }
-    }
 
+
+    function setMunicipalityByBarangay(barangayId) {
+        
+        const locations = [
+            {% for location in locations %}
+                {id: "{{location.id}}", barangay: "{{location.barangay}}", municipality: "{{location.municipality}}"},
+            {% endfor %}
+        ];
+
+        const location = locations.find(loc => loc.id == barangayId);
+        if (location) {
+            const municipalitySelect = document.getElementById("popupMunicipality");
+            municipalitySelect.value = location.municipality;
+        }
+        updateBarangayOptions();
+       
+    }
+    
     function submitPopup(postId) {
         const municipality = document.getElementById('popupMunicipality').value;
         const barangay = document.getElementById('popupBarangay').value;
@@ -353,7 +394,7 @@
 
     const sightingsData = [
         {% for post in posts %}
-            {id: {{ post.id }}, date: "{{ post.creation_date | date:'F j, Y, g:i a' }}", user: "{{ post.user }}", phone_number: "{{ post.user.phone_number }}", barangay: "{{ post.location.barangay }}", municipality: "{{ post.location.municipality }}", status: "{{ post.post_status }}"},
+            {id: {{ post.id }}, date: "{{ post.creation_date | date:'F j, Y, g:i a' }}", user: "{{ post.user }}", phone_number: "{{ post.user.phone_number }}", barangay: "{{ post.location.barangay }}", municipality: "{{ post.location.municipality }}", status: "{{ post.post_status }}", remarks: "{{post.remarks}}"},
         {% endfor %}
     ];
 
@@ -373,15 +414,18 @@
             const statusClass = getStatusClass(item.status);
             const baseUrl = "{% url 'Officer Control Sighting Read' id=0 %}".replace("0", item.id);
             const disabled = (item.status === "Valid" || item.status === "Invalid") ? "disabled" : "";
+            const remarksOrStatus = item.remarks ? item.remarks : item.status;
 
             const row = `
                 <tr data-id="${item.id}">
+                    <td><input type="checkbox" class="selectRow"></td>
                     <td onclick="window.location.href='${baseUrl}'">${item.date}</td>
                     <td onclick="window.location.href='${baseUrl}'">${item.user}</td>
                     <td onclick="window.location.href='${baseUrl}'">${item.phone_number}</td>
                     <td onclick="window.location.href='${baseUrl}'">${item.barangay}</td>
                     <td onclick="window.location.href='${baseUrl}'">${item.municipality}</td>
                     <td class="${statusClass}" onclick="window.location.href='${baseUrl}'">${item.status}</td>
+                    <td onclick="window.location.href='${baseUrl}'">${remarksOrStatus}</td>
                     <td>
                         <div class="button-container">
                             <a onclick="shownDropdown(event)"><img height="8px" style="margin-right: 13px" src = "{% static 'assets/down.png' %}" class = "drop"></a>
@@ -389,7 +433,7 @@
                             <div class="dropdown">
                                 <div class="dropdown-content">
                                     <a class="dropdown-header" onclick="changeStatus(${item.id}, 'Valid')">Valid</a>
-                                    <a class="dropdown-footer" onclick="changeStatus(${item.id}, 'Invalid')">Invalid</a>
+                                    <a class="dropdown-footer" onclick="invalidStatus(${item.id})">Invalid</a>
                                 </div>
                             </div>
                         </div>
@@ -560,10 +604,122 @@
         }
     }
 
+    function invalidStatus(postId) {
+        Swal.fire({
+            title: 'Add Remarks',
+            input: 'textarea',
+            inputLabel: 'Remarks',
+            inputPlaceholder: 'Enter your remarks here...',
+            showCancelButton: true,
+            confirmButtonText: 'Submit',
+            cancelButtonText: 'Cancel',
+            preConfirm: (remarks) => {
+                return new Promise((resolve) => {
+                    resolve(remarks);
+                });
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const remarks = result.value;
+
+                $.ajax({
+                    type: 'POST',
+                    url: '{% url "Officer Control Sighting Invalid" %}',
+                    data: {
+                        'post_id': postId,
+                        'remarks': remarks,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            Swal.fire({
+                                title: 'Success',
+                                text: response.message,
+                                icon: 'success',
+                                confirmButtonText: 'OK'
+                            }).then(() => {
+                                location.reload();  // Reload the page after successful operation
+                            });
+                        } else {
+                            Swal.fire({
+                                title: 'Error',
+                                text: response.message,
+                                icon: 'error',
+                                confirmButtonText: 'OK'
+                            });
+                        }
+                    },
+                    error: function() {
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'An unexpected error occurred.',
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                });
+            }
+        });
+    }
+
+    function toggleSelectAll() {
+        const selectAllCheckbox = document.getElementById("selectAll");
+        const checkboxes = document.querySelectorAll(".selectRow");
+        checkboxes.forEach(checkbox => checkbox.checked = selectAllCheckbox.checked);
+    }
+
+    function bulkChangeStatus(status) {
+        const selectedIds = Array.from(document.querySelectorAll(".selectRow:checked")).map(checkbox => checkbox.closest("tr").dataset.id);
+        if (selectedIds.length === 0) {
+            Swal.fire('No Selection', 'Please select at least one sighting.', 'warning');
+            return;
+        }
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: `You are about to change the status of ${selectedIds.length} sightings to "${status}".`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, change it!',
+            cancelButtonText: 'No, keep it'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: 'POST',
+                    url: status === 'Valid' ? '{% url "Officer Control Sighting Valid" %}' : '{% url "Officer Control Sighting Invalid" %}',
+                    data: {
+                        'post_ids': selectedIds,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    traditional: true, // This is important to send array of data correctly
+                    success: function(response) {
+                        if (response.success) {
+                            location.reload();
+                            Swal.fire(
+                                'Changed!',
+                                `The status has been changed to "${status}".`,
+                                'success'
+                            );
+                        } else {
+                            Swal.fire(
+                                'Failed!',
+                                'Failed to change the status.',
+                                'error'
+                            );
+                        }
+                    }
+                });
+            }
+        });
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
         displayTableData(currentPage);
         updatePagination();
     });
+
+   
+    
 </script>
 
 {% endblock %}

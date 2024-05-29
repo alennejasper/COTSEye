@@ -295,65 +295,70 @@ def OfficerControlStatusAdd(request):
     return render(request, "officer/control/status/addstatus.html", context) 
 
 
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
+@login_required(login_url="Officer Control Login")
+@user_passes_test(OfficerCheck, login_url="Officer Control Login")
 def OfficerControlReport(request):
     username = request.user.username
 
-    notification_life = timezone.now() - timedelta(days = 30)
-
-    unread_posts = Post.objects.filter(read_status = False, creation_date__gte = notification_life).order_by('-creation_date')[:5]
+    notification_life = timezone.now() - timedelta(days=30)
+    unread_posts = Post.objects.filter(read_status=False, creation_date__gte=notification_life).order_by('-creation_date')[:5]
 
     from_date = request.GET.get("from_date")
-
     to_date = request.GET.get("to_date")
-
     selected_status = request.GET.get("status")
-
-    selected_locations = request.GET.getlist("locations")
-
+    selected_municipality = request.GET.get("municipalityFilter")
+    selected_barangay = request.GET.get("barangayFilter")
     if from_date:
         from_date = parse_date(from_date)
-
     if to_date:
         to_date = parse_date(to_date)
 
-    status_options = Status.objects.values("statustype").distinct()
-
+    status_options = StatusType.objects.all()
     location_options = Location.objects.all()
 
     status_query = Q()
 
     if from_date:
-        status_query &= Q(onset_date__gte = from_date)
-
+        status_query &= Q(onset_date__gte=from_date)
     if to_date:
-        status_query &= Q(onset_date__lte = to_date)
-
+        status_query &= Q(onset_date__lte=to_date)
     if selected_status:
-        status_query &= Q(statustype = selected_status)
+        status_query &= Q(statustype=selected_status)
+    if selected_municipality:
+        status_query &= Q(location__municipality=selected_municipality)
+    if selected_barangay:
+        status_query &= Q(location__barangay=selected_barangay)
 
-    if selected_locations:
-        status_query &= Q(location__id__in=selected_locations)
-
-    statuses = Status.objects.filter(status_query)
-    
+    statuses = Status.objects.filter(status_query).order_by('-onset_date')
     municipalities = Location.objects.values("municipality").distinct()
-
-    locations = Location.objects.filter(status__in=statuses).distinct()
+    barangays = Location.objects.filter(municipality=selected_municipality).values("barangay").distinct() if selected_municipality else []
 
     data = {}
-
     results = statuses
 
-    for location in locations:
+    for location in location_options:
         location_str = f"{location.barangay}, {location.municipality}"
+        location_statuses = statuses.filter(location=location).order_by("onset_date")
+        data[location_str] = {
+            "onset_dates": [status.onset_date.strftime("%Y-%m-%d") for status in location_statuses],
+            "caught_overalls": [status.caught_overall for status in location_statuses]
+        }
 
-        location_statuses = statuses.filter(location = location).order_by("onset_date")
-
-        data[location_str] = {"onset_dates": [status.onset_date.strftime("%Y-%m-%d") for status in location_statuses], "caught_overalls": [status.caught_overall for status in location_statuses]}
-
-    context = {"username": username, "unread_posts": unread_posts, "chart_data": json.dumps(data), "status_options": status_options, "location_options": location_options, "results": results, "from_date": from_date, "to_date": to_date, "selected_status": selected_status, "selected_locations": selected_locations, "municipalities": municipalities, "locations": locations}
+    context = {
+        "username": username,
+        "unread_posts": unread_posts,
+        "chart_data": json.dumps(data),
+        "status_options": status_options,
+        "location_options": location_options,
+        "results": results,
+        "from_date": from_date,
+        "to_date": to_date,
+        "selected_status": selected_status,
+        "selected_municipality": selected_municipality,
+        "selected_barangay": selected_barangay,
+        "municipalities": municipalities,
+        "barangays": barangays,
+    }
 
     return render(request, "officer/control/report/report.html", context)
 

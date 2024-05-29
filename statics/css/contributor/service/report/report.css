@@ -1,3 +1,8 @@
+
+::placeholder{
+    color: #646464;
+}
+
 .report-body{
     position: relative;
     gap: 10px;
@@ -6,6 +11,9 @@
     width: 100%;
     height: 100%;
     color: #000000;
+    border-radius: 10px;
+    background-color: #f2f2f2;
+    padding: 20px;
 }
 
 .report-body .report-section{
@@ -28,9 +36,10 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-family: "Open Sans";    
+    font-family: "Montserrat";    
     font-weight: 700;       
-    font-size: 22px;     
+    font-size: 15px; 
+    margin-bottom: 10px;    
     color: #000000;   
     text-align: center;  
 }
@@ -41,7 +50,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-family: "Open Sans";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 14px !important;
     color: #000000;
@@ -60,7 +69,7 @@
     padding-bottom: 10px;
 }
 
-.report-body .report-form .controls-wrapper .control-section{
+.report-body .report-form .controls-wrapper .control-section.capture{
     display: grid;
     place-items: center;
     padding-left: 10px;
@@ -69,24 +78,37 @@
     padding-bottom: 10px;
     width: 100%;
     height: 100px;
-    background-color: #003755;
+    background-color: #3c6bd1;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.report-body .report-form .controls-wrapper .control-section.choose{
+    display: grid;
+    place-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    height: 100px;
+    background-color: #1e78a8;
     color: #FFFFFF;
     cursor: pointer;
 }
 
 .report-body .report-form .controls-wrapper .control-section i{
-    font-size: 20px;
+    font-size: 25px;
     color: #FFFFFF;
     text-align: center;
 }
 
 .report-body .report-form .controls-wrapper .control-section label{
     width: 100%;
-    font-family: "Open Sans";
+    font-family: "Montserrat";
     font-weight: 400;
-    font-size: 14px;
+    font-size: 12px;
     color: #FFFFFF !important;
-    background-color: #003755 !important;
     text-align: center;
     cursor: pointer;  
 }
@@ -122,14 +144,13 @@
     padding-bottom: 10px;
     width: 100%;
     border-radius: 5px;
-    background-color: #FFFFFF;
 }
 
 .report-body .report-form .capture-date label{
-    font-family: "Open Sans";
-    font-weight: 400;
+    font-family: "Montserrat";
+    font-weight: 550;
     font-size: 14px;
-    color: #003755 !important;
+    color: #000000 !important;
 }
 
 .report-body .report-form .capture-date input[type = "datetime-local"]::-webkit-inner-spin-button{
@@ -141,16 +162,15 @@
 }
 
 .report-body .report-form .capture-date input[type = "datetime-local"]{
-    padding-left: 5px !important;
-    padding-right: 5px !important;
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
-    width: 100% !important;
-    border: 1px solid #003755;
-    border-radius: 5px; 
-    outline: none !important;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #a8a8a8;
+    border-radius: 10px;
+    box-sizing: border-box;
     appearance: none !important;
-    font-family: "Open Sans";
+    font-family: "Montserrat";
     font-weight: 700 !important;
     font-size: 14px !important;   
     color: #000000 !important;
@@ -167,7 +187,7 @@
     text-align: center;     
     font-weight: 700;       
     font-size: 22px;  
-    font-family: "Open Sans";      
+    font-family: "Montserrat";      
 }
 
 .report-body .report-form .map:has(.report-map){ 
@@ -189,25 +209,20 @@
 }
 
 .report-body .report-form .barangay label{
-    font-family: "Open Sans";
-    font-weight: 400;
+    font-family: "Montserrat";
+    font-weight: 550;
     font-size: 14px;
-    color: #003755 !important;
+    color: #000000 !important;
 }
 
 .report-body .report-form .barangay select{
-    padding-left: 5px;
-    padding-right: 5px;
-    padding-top: 10px;
-    padding-bottom: 10px;
     width: 100%;
-    border: 1px solid #003755;
-    border-radius: 5px;
-    outline: none;
-    font-family: "Open Sans";
-    font-weight: 400;
-    font-size: 14px;
-    color: #003755 !important;
+    padding: 12px 20px;
+    margin: 3px 0;
+    display: inline-block;
+    border: 1px solid #a8a8a8;
+    border-radius: 10px;
+    box-sizing: border-box;
 }
 
 .report-body .report-form .municipality{
@@ -216,25 +231,20 @@
 }
 
 .report-body .report-form .municipality label{
-    font-family: "Open Sans";
-    font-weight: 400;
+    font-family: "Montserrat";
+    font-weight: 550;
     font-size: 14px;
-    color: #003755 !important;
+    color: #000000 !important;
 }
 
 .report-body .report-form .municipality select{
-    padding-left: 5px;
-    padding-right: 5px;
-    padding-top: 10px;
-    padding-bottom: 10px;
     width: 100%;
-    border: 1px solid #003755;
-    border-radius: 5px;
-    outline: none;
-    font-family: "Open Sans";
-    font-weight: 400;
-    font-size: 14px;
-    color: #003755 !important;
+    padding: 12px 20px;
+    margin: 3px 0;
+    display: inline-block;
+    border: 1px solid #a8a8a8;
+    border-radius: 10px;
+    box-sizing: border-box;
 }
 
 .report-body .report-form .description{
@@ -243,26 +253,22 @@
 }
 
 .report-body .report-form .description label{
-    font-family: "Open Sans";
-    font-weight: 400;
+    font-family: "Montserrat";
+    font-weight: 550;
     font-size: 14px;
-    color: #003755 !important;
+    color: #000000 !important;
 }
 
 .report-body .report-form .description textarea{
-    padding-left: 5px;
-    padding-right: 5px;
-    padding-top: 10px;
-    padding-bottom: 10px;
     width: 100%;
-    height: 250px;
-    border: 1px solid #003755;
-    border-radius: 5px;
-    outline: none;
-    font-family: "Open Sans";
-    font-weight: 400;
-    font-size: 14px;
-    color: #003755 !important;
+    height: 100px;
+    padding: 12px 20px;
+    margin: 3px 0;
+    display: inline-block;
+    border: 1px solid #a8a8a8;
+    border-radius: 10px;
+    box-sizing: border-box;
+    color: #646464;
 }
 
 .report-body .report-form .size{
@@ -271,23 +277,21 @@
 }
 
 .report-body .report-form .size label{
-    font-family: "Open Sans";
-    font-weight: 400;
+    font-family: "Montserrat";
+    font-weight: 550;
     font-size: 14px;
-    color: #003755 !important;
+    color: #000000 !important;
 }
 
 .report-body .report-form .size select{
-    padding-top: 10px;
-    padding-bottom: 10px;
     width: 100%;
-    border: 1px solid #003755;
-    border-radius: 5px;
-    outline: none;
-    font-family: "Open Sans";
-    font-weight: 400;
-    font-size: 14px;
-    color: #003755 !important;
+    padding: 12px 20px;
+    margin: 3px 0;
+    display: inline-block;
+    border: 1px solid #a8a8a8;
+    border-radius: 10px;
+    box-sizing: border-box;
+    color: #646464;
 }
 
 .report-body .report-form .density{
@@ -296,25 +300,21 @@
 }
 
 .report-body .report-form .density label{
-    font-family: "Open Sans";
-    font-weight: 400;
+    font-family: "Montserrat";
+    font-weight: 550;
     font-size: 14px;
-    color: #003755 !important;
+    color: #000000 !important;
 }
 
 .report-body .report-form .density input{
-    padding-left: 5px;
-    padding-right: 5px;
-    padding-top: 10px;
-    padding-bottom: 10px;
     width: 100%;
-    border: 1px solid #003755;
-    border-radius: 5px;
-    outline: none;
-    font-family: "Open Sans";
-    font-weight: 400;
-    font-size: 14px;
-    color: #003755 !important;
+    padding: 12px 20px;
+    margin: 3px 0;
+    display: inline-block;
+    border: 1px solid #a8a8a8;
+    border-radius: 10px;
+    box-sizing: border-box;
+    color: #646464;
 }
 
 .report-body .report-form .depth{
@@ -323,23 +323,21 @@
 }
 
 .report-body .report-form .depth label{
-    font-family: "Open Sans";
-    font-weight: 400;
+    font-family: "Montserrat";
+    font-weight: 550;
     font-size: 14px;
-    color: #003755 !important;
+    color: #000000 !important;
 }
 
 .report-body .report-form .depth select{
-    padding-top: 10px;
-    padding-bottom: 10px;
     width: 100%;
-    border: 1px solid #003755;
-    border-radius: 5px;
-    outline: none;
-    font-family: "Open Sans";
-    font-weight: 400;
-    font-size: 14px;
-    color: #003755 !important;
+    padding: 12px 20px;
+    margin: 3px 0;
+    display: inline-block;
+    border: 1px solid #a8a8a8;
+    border-radius: 10px;
+    box-sizing: border-box;
+    color: #646464;
 }
 
 .report-body .report-form .weather{
@@ -348,23 +346,21 @@
 }
 
 .report-body .report-form .weather label{
-    font-family: "Open Sans";
-    font-weight: 400;
+    font-family: "Montserrat";
+    font-weight: 550;
     font-size: 14px;
-    color: #003755 !important;
+    color: #000000 !important;
 }
 
 .report-body .report-form .weather select{
-    padding-top: 10px;
-    padding-bottom: 10px;
     width: 100%;
-    border: 1px solid #003755;
-    border-radius: 5px;
-    outline: none;
-    font-family: "Open Sans";
-    font-weight: 400;
-    font-size: 14px;
-    color: #003755 !important;
+    padding: 12px 20px;
+    margin: 3px 0;
+    display: inline-block;
+    border: 1px solid #a8a8a8;
+    border-radius: 10px;
+    box-sizing: border-box;
+    color: #646464;
 }
 
 .report-body .report-form .buttons{
@@ -384,20 +380,20 @@
     padding-bottom: 10px;
     width: 100%;
     border-radius: 5px;
-    font-family: "Open Sans";
+    font-family: "Montserrat";
     font-weight: 400;
-    font-size: 14px;
+    font-size: 10px;
     color: #FFFFFF !important;
-    background-color: #003755;
+    background-color: #2578a5;
     text-align: center;
     cursor: pointer;
 }
 
 .report-body .report-form .save-report button{
     border: none;
-    font-family: "Open Sans";
+    font-family: "Montserrat";
     font-weight: 400;
-    font-size: 14px;
+    font-size: 10px;
     color: #FFFFFF !important;
     background: none;
 }
@@ -411,22 +407,27 @@
     padding-bottom: 10px;
     width: 100%;
     border-radius: 5px;
-    font-family: "Open Sans";
+    font-family: "Montserrat";
     font-weight: 400;
-    font-size: 14px;
+    font-size: 10px;
     color: #FFFFFF !important;
-    background-color: #003755;
+    background-color: #006aa3;
     text-align: center;
     cursor: pointer;
+    outline: none;
+    appearance: none !important;
 }
 
 .report-body .report-form .next-report button{
-    border: none;
-    font-family: "Open Sans";
+    border: none !important;
+    border: none !important;
+    font-family: "Montserrat";
     font-weight: 400;
-    font-size: 14px;
+    font-size: 10px;
     color: #FFFFFF !important;
     background: none;
+    outline: none !important;
+    appearance: none !important;
 }
 
 .report-body .report-form .back-report{
@@ -438,7 +439,7 @@
     padding-bottom: 10px;
     width: 100%;
     border-radius: 5px;
-    font-family: "Open Sans";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 14px;
     color: #FFFFFF !important;
@@ -449,7 +450,7 @@
 
 .report-body .report-form .back-report button{
     border: none;
-    font-family: "Open Sans";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 14px;
     color: #FFFFFF !important;
@@ -471,7 +472,21 @@ select::-ms-expand{
 }
 
 label.required::after{
-    margin-left: 10px !important;
+    margin-left: 5px !important;
     content: "*" !important;
     color: red;
 }
+
+/* START TEXT INPUT */
+
+.text-input, .select-input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 3px 0;
+    display: inline-block;
+    border: 1px solid #a8a8a8;
+    border-radius: 10px;
+    box-sizing: border-box;
+  }
+
+/* end   */

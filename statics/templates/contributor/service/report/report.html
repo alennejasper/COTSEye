@@ -16,8 +16,8 @@
                         <div class = "control-section capture">
                             <i class = "fa-solid fa-camera"></i>
 
-                            <label for = "post-photo-capture" class = "capture-photo required">
-                                Capture with camera
+                            <label for = "post-photo-capture" class = "capture-photo">
+                                Capture with Camera
                             </label>
 
                             <input type = "file" class = "invisible-input-capture post-photo-capture" id = "post-photo-capture" name = "post_photos_capture" accept = "image/*" capture = "environment" required>
@@ -26,8 +26,8 @@
                         <div class = "control-section choose">
                             <i class = "fa-solid fa-image"></i>
 
-                            <label for = "post-photo-choose" class = "browse-photo required">
-                                Choose an image
+                            <label for = "post-photo-choose" class = "browse-photo">
+                                Choose an Image
                             </label>
 
                             <input type = "file" class = "invisible-input-choose post-photo-choose" id = "post-photo-choose" name = "post_photos_choose" accept = "image/*" multiple required>
@@ -95,14 +95,31 @@
                     <div class = "description">
                         <label for = "description" class = "required">Sighting Description</label>
 
-                        <textarea placeholder = "Describe the sighting of COTS here." type = "text" id = "description" name = "description" required>{{draft_post.description}}</textarea>
+                        <textarea placeholder="Describe the sighting of COTS here." type="text" id="description" name="description" maxlength="255" required></textarea>
+                        
+                        <p class="text-end" id="charCount">0/255</p>
+
+                        <script>
+                            const textarea = document.getElementById('description');
+                            const charCount = document.getElementById('charCount');
+                    
+                            textarea.addEventListener('input', function() {
+                                const currentLength = textarea.value.length;
+                                charCount.textContent = `${currentLength}/255`;
+                                if (currentLength > 255) {
+                                    textarea.value = textarea.value.slice(0, 255);
+                                    charCount.textContent = '255/255';
+                                }
+                            });
+                        </script>
+
                     </div>
 
                     <div class = "size">
-                        <label for = "size">Average Size of COTS</label>
+                        <label for = "size">Size</label>
                         
                         <select name = "size" id = "size">
-                            <option disabled selected value>Select sighting COTS size here.</option>
+                            <option disabled selected value>Select one</option>
 
                             {% for size in sizes %}
                                 <option value = "{{size.id}}" {% if size.id == draft_post.post_observation.size.id %} selected {% endif %}>{{size}}</option>
@@ -111,16 +128,16 @@
                     </div>
 
                     <div class = "density">
-                        <label for = "density">Approximate COTS Density</label>
+                        <label for = "density">Density</label>
                         
-                        <input placeholder = "Estimated number of COTS per square meter. Ex. 15" type = "number" value = "{{draft_post.post_observation.density}}" id = "density" name = "density">
+                        <input placeholder = "est. COtS per m²" type = "number" value = "{{draft_post.post_observation.density}}" id = "density" name = "density">
                     </div>
 
                     <div class = "depth">
-                        <label for = "depth">Depth</label>
+                        <label for = "depth">Depth where the COTS was sighted</label>
                         
                         <select name = "depth" id = "depth">
-                            <option disabled selected value = "{{draft_post.post_observation.depth}}">Select sighting depth here.</option>
+                            <option disabled selected value = "{{draft_post.post_observation.depth}}">Select one</option>
 
                             {% for depth in depths %}
                                 <option value = "{{depth.id}}" {% if depth.id == draft_post.post_observation.depth.id %} selected {% endif %}>{{depth}}</option>
@@ -132,7 +149,7 @@
                         <label for = "weather">Weather Condition</label>
                         
                         <select name = "weather" id = "weather">
-                            <option disabled hidden selected value = "{{draft_post.post_observation.weather}}">Weather condition during the sighting.</option>
+                            <option disabled hidden selected value = "{{draft_post.post_observation.weather}}">Select one</option>
 
                             {% for weather in weathers %}
                                 <option value = "{{weather.id}}">{{weather}}</option>
@@ -145,7 +162,7 @@
                     <div id = "action-value-display" style="margin-top: 20px; font-weight: bold;"></div>
 
                     <div class = "buttons">
-                        <button type = "button" class = "back-report" onclick = "openTab('first-tab')">Back</button>
+                        <!-- <button type = "button" class = "back-report" onclick = "openTab('first-tab')">Back</button> -->
 
                         <div class = "save-report second-draft">
                             <button type = "submit" value = "save as draft" onclick = "setActionValue(this.value); disableOnBeforeUnload();">Save as draft</a>
@@ -173,19 +190,19 @@
 
     {% else %}
         <div class = "report-body">
-            <div class = "report-section">
-                <h1>CREATE REPORT</h1>
-            </div>
-
             <form action = "" class = "report-form" method = "POST" enctype = "multipart/form-data">
                 {% csrf_token %}
 
-                <div id = "first-tab" class = "tab-content">        
+                <div id = "first-tab" class = "tab-content">  
+                    <div class = "report-section">
+                        <h1>CREATE REPORT</h1>
+                    </div>
+
                     <div class = "controls-wrapper">
                         <div class = "control-section capture">
                             <i class = "fa-solid fa-camera"></i>
 
-                            <label for = "post-photo-capture" class = "capture-photo required">
+                            <label for = "post-photo-capture" class = "capture-photo">
                                 Capture with camera
                             </label>
 
@@ -195,7 +212,7 @@
                         <div class = "control-section choose">
                             <i class = "fa-solid fa-image"></i>
 
-                            <label for = "post-photo-choose" class = "browse-photo required">
+                            <label for = "post-photo-choose" class = "browse-photo">
                                 Choose an image
                             </label>
 
@@ -254,17 +271,39 @@
                 </div>
 
                 <div id = "second-tab" class = "tab-content" style = "display: none;">
+                    <div class = "report-section">
+                        <h1>CREATE REPORT</h1>
+                    </div>
+                    
+                    <img width="12px" src = "{% static 'assets/down.png' %}" onclick = "openTab('first-tab')">
+
                     <div class = "description">
                         <label for = "description" class = "required">Sighting Description</label>
+                        
+                        <textarea placeholder="Describe the sighting of COTS here." type="text" id="description" name="description" maxlength="255" required> </textarea>
+                        <p class="text-end" id="charCount">0/255</p>
+                       
 
-                        <textarea placeholder = "Describe the sighting of COTS here." type = "text" id = "description" name = "description" required></textarea>
+                        <script>
+                            const textarea = document.getElementById('description');
+                            const charCount = document.getElementById('charCount');
+                    
+                            textarea.addEventListener('input', function() {
+                                const currentLength = textarea.value.length;
+                                charCount.textContent = `${currentLength}/255`;
+                                if (currentLength > 255) {
+                                    textarea.value = textarea.value.slice(0, 255);
+                                    charCount.textContent = '255/255';
+                                }
+                            });
+                        </script>
                     </div>
 
                     <div class = "size">
-                        <label for = "size">Average Size of COTS</label>
+                        <label for = "size">Size</label>
                         
                         <select name = "size" id = "size">
-                            <option disabled selected value>Select sighting COTS size here.</option>
+                            <option disabled selected value>Select one</option>
 
                             {% for size in sizes %}
                                 <option value = "{{size.id}}">{{size}}</option>
@@ -273,16 +312,16 @@
                     </div>
 
                     <div class = "density">
-                        <label for = "density">Approximate COTS Density</label>
+                        <label for = "density">Density</label>
                         
-                        <input placeholder = "Estimated number of COTS per square meter. Ex. 15" type = "number" id = "density" name = "density">
+                        <input placeholder = "est. COtS per m²" type = "number" id = "density" name = "density">
                     </div>
 
                     <div class = "depth">
-                        <label for = "depth">Depth</label>
+                        <label for = "depth">Depth where the COTS was sighted</label>
                         
                         <select name = "depth" id = "depth">
-                            <option disabled selected value>Select sighting depth here.</option>
+                            <option disabled selected value>Select one</option>
 
                             {% for depth in depths %}
                                 <option value = "{{depth.id}}">{{depth}}</option>
@@ -294,7 +333,7 @@
                         <label for = "weather">Weather Condition</label>
                         
                         <select name = "weather" id = "weather">
-                            <option disabled hidden selected value>Weather condition during the sighting.</option>
+                            <option disabled hidden selected value>Select one</option>
 
                             {% for weather in weathers %}
                                 <option value = "{{weather.id}}">{{weather}}</option>
@@ -307,8 +346,8 @@
                     <div id = "action-value-display" style="margin-top: 20px; font-weight: bold;"></div>
 
                     <div class = "buttons">
-                        <button type="button" class = "back-report" onclick = "openTab('first-tab')">Back</button>
-            
+<!--                         <button type="button" class = "back-report" onclick = "openTab('first-tab')">Back</button>
+ -->            
                         <div class = "save-report second-draft">
                             <button type = "submit" value = "save as draft" onclick = "setActionValue(this.value); disableOnBeforeUnload();">Save as draft</button>
                         </div>
@@ -582,174 +621,164 @@
     
     <script>
         var map;
-        
         var report;
-
-        function revealMap(){
-            if (map){
+    
+        function updateCoordinates(latitude, longitude) {
+            var latitudeInput = document.getElementById("latitude");
+            var longitudeInput = document.getElementById("longitude");
+    
+            latitudeInput.value = latitude.toFixed(6);
+            longitudeInput.value = longitude.toFixed(6);
+        }
+    
+        function swapCoordinates(coordinates) {
+            return coordinates.map(function (ring) {
+                return ring.map(function (point) {
+                    return [point[1], point[0]];
+                });
+            });
+        }
+    
+        function setMunicipalityByBarangay(barangayId) {
+            const locations = [
+                {% for location in locations %}
+                    { id: "{{ location.id }}", barangay: "{{ location.barangay }}", municipality: "{{ location.municipality }}" },
+                {% endfor %}
+            ];
+    
+            const location = locations.find(loc => loc.id == barangayId);
+            if (location) {
+                const municipalitySelect = document.getElementById("municipality");
+                municipalitySelect.value = location.municipality;
+            }
+            updateBarangay();
+        }
+    
+        function updateBarangay() {
+            const locations = [
+                {% for location in locations %}
+                    { id: "{{ location.id }}", barangay: "{{ location.barangay }}", municipality: "{{ location.municipality }}" },
+                {% endfor %}
+            ];
+    
+            const municipality = document.getElementById("municipality").value;
+            const barangay = document.getElementById("barangay");
+    
+            barangay.innerHTML = "";
+    
+            const filteredLocations = locations.filter(location => location.municipality === municipality);
+    
+            filteredLocations.forEach(location => {
+                const option = document.createElement("option");
+    
+                option.value = location.id;
+                option.textContent = location.barangay;
+    
+                barangay.appendChild(option);
+            });
+    
+            if (filteredLocations.length > 0) {
+                updateMarker(filteredLocations[0].id);
+            }
+        }
+    
+        function updateMarker(barangayId) {
+            var barangayCoordinates = {
+                {% for location in locations %}
+                    "{{ location.id }}": [{{ location.latitude }}, {{ location.longitude }}],
+                {% endfor %}
+            };
+    
+            if (barangayCoordinates[barangayId]) {
+                var coordinates = barangayCoordinates[barangayId];
+    
+                map.setView(coordinates, 15);
+                report.setLatLng(coordinates);
+    
+                updateCoordinates(coordinates[0], coordinates[1]);
+            }
+        }
+    
+        function revealMap() {
+            if (map) {
                 return;
             }
-
-            var starfish = L.icon({iconUrl: "{% static 'assets/pin.png' %}", iconSize: [30, 30], iconAnchor: [15, 15]});
-            
-            report = L.marker([5.9656, 125.1929], {draggable: true, icon: starfish});
-            
+    
+            var starfish = L.icon({ iconUrl: "{% static 'assets/pin.png' %}", iconSize: [30, 30], iconAnchor: [15, 15] });
+    
+            report = L.marker([5.9656, 125.1929], { draggable: true, icon: starfish });
+    
             var reportMap = document.getElementsByClassName("report-map")[0];
-            
-            var background = L.tileLayer("http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}", {minZoom: 11, maxZoom: 15, subdomains: ["mt0", "mt1", "mt2", "mt3"], attribution: "Google"});
-
-            map = L.map(reportMap, {zoomControl: true, scrollWheelZoom: false, dragging: true, maxBounds: [[5.3, 124.3],[6.3, 126.3]], layers: [background, report]}).setView([5.9656, 125.1929], 20);
-            
+    
+            var background = L.tileLayer("http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}", { minZoom: 11, maxZoom: 15, subdomains: ["mt0", "mt1", "mt2", "mt3"], attribution: "Google" });
+    
+            map = L.map(reportMap, { zoomControl: true, scrollWheelZoom: false, dragging: true, maxBounds: [[5.3, 124.3], [6.3, 126.3]], layers: [background, report] }).setView([5.9656, 125.1929], 20);
+    
             map.attributionControl.remove();
-
+    
             {% for location in locations %}
-                var originalCoordinates = {{location.perimeters|safe}};
-
+                var originalCoordinates = {{ location.perimeters | safe }};
                 var swappedCoordinates = swapCoordinates(originalCoordinates);
-                
-                var polygon = L.polygon(swappedCoordinates, {color: "transparent", fillColor: "transparent", fillOpacity: 0}).addTo(map);
-                
-                polygon.locationId = {{location.id}};
-                
-                polygon.locationName = "{{location}}";
+                var polygon = L.polygon(swappedCoordinates, { color: "transparent", fillColor: "transparent", fillOpacity: 0 }).addTo(map);
+    
+                polygon.locationId = {{ location.id }};
+                polygon.locationName = "{{ location }}";
             {% endfor %}
-
-            report.on("drag", function(event){
+    
+            report.on("drag", function (event) {
                 var position = event.target.getLatLng();
-
                 updateCoordinates(position.lat, position.lng);
             });
-
-            report.on("dragend", function(event){
+    
+            report.on("dragend", function (event) {
                 var position = event.target.getLatLng();
-                
                 updateCoordinates(position.lat, position.lng);
-
+    
                 var selectElement = document.getElementById("barangay");
-
                 selectElement.value = "";
-
+    
                 var selectElement2 = document.getElementById("municipality");
-
                 selectElement2.value = "";
-
-                map.eachLayer(function(layer){
-                    if (layer instanceof L.Polygon){
-                        if (layer.getBounds().contains(position) && layer.locationId){
+    
+                map.eachLayer(function (layer) {
+                    if (layer instanceof L.Polygon) {
+                        if (layer.getBounds().contains(position) && layer.locationId) {
                             selectElement.value = layer.locationId;
-
-                            selectElement2.value = layer.locationId;
-
+                            setMunicipalityByBarangay(layer.locationId);  // Set the municipality based on the barangay
                             return;
                         }
                     }
                 });
             });
-
-            const locations = [
-                {% for location in locations %}
-                    {id: "{{location.id}}", barangay: "{{location.barangay}}", municipality: "{{location.municipality}}"},
-                {% endfor %}
-            ];
-
-            var barangayCoordinates = {
-                {% for location in locations %}
-                    "{{location.id}}": [{{location.latitude}}, {{location.longitude}}],
-                {% endfor %}
-            };
-
-            document.getElementById("barangay").addEventListener("change", function(){
+    
+            document.getElementById("barangay").addEventListener("change", function () {
                 var barangayId = this.value;
-                
                 updateMarker(barangayId);
             });
-
+    
+            document.getElementById("municipality").addEventListener("change", function () {
+                updateBarangay();
+            });
+    
             var defaultLatitude = report.getLatLng().lat;
-
             var defaultLongitude = report.getLatLng().lng;
-            
+    
             updateCoordinates(defaultLatitude, defaultLongitude);
-            
             fetchLocation(defaultLatitude, defaultLongitude);
-
-            function updateBarangay(){
-                function updateMarker(barangayId){
-                    if (barangayCoordinates[barangayId]){
-                        var coordinates = barangayCoordinates[barangayId];
-
-                        map.setView(coordinates, 15);
-
-                        report.setLatLng(coordinates);
-
-                        updateCoordinates(coordinates[0], coordinates[1]);
-                    }
-                }
-
-                const locations = [
-                    {% for location in locations %}
-                        {id: "{{location.id}}", barangay: "{{location.barangay}}", municipality: "{{location.municipality}}"},
-                    {% endfor %}
-                ];
-                
-                const municipality = document.getElementById("municipality").value;
-
-                const barangay = document.getElementById("barangay");
-                
-                barangay.innerHTML = "";
-
-                const filteredLocations = locations.filter(location => location.municipality === municipality);
-
-                filteredLocations.forEach(location => {
-                    const option = document.createElement("option");
-                
-                    option.value = location.id; 
-                
-                    option.textContent = location.barangay;
-                
-                    barangay.appendChild(option);
-                });
-
-                if (filteredLocations.length > 0){
-                    updateMarker(filteredLocations[0].id);
-                }
-                
-            };
-
-            document.getElementById("barangay").addEventListener("change", function(){
-                var barangayId = this.value;
-
-                updateMarker(barangayId);
-            });
-
-            document.getElementById("municipality").addEventListener("change", updateBarangay);
-
+    
             {% if draft_post %}
                 updateBarangay();
             {% endif %}
-        };
-
-        function updateCoordinates(latitude, longitude){
-            var latitudeInput = document.getElementById("latitude");
-
-            var longitudeInput = document.getElementById("longitude");
-            
-            latitudeInput.value = latitude.toFixed(6);
-            
-            longitudeInput.value = longitude.toFixed(6);
         }
-
-        function swapCoordinates(coordinates){
-            return coordinates.map(function(ring){
-                return ring.map(function(point){
-                    return [point[1], point[0]];
-                });
-            });
-        }
-
-        window.addEventListener("load", function (){
+    
+        window.addEventListener("load", function () {
             revealMap();
         });
     </script>
+    
+    
+    
+    
 
     <script>
         function refreshMap(){

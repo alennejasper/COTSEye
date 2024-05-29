@@ -47,10 +47,10 @@ body{
     background-color: radial-gradient(100% 100% at 100% 0, #5affdb 0, #5468ff 100%) !important;
 }
 
-.content{
+/* .content{
     padding-left: 20px;
     padding-right: 20px;
-}
+} */
 
 .container-fluid{
     max-width: 100%;

@@ -56,6 +56,13 @@
                         <label for="dateTo" class="form-label">Date to:</label>
                         <input type="date" id="dateTo" name="dateTo" class="form-control form-control-sm">
                     </div>
+                    <div class="mb-3">
+                        <label for="orderBy" class="form-label">Order by:</label>
+                        <select id="orderBy" class="form-select form-select-sm mb-3 select2">
+                            <option value="latest">Latest</option>
+                            <option value="oldest">Oldest</option>
+                        </select>
+                    </div>
                     <button type="button" class="btn btn-primary mt-3" onclick="filterInterventions()">Apply Filter</button>
                     <button type="button" class="btn btn-secondary mt-2" onclick="resetFilter()">Reset Filter</button>
                 </div>
@@ -108,7 +115,7 @@
         let filteredInterventions = interventions;
         let currentPage = 1;
         const itemsPerPage = 10;
-        console.log(interventions)
+
         function displayInterventions(page) {
             const startIndex = (page - 1) * itemsPerPage;
             const endIndex = startIndex + itemsPerPage;
@@ -118,11 +125,36 @@
 
             paginatedInterventions.forEach(intervention => {
                 let row = table.insertRow();
-                row.insertCell(0).innerText = intervention.title;
-                row.insertCell(1).innerText = intervention.intervention_date;
-                row.insertCell(2).innerText = intervention.location;
-                row.insertCell(3).innerText = intervention.hosting_agency;
-                row.insertCell(4).innerText = intervention.volunteer_amount !== undefined ? intervention.volunteer_amount : 'N/A'; // Volunteer Amount column with fallback
+                
+                let titleCell = row.insertCell(0);
+                titleCell.innerText = intervention.title;
+                titleCell.addEventListener('click', function() {
+                    window.location.href = "{% url 'Officer Control Intervention Detail' 0 %}".replace('0', intervention.id);
+                });
+
+                let dateCell = row.insertCell(1);
+                dateCell.innerText = intervention.intervention_date;
+                dateCell.addEventListener('click', function() {
+                    window.location.href = "{% url 'Officer Control Intervention Detail' 0 %}".replace('0', intervention.id);
+                });
+
+                let locationCell = row.insertCell(2);
+                locationCell.innerText = intervention.location;
+                locationCell.addEventListener('click', function() {
+                    window.location.href = "{% url 'Officer Control Intervention Detail' 0 %}".replace('0', intervention.id);
+                });
+
+                let agencyCell = row.insertCell(3);
+                agencyCell.innerText = intervention.hosting_agency;
+                agencyCell.addEventListener('click', function() {
+                    window.location.href = "{% url 'Officer Control Intervention Detail' 0 %}".replace('0', intervention.id);
+                });
+
+                let volunteerAmountCell = row.insertCell(4);
+                volunteerAmountCell.innerText = intervention.volunteer_amount !== undefined ? intervention.volunteer_amount : 'N/A';
+                volunteerAmountCell.addEventListener('click', function() {
+                    window.location.href = "{% url 'Officer Control Intervention Detail' 0 %}".replace('0', intervention.id);
+                });
 
                 let actionsCell = row.insertCell(5);
                 let updateButton = document.createElement('button');
@@ -140,14 +172,6 @@
                     deleteIntervention(intervention.id);
                 });
                 actionsCell.appendChild(deleteButton);
-
-                let seeMoreButton = document.createElement('button');
-                seeMoreButton.innerText = 'See More';
-                seeMoreButton.classList.add('btn', 'btn-info', 'btn-sm', 'ml-2');
-                seeMoreButton.addEventListener('click', function() {
-                    window.location.href = "{% url 'Officer Control Intervention Detail' 0 %}".replace('0', intervention.id);
-                });
-                actionsCell.appendChild(seeMoreButton);
             });
 
             const pagination = document.getElementById('pagination');
@@ -194,6 +218,7 @@
             const barangayFilterValue = document.getElementById('barangayFilter').value;
             const dateFrom = document.getElementById('dateFrom').value;
             const dateTo = document.getElementById('dateTo').value;
+            const orderBy = document.getElementById('orderBy').value;
 
             filteredInterventions = interventions.filter(intervention => {
                 const matchesSearch = intervention.title.toLowerCase().includes(searchQuery);
@@ -206,6 +231,12 @@
                 return matchesSearch && matchesAgency && matchesMunicipality && matchesBarangay && matchesDateFrom && matchesDateTo;
             });
 
+            if (orderBy === "latest") {
+                filteredInterventions.sort((a, b) => new Date(b.intervention_date) - new Date(a.intervention_date));
+            } else {
+                filteredInterventions.sort((a, b) => new Date(a.intervention_date) - new Date(b.intervention_date));
+            }
+
             currentPage = 1;
             displayInterventions(currentPage);
         }
@@ -217,6 +248,7 @@
             document.getElementById('barangayFilter').innerHTML = '<option value="">Select Barangay</option>';
             document.getElementById('dateFrom').value = '';
             document.getElementById('dateTo').value = '';
+            document.getElementById('orderBy').value = 'latest';
 
             filteredInterventions = interventions;
             displayInterventions(currentPage);

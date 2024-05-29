@@ -11,31 +11,33 @@
             Unread Posts
         </div>
         <div class="card-body">
-            <table class="table table-bordered table-striped">
-                <thead class="thead-dark">
-                    <tr>
-                        <th>ID</th>
-                        <th>User</th>
-                        <th>Description</th>
-                        <th>Capture Date</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for post in unread_posts %}
-                    <tr>
-                        <td>{{ post.id }}</td>
-                        <td>{{ post.user }}</td>
-                        <td>{{ post.description }}</td>
-                        <td>{{ post.capture_date }}</td>
-                        <td>
-                            <a href="{% url 'Officer Control Sighting Read' post.id %}" class="btn btn-sm btn-primary">View</a>
-                            <a href="{% url 'Service Post Read Mark' post.id %}" class="btn btn-sm btn-success">Mark as Read</a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>User</th>
+                            <th>Description</th>
+                            <th>Creation Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for post in unread_posts %}
+                        <tr>
+                            <td>{{ post.id }}</td>
+                            <td>{{ post.user }}</td>
+                            <td>{{ post.description }}</td>
+                            <td>{{ post.creation_date }}</td>
+                            <td>
+                                <a href="{% url 'Officer Control Sighting Read' post.id %}" class="btn btn-sm btn-primary">View</a>
+                                <a href="{% url 'Service Post Read Mark' post.id %}" class="btn btn-sm btn-success">Mark as Read</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
             <nav aria-label="Unread posts pagination">
                 <ul class="pagination justify-content-center">
                     {% if unread_posts.has_previous %}
@@ -67,30 +69,32 @@
             Read Posts
         </div>
         <div class="card-body">
-            <table class="table table-bordered table-striped">
-                <thead class="thead-dark">
-                    <tr>
-                        <th>ID</th>
-                        <th>User</th>
-                        <th>Description</th>
-                        <th>Capture Date</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for post in read_posts %}
-                    <tr>
-                        <td>{{ post.id }}</td>
-                        <td>{{ post.user }}</td>
-                        <td>{{ post.description }}</td>
-                        <td>{{ post.capture_date }}</td>
-                        <td>
-                            <a href="{% url 'Officer Control Sighting Read' post.id %}" class="btn btn-sm btn-primary">View</a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>User</th>
+                            <th>Description</th>
+                            <th>Creation Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for post in read_posts %}
+                        <tr>
+                            <td>{{ post.id }}</td>
+                            <td>{{ post.user }}</td>
+                            <td>{{ post.description }}</td>
+                            <td>{{ post.creation_date }}</td>
+                            <td>
+                                <a href="{% url 'Officer Control Sighting Read' post.id %}" class="btn btn-sm btn-primary">View</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
             <nav aria-label="Read posts pagination">
                 <ul class="pagination justify-content-center">
                     {% if read_posts.has_previous %}

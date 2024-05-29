@@ -91,6 +91,10 @@
     border-radius: 5px;
 }
 
+.card-body p{
+    margin-bottom: 0px !important;
+}
+
 
 .filter-container {
     display: flex;

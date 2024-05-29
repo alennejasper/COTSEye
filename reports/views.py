@@ -154,7 +154,7 @@ def ContributorServiceReport(request):
 
                 username = request.user.username
                 
-                messages.success(request, username + ", "  + "your information input was recorded online for COTSEye.")
+                messages.success(request, f"{username}, For verification and will be approved by the administrator. You will be notified in 3 to 5 business days.")
                 
                 return redirect("Contributor Service Post")
 
@@ -1417,15 +1417,29 @@ def OfficerControlSightingRead(request, id):
     post_photos = post.post_photos.all()
 
     other_photos = []
-    
+
+    locations = Location.objects.all()
+
     for other_post in other_posts:
         first_photo = other_post.post_photos.first()
 
         other_photos.append({"post": other_post, "first_photo": first_photo})
     
-    context = {"unread_posts": unread_posts, "post": post, "other_posts_with_photos": other_photos, "post_photos": post_photos}
+    context = {"unread_posts": unread_posts, "post": post, "other_posts_with_photos": other_photos, "post_photos": post_photos, "locations": locations}
     
     return render(request, "officer/control/sighting/read.html", context)
+
+@login_required(login_url="Officer Control Login")
+@user_passes_test(OfficerCheck, login_url="Officer Control Login")
+def DeletePostPhoto(request, photo_id):
+    if request.method == 'DELETE':
+        try:
+            photo = get_object_or_404(PostPhoto, id=photo_id)
+            photo.delete()
+            return JsonResponse({'success': True})
+        except:
+            return JsonResponse({'success': False}, status=400)
+    return JsonResponse({'success': False}, status=405)
 
 
 @login_required(login_url="Officer Control Login")
@@ -1435,37 +1449,81 @@ def OfficerControlSightingValid(request):
         id = request.POST.get("post_id")
 
         post = get_object_or_404(Post, id=id)
-
-        post.post_status = PostStatus.objects.get(id=1)
         
-        if request.user.usertype.id == 2:
-            post.validated_by = request.user.user
+        current_time = timezone.now()
+        time_difference = (current_time - post.read_date).total_seconds() if post.read_date else None
 
-        post.save()
+        
+        if post.read_date is None:
+            post.post_status = PostStatus.objects.get(id=1)
+            
+            if request.user.usertype.id == 2:
+                post.validated_by = request.user.user
 
-        return JsonResponse({"success": True})
+            post.read_date = current_time  # Update the read_date to current time
+            
+            post.save()
+            return JsonResponse({"success": True, "message": "Post status updated successfully. Read Date updated"})
+        
+        elif time_difference is None or time_difference <= 86400:
+            post.post_status = PostStatus.objects.get(id=1)
+            print(time_difference)
+            if request.user.usertype.id == 2:
+                post.validated_by = request.user.user
 
-    return JsonResponse({"success": False}, status=400)
+            post.save()
+            return JsonResponse({"success": True, "message": "Post status updated successfully."})
+        
+        elif time_difference is not None and time_difference > 86400:
+            return JsonResponse({"success": False, "message": "Update is not available after 24 hours from the first read."}, status=400)
+        
+        else:
+            return JsonResponse({"success": False, "message": "Invalid conditions for update."}, status=400)
 
+    return JsonResponse({"success": False, "message": "Invalid request method."}, status=400)
 
 @login_required(login_url="Officer Control Login")
 @user_passes_test(OfficerCheck, login_url="Officer Control Login")
 def OfficerControlSightingInvalid(request):
     if request.method == "POST" and request.headers.get("x-requested-with") == "XMLHttpRequest":
         id = request.POST.get("post_id")
+        remarks = request.POST.get("remarks")
         
         post = get_object_or_404(Post, id=id)
+        
+        current_time = timezone.now()
+        time_difference = (current_time - post.read_date).total_seconds() if post.read_date else None
 
-        post.post_status = PostStatus.objects.get(id=2)
+        if post.read_date is None:
+            post.post_status = PostStatus.objects.get(id=2)
+            
+            if request.user.usertype.id == 2:
+                post.validated_by = request.user
+            
+            post.remarks = remarks  # Save the remarks
+            post.read_date = current_time  # Update the read_date to current time
+            
+            post.save()
+            return JsonResponse({"success": True, "message": "Post status updated to invalid with remarks. Read Date updated."})
+        
+        elif time_difference is None or time_difference <= 86400:
+            post.post_status = PostStatus.objects.get(id=2)
+            
+            if request.user.usertype.id == 2:
+                post.validated_by = request.user.user
+            
+            post.remarks = remarks  # Save the remarks
+            
+            post.save()
+            return JsonResponse({"success": True, "message": "Post status updated to invalid with remarks."})
+        
+        elif time_difference is not None and time_difference > 86400:
+            return JsonResponse({"success": False, "message": "Update is not available after 24 hours from the first read."}, status=400)
+        
+        else:
+            return JsonResponse({"success": False, "message": "Invalid conditions for update."}, status=400)
 
-        if request.user.usertype.id == 2:
-            post.validated_by = request.user.user
-       
-        post.save()
-
-        return JsonResponse({"success": True})
-
-    return JsonResponse({"success": False}, status=400)
+    return JsonResponse({"success": False, "message": "Invalid request method."}, status=400)
 
 
 def ServicePostReadMark(request, id):
@@ -1531,12 +1589,12 @@ def ControlStatisticsPostReadRedirect(request, object_id):
 @login_required(login_url="Contributor Service Login")
 @user_passes_test(ContributorCheck, login_url="Contributor Service Login")
 def contributor_post_list(request):
-    unread_posts_list = Post.objects.filter(contrib_read_status=False)
+    unread_posts_list = Post.objects.filter(contrib_read_status=False).order_by("-creation_date")
     now = timezone.now()
     read_posts_list = Post.objects.filter(contrib_read_status=True).filter(
         contrib_read_date__gte=now - timedelta(days=30),
         contrib_read_date__lte=now
-    )
+    ).order_by("-creation_date")
     
     unread_paginator = Paginator(unread_posts_list, 10)  # Show 10 unread posts per page
     read_paginator = Paginator(read_posts_list, 10)  # Show 10 read posts per page

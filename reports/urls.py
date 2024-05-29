@@ -49,7 +49,8 @@ urlpatterns = [
 
     path('api/posts/update/<int:post_id>/', views.update_post, name='update_post'),   
     
-    
     path("service/posts/", views.contributor_post_list, name="contrib_post_list"),
+
+    path('officer/control/sighting/delete_photo/<int:photo_id>/', views.DeletePostPhoto, name='delete_photo'),
 
 ]

@@ -924,12 +924,12 @@ def ControlProfileRedirect(request):
 @login_required(login_url="Officer Control Login")
 @user_passes_test(OfficerCheck, login_url="Officer Control Login")
 def post_list(request):
-    unread_posts_list = Post.objects.filter(read_status=False)
+    unread_posts_list = Post.objects.filter(read_status=False).order_by("-creation_date")
     now = timezone.now()
     read_posts_list = Post.objects.filter(read_status=True).filter(
         read_date__gte=now - timedelta(days=30),
         read_date__lte=now
-    )
+    ).order_by("-creation_date")
     
     unread_paginator = Paginator(unread_posts_list, 10)  # Show 10 unread posts per page
     read_paginator = Paginator(read_posts_list, 10)  # Show 10 read posts per page

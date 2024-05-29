@@ -1,16 +1,30 @@
 {% extends "officer/control/index/index.html" %}
 {% load static %}
 {% block content %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 <div class="container-fluid mt-3">
     <div class="row">
-        <!-- Main post content -->
-        <div class="col-md-8">
+        <!-- First grid column: Map -->
+        <div class="col-md-6" style="position: relative; flex: 0 0 50%;">
+            <a class="" style="position: absolute; top: 10px; right: 20px; z-index: 1000;" onclick="showPopup({{ post.id }})">
+                <i class="fa-solid fa-info-circle" style="font-size: 24px"></i>
+            </a>
+            <div id="map" style="height: 810px;"></div>
+        </div>
+
+        <!-- Second grid column: Capture photo and other details -->
+        <div class="col-md-4" style="flex: 0 0 30%;">
             <div class="card mb-4" style="padding: 12px;">
                 <div id="postCarousel" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         {% for photo in post_photos %}
                             <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                                <img src="{{ photo.post_photo.url }}" class="d-block w-50 carousel-image" alt="...">
+                                <img src="{{ photo.post_photo.url }}" class="d-block w-100 carousel-image" alt="...">
+                                <a href="#" class="delete-photo" data-photo-id="{{ photo.id }}" onclick="deletePhoto({{ photo.id }})" style="position: absolute; top: 10px; right: 10px; z-index: 1000;">
+                                    <i class="fa fa-trash" style="color: red; font-size: 24px;"></i>
+                                </a>
                             </div>
                         {% endfor %}
                     </div>
@@ -28,53 +42,108 @@
                     <p><strong>Barangay: </strong>{{ post.location.barangay }}</p>
                     <p><strong>Municipality: </strong>{{ post.location.municipality }}</p>
                     <p><strong>Created Date: </strong>{{ post.creation_date }}</p>
+                    <p><strong>Capture Date: </strong>{{ post.capture_date }}</p>
                     <p><strong>Description: </strong>{{ post.description }}</p>
-                    <p><strong>Status: </strong>{{ post.post_status }}</p>
+                    <p><strong>Coordinates: </strong>{{ post.coordinates }}</p>
+                    <p><strong>Size: </strong>{{ post.post_observation.size }}</p>
+                    <p><strong>Depth: </strong>{{ post.post_observation.depth }}</p>
+                    <p><strong>Density: </strong>{{ post.post_observation.density }}</p>
+                    <p><strong>Weather: </strong>{{ post.post_observation.weather }}</p>
+                    {% if post.validated_by is not None %}
+                    <p><strong>Validated by: </strong>{{ post.validated_by }}</p>
+                    <p><strong>Read date: </strong>{{ post.read_date }}</p>
+                    {% if post.remarks is not None %}
+                    <p><strong>Remarks: </strong>{{ post.remarks }}</p>
+                    {% endif %}
+                    {% endif %}
                 </div>
-                
-                <!-- Button container for non-pending status (all buttons disabled) -->
-
-                {% if post.post_status.is_pending != True %}
-                <div class="button-container">
-                    <button class="btn btn-success" onclick="changeStatus({{ post.id }})" disabled>Valid</button>
-                    <button class="btn btn-danger" onclick="invalidStatus({{ post.id }})" disabled>Invalid</button>
-                </div>
-                {% else %}
-                <!-- Button container for pending status (buttons enabled) -->
-                <div class="button-container">
-                    <button class="btn btn-success" onclick="changeStatus({{ post.id }})">Valid</button>
-                    <button class="btn btn-danger" onclick="invalidStatus({{ post.id }})">Invalid</button>
-                </div>
-                {% endif %}
-            </div>
-        </div>
-
-        <!-- Sidebar with other posts -->
-        <div class="col-md-4">
-            <h3 class="mt-4">Other Posts</h3>
-            <div class="list-group">
-                {% for item in other_posts_with_photos %}
-                    <a href="{% url 'Officer Control Sighting Read' item.post.id %}" class="list-group-item list-group-item-action d-flex align-items-center">
-                        {% if item.first_photo %}
-                            <img src="{{ item.first_photo.post_photo.url }}" class="img-thumbnail mr-3" alt="Post photo" style="width: 100px; height: 95px; object-fit: cover; margin-right: 8px;">
-                        {% else %}
-                            <img src="path/to/default_image.jpg" class="img-thumbnail mr-3" alt="No photo available" style="width: 100px; height: auto;">
-                        {% endif %}
-                        <div>
-                            <strong>{{ item.post.user }}</strong><br>
-                            <small>{{ item.post.location.barangay }}, {{ item.post.location.municipality }}</small><br>
-                            <small>{{ item.post.capture_date }}</small>
-                        </div>
-                    </a>
-                {% endfor %}
             </div>
         </div>
         
+        <script>
+            function deletePhoto(photoId) {
+                console.log("test")
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: 'Do you want to delete this photo?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        fetch(`/officer/control/sighting/delete_photo/${photoId}/`, {
+                            method: 'DELETE',
+                            headers: {
+                                'X-CSRFToken': '{{ csrf_token }}',
+                            },
+                        })
+                        .then(response => {
+                            if (response.ok) {
+                                Swal.fire(
+                                    'Deleted!',
+                                    'The photo has been deleted.',
+                                    'success'
+                                ).then(() => {
+                                    location.reload();
+                                });
+                            } else {
+                                Swal.fire(
+                                    'Error!',
+                                    'Failed to delete photo.',
+                                    'error'
+                                );
+                            }
+                        });
+                    }
+                });
+            }
+        </script>
+        
+
+        <!-- Third grid column: Actions -->
+        <div class="col-md-2" style="flex: 0 0 20%;">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Actions</h5>
+                    
+                    <div class="button-container">
+                        <button class="btn btn-success w-100 mb-2" onclick="changeStatus({{ post.id }})">Valid</button>
+                        <button class="btn btn-danger w-100" onclick="invalidStatus({{ post.id }})">Invalid</button>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
+<!-- Leaflet CSS and JS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha384-2jRDr5PhAULVgoLZLSn/mO/HZBQ3TfP7mFS0ELbcfLLp7oqFLjMdV9a/9QIfzQNC" crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha384-xodZBntMNu6FoRrJbZtZtLFWl6Ck63tzpC6/WF9AWnLX7M4i06rLyf5gxyXjeWhg" crossorigin=""></script>
 
 <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize the map
+        var map = L.map('map').setView([5.986291, 124.615234], 13);  // Default coordinates
+
+        // Add a tile layer to the map
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Extract coordinates from the post
+        var coordinates = "{{ post.coordinates }}".split(",");
+        var lat = parseFloat(coordinates[0]);
+        var lng = parseFloat(coordinates[1]);
+
+        // Add a marker to the map
+        L.marker([lat, lng]).addTo(map)
+            .bindPopup('<b>{{ post.description }}</b>')
+            .openPopup();
+    });
+
     function changeStatus(postId) {
         $.ajax({
             type: 'POST',
@@ -85,30 +154,347 @@
             },
             success: function(response) {
                 if (response.success) {
-                    location.reload();
+                    Swal.fire({
+                        title: 'Success',
+                        text: response.message,
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    }).then(() => {
+                        location.reload();  // Reload the page after successful operation
+                    });
                 } else {
-                    alert('Failed to change status.');
+                    Swal.fire({
+                        title: 'Error',
+                        text: response.message,
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
                 }
+            },
+            error: function() {
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Update is not available after 24 hours from the first read.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
             }
         });
     }
 
     function invalidStatus(postId) {
-        $.ajax({
-            type: 'POST',
-            url: '{% url "Officer Control Sighting Invalid" %}',
-            data: {
-                'post_id': postId,
-                'csrfmiddlewaretoken': '{{ csrf_token }}'
-            },
-            success: function(response) {
-                if (response.success) {
-                    location.reload();
-                } else {
-                    alert('Failed to change status.');
-                }
+        Swal.fire({
+            title: 'Add Remarks',
+            input: 'textarea',
+            inputLabel: 'Remarks',
+            inputPlaceholder: 'Enter your remarks here...',
+            showCancelButton: true,
+            confirmButtonText: 'Submit',
+            cancelButtonText: 'Cancel',
+            preConfirm: (remarks) => {
+                return new Promise((resolve) => {
+                    resolve(remarks);
+                });
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const remarks = result.value;
+
+                $.ajax({
+                    type: 'POST',
+                    url: '{% url "Officer Control Sighting Invalid" %}',
+                    data: {
+                        'post_id': postId,
+                        'remarks': remarks,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            Swal.fire({
+                                title: 'Success',
+                                text: response.message,
+                                icon: 'success',
+                                confirmButtonText: 'OK'
+                            }).then(() => {
+                                location.reload();  // Reload the page after successful operation
+                            });
+                        } else {
+                            Swal.fire({
+                                title: 'Error',
+                                text: response.message,
+                                icon: 'error',
+                                confirmButtonText: 'OK'
+                            });
+                        }
+                    },
+                    error: function() {
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'An unexpected error occurred.',
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                });
             }
         });
     }
+</script>
+
+<script>
+    function shownDropdown(event){
+        event.stopPropagation();
+        const dropdown = event.currentTarget.closest('.button-container').querySelector('.dropdown-content');
+        dropdown.classList.toggle("show");
+    };
+
+    window.onclick = function(event) {
+        if (!event.target.matches("img.drop")) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains("show")) {
+                    openDropdown.classList.remove("show");
+                }
+            }
+        }
+    };
+
+    function showPopup(postId) {
+        fetch(`/officer/control/sighting/update/${postId}/`)
+            .then(response => response.json())
+            .then(data => {
+                Swal.fire({
+                    title: 'Popup Window',
+                    html: `
+                        <div class="map">
+                            <div class="report-map" id="map" style="height: 300px;"></div>
+                        </div>
+
+                        <div class="coordinates">
+                            <input type="hidden" id="latitude" name="latitude" value="${data.latitude}" required>
+                            <input type="hidden" id="longitude" name="longitude" value="${data.longitude}" required>
+                        </div>
+
+                        <div class="municipality">
+                            <label for="municipality">Municipality</label>
+                            <select name="municipality" id="popupMunicipality" onchange="updateBarangayOptions()">
+                                <option value="${data.location.municipality}" selected>${data.location.municipality}</option>
+                                {% for location in locations %}
+                                    {% if location.municipality != data.location.municipality %}
+                                        <option value="{{location.municipality}}">{{location.municipality}}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="barangay">
+                            <label for="barangay">Barangay</label>
+                            <select name="barangay" id="popupBarangay" onchange="updateMarker()">
+                                <option value="${data.location.barangay}" selected>${data.location.barangay}</option>
+                                {% for location in locations %}
+                                    <option id="barangayOption" value="{{location.barangay}}">{{location.barangay}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <button type="button" onclick="submitPopup(${postId})">Submit</button>
+                    `,
+                    didOpen: () => {
+                        const latitude = parseFloat(document.getElementById('latitude').value);
+                        const longitude = parseFloat(document.getElementById('longitude').value);
+                        revealMap(latitude, longitude);
+
+                        document.getElementById("popupBarangay").addEventListener("click", function() {
+                            var barangayId = this.value;
+                            console.log(barangayId)
+                            updateMarker(barangayId);
+                        });
+                    },
+                    showConfirmButton: false
+                });
+            });
+    }
+
+    var map;
+    var report;
+
+    function revealMap(latitude, longitude) {
+        var starfish = L.icon({iconUrl: "{% static 'assets/pin.png' %}", iconSize: [30, 30], iconAnchor: [15, 15]});
+        report = L.marker([latitude, longitude], {draggable: true, icon: starfish});
+        var reportMap = document.getElementsByClassName("report-map")[0];
+        var background = L.tileLayer("http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}", {minZoom: 11, maxZoom: 15, subdomains: ["mt0", "mt1", "mt2", "mt3"], attribution: "Google"});
+
+        map = L.map(reportMap, {zoomControl: true, scrollWheelZoom: false, dragging: true, maxBounds: [[5.3, 124.3], [6.3, 126.3]], layers: [background, report]}).setView([latitude, longitude], 15);
+        map.attributionControl.remove();
+
+        {% for location in locations %}
+            var originalCoordinates = {{location.perimeters|safe}};
+            var swappedCoordinates = swapCoordinates(originalCoordinates);
+            var polygon = L.polygon(swappedCoordinates, {color: "transparent", fillColor: "transparent", fillOpacity: 0}).addTo(map);
+            polygon.locationId = {{location.id}};
+            polygon.locationName = "{{location}}";
+        {% endfor %}
+
+        report.on("drag", function(event) {
+            var position = event.target.getLatLng();
+            updateCoordinates(position.lat, position.lng);
+        });
+
+        report.on("dragend", function(event) {
+            var position = event.target.getLatLng();
+            updateCoordinates(position.lat, position.lng);
+
+            var selectElement = document.getElementById("popupBarangay");
+            selectElement.value = "";
+
+            var selectElement2 = document.getElementById("popupMunicipality");
+            selectElement2.value = "";
+
+            map.eachLayer(function(layer){
+                if (layer instanceof L.Polygon){
+                    if (layer.getBounds().contains(position) && layer.locationId){
+                        selectElement.value = layer.locationId;
+                        setMunicipalityByBarangay(layer.locationId);  // Set the municipality based on the barangay
+                        return;
+                    }
+                }
+            });
+        });
+
+        updateBarangayOptions();
+    }
+
+    function updateCoordinates(latitude, longitude) {
+        var latitudeInput = document.getElementById("latitude");
+        var longitudeInput = document.getElementById("longitude");
+        latitudeInput.value = latitude.toFixed(6);
+        longitudeInput.value = longitude.toFixed(6);
+    }
+
+    function updateMarker() {
+        var barangayId = document.getElementById("popupBarangay").value;
+        console.log(barangayId)
+        if (barangayCoordinates[barangayId]) {
+            var coordinates = barangayCoordinates[barangayId];
+            map.setView(coordinates, 15);
+            report.setLatLng(coordinates);
+            updateCoordinates(coordinates[0], coordinates[1]);
+        }
+    }
+
+    function swapCoordinates(coordinates) {
+        return coordinates.map(function(ring) {
+            return ring.map(function(point) {
+                return [point[1], point[0]];
+            });
+        });
+    }
+
+    function updateBarangayOptions() {
+        const municipalityFilter = document.getElementById("popupMunicipality").value;
+        const barangayFilter = document.getElementById("popupBarangay");
+
+        if (municipalityFilter) {
+            $.ajax({
+                url: "{% url 'get_barangays' %}",
+                data: {
+                    "municipality": municipalityFilter
+                },
+                success: function(data) {
+                    barangayFilter.innerHTML = "";
+                    data.forEach(function(barangay) {
+                        const option = document.createElement("option");
+                        option.value = barangay;
+                        option.textContent = barangay;
+                        barangayFilter.appendChild(option);
+                    });
+                    $('#barangayFilter').select2();
+                }
+            });
+        }
+
+    }
+
+    const barangayCoordinates = {
+        {% for location in locations %}
+            "{{location.barangay}}": [{{location.latitude}}, {{location.longitude}}],
+        {% endfor %}
+    };
+
+
+
+    function setMunicipalityByBarangay(barangayId) {
+        
+        const locations = [
+            {% for location in locations %}
+                {id: "{{location.id}}", barangay: "{{location.barangay}}", municipality: "{{location.municipality}}"},
+            {% endfor %}
+        ];
+
+        const location = locations.find(loc => loc.id == barangayId);
+        if (location) {
+            const municipalitySelect = document.getElementById("popupMunicipality");
+            municipalitySelect.value = location.municipality;
+        }
+        updateBarangayOptions();
+       
+    }
+    
+    function submitPopup(postId) {
+        const municipality = document.getElementById('popupMunicipality').value;
+        const barangay = document.getElementById('popupBarangay').value;
+        const latitude = document.getElementById('latitude').value;
+        const longitude = document.getElementById('longitude').value;
+
+        const data = {
+            municipality: municipality,
+            barangay: barangay,
+            latitude: parseFloat(latitude),
+            longitude: parseFloat(longitude)
+        };
+
+        fetch(`/api/posts/update/${postId}/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{csrf_token}}' 
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(result => {
+            if (result.status === 'success') {
+                Swal.fire({
+                    title: 'Submitted!',
+                    text: 'The form has been submitted.',
+                    icon: 'success',
+                    confirmButtonText: 'Close'
+                });
+            } else {
+                Swal.fire({
+                    title: 'Error!',
+                    text: result.message,
+                    icon: 'error',
+                    confirmButtonText: 'Close'
+                });
+            }
+        })
+        .catch(error => {
+            Swal.fire({
+                title: 'Error!',
+                text: 'An error occurred while submitting the form.',
+                icon: 'error',
+                confirmButtonText: 'Close'
+            });
+        });
+    }
+
+   
+
+  
+   
+
+    
 </script>
 {% endblock %}

@@ -1,38 +1,48 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/officer/control/home/card.css' %}">
 
-<!-- Filter Form -->
-<form method="get" action="{% url 'Officer Control Home' %}">
-    <div class="filter-container">
-        <label for="municipalityFilter">Municipality:</label>
-        <select id="municipalityFilter" name="municipality">
-            <option value="">All</option>
-            {% for municipality in municipalities %}
-                <option value="{{ municipality.municipality }}" {% if selected_municipality == municipality.municipality %}selected{% endif %}>{{ municipality.municipality }}</option>
-            {% endfor %}
-        </select>
+<div style = "background-color: rgb(236, 236, 236); margin-top: 15px;">
+    <div style="display: flex; align-items: center; justify-content: space-between;">
+        <h1 style="text-align: center;">Monitoring Section</h1>
 
-        <label for="startDateFilter">From:</label>
-        <input type="date" id="startDateFilter" name="start_date" value="{{ start_date_filter|default_if_none:'' }}">
-
-        <label for="endDateFilter">To:</label>
-        <input type="date" id="endDateFilter" name="end_date" value="{{ end_date_filter|default_if_none:'' }}">
-
-        <button type="submit">Filter</button>
-    </div>
-</form>
-
-<!-- Barangay Cards -->
-<div class="row !important">
-<div class="card-container">
-    {% for barangay in barangay_data %}
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">{{ barangay.barangay }}</h5>
-                <p class="card-text">Caught Overall: {{ barangay.caught_overall_sum }}</p>
-<!--                 <p class="card-text">As of:<strong>{{ barangay.latest_onset_date }} </strong> </p>
- -->            </div>
+        <div class="d-flex justify-content-end">
+            <button style="background-color: rgb(30, 173, 95);" onclick="window.location.href='{% url 'Officer Control Report' %}'" class="btn btn-primary">GENERATE REPORT</button>
         </div>
-    {% endfor %}
-</div>
+    </div>
+    <!-- Filter Form -->
+    <form method="get" action="{% url 'Officer Control Home' %}">
+        <div class="filter-container">
+            <label for="municipalityFilter">Municipality:</label>
+            <select id="municipalityFilter" name="municipality">
+                <option value="">All</option>
+                {% for municipality in municipalities %}
+                    <option value="{{ municipality.municipality }}" {% if selected_municipality == municipality.municipality %}selected{% endif %}>{{ municipality.municipality }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="startDateFilter">From:</label>
+            <input type="date" id="startDateFilter" name="start_date" value="{{ start_date_filter|default_if_none:'' }}">
+
+            <label for="endDateFilter">To:</label>
+            <input type="date" id="endDateFilter" name="end_date" value="{{ end_date_filter|default_if_none:'' }}">
+
+            <button type="submit">Filter</button>
+        </div>
+    </form>
+
+    <!-- Barangay Cards -->
+    <div class="row !important">
+        <div class="card-container">
+            {% for barangay in barangay_data %}
+                <div class="card">
+                    <div class="card-body">
+                        <p style="font-size: 10px;">COTS Collected</p>
+                        <p style="font-size: 45px; font-weight: 700;" class="card-text">{{ barangay.caught_overall_sum }}</p>
+                        <h5 style="font-size: 17px;" class="card-title">{{ barangay.barangay }}</h5>
+        <!--                 <p class="card-text">As of:<strong>{{ barangay.latest_onset_date }} </strong> </p>
+        -->            </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 </div>

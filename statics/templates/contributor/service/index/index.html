@@ -88,7 +88,7 @@
             
             <div class = "menu">
                 <div class = "notification">
-                    <a class = "notification-link" href="{% url 'contrib_post_list' %}">
+                    <a class = "notification-link" >
                         <i class = "fa-solid fa-bell"></i>
     
                         {% if unread_posts %}
@@ -103,7 +103,7 @@
         
 
         <div class = "menu-content">
-            <!-- <div class = "notification-dropdown">
+            <div class = "notification-dropdown">
                 <div id = "notification-content" class = "notification-content">
                     {% if unread_posts %}
                         {% for post in unread_posts %}
@@ -113,8 +113,10 @@
 
                         <a class = "dropdown-item">No unread posts in the last 30 days.</a>
                     {% endif %}
+
+                    <a href="{% url 'contrib_post_list' %}">See More</a>
                 </div>
-            </div> -->
+            </div>
 
             <div class = "profile-dropdown">
                 <div id = "profile-content" class = "profile-content">

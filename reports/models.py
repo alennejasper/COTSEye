@@ -163,7 +163,8 @@ class Post(models.Model):
     read_date = models.DateTimeField(null=True, blank=True, help_text="Designates the date and time when the post was read.", verbose_name="Read Date")
     contrib_read_status = models.BooleanField(default=False, help_text="Indicates whether the post has been read by a contributor.", verbose_name="Contributor Read Status")
     contrib_read_date = models.DateTimeField(null=True, blank=True, help_text="Designates the date and time when the post was read by a contributor.", verbose_name="Contributor Read Date")
-    
+    remarks = models.CharField(null=True, blank=True, max_length=255, help_text="Additional remarks for the post.", verbose_name="Remarks")
+
     class Meta:
         db_table = "reports_post"
         verbose_name = "Post"
@@ -171,6 +172,7 @@ class Post(models.Model):
 
     def __str__(self):
         return f"POST {self.id} | {self.user}"
+
 
 class PostGallery(models.Model):
     post_photos = models.ForeignKey(PostPhoto, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Post Photos model.", verbose_name = "Post Photo")
