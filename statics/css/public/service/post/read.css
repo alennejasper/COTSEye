@@ -40,7 +40,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-family: "Poppins";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 14px !important;
     color: #003755;
@@ -87,7 +87,7 @@
 .postandfeedread-body .postandfeedread p{
     display: flex;
     align-items: center;
-    font-family: "Poppins";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 14px !important;
     color: #003755;
@@ -112,7 +112,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-family: "Poppins";
+    font-family: "Montserrat";
     font-size: 22px;
     font-weight: 700;       
     color: #003755;                          
@@ -124,7 +124,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-family: "Poppins";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 14px !important;
     color: #003755;
@@ -154,7 +154,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-family: "Poppins";
+    font-family: "Montserrat";
     font-size: 22px;
     font-weight: 700;       
     color: #003755;                          
@@ -166,7 +166,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-family: "Poppins";
+    font-family: "Montserrat";
     font-size: 14px;
     font-weight: 400;       
     color: #003755;                          
@@ -187,7 +187,7 @@
     padding-bottom: 10px !important;
     border-radius: 5px;
     outline: none !important;
-    font-family: "Poppins";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 14px;
     color: #FFFFFF !important;
@@ -211,7 +211,7 @@
     padding-bottom: 10px !important;
     border-radius: 5px;
     outline: none !important;
-    font-family: "Poppins";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 14px;
     color: #FFFFFF !important;

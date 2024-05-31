@@ -53,4 +53,6 @@ urlpatterns = [
 
     path('officer/control/sighting/delete_photo/<int:photo_id>/', views.DeletePostPhoto, name='delete_photo'),
 
+    path('post/<int:post_id>/add-remark/', views.add_remark, name='add_remark'),
+
 ]

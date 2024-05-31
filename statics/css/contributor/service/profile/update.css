@@ -22,7 +22,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-family: "Open Sans";    
+    font-family: "Montserrat";    
     font-weight: 700;       
     font-size: 22px;     
     color: #000000;   
@@ -56,7 +56,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-family: "Open Sans";    
+    font-family: "Montserrat";    
     font-weight: 700;       
     font-size: 20px;     
     color: #000000;   
@@ -69,7 +69,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-family: "Open Sans";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 14px !important;
     color: #000000;
@@ -86,7 +86,7 @@
 }
 
 .profileupdate-body .profile-form .first-name label{
-    font-family: "Open Sans";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 14px;
     color: #000000 !important;
@@ -101,7 +101,7 @@
     border: 1px solid #003755;
     border-radius: 5px;
     outline: none;
-    font-family: "Open Sans";
+    font-family: "Montserrat";
     font-weight: 700;
     font-size: 20px;
     color: #000000 !important;
@@ -113,7 +113,7 @@
 }
 
 .profileupdate-body .profile-form .last-name label{
-    font-family: "Open Sans";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 14px;
     color: #000000 !important;
@@ -128,7 +128,7 @@
     border: 1px solid #003755;
     border-radius: 5px;
     outline: none;
-    font-family: "Open Sans";
+    font-family: "Montserrat";
     font-weight: 700;
     font-size: 20px;
     color: #000000 !important;
@@ -140,7 +140,7 @@
 }
 
 .profileupdate-body .profile-form .email label{
-    font-family: "Open Sans";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 14px;
     color: #000000 !important;
@@ -155,7 +155,7 @@
     border: 1px solid #003755;
     border-radius: 5px;
     outline: none;
-    font-family: "Open Sans";
+    font-family: "Montserrat";
     font-weight: 700;
     font-size: 20px;
     color: #000000 !important;
@@ -167,7 +167,7 @@
 }
 
 .profileupdate-body .profile-form .phone-number label{
-    font-family: "Open Sans";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 14px;
     color: #000000 !important;
@@ -182,7 +182,7 @@
     border: 1px solid #003755;
     border-radius: 5px;
     outline: none;
-    font-family: "Open Sans";
+    font-family: "Montserrat";
     font-weight: 700;
     font-size: 20px;
     color: #000000 !important;
@@ -203,7 +203,7 @@
     width: 100%;
     border-radius: 5px;
     outline: none !important;
-    font-family: "Open Sans";
+    font-family: "Montserrat";
     text-align: center;                                   
     font-weight: 400;
     font-size: 14px;

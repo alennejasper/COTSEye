@@ -2,38 +2,68 @@
 {% load static %}
 
 {% block content %}
-<div class="container-fluid mt-3">
+<div class="container mt-3 ">
     <div class="row">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-body">
-                    <div class="card-header-card">
-                        <h1 class="card-title">{{ announcement.title }}</h1>
-                        <a href="{% url 'Officer Control Update Announcement' pk=announcement.id %}" class="btn btn-primary">Edit</a>
-                    </div>
-                    
-                   
+        <div class="card mb-3">
+            <div class="card-body">
+                
+                <div class="card-header-card d-flex justify-content-between align-items-center">
+                    <h1 class="card-title">{{ announcement.title }}</h1>
+                    <a href="{% url 'Officer Control Update Announcement' pk=announcement.id %}" class="btn btn-primary">Edit</a>
+                </div>                
+                <p>
+                    <strong>Location:</strong> {{ announcement.location }}
+                </p>
+
+                <p>
+                    <strong>Posted By:</strong> {{ announcement.user }}
+                </p>
+
+                <p><strong>Release Date:</strong> {{ announcement.release_date|date:"F j, Y, g:i a" }}</p>
+        
+                <p class="card-text">
+                    <p><strong>Context:</strong> {{ announcement.context|truncatechars:200 }}</p>
+
+                    {% if announcement.context|length > 200 %}
+                        <a href="#" class="read-more">Read more</a>
+                    {% endif %}
+                </p>
+                <div class="full-text" style="display: none;">
                     <p class="card-text">{{ announcement.context }}</p>
-                    <img src="{{ announcement.announcement_photo.url }}" alt="{{ announcement.title }}" class="img-fluid">
-                    <p class="card-text"><small class="text-muted">{{ announcement.release_date }}</small></p>
-                    <p class="card-text"><small class="text-muted">{{ announcement.place }}</small></p>
+                    <a href="#" class="read-less">Read less</a>
                 </div>
+
+                <p><strong>Photo:</strong></p>
+
+                <img width = "50%" src="{{ announcement.get_photo_url }}" alt="{{ announcement.title }}" class="img-fluid rounded mx-auto d-block mb-3">                
             </div>
         </div>
-        <div class="col-md-4">
-            <h2>Other Announcements</h2>
-            <ul class="list-group">
-                {% for other in other_announcements %}
-                    <li class="list-group-item">
-                        <a href="{% url 'Officer Control Announcement' other.pk %}">
-                            {{ other.title }}
-                        </a>
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
+    
+       
     </div>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const readMoreLinks = document.querySelectorAll(".read-more");
+        const readLessLinks = document.querySelectorAll(".read-less");
+        
+        readMoreLinks.forEach(link => {
+            link.addEventListener("click", function(e) {
+                e.preventDefault();
+                this.parentElement.style.display = "none";
+                this.parentElement.nextElementSibling.style.display = "block";
+            });
+        });
+        
+        readLessLinks.forEach(link => {
+            link.addEventListener("click", function(e) {
+                e.preventDefault();
+                this.parentElement.style.display = "none";
+                this.parentElement.previousElementSibling.style.display = "block";
+            });
+        });
+    });
+</script>
 
 
 {% endblock content %}

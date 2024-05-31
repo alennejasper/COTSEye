@@ -55,7 +55,7 @@ def ContributorServiceReport(request):
 
     user_profile = User.objects.get(account = request.user)
 
-    unread_posts = Post.objects.filter(post_status = 1, contrib_read_status = False, user = request.user.user).order_by("-capture_date")
+    unread_posts = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:5]
 
     locations = Location.objects.all()
 
@@ -248,7 +248,7 @@ def ContributorServiceReportUpdate(request, id):
 
     user_profile = get_object_or_404(User, account = request.user)
 
-    unread_posts = Post.objects.filter(post_status = 1, contrib_read_status = False, user=request.user.user).order_by("-capture_date")
+    unread_posts = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:5]
 
     draft_post = get_object_or_404(Post, id = id, post_status = 4)
 
@@ -422,7 +422,7 @@ def ContributorServicePost(request):
 
     user_profile = User.objects.get(account = request.user)
 
-    unread_posts = Post.objects.filter(post_status = 1, contrib_read_status = False, user = request.user.user).order_by("-capture_date")
+    unread_posts = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:5]
 
     records = None
 
@@ -449,7 +449,7 @@ def ContributorServicePostRead(request, id):
 
     user_profile = User.objects.get(account = request.user)
 
-    unread_posts = Post.objects.filter(post_status = 1, contrib_read_status = False, user = request.user.user).order_by("-capture_date")
+    unread_posts = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:5]
 
     scheme = request.scheme
 
@@ -491,7 +491,7 @@ def ContributorServicePostFeed(request):
 
     user_profile = User.objects.get(account = request.user)
 
-    unread_posts = Post.objects.filter(post_status = 1, contrib_read_status = False, user = request.user.user).order_by("-capture_date")
+    unread_posts = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:5]
 
     valid_posts = Post.objects.filter(post_status = 1).order_by("-creation_date")
 
@@ -507,7 +507,7 @@ def ContributorServicePostFeedRead(request, id):
 
     user_profile = User.objects.get(account = request.user)
 
-    unread_posts = Post.objects.filter(post_status = 1, contrib_read_status = False, user = request.user.user).order_by("-capture_date")
+    unread_posts = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:5]
 
     scheme = request.scheme
 
@@ -1336,6 +1336,20 @@ def OfficerControlSighting(request):
     context = {"unread_posts": unread_posts, "posts": posts, "locations": locations}  
     
     return render(request, 'officer/control/sighting/sighting.html', context)
+
+
+
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
+def add_remark(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        remark = data.get('remark', '')
+        post.remarks = remark
+        post.save()
+        return JsonResponse({'success': True, 'message': 'Remark added successfully.'})
+    return JsonResponse({'success': False, 'message': 'Invalid request method.'})
 
 @login_required(login_url = "Officer Control Login")
 @user_passes_test(OfficerCheck, login_url = "Officer Control Login")

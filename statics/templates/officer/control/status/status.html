@@ -1,5 +1,5 @@
 {% extends "officer/control/index/index.html" %}
-
+{% load static %}
 {% block content %}
 <head>
     <!-- Other head elements -->
@@ -10,30 +10,41 @@
     <!-- Include SweetAlert2 from CDN -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-<div class="container-fluid mt-3">
-    <div class="d-flex justify-content-end">
-        <button style="background-color: rgb(30, 173, 95);" onclick="window.location.href='{% url 'Officer Control Status Add' %}'" class="btn btn-primary mt-4">ADD NEW</button>
-    </div>
+<style>
+    .critical-status {
+        color: purple !important;
+    }
+    .high-status {
+        color: red !important;
+    }
 
+    .moderate-status {
+        color: yellow !important;
+    }
+
+    .low-status {
+        color: green !important;
+    }
+
+</style>
+<div class="container-fluid mt-3">
     <div class="row">
         <div class="col-12 col-md-3">
-            <div class="filtercont card">
+            <div class="filtercont">
                 <div class="card-body">
-                    <p class="fs-3 mb-3">Filter</p>
+                    <p style="font-size: 17px !important; font-weight: 500; color: rgb(28, 179, 234); margin-bottom: 0px !important;" class="fs-3 mb-3">Filter</p>
+                    
                     <div class="mb-3">
-                        <label for="statusFilter" class="form-label">Filter by status:</label>
-                        <div class="mb-3">
-                            <label for="statusFilter" class="form-label">Status:</label>
-                            <select id="statusFilter" class="form-control select2">
-                                <option value="">Filter by status</option>
-                                    <option value="Low">Low</option>
-                                    <option value="Moderate">Moderate</option>
-                                    <option value="Critical">Critical</option>
-                            </select>
-                        </div>
+                        <label  style="font-size: 15px; color: rgb(28, 186, 234); margin-top: 10px !important; margin-bottom: 0px !important;" for="statusFilter" class="form-label">Status</label>
+                        <select id="statusFilter" class="form-control select2">
+                            <option value="">Filter by status</option>
+                                <option value="Low">Low</option>
+                                <option value="Moderate">Moderate</option>
+                                <option value="Critical">Critical</option>
+                        </select>
                     </div>
+
                     <div class="mb-3">
-                        <label for="municipalityFilter" class="form-label">Municipality:</label>
                         <select id="municipalityFilter" class="form-select form-select-sm mb-3 select2" onchange="updateBarangayOptions()">
                             <option value="">Municipality</option>
                             {% for location in locations %}
@@ -42,41 +53,46 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="barangayFilter" class="form-label">Barangay:</label>
                         <select id="barangayFilter" class="form-select form-select-sm mb-3 select2">
                             <option value="">Select Barangay</option>
                         </select>
                     </div>
+
+                    <p style="font-size: 15px; color: rgb(28, 186, 234); margin-top: 10px !important; margin-bottom: 0px !important;" scope="col" class="mb-1">Date</p>
+
                     <div class="mb-3">
-                        <label for="dateFrom" class="form-label">Date from:</label>
+                        <label for="dateFrom" class="form-label" style="font-size: 13px; margin-bottom: 0px !important;">From:</label>
                         <input type="date" id="dateFrom" name="dateFrom" class="form-control form-control-sm">
                     </div>
+
                     <div class="mb-3">
-                        <label for="dateTo" class="form-label">Date to:</label>
+                        <label for="dateTo" class="form-label" style="font-size: 13px; margin-bottom: 0px !important;">To:</label>
                         <input type="date" id="dateTo" name="dateTo" class="form-control form-control-sm">
                     </div>
-                    <button type="button" class="btn btn-primary mt-3" onclick="filterSightings()">Apply Filter</button>
-                    <button type="button" class="btn btn-secondary mt-2" onclick="resetFilter()">Reset Filter</button>
+                    <button type="button" class="filterbutton" onclick="filterSightings()">Apply Filter</button>
+                    <button type="button" class="resetbutton" onclick="resetFilter()">Reset Filter</button>
                 </div>
             </div>
         </div>
 
         <div class="col-12 col-md-9">
-            <div class="card mt-4">
-                <div style="text-align: center; font-weight: 500; font-size: larger;" class="card-header bg-primary text-white">MANAGE STATUS</div>
-                <div class="card-body">
-                    <table class="table table-bordered table-striped">
+            <div class="table-container mb-3">
+                <button style="background-color: rgb(30, 173, 95); float: right; margin-top: 6px;" onclick="window.location.href='{% url 'Officer Control Status Add' %}'" class="btn btn-primary">ADD NEW</button>
+
+                <h2 style="font-size: 19px; color: rgb(52, 144, 242); border-bottom: 1px solid rgba(229, 229, 229);">ALL STATUS</h2>
+                
+                    <table class="table table-hover">
                         <thead class="thead-dark">
                             <tr>
-                                <th>Status</th>
-                                <th>Location</th>
-                                <th>Number of COTS</th>
-                                <th>Volunteer Overall</th> <!-- New Column -->
-                                <th>Onset Date</th>
-                                <th>Actions</th>
+                                <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Status</th>
+                                <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Location</th>
+                                <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Number of COTS</th>
+                                <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Volunteer Overall</th> <!-- New Column -->
+                                <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Onset Date</th>
+                                <th></th>
                             </tr>
                         </thead>
-                        <tbody id="sightingsTable">
+                        <tbody class="table-group-divider" id="sightingsTable">
                             <!-- Sightings will be added here dynamically -->
                         </tbody>
                     </table>
@@ -91,11 +107,43 @@
                             </li>
                         </ul>
                     </nav>
-                </div>
             </div>
         </div>
     </div>
 </div>
+
+<style>
+    .dropdown {
+        display: none;
+        position: absolute;
+        top: 100%; /* Positions the dropdown right below the button */
+        right: -3.5rem;
+        background-color: white;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        min-width: 150px; /* Optional: set a minimum width for the dropdown */
+    }
+
+    .show {
+        display: block;
+    }
+
+    .dropdown-content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .dropdown-content a {
+        padding: 10px 15px;
+        text-decoration: none;
+        display: block;
+        cursor: pointer;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #ddd;
+    }
+</style>
 
 <script>
     $(document).ready(function() {
@@ -133,15 +181,27 @@
                 row.insertCell(3).innerText = status.volunteer_overall; // New Column
                 row.insertCell(4).innerText = status.onset_date;
 
-                let actionsCell = row.insertCell(5);
+                if (status.statustype === "Moderate") {
+                    row.cells[0].classList.add('moderate-status');
+                } else if (status.statustype === "Critical") {
+                    row.cells[0].classList.add('critical-status');
+                } else if (status.statustype === "Low"){
+                    row.cells[0].classList.add('low-status');
+                } else{
+                    row.cells[0].classList.add('high-status');
+                }
 
-                let deleteButton = document.createElement('button');
-                deleteButton.innerText = 'Delete';
-                deleteButton.classList.add('btn', 'btn-danger', 'btn-sm', 'ml-2');
-                deleteButton.addEventListener('click', function() {
-                    deleteStatus(status.id);
-                });
-                actionsCell.appendChild(deleteButton);
+                let actionsCell = row.insertCell(5);
+                actionsCell.innerHTML = `
+                    <div class="button-container">
+                        <a onclick="showDropdown(event)"><img height="15px" style="margin-right: 13px" src="{% static 'assets/3dots.png' %}" class="drop"></a>
+                        <div class="dropdown">
+                            <div class="dropdown-content">
+        
+                                <a class="dropdown-footer" onclick="deleteStatus(${status.id})">Delete</a>
+                            </div>
+                        </div>
+                    </div>`;
             });
 
             const pagination = document.getElementById('pagination');
@@ -167,78 +227,18 @@
             `;
         }
 
-        window.changePage = function(action) {
-            const totalPages = Math.ceil(filteredStatuses.length / itemsPerPage);
-
-            if (action === 'prev' && currentPage > 1) {
-                currentPage--;
-            } else if (action === 'next' && currentPage < totalPages) {
-                currentPage++;
-            } else if (typeof action === 'number') {
-                currentPage = action;
-            }
-
-            displaySightings(currentPage);
+        window.showDropdown = function(event) {
+            event.stopPropagation();
+            const dropdown = event.currentTarget.nextElementSibling;
+            dropdown.classList.toggle('show');
         };
 
-        displaySightings(currentPage);
+        document.addEventListener('click', function(event) {
+            const dropdowns = document.querySelectorAll('.dropdown.show');
+            dropdowns.forEach(dropdown => dropdown.classList.remove('show'));
+        });
 
-        window.filterSightings = function() {
-            const statusFilterValue = document.getElementById('statusFilter').value;
-            const municipalityFilterValue = document.getElementById('municipalityFilter').value;
-            const barangayFilterValue = document.getElementById('barangayFilter').value;
-            const dateFrom = document.getElementById('dateFrom').value;
-            const dateTo = document.getElementById('dateTo').value;
-
-            filteredStatuses = statuses.filter(status => {
-                const matchesStatus = statusFilterValue ? status.statustype === statusFilterValue : true;
-                const matchesMunicipality = municipalityFilterValue ? status.location.includes(municipalityFilterValue) : true;
-                const matchesBarangay = barangayFilterValue ? status.location.includes(barangayFilterValue) : true;
-                const matchesDateFrom = dateFrom ? new Date(status.onset_date) >= new Date(dateFrom) : true;
-                const matchesDateTo = dateTo ? new Date(status.onset_date) <= new Date(dateTo) : true;
-
-                return matchesStatus && matchesMunicipality && matchesBarangay && matchesDateFrom && matchesDateTo;
-            });
-
-            currentPage = 1;
-            displaySightings(currentPage);
-        }
-
-        window.resetFilter = function() {
-            document.getElementById('statusFilter').value = '';
-            document.getElementById('municipalityFilter').value = '';
-            document.getElementById('barangayFilter').innerHTML = '<option value="">Select Barangay</option>';
-            document.getElementById('dateFrom').value = '';
-            document.getElementById('dateTo').value = '';
-
-            filteredStatuses = statuses;
-            displaySightings(currentPage);
-        }
-
-        window.updateBarangayOptions = function() {
-            const municipalityFilter = document.getElementById('municipalityFilter').value;
-            const barangayFilter = document.getElementById('barangayFilter');
-
-            barangayFilter.innerHTML = '<option value="">Select Barangay</option>';
-
-            if (municipalityFilter) {
-                $.ajax({
-                    url: '{% url "get_barangays" %}',
-                    data: {
-                        'municipality': municipalityFilter
-                    },
-                    success: function(data) {
-                        data.forEach(function(barangay) {
-                            const option = document.createElement('option');
-                            option.value = barangay;
-                            option.textContent = barangay;
-                            barangayFilter.appendChild(option);
-                        });
-                    }
-                });
-            }
-        }
-
+     
         window.deleteStatus = function(statusId) {
             const csrfToken = '{{ csrf_token }}';
 
@@ -288,7 +288,79 @@
                     });
                 }
             });
-        }
+        };
+
+        window.changePage = function(action) {
+            const totalPages = Math.ceil(filteredStatuses.length / itemsPerPage);
+
+            if (action === 'prev' && currentPage > 1) {
+                currentPage--;
+            } else if (action === 'next' && currentPage < totalPages) {
+                currentPage++;
+            } else if (typeof action === 'number') {
+                currentPage = action;
+            }
+
+            displaySightings(currentPage);
+        };
+
+        displaySightings(currentPage);
+
+        window.filterSightings = function() {
+            const statusFilterValue = document.getElementById('statusFilter').value;
+            const municipalityFilterValue = document.getElementById('municipalityFilter').value;
+            const barangayFilterValue = document.getElementById('barangayFilter').value;
+            const dateFrom = document.getElementById('dateFrom').value;
+            const dateTo = document.getElementById('dateTo').value;
+
+            filteredStatuses = statuses.filter(status => {
+                const matchesStatus = statusFilterValue ? status.statustype === statusFilterValue : true;
+                const matchesMunicipality = municipalityFilterValue ? status.location.includes(municipalityFilterValue) : true;
+                const matchesBarangay = barangayFilterValue ? status.location.includes(barangayFilterValue) : true;
+                const matchesDateFrom = dateFrom ? new Date(status.onset_date) >= new Date(dateFrom) : true;
+                const matchesDateTo = dateTo ? new Date(status.onset_date) <= new Date(dateTo) : true;
+
+                return matchesStatus && matchesMunicipality && matchesBarangay && matchesDateFrom && matchesDateTo;
+            });
+
+            currentPage = 1;
+            displaySightings(currentPage);
+        };
+
+        window.resetFilter = function() {
+            document.getElementById('statusFilter').value = '';
+            document.getElementById('municipalityFilter').value = '';
+            document.getElementById('barangayFilter').innerHTML = '<option value="">Select Barangay</option>';
+            document.getElementById('dateFrom').value = '';
+            document.getElementById('dateTo').value = '';
+
+            filteredStatuses = statuses;
+            displaySightings(currentPage);
+        };
+
+        window.updateBarangayOptions = function() {
+            const municipalityFilter = document.getElementById('municipalityFilter').value;
+            const barangayFilter = document.getElementById('barangayFilter');
+
+            barangayFilter.innerHTML = '<option value="">Select Barangay</option>';
+
+            if (municipalityFilter) {
+                $.ajax({
+                    url: '{% url "get_barangays" %}',
+                    data: {
+                        'municipality': municipalityFilter
+                    },
+                    success: function(data) {
+                        data.forEach(function(barangay) {
+                            const option = document.createElement('option');
+                            option.value = barangay;
+                            option.textContent = barangay;
+                            barangayFilter.appendChild(option);
+                        });
+                    }
+                });
+            }
+        };
     });
 </script>
 {% endblock %}

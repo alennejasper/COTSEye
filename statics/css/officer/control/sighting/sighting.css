@@ -14,19 +14,19 @@
     display: none;
 }
 
-/* BUTTONS CSS START */
+/* FILTER BUTTONS CSS START */
+
 .button-29{
     align-items: center;
     appearance: none;
     background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ff 100%);
     border: 0;
     border-radius: 6px;
-    box-shadow: rgba(45, 35, 66, .4) 0 2px 4px,rgba(45, 35, 66, .3) 0 7px 13px -3px,rgba(58, 65, 111, .5) 0 -3px 0 inset;
     box-sizing: border-box;
     color: #fff;
     cursor: pointer;
     display: inline-flex;
-    font-family: "Open Sans";
+    font-family: "Montserrat";
     justify-content: center;
     line-height: 1;
     list-style: none;
@@ -65,16 +65,17 @@
     margin-bottom: 10px;
     margin-top: 10px;
     appearance: none;
-    background-image: radial-gradient(100% 100% at 100% 0, #5ADAFF 0, #5468FF 100%);
+    background-color: #007BFF;
+    font-family: Montserrat;
     border: 0;
     border-radius: 6px;
-    box-shadow: rgba(45, 35, 66, .4) 0 2px 4px,rgba(45, 35, 66, .3) 0 7px 13px -3px,rgba(58, 65, 111, .5) 0 -3px 0 inset;
-    box-sizing: border-box;
-    color: #fff;
+     box-sizing: border-box;
+    color: #ffffff;
+    font-weight: 500;
     cursor: pointer;
     display: inline-flex;
-    font-family: "Open Sans";
-    height: 30px;
+    font-family: "Montserrat";
+    height: 28px;
     justify-content: center;
     line-height: 1;
     list-style: none;
@@ -84,44 +85,22 @@
     position: relative;
     text-align: left;
     text-decoration: none;
-    transition: box-shadow .15s, transform .15s;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    white-space: nowrap;
-    will-change: box-shadow, transform;
     font-size: 13px;
 }
   
-.filterbutton:focus {
-    box-shadow: #3c4fe0 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
-}
-  
-  .filterbutton:hover {
-    box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
-    transform: translateY(-2px);
-  }
-  
-  .filterbutton:active {
-    box-shadow: #3c4fe0 0 3px 7px inset;
-    transform: translateY(2px);
-  }
-
-
-
   .resetbutton {
     align-items: center;
     appearance: none;
-    background-image: radial-gradient(100% 100% at 100% 0, #5aecff 0, #549eff 100%);
+    background-image: radial-gradient(100% 100% at 100% 0, #5affb2 0, #54ffc6 100%);
     border: 0;
     border-radius: 6px;
-    box-shadow: rgba(45, 35, 66, .4) 0 2px 4px,rgba(45, 35, 66, .3) 0 7px 13px -3px,rgba(58, 65, 111, .5) 0 -3px 0 inset;
     box-sizing: border-box;
     color: #000000;
+    font-weight: 500;
     cursor: pointer;
     display: inline-flex;
-    font-family: "Open Sans";
-    height: 30px;
+    font-family: "Montserrat";
+    height: 28px;
     justify-content: center;
     line-height: 1;
     list-style: none;
@@ -130,31 +109,13 @@
     padding-right: 104px;
     position: relative;
     text-align: left;
-    text-decoration: none;
-    transition: box-shadow .15s,transform .15s;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    white-space: nowrap;
-    will-change: box-shadow,transform;
     font-size: 13px;
   }
   
-  .resetbutton:focus {
-    box-shadow: #0bd4f3 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #1ecbff 0 -3px 0 inset;
-  }
   
-  .resetbutton:hover {
-    box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #12b1d1 0 -3px 0 inset;
-    transform: translateY(-2px);
-  }
-  
-  .resetbutton:active {
-    box-shadow: #3cace0 0 3px 7px inset;
-    transform: translateY(2px);
-  }
 
 /*   END BUTTON */
+
 
 /* START CONTAINER CSS */
 .filtercont {
@@ -213,7 +174,8 @@
 }
 
 .button-container{
-    display: flex;
+    display: grid;
+    grid-template-columns: 100%;
     gap: 5px;
 }
 
@@ -281,13 +243,18 @@
     position: absolute;
     display: none;
     right: 15px;
-    top: 140px;    
-    max-width: 100px;
+    top: 100%;    
+    max-width: 150px;
     border-radius: 5px;
     border: 1px solid #167aaf;     
     background-color: #FFFFFF;
     z-index: 100;
 }
+
+
+
+
+
 
 .dropdown-content a.dropdown-header{
     display: block;
@@ -295,12 +262,12 @@
     padding-right: 10px !important;
     padding-top: 10px !important;
     padding-bottom: 10px !important;
-    font-family: "Open Sans";
+    font-family: "Montserrat";
     font-weight: 700;
     font-size: 15px;
     background-color: #003755;
     color: #FFFFFF;
-    text-align: center;
+    text-align: left;
     text-decoration: none !important;
 }
 
@@ -325,7 +292,7 @@
         padding-right: 10px !important;
         padding-top: 10px !important;
         padding-bottom: 10px !important;
-        font-family: "Open Sans";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 20px;
         background-color: #003755;
@@ -339,7 +306,7 @@
         padding-right: 10px !important;
         padding-top: 10px !important;
         padding-bottom: 10px !important;
-        font-family: "Open Sans";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 18px;
         background-color: #003755;
@@ -353,7 +320,7 @@
         padding-right: 10px !important;
         padding-top: 10px !important;
         padding-bottom: 10px !important;
-        font-family: "Open Sans";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 16px;
         background-color: #003755;
@@ -369,7 +336,7 @@
     padding-right: 10px !important;
     padding-top: 10px !important;
     padding-bottom: 10px !important;
-    font-family: "Open Sans";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 18px;
     background-color: #FFFFFF;
@@ -398,7 +365,7 @@
         padding-right: 10px !important;
         padding-top: 10px !important;
         padding-bottom: 10px !important;
-        font-family: "Open Sans";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 16px;
         background-color: #FFFFFF;
@@ -412,7 +379,7 @@
         padding-right: 10px !important;
         padding-top: 10px !important;
         padding-bottom: 10px !important;
-        font-family: "Open Sans";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 14px;
         background-color: #FFFFFF;
@@ -426,7 +393,7 @@
         padding-right: 10px !important;
         padding-top: 10px !important;
         padding-bottom: 10px !important;
-        font-family: "Open Sans";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 12px;
         background-color: #FFFFFF;
@@ -471,12 +438,12 @@
     padding-right: 10px !important;
     padding-top: 10px !important;
     padding-bottom: 10px !important;
-    font-family: "Open Sans";
+    font-family: "Montserrat";
     font-weight: 700;
     font-size: 15px;
     background-color: #003755;
     color: #FFFFFF;
-    text-align: center;
+    text-align: left;
     text-decoration: none !important;
 }
 
@@ -501,7 +468,7 @@
         padding-right: 10px !important;
         padding-top: 10px !important;
         padding-bottom: 10px !important;
-        font-family: "Open Sans";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 20px;
         background-color: #003755;
@@ -515,7 +482,7 @@
         padding-right: 10px !important;
         padding-top: 10px !important;
         padding-bottom: 10px !important;
-        font-family: "Open Sans";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 18px;
         background-color: #003755;
@@ -529,7 +496,7 @@
         padding-right: 10px !important;
         padding-top: 10px !important;
         padding-bottom: 10px !important;
-        font-family: "Open Sans";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 16px;
         background-color: #003755;
@@ -538,7 +505,44 @@
 }
 
 .show{
-    position: fixed;
     display: block;
 }
 
+
+/* Add this CSS to your stylesheet */
+.select2-container {
+    margin-bottom: 10px !important; /* Adjust the value as needed */
+}
+
+.select2-container .select2-selection {
+    font-size: 13px !important; /* Adjust the value as needed */
+}
+
+
+/* CSS */
+.submit-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 14px;
+  font-family: "Montserrat";
+  font-size: 15px;
+  border-radius: 6px;
+  border: none;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+
+  color: #fff;
+  background: linear-gradient(180deg, #4B91F7 0%, #367AF6 100%);
+   background-origin: border-box;
+  box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.submit-button:focus {
+  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+  outline: 0;
+}

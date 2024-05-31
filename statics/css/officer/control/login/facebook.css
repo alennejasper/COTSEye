@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap");
 
 
 *{
@@ -85,7 +85,7 @@
 }
 
 .login .card-header header{
-    font-family: "Poppins";
+    font-family: "Montserrat";
     font-weight: 700;
     font-size: 22px !important;
     color: #FFFFFF;
@@ -95,7 +95,7 @@
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .login .card-header header{
-        font-family: "Poppins";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 20px !important;
         color: #FFFFFF;
@@ -106,7 +106,7 @@
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .login .card-header header{
-        font-family: "Poppins";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 18px !important;
         color: #FFFFFF;
@@ -117,7 +117,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .login .card-header header{
-        font-family: "Poppins";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 16px !important;
         color: #FFFFFF;
@@ -209,7 +209,7 @@
 }
 
 .login .card-body .socials button.facebook span{
-    font-family: "Poppins";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 20px;
     color: #FFFFFF !important;
@@ -217,7 +217,7 @@
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .login .card-body .socials button.facebook span{
-        font-family: "Poppins";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 18px !important;
         color: #FFFFFF !important;
@@ -226,7 +226,7 @@
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .login .card-body .socials button.facebook span{
-        font-family: "Poppins";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 16px !important;
         color: #FFFFFF !important;
@@ -235,7 +235,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .login .card-body .socials button.facebook span{
-        font-family: "Poppins";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 14px !important;
         color: #FFFFFF !important;
@@ -257,7 +257,7 @@
 div:where(.swal2-container) .swal2-html-container{
     padding: 10px 30px 0em 30px !important;
     margin: 0px !important;
-    font-family: "Poppins" !important;
+    font-family: "Montserrat" !important;
     font-weight: 400 !important;
     font-size: 20px !important;
     color: #154360 !important;
@@ -267,7 +267,7 @@ div:where(.swal2-container) .swal2-html-container{
     div:where(.swal2-container) .swal2-html-container{
         padding: 10px 30px 0em 30px !important;
         margin: 0px !important;
-        font-family: "Poppins" !important;
+        font-family: "Montserrat" !important;
         font-weight: 400 !important;
         font-size: 18px !important;
         color: #154360 !important;
@@ -278,7 +278,7 @@ div:where(.swal2-container) .swal2-html-container{
     div:where(.swal2-container) .swal2-html-container{
         padding: 10px 30px 0em 30px !important;
         margin: 0px !important;
-        font-family: "Poppins" !important;
+        font-family: "Montserrat" !important;
         font-weight: 400 !important;
         font-size: 16px !important;
         color: #154360 !important;
@@ -289,7 +289,7 @@ div:where(.swal2-container) .swal2-html-container{
     div:where(.swal2-container) .swal2-html-container{
         padding: 10px 30px 0em 30px !important;
         margin: 0px !important;
-        font-family: "Poppins" !important;
+        font-family: "Montserrat" !important;
         font-weight: 400 !important;
         font-size: 14px !important;
         color: #154360 !important;
@@ -317,7 +317,7 @@ div:where(.swal2-container) h2:where(.swal2-title){
 }
 
 .title{
-    font-family: "Poppins" !important;
+    font-family: "Montserrat" !important;
     font-weight: 700 !important;
     font-size: 22px !important;   
     color: #154360 !important;
@@ -326,7 +326,7 @@ div:where(.swal2-container) h2:where(.swal2-title){
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .title{
-        font-family: "Poppins" !important;
+        font-family: "Montserrat" !important;
         font-weight: 700 !important;
         font-size: 20px !important;   
         color: #154360 !important;
@@ -336,7 +336,7 @@ div:where(.swal2-container) h2:where(.swal2-title){
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .title{
-        font-family: "Poppins" !important;
+        font-family: "Montserrat" !important;
         font-weight: 700 !important;
         font-size: 18px !important;   
         color: #154360 !important;
@@ -346,7 +346,7 @@ div:where(.swal2-container) h2:where(.swal2-title){
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .title{
-        font-family: "Poppins" !important;
+        font-family: "Montserrat" !important;
         font-weight: 700 !important;
         font-size: 16px !important;   
         color: #154360 !important;
@@ -380,7 +380,7 @@ div:where(.swal2-container) div:where(.swal2-actions){
     border-radius: 5px !important;
     box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
-    font-family: "Poppins" !important;
+    font-family: "Montserrat" !important;
     font-weight: 400 !important;
     font-size: 20px !important;
     background-color: #154360 !important;
@@ -406,7 +406,7 @@ div:where(.swal2-container) div:where(.swal2-actions){
         border-radius: 5px !important;
         box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Poppins" !important;
+        font-family: "Montserrat" !important;
         font-weight: 400 !important;
         font-size: 18px !important;
         background-color: #154360 !important;
@@ -428,7 +428,7 @@ div:where(.swal2-container) div:where(.swal2-actions){
         border-radius: 5px !important;
         box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Poppins" !important;
+        font-family: "Montserrat" !important;
         font-weight: 400 !important;
         font-size: 16px !important;
         background-color: #154360 !important;
@@ -450,7 +450,7 @@ div:where(.swal2-container) div:where(.swal2-actions){
         border-radius: 5px !important;
         box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Poppins" !important;
+        font-family: "Montserrat" !important;
         font-weight: 400 !important;
         font-size: 14px !important;
         background-color: #154360 !important;
@@ -476,7 +476,7 @@ div:where(.swal2-container) div:where(.swal2-actions){
     border-radius: 5px !important;
     box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
-    font-family: "Poppins" !important;
+    font-family: "Montserrat" !important;
     font-weight: 400 !important;
     font-size: 20px !important;
     background-color: #003755 !important;
@@ -502,7 +502,7 @@ div:where(.swal2-container) div:where(.swal2-actions){
         border-radius: 5px !important;
         box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Poppins" !important;
+        font-family: "Montserrat" !important;
         font-weight: 400 !important;
         font-size: 18px !important;
         background-color: #003755 !important;
@@ -524,7 +524,7 @@ div:where(.swal2-container) div:where(.swal2-actions){
         border-radius: 5px !important;
         box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Poppins" !important;
+        font-family: "Montserrat" !important;
         font-weight: 400 !important;
         font-size: 16px !important;
         background-color: #003755 !important;
@@ -546,7 +546,7 @@ div:where(.swal2-container) div:where(.swal2-actions){
         border-radius: 5px !important;
         box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Poppins" !important;
+        font-family: "Montserrat" !important;
         font-weight: 400 !important;
         font-size: 14px !important;
         background-color: #003755 !important;
@@ -572,7 +572,7 @@ div:where(.swal2-container) div:where(.swal2-actions){
     border-radius: 5px !important;
     box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
-    font-family: "Poppins" !important;
+    font-family: "Montserrat" !important;
     font-weight: 400 !important;
     font-size: 20px !important;
     background-color: #C90016 !important;
@@ -598,7 +598,7 @@ div:where(.swal2-container) div:where(.swal2-actions){
         border-radius: 5px !important;
         box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Poppins" !important;
+        font-family: "Montserrat" !important;
         font-weight: 400 !important;
         font-size: 18px !important;
         background-color: #C90016 !important;
@@ -620,7 +620,7 @@ div:where(.swal2-container) div:where(.swal2-actions){
         border-radius: 5px !important;
         box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Poppins" !important;
+        font-family: "Montserrat" !important;
         font-weight: 400 !important;
         font-size: 16px !important;
         background-color: #C90016 !important;
@@ -642,7 +642,7 @@ div:where(.swal2-container) div:where(.swal2-actions){
         border-radius: 5px !important;
         box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Poppins" !important;
+        font-family: "Montserrat" !important;
         font-weight: 400 !important;
         font-size: 14px !important;
         background-color: #C90016 !important;

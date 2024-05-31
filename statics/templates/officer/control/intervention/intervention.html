@@ -1,6 +1,39 @@
 {% extends "officer/control/index/index.html" %}
-
+{% load static %}
 {% block content %}
+<style>
+    .dropdown {
+        display: none;
+        position: absolute;
+        top: 100%; /* Positions the dropdown right below the button */
+        right: -5rem;
+        background-color: white;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        min-width: 150px; /* Optional: set a minimum width for the dropdown */
+    }
+
+    .show {
+        display: block;
+    }
+
+    .dropdown-content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .dropdown-content a {
+        padding: 10px 15px;
+        text-decoration: none;
+        display: block;
+        cursor: pointer;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #ddd;
+    }
+</style>
+
 <head>
     <!-- Other head elements -->
 
@@ -11,80 +44,87 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 </head>
 <div class="container-fluid mt-3">
-    <div class="d-flex justify-content-end">
-        <button style="background-color: rgb(30, 173, 95);" onclick="window.location.href='{% url 'Officer Control Intervention Add' %}'" class="btn btn-primary mt-4">ADD NEW</button>
-    </div>
-
     <div class="row">
         <div class="col-12 col-md-3">
-            <div class="filtercont card">
+            <div class="filtercont">
                 <div class="card-body">
-                    <p class="fs-3 mb-3">Filter</p>
+                    <p style="font-size: 17px !important; font-weight: 500; color: rgb(28, 179, 234); margin-bottom: 0px !important;" class="fs-3 mb-3">FILTER</p>
+                    
                     <div class="mb-3">
-                        <label for="searchBar" class="form-label">Search by title:</label>
-                        <input type="text" id="searchBar" class="form-control" placeholder="Search by title...">
+                        <label style="font-size: 15px; color: rgb(28, 186, 234); margin-top: 10px !important; margin-bottom: 0px !important;" for="searchBar" class="form-label">Title</label>
+                        
+                        <input  style="font-size: 13px !important;" type="text" id="searchBar" class="form-control" placeholder="Search by title...">
                     </div>
+
                     <div class="mb-3">
-                        <label for="hostingAgencyFilter" class="form-label">Filter by hosting agency:</label>
+                        <label style="font-size: 15px; color: rgb(28, 186, 234); margin-top: 0px !important; margin-bottom: 0px !important;" for="hostingAgencyFilter" class="form-label">Hosting Agency</label>
+                        
                         <select id="hostingAgencyFilter" class="form-control select2">
                             <option value="">Filter by hosting agency</option>
+
                             {% for agency in hosting_agencies %}
                                 <option value="{{ agency.hosting_agency }}">{{ agency.hosting_agency }}</option>
                             {% endfor %}
                         </select>
                     </div>
+
+                    <select id="municipalityFilter" class="form-select form-select-sm mb-3 select2" onchange="updateBarangayOptions()">
+                        <option value="">Municipality</option>
+                        {% for location in locations %}
+                            <option value="{{ location.municipality }}">{{ location.municipality }}</option>
+                        {% endfor %}
+                    </select>
+
+                    <select id="barangayFilter" class="form-select form-select-sm mb-3 select2">
+                        <option value="">Select Barangay</option>
+                    </select>
+
+                    <p style="font-size: 15px; color: rgb(28, 186, 234); margin-top: 10px !important; margin-bottom: 0px !important;" scope="col" class="mb-1">Date</p>
+
                     <div class="mb-3">
-                        <label for="municipalityFilter" class="form-label">Municipality:</label>
-                        <select id="municipalityFilter" class="form-select form-select-sm mb-3 select2" onchange="updateBarangayOptions()">
-                            <option value="">Municipality</option>
-                            {% for location in locations %}
-                                <option value="{{ location.municipality }}">{{ location.municipality }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="barangayFilter" class="form-label">Barangay:</label>
-                        <select id="barangayFilter" class="form-select form-select-sm mb-3 select2">
-                            <option value="">Select Barangay</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="dateFrom" class="form-label">Date from:</label>
+                        <label for="dateFrom" class="form-label" style="font-size: 13px; margin-bottom: 0px !important;">From:</label>
+
                         <input type="date" id="dateFrom" name="dateFrom" class="form-control form-control-sm">
                     </div>
                     <div class="mb-3">
-                        <label for="dateTo" class="form-label">Date to:</label>
+                        <label for="dateTo" class="form-label" style="font-size: 13px; margin-bottom: 0px !important;">To:</label>
+                        
                         <input type="date" id="dateTo" name="dateTo" class="form-control form-control-sm">
                     </div>
+
                     <div class="mb-3">
-                        <label for="orderBy" class="form-label">Order by:</label>
+                        <label for="orderBy" class="form-label" style="font-size: 15px; color: rgb(28, 186, 234); margin-top: 10px !important; margin-bottom: 0px !important;">Order by</label>
+                        
                         <select id="orderBy" class="form-select form-select-sm mb-3 select2">
                             <option value="latest">Latest</option>
                             <option value="oldest">Oldest</option>
                         </select>
                     </div>
-                    <button type="button" class="btn btn-primary mt-3" onclick="filterInterventions()">Apply Filter</button>
-                    <button type="button" class="btn btn-secondary mt-2" onclick="resetFilter()">Reset Filter</button>
+                    <button type="button" class="filterbutton" onclick="filterInterventions()">Apply Filter</button>
+
+                    <button type="button" class="resetbutton" onclick="resetFilter()">Reset Filter</button>
                 </div>
             </div>
         </div>
 
         <div class="col-12 col-md-9">
-            <div class="card mt-4">
-                <div style="text-align: center; font-weight: 500; font-size: larger;" class="card-header bg-primary text-white">MANAGE ACTIVITIES</div>
-                <div class="card-body">
-                    <table class="table table-bordered table-striped">
+            <div class="table-container mb-3">
+                <button style="background-color: rgb(30, 173, 95); float: right; margin-top: 6px;" onclick="window.location.href='{% url 'Officer Control Intervention Add' %}'" class="btn btn-primary">ADD NEW</button>
+
+                <h2 style="font-size: 19px; color: rgb(52, 144, 242); border-bottom: 1px solid rgba(229, 229, 229);">ALL ACTIVITIES</h2>
+                
+                    <table class="table table-hover">
                         <thead class="thead-dark">
                             <tr>
-                                <th>Title</th>
-                                <th>Date</th>
-                                <th>Location</th>
-                                <th>Hosting Agency</th>
-                                <th>Volunteers</th>
-                                <th>Actions</th>
+                                <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Title</th>
+                                <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Date</th>
+                                <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Location</th>
+                                <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Hosting Agency</th>
+                                <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Volunteers</th>
+                                <th></th>
                             </tr>
                         </thead>
-                        <tbody id="interventionsTable">
+                        <tbody class="table-group-divider" id="interventionsTable">
                             <!-- Table rows will be dynamically generated here -->
                         </tbody>
                     </table>
@@ -98,7 +138,6 @@
                             </li>
                         </ul>
                     </nav>
-                </div>
             </div>
         </div>
     </div>
@@ -157,21 +196,16 @@
                 });
 
                 let actionsCell = row.insertCell(5);
-                let updateButton = document.createElement('button');
-                updateButton.innerText = 'Update';
-                updateButton.classList.add('btn', 'btn-primary', 'btn-sm', 'mr-2');
-                updateButton.addEventListener('click', function() {
-                    window.location.href = "{% url 'Officer Control Intervention Update' 0 %}".replace('0', intervention.id);
-                });
-                actionsCell.appendChild(updateButton);
-
-                let deleteButton = document.createElement('button');
-                deleteButton.innerText = 'Delete';
-                deleteButton.classList.add('btn', 'btn-danger', 'btn-sm', 'ml-2');
-                deleteButton.addEventListener('click', function() {
-                    deleteIntervention(intervention.id);
-                });
-                actionsCell.appendChild(deleteButton);
+                actionsCell.innerHTML = `
+                    <div class="button-container">
+                        <a onclick="showDropdown(event)"><img height="15px" style="margin-right: 13px" src="{% static 'assets/3dots.png' %}" class="drop"></a>
+                        <div class="dropdown">
+                            <div class="dropdown-content">
+                                <a class="dropdown-header" onclick="updateIntervention(${intervention.id})">Update</a>
+                                <a class="dropdown-footer" onclick="deleteIntervention(${intervention.id})">Delete</a>
+                            </div>
+                        </div>
+                    </div>`;
             });
 
             const pagination = document.getElementById('pagination');
@@ -196,6 +230,54 @@
                 </li>
             `;
         }
+
+        window.showDropdown = function(event) {
+            event.stopPropagation();
+            const dropdown = event.currentTarget.nextElementSibling;
+            dropdown.classList.toggle('show');
+        };
+
+        document.addEventListener('click', function(event) {
+            const dropdowns = document.querySelectorAll('.dropdown.show');
+            dropdowns.forEach(dropdown => dropdown.classList.remove('show'));
+        });
+
+        window.updateIntervention = function(id) {
+            window.location.href = "{% url 'Officer Control Intervention Update' pk=0 %}".replace('0', id);
+        };
+
+        window.deleteIntervention = function(id) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch("{% url 'Officer Control Intervention Delete' pk=0 %}".replace("0", id), {
+                        method: "DELETE",
+                        headers: {
+                            "X-CSRFToken": "{{ csrf_token }}",
+                            "Content-Type": "application/json",
+                        },
+                    }).then(response => response.json()).then(data => {
+                        if (data.success) {
+                            Swal.fire('Deleted!', 'Intervention has been deleted.', 'success').then(() => {
+                                location.reload();  // Reload the page to reflect changes
+                            });
+                        } else {
+                            Swal.fire('Failed!', 'Failed to delete intervention.', 'error');
+                        }
+                    }).catch(error => {
+                        console.error('Error:', error);
+                        Swal.fire('Error!', 'An error occurred. Please try again.', 'error');
+                    });
+                }
+            });
+        };
 
         window.changePage = function(action) {
             const totalPages = Math.ceil(filteredInterventions.length / itemsPerPage);
@@ -239,7 +321,7 @@
 
             currentPage = 1;
             displayInterventions(currentPage);
-        }
+        };
 
         window.resetFilter = function() {
             document.getElementById('searchBar').value = '';
@@ -252,7 +334,7 @@
 
             filteredInterventions = interventions;
             displayInterventions(currentPage);
-        }
+        };
 
         window.updateBarangayOptions = function() {
             const municipalityFilter = document.getElementById('municipalityFilter').value;
@@ -275,56 +357,8 @@
                     }
                 });
             }
-        }
+        };
     });
 
-    function deleteIntervention(interventionId) {
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                fetch(`delete/${interventionId}/`, {
-                    method: 'POST',
-                    headers: {
-                        'X-CSRFToken': '{{ csrf_token }}',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({})
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        Swal.fire(
-                            'Deleted!',
-                            'Intervention has been deleted.',
-                            'success'
-                        ).then(() => {
-                            location.reload();  // Reload the page to reflect changes
-                        });
-                    } else {
-                        Swal.fire(
-                            'Failed!',
-                            'Failed to delete intervention.',
-                            'error'
-                        );
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    Swal.fire(
-                        'Error!',
-                        'An error occurred. Please try again.',
-                        'error'
-                    );
-                });
-            }
-        });
-    }
 </script>
 {% endblock %}

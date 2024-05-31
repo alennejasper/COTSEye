@@ -16,7 +16,7 @@
 }
 
 .interventionread-body .interventionread-section h1{
-    font-family: "Open Sans";
+    font-family: "Montserrat";
     font-weight: 700;       
     font-size: 22px;        
     text-align: center;     
@@ -44,7 +44,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-family: "Open Sans";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 14px !important;
     color: #000000;
@@ -88,7 +88,7 @@
 .interventionread-body .interventionread .interventionread-origin p{
     display: flex;
     align-items: center;
-    font-family: "Open Sans";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 14px !important;
     color: #000000;
@@ -103,7 +103,7 @@
 .interventionread-body .interventionread > p{
     padding-left: 10px;
     padding-right: 10px;
-    font-family: "Open Sans";
+    font-family: "Montserrat";
     font-size: 14px;
     font-weight: 400;       
     color: #000000;
@@ -125,7 +125,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-family: "Open Sans";
+    font-family: "Montserrat";
     font-size: 22px;
     font-weight: 700;       
     color: #000000;                          
@@ -145,7 +145,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-family: "Open Sans";
+    font-family: "Montserrat";
     font-size: 14px;
     font-weight: 700;       
     color: #000000;                          
@@ -157,7 +157,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-family: "Open Sans";
+    font-family: "Montserrat";
     font-size: 14px;
     font-weight: 400;       
     color: #000000;                          
@@ -183,7 +183,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-family: "Open Sans";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 14px;
     color: #FFFFFF !important;

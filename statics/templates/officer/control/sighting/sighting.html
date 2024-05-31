@@ -5,37 +5,49 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<style>
+    .status-invalid {
+        color: red !important;
+    }
+    .status-valid {
+        color: green !important;
+    }
+    .status-pending {
+        color: yellow !important;
+    }
+</style>
+
 <div class="container-fluid mt-3">
     <div class="row">
         <div class="col-12 col-md-3">
             <div class="filtercont">
-                <p style="font-size: 17px !important; font-weight: 500; color: rgb(28, 179, 234);" class="fs-3 mb-3">FILTER</p>
+                <p style="font-size: 17px !important; font-weight: 500; color: rgb(28, 179, 234); margin-bottom: 0px !important;" class="fs-3 mb-3">FILTER</p>
                 
                 <select id="municipalityFilter" class="form-select form-select-sm mb-3 select2" onchange="updateBarangayOptions()">
                     <option value="">Municipality</option>
+
                     {% for location in locations %}
                         <option value="{{ location.municipality }}">{{ location.municipality }}</option>
                     {% endfor %}
                 </select>
-                <br>
-                <br>
+
                 <select id="barangayFilter" class="form-select form-select-sm mb-3 select2">
                     <option value="">Barangay</option>
                 </select>
 
-                <p style="font-size: 15px; color: rgb(28, 186, 234);" scope="col" class="mb-1">Date</p>
+                <p style="font-size: 15px; color: rgb(28, 186, 234); margin-top: 10px !important; margin-bottom: 0px !important;" scope="col" class="mb-1">Date</p>
                 
                 <div class="mb-3">
-                    <label for="dateFrom" class="form-label">From:</label>
+                    <label for="dateFrom" class="form-label" style="font-size: 13px; margin-bottom: 0px !important;">From:</label>
                     <input type="date" id="dateFrom" name="dateFrom" class="form-control form-control-sm">
                 </div>
                 
                 <div class="mb-3">
-                    <label for="dateTo" class="form-label">To:</label>
+                    <label for="dateTo" class="form-label" style="font-size: 13px; margin-bottom: 0px !important;">To:</label>
                     <input type="date" id="dateTo" name="dateTo" class="form-control form-control-sm">
                 </div>
 
-                <p style="font-size: 15px; color: rgb(28, 172, 234);" scope="col" class="mb-1">Status</p>
+                <p style="font-size: 15px; color: rgb(28, 172, 234); margin-top: 10px !important; margin-bottom: 0px !important;" scope="col" class="mb-1">Status</p>
                 
                 <div class="form-check mb-2">
                     <input class="form-check-input" type="radio" name="status" id="statusPending" value="Pending">
@@ -61,7 +73,7 @@
             <div class="table-container mb-3">
                 <h2 style="font-size: 19px; color: rgb(52, 144, 242); border-bottom: 1px solid rgba(229, 229, 229);">ALL SIGHTINGS</h2>
 
-                <div class="d-flex justify-content-between mb-2">
+                <!-- <div class="d-flex justify-content-between mb-2">
                     <div>
                         <input type="checkbox" id="selectAll" onclick="toggleSelectAll()"> Select All
                     </div>
@@ -69,12 +81,12 @@
                         <button class="btn btn-success btn-sm" onclick="bulkChangeStatus('Valid')">Mark as Valid</button>
                         <button class="btn btn-danger btn-sm" onclick="bulkChangeStatus('Invalid')">Mark as Invalid</button>
                     </div>
-                </div>
+                </div> -->
 
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th><input type="checkbox" id="selectAllHeader" onclick="toggleSelectAll()"></th>
+                            <!-- <th><input type="checkbox" id="selectAllHeader" onclick="toggleSelectAll()"></th> -->
                             <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Date Created</th>
                             <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Contributor</th>
                             <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Phone Number</th>
@@ -82,7 +94,7 @@
                             <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Municipality</th>
                             <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Status</th>
                             <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Remarks</th>
-                            <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Actions</th>
+                            <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col"></th>
                         </tr>
                     </thead>
 
@@ -99,15 +111,15 @@
                                 <td class="{% if post.post_status == 'Valid' %} valid-status {% elif post.post_status == 'Invalid' %} invalid-status {% elif post.post_status == 'Pending' %} pending-status {% endif %}">{{ post.post_status }}</td>
                                 <td>
                                     <div class="button-container">
-                                        <a onclick="shownDropdown()"><img width="30px" src = "{% static 'assets/down.png' %}" class = "drop"></a>
-                                        <a onclick="showPopup({{ post.id }})"><i class="fa-solid fa-info-circle"></i></a>
+                                        <a onclick="shownDropdown(event)"><img height="15px" style="margin-right: 13px" src = "{% static 'assets/3dots.png' %}" class = "drop"></a>
                                         <div class="dropdown">
                                             <div class="dropdown-content">
-                                                <a class="dropdown-header" onclick="changeStatus({{ post.id }}, 'Valid')">Valid</a>
-                                                <a class="dropdown-footer" onclick="changeStatus({{ post.id }}, 'Invalid')">Invalid</a>
+                                                <a class="dropdown-header" onclick="changeStatus(${item.id}, 'Valid')">Approve</a>
+                                                <a class="dropdown-footer" onclick="invalidStatus(${item.id})">Disapprove</a>
+                                                <a class="dropdown-footer" onclick="invalidStatus(${item.id})">Verifying</a>
+            
                                             </div>
                                         </div>
-                                        <button class="button-29" onclick="location.href='{% url 'Officer Control Sighting Read' post.id %}'">See more</button>
                                     </div>
                                 </td>
                             </tr>
@@ -140,17 +152,16 @@
         dropdown.classList.toggle("show");
     };
 
-    window.onclick = function(event) {
-        if (!event.target.matches("img.drop")) {
-            var dropdowns = document.getElementsByClassName("dropdown-content");
-            for (var i = 0; i < dropdowns.length; i++) {
-                var openDropdown = dropdowns[i];
-                if (openDropdown.classList.contains("show")) {
-                    openDropdown.classList.remove("show");
-                }
-            }
-        }
-    };
+    function showDropdown(event) {
+        event.stopPropagation();
+        const dropdown = event.currentTarget.nextElementSibling;
+        dropdown.classList.toggle("show");
+    }
+
+    document.addEventListener('click', function(event) {
+        const dropdowns = document.querySelectorAll('.dropdown.show');
+        dropdowns.forEach(dropdown => dropdown.classList.remove('show'));
+    });
 
     function showPopup(postId) {
         fetch(`/officer/control/sighting/update/${postId}/`)
@@ -416,9 +427,13 @@
             const disabled = (item.status === "Valid" || item.status === "Invalid") ? "disabled" : "";
             const remarksOrStatus = item.remarks ? item.remarks : item.status;
 
+            let remarkLink = "";
+            if (item.status === "Pending") {
+                remarkLink = `<a class="dropdown-footer" onclick="addRemarks(${item.id})">Remark</a>`;
+            }
+
             const row = `
                 <tr data-id="${item.id}">
-                    <td><input type="checkbox" class="selectRow"></td>
                     <td onclick="window.location.href='${baseUrl}'">${item.date}</td>
                     <td onclick="window.location.href='${baseUrl}'">${item.user}</td>
                     <td onclick="window.location.href='${baseUrl}'">${item.phone_number}</td>
@@ -428,12 +443,12 @@
                     <td onclick="window.location.href='${baseUrl}'">${remarksOrStatus}</td>
                     <td>
                         <div class="button-container">
-                            <a onclick="shownDropdown(event)"><img height="8px" style="margin-right: 13px" src = "{% static 'assets/down.png' %}" class = "drop"></a>
-                            <a onclick="showPopup(${item.id})"><i class="fa-solid fa-info-circle"></i></a>
+                            <a onclick="shownDropdown(event)"><img height="15px" style="margin-right: 13px" src="{% static 'assets/3dots.png' %}" class="drop"></a>
                             <div class="dropdown">
                                 <div class="dropdown-content">
-                                    <a class="dropdown-header" onclick="changeStatus(${item.id}, 'Valid')">Valid</a>
-                                    <a class="dropdown-footer" onclick="invalidStatus(${item.id})">Invalid</a>
+                                    <a class="dropdown-header" onclick="changeStatus(${item.id}, 'Valid')">Approve</a>
+                                    <a class="dropdown-footer" onclick="invalidStatus(${item.id})">Disapprove</a>
+                                    ${remarkLink}
                                 </div>
                             </div>
                         </div>
@@ -445,6 +460,7 @@
         document.getElementById("previousPage").classList.toggle("disabled", page === 1);
         document.getElementById("nextPage").classList.toggle("disabled", end >= filteredData.length);
     }
+
 
     function changePage(direction) {
         if (direction === 'prev' && currentPage > 1) {
@@ -603,6 +619,52 @@
             default: return '';
         }
     }
+    window.addRemarks = function(postId) {
+        Swal.fire({
+            title: 'Add Remark',
+            input: 'textarea',
+            inputLabel: 'Your Remark',
+            inputPlaceholder: 'Enter your remark here...',
+            showCancelButton: true,
+            confirmButtonText: 'Submit',
+            preConfirm: (remark) => {
+                return fetch("{% url 'add_remark' 0 %}".replace('0', postId), {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({remark: remark})
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(response.statusText)
+                    }
+                    return response.json()
+                })
+                .then(data => {
+                    if (!data.success) {
+                        throw new Error(data.message || 'Failed to add remark')
+                    }
+                    return data
+                })
+                .catch(error => {
+                    Swal.showValidationMessage(`Request failed: ${error}`)
+                })
+            },
+            allowOutsideClick: () => !Swal.isLoading()
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Remark added successfully.',
+                    icon: 'success'
+                }).then(() => {
+                    window.location.reload();
+                });
+            }
+        });
+    };
 
     function invalidStatus(postId) {
         Swal.fire({

@@ -7,7 +7,7 @@
             <h1>COTS MAP</h1>
         </div> -->
 
-        <div class = "home-map">
+        <div class = "map-map">
             <div class = "map">
             </div>
         </div>
@@ -174,7 +174,7 @@
 
                 var management = L.control.layers(bases, overlays).addTo(map);
 
-                management.setPosition("bottomright");
+                management.setPosition("bottomleft");
 
                 var legend = L.control({position: "topright"});
 
@@ -223,8 +223,6 @@
 
         <!-- <h1>COTS STATUS GRAPH</h1> -->
         
-        {% include 'officer/control/home/card_count.html' %}
-
         <!-- <div class = "map-graph"></div>
  -->
         <!-- <script>
@@ -250,7 +248,7 @@
                 }],
 
                 chart: {
-                    fontFamily: "Open Sans",
+                    fontFamily: "Montserrat",
 
                     height: 500,
                     

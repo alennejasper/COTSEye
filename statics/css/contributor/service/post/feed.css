@@ -45,6 +45,7 @@
 }
 
 .feed-body .feed .feed-header p{
+    margin-bottom: 0px !important;
     display: flex;
     align-items: center;
     white-space: nowrap;

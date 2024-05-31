@@ -55,7 +55,7 @@ def ContributorServiceIntervention(request):
 
     interventions = Intervention.objects.all().order_by("-intervention_date")
 
-    unread_posts = Post.objects.filter(post_status = 1, contrib_read_status = False, user = request.user.user).order_by("-capture_date")
+    unread_posts = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:5]
 
     context = {"username": username, "user_profile": user_profile, "interventions": interventions, "unread_posts": unread_posts}
 
@@ -75,7 +75,7 @@ def ContributorServiceInterventionRead(request, id):
 
     intervention = Intervention.objects.get(id = id)
 
-    unread_posts = Post.objects.filter(post_status = 1, contrib_read_status = False, user = request.user.user).order_by("-capture_date")
+    unread_posts = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:5]
 
     context = {"username": username, "user_profile": user_profile, "scheme": scheme, "host": host, "intervention": intervention, "unread_posts": unread_posts}
 

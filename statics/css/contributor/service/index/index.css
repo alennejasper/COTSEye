@@ -58,7 +58,7 @@ nav.navigation-topbar{
     padding-bottom: 15px;
     width: 100%;
     background-color: #FFFFFF;
-    border-bottom: 1px solid rgb(235, 235, 235);
+    border-bottom: 1px solid #B2BEB5;
     z-index: 100;
 }
 
@@ -77,12 +77,13 @@ nav.navigation-topbar{
         padding-bottom: 10px;
         width: 100%;
         background-color: #FFFFFF;
-        border-bottom: 1px solid rgb(235, 235, 235);
+        border-bottom: 1px solid #B2BEB5;
         z-index: 100;
     }
 }
 
 nav.navigation-topbar > a.header{
+    width: fit-content;
     height: 30px;
     cursor: pointer; 
 }
@@ -90,35 +91,17 @@ nav.navigation-topbar > a.header{
 @media screen and (min-width: 320px) and (max-width: 775px){
     nav.navigation-topbar > a.header{
         height: 20px;
-        cursor: pointer; 
-    }
-}
-
-nav.navigation-topbar > a.profile{
-    margin-bottom: 0px !important;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    cursor: pointer; 
-}
-
-@media screen and (min-width: 320px) and (max-width: 775px){
-    nav.navigation-topbar > a.profile{
-        margin-bottom: 0px !important;
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        cursor: pointer; 
     }
 }
 
 nav.navigation-topbar img.header{
-    height: 30px !important;
+    width: fit-content;
+    height: 30px;
 }
 
 @media screen and (min-width: 320px) and (max-width: 775px){
     nav.navigation-topbar img.header{
-        height: 20px !important;
+        height: 20px;
     }
 }
 
@@ -138,6 +121,16 @@ nav.navigation-topbar .menu{
     }
 }
 
+.notification{
+    height: 30px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .notification{
+        height: 20px;
+    }
+}
+
 .notification i{
     font-size: 30px;
     color: #003755;
@@ -145,8 +138,7 @@ nav.navigation-topbar .menu{
 
 @media screen and (min-width: 320px) and (max-width: 775px){
     .notification i{
-        font-size: 17px;
-        color: #003755;
+        font-size: 20px;
     }
 }
 
@@ -158,7 +150,7 @@ nav.navigation-topbar .menu{
     padding-bottom: 5px;
     max-width: 30px;
     border-radius: 50%;
-    font-family: "Open Sans";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 8px;
     color: #FFFFFF;
@@ -168,48 +160,46 @@ nav.navigation-topbar .menu{
 
 @media screen and (min-width: 320px) and (max-width: 775px){
     .notification .notification-count{
-        position: absolute;
-        padding-left: 3px;
-        padding-right: 3px;
-        padding-top: 1px;
-        padding-bottom: 1px;
+        padding-left: 2.5px;
+        padding-right: 2.5px;
+        padding-top: 2.5px;
+        padding-bottom: 2.5px;
         max-width: 20px;
-        border-radius: 50%;
-        font-family: "Open Sans";
-        font-weight: 300;
-        font-size: 7px;
-        color: #FFFFFF;
-        background-color: #C90016;
-        text-align: center;
+        font-weight: 400;
+        font-size: 6px;
     }
 }
 
-nav.navigation-topbar a.profile{
+nav.navigation-topbar > a.profile{
     margin-bottom: 0px !important;
-    height: 30px !important;
+    width: 30px;
+    height: 30px;
+    cursor: pointer; 
 }
 
 @media screen and (min-width: 320px) and (max-width: 775px){
-    nav.navigation-topbar a.profile{
-        margin-bottom: 0px !important;
-        height: 20px !important;
+    nav.navigation-topbar > a.profile{
+        width: 20px;
+        height: 20px;
     }
 }
 
 nav.navigation-topbar img.profile{
+    place-items: center;
+    object-fit: cover;
     margin-bottom: 0px !important;
-    height: 30px !important;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
 }
 
 @media screen and (min-width: 320px) and (max-width: 775px){
     nav.navigation-topbar img.profile{
-        margin-bottom: 0px !important;
-        height: 20px !important;
-        border-radius: 50%;
+        width: 20px;
+        height: 20px;
     }
-}
 
+}
 nav.navigation-topbar img:hover{
     filter: brightness(75%) !important;
 }
@@ -247,6 +237,7 @@ nav.navigation-topbar img:active{
     }
 }
 
+
 nav.navigation-bottombar{
     position: fixed;
     display: flex;
@@ -260,6 +251,7 @@ nav.navigation-bottombar{
     padding-top: 15px;
     padding-bottom: 15px;
     width: 100%;
+    border-top: 1px solid #B2BEB5;
     background-color: #FFFFFF;
     z-index: 100;
 }
@@ -278,6 +270,7 @@ nav.navigation-bottombar{
         padding-top: 10px;
         padding-bottom: 10px;
         width: 100%;
+        border-top: 1px solid #B2BEB5;
         background-color: #FFFFFF;
         z-index: 100;
     }
@@ -351,25 +344,33 @@ nav.navigation-bottombar img:active{
     filter: brightness(50%);
 }
 
+
 .profile-content{
     position: absolute;
     display: none;
     right: 15px;
-    top: 40px;    
-    min-width: 250px;
+    top: 45px;    
+    max-width: 255px;
     border-radius: 5px;
     border: 1px solid #003755;     
     background-color: #FFFFFF;
     z-index: 100;
 }
 
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .profile-content{
+        right: 15px;
+        top: 35px;    
+    }
+}
 .profile-content a.dropdown-header{
     display: block;
     padding-left: 10px !important;
     padding-right: 10px !important;
     padding-top: 10px !important;
     padding-bottom: 10px !important;
-    font-family: "Open Sans";
+    white-space: wrap;
+    font-family: "Montserrat";
     font-weight: 700;
     font-size: 22px;
     background-color: #003755;
@@ -399,7 +400,7 @@ nav.navigation-bottombar img:active{
         padding-right: 10px !important;
         padding-top: 10px !important;
         padding-bottom: 10px !important;
-        font-family: "Open Sans";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 20px;
         background-color: #003755;
@@ -413,7 +414,7 @@ nav.navigation-bottombar img:active{
         padding-right: 10px !important;
         padding-top: 10px !important;
         padding-bottom: 10px !important;
-        font-family: "Open Sans";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 18px;
         background-color: #003755;
@@ -427,7 +428,7 @@ nav.navigation-bottombar img:active{
         padding-right: 10px !important;
         padding-top: 10px !important;
         padding-bottom: 10px !important;
-        font-family: "Open Sans";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 16px;
         background-color: #003755;
@@ -435,7 +436,7 @@ nav.navigation-bottombar img:active{
     }
 }
   
-.dropdown-item{
+.profile-content .dropdown-item{
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -443,7 +444,8 @@ nav.navigation-bottombar img:active{
     padding-right: 10px !important;
     padding-top: 10px !important;
     padding-bottom: 10px !important;
-    font-family: "Open Sans";
+    white-space: wrap;
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 18px;
     background-color: #FFFFFF;
@@ -451,28 +453,28 @@ nav.navigation-bottombar img:active{
     text-decoration: none !important;
 }
   
-.dropdown-item:hover{
+.profile-content .dropdown-item:hover{
     background-color: #B2BEB5 !important;
     color: #002C44 !important;
 }
 
-.dropdown-item a:focus{
+.profile-content .dropdown-item a:focus{
     color: #B2BEB5 !important;
     color: #002C44 !important;
 }
 
-.dropdown-item a:active{
+.profile-content .dropdown-item a:active{
     background-color: #B2BEB5 !important;
     color: #002C44 !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .dropdown-item{
+    .profile-content .dropdown-item{
         padding-left: 10px !important;
         padding-right: 10px !important;
         padding-top: 10px !important;
         padding-bottom: 10px !important;
-        font-family: "Open Sans";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 16px;
         background-color: #FFFFFF;
@@ -481,12 +483,12 @@ nav.navigation-bottombar img:active{
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .dropdown-item{
+    .profile-content .dropdown-item{
         padding-left: 10px !important;
         padding-right: 10px !important;
         padding-top: 10px !important;
         padding-bottom: 10px !important;
-        font-family: "Open Sans";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 14px;
         background-color: #FFFFFF;
@@ -495,12 +497,12 @@ nav.navigation-bottombar img:active{
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .dropdown-item{
+    .profile-content .dropdown-item{
         padding-left: 10px !important;
         padding-right: 10px !important;
         padding-top: 10px !important;
         padding-bottom: 10px !important;
-        font-family: "Open Sans";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 12px;
         background-color: #FFFFFF;
@@ -508,34 +510,36 @@ nav.navigation-bottombar img:active{
     }
 }
 
-.dropdown-item img{
+.profile-content .dropdown-item img{
     width: 30px !important;
     height: 30px !important;
     margin-right: 10px;
 }
 
 @media screen and (min-width: 320px) and (max-width: 775px){
-    .dropdown-item img{
+    .profile-content .dropdown-item img{
         width: 20px !important;
         height: 20px !important;
         margin-right: 10px;
     }
 }
 
-.dropdown-item img:hover{
+.profile-content .dropdown-item img:hover{
     filter: brightness(50%);
 }
 
-.dropdown-item img:focus{
+.profile-content .dropdown-item img:focus{
     filter: brightness(50%);
 
 }
 
-.dropdown-item img:active{
+.profile-content .dropdown-item img:active{
     filter: brightness(50%);
 }
 
-.dropdown-divider{
+.profile-content .dropdown-divider{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
     border-bottom: 1px solid #003755; 
 }
 
@@ -545,7 +549,8 @@ nav.navigation-bottombar img:active{
     padding-right: 10px !important;
     padding-top: 10px !important;
     padding-bottom: 10px !important;
-    font-family: "Open Sans";
+    white-space: wrap;
+    font-family: "Montserrat";
     font-weight: 700;
     font-size: 22px;
     background-color: #003755;
@@ -575,7 +580,7 @@ nav.navigation-bottombar img:active{
         padding-right: 10px !important;
         padding-top: 10px !important;
         padding-bottom: 10px !important;
-        font-family: "Open Sans";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 20px;
         background-color: #003755;
@@ -589,7 +594,7 @@ nav.navigation-bottombar img:active{
         padding-right: 10px !important;
         padding-top: 10px !important;
         padding-bottom: 10px !important;
-        font-family: "Open Sans";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 18px;
         background-color: #003755;
@@ -603,7 +608,7 @@ nav.navigation-bottombar img:active{
         padding-right: 10px !important;
         padding-top: 10px !important;
         padding-bottom: 10px !important;
-        font-family: "Open Sans";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 16px;
         background-color: #003755;
@@ -611,7 +616,7 @@ nav.navigation-bottombar img:active{
     }
 }
 
-.show{
+.profile-content.show{
     position: fixed;
     display: block;
 }
@@ -619,74 +624,430 @@ nav.navigation-bottombar img:active{
 .notification-content{
     position: absolute;
     display: none;
-    right: 0;
+    right: 75px;
+    top: 45px;    
+    max-width: 255px;
+    border-radius: 5px;
+    border: 1px solid #003755;     
+    background-color: #FFFFFF;
+    z-index: 100;
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .notification-content{
+        right: 50px;
+        top: 35px;    
+    }
+}
+
+.notification-content .dropdown-item{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
     padding-left: 10px !important;
     padding-right: 10px !important;
     padding-top: 10px !important;
     padding-bottom: 10px !important;
-    border-radius: 5px;
+    white-space: wrap;
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 18px;
     background-color: #FFFFFF;
-    min-width: 250px;
-    z-index: 1000;
+    color: #003755;
+    text-decoration: none !important;
 }
 
+.notification-content a.dropdown-footer:hover{
+    background-color: #002C44 !important;
+    color: #B2BEB5 !important;
+}
 
-.notification-content .dropdown-item {
+.notification-content a.dropdown-footer:focus{
+    background-color: #002C44 !important;
+    color: #B2BEB5 !important;
+}
+
+.notification-content a.dropdown-footer:active{
+    background-color: #002C44 !important;
+    color: #B2BEB5 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .notification-content .dropdown-item{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+        font-family: "Montserrat";
+        font-weight: 400;
+        font-size: 16px;
+        background-color: #FFFFFF;
+        color: #003755;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .notification-content .dropdown-item{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+        font-family: "Montserrat";
+        font-weight: 400;
+        font-size: 14px;
+        background-color: #FFFFFF;
+        color: #003755;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .notification-content .dropdown-item{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+        font-family: "Montserrat";
+        font-weight: 400;
+        font-size: 12px;
+        background-color: #FFFFFF;
+        color: #003755;
+    }
+}
+
+.notification-content .dropdown-divider{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    border-bottom: 1px solid #003755; 
+}
+
+.notification-content a.dropdown-footer{
     display: block;
-    padding: 10px;
-    color: black;
-    text-decoration: none;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    white-space: wrap;
+    font-family: "Montserrat";
+    font-weight: 700;
+    font-size: 22px;
+    background-color: #003755;
+    color: #FFFFFF;
+    text-align: center;
+    text-decoration: none !important;
+}
+
+.notification-content a.dropdown-footer:hover{
+    background-color: #002C44 !important;
+    color: #B2BEB5 !important;
+}
+
+.notification-content a.dropdown-footer:focus{
+    background-color: #002C44 !important;
+    color: #B2BEB5 !important;
+}
+
+.notification-content a.dropdown-footer:active{
+    background-color: #002C44 !important;
+    color: #B2BEB5 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .notification-content a.dropdown-footer{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+        font-family: "Montserrat";
+        font-weight: 700;
+        font-size: 20px;
+        background-color: #003755;
+        color: #FFFFFF;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .notification-content a.dropdown-footer{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+        font-family: "Montserrat";
+        font-weight: 700;
+        font-size: 18px;
+        background-color: #003755;
+        color: #FFFFFF;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .notification-content a.dropdown-footer{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+        font-family: "Montserrat";
+        font-weight: 700;
+        font-size: 16px;
+        background-color: #003755;
+        color: #FFFFFF;
+    }
 }
 
 .notification-content.show{
     display: block;
 }
 
-.contrib-dropdown-item{
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
+
+.swal2-container .swal2-popup{
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    border-radius: 5px !important;
+    border: 1px solid #B2BEB5 !important; 
 }
 
-.contrib-dropdown-item:last-child {
-    border-bottom: none;
+.swal2-container .swal2-popup .swal2-styled:focus{
+    box-shadow: none !important;
 }
 
-.unread-post-link {
-    display: block;
-    color: #333;
-    text-decoration: none;
-    font-weight: bold;
+.swal2-container .swal2-html-container{
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 0px !important;
+    padding-bottom: 10px !important;
+    font-family: "Montserrat" !important;
+    font-weight: 400 !important;
+    font-size: 22px !important;
+    color: #003755 !important;
 }
 
-.unread-post-link:hover {
-    text-decoration: underline;
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .swal2-container .swal2-html-container{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 0px !important;
+        padding-bottom: 10px !important;
+        margin: 0px !important;
+        font-family: "Montserrat" !important;
+        font-weight: 400 !important;
+        font-size: 14px !important;
+        color: #003755 !important;
+    }
 }
 
-/* Style the small text for the creation date */
-.contrib-dropdown-item small {
-    display: block;
-    color: #777;
-    margin-top: 5px;
+.swal2-container div:where(.swal2-icon){
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 0px !important;
+    margin-bottom: 10px !important;
 }
 
-/* Style for the notification bell */
-.notification {
+.swal2-container div:where(.swal2-icon).swal2-success .swal2-success-ring{
+    border: 1px solid #003755 !important;
+}
+
+.swal2-container div:where(.swal2-icon).swal2-success [class ^= swal2-success-line]{
+    background-color: #003755 !important;
+}
+
+.swal2-container div:where(.swal2-icon).swal2-error{
+    border-color: #003755 !important;
+    color: #003755 !important;
+}
+
+.swal2-container div:where(.swal2-icon).swal2-error [class ^= swal2-x-mark-line]{
+    background-color: #003755 !important;
+}
+
+.swal2-container h2:where(.swal2-title){
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 0px !important;
+    padding-bottom: 10px !important;
+}
+
+.swal2-container .title{
+    font-family: "Montserrat" !important;
+    font-weight: 700 !important;
+    font-size: 36px !important;   
+    color: #003755 !important;
+    pointer-events: none !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .swal2-container .title{
+        font-family: "Montserrat" !important;
+        font-weight: 700 !important;
+        font-size: 18px !important;   
+        color: #003755 !important;
+        pointer-events: none !important;
+    }
+}
+
+.swal2-container div:where(.swal2-actions){
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+}
+
+.swal2-container .swal2-actions{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    height: fit-content !important;
+}
+
+.swal2-container .swal2-actions button{
+    background-color: #003755 !important;
+}
+
+.swal2-container .info-button{
+    visibility: hidden;
+    font-size: 0px !important;
+}
+
+.swal2-container .info-button::before{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    content: "Ok" !important;
+    visibility: visible !important;
+    border: 1px solid #B2BEB5 !important; 
+    border-radius: 5px !important;
+    outline: none !important;
+    font-family: "Montserrat" !important;
+    font-weight: 400 !important;
+    font-size: 22px !important;
+    background-color: #003755 !important;
+    color: #FFFFFF !important;
+    pointer-events: auto !important;
     cursor: pointer;
 }
 
-.notification .badge {
-    font-size: 0.75em;
-    font-weight: bold;
+.swal2-container .info-button:hover{
+    background-color: #10354C !important;
+    color: #B2BEB5 !important;        
 }
 
-
-.notification {
-    position: relative;
-    display: inline-block;
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .info-button::before{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+        content: "Ok" !important;
+        visibility: visible !important;
+        border: 1px solid #B2BEB5 !important; 
+        border-radius: 5px !important;
+        outline: none !important;
+        font-family: "Montserrat" !important;
+        font-weight: 400 !important;
+        font-size: 14px !important;
+        background-color: #003755 !important;
+        color: #FFFFFF !important;
+        pointer-events: auto !important;
+        cursor: pointer;
+    }
 }
 
-.notification-link {
-    text-decoration: none;
-    color: inherit;
-    position: relative;
+.swal2-container .success-button{
+    visibility: hidden;
+    font-size: 0px !important;
+}
+
+.swal2-container .success-button::before{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    content: "Ok" !important;
+    visibility: visible !important;
+    border: 1px solid #B2BEB5 !important; 
+    border-radius: 5px !important;
+    outline: none !important;
+    font-family: "Montserrat" !important;
+    font-weight: 400 !important;
+    font-size: 22px !important;
+    background-color: #003755 !important;
+    color: #FFFFFF !important;
+    pointer-events: auto !important;
+    cursor: pointer;
+}
+
+.swal2-container .success-button:hover{
+    background-color: #002C44 !important;
+    color: #B2BEB5 !important;        
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .swal2-container .success-button::before{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+        content: "Ok" !important;
+        visibility: visible !important;
+        border: 1px solid #B2BEB5 !important; 
+        border-radius: 5px !important;
+        outline: none !important;
+        font-family: "Montserrat" !important;
+        font-weight: 400 !important;
+        font-size: 14px !important;
+        background-color: #003755 !important;
+        color: #FFFFFF !important;
+        pointer-events: auto !important;
+        cursor: pointer;
+    }
+}
+
+.swal2-container .error-button{
+    visibility: hidden;
+    font-size: 0px !important;
+}
+
+.swal2-container .error-button::before{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    content: "Ok" !important;
+    visibility: visible !important;
+    border: 1px solid #B2BEB5 !important; 
+    border-radius: 5px !important;
+    outline: none !important;
+    font-family: "Montserrat" !important;
+    font-weight: 400 !important;
+    font-size: 22px !important;
+    background-color: #003755 !important;
+    color: #FFFFFF !important;
+    pointer-events: auto !important;
+    cursor: pointer;
+}
+
+.swal2-container .error-button:hover{
+    background-color: #002C44 !important;
+    color: #B2BEB5 !important;        
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .swal2-container .error-button::before{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+        content: "Ok" !important;
+        visibility: visible !important;
+        border: 1px solid #B2BEB5 !important; 
+        border-radius: 5px !important;
+        outline: none !important;
+        font-family: "Montserrat" !important;
+        font-weight: 400 !important;
+        font-size: 18px !important;
+        background-color: #003755 !important;
+        color: #FFFFFF !important;
+        pointer-events: auto !important;
+        cursor: pointer;
+    }
 }

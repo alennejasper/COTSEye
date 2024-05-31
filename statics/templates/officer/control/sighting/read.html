@@ -9,7 +9,7 @@
         <!-- First grid column: Map -->
         <div class="col-md-6" style="position: relative; flex: 0 0 50%;">
             <a class="" style="position: absolute; top: 10px; right: 20px; z-index: 1000;" onclick="showPopup({{ post.id }})">
-                <i class="fa-solid fa-info-circle" style="font-size: 24px"></i>
+                <img width="20px" src = "{% static 'assets/edit.png' %}">
             </a>
             <div id="map" style="height: 810px;"></div>
         </div>
@@ -23,7 +23,7 @@
                             <div class="carousel-item {% if forloop.first %}active{% endif %}">
                                 <img src="{{ photo.post_photo.url }}" class="d-block w-100 carousel-image" alt="...">
                                 <a href="#" class="delete-photo" data-photo-id="{{ photo.id }}" onclick="deletePhoto({{ photo.id }})" style="position: absolute; top: 10px; right: 10px; z-index: 1000;">
-                                    <i class="fa fa-trash" style="color: red; font-size: 24px;"></i>
+                                    <i class="fa fa-trash" style="color: white; font-size: 15px;"></i>
                                 </a>
                             </div>
                         {% endfor %}
@@ -106,11 +106,12 @@
         <div class="col-md-2" style="flex: 0 0 20%;">
             <div class="card mb-4">
                 <div class="card-body">
-                    <h5 class="card-title">Actions</h5>
+                    <!-- <h5 class="card-title">Actions</h5> -->
                     
                     <div class="button-container">
-                        <button class="btn btn-success w-100 mb-2" onclick="changeStatus({{ post.id }})">Valid</button>
-                        <button class="btn btn-danger w-100" onclick="invalidStatus({{ post.id }})">Invalid</button>
+                        <button style="background-color: green; font-family: 'Montserrat' !important; font-size: 12px !important;" class="btn btn-success w-100" onclick="changeStatus({{ post.id }})">Approve</button>
+                        <button style="background-color: red; font-family: 'Montserrat' !important; font-size: 12px !important;" class="btn btn-danger w-100" onclick="invalidStatus({{ post.id }})">Disapprove</button>
+                        <button style="background-color: blue; font-family: 'Montserrat' !important; font-size: 12px !important;" class="btn btn-primary w-100">Save</button>
                     </div>
                    
                 </div>
@@ -140,7 +141,6 @@
 
         // Add a marker to the map
         L.marker([lat, lng]).addTo(map)
-            .bindPopup('<b>{{ post.description }}</b>')
             .openPopup();
     });
 
@@ -265,7 +265,7 @@
             .then(response => response.json())
             .then(data => {
                 Swal.fire({
-                    title: 'Popup Window',
+                    title: 'Drag to edit pin',
                     html: `
                         <div class="map">
                             <div class="report-map" id="map" style="height: 300px;"></div>
@@ -277,7 +277,7 @@
                         </div>
 
                         <div class="municipality">
-                            <label for="municipality">Municipality</label>
+                            <label style="margin-top: 12px; margin-bottom: 12px" for="municipality">Municipality:</label>
                             <select name="municipality" id="popupMunicipality" onchange="updateBarangayOptions()">
                                 <option value="${data.location.municipality}" selected>${data.location.municipality}</option>
                                 {% for location in locations %}
@@ -289,7 +289,7 @@
                         </div>
 
                         <div class="barangay">
-                            <label for="barangay">Barangay</label>
+                            <label for="barangay">Barangay:</label>
                             <select name="barangay" id="popupBarangay" onchange="updateMarker()">
                                 <option value="${data.location.barangay}" selected>${data.location.barangay}</option>
                                 {% for location in locations %}
@@ -298,7 +298,7 @@
                             </select>
                         </div>
 
-                        <button type="button" onclick="submitPopup(${postId})">Submit</button>
+                        <button class="submit-button" type="button" onclick="submitPopup(${postId})">Submit</button>
                     `,
                     didOpen: () => {
                         const latitude = parseFloat(document.getElementById('latitude').value);
@@ -316,119 +316,30 @@
             });
     }
 
-    var map;
-    var report;
-
-    function revealMap(latitude, longitude) {
-        var starfish = L.icon({iconUrl: "{% static 'assets/pin.png' %}", iconSize: [30, 30], iconAnchor: [15, 15]});
-        report = L.marker([latitude, longitude], {draggable: true, icon: starfish});
-        var reportMap = document.getElementsByClassName("report-map")[0];
-        var background = L.tileLayer("http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}", {minZoom: 11, maxZoom: 15, subdomains: ["mt0", "mt1", "mt2", "mt3"], attribution: "Google"});
-
-        map = L.map(reportMap, {zoomControl: true, scrollWheelZoom: false, dragging: true, maxBounds: [[5.3, 124.3], [6.3, 126.3]], layers: [background, report]}).setView([latitude, longitude], 15);
-        map.attributionControl.remove();
-
-        {% for location in locations %}
-            var originalCoordinates = {{location.perimeters|safe}};
-            var swappedCoordinates = swapCoordinates(originalCoordinates);
-            var polygon = L.polygon(swappedCoordinates, {color: "transparent", fillColor: "transparent", fillOpacity: 0}).addTo(map);
-            polygon.locationId = {{location.id}};
-            polygon.locationName = "{{location}}";
-        {% endfor %}
-
-        report.on("drag", function(event) {
-            var position = event.target.getLatLng();
-            updateCoordinates(position.lat, position.lng);
-        });
-
-        report.on("dragend", function(event) {
-            var position = event.target.getLatLng();
-            updateCoordinates(position.lat, position.lng);
-
-            var selectElement = document.getElementById("popupBarangay");
-            selectElement.value = "";
-
-            var selectElement2 = document.getElementById("popupMunicipality");
-            selectElement2.value = "";
-
-            map.eachLayer(function(layer){
-                if (layer instanceof L.Polygon){
-                    if (layer.getBounds().contains(position) && layer.locationId){
-                        selectElement.value = layer.locationId;
-                        setMunicipalityByBarangay(layer.locationId);  // Set the municipality based on the barangay
-                        return;
-                    }
-                }
-            });
-        });
-
-        updateBarangayOptions();
-    }
-
-    function updateCoordinates(latitude, longitude) {
-        var latitudeInput = document.getElementById("latitude");
-        var longitudeInput = document.getElementById("longitude");
-        latitudeInput.value = latitude.toFixed(6);
-        longitudeInput.value = longitude.toFixed(6);
-    }
-
-    function updateMarker() {
-        var barangayId = document.getElementById("popupBarangay").value;
-        console.log(barangayId)
-        if (barangayCoordinates[barangayId]) {
-            var coordinates = barangayCoordinates[barangayId];
-            map.setView(coordinates, 15);
-            report.setLatLng(coordinates);
-            updateCoordinates(coordinates[0], coordinates[1]);
+        var map;
+        var report;
+        var isDragging = false;
+    
+        function updateCoordinates(latitude, longitude) {
+            var latitudeInput = document.getElementById("latitude");
+            var longitudeInput = document.getElementById("longitude");
+    
+            latitudeInput.value = latitude.toFixed(6);
+            longitudeInput.value = longitude.toFixed(6);
         }
-    }
-
-    function swapCoordinates(coordinates) {
-        return coordinates.map(function(ring) {
-            return ring.map(function(point) {
-                return [point[1], point[0]];
-            });
-        });
-    }
-
-    function updateBarangayOptions() {
-        const municipalityFilter = document.getElementById("popupMunicipality").value;
-        const barangayFilter = document.getElementById("popupBarangay");
-
-        if (municipalityFilter) {
-            $.ajax({
-                url: "{% url 'get_barangays' %}",
-                data: {
-                    "municipality": municipalityFilter
-                },
-                success: function(data) {
-                    barangayFilter.innerHTML = "";
-                    data.forEach(function(barangay) {
-                        const option = document.createElement("option");
-                        option.value = barangay;
-                        option.textContent = barangay;
-                        barangayFilter.appendChild(option);
-                    });
-                    $('#barangayFilter').select2();
-                }
+    
+        function swapCoordinates(coordinates) {
+            return coordinates.map(function (ring) {
+                return ring.map(function (point) {
+                    return [point[1], point[0]];
+                });
             });
         }
-
-    }
-
-    const barangayCoordinates = {
-        {% for location in locations %}
-            "{{location.barangay}}": [{{location.latitude}}, {{location.longitude}}],
-        {% endfor %}
-    };
-
-
 
     function setMunicipalityByBarangay(barangayId) {
-        
         const locations = [
             {% for location in locations %}
-                {id: "{{location.id}}", barangay: "{{location.barangay}}", municipality: "{{location.municipality}}"},
+                { id: "{{ location.id }}", barangay: "{{ location.barangay }}", municipality: "{{ location.municipality }}" },
             {% endfor %}
         ];
 
@@ -437,9 +348,139 @@
             const municipalitySelect = document.getElementById("popupMunicipality");
             municipalitySelect.value = location.municipality;
         }
-        updateBarangayOptions();
-       
+        updateBarangay();
     }
+
+    function updateBarangay() {
+            const locations = [
+                {% for location in locations %}
+                    { id: "{{ location.id }}", barangay: "{{ location.barangay }}", municipality: "{{ location.municipality }}" },
+                {% endfor %}
+            ];
+    
+            const municipality = document.getElementById("popupMunicipality").value;
+            const barangay = document.getElementById("popupBarangay");
+    
+            barangay.innerHTML = "";
+    
+            const filteredLocations = locations.filter(location => location.municipality === municipality);
+    
+            filteredLocations.forEach(location => {
+                const option = document.createElement("option");
+    
+                option.value = location.id;
+                option.textContent = location.barangay;
+    
+                barangay.appendChild(option);
+            });
+    
+            if (filteredLocations.length > 0) {
+                updateMarker(filteredLocations[0].id);
+            }
+        }
+    
+        function updateMarker(barangayId) {
+            var barangayCoordinates = {
+                {% for location in locations %}
+                    "{{ location.id }}": [{{ location.latitude }}, {{ location.longitude }}],
+                {% endfor %}
+            };
+    
+            if (barangayCoordinates[barangayId]) {
+                var coordinates = barangayCoordinates[barangayId];
+    
+                if (!isDragging) { // Only update if not dragging
+                    map.setView(coordinates, 15);
+                    report.setLatLng(coordinates);
+
+                    updateCoordinates(coordinates[0], coordinates[1]);
+                }
+            }
+        }
+    
+        function revealMap(latitude, longitude) {
+            if (map) {
+                return;
+            }
+    
+            var starfish = L.icon({ iconUrl: "{% static 'assets/pin.png' %}", iconSize: [30, 30], iconAnchor: [15, 15] });
+    
+            report = L.marker([latitude, longitude], { draggable: true, icon: starfish });
+    
+            var reportMap = document.getElementsByClassName("report-map")[0];
+    
+            var background = L.tileLayer("http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}", { minZoom: 11, maxZoom: 15, subdomains: ["mt0", "mt1", "mt2", "mt3"], attribution: "Google" });
+    
+            map = L.map(reportMap, { zoomControl: true, scrollWheelZoom: false, dragging: true, maxBounds: [[5.3, 124.3], [6.3, 126.3]], layers: [background, report] }).setView([latitude, longitude], 20);
+    
+            map.attributionControl.remove();
+    
+            {% for location in locations %}
+                var originalCoordinates = {{ location.perimeters | safe }};
+                var swappedCoordinates = swapCoordinates(originalCoordinates);
+                var polygon = L.polygon(swappedCoordinates, { color: "transparent", fillColor: "transparent", fillOpacity: 0 }).addTo(map);
+    
+                polygon.locationId = {{ location.id }};
+                
+                polygon.locationName = "{{ location }}";
+            {% endfor %}
+    
+            report.on("dragstart", function (){
+                isDragging = true; // Set dragging to true when the drag starts
+            });
+
+            report.on("drag", function (event) {
+                var position = event.target.getLatLng();
+                updateCoordinates(position.lat, position.lng);
+            });
+    
+            report.on("dragend", function (event) {
+                var position = event.target.getLatLng();
+                updateCoordinates(position.lat, position.lng);
+    
+                var selectElement = document.getElementById("popupBarangay");
+                selectElement.value = "";
+    
+                var selectElement2 = document.getElementById("popupMunicipality");
+                selectElement2.value = "";
+    
+                map.eachLayer(function (layer) {
+                    if (layer instanceof L.Polygon) {
+                        if (layer.getBounds().contains(position) && layer.locationId) {
+                            selectElement.value = layer.locationId;
+                            setMunicipalityByBarangay(layer.locationId);  // Set the municipality based on the barangay
+                            return;
+                        }
+                    }
+                });
+
+                isDragging = false;
+            });
+    
+            document.getElementById("popupBarangay").addEventListener("change", function (){
+                var barangayId = this.value;
+
+                updateMarker(barangayId);
+            });
+    
+            document.getElementById("popupMunicipality").addEventListener("change", function (){
+                updateBarangay();
+            });
+    
+            var defaultLatitude = report.getLatLng().lat;
+
+            var defaultLongitude = report.getLatLng().lng;
+    
+            updateCoordinates(defaultLatitude, defaultLongitude);
+    
+            {% if draft_post %}
+                updateBarangay();
+            {% endif %}
+        }
+    
+        window.addEventListener("load", function () {
+            revealMap();
+        });
     
     function submitPopup(postId) {
         const municipality = document.getElementById('popupMunicipality').value;

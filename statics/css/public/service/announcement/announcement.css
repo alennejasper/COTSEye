@@ -14,7 +14,7 @@
 }
 
 .announcement-body .announcement-section h1{
-    font-family: "Open Sans"; 
+    font-family: "Montserrat"; 
     font-weight: 700;       
     font-size: 22px;     
     text-align: center;  
@@ -45,7 +45,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-family: "Open Sans";
+    font-family: "Montserrat";
     font-weight: 700;
     font-size: 14px !important;
     color: #000000;
@@ -88,7 +88,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-family: "Open Sans";
+    font-family: "Montserrat";
     font-weight: 700;       
     font-size: 14px;
     color: #000000;  
@@ -112,7 +112,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-family: "Open Sans";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 14px;
     color: #FFFFFF !important;

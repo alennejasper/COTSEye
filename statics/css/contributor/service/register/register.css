@@ -1,33 +1,31 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap");
 
 
 *{
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    scrollbar-width: thin !important;
-    scrollbar-color: #003755 #154360 !important;
     transition: all 0.25s ease;
 }
 
 
 ::-webkit-scrollbar{
-    width: 5px !important;
-    height: 5px !important;
+    width: 2.5px !important;
+    height: 2.5px !important;
 }
 
 ::-webkit-scrollbar-track{
-    border-radius: 5px;
-    border: 1px solid #B2BEB5; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
-    background: #154360 !important; 
+    background-color: #FFFFFF !important; 
+}
+
+::-webkit-scrollbar-button{
+    display: none !important;
+    width: 0px !important;
 }
 
 ::-webkit-scrollbar-thumb{
-    border-radius: 5px;
-    border: 1px solid #B2BEB5; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
-    background: #003755 !important;
+    border-radius: 5px !important;
+    background-color: #003755 !important;
 }
 
 ::-webkit-scrollbar-thumb:hover{
@@ -36,15 +34,21 @@
 
 
 .content{
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    min-height: 100vh;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    height: 100%;
     display: grid;
     grid-template-columns: 100%;
     place-items: center;
+}
 
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .content{
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
 }
 
 .register{
@@ -53,68 +57,40 @@
     grid-column: 1;
     border: 1px solid #B2BEB5;
     border-radius: 5px !important;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
 }
 
 .register .card-header{
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    border-top-left-radius: 5px !important;
-    border-top-right-radius: 5px !important;
-    background-color: #154360;
     display: grid;
     place-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top-left-radius: 5px !important;
+    border-top-right-radius: 5px !important;
+    background-color: #003755;
 }
 
 .register .card-header header{
-    font-family: "Poppins";
+    font-family: "Montserrat";
     font-weight: 700;
-    font-size: 22px !important;
+    font-size: 36px !important;
     color: #FFFFFF;
     white-space: nowrap !important; 
     overflow: auto !important;
 }
 
-@media screen and (min-width: 369px) and (max-width: 445px){
+@media screen and (min-width: 320px) and (max-width: 775px){
     .register .card-header header{
-        font-family: "Poppins";
-        font-weight: 700;
-        font-size: 20px !important;
-        color: #FFFFFF;
-        white-space: nowrap !important; 
-        overflow: auto !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-header header{
-        font-family: "Poppins";
-        font-weight: 700;
         font-size: 18px !important;
-        color: #FFFFFF;
-        white-space: nowrap !important; 
-        overflow: auto !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .register .card-header header{
-        font-family: "Poppins";
-        font-weight: 700;
-        font-size: 16px !important;
-        color: #FFFFFF;
-        white-space: nowrap !important; 
-        overflow: auto !important;
     }
 }
 
 .register .card-body{
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     border-bottom-left-radius: 5px !important;
     border-bottom-right-radius: 5px !important;
     display: grid;
@@ -132,28 +108,7 @@
     gap: 30px;
 }
 
-@media screen and (min-width: 446px) and (max-width: 775px){
-    .register .card-body .field{        
-        grid-template-columns: 100%;
-        gap: 0px;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .register .card-body form .field{        
-        grid-template-columns: 100%;
-        gap: 0px;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-body form .field{        
-        grid-template-columns: 100%;
-        gap: 0px;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 775px){
     .register .card-body form .field{        
         grid-template-columns: 100%;
         gap: 0px;
@@ -163,42 +118,15 @@
 .register .card-body form .field .column label[for = "username"]{
     margin-top: 0px;
     display: inline-block;
-    font-family: "Poppins";
+    font-family: "Montserrat";
     font-weight: 400;
-    font-size: 20px !important;
-    color: #154360 !important;
+    font-size: 22px !important;
+    color: #003755 !important;
 }
 
-@media screen and (min-width: 369px) and (max-width: 445px){
+@media screen and (min-width: 320px) and (max-width: 775px){
     .register .card-body form .field .column label[for = "username"]{
-        margin-top: 0px;
-        display: inline-block;
-        font-family: "Poppins";
-        font-weight: 400;
-        font-size: 18px !important;
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-body form .field .column label[for = "username"]{
-        margin-top: 0px;
-        display: inline-block;
-        font-family: "Poppins";
-        font-weight: 400;
-        font-size: 16px !important;
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .register .card-body form .field .column label[for = "username"]{
-        margin-top: 0px;
-        display: inline-block;
-        font-family: "Poppins";
-        font-weight: 400;
         font-size: 14px !important;
-        color: #154360 !important;
     }
 }
 
@@ -209,166 +137,58 @@
 .register .card-body form .field .column .username input{
     padding-left: 10px !important;
     padding-right: 40px !important;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
     width: 100%;
     border: 1px solid #B2BEB5;
     border-radius: 5px; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
-    font-family: "Poppins";
+    font-family: "Montserrat";
     font-weight: 700 !important;
-    font-size: 20px !important;   
-    color: #154360 !important;
+    font-size: 22px !important;   
+    color: #003755 !important;
 }
 
 .register .card-body form .field .column .username input:focus{
     border-bottom-width: 2.5px !important;
 }
 
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .register .card-body form .field .column .username input{
-        padding-left: 10px !important;
-        padding-right: 38px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Poppins";
-        font-weight: 700 !important;
-        font-size: 18px !important;   
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-body form .field .column .username input{
-        padding-left: 10px !important;
-        padding-right: 36px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Poppins";
-        font-weight: 700 !important;
-        font-size: 16px !important;   
-        color: #154360 !important;
-    }
-}
-
 @media screen and (min-width: 320px) and (max-width: 348px){
     .register .card-body form .field .column .username input{
-        padding-left: 10px !important;
         padding-right: 34px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Poppins";
-        font-weight: 700 !important;
         font-size: 14px !important;   
-        color: #154360 !important;
     }
 }
 
 .register .card-body form .field .column .username i{
+    display: grid;
+    position: absolute;
+    place-items: center;
     right: 10px;
     top: 50%;
-    position: absolute;
-    display: grid;
-    place-items: center;
-    font-size: 20px;
-    color: #154360;
+    font-size: 22px;
+    color: #003755;
     transform: translateY(-50%);
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .register .card-body form .field .column .username i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 18px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-body form .field .column .username i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 16px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .register .card-body form .field .column .username i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
         font-size: 14px;
-        color: #154360;
-        transform: translateY(-50%);
     }
 }
 
 .register .card-body form .field .column label[for = "first-name"]{
-    margin-top: 15px;
+    margin-top: 10px;
     display: inline-block;
-    font-family: "Poppins";
+    font-family: "Montserrat";
     font-weight: 400;
-    font-size: 20px !important;
-    color: #154360 !important;
+    font-size: 22px !important;
+    color: #003755 !important;
 }
 
-@media screen and (min-width: 369px) and (max-width: 445px){
+@media screen and (min-width: 320px) and (max-width: 775px){
     .register .card-body form .field .column label[for = "first-name"]{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Poppins";
-        font-weight: 400;
-        font-size: 18px !important;
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-body form .field .column label[for = "first-name"]{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Poppins";
-        font-weight: 400;
-        font-size: 16px !important;
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .register .card-body form .field .column label[for = "first-name"]{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Poppins";
-        font-weight: 400;
         font-size: 14px !important;
-        color: #154360 !important;
     }
 }
 
@@ -379,166 +199,58 @@
 .register .card-body form .field .column .first-name input{
     padding-left: 10px !important;
     padding-right: 40px !important;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
     width: 100%;
     border: 1px solid #B2BEB5;
     border-radius: 5px; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
-    font-family: "Poppins";
+    font-family: "Montserrat";
     font-weight: 700 !important;
-    font-size: 20px !important;   
-    color: #154360 !important;
+    font-size: 22px !important;   
+    color: #003755 !important;
 }
 
 .register .card-body form .field .column .first-name input:focus{
     border-bottom-width: 2.5px !important;
 }
 
-@media screen and (min-width: 369px) and (max-width: 445px){
+@media screen and (min-width: 320px) and (max-width: 775px){
     .register .card-body form .field .column .first-name input{
-        padding-left: 10px !important;
-        padding-right: 38px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Poppins";
-        font-weight: 700 !important;
-        font-size: 18px !important;   
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-body form .field .column .first-name input{
-        padding-left: 10px !important;
-        padding-right: 36px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Poppins";
-        font-weight: 700 !important;
-        font-size: 16px !important;   
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .register .card-body form .field .column .first-name input{
-        padding-left: 10px !important;
         padding-right: 34px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Poppins";
-        font-weight: 700 !important;
         font-size: 14px !important;   
-        color: #154360 !important;
     }
 }
 
 .register .card-body form .field .column .first-name i{
+    display: grid;
+    position: absolute;
+    place-items: center;
     right: 10px;
     top: 50%;
-    position: absolute;
-    display: grid;
-    place-items: center;
-    font-size: 20px;
-    color: #154360;
+    font-size: 22px;
+    color: #003755;
     transform: translateY(-50%);
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .register .card-body form .field .column .first-name i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 18px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-body form .field .column .first-name i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 16px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .register .card-body form .field .column .first-name i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
         font-size: 14px;
-        color: #154360;
-        transform: translateY(-50%);
     }
 }
 
 .register .card-body form .field .column label[for = "password1"]{
-    margin-top: 15px;
+    margin-top: 10px;
     display: inline-block;
-    font-family: "Poppins";
+    font-family: "Montserrat";
     font-weight: 400;
-    font-size: 20px !important;
-    color: #154360 !important;
+    font-size: 22px !important;
+    color: #003755 !important;
 }
 
-@media screen and (min-width: 369px) and (max-width: 445px){
+@media screen and (min-width: 320px) and (max-width: 775px){
     .register .card-body form .field .column label[for = "password1"]{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Poppins";
-        font-weight: 400;
-        font-size: 18px !important;
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-body form .field .column label[for = "password1"]{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Poppins";
-        font-weight: 400;
-        font-size: 16px !important;
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .register .card-body form .field .column label[for = "password1"]{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Poppins";
-        font-weight: 400;
         font-size: 14px !important;
-        color: #154360 !important;
     }
 }
 
@@ -549,174 +261,64 @@
 .register .card-body form .field .column .password1 input{
     padding-left: 10px !important;
     padding-right: 40px !important;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
     width: 100%;
     border: 1px solid #B2BEB5;
     border-radius: 5px; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
-    font-family: "Poppins";
+    font-family: "Montserrat";
     font-weight: 700 !important;
-    font-size: 20px !important;   
-    color: #154360 !important;
+    font-size: 22px !important;   
+    color: #003755 !important;
 }
 
 .register .card-body form .field .column .password1 input:focus{
     border-bottom-width: 2.5px !important;
 }
 
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .register .card-body form .field .column .password1 input{
-        padding-left: 10px !important;
-        padding-right: 38px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Poppins";
-        font-weight: 700 !important;
-        font-size: 18px !important;   
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-body form .field .column .password1 input{
-        padding-left: 10px !important;
-        padding-right: 36px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Poppins";
-        font-weight: 700 !important;
-        font-size: 16px !important;   
-        color: #154360 !important;
-    }
-}
-
 @media screen and (min-width: 320px) and (max-width: 348px){
     .register .card-body form .field .column .password1 input{
-        padding-left: 10px !important;
         padding-right: 34px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Poppins";
-        font-weight: 700 !important;
         font-size: 14px !important;   
-        color: #154360 !important;
     }
 }
 
 .register .card-body form .field .column .password1 i{
+    display: grid;
+    position: absolute;
+    place-items: center;
     right: 10px;
     top: 50%;
-    position: absolute;
-    display: grid;
-    place-items: center;
-    font-size: 20px;
-    color: #154360;
+    font-size: 22px;
+    color: #003755;
     transform: translateY(-50%);
     cursor: pointer;
 }
 
 .register .card-body form .field .column .password1 i:hover{
-    color: #10354C !important;
+    color: #002C44 !important;
 }
 
-@media screen and (min-width: 369px) and (max-width: 445px){
+@media screen and (min-width: 320px) and (max-width: 775px){
     .register .card-body form .field .column .password1 i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 18px;
-        color: #154360;
-        transform: translateY(-50%);
-        cursor: pointer;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-body form .field .column .password1 i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 16px;
-        color: #154360;
-        transform: translateY(-50%);
-        cursor: pointer;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .register .card-body form .field .column .password1 i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
         font-size: 14px;
-        color: #154360;
-        transform: translateY(-50%);
-        cursor: pointer;
     }
 }
 
 .register .card-body form .field .column label[for = "email"]{
     margin-top: 0px;
     display: inline-block;
-    font-family: "Poppins";
+    font-family: "Montserrat";
     font-weight: 400;
-    font-size: 20px !important;
-    color: #154360 !important;
+    font-size: 22px !important;
+    color: #003755 !important;
 }
 
-@media screen and (min-width: 369px) and (max-width: 445px){
+@media screen and (min-width: 320px) and (max-width: 775px){
     .register .card-body form .field .column label[for = "email"]{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Poppins";
-        font-weight: 400;
-        font-size: 18px !important;
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-body form .field .column label[for = "email"]{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Poppins";
-        font-weight: 400;
-        font-size: 16px !important;
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .register .card-body form .field .column label[for = "email"]{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Poppins";
-        font-weight: 400;
+        margin-top: 10px;
         font-size: 14px !important;
-        color: #154360 !important;
     }
 }
 
@@ -727,166 +329,58 @@
 .register .card-body form .field .column .email input{
     padding-left: 10px !important;
     padding-right: 40px !important;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
     width: 100%;
     border: 1px solid #B2BEB5;
     border-radius: 5px; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
-    font-family: "Poppins";
+    font-family: "Montserrat";
     font-weight: 700 !important;
-    font-size: 20px !important;   
-    color: #154360 !important;
+    font-size: 22px !important;   
+    color: #003755 !important;
 }
 
 .register .card-body form .field .column .email input:focus{
     border-bottom-width: 2.5px !important;
 }
 
-@media screen and (min-width: 369px) and (max-width: 445px){
+@media screen and (min-width: 320px) and (max-width: 775px){
     .register .card-body form .field .column .email input{
-        padding-left: 10px !important;
-        padding-right: 38px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Poppins";
-        font-weight: 700 !important;
-        font-size: 18px !important;   
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-body form .field .column .email input{
-        padding-left: 10px !important;
-        padding-right: 36px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Poppins";
-        font-weight: 700 !important;
-        font-size: 16px !important;   
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .register .card-body form .field .column .email input{
-        padding-left: 10px !important;
         padding-right: 34px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Poppins";
-        font-weight: 700 !important;
         font-size: 14px !important;   
-        color: #154360 !important;
     }
 }
 
 .register .card-body form .field .column .email i{
+    display: grid;
+    position: absolute;
+    place-items: center;
     right: 10px;
     top: 50%;
-    position: absolute;
-    display: grid;
-    place-items: center;
-    font-size: 20px;
-    color: #154360;
+    font-size: 22px;
+    color: #003755;
     transform: translateY(-50%);
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .register .card-body form .field .column .email i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 18px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-body form .field .column .email i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 16px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .register .card-body form .field .column .email i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
         font-size: 14px;
-        color: #154360;
-        transform: translateY(-50%);
     }
 }
 
 .register .card-body form .field .column label[for = "last-name"]{
-    margin-top: 15px;
+    margin-top: 10px;
     display: inline-block;
-    font-family: "Poppins";
+    font-family: "Montserrat";
     font-weight: 400;
-    font-size: 20px !important;
-    color: #154360 !important;
+    font-size: 22px !important;
+    color: #003755 !important;
 }
 
-@media screen and (min-width: 369px) and (max-width: 445px){
+@media screen and (min-width: 320px) and (max-width: 775px){
     .register .card-body form .field .column label[for = "last-name"]{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Poppins";
-        font-weight: 400;
-        font-size: 18px !important;
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-body form .field .column label[for = "last-name"]{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Poppins";
-        font-weight: 400;
-        font-size: 16px !important;
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .register .card-body form .field .column label[for = "last-name"]{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Poppins";
-        font-weight: 400;
         font-size: 14px !important;
-        color: #154360 !important;
     }
 }
 
@@ -897,166 +391,58 @@
 .register .card-body form .field .column .last-name input{
     padding-left: 10px !important;
     padding-right: 40px !important;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
     width: 100%;
     border: 1px solid #B2BEB5;
     border-radius: 5px; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
-    font-family: "Poppins";
+    font-family: "Montserrat";
     font-weight: 700 !important;
-    font-size: 20px !important;   
-    color: #154360 !important;
+    font-size: 22px !important;   
+    color: #003755 !important;
 }
 
 .register .card-body form .field .column .last-name input:focus{
     border-bottom-width: 2.5px !important;
 }
 
-@media screen and (min-width: 369px) and (max-width: 445px){
+@media screen and (min-width: 320px) and (max-width: 775px){
     .register .card-body form .field .column .last-name input{
-        padding-left: 10px !important;
-        padding-right: 38px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Poppins";
-        font-weight: 700 !important;
-        font-size: 18px !important;   
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-body form .field .column .last-name input{
-        padding-left: 10px !important;
-        padding-right: 36px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Poppins";
-        font-weight: 700 !important;
-        font-size: 16px !important;   
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .register .card-body form .field .column .last-name input{
-        padding-left: 10px !important;
         padding-right: 34px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Poppins";
-        font-weight: 700 !important;
         font-size: 14px !important;   
-        color: #154360 !important;
     }
 }
 
 .register .card-body form .field .column .last-name i{
+    display: grid;
+    position: absolute;
+    place-items: center;
     right: 10px;
     top: 50%;
-    position: absolute;
-    display: grid;
-    place-items: center;
-    font-size: 20px;
-    color: #154360;
+    font-size: 22px;
+    color: #003755;
     transform: translateY(-50%);
 }
 
-@media screen and (min-width: 369px) and (max-width: 445px){
+@media screen and (min-width: 320px) and (max-width: 775px){
     .register .card-body form .field .column .last-name i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 18px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-body form .field .column .last-name i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 16px;
-        color: #154360;
-        transform: translateY(-50%);
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .register .card-body form .field .column .last-name i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
         font-size: 14px;
-        color: #154360;
-        transform: translateY(-50%);
     }
 }
 
 .register .card-body form .field .column label[for = "password2"]{
-    margin-top: 15px;
+    margin-top: 10px;
     display: inline-block;
-    font-family: "Poppins";
+    font-family: "Montserrat";
     font-weight: 400;
-    font-size: 20px !important;
-    color: #154360 !important;
+    font-size: 22px !important;
+    color: #003755 !important;
 }
 
-@media screen and (min-width: 369px) and (max-width: 445px){
+@media screen and (min-width: 320px) and (max-width: 775px){
     .register .card-body form .field .column label[for = "password2"]{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Poppins";
-        font-weight: 400;
-        font-size: 18px !important;
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-body form .field .column label[for = "password2"]{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Poppins";
-        font-weight: 400;
-        font-size: 16px !important;
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .register .card-body form .field .column label[for = "password2"]{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Poppins";
-        font-weight: 400;
         font-size: 14px !important;
-        color: #154360 !important;
     }
 }
 
@@ -1067,162 +453,59 @@
 .register .card-body form .field .column .password2 input{
     padding-left: 10px !important;
     padding-right: 40px !important;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
     width: 100%;
     border: 1px solid #B2BEB5;
     border-radius: 5px; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
-    font-family: "Poppins";
+    font-family: "Montserrat";
     font-weight: 700 !important;
-    font-size: 20px !important;   
-    color: #154360 !important;
+    font-size: 22px !important;   
+    color: #003755 !important;
 }
 
 .register .card-body form .field .column .password2 input:focus{
     border-bottom-width: 2.5px !important;
 }
 
-@media screen and (min-width: 369px) and (max-width: 445px){
+@media screen and (min-width: 320px) and (max-width: 775px){
     .register .card-body form .field .column .password2 input{
-        padding-left: 10px !important;
-        padding-right: 38px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Poppins";
-        font-weight: 700 !important;
-        font-size: 18px !important;   
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-body form .field .column .password2 input{
-        padding-left: 10px !important;
-        padding-right: 36px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Poppins";
-        font-weight: 700 !important;
-        font-size: 16px !important;   
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .register .card-body form .field .column .password2 input{
-        padding-left: 10px !important;
         padding-right: 34px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Poppins";
-        font-weight: 700 !important;
         font-size: 14px !important;   
-        color: #154360 !important;
     }
 }
 
 .register .card-body form .field .column .password2 i{
+    display: grid;
+    position: absolute;
+    place-items: center;
     right: 10px;
     top: 50%;
-    position: absolute;
-    display: grid;
-    place-items: center;
     font-size: 20px;
-    color: #154360;
+    color: #003755;
     transform: translateY(-50%);
     cursor: pointer;
 }
 
 .register .card-body form .field .column .password2 i:hover{
-    color: #10354C !important;
+    color: #002C44 !important;
 }
 
-
-@media screen and (min-width: 369px) and (max-width: 445px){
+@media screen and (min-width: 320px) and (max-width: 775px){
     .register .card-body form .field .column .password2 i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 18px;
-        color: #154360;
-        transform: translateY(-50%);
-        cursor: pointer;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-body form .field .column .password2 i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 16px;
-        color: #154360;
-        transform: translateY(-50%);
-        cursor: pointer;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .register .card-body form .field .column .password2 i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
         font-size: 14px;
-        color: #154360;
-        transform: translateY(-50%);
-        cursor: pointer;
     }
 }
 
 .register .card-body form .g-recaptcha{
-    margin-top: 15px !important;
+    margin-top: 10px !important;
     display: grid !important;
     place-items: center;
     position: relative !important;
 }
 
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .register .card-body form .g-recaptcha > div{
-        width: 100% !important;
-        white-space: nowrap !important;
-        overflow-x: auto !important;
-        overflow-y: hidden;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-body form .g-recaptcha > div{
-        width: 100% !important;
-        white-space: nowrap !important;
-        overflow-x: auto !important;
-        overflow-y: hidden;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 775px){
     .register .card-body form .g-recaptcha > div{
         width: 100% !important;
         white-space: nowrap !important;
@@ -1232,20 +515,19 @@
 }
 
 .register .card-body form button{
-    margin-top: 15px;
+    margin-top: 10px;
     padding-left: 10px !important;
     padding-right: 10px !important;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
     width: 100%;
     height: 100% !important;
     border: 1px solid #B2BEB5; 
     border-radius: 5px;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
-    font-family: "Poppins";
+    font-family: "Montserrat";
     font-weight: 400;
-    font-size: 20px !important;
+    font-size: 22px !important;
     background-color: #003755 !important;
     color: #FFFFFF !important;
     cursor: pointer;
@@ -1256,117 +538,30 @@
     color: #B2BEB5 !important;
 }
 
-@media screen and (min-width: 369px) and (max-width: 445px){
+@media screen and (min-width: 320px) and (max-width: 775px){
     .register .card-body form button{
-        margin-top: 15px;
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        height: 100% !important;
-        border: 1px solid #B2BEB5; 
-        border-radius: 5px;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Poppins";
-        font-weight: 400;
-        font-size: 18px !important;
-        background-color: #003755 !important;
-        color: #FFFFFF !important;
-        cursor: pointer;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-body form button{
-        margin-top: 15px;
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        height: 100% !important;
-        border: 1px solid #B2BEB5; 
-        border-radius: 5px;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Poppins";
-        font-weight: 400;
-        font-size: 16px !important;
-        background-color: #003755 !important;
-        color: #FFFFFF !important;
-        cursor: pointer;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .register .card-body form button{
-        margin-top: 15px;
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        height: 100% !important;
-        border: 1px solid #B2BEB5; 
-        border-radius: 5px;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Poppins";
-        font-weight: 400;
         font-size: 14px !important;
-        background-color: #003755 !important;
-        color: #FFFFFF !important;
-        cursor: pointer;
     }
 }
 
 .register .card-body .login{
-    margin-top: 15px;
+    margin-top: 10px;
     display: inline-block;
-    font-family: "Poppins";
+    font-family: "Montserrat";
     font-weight: 400;
-    font-size: 20px;
-    color: #154659;
+    font-size: 22px;
+    color: #003755;
     text-align: center;
 }
 
-@media screen and (min-width: 369px) and (max-width: 445px){
+@media screen and (min-width: 320px) and (max-width: 775px){
     .register .card-body .login{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Poppins";
-        font-weight: 400;
-        font-size: 18px;
-        color: #154659;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-body .login{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Poppins";
-        font-weight: 400;
-        font-size: 16px;
-        color: #154659;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .register .card-body .login{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Poppins";
-        font-weight: 400;
         font-size: 14px;
-        color: #154659;
     }
 }
 
 .register .card-body .login a{
-    font-size: 20px;
+    font-size: 23px;
     color: #003755;
     text-decoration: none;
 }
@@ -1375,23 +570,7 @@
     color: #002C44;
 }
 
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .register .card-body .login a{
-        font-size: 18px;
-        color: #003755;
-        text-decoration: none;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .register .card-body .login a{
-        font-size: 16px;
-        color: #003755;
-        text-decoration: none;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 775px){
     .register .card-body .login a{
         font-size: 14px;
         color: #003755;
@@ -1400,7 +579,7 @@
 }
 
 input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus input:-webkit-autofill, textarea:-webkit-autofill, textarea:-webkit-autofill:hover textarea:-webkit-autofill:focus, select:-webkit-autofill, select:-webkit-autofill:hover, select:-webkit-autofill:focus{
-    -webkit-text-fill-color: #154360;
+    -webkit-text-fill-color: #003755;
     -webkit-box-shadow: 0 0 0px 1000px #FFFFFF inset;
     transition: background-color 5000s ease-in-out 0s;
 }
@@ -1410,310 +589,197 @@ input:autofill{
 }
 
 
-.swal2-popup{
-    padding-bottom: 15px !important;
+.swal2-container .swal2-popup{
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
     border-radius: 5px !important;
     border: 1px solid #B2BEB5 !important; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
 }
 
-.swal2-popup .swal2-styled:focus{
+.swal2-container .swal2-popup .swal2-styled:focus{
     box-shadow: none !important;
 }
 
-div:where(.swal2-container) .swal2-html-container{
-    padding: 10px 30px 0em 30px !important;
-    margin: 0px !important;
-    font-family: "Poppins" !important;
+.swal2-container .swal2-html-container{
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 0px !important;
+    padding-bottom: 10px !important;
+    font-family: "Montserrat" !important;
     font-weight: 400 !important;
-    font-size: 20px !important;
-    color: #154360 !important;
+    font-size: 22px !important;
+    color: #003755 !important;
 }
 
-@media screen and (min-width: 369px) and (max-width: 445px){
-    div:where(.swal2-container) .swal2-html-container{
-        padding: 10px 30px 0em 30px !important;
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .swal2-container .swal2-html-container{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 0px !important;
+        padding-bottom: 10px !important;
         margin: 0px !important;
-        font-family: "Poppins" !important;
-        font-weight: 400 !important;
-        font-size: 18px !important;
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    div:where(.swal2-container) .swal2-html-container{
-        padding: 10px 30px 0em 30px !important;
-        margin: 0px !important;
-        font-family: "Poppins" !important;
-        font-weight: 400 !important;
-        font-size: 16px !important;
-        color: #154360 !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    div:where(.swal2-container) .swal2-html-container{
-        padding: 10px 30px 0em 30px !important;
-        margin: 0px !important;
-        font-family: "Poppins" !important;
+        font-family: "Montserrat" !important;
         font-weight: 400 !important;
         font-size: 14px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
-div:where(.swal2-icon){
-    margin: 15px auto 0em auto !important;
+.swal2-container div:where(.swal2-icon){
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 0px !important;
+    margin-bottom: 10px !important;
 }
 
-div:where(.swal2-icon).swal2-success .swal2-success-ring{
-    border: 0.25em solid #003755 !important;
+.swal2-container div:where(.swal2-icon).swal2-success .swal2-success-ring{
+    border: 1px solid #003755 !important;
 }
 
-div:where(.swal2-icon).swal2-success [class ^= swal2-success-line]{
+.swal2-container div:where(.swal2-icon).swal2-success [class ^= swal2-success-line]{
     background-color: #003755 !important;
 }
 
-div:where(.swal2-icon).swal2-error [class ^= swal2-x-mark-line]{
-    background-color: #C90016 !important;
+.swal2-container div:where(.swal2-icon).swal2-error{
+    border-color: #003755 !important;
+    color: #003755 !important;
 }
 
-div:where(.swal2-container) h2:where(.swal2-title){
-    padding: 15px 30px 0em 30px !important;
+.swal2-container div:where(.swal2-icon).swal2-error [class ^= swal2-x-mark-line]{
+    background-color: #003755 !important;
 }
 
-.title{
-    font-family: "Poppins" !important;
+.swal2-container h2:where(.swal2-title){
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 0px !important;
+    padding-bottom: 10px !important;
+}
+
+.swal2-container .title{
+    font-family: "Montserrat" !important;
     font-weight: 700 !important;
-    font-size: 22px !important;   
-    color: #154360 !important;
+    font-size: 36px !important;   
+    color: #003755 !important;
     pointer-events: none !important;
 }
 
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .title{
-        font-family: "Poppins" !important;
-        font-weight: 700 !important;
-        font-size: 20px !important;   
-        color: #154360 !important;
-        pointer-events: none !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .title{
-        font-family: "Poppins" !important;
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .swal2-container .title{
+        font-family: "Montserrat" !important;
         font-weight: 700 !important;
         font-size: 18px !important;   
-        color: #154360 !important;
+        color: #003755 !important;
         pointer-events: none !important;
     }
 }
 
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .title{
-        font-family: "Poppins" !important;
-        font-weight: 700 !important;
-        font-size: 16px !important;   
-        color: #154360 !important;
-        pointer-events: none !important;
-    }
+.swal2-container div:where(.swal2-actions){
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
 }
 
-div:where(.swal2-container) div:where(.swal2-actions){
-    margin: 15px auto 0 !important;
-}
-
-.swal2-actions{
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
+.swal2-container .swal2-actions{
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
     height: fit-content !important;
 }
 
-.info-button{
+.swal2-container .info-button{
     visibility: hidden;
     font-size: 0px !important;
 }
 
-.info-button::before{
+.swal2-container .info-button::before{
     padding-left: 10px !important;
     padding-right: 10px !important;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
     content: "Ok" !important;
     visibility: visible !important;
     border: 1px solid #B2BEB5 !important; 
     border-radius: 5px !important;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
-    font-family: "Poppins" !important;
+    font-family: "Montserrat" !important;
     font-weight: 400 !important;
-    font-size: 20px !important;
-    background-color: #154360 !important;
+    font-size: 22px !important;
+    background-color: #003755 !important;
     color: #FFFFFF !important;
     pointer-events: auto !important;
     cursor: pointer;
 }
 
-.info-button:hover{
+.swal2-container .info-button:hover{
     background-color: #10354C !important;
     color: #B2BEB5 !important;        
 }
 
-@media screen and (min-width: 369px) and (max-width: 445px){
+@media screen and (min-width: 320px) and (max-width: 775px){
     .info-button::before{
         padding-left: 10px !important;
         padding-right: 10px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
         content: "Ok" !important;
         visibility: visible !important;
         border: 1px solid #B2BEB5 !important; 
         border-radius: 5px !important;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Poppins" !important;
-        font-weight: 400 !important;
-        font-size: 18px !important;
-        background-color: #154360 !important;
-        color: #FFFFFF !important;
-        pointer-events: auto !important;
-        cursor: pointer;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .info-button::before{
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        content: "Ok" !important;
-        visibility: visible !important;
-        border: 1px solid #B2BEB5 !important; 
-        border-radius: 5px !important;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Poppins" !important;
-        font-weight: 400 !important;
-        font-size: 16px !important;
-        background-color: #154360 !important;
-        color: #FFFFFF !important;
-        pointer-events: auto !important;
-        cursor: pointer;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .info-button::before{
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        content: "Ok" !important;
-        visibility: visible !important;
-        border: 1px solid #B2BEB5 !important; 
-        border-radius: 5px !important;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Poppins" !important;
+        font-family: "Montserrat" !important;
         font-weight: 400 !important;
         font-size: 14px !important;
-        background-color: #154360 !important;
+        background-color: #003755 !important;
         color: #FFFFFF !important;
         pointer-events: auto !important;
         cursor: pointer;
     }
 }
 
-.success-button{
+.swal2-container .success-button{
     visibility: hidden;
     font-size: 0px !important;
 }
 
-.success-button::before{
+.swal2-container .success-button::before{
     padding-left: 10px !important;
     padding-right: 10px !important;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
     content: "Ok" !important;
     visibility: visible !important;
     border: 1px solid #B2BEB5 !important; 
     border-radius: 5px !important;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
-    font-family: "Poppins" !important;
+    font-family: "Montserrat" !important;
     font-weight: 400 !important;
-    font-size: 20px !important;
+    font-size: 22px !important;
     background-color: #003755 !important;
     color: #FFFFFF !important;
     pointer-events: auto !important;
     cursor: pointer;
 }
 
-.success-button:hover{
+.swal2-container .success-button:hover{
     background-color: #002C44 !important;
     color: #B2BEB5 !important;        
 }
 
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .success-button::before{
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .swal2-container .success-button::before{
         padding-left: 10px !important;
         padding-right: 10px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
         content: "Ok" !important;
         visibility: visible !important;
         border: 1px solid #B2BEB5 !important; 
         border-radius: 5px !important;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Poppins" !important;
-        font-weight: 400 !important;
-        font-size: 18px !important;
-        background-color: #003755 !important;
-        color: #FFFFFF !important;
-        pointer-events: auto !important;
-        cursor: pointer;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .success-button::before{
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        content: "Ok" !important;
-        visibility: visible !important;
-        border: 1px solid #B2BEB5 !important; 
-        border-radius: 5px !important;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Poppins" !important;
-        font-weight: 400 !important;
-        font-size: 16px !important;
-        background-color: #003755 !important;
-        color: #FFFFFF !important;
-        pointer-events: auto !important;
-        cursor: pointer;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .success-button::before{
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        content: "Ok" !important;
-        visibility: visible !important;
-        border: 1px solid #B2BEB5 !important; 
-        border-radius: 5px !important;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Poppins" !important;
+        font-family: "Montserrat" !important;
         font-weight: 400 !important;
         font-size: 14px !important;
         background-color: #003755 !important;
@@ -1723,96 +789,50 @@ div:where(.swal2-container) div:where(.swal2-actions){
     }
 }
 
-.error-button{
+.swal2-container .error-button{
     visibility: hidden;
     font-size: 0px !important;
 }
 
-.error-button::before{
+.swal2-container .error-button::before{
     padding-left: 10px !important;
     padding-right: 10px !important;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
     content: "Ok" !important;
     visibility: visible !important;
     border: 1px solid #B2BEB5 !important; 
     border-radius: 5px !important;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
-    font-family: "Poppins" !important;
+    font-family: "Montserrat" !important;
     font-weight: 400 !important;
-    font-size: 20px !important;
-    background-color: #C90016 !important;
+    font-size: 22px !important;
+    background-color: #003755 !important;
     color: #FFFFFF !important;
     pointer-events: auto !important;
     cursor: pointer;
 }
 
-.error-button:hover{
-    background-color: #A00011 !important;
+.swal2-container .error-button:hover{
+    background-color: #002C44 !important;
     color: #B2BEB5 !important;        
 }
 
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .error-button::before{
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .swal2-container .error-button::before{
         padding-left: 10px !important;
         padding-right: 10px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
         content: "Ok" !important;
         visibility: visible !important;
         border: 1px solid #B2BEB5 !important; 
         border-radius: 5px !important;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Poppins" !important;
+        font-family: "Montserrat" !important;
         font-weight: 400 !important;
         font-size: 18px !important;
-        background-color: #C90016 !important;
-        color: #FFFFFF !important;
-        pointer-events: auto !important;
-        cursor: pointer;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .error-button::before{
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        content: "Ok" !important;
-        visibility: visible !important;
-        border: 1px solid #B2BEB5 !important; 
-        border-radius: 5px !important;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Poppins" !important;
-        font-weight: 400 !important;
-        font-size: 16px !important;
-        background-color: #C90016 !important;
-        color: #FFFFFF !important;
-        pointer-events: auto !important;
-        cursor: pointer;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .error-button::before{
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        content: "Ok" !important;
-        visibility: visible !important;
-        border: 1px solid #B2BEB5 !important; 
-        border-radius: 5px !important;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Poppins" !important;
-        font-weight: 400 !important;
-        font-size: 14px !important;
-        background-color: #C90016 !important;
+        background-color: #003755 !important;
         color: #FFFFFF !important;
         pointer-events: auto !important;
         cursor: pointer;

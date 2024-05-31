@@ -416,10 +416,10 @@
     cursor: pointer;
     outline: none;
     appearance: none !important;
+    border: none !important;
 }
 
 .report-body .report-form .next-report button{
-    border: none !important;
     border: none !important;
     font-family: "Montserrat";
     font-weight: 400;

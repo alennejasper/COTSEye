@@ -292,7 +292,7 @@ def ContributorServiceHome(request):
 
     valid_posts = Post.objects.filter(post_status = 1).order_by("-capture_date")[:3]
     
-    unread_posts = Post.objects.filter(post_status = 1, contrib_read_status = False, user = request.user.user).order_by("-capture_date")
+    unread_posts = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:5]
         
     try:
         map_posts = Post.objects.filter(post_status = 1)
@@ -317,7 +317,7 @@ def ContributorServiceProfile(request):
 
     user_profile = User.objects.get(account = request.user)
 
-    unread_posts = Post.objects.filter(post_status = 1, contrib_read_status = False, user = request.user.user).order_by("-capture_date")
+    unread_posts = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:5]
 
     context = {"user": user, "username": username, "user_profile": user_profile, "unread_posts": unread_posts}
 
@@ -333,7 +333,7 @@ def ContributorServiceProfileUpdate(request):
 
     user_profile = User.objects.get(account = request.user)
 
-    unread_posts = Post.objects.filter(post_status = 1, contrib_read_status = False, user = request.user.user).order_by("-capture_date")
+    unread_posts = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:5]
 
     if request.method == "POST":
         profile_form = ProfileForm(request.POST, request.FILES, instance = request.user.user)

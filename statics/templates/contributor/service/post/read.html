@@ -11,7 +11,15 @@
         {% if valid_post %}
             <div class = "postandfeedread">
                 <div class = "postandfeedread-header">
-                    <p><img src = "{{valid_post.user.profile_photo.url}}">{{valid_post.user}}</p>
+                    <div style = "display: flex; align-items: center; justify-content: space-between;">
+                        <img src = "{{valid_post.user.profile_photo.url}}">
+
+                        <div>
+                            <p style="font-weight: 550; font-size: 13px !important;">{{valid_post.user}}</p>
+
+                            <p style="font-weight: 400; font-size: 13px !important;">{{valid_post.location | default:'None available'}}</p>
+                        </div>
+                    </div>
 
                     <p>{{valid_post.capture_date | date:'m/d/y' | default:'None available'}}</p>
                 </div>
@@ -23,15 +31,12 @@
                 </div>
 
                 <div class = "postandfeedread-origin">
-                    <p>{{valid_post.location | default:'None available'}}</p>
-                    
                     <p>{{valid_post.post_status | default:'None available'}}</p>
                 </div>
 
                 <p>{{valid_post.description | default:'None available'}}</p>
 
                 <div class = "postandfeedread-observation">
-                    <h1>POST OBSERVATION</h1>
 
                     <div class = "observation-context">
                         <p>Size</p>
@@ -67,7 +72,15 @@
         {% if invalid_post %}
             <div class = "postandfeedread">
                 <div class = "postandfeedread-header">
-                    <p><img src = "{{invalid_post.user.profile_photo.url}}">{{invalid_post.user}}</p>
+                    <div style = "display: flex; align-items: center; justify-content: space-between;">
+                        <img src = "{{invalid_post.user.profile_photo.url}}">
+
+                        <div>
+                            <p style="font-weight: 550; font-size: 13px !important;">{{invalid_post.user}}</p>
+
+                            <p style="font-weight: 400; font-size: 13px !important;">{{invalid_post.location | default:'None available'}}</p>
+                        </div>
+                    </div>
 
                     <p>{{invalid_post.capture_date | date:'m/d/y' | default:'None available'}}</p>
                 </div>
@@ -87,7 +100,7 @@
                 <p>{{invalid_post.description | default:'None available'}}</p>
 
                 <div class = "postandfeedread-observation">
-                    <h1>POST OBSERVATION</h1>
+
 
                     <div class = "observation-context">
                         <p>Size</p>
@@ -112,6 +125,10 @@
 
                         <p>{{invalid_post.post_observation.weather | default:'None available'}}</p>
                     </div>
+
+                    <h1>POST REMARKS</h1>
+
+                    <p>{{invalid_post.remarks | default:'None available'}}</p>
                 </div>
 
                 <div class = "button">
@@ -123,7 +140,15 @@
         {% if pending_post %}
             <div class = "postandfeedread">
                 <div class = "postandfeedread-header">
-                    <p><img src = "{{pending_post.user.profile_photo.url}}">{{pending_post.user}}</p>
+                    <div style = "display: flex; align-items: center; justify-content: space-between;">
+                        <img src = "{{pending_post.user.profile_photo.url}}">
+
+                        <div>
+                            <p style="font-weight: 550; font-size: 13px !important;">{{pending_post.user}}</p>
+
+                            <p style="font-weight: 400; font-size: 13px !important;">{{pending_post.location | default:'None available'}}</p>
+                        </div>
+                    </div>
 
                     <p>{{pending_post.capture_date | date:'m/d/y' | default:'None available'}}</p>
                 </div>
@@ -143,7 +168,6 @@
                 <p>{{pending_post.description | default:'None available'}}</p>
 
                 <div class = "postandfeedread-observation">
-                    <h1>POST OBSERVATION</h1>
 
                     <div class = "observation-context">
                         <p>Size</p>
@@ -168,6 +192,10 @@
 
                         <p>{{pending_post.post_observation.weather | default:'None available'}}</p>
                     </div>
+
+                    <h1>POST REMARKS</h1>
+
+                    <p>{{pending_post.remarks | default:'None available'}}</p>
                 </div>
             </div>
         {% endif %}
@@ -175,7 +203,15 @@
         {% if draft_post %}
             <div class = "postandfeedread">
                 <div class = "postandfeedread-header">
-                    <p><img src = "{{draft_post.user.profile_photo.url}}">{{draft_post.user}}</p>
+                    <div style = "display: flex; align-items: center; justify-content: space-between;">
+                        <img src = "{{draft_post.user.profile_photo.url}}">
+
+                        <div>
+                            <p style="font-weight: 550; font-size: 13px !important;">{{draft_post.user}}</p>
+
+                            <p style="font-weight: 400; font-size: 13px !important;">{{draft_post.location | default:'None available'}}</p>
+                        </div>
+                    </div>
 
                     <p>{{draft_post.capture_date | date:'m/d/y' | default:'None available'}}</p>
                 </div>
@@ -195,7 +231,6 @@
                 <p>{{draft_post.description | default:'None available'}}</p>
 
                 <div class = "postandfeedread-observation">
-                    <h1>POST OBSERVATION</h1>
 
                     <div class = "observation-context">
                         <p>Size</p>
@@ -220,6 +255,10 @@
 
                         <p>{{draft_post.post_observation.weather | default:'None available'}}</p>
                     </div>
+
+                    <h1 style="font-size: 15px !important;">Remarks:</h1>
+
+                    <p>{{draft_post.remarks | default:'None available'}}</p>
                 </div>
 
                 <div class = "button">

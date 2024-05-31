@@ -48,8 +48,11 @@
                     var status = feature.properties.statustype;
 
                     if (status === "Critical"){
+                        fillings = "#483248";
+                    
+                    } else if (status === "High"){
                         fillings = "#C90016";
-                            
+
                     } else if (status === "Moderate"){
                         fillings = "#F4C430";
 
@@ -85,8 +88,11 @@
                         var fillings = "";
 
                         if (status === "Critical"){
+                            fillings = "#483248";
+                    
+                        } else if (status === "High"){
                             fillings = "#C90016";
-                            
+
                         } else if (status === "Moderate"){
                             fillings = "#F4C430";
 
@@ -120,15 +126,15 @@
                 });
 
                 status.addTo(map_statuses);
+
+                var map_posts = L.markerClusterGroup({iconCreateFunction: function(cluster){return starfish}, removeOutsideVisibleBounds: false});
                 
                 {% for post in map_posts %}
-                    var starfish = L.icon({iconUrl: "{{post.post_photos.first.post_photo.url}}", iconSize: [30, 30], iconAnchor: [15, 15], className: "custom-leaflet-icon"});
-            
-                    var map_posts = L.markerClusterGroup({iconCreateFunction: function(cluster){return starfish}, removeOutsideVisibleBounds: false});
-            
+                    var starfish = L.icon({iconUrl: "{{post.post_photos.first.post_photo.url | default:'/statics/assets/pin.png'}}",  iconSize: [30, 30], iconAnchor: [15, 15], className: "pin"});
+
                     var postMarker = L.marker([{{post.coordinates.latitude}}, {{post.coordinates.longitude}}], {icon: starfish});
                     
-                    postMarker.bindPopup("<div class = 'popup'>" + "<div class = 'popup-header'>" +  "<img src = '{{post.user.profile_photo.url | default:''}}'>" +  "<div class='popup-username'>" +  "<p><a>{{post.user | default:'None available'}}</a></p>" + "</div>" + "<i class = 'fa-solid fa-square-xmark popup-back'></i>" + "</div>" + "<div class = 'popup-post'>" + "<div class = 'post-gallery'>" + "<img src = '{{post.post_photos.all.first.post_photo.url}}'>" + "<div class = 'post-context'>" + "<p>{{post.capture_date | default:'None available'}}</p>" + "<a>{{post.location | default:'None available'}}</a>" + "</div>" + "</div>" + "</div>" + "<div class = 'button'><a class = 'read-post' href = '{% url 'Post Valid Read Redirect' %}'>Read</a></div>", {closeOnClick: false, autoClose: false});
+                    postMarker.bindPopup("<div class = 'popup'>" + "<div class = 'popup-header'>" +  "<img src = '{{post.user.profile_photo.url | default:'/statics/assets/pin.png'}}'>" +  "<div class='popup-username'>" +  "<p><a>{{post.user | default:'None available'}}</a></p>" + "</div>" + "<i class = 'fa-solid fa-square-xmark popup-back'></i>" + "</div>" + "<div class = 'popup-post'>" + "<div class = 'post-gallery'>" + "<img src = '{{post.post_photos.all.first.post_photo.url|default:'/statics/assets/pin.png'}}'>" + "<div class = 'post-context'>" + "<p>{{post.capture_date | default:'None available'}}</p>" + "<a>{{post.location | default:'None available'}}</a>" + "</div>" + "</div>" + "</div>" + "<div class = 'button'><a class = 'read-post' href = '{% url 'Post Valid Read Redirect' %}'>Read</a></div>", {closeOnClick: false, autoClose: false});
 
                     postMarker.on("popupopen", function(e){
                         var popup = e.popup;
@@ -148,6 +154,7 @@
 
                     map_posts.addLayer(postMarker);
                 {% endfor %}
+
 
                 var map = document.getElementsByClassName("map")[0];
 
@@ -193,11 +200,11 @@
                         
                         this._div.innerHTML = "<div class = 'popup-header'>" + "<p>" + "<a>" + "Map " + "</a>" + "legend" + ":" + "</a>" + "</p>" + "</div>";
                         
-                        var ranges = ["75 and up", "25 to 75", "0 to 25"];
+                        var ranges = ["25 and up", "19 to 24", "13 to 18", "6 to 12"];
                         
-                        var labels = ["Critical", "Moderate", "Low"];
+                        var labels = ["High", "Critical", "Moderate", "Low"];
                         
-                        var colors = ["#C90016", "#F4C430", "#698F3F"];
+                        var colors = ["#483248", "#C90016", "#F4C430", "#698F3F"];
 
                         for (var i = 0; i < ranges.length; i++){
                             this._div.innerHTML += "<div class = 'popup-statistics'>" + "<i style = 'background:" + colors[i] + "'>" + "</i>" + "<p>" + labels[i] + ", " + "<a>" + ranges[i] + "</a>" + "." + "</p>" + "</div>";
@@ -223,13 +230,15 @@
         </script>
 
         <div class = "home-cots">
-            <img src = "/statics/assets/pic1.gif">
+            <a href = "https://www.barrierreef.org/news/explainers/what-are-crown-of-thorns-starfish">
+                <img src = "{% static 'assets/cotpic1.jpeg' %}">
 
-            <div class = "cots-context">
-                <h1>WHAT IS COTS?</h1>
+                <div class = "cots-context">
+                    <p><i class = "fa-solid fa-bars"></i> READ</p>
 
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias necessitatibus dolorum molestiae natus, asperiores hic repellendus inventore voluptatibus soluta minima id laborum. Veritatis accusantium iste vel ratione</p>
-            </div>
+                    <h1>Crown-of-Thorns Starfish (COTS)</h1>                
+                </div>
+            </a>
         </div>
 
         <div class = "home-post">
@@ -243,9 +252,9 @@
                         </a>
                 
                         <div class = "post-context">
-                            <h1>{{post.user | default:'None available'}}</h1>
-                            
                             <p>{{post.location | default:'None available'}}</p>
+                            
+                            <h1>{{post.user | default:'None available'}}</h1>
                         </div>
                     </div>
                 {% endfor %}
@@ -261,12 +270,6 @@
                         <a href = "{% url 'Public Service Announcement Read' announcement.id %}">
                             <img src = "{{announcement.announcement_photo.url}}">
                         </a>
-
-                        <div class = "announcement-context">
-                            <h1>{{announcement.title | default:'None available'}}</h1>
-                            
-                            <p>{{announcement.context | default:'None available'}}</p>
-                        </div>
                     </div>
             {% endfor %}
             </div>

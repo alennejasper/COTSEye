@@ -4,14 +4,14 @@
 {% block content %}
     {% if draft_post %} 
         <div class = "report-body">
-            <div class = "report-section">
-                <h1>UPDATE A SIGHTING REPORT DRAFT</h1>
-            </div>
-
             <form action = "" class = "report-form" method = "POST" enctype = "multipart/form-data">
                 {% csrf_token %}
 
-                <div id = "first-tab" class = "tab-content">        
+                <div id = "first-tab" class = "tab-content">    
+                    <div class = "report-section">
+                        <h1>UPDATE A SIGHTING REPORT DRAFT</h1>
+                    </div>
+
                     <div class = "controls-wrapper">
                         <div class = "control-section capture">
                             <i class = "fa-solid fa-camera"></i>
@@ -92,6 +92,12 @@
                 </div>
 
                 <div id = "second-tab" class = "tab-content" style = "display: none;">
+                    <img width="20px" src = "{% static 'assets/backbutton.png' %}" onclick = "openTab('first-tab')">
+
+                    <div class = "report-section">
+                        <h1>UPDATE A SIGHTING REPORT DRAFT</h1>
+                    </div>
+                    
                     <div class = "description">
                         <label for = "description" class = "required">Sighting Description</label>
 
@@ -271,12 +277,12 @@
                 </div>
 
                 <div id = "second-tab" class = "tab-content" style = "display: none;">
+                    <img width="20px" src = "{% static 'assets/backbutton.png' %}" onclick = "openTab('first-tab')">
+
                     <div class = "report-section">
                         <h1>CREATE REPORT</h1>
                     </div>
                     
-                    <img width="12px" src = "{% static 'assets/down.png' %}" onclick = "openTab('first-tab')">
-
                     <div class = "description">
                         <label for = "description" class = "required">Sighting Description</label>
                         
@@ -622,6 +628,7 @@
     <script>
         var map;
         var report;
+        var isDragging = false;
     
         function updateCoordinates(latitude, longitude) {
             var latitudeInput = document.getElementById("latitude");
@@ -692,10 +699,12 @@
             if (barangayCoordinates[barangayId]) {
                 var coordinates = barangayCoordinates[barangayId];
     
-                map.setView(coordinates, 15);
-                report.setLatLng(coordinates);
-    
-                updateCoordinates(coordinates[0], coordinates[1]);
+                if (!isDragging) { // Only update if not dragging
+                    map.setView(coordinates, 15);
+                    report.setLatLng(coordinates);
+
+                    updateCoordinates(coordinates[0], coordinates[1]);
+                }
             }
         }
     
@@ -722,9 +731,14 @@
                 var polygon = L.polygon(swappedCoordinates, { color: "transparent", fillColor: "transparent", fillOpacity: 0 }).addTo(map);
     
                 polygon.locationId = {{ location.id }};
+                
                 polygon.locationName = "{{ location }}";
             {% endfor %}
     
+            report.on("dragstart", function (){
+                isDragging = true; // Set dragging to true when the drag starts
+            });
+
             report.on("drag", function (event) {
                 var position = event.target.getLatLng();
                 updateCoordinates(position.lat, position.lng);
@@ -749,21 +763,26 @@
                         }
                     }
                 });
+
+                isDragging = false;
             });
     
-            document.getElementById("barangay").addEventListener("change", function () {
+            document.getElementById("barangay").addEventListener("change", function (){
                 var barangayId = this.value;
+
                 updateMarker(barangayId);
             });
     
-            document.getElementById("municipality").addEventListener("change", function () {
+            document.getElementById("municipality").addEventListener("change", function (){
                 updateBarangay();
             });
     
             var defaultLatitude = report.getLatLng().lat;
+
             var defaultLongitude = report.getLatLng().lng;
     
             updateCoordinates(defaultLatitude, defaultLongitude);
+
             fetchLocation(defaultLatitude, defaultLongitude);
     
             {% if draft_post %}
@@ -776,10 +795,6 @@
         });
     </script>
     
-    
-    
-    
-
     <script>
         function refreshMap(){
             map.setView([5.9656, 125.1929], 11);
@@ -813,6 +828,8 @@
 
             if (latitude < minimumLatitude || latitude > maximumLatitude || longitude < minimumLongitude || longitude > maximumLongitude){
                 document.querySelector(".post-photo-capture").addEventListener("click", function(){
+                    event.preventDefault()
+
                     event.stopPropagation();
                     
                     Swal.fire({title: "Oops!", text: "The location given to COTSEye incorporated coordinates out of bounds.", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}});
@@ -1146,3 +1163,6 @@
         };
     </script>   
 {% endblock content %}
+
+{% block draggable_report %}
+{% endblock draggable_report %}

@@ -1,7 +1,5 @@
 from datetime import timedelta
-from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.db.models import Max
 from django.http import FileResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
@@ -68,9 +66,6 @@ def PublicServiceMap(request):
 
     locations = locations_query.distinct()
 
-    notification_life = timezone.now() - timedelta(days=30)
-    unread_posts = Post.objects.filter(read_status=False, creation_date__gte=notification_life).order_by('-creation_date')[:5]
-
     data = {}
     total_caught_overall = 0
 
@@ -117,7 +112,6 @@ def PublicServiceMap(request):
     context = {"username": username, "map_posts": map_posts, "map_statuses": map_statuses, "map_graphs": map_graphs,'chart_data': json.dumps(data),
         'locations': locations,
         'municipalities': municipalities,
-        'unread_posts': unread_posts,
         'total_caught_overall': total_caught_overall,
         'barangay_data': barangay_data,
         'selected_municipality': municipality_filter,
@@ -152,7 +146,7 @@ def ContributorServiceAnnouncement(request):
 
     host = request.META["HTTP_HOST"]
 
-    unread_posts = Post.objects.filter(post_status = 1, contrib_read_status = False, user = request.user.user).order_by("-capture_date")
+    unread_posts = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:5]
 
     context = {"username": username, "user_profile": user_profile, "announcements": announcements, "unread_posts": unread_posts, "scheme": scheme, "host": host}
 
@@ -172,7 +166,7 @@ def ContributorServiceAnnouncementRead(request, id):
 
     announcement = Announcement.objects.get(id = id)
 
-    unread_posts = Post.objects.filter(post_status = 1, contrib_read_status = False, user = request.user.user).order_by("-capture_date")
+    unread_posts = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:5]
 
     context = {"username": username, "user_profile": user_profile, "scheme": scheme, "host": host, "announcement": announcement, "unread_posts": unread_posts}
 
@@ -188,7 +182,7 @@ def ContributorServiceInquiry(request):
 
     inquiries = Inquiry.objects.all()
 
-    unread_posts = Post.objects.filter(post_status = 1, contrib_read_status = False, user = request.user.user).order_by("-capture_date")
+    unread_posts = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:5]
 
     context = {"username": username, "user_profile": user_profile, "inquiries": inquiries, "unread_posts": unread_posts}
 
@@ -202,7 +196,7 @@ def ContributorServiceMap(request):
 
     user_profile = User.objects.get(account = request.user)
 
-    unread_posts = Post.objects.filter(post_status = 1, contrib_read_status = False, user = request.user.user).order_by("-capture_date")
+    unread_posts = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:5]
 
     try:
         map_posts = Post.objects.filter(post_status = 1)
@@ -232,8 +226,7 @@ def ContributorServiceMap(request):
 
     locations = locations_query.distinct()
 
-    notification_life = timezone.now() - timedelta(days=30)
-    unread_posts = Post.objects.filter(read_status=False, creation_date__gte=notification_life).order_by('-creation_date')[:5]
+    unread_posts = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:5]
 
     data = {}
     total_caught_overall = 0
@@ -267,7 +260,6 @@ def ContributorServiceMap(request):
     context = {"username": username, "user_profile": user_profile, "map_posts": map_posts, "map_statuses": map_statuses, "map_graphs": map_graphs, "unread_posts": unread_posts, 'chart_data': json.dumps(data),
         'locations': locations,
         'municipalities': municipalities,
-        'unread_posts': unread_posts,
         'total_caught_overall': total_caught_overall,
         'barangay_data': barangay_data,
         'selected_municipality': municipality_filter,
@@ -287,7 +279,7 @@ def ContributorServiceResource(request):
 
     resource_files = ResourceFile.objects.all()
 
-    unread_posts = Post.objects.filter(post_status = 1, contrib_read_status = False, user = request.user.user).order_by("-capture_date")
+    unread_posts = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:5]
     
     context = {"username": username, "user_profile": user_profile, "resource_links": resource_links, "resource_files": resource_files, "unread_posts": unread_posts}
     

@@ -13,11 +13,11 @@
 
         <script src = "{% static 'templates/webwares/application.js' %}"></script>
 
-        <meta name = "theme-color" content = "#154360">
+        <meta name = "theme-color" content = "#003755">
 
         <link rel = "apple-touch-icon" href = "{% static 'assets/icons/logo (180 x 180).png' %}">
 
-        <meta name = "apple-mobile-web-app-status-bar" content = "#154360">
+        <meta name = "apple-mobile-web-app-status-bar" content = "#003755">
         
         <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity = "sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin = "anonymous" referrerpolicy = "no-referrer"/>
 
@@ -72,7 +72,7 @@
 
     <body>
         <nav class = "navigation-topbar">
-            <a href = "{% url 'Public Service Home' %}" class = "logo"><img src = "{% static 'assets/icons/header.png' %}" class = "logo"></a>
+            <a href = "{% url 'Public Service Home' %}" class = "header"><img src = "{% static 'assets/icons/header.png' %}" class = "header"></a>
 
             <a onclick = "shownDropdown()" class = "profile"><img src = "{% static 'assets/logo.jpg' %}" class = "drop profile"></a>
         </nav>
@@ -94,85 +94,7 @@
                 </div>
             </div>
         </div>
-
-        <script>
-            document.addEventListener("DOMContentLoaded", function(){
     
-                const element = document.querySelector(".draggable-report");
-    
-                let positionX = 0, positionY = 0, offsetX = 0, offsetY = 0;
-    
-                let move = false;
-
-                element.onmousedown = function(event){
-                    startDrag(event.clientX, event.clientY);
-                    
-                    document.onmousemove = onMouseMove;
-                    
-                    document.onmouseup = stopDrag;
-                };
-
-                element.ontouchstart = function(event){
-                    var touch = event.touches[0];
-
-                    startDrag(touch.clientX, touch.clientY);
-
-                    document.ontouchmove = onTouchMove;
-
-                    document.ontouchend = stopDrag;
-                };
-
-                function startDrag(x, y){
-                    offsetX = x - element.getBoundingClientRect().left;
-
-                    offsetY = y - element.getBoundingClientRect().top;
-
-                    move = false;
-                };
-
-                function onMouseMove(event){
-                    moveElement(event.clientX, event.clientY);
-                };
-
-                function onTouchMove(event){
-                    var touch = event.touches[0];
-                    
-                    moveElement(touch.clientX, touch.clientY);
-                };
-
-                function moveElement(x, y){
-                    move = true;
-
-                    positionX = x - offsetX;
-
-                    positionY = y - offsetY;
-
-                    element.style.left = positionX + "px";
-
-                    element.style.top = positionY + "px";
-                };
-
-                function stopDrag(){
-                    document.onmousemove = document.onmouseup = document.ontouchmove = document.ontouchend = null;
-                    
-                    if (move){
-                        element.onclick = function(event){
-                            event.preventDefault();
-                        };
-
-                        element.ontouchend = function(event){
-                            event.preventDefault();
-                        };
-
-                    } else{
-                        element.onclick = element.ontouchend = null;
-                    }
-                };
-            });
-
-        </script>
-    
-
         <div class = "content">
             {% block content %}
     

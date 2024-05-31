@@ -19,6 +19,8 @@
 
         <meta name = "apple-mobile-web-app-status-bar" content = "#003755">
         
+        <link rel = "stylesheet" href = "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
         <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity = "sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin = "anonymous" referrerpolicy = "no-referrer"/>
 
         <link rel = "icon" type = "image/x-icon" href = "{% static 'assets/icons/logo.png' %}">
@@ -107,14 +109,16 @@
                 <div id = "notification-content" class = "notification-content">
                     {% if unread_posts %}
                         {% for post in unread_posts %}
-                                <a class = "dropdown-item" href = "{% url 'Contributor Service Post Read' id=post.id %}" class = "post-link" post = "{{post.id}}">{{post.validated_by}} has marked your post as {{post.post_status}}. - {{post.creation_date}}</a>
+                                <a class = "dropdown-item" href = "{% url 'Contributor Service Post Read' id=post.id %}" class = "post-link" post = "{{post.id}}">COTSEye has marked your report last {{post.creation_date | date:'m/d/y'}} as「{{post.post_status}}」.</a>
+
+                                <div class = "dropdown-divider"></div>
                         {% endfor %}
                     {% else %}
 
-                        <a class = "dropdown-item">No unread posts in the last 30 days.</a>
+                        <a class = "dropdown-item">COTSEye found no unread posts in the last 30 days.</a>
                     {% endif %}
 
-                    <a href="{% url 'contrib_post_list' %}">See More</a>
+                    <a href = "{% url 'contrib_post_list' %}" class = "dropdown-footer">See More</a>
                 </div>
             </div>
 
@@ -223,7 +227,9 @@
     
             {% endblock content %}
 
-            <a href = "{% url 'Contributor Service Report' %}" class = "draggable-report"><img src = "{% static 'assets/report.png' %}" class = "report"></a>
+            {% block draggable_report %}
+                <a href = "{% url 'Contributor Service Report' %}" class = "draggable-report"><img src = "{% static 'assets/report.png' %}" class = "report"></a>
+            {% endblock draggable_report %}
         </div>
 
         <nav class = "navigation-bottombar">
@@ -337,7 +343,7 @@
 
                                     emptyMessage.classList.add("dropdown-item");
 
-                                    emptyMessage.innerText = "No unread posts in the last 30 days.";
+                                    emptyMessage.innerText = "COTSEye found no unread posts in the last 30 days.";
 
                                     dropdown.appendChild(emptyMessage);
                                 };
