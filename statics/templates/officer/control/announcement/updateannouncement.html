@@ -3,67 +3,64 @@
 
 {% block content %}
 <div class="container mt-3 mb-3">
-    <h1 class="text-center">Update Announcement</h1>
     
     <div class="card mt-4">
         <div class="card-body">
             <form id="announcementForm" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 
-                <div class="card-header-card d-flex justify-content-between align-items-center">
-                    <h1 class="card-title">{{ form.title.value }}</h1>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label for="announcementTitle">Title</label>
+                            {{ form.title }}
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="announcementDate">Release Date</label>
+                            {{ form.release_date }}
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="announcementContext">Context</label>
+                            {{ form.context }}
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="announcementUser">User</label>
+                            {{ form.user }}
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="municipalityFilter" class="form-label required">Municipality:</label>
+                            <select id="municipalityFilter" class="form-select form-select-sm mb-3 select2" onchange="updateBarangayOptions()">
+                                <option value="{{ announcement.location.municipality }}">{{ announcement.location.municipality }}</option>
+                                {% for location in locations %}
+                                    <option value="{{ location.municipality }}">{{ location.municipality }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
                     
+                        <div class="form-group">
+                            <label for="barangayFilter" class="form-label required">Barangay:</label>
+                            <select id="barangayFilter" class="form-select form-select-sm mb-3 select2" onchange="setBarangayValue()">
+                                <option value="{{ announcement.location.barangay }}">{{ announcement.location.barangay }}</option>
+                            </select>
+                        </div>
+                        
+                        <input type="hidden" id="id_municipality" name="municipality" value="{{ announcement.location.municipality }}">
+                        <input type="hidden" id="id_barangay" name="barangay" value="{{ announcement.location.barangay }}">
+                        
+                        <button type="submit" class="btn btn-primary mt-3">Update Announcement</button>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            {{ form.announcement_photo }}
+                            <img id="photoPreview" src="{{ announcement.get_photo_url }}" alt="Photo Preview" class="img-fluid mt-3">
+                        </div>
+                    </div>
                 </div>
-                
-                <img src="{{ announcement.get_photo_url }}" alt="{{ announcement.title }}" class="img-fluid rounded mx-auto d-block mb-3">
-                
-                <div class="form-group">
-                    <label for="announcementTitle">Title</label>
-                    {{ form.title }}
-                </div>
-                
-                <div class="form-group">
-                    <label for="announcementDate">Release Date</label>
-                    {{ form.release_date }}
-                </div>
-                
-                <div class="form-group">
-                    <label for="announcementUser">User</label>
-                    {{ form.user }}
-                </div>
-                
-                <div class="form-group">
-                    <label for="announcementDescription">Context</label>
-                    {{ form.context }}
-                </div>
-                
-                <div class="form-group">
-                    <label for="announcementPhoto">Announcement Photo</label>
-                    {{ form.announcement_photo }}
-                    <img id="photoPreview" src="#" alt="Image Preview" style="display: none; max-width: auto; height: 100px;">
-                </div>
-
-                <div class="form-group">
-                    <label for="municipalityFilter" class="form-label required">Municipality:</label>
-                    <select id="municipalityFilter" class="form-select form-select-sm mb-3 select2" onchange="updateBarangayOptions()">
-                        <option value="{{ announcement.location.municipality }}">{{ announcement.location.municipality }}</option>
-                        {% for location in locations %}
-                            <option value="{{ location.municipality }}">{{ location.municipality }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-            
-                <div class="form-group">
-                    <label for="barangayFilter" class="form-label required">Barangay:</label>
-                    <select id="barangayFilter" class="form-select form-select-sm mb-3 select2" onchange="setBarangayValue()">
-                        <option value="{{ announcement.location.barangay }}">{{ announcement.location.barangay }}</option>
-                    </select>
-                </div>
-                
-                <input type="hidden" id="id_municipality" name="municipality" value="{{ announcement.location.municipality }}">
-                <input type="hidden" id="id_barangay" name="barangay" value="{{ announcement.location.barangay }}">
-                
-                <button type="submit" class="btn btn-primary mt-3">Update Announcement</button>
             </form>
         </div>
     </div>

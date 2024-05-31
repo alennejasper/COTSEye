@@ -263,10 +263,10 @@
     padding-top: 10px !important;
     padding-bottom: 10px !important;
     font-family: "Montserrat";
-    font-weight: 700;
-    font-size: 15px;
-    background-color: #003755;
-    color: #FFFFFF;
+    font-weight: 500;
+    font-size: 12px;
+    background-color: #ffffff;
+    color: #000000;
     text-align: left;
     text-decoration: none !important;
 }
@@ -337,10 +337,10 @@
     padding-top: 10px !important;
     padding-bottom: 10px !important;
     font-family: "Montserrat";
-    font-weight: 400;
-    font-size: 18px;
-    background-color: #FFFFFF;
-    color: #003755;
+    font-weight: 500;
+    font-size: 12px;
+    background-color: #ffffff;
+    color: #000000;
     text-decoration: none !important;
 }
   
@@ -439,10 +439,10 @@
     padding-top: 10px !important;
     padding-bottom: 10px !important;
     font-family: "Montserrat";
-    font-weight: 700;
-    font-size: 15px;
-    background-color: #003755;
-    color: #FFFFFF;
+    font-weight: 500;
+    font-size: 12px;
+    background-color: #ffffff;
+    color: #008cff;
     text-align: left;
     text-decoration: none !important;
 }

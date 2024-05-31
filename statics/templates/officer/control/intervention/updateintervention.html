@@ -10,71 +10,75 @@
             <form id="interventionForm" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 
-                
-                <div class="form-group">
-                    <label for="{{ form.title.id_for_label }}">Title</label>
-                    {{ form.title }}
-                </div>
-                
-                <div class="form-group">
-                    <label for="{{ form.caught_amount.id_for_label }}">Caught Amount</label>
-                    {{ form.caught_amount }}
-                </div>
-                
-                <div class="form-group">
-                    <label for="{{ form.details.id_for_label }}">Details</label>
-                    {{ form.details }}
-                </div>
-                
-                <div class="form-group">
-                    <label for="{{ form.hosting_agency.id_for_label }}">Hosting Agency</label>
-                    {{ form.hosting_agency }}
-                </div>
-                
-                <div class="form-group">
-                    <label for="{{ form.intervention_date.id_for_label }}">Intervention Date</label>
-                    {{ form.intervention_date }}
-                </div>
-                
-                <div class="form-group">
-                    <label for="{{ form.volunteer_amount.id_for_label }}">Volunteer Amount</label>
-                    {{ form.volunteer_amount }}
-                </div>
-                
-                <div class="mb-3">
-                    <label for="municipalityFilter" class="form-label">Municipality:</label>
-                    <select id="municipalityFilter" class="form-select form-select-sm mb-3 select2" onchange="updateBarangayOptions()">
-                        <option value="">Municipality</option>
-                        {% for location in locations %}
-                            <option value="{{ location.municipality }}" {% if location.municipality == intervention.location.municipality %}selected{% endif %}>{{ location.municipality }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-            
-                <div class="mb-3">
-                    <label for="barangayFilter" class="form-label">Barangay:</label>
-                    <select id="barangayFilter" class="form-select form-select-sm mb-3 select2" onchange="setBarangayValue()">
-                        <option value="">Select Barangay</option>
-                        {% for location in locations %}
-                            {% if location.municipality == intervention.location.municipality %}
-                                <option value="{{ location.barangay }}" {% if location.barangay == intervention.location.barangay %}selected{% endif %}>{{ location.barangay }}</option>
-                            {% endif %}
-                        {% endfor %}
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="{{ form.intervention_photo.id_for_label }}">Intervention Photo</label>
-                    {{ form.intervention_photo }}
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="{{ form.title.id_for_label }}">Title</label>
+                            {{ form.title }}
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="{{ form.caught_amount.id_for_label }}">Caught Amount</label>
+                            {{ form.caught_amount }}
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="municipalityFilter" class="form-label">Municipality:</label>
+                            <select id="municipalityFilter" class="form-select form-select-sm mb-3 select2" onchange="updateBarangayOptions()">
+                                <option value="">Municipality</option>
+                                {% for location in locations %}
+                                    <option value="{{ location.municipality }}" {% if location.municipality == intervention.location.municipality %}selected{% endif %}>{{ location.municipality }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
                     
+                        <div class="form-group">
+                            <label for="barangayFilter" class="form-label">Barangay:</label>
+                            <select id="barangayFilter" class="form-select form-select-sm mb-3 select2" onchange="setBarangayValue()">
+                                <option value="">Select Barangay</option>
+                                {% for location in locations %}
+                                    {% if location.municipality == intervention.location.municipality %}
+                                        <option value="{{ location.barangay }}" {% if location.barangay == intervention.location.barangay %}selected{% endif %}>{{ location.barangay }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="{{ form.hosting_agency.id_for_label }}">Hosting Agency</label>
+                            {{ form.hosting_agency }}
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="{{ form.intervention_date.id_for_label }}">Intervention Date</label>
+                            {{ form.intervention_date }}
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="{{ form.volunteer_amount.id_for_label }}">Volunteer Amount</label>
+                            {{ form.volunteer_amount }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="{{ form.details.id_for_label }}">Details</label>
+                            {{ form.details }}
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="{{ form.intervention_photo.id_for_label }}">Intervention Photo</label>
+                            {{ form.intervention_photo }}
+                        </div>
+                        
+                        <img id="photoPreview" src="{{ intervention.intervention_photo.url}}" class="img-fluid rounded mx-auto d-block mb-3" alt="Image Preview" style="display: none; max-width: 100%; margin:12px;">
+                        
+                        <input type="hidden" id="id_municipality" name="municipality" value="{{ intervention.location.municipality }}">
+                        <input type="hidden" id="id_barangay" name="barangay" value="{{ intervention.location.barangay }}">
+                        
+                        <button type="submit" class="btn btn-primary btn-block" id="submitButton">{% if update %}Update{% else %}Add{% endif %} Intervention</button>
+                    </div>
                 </div>
-                
-                <img id="photoPreview" src="{{ intervention.intervention_photo.url}}" class="img-fluid rounded mx-auto d-block mb-3" alt="Image Preview" style="display: none; max-width: 100%;  margin:12px;">
-
-                <input type="hidden" id="id_municipality" name="municipality" value="{{ intervention.location.municipality }}">
-                <input type="hidden" id="id_barangay" name="barangay" value="{{ intervention.location.barangay }}">
-
-                <button type="submit" class="btn btn-primary" id="submitButton">{% if update %}Update{% else %}Add{% endif %} Intervention</button>
             </form>
         </div>
     </div>

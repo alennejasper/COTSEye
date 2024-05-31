@@ -27,6 +27,16 @@ class InterventionForm(forms.ModelForm):
             'volunteer_amount': forms.NumberInput(attrs={'class': 'form-control', 'required': 'required'}),
         }
 
+        help_texts = {
+            'title': None,
+            'caught_amount': None,
+            'details': None,
+            'hosting_agency': None,
+            'intervention_photo': None,
+            'intervention_date': None,
+            'volunteer_amount': None
+        }
+
 class StatusForm(forms.ModelForm):
     required_css_class = 'required'
     class Meta:

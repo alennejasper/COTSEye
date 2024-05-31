@@ -1,48 +1,35 @@
 {% extends "officer/control/index/index.html" %}
 
 {% block content %}
-<div class="container-fluid mt-3">
+<div class="container mt-3">
     <div class="row">
-        <div class="col-md-12">
-            <h1 class="text-center">Activity Details</h1>
-    
-            <div class="card mt-4 mb-4">
+        <div class="col-lg-10 offset-lg-1">
+            <div class="card mb-4 shadow-sm">
                 <div class="card-body">
-                    <div class="card-header-card">
-                        <h2>{{ intervention.title }}</h2>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h2 class="card-title">{{ intervention.title }}</h2>
+                            <p><strong>Location:</strong> {{ intervention.location }}</p>
+                            <p><strong>Caught Amount:</strong> {{ intervention.caught_amount }}</p>
+                            <p><strong>Hosting Agency:</strong> {{ intervention.hosting_agency }}</p>
+                            <p><strong>Intervention Date:</strong> {{ intervention.intervention_date }}</p>
+                            <p><strong>Details:</strong> {{ intervention.details }}</p>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <p><strong>Photo:</strong></p>
+                            {% if intervention.intervention_photo %}
+                                <img src="{{ intervention.intervention_photo.url }}" alt="Intervention Photo" class="img-fluid rounded mb-3" style="max-width: 100%;">
+                            {% else %}
+                                <p>No photo available</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="text-end">
                         <a href="{% url 'Officer Control Intervention Update' pk=intervention.id %}" class="btn btn-primary">Edit</a>
                     </div>
-                    
-                  
-                    <p><strong>Location:</strong> {{ intervention.location }}</p>
-                    <p><strong>Caught Amount:</strong> {{ intervention.caught_amount }}</p>
-                    <p><strong>Details:</strong> {{ intervention.details }}</p>
-                    <p><strong>Hosting Agency:</strong> {{ intervention.hosting_agency }}</p>
-                    <p><strong>Intervention Date:</strong> {{ intervention.intervention_date }}</p>
-                    {% if intervention.intervention_photo %}
-                    <p><strong>Photo:</strong></p>
-                    <img src="{{ intervention.intervention_photo.url }}" alt="Intervention Photo" style="max-width: 100%; height: auto;">
-                    {% endif %}
                 </div>
             </div>
         </div>
-        
-        <!-- <div class="col-md-4">
-            <h3>Other Interventions</h3>
-            <ul class="list-group">
-                {% for other in other_interventions %}
-                <li class="list-group-item"  style="margin-bottom: 2rem;">
-                    <a href="{% url 'Officer Control Intervention Detail' other.pk %}">
-                        <h5>{{ other.title }}</h5>
-                        
-                    </a>
-                    <p>Location:{{ other.location }}</p>
-                    <p>Date: {{ other.intervention_date }}</p>
-                    <p>Caught Amount: {{ other.caught_amount }}</p>
-                </li>
-                {% endfor %}
-            </ul>
-        </div> -->
     </div>
 </div>
 {% endblock %}

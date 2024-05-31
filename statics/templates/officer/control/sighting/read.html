@@ -104,14 +104,14 @@
 
         <!-- Third grid column: Actions -->
         <div class="col-md-2" style="flex: 0 0 20%;">
-            <div class="card mb-4">
+            <div class="card mb-4" style="border:none !important;">
                 <div class="card-body">
                     <!-- <h5 class="card-title">Actions</h5> -->
                     
-                    <div class="button-container">
-                        <button style="background-color: green; font-family: 'Montserrat' !important; font-size: 12px !important;" class="btn btn-success w-100" onclick="changeStatus({{ post.id }})">Approve</button>
-                        <button style="background-color: red; font-family: 'Montserrat' !important; font-size: 12px !important;" class="btn btn-danger w-100" onclick="invalidStatus({{ post.id }})">Disapprove</button>
-                        <button style="background-color: blue; font-family: 'Montserrat' !important; font-size: 12px !important;" class="btn btn-primary w-100">Save</button>
+                    <div class="button-container" style="display: flex; gap: 10px; flex-direction: column;">
+                        <button style="background-color: rgb(76, 196, 76); font-family: 'Montserrat' !important; font-size: 12px !important;" class="btn btn-success w-100" onclick="changeStatus({{ post.id }})">Approve</button>
+                        <button style="background-color: rgb(226, 51, 51); font-family: 'Montserrat' !important; font-size: 12px !important;" class="btn btn-danger w-100" onclick="invalidStatus({{ post.id }})">Disapprove</button>
+                        <button style="background-color: rgb(55, 55, 224); font-family: 'Montserrat' !important; font-size: 12px !important;" class="btn btn-primary w-100" onclick="addRemarks({{ post.id }})">Add Remarks</button>
                     </div>
                    
                 </div>
@@ -399,9 +399,6 @@
         }
     
         function revealMap(latitude, longitude) {
-            if (map) {
-                return;
-            }
     
             var starfish = L.icon({ iconUrl: "{% static 'assets/pin.png' %}", iconSize: [30, 30], iconAnchor: [15, 15] });
     
@@ -530,6 +527,53 @@
             });
         });
     }
+
+    window.addRemarks = function(postId) {
+        Swal.fire({
+            title: 'Add Remark',
+            input: 'textarea',
+            inputLabel: 'Your Remark',
+            inputPlaceholder: 'Enter your remark here...',
+            showCancelButton: true,
+            confirmButtonText: 'Submit',
+            preConfirm: (remark) => {
+                return fetch("{% url 'add_remark' 0 %}".replace('0', postId), {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({remark: remark})
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(response.statusText)
+                    }
+                    return response.json()
+                })
+                .then(data => {
+                    if (!data.success) {
+                        throw new Error(data.message || 'Failed to add remark')
+                    }
+                    return data
+                })
+                .catch(error => {
+                    Swal.showValidationMessage(`Request failed: ${error}`)
+                })
+            },
+            allowOutsideClick: () => !Swal.isLoading()
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Remark added successfully.',
+                    icon: 'success'
+                }).then(() => {
+                    window.location.reload();
+                });
+            }
+        });
+    };
 
    
 

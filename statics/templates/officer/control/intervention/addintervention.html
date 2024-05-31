@@ -8,34 +8,66 @@
         <div class="card-body">
             <form id="interventionForm" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                {{ form.as_p }}
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="title" class="form-label required">Title:</label>
+                            <input type="text" class="form-control" id="title" name="title" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="caught_amount" class="form-label required">Caught amount:</label>
+                            <input type="number" class="form-control" id="caught_amount" name="caught_amount" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="municipalityFilter" class="form-label required">Municipality:</label>
+                            <select id="municipalityFilter" class="form-select form-select-sm mb-3 select2" onchange="updateBarangayOptions()">
+                                <option value="">Municipality</option>
+                                {% for location in locations %}
+                                    <option value="{{ location.municipality }}">{{ location.municipality }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="barangayFilter" class="form-label required">Barangay:</label>
+                            <select id="barangayFilter" class="form-select form-select-sm mb-3 select2" onchange="setBarangayValue()">
+                                <option value="">Select Barangay</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="volunteer_amount" class="form-label required">Volunteer Amount:</label>
+                            <input type="number" class="form-control" id="volunteer_amount" name="volunteer_amount" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="hosting_agency" class="form-label required">Hosting Agency:</label>
+                            <input type="text" class="form-control" id="hosting_agency" name="hosting_agency" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="intervention_date" class="form-label required">Intervention Date:</label>
+                            <input type="date" class="form-control" id="intervention_date" name="intervention_date" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="details" class="form-label">Details:</label>
+                            <textarea class="form-control" id="details" name="details" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="interventionPhoto" class="form-label required">Intervention Photo:</label>
+                            <input type="file" class="form-control" id="interventionPhoto" name="intervention_photo" accept="image/*" required>
+                        </div>
+                        <div class="form-group mt-3">
+                            <h2>Photo Preview</h2>
+                            <img id="photoPreview" src="#" alt="Image Preview" style="display: none; max-width: 100%; height: auto; margin:12px;">
+                        </div>
+                    </div>
+                </div>
                 
-                <div class="mb-3">
-                    <label for="municipalityFilter" class="form-label required">Municipality:</label>
-                    <select id="municipalityFilter" class="form-select form-select-sm mb-3 select2" onchange="updateBarangayOptions()">
-                        <option value="">Municipality</option>
-                        {% for location in locations %}
-                            <option value="{{ location.municipality }}">{{ location.municipality }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-            
-                <div class="mb-3">
-                    <label for="barangayFilter" class="form-label required">Barangay:</label>
-                    <select id="barangayFilter" class="form-select form-select-sm mb-3 select2" onchange="setBarangayValue()">
-                        <option value="">Select Barangay</option>
-                    </select>
-                </div>
-            
                 <input type="hidden" id="id_municipality" name="municipality">
                 <input type="hidden" id="id_barangay" name="barangay">
 
-                <div class="form-group">
-                    <h2>Photo Preview</h2>
-                    <img id="photoPreview" src="#" alt="Image Preview" style="display: none; max-width: 100%; height: auto; margin:12px;">
+                <div class="text-center">
+                    <button type="button" class="btn btn-primary" id="submitButton">Submit</button>
                 </div>
-                
-                <button type="button" class="btn btn-primary" id="submitButton">Add Intervention</button>
             </form>
         </div>
     </div>

@@ -1,32 +1,40 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/officer/control/home/card.css' %}">
 
-<div style = "background-color: rgb(236, 236, 236); margin-top: 15px;">
-    <div style="display: flex; align-items: center; justify-content: space-between;">
-        <h1 style="text-align: center;">Monitoring Section</h1>
-
+<div style="background-color: rgb(248, 248, 248); margin: 20px; padding: 20px; border-radius: 10px;">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
+        <h1 style="text-align: center; font-family: 'Montserrat'; font-size: 23px; color: #111111; font-weight: 600;">COTS COLLECTION BY MUNICIPALITY</h1>
         <div class="d-flex justify-content-end">
-            <button style="background-color: rgb(30, 173, 95);" onclick="window.location.href='{% url 'Officer Control Report' %}'" class="btn btn-primary">GENERATE REPORT</button>
+            <button style="background-color: #1ead5f; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-family: Arial, sans-serif; cursor: pointer;" onclick="window.location.href='{% url 'Officer Control Report' %}'" class="btn btn-primary">GENERATE REPORT</button>
         </div>
-    </div>
+    </div>  
+
     <!-- Filter Form -->
     <form method="get" action="{% url 'Officer Control Home' %}">
-        <div class="filter-container">
-            <label for="municipalityFilter">Municipality:</label>
-            <select id="municipalityFilter" name="municipality">
-                <option value="">All</option>
-                {% for municipality in municipalities %}
-                    <option value="{{ municipality.municipality }}" {% if selected_municipality == municipality.municipality %}selected{% endif %}>{{ municipality.municipality }}</option>
-                {% endfor %}
-            </select>
-
-            <label for="startDateFilter">From:</label>
-            <input type="date" id="startDateFilter" name="start_date" value="{{ start_date_filter|default_if_none:'' }}">
-
-            <label for="endDateFilter">To:</label>
-            <input type="date" id="endDateFilter" name="end_date" value="{{ end_date_filter|default_if_none:'' }}">
-
-            <button type="submit">Filter</button>
+        <div class="filter-container" style="display: flex; flex-wrap: wrap; gap: 15px; padding: 20px; border: 1px solid #f0f0f0; border-radius: 10px; background-color: #f9f9f9;">
+            <div class="filter-item" style="flex: 1 1 200px;">
+                <label for="municipalityFilter" style="display: block; margin-bottom: 5px; font-weight: bold; font-family: 'Montserrat';">Municipality:</label>
+                <select id="municipalityFilter" name="municipality" style="width: 100%; padding: 8px; border: 1px solid #eeeeee; border-radius: 5px; font-family: Arial, sans-serif;">
+                    <option value="">All</option>
+                    {% for municipality in municipalities %}
+                        <option value="{{ municipality.municipality }}" {% if selected_municipality == municipality.municipality %}selected{% endif %}>{{ municipality.municipality }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+    
+            <div class="filter-item" style="flex: 1 1 200px;">
+                <label for="startDateFilter" style="display: block; margin-bottom: 5px; font-weight: bold; font-family: 'Montserrat';">From:</label>
+                <input type="date" id="startDateFilter" name="start_date" value="{{ start_date_filter|default_if_none:'' }}" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+            </div>
+    
+            <div class="filter-item" style="flex: 1 1 200px;">
+                <label for="endDateFilter" style="display: block; margin-bottom: 5px; font-weight: bold; font-family: 'Montserrat';">To:</label>
+                <input type="date" id="endDateFilter" name="end_date" value="{{ end_date_filter|default_if_none:'' }}" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+            </div>
+    
+            <div class="filter-item" style="flex: 1 1 100px; display: flex; align-items: flex-end;">
+                <button type="submit" class="filter-button" style="width: 100%; padding: 10px 15px; background-color: #2388db; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; font-family: 'Montserrat';">Filter</button>
+            </div>
         </div>
     </form>
 

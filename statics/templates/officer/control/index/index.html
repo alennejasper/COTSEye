@@ -58,57 +58,89 @@
         <title>COTSEye | Home</title>
     </head>
 
+    <style>
+        .nav-link:hover {
+          background-color: rgba(0, 151, 252, 0.1); /* Light blue background on hover */
+          color: rgb(0, 151, 252) !important; /* Ensures text color stays the same */
+          border-radius: 4px; /* Optional: adds rounded corners on hover */
+          text-decoration: none; /* Ensures no underline on hover */
+        }
+        .nav-link img {
+          vertical-align: middle; /* Align image vertically with the text */
+        }
+        .nav {
+          display: flex;
+          align-items: center;
+        }
+        .notification-bell {
+          position: relative;
+          font-size: 1.2rem; /* Smaller font size for the bell */
+        }
+        .notification-bell .badge {
+          position: absolute;
+          top: 3px; /* Adjusted to touch the top right corner */
+          right: -0.5px; /* Adjusted to touch the top right corner */
+          padding: 3px 5px; /* Smaller padding for the smaller bell */
+          border-radius: 50%;
+          background: rgb(233, 27, 27);
+          color: white;
+          font-size: 0.6rem; /* Smaller font size for the badge */
+          line-height: 1; /* Ensure the text is centered */
+        }
+      </style>
+    </head>
     <body>
-    <div style = "background-color: white !important;" class = "bg-primary">
+      <div style="background-color: white !important; box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);" class="bg-primary">
         <div class="container-fluid d-flex justify-content-between align-items-center flex-wrap">
+          <nav class="nav">
+            <a class="nav-link active disabled" aria-current="page">
+              <img src="{% static 'assets/icons/header.png' %}" height="20px">
+            </a>
+            <a style="font-size: 12px; color: rgb(0, 151, 252) !important;" class="nav-link text-white" href="{% url 'Officer Control Home' %}">HOME</a>
+            <a style="font-size: 12px; color: rgb(0, 151, 252) !important;" class="nav-link text-white" href="{% url 'Officer Control Sighting' %}">SIGHTINGS</a>
+            <a style="font-size: 12px; color: rgb(0, 151, 252) !important;" class="nav-link text-white" href="{% url 'Officer Control Announcement' %}">ANNOUNCEMENTS</a>
+            <a style="font-size: 12px; color: rgb(0, 151, 252) !important;" class="nav-link text-white" href="{% url 'Officer Control Intervention' %}">ACTIVITIES</a>
+            <a style="font-size: 12px; color: rgb(0, 151, 252) !important;" class="nav-link text-white" href="{% url 'Officer Control Status' %}">STATUS</a>
+          </nav>
+    
+          <div class="d-flex align-items-center login-cursor">
             <nav class="nav">
-                <a class="nav-link active disabled" aria-current="page"><img src="{% static 'assets/icons/header.png' %}" height="16px"></a>
-                <a style="font-size: 12px; color: blue !important;" class="nav-link text-white" href="{% url 'Officer Control Home' %}">HOME</a>
-                <a style="font-size: 12px; color: blue !important;" class="nav-link text-white" href="{% url 'Officer Control Sighting' %}">SIGHTINGS</a>
-                <a style="font-size: 12px; color: blue !important;" class="nav-link text-white" href="{% url 'Officer Control Announcement' %}">ANNOUNCEMENTS</a>
-                <a style="font-size: 12px; color: blue !important;" class="nav-link text-white" href="{% url 'Officer Control Intervention' %}">ACTIVITIES</a>
-                <a style="font-size: 12px; color: blue !important;" class="nav-link text-white" href="{% url 'Officer Control Status' %}">STATUS</a>
-            </nav>
-
-            <div class="d-flex align-items-center login-cursor">
-                <nav class="nav">
-                    <div class="dropdown">
-                        <a class="nav-link text-black position-relative" id="notificationBell">
-                            <i class="fa-solid fa-bell fa-lg"></i>
-                            {% if unread_posts %}
-                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                    {{ unread_posts|length }}
-                                    <span class="visually-hidden">unread messages</span>
-                                </span>
-                            {% endif %}
+              <div class="dropdown">
+                <a class="nav-link text-black notification-bell position-relative" id="notificationBell">
+                  <i class="fa-solid fa-bell"></i>
+                  {% if unread_posts %}
+                    <span class="badge rounded-pill">
+                      {{ unread_posts|length }}
+                    </span>
+                  {% endif %}
+                </a>
+                <ul class="dropdown-menu" style="right: 10px" id="notificationDropdown">
+                  {% if unread_posts %}
+                    {% for post in unread_posts %}
+                      <li class="dropdown-item">
+                        <a href="{% url 'Officer Control Sighting Read' id=post.id %}" class="unread-post-link" data-post-id="{{post.id}}">
+                          {{post.user}} has sent a post
                         </a>
-                        <ul class="dropdown-menu" style = "right:10px" id="notificationDropdown">
-                            {% if unread_posts %}
-                                {% for post in unread_posts %}
-                                    <li class="dropdown-item">
-                                        <a href="{% url 'Officer Control Sighting Read' id=post.id %}" class="unread-post-link" data-post-id="{{post.id}}">
-                                            {{post.user}} has sent a post
-                                        </a>
-                                        <small class="text-muted">- {{ post.creation_date }}</small>
-                                    </li>
-                                {% endfor %}
-                            {% else %}
-                                <li class="dropdown-item">No unread posts in the last 30 days.</li>
-                            {% endif %}
-                            <a href="{% url 'post_list' %}">See more</a>
-                        </ul>
-                    </div>
-                    <a class="nav-link text-black" href="{% url 'Officer Control Profile' %}">Profile</a>
-                    <a class="nav-link text-black" href="{% url 'Officer Control Logout' %}">Logout</a>
-                </nav>
-            </div>
+                        <small class="text-muted">- {{ post.creation_date }}</small>
+                      </li>
+                    {% endfor %}
+                  {% else %}
+                    <li class="dropdown-item">No unread posts in the last 30 days.</li>
+                  {% endif %}
+                  <a href="{% url 'post_list' %}">See more</a>
+                </ul>
+              </div>
+              <a style="font-size: 12px;" class="nav-link text-black" href="{% url 'Officer Control Profile' %}">PROFILE</a>
+              <a style="font-size: 12px;" class="nav-link text-black" href="{% url 'Officer Control Logout' %}">LOGOUT</a>
+            </nav>
+          </div>
         </div>
-    </div>
-
-    <div class="content">
+      </div>
+    
+      <div class="content">
         {% block content %}
         {% endblock %}
-    </div>
+      </div>
 
     <script>
         $(document).ready(function() {

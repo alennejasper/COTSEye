@@ -7,13 +7,20 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 <style>
     .status-invalid {
+        font-weight: 600;
         color: red !important;
     }
     .status-valid {
-        color: green !important;
+        font-weight: 600;
+        color: rgb(0, 182, 0) !important;
     }
     .status-pending {
-        color: yellow !important;
+        font-weight: 600;
+        color: rgb(0, 204, 255) !important;
+    }
+
+    .table>:not(caption)>*>*{
+        padding: 9px !important;
     }
 </style>
 
@@ -115,7 +122,7 @@
                                         <div class="dropdown">
                                             <div class="dropdown-content">
                                                 <a class="dropdown-header" onclick="changeStatus(${item.id}, 'Valid')">Approve</a>
-                                                <a class="dropdown-footer" onclick="invalidStatus(${item.id})">Disapprove</a>
+                                                <a class="dropdown-item" onclick="invalidStatus(${item.id})">Disapprove</a>
                                                 <a class="dropdown-footer" onclick="invalidStatus(${item.id})">Verifying</a>
             
                                             </div>
@@ -447,7 +454,7 @@
                             <div class="dropdown">
                                 <div class="dropdown-content">
                                     <a class="dropdown-header" onclick="changeStatus(${item.id}, 'Valid')">Approve</a>
-                                    <a class="dropdown-footer" onclick="invalidStatus(${item.id})">Disapprove</a>
+                                    <a class="dropdown-item" onclick="invalidStatus(${item.id})">Disapprove</a>
                                     ${remarkLink}
                                 </div>
                             </div>

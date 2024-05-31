@@ -29,7 +29,7 @@
 }
 
 ::-webkit-scrollbar-thumb:hover{
-    background: #002C44 !important;
+    background: #78cffd !important;
 }
 
 
@@ -38,7 +38,7 @@ body{
 }
 
 .nav-link:hover{
-    color: #0f0e75 !important;
+    color: #55ebff !important;
     text-decoration: none;
 }
 
