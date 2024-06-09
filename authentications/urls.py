@@ -17,6 +17,10 @@ urlpatterns = [
     
     path("contributor/service/home/", views.ContributorServiceHome, name = "Contributor Service Home"),
     
+    path("contributor/service/notification/", views.ContributorServiceNotification, name = "Contributor Service Notification"),
+
+    path("contributor/service/notification/mark/<int:id>/", views.ContributorServiceNotificationMark, name = "Contributor Service Notification Mark"),
+
     path("contributor/service/profile/", views.ContributorServiceProfile, name = "Contributor Service Profile"),
     
     path("contributor/service/profile/update/", views.ContributorServiceProfileUpdate, name = "Contributor Service Profile Update"),
@@ -43,5 +47,5 @@ urlpatterns = [
 
     path("officer/control/logout/", views.OfficerControlLogout, name = "Officer Control Logout"),      
 
-    path('posts/', views.post_list, name='post_list'),
+    path('officer/control/notification/', views.OfficerControlNotification, name='Officer Control Notification'),
 ]

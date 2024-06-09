@@ -3,14 +3,14 @@
 
 {% block content %}
     <div class = "inquiry-body">
-        <div class = "inquiry-section">
+        <!-- <div class = "inquiry-section">
             <h1>FAQS</h1>
-        </div>
+        </div> -->
 
         <div class = "inquiry">
             {% for inquiry in inquiries %}
                 <div class = "inquiry-context">
-                    <h3>{{inquiry.question}}</h3>
+                    <p>{{inquiry.question}}</p>
                     
                     <p>{{inquiry.answer}}</p>
                 </div>

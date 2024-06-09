@@ -18,14 +18,12 @@
         <link rel = "apple-touch-icon" href = "{% static 'assets/icons/logo (180 x 180).png' %}">
 
         <meta name = "apple-mobile-web-app-status-bar" content = "#003755">
-        
-        <link rel = "stylesheet" href = "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
-        <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity = "sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin = "anonymous" referrerpolicy = "no-referrer"/>
 
         <link rel = "icon" type = "image/x-icon" href = "{% static 'assets/icons/logo.png' %}">
 
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/index/index.css' %}">
+
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/fallback/fallback.css' %}">
 
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/home/home.css' %}">
 
@@ -51,9 +49,13 @@
 
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/report/report.css' %}">
 
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/notification/notification.css' %}">
+
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/profile/profile.css' %}">
 
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/profile/update.css' %}">
+
+        <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity = "sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin = "anonymous" referrerpolicy = "no-referrer"/>
 
         <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">   
                
@@ -90,11 +92,11 @@
             
             <div class = "menu">
                 <div class = "notification">
-                    <a class = "notification-link" >
+                    <a class = "notification-link">
                         <i class = "fa-solid fa-bell"></i>
     
-                        {% if unread_posts %}
-                            <span class = "notification-count">{{unread_posts | length}}</span>
+                        {% if unread_notifications %}
+                            <span class = "notification-count">{{unread_notifications | length}}</span>
                         {% endif %}
                     </a>
                 </div>
@@ -103,22 +105,31 @@
             </div>
         </nav>
         
-
         <div class = "menu-content">
             <div class = "notification-dropdown">
                 <div id = "notification-content" class = "notification-content">
-                    {% if unread_posts %}
-                        {% for post in unread_posts %}
-                                <a class = "dropdown-item" href = "{% url 'Contributor Service Post Read' id=post.id %}" class = "post-link" post = "{{post.id}}">COTSEye has marked your report last {{post.creation_date | date:'m/d/y'}} as「{{post.post_status}}」.</a>
+                    {% if unread_notifications %}
+                        {% for post in unread_notifications %}
+                                <a class = "dropdown-item" href = "{% url 'Contributor Service Post Read' id=post.id %}" class = "post-link" post = "{{post.id}}">
+                                    <div class = "item-header">
+                                        <img src = "{{post.post_photos.first.post_photo.url}}">
+
+                                        <div class = "item-context"> 
+                                            <p>The report you sent before was marked as <strong>{{post.post_status}}</strong>.</p>
+
+                                            <p>{{post.creation_date | date:'m/d/Y'}}</p>
+                                        </div>
+                                    </div>
+                                </a>
 
                                 <div class = "dropdown-divider"></div>
                         {% endfor %}
                     {% else %}
 
-                        <a class = "dropdown-item">COTSEye found no unread posts in the last 30 days.</a>
+                        <a class = "dropdown-item">You have no unread notifications in the last 30 days.</a>
                     {% endif %}
 
-                    <a href = "{% url 'contrib_post_list' %}" class = "dropdown-footer">See More</a>
+                    <a href = "{% url 'Contributor Service Notification' %}" class = "dropdown-footer">See More</a>
                 </div>
             </div>
 
@@ -145,12 +156,11 @@
 
         <script>
             document.addEventListener("DOMContentLoaded", function(){
-    
                 const element = document.querySelector(".draggable-report");
-    
+
                 let positionX = 0, positionY = 0, offsetX = 0, offsetY = 0;
-    
-                let move = false;
+
+                let isDragging = false;
 
                 element.onmousedown = function(event){
                     startDrag(event.clientX, event.clientY);
@@ -175,22 +185,23 @@
 
                     offsetY = y - element.getBoundingClientRect().top;
 
-                    move = false;
+                    isDragging = true;
                 };
 
                 function onMouseMove(event){
-                    moveElement(event.clientX, event.clientY);
+                    if (isDragging) {
+                        moveElement(event.clientX, event.clientY);
+                    }
                 };
 
                 function onTouchMove(event){
-                    var touch = event.touches[0];
-                    
-                    moveElement(touch.clientX, touch.clientY);
+                    if (isDragging) {
+                        var touch = event.touches[0];
+                        moveElement(touch.clientX, touch.clientY);
+                    }
                 };
 
                 function moveElement(x, y){
-                    move = true;
-
                     positionX = x - offsetX;
 
                     positionY = y - offsetY;
@@ -201,25 +212,11 @@
                 };
 
                 function stopDrag(){
+                    isDragging = false;
                     document.onmousemove = document.onmouseup = document.ontouchmove = document.ontouchend = null;
-                    
-                    if (move){
-                        element.onclick = function(event){
-                            event.preventDefault();
-                        };
-
-                        element.ontouchend = function(event){
-                            event.preventDefault();
-                        };
-
-                    } else{
-                        element.onclick = element.ontouchend = null;
-                    }
                 };
             });
-
         </script>
-    
 
         <div class = "content">
             {% block content %}
@@ -315,7 +312,7 @@
 
                     const post = this.getAttribute("post");
                     
-                    const url = "{% url 'Service Post Read Mark' 0 %}".replace("0", post);
+                    const url = "{% url 'Contributor Service Notification Mark' 0 %}".replace("0", post);
 
                     fetch(url, {
                         method: "GET",
@@ -323,6 +320,7 @@
                         headers: {
                             "X-Requested-With": "XMLHttpRequest",
                         },
+
                     }).then(response => response.json()).then(data => {
                         if (data.success){
                             this.parentElement.remove();

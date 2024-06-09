@@ -61,6 +61,7 @@
 
 
 .filterbutton{
+    width: 100%;
     align-items: center;
     margin-bottom: 10px;
     margin-top: 10px;
@@ -80,15 +81,14 @@
     line-height: 1;
     list-style: none;
     overflow: hidden;
-    padding-left: 104px;
-    padding-right: 104px;
     position: relative;
-    text-align: left;
+    text-align: center;
     text-decoration: none;
     font-size: 13px;
 }
   
   .resetbutton {
+    width: 100%;
     align-items: center;
     appearance: none;
     background-image: radial-gradient(100% 100% at 100% 0, #5affb2 0, #54ffc6 100%);
@@ -105,10 +105,8 @@
     line-height: 1;
     list-style: none;
     overflow: hidden;
-    padding-left: 104px;
-    padding-right: 104px;
     position: relative;
-    text-align: left;
+    text-align: center;
     font-size: 13px;
   }
   

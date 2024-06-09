@@ -1,0 +1,28 @@
+.status-low {
+    color: green;
+}
+.status-moderate {
+    color: yellow;
+}
+.status-high {
+    color: orange;
+}
+.status-critical {
+    color: red;
+}
+.card-custom {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+.card-custom .card-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #ddd;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 10px 20px;
+}
+.card-custom .card-body {
+    padding: 20px;
+}

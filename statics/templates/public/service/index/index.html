@@ -19,11 +19,11 @@
 
         <meta name = "apple-mobile-web-app-status-bar" content = "#003755">
         
-        <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity = "sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin = "anonymous" referrerpolicy = "no-referrer"/>
-
         <link rel = "icon" type = "image/x-icon" href = "{% static 'assets/icons/logo.png' %}">
 
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/public/service/index/index.css' %}">
+
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/public/service/fallback/fallback.css' %}">
 
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/public/service/home/home.css' %}">
 
@@ -45,7 +45,9 @@
 
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/public/service/inquiry/inquiry.css' %}">
 
-        <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">   
+        <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">  
+        
+        <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity = "sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin = "anonymous" referrerpolicy = "no-referrer"/>
                
         <script src = "https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         
@@ -74,12 +76,14 @@
         <nav class = "navigation-topbar">
             <a href = "{% url 'Public Service Home' %}" class = "header"><img src = "{% static 'assets/icons/header.png' %}" class = "header"></a>
 
-            <a onclick = "shownDropdown()" class = "profile"><img src = "{% static 'assets/logo.jpg' %}" class = "drop profile"></a>
+            <div class = "menu">
+                <a onclick = "shownDropdown()" class = "profile"><img src = "{% static 'assets/logo.jpg' %}" class = "drop profile"></a>
+            </div>
         </nav>
 
-        <div class = "others">
-            <div class = "dropdown">
-                <div id = "dropdown-content" class = "dropdown-content">
+        <div class = "menu-content">
+            <div class = "profile-dropdown">
+                <div id = "profile-content" class = "profile-content">
                     <a class = "dropdown-header">{{username}}</a>
 
                     <a href = "{% url 'Public Service Resource' %}" class = "dropdown-item"><img src = "{% static 'assets/resource.png' %}">See resources</a>
@@ -139,12 +143,12 @@
 
     <script>
         function shownDropdown(){
-            document.getElementById("dropdown-content").classList.toggle("show");
+            document.getElementById("profile-content").classList.toggle("show");
         };
 
         window.onclick = function(event){
             if (!event.target.matches("img.drop")){
-                var dropdown = document.getElementsByClassName("dropdown-content");
+                var dropdown = document.getElementsByClassName(".profile-content");
 
                 var amount;
 

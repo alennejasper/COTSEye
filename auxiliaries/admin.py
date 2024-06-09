@@ -16,7 +16,8 @@ class AnnouncementAdmin(admin.ModelAdmin):
 admin.site.register(Announcement, AnnouncementAdmin)
 
 
-class ResourceAdmin(admin.ModelAdmin):
+
+class LinkAdmin(admin.ModelAdmin):
     class Media:   
         css = {
             "all": ["css/admin/control/index/index.css"]
@@ -25,10 +26,10 @@ class ResourceAdmin(admin.ModelAdmin):
     def has_module_permission(self, request):
         return request.user.usertype_id == 1 or request.user.usertype_id == 2
 
-admin.site.register(Resource, ResourceAdmin)
+admin.site.register(Link, LinkAdmin)
 
 
-class ResourceLinkAdmin(admin.ModelAdmin):
+class FileAdmin(admin.ModelAdmin):
     class Media:   
         css = {
             "all": ["css/admin/control/index/index.css"]
@@ -37,19 +38,7 @@ class ResourceLinkAdmin(admin.ModelAdmin):
     def has_module_permission(self, request):
         return request.user.usertype_id == 1 or request.user.usertype_id == 2
 
-admin.site.register(ResourceLink, ResourceLinkAdmin)
-
-
-class ResourceFileAdmin(admin.ModelAdmin):
-    class Media:   
-        css = {
-            "all": ["css/admin/control/index/index.css"]
-        }
-        
-    def has_module_permission(self, request):
-        return request.user.usertype_id == 1 or request.user.usertype_id == 2
-
-admin.site.register(ResourceFile, ResourceFileAdmin)
+admin.site.register(File, FileAdmin)
 
 
 class InquiryAdmin(admin.ModelAdmin):

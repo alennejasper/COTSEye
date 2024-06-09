@@ -1,6 +1,7 @@
 from configurations.admin import admin
 from reports.models import *
 
+
 # Register your models here.
 class PostPhotoAdmin(admin.ModelAdmin):
     class Media:   

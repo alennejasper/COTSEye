@@ -1,19 +1,10 @@
-
-::placeholder{
-    color: #646464;
-}
-
 .report-body{
     position: relative;
-    gap: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
     width: 100%;
     height: 100%;
-    color: #000000;
-    border-radius: 10px;
-    background-color: #f2f2f2;
-    padding: 20px;
+    border-radius: 5px;
+    background-color: rgba(250, 250, 250, 0.75);
+    color: #003755;
 }
 
 .report-body .report-section{
@@ -25,11 +16,39 @@
     text-align: center;                                   
 }
 
-.report-body .report-section img{
+/* .report-body .report-section img{
     width: 250px;
     height: 250px;
     border-radius: 50%;
     cursor: pointer;
+} */
+
+.report-body .back-report{
+    width: 24px;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .report-body .back-report{
+        font-size: 22px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report-body .back-report{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report-body .back-report{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report-body .back-report{
+        font-size: 16px !important;
+    }
 }
 
 .report-body .report-section h1{
@@ -38,35 +57,51 @@
     white-space: nowrap;
     font-family: "Montserrat";    
     font-weight: 700;       
-    font-size: 15px; 
-    margin-bottom: 10px;    
-    color: #000000;   
+    font-size: 24px; 
+    color: #003755;   
     text-align: center;  
 }
 
-.report-body .report-section p{
-    display: flex;
-    align-items: center;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-family: "Montserrat";
-    font-weight: 400;
-    font-size: 14px !important;
-    color: #000000;
-    text-transform: uppercase;
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .report-body .report-section h1{        
+        font-size: 22px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report-body .report-section h1{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report-body .report-section h1{        
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report-body .report-section h1{        
+        font-size: 16px !important;
+    }
 }
 
 .report-body .report-form{
     width: 100% !important;
 }
 
+.report-body .report-form .tab-content{
+    gap: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
 .report-body .report-form .controls-wrapper{
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    gap: 15px;
 }
 
 .report-body .report-form .controls-wrapper .control-section.capture{
@@ -74,11 +109,11 @@
     place-items: center;
     padding-left: 10px;
     padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     width: 100%;
     height: 100px;
-    background-color: #3c6bd1;
+    background-color: #3C6BD1;
     color: #FFFFFF;
     cursor: pointer;
 }
@@ -88,29 +123,78 @@
     place-items: center;
     padding-left: 10px;
     padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     width: 100%;
     height: 100px;
-    background-color: #1e78a8;
+    background-color: #1E78A8;
     color: #FFFFFF;
     cursor: pointer;
 }
 
 .report-body .report-form .controls-wrapper .control-section i{
-    font-size: 25px;
+    font-size: 20px;
     color: #FFFFFF;
     text-align: center;
 }
 
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .report-body .report-form .controls-wrapper .control-section i{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report-body .report-form .controls-wrapper .control-section i{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report-body .report-form .controls-wrapper .control-section i{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report-body .report-form .controls-wrapper .control-section i{
+        font-size: 12px !important;
+    }
+}
+
 .report-body .report-form .controls-wrapper .control-section label{
+    margin-bottom: 0px !important;
     width: 100%;
     font-family: "Montserrat";
     font-weight: 400;
-    font-size: 12px;
+    font-size: 20px;
     color: #FFFFFF !important;
     text-align: center;
-    cursor: pointer;  
+    cursor: pointer;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .report-body .report-form .controls-wrapper .control-section label{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report-body .report-form .controls-wrapper .control-section label{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report-body .report-form .controls-wrapper .control-section label{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report-body .report-form .controls-wrapper .control-section label{
+        font-size: 12px !important;
+    }
 }
 
 .report-body .report-form .controls-wrapper .control-section input.invisible-input-capture{
@@ -138,19 +222,40 @@
 .report-body .report-form .capture-date{
     display: grid;
     align-items: center;
-    grid-template-columns: auto 1fr;
-    gap: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
     width: 100%;
     border-radius: 5px;
 }
 
 .report-body .report-form .capture-date label{
+    margin-bottom: 0px !important;
     font-family: "Montserrat";
-    font-weight: 550;
-    font-size: 14px;
-    color: #000000 !important;
+    font-weight: 700;
+    font-size: 20px;
+    color: #003755 !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .report-body .report-form .capture-date label{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report-body .report-form .capture-date label{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report-body .report-form .capture-date label{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report-body .report-form .capture-date label{
+        font-size: 12px !important;
+    }
 }
 
 .report-body .report-form .capture-date input[type = "datetime-local"]::-webkit-inner-spin-button{
@@ -163,32 +268,74 @@
 
 .report-body .report-form .capture-date input[type = "datetime-local"]{
     width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #a8a8a8;
-    border-radius: 10px;
-    box-sizing: border-box;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px;
     appearance: none !important;
+    outline: none !important;
     font-family: "Montserrat";
-    font-weight: 700 !important;
-    font-size: 14px !important;   
-    color: #000000 !important;
+    font-weight: 400 !important;
+    font-size: 22px !important;   
+    color: #003755 !important;
     background: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '20' height = '20' viewBox = '0 0 448 512' fill = '%23154360'> <path d = 'M96 32V64H48C21.5 64 0 85.5 0 112v48H448V112c0-26.5-21.5-48-48-48H352V32c0-17.7-14.3-32-32-32s-32 14.3-32 32V64H160V32c0-17.7-14.3-32-32-32S96 14.3 96 32zM448 192H0V464c0 26.5 21.5 48 48 48H400c26.5 0 48-21.5 48-48V192zM224 248c13.3 0 24 10.7 24 24v56h56c13.3 0 24 10.7 24 24s-10.7 24-24 24H248v56c0 13.3-10.7 24-24 24s-24-10.7-24-24V376H144c-13.3 0-24-10.7-24-24s10.7-24 24-24h56V272c0-13.3 10.7-24 24-24z'/></svg>");
     background-repeat: no-repeat;
     background-position: right 10px center; 
+    cursor: pointer;
 }
 
 .report-body .report-form .capture-date input[type = "datetime-local"]:focus{
-    border-color: #003755;
+    border: 1px solid #003755 !important;
 }
 
-.report-body .report-form h1{
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .report-body .report-form .capture-date input[type = "datetime-local"]{
+        font-size: 18px !important;
+        background: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '18' height = '18' viewBox = '0 0 448 512' fill = '%23154360'> <path d = 'M96 32V64H48C21.5 64 0 85.5 0 112v48H448V112c0-26.5-21.5-48-48-48H352V32c0-17.7-14.3-32-32-32s-32 14.3-32 32V64H160V32c0-17.7-14.3-32-32-32S96 14.3 96 32zM448 192H0V464c0 26.5 21.5 48 48 48H400c26.5 0 48-21.5 48-48V192zM224 248c13.3 0 24 10.7 24 24v56h56c13.3 0 24 10.7 24 24s-10.7 24-24 24H248v56c0 13.3-10.7 24-24 24s-24-10.7-24-24V376H144c-13.3 0-24-10.7-24-24s10.7-24 24-24h56V272c0-13.3 10.7-24 24-24z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center; 
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report-body .report-form .capture-date input[type = "datetime-local"]{
+        font-size: 16px !important;
+        background: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '16' height = '16' viewBox = '0 0 448 512' fill = '%23154360'> <path d = 'M96 32V64H48C21.5 64 0 85.5 0 112v48H448V112c0-26.5-21.5-48-48-48H352V32c0-17.7-14.3-32-32-32s-32 14.3-32 32V64H160V32c0-17.7-14.3-32-32-32S96 14.3 96 32zM448 192H0V464c0 26.5 21.5 48 48 48H400c26.5 0 48-21.5 48-48V192zM224 248c13.3 0 24 10.7 24 24v56h56c13.3 0 24 10.7 24 24s-10.7 24-24 24H248v56c0 13.3-10.7 24-24 24s-24-10.7-24-24V376H144c-13.3 0-24-10.7-24-24s10.7-24 24-24h56V272c0-13.3 10.7-24 24-24z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center; 
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report-body .report-form .capture-date input[type = "datetime-local"]{
+        font-size: 14px !important;
+        background: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '14' height = '14' viewBox = '0 0 448 512' fill = '%23154360'> <path d = 'M96 32V64H48C21.5 64 0 85.5 0 112v48H448V112c0-26.5-21.5-48-48-48H352V32c0-17.7-14.3-32-32-32s-32 14.3-32 32V64H160V32c0-17.7-14.3-32-32-32S96 14.3 96 32zM448 192H0V464c0 26.5 21.5 48 48 48H400c26.5 0 48-21.5 48-48V192zM224 248c13.3 0 24 10.7 24 24v56h56c13.3 0 24 10.7 24 24s-10.7 24-24 24H248v56c0 13.3-10.7 24-24 24s-24-10.7-24-24V376H144c-13.3 0-24-10.7-24-24s10.7-24 24-24h56V272c0-13.3 10.7-24 24-24z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center; 
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report-body .report-form .capture-date input[type = "datetime-local"]{
+        font-size: 12px !important;
+        background: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '12' height = '12' viewBox = '0 0 448 512' fill = '%23154360'> <path d = 'M96 32V64H48C21.5 64 0 85.5 0 112v48H448V112c0-26.5-21.5-48-48-48H352V32c0-17.7-14.3-32-32-32s-32 14.3-32 32V64H160V32c0-17.7-14.3-32-32-32S96 14.3 96 32zM448 192H0V464c0 26.5 21.5 48 48 48H400c26.5 0 48-21.5 48-48V192zM224 248c13.3 0 24 10.7 24 24v56h56c13.3 0 24 10.7 24 24s-10.7 24-24 24H248v56c0 13.3-10.7 24-24 24s-24-10.7-24-24V376H144c-13.3 0-24-10.7-24-24s10.7-24 24-24h56V272c0-13.3 10.7-24 24-24z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center; 
+    }
+}
+
+.report-body .report-form .capture-date input[type = "datetime-local"]:focus{
+    border: 1px solid #003755 !important;
+}
+
+/* .report-body .report-form h1{
     text-align: center;     
     font-weight: 700;       
     font-size: 22px;  
     font-family: "Montserrat";      
-}
+} */
 
 .report-body .report-form .map:has(.report-map){ 
     width: 100%;
@@ -196,179 +343,759 @@
 }
 
 .report-body .report-form .report-map{
-    margin-top: 0px;
     min-width: 100%;
     height: 250px;
     border-radius: 5px; 
     z-index: 1;
 }
 
-.report-body .report-form .barangay{
-    padding-top: 10px;
-    padding-bottom: 10px;
+.report-body .report-form .report-map .leaflet-left{
+    margin-left: 30px !important;
 }
 
-.report-body .report-form .barangay label{
-    font-family: "Montserrat";
-    font-weight: 550;
-    font-size: 14px;
-    color: #000000 !important;
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .report-body .report-form .report-map .leaflet-left{
+        margin-left: 10px !important;
+    }
 }
 
-.report-body .report-form .barangay select{
-    width: 100%;
-    padding: 12px 20px;
-    margin: 3px 0;
-    display: inline-block;
-    border: 1px solid #a8a8a8;
-    border-radius: 10px;
-    box-sizing: border-box;
+.report-body .report-form .report-map .leaflet-right{
+    margin-right: 30px !important;
 }
 
-.report-body .report-form .municipality{
-    padding-top: 10px;
-    padding-bottom: 10px;
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .report-body .report-form .report-map .leaflet-right{
+        margin-right: 10px !important;
+    }
+}
+
+.report-body .report-form .report-map .leaflet-top{
+    margin-top: 15px !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .report-body .report-form .report-map .leaflet-top{
+        margin-top: 5px !important;
+    }
+}
+
+.report-body .report-form .report-map .leaflet-bottom{
+    margin-bottom: 15px !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .report-body .report-form .report-map .leaflet-bottom{
+        margin-bottom: 5px !important;
+    }
+}
+
+.report-body .report-form .report-map .leaflet-bar{
+    border: none !important;
+}
+
+.report-body .report-form .report-map .leaflet-bar a{
+    border: none !important;
+}
+
+.report-body .report-form .report-map .leaflet-control{
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+}
+
+.report-body .report-form .report-map .leaflet-control-zoom{
+    border-radius: 5px !important;
+}
+
+.report-body .report-form .report-map .leaflet-control-zoom a.leaflet-control-zoom-in{
+    -webkit-user-select: none;
+    -ms-user-select: none; 
+    user-select: none;
+    background-color: #FFFFFF !important;
+    color: #003755 !important;
+    text-decoration: none !important;
+}
+
+.report-body .report-form .report-map .leaflet-control-zoom a.leaflet-control-zoom-in:hover{
+    background-color: #B2BEB5 !important;
+    color: #002C44 !important;
+}
+
+.report-body .report-form .report-map .leaflet-control-zoom a.leaflet-control-zoom-in:focus{
+    background-color: #B2BEB5 !important;
+    color: #002C44 !important;
+}
+
+.report-body .report-form .report-map .leaflet-control-zoom a.leaflet-control-zoom-in:active{
+    background-color: #B2BEB5 !important;
+    color: #002C44 !important;
+}
+
+.report-body .report-form .report-map .leaflet-control-zoom a.leaflet-control-zoom-in.leaflet-disabled{
+    background-color: #B2BEB5 !important;
+    color: #002C44 !important;
+    cursor: default !important;
+}
+
+.report-body .report-form .report-map .leaflet-control-zoom a.leaflet-control-zoom-in.leaflet-disabled span{
+    color: #002C44 !important;
+}
+
+.report-body .report-form .report-map .leaflet-control-zoom a.leaflet-control-zoom-out{
+    -webkit-user-select: none;
+    -ms-user-select: none; 
+    user-select: none; 
+    background-color: #003755 !important;
+    color: #FFFFFF !important;
+    text-decoration: none !important;
+}
+
+.report-body .report-form .report-map .leaflet-control-zoom a.leaflet-control-zoom-out:hover{
+    background-color: #002C44 !important;
+    color: #B2BEB5 !important;
+}
+
+.report-body .report-form .report-map .leaflet-control-zoom a.leaflet-control-zoom-out:focus{
+    background-color: #002C44 !important;
+    color: #B2BEB5 !important;
+}
+
+.report-body .report-form .report-map .leaflet-control-zoom a.leaflet-control-zoom-out:active{
+    background-color: #002C44 !important;
+    color: #B2BEB5 !important;
+}
+
+.report-body .report-form .report-map .leaflet-control-zoom a.leaflet-control-zoom-out.leaflet-disabled{
+    background-color: #002C44 !important;
+    color: #B2BEB5 !important;
+    cursor: default !important;
+}
+
+.report-body .report-form .report-map .leaflet-control-zoom a.leaflet-control-zoom-out.leaflet-disabled span{
+    color: #B2BEB5 !important;
+}
+
+.report-body .report-form .coordinates{
+    display: none;
 }
 
 .report-body .report-form .municipality label{
+    margin-bottom: 0px !important;
     font-family: "Montserrat";
-    font-weight: 550;
-    font-size: 14px;
-    color: #000000 !important;
+    font-weight: 700;
+    font-size: 22px;
+    color: #003755 !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .report-body .report-form .municipality label{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report-body .report-form .municipality label{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report-body .report-form .municipality label{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report-body .report-form .municipality label{
+        font-size: 14px !important;
+    }
 }
 
 .report-body .report-form .municipality select{
     width: 100%;
-    padding: 12px 20px;
-    margin: 3px 0;
-    display: inline-block;
-    border: 1px solid #a8a8a8;
-    border-radius: 10px;
-    box-sizing: border-box;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px;
+    appearance: none;
+    outline: none !important;
+    font-family: "Montserrat";
+    font-weight: 400 !important;
+    font-size: 20px !important;   
+    color: #003755 !important;
+    cursor: pointer;
 }
 
-.report-body .report-form .description{
-    padding-top: 10px;
-    padding-bottom: 10px;
+.report-body .report-form .municipality select:focus{
+    border: 1px solid #003755 !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .report-body .report-form .municipality select{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report-body .report-form .municipality select{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report-body .report-form .municipality select{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report-body .report-form .municipality select{
+        font-size: 12px !important;
+    }
+}
+
+.report-body .report-form .barangay{
+    display: none;
+}
+
+.report-body .report-form .barangay label{
+    margin-bottom: 0px !important;
+    font-family: "Montserrat";
+    font-weight: 700;
+    font-size: 20px;
+    color: #003755 !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .report-body .report-form .barangay label{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report-body .report-form .barangay label{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report-body .report-form .barangay label{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report-body .report-form .barangay label{
+        font-size: 12px !important;
+    }
+}
+
+.report-body .report-form .barangay select{
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px;
+    appearance: none;
+    outline: none !important;
+    font-family: "Montserrat";
+    font-weight: 400 !important;
+    font-size: 20px !important;   
+    color: #003755 !important;
+    cursor: pointer;
+}
+
+.report-body .report-form .barangay select:focus{
+    border: 1px solid #003755 !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .report-body .report-form .barangay select{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report-body .report-form .barangay select{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report-body .report-form .barangay select{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report-body .report-form .barangay select{
+        font-size: 12px !important;
+    }
 }
 
 .report-body .report-form .description label{
+    margin-bottom: 0px !important;
     font-family: "Montserrat";
-    font-weight: 550;
-    font-size: 14px;
-    color: #000000 !important;
+    font-weight: 700;
+    font-size: 20px;
+    color: #003755 !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .report-body .report-form .description label{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report-body .report-form .description label{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report-body .report-form .description label{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report-body .report-form .description label{
+        font-size: 12px !important;
+    }
 }
 
 .report-body .report-form .description textarea{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     width: 100%;
     height: 100px;
-    padding: 12px 20px;
-    margin: 3px 0;
-    display: inline-block;
-    border: 1px solid #a8a8a8;
-    border-radius: 10px;
-    box-sizing: border-box;
-    color: #646464;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px;
+    outline: none !important;
+    font-family: "Montserrat";
+    font-weight: 400 !important;
+    font-size: 20px !important;   
+    color: #003755;
 }
 
-.report-body .report-form .size{
-    padding-top: 10px;
-    padding-bottom: 10px;
+.report-body .report-form .description textarea:focus{
+    border: 1px solid #003755 !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .report-body .report-form .description textarea{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report-body .report-form .description textarea{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report-body .report-form .description textarea{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report-body .report-form .description textarea{
+        font-size: 12px !important;
+    }
+}
+
+.report-body .report-form .description p#description-characters{
+    display: flex;
+    align-items: center;
+    margin-bottom: 0px !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #003755;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .report-body .report-form .description p#description-characters{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report-body .report-form .description p#description-characters{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report-body .report-form .description p#description-characters{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report-body .report-form .description p#description-characters{
+        font-size: 12px !important;
+    }
 }
 
 .report-body .report-form .size label{
+    margin-bottom: 0px !important;
     font-family: "Montserrat";
-    font-weight: 550;
-    font-size: 14px;
-    color: #000000 !important;
+    font-weight: 700;
+    font-size: 20px;
+    color: #003755 !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .report-body .report-form .size label{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report-body .report-form .size label{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report-body .report-form .size label{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report-body .report-form .size label{
+        font-size: 12px !important;
+    }
 }
 
 .report-body .report-form .size select{
     width: 100%;
-    padding: 12px 20px;
-    margin: 3px 0;
-    display: inline-block;
-    border: 1px solid #a8a8a8;
-    border-radius: 10px;
-    box-sizing: border-box;
-    color: #646464;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px;
+    appearance: none;
+    outline: none !important;
+    font-family: "Montserrat";
+    font-weight: 400 !important;
+    font-size: 20px !important;   
+    color: #003755 !important;
+    cursor: pointer;
 }
 
-.report-body .report-form .density{
-    padding-top: 10px;
-    padding-bottom: 10px;
+.report-body .report-form .size select:focus{
+    border: 1px solid #003755 !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .report-body .report-form .size select{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report-body .report-form .size select{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report-body .report-form .size select{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report-body .report-form .size select{
+        font-size: 12px !important;
+    }
 }
 
 .report-body .report-form .density label{
+    margin-bottom: 0px !important;
     font-family: "Montserrat";
-    font-weight: 550;
-    font-size: 14px;
-    color: #000000 !important;
+    font-weight: 700;
+    font-size: 20px;
+    color: #003755 !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .report-body .report-form .density label{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report-body .report-form .density label{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report-body .report-form .density label{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report-body .report-form .density label{
+        font-size: 12px !important;
+    }
 }
 
 .report-body .report-form .density input{
     width: 100%;
-    padding: 12px 20px;
-    margin: 3px 0;
-    display: inline-block;
-    border: 1px solid #a8a8a8;
-    border-radius: 10px;
-    box-sizing: border-box;
-    color: #646464;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px;
+    outline: none !important;
+    font-family: "Montserrat";
+    font-weight: 400 !important;
+    font-size: 20px !important;   
+    color: #003755 !important;
 }
 
-.report-body .report-form .depth{
-    padding-top: 10px;
-    padding-bottom: 10px;
+.report-body .report-form .density input:focus{
+    border: 1px solid #003755 !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .report-body .report-form .density input{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report-body .report-form .density input{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report-body .report-form .density input{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report-body .report-form .density input{
+        font-size: 12px !important;
+    }
+}
+
+.report-body .report-form .density::after{
+    content: "per m²";
+    position: absolute;
+    right: 40px;
+    transform: translateY(30%);
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 20px;   
+    pointer-events: none;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .report-body .report-form .density::after{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report-body .report-form .density::after{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report-body .report-form .density::after{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report-body .report-form .density::after{
+        font-size: 12px !important;
+    }
 }
 
 .report-body .report-form .depth label{
+    margin-bottom: 0px !important;
     font-family: "Montserrat";
-    font-weight: 550;
-    font-size: 14px;
-    color: #000000 !important;
+    font-weight: 700;
+    font-size: 20px;
+    color: #003755 !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .report-body .report-form .depth label{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report-body .report-form .depth label{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report-body .report-form .depth label{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report-body .report-form .depth label{
+        font-size: 12px !important;
+    }
 }
 
 .report-body .report-form .depth select{
     width: 100%;
-    padding: 12px 20px;
-    margin: 3px 0;
-    display: inline-block;
-    border: 1px solid #a8a8a8;
-    border-radius: 10px;
-    box-sizing: border-box;
-    color: #646464;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px;
+    appearance: none;
+    outline: none !important;
+    font-family: "Montserrat";
+    font-weight: 400 !important;
+    font-size: 20px !important;   
+    color: #003755 !important;
+    cursor: pointer;
 }
 
-.report-body .report-form .weather{
-    padding-top: 10px;
-    padding-bottom: 10px;
+.report-body .report-form .depth select:focus{
+    border: 1px solid #003755 !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .report-body .report-form .depth select{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report-body .report-form .depth select{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report-body .report-form .depth select{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report-body .report-form .depth select{
+        font-size: 12px !important;
+    }
 }
 
 .report-body .report-form .weather label{
+    margin-bottom: 0px !important;
     font-family: "Montserrat";
-    font-weight: 550;
-    font-size: 14px;
-    color: #000000 !important;
+    font-weight: 700;
+    font-size: 20px;
+    color: #003755 !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .report-body .report-form .weather label{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report-body .report-form .weather label{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report-body .report-form .weather label{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report-body .report-form .weather label{
+        font-size: 12px !important;
+    }
 }
 
 .report-body .report-form .weather select{
     width: 100%;
-    padding: 12px 20px;
-    margin: 3px 0;
-    display: inline-block;
-    border: 1px solid #a8a8a8;
-    border-radius: 10px;
-    box-sizing: border-box;
-    color: #646464;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 1px solid #B2BEB5;
+    border-radius: 5px;
+    appearance: none;
+    outline: none !important;
+    font-family: "Montserrat";
+    font-weight: 400 !important;
+    font-size: 20px !important;   
+    color: #003755 !important;
+    cursor: pointer;
+}
+
+.report-body .report-form .weather select:focus{
+    border: 1px solid #003755 !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .report-body .report-form .weather select{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report-body .report-form .weather select{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report-body .report-form .weather select{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report-body .report-form .weather select{
+        font-size: 12px !important;
+    }
 }
 
 .report-body .report-form .buttons{
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    gap: 15px;
 }
 
 .report-body .report-form .save-report{
@@ -376,26 +1103,79 @@
     place-items: center;
     padding-left: 10px;
     padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     width: 100%;
     border-radius: 5px;
+    outline: none !important;
+    appearance: none !important;
     font-family: "Montserrat";
     font-weight: 400;
-    font-size: 10px;
+    font-size: 20px;
     color: #FFFFFF !important;
-    background-color: #2578a5;
+    background-color: #2578A5;
     text-align: center;
     cursor: pointer;
 }
 
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .report-body .report-form .save-report{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report-body .report-form .save-report{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report-body .report-form .save-report{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report-body .report-form .save-report{
+        font-size: 12px !important;
+    }
+}
+
 .report-body .report-form .save-report button{
     border: none;
+    outline: none !important;
+    appearance: none !important;
     font-family: "Montserrat";
     font-weight: 400;
-    font-size: 10px;
+    font-size: 20px;
     color: #FFFFFF !important;
     background: none;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .report-body .report-form .save-report button{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report-body .report-form .save-report button{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report-body .report-form .save-report button{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report-body .report-form .save-report button{
+        font-size: 12px !important;
+    }
 }
 
 .report-body .report-form .next-report{
@@ -403,34 +1183,83 @@
     place-items: center;
     padding-left: 10px;
     padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     width: 100%;
     border-radius: 5px;
+    border: none !important;
+    outline: none;
+    appearance: none !important;
     font-family: "Montserrat";
     font-weight: 400;
-    font-size: 10px;
+    font-size: 20px;
     color: #FFFFFF !important;
     background-color: #006aa3;
     text-align: center;
     cursor: pointer;
-    outline: none;
-    appearance: none !important;
-    border: none !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .report-body .report-form .next-report{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report-body .report-form .next-report{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report-body .report-form .next-report{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report-body .report-form .next-report{
+        font-size: 12px !important;
+    }
 }
 
 .report-body .report-form .next-report button{
     border: none !important;
     font-family: "Montserrat";
     font-weight: 400;
-    font-size: 10px;
+    font-size: 20px;
     color: #FFFFFF !important;
     background: none;
     outline: none !important;
     appearance: none !important;
+    cursor: pointer;
 }
 
-.report-body .report-form .back-report{
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .report-body .report-form .next-report button{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report-body .report-form .next-report button{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report-body .report-form .next-report button{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report-body .report-form .next-report button{
+        font-size: 12px !important;
+    }
+}
+
+/* .report-body .report-form .back-report{
     display: grid;
     place-items: center;
     padding-left: 10px;
@@ -455,6 +1284,10 @@
     font-size: 14px;
     color: #FFFFFF !important;
     background: none;
+} */
+
+input::placeholder{
+    color: #646464;
 }
 
 input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus input:-webkit-autofill, textarea:-webkit-autofill, textarea:-webkit-autofill:hover textarea:-webkit-autofill:focus, select:-webkit-autofill, select:-webkit-autofill:hover, select:-webkit-autofill:focus{
@@ -467,26 +1300,24 @@ input:autofill{
     background: #FFFFFF !important;
 }
 
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button{
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    -webkit-appearance: none;
+}
+
+input[type = "number"]{
+    -moz-appearance: textfield;
+}
+
 select::-ms-expand{
     display: none !important;
 }
 
 label.required::after{
-    margin-left: 5px !important;
     content: "*" !important;
-    color: red;
+    margin-left: 10px !important;
+    color: #C90016;
 }
-
-/* START TEXT INPUT */
-
-.text-input, .select-input {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 3px 0;
-    display: inline-block;
-    border: 1px solid #a8a8a8;
-    border-radius: 10px;
-    box-sizing: border-box;
-  }
-
-/* end   */

@@ -2,95 +2,64 @@
 {% load static %}
 
 {% block content %}
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<div style="box-sizing: border-box;">
-    <div style = "position: relative; text-align: center; color: white;">
-        <h1 style="color: black; font-family: 'Montserrat';font-weight: 600; padding-top: 30px; padding-bottom: 10px; font-size: 25px;"> WELCOME TO COTSEYE </h1>
-
-        <!-- <div style="text-align: center; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-            <h1>WELCOME TO COTSEYE</h1>
-        </div> -->
-    </div>
-
-    <div class = "home-map">
-        <div class = "map">
+    <div class = "home-body">
+        <div class = "home-section">
+            <h1>COTSEYE DASHBOARD</h1>
+            
+            <!-- <div style="text-align: center; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                <h1>WELCOME TO COTSEYE</h1>
+            </div> -->
         </div>
-    </div>
 
-    <script>
-        function revealMap(){    
-            map_statuses = L.layerGroup();
+        <div style="background-color: rgb(248, 248, 248); border-radius: 10px;">
+            <h1 style="font-family: 'Montserrat'; font-size: 23px; color: #111111; font-weight: 600;">COTS COLLECTION BY MUNICIPALITY</h1>
+            <div id="card-container" class="card-container"></div>
+        </div>
 
-            function highlightBarangay(click){
-                var layer = click.target;
+        <div class = "home-map">
+            <div class = "map">
+            </div>
+        </div>
 
-                layer.setStyle({
-                    color: "#10354C", 
+        <script>
+            function revealMap(){    
+                map_statuses = L.layerGroup();
 
-                    weight: 5, 
-                    
-                    fillOpacity: 0.75
-                });
+                function highlightBarangay(click){
+                    var layer = click.target;
 
-                layer.bringToFront();
-            };
+                    layer.setStyle({
+                        color: "#003755", 
 
-            function resetBarangay(click){
-                status.resetStyle(click.target);
-            };
-
-            function zoomBarangay(click){
-                var feature = click.target.feature;
-    
-                var properties = feature.properties;
-
-                map.fitBounds(click.target.getBounds());
-
-                var center = click.target.getCenter();
-
-                var status = feature.properties.statustype;
-
-                if (status === "Critical"){
-                    fillings = "#C90016";
+                        weight: 5, 
                         
-                } else if (status === "Moderate"){
-                    fillings = "#F4C430";
+                        fillOpacity: 0.75
+                    });
 
-                } else if (status === "Low"){
-                    fillings = "#698F3F";
-                
-                } else{
-                    fillings = "#003755";
+                    layer.bringToFront();
                 };
-                
-                var popup = L.popup({closeOnClick: false, autoClose: false}).setLatLng(center).setContent("<div class = 'popup'>" + "<div class = 'popup-header'>" + "<i class = 'fa-solid fa-circle-exclamation'>" + "</i>" + "<i class = 'fa-solid fa-square-xmark popup-back'>" + "</i>" + "</div>" + "<div class='popup-place'>" + "<p>" + "<a>" + properties.barangay + "</a>" + ", " + properties.municipality + "</p>" + "</div>" + "<div class = 'popup-statistics'>" + "<p>" + "As of " + "<a>" + properties.onset_date + "</a>" + ":" + "</p>" + "<p>" + "<a style = 'color: " + fillings + ";'>" + properties.statustype + "</a>" + " status" + "," + "</p>" + "<p>" + "<a>" + properties.caught_overall + "</a>" + " COTS caught" + "." + "</p>" + "</div>").openOn(map);
-                
-                var popupBack = popup._contentNode.querySelector(".popup-back");
-                
-                popupBack.addEventListener("click", function(){
-                    map.closePopup(popup);
-                });
-            };
 
-            var status = L.geoJSON([{
-                "type": "FeatureCollection", 
-                            
-                "features": [
-                    {% for status in map_statuses %}
-                        {"type": "Feature", "properties": {"barangay": "{{status.location.barangay}}", "municipality": "{{status.location.municipality}}", "caught_overall": "{{status.caught_overall}}", "statustype": "{{status.statustype}}", "onset_date": "{{status.onset_date}}"}, "geometry": {"type": "Polygon", "coordinates": {{status.location.perimeters}}}}, 
-                    {% endfor %}
-                ]
+                function resetBarangay(click){
+                    status.resetStyle(click.target);
+                };
 
-            }], {
-                style: function(feature){
+                function zoomBarangay(click){
+                    var feature = click.target.feature;
+        
+                    var properties = feature.properties;
+
+                    map.fitBounds(click.target.getBounds());
+
+                    var center = click.target.getCenter();
+
                     var status = feature.properties.statustype;
-
-                    var fillings = "";
 
                     if (status === "Critical"){
                         fillings = "#C90016";
-                        
+                    
+                    } else if (status === "High"){
+                        fillings = "#FF7518";
+
                     } else if (status === "Moderate"){
                         fillings = "#F4C430";
 
@@ -100,200 +69,718 @@
                     } else{
                         fillings = "#003755";
                     };
+                    
+                    var popup = L.popup({closeOnClick: false, autoClose: false}).setLatLng(center).setContent("<div class = 'popup'>" + "<div class = 'popup-header'>" + "<i class = 'fa-solid fa-circle-exclamation'>" + "</i>" + "<i class = 'fa-solid fa-square-xmark popup-back'>" + "</i>" + "</div>" + "<div class='popup-place'>" + "<p>" + "<a>" + properties.barangay + "</a>" + ", " + properties.municipality + "</p>" + "</div>" + "<div class = 'popup-statistics'>" + "<p>" + "As of " + "<a>" + properties.onset_date + "</a>" + ":" + "</p>" + "<p>" + "<a style = 'color: " + fillings + ";'>" + properties.statustype + "</a>" + " status" + "," + "</p>" + "<p>" + "<a>" + properties.caught_overall + "</a>" + " COTS caught" + "." + "</p>" + "</div>").openOn(map);
+                    
+                    var popupBack = popup._contentNode.querySelector(".popup-back");
+                    
+                    popupBack.addEventListener("click", function(){
+                        map.closePopup(popup);
+                    });
+                };
 
-                    return{
-                        color: "#002C44", 
+                var status = L.geoJSON([{
+                    "type": "FeatureCollection", 
+                                
+                    "features": [
+                        {% for status in map_statuses %}
+                            {"type": "Feature", "properties": {"barangay": "{{status.location.barangay}}", "municipality": "{{status.location.municipality}}", "caught_overall": "{{status.caught_overall}}", "statustype": "{{status.statustype}}", "onset_date": "{{status.onset_date | date:'m/d/Y'}}"}, "geometry": {"type": "Polygon", "coordinates": {{status.location.perimeters}}}}, 
+                        {% endfor %}
+                    ]
+
+                }], {
+                    style: function(feature){
+                        var status = feature.properties.statustype;
+
+                        var fillings = "";
+
+                        if (status === "Critical"){
+                            fillings = "#C90016";
+                    
+                        } else if (status === "High"){
+                            fillings = "#FF7518";
+
+                        } else if (status === "Moderate"){
+                            fillings = "#F4C430";
+
+                        } else if (status === "Low"){
+                            fillings = "#698F3F";
                         
-                        weight: 1, 
+                        } else{
+                            fillings = "#003755";
+                        };
 
-                        fillColor: fillings, 
+                        return{
+                            color: "#002C44", 
+                            
+                            weight: 1, 
 
-                        fillOpacity: 0.25
+                            fillColor: fillings, 
+
+                            fillOpacity: 0.75
+                        };
+                    }, 
+
+                    onEachFeature: function (feature, layer){
+                        layer.on({
+                            mouseover: highlightBarangay, 
+
+                            mouseout: resetBarangay, 
+
+                            click: zoomBarangay
+                        });
+                    }
+                });
+
+                status.addTo(map_statuses);
+
+                var map_posts = L.markerClusterGroup({iconCreateFunction: function(cluster){return starfish}, removeOutsideVisibleBounds: false});
+                
+                {% for post in map_posts %}
+                    var starfish = L.icon({iconUrl: "{{post.post_photos.first.post_photo.url | default:'/statics/assets/pin.png'}}",  iconSize: [30, 30], iconAnchor: [15, 15], className: "pin"});
+
+                    var postMarker = L.marker([{{post.coordinates.latitude}}, {{post.coordinates.longitude}}], {icon: starfish});
+                    
+                    postMarker.bindPopup("<div class = 'popup'>" + "<div class = 'popup-header'>" +  "<img src = '{{post.user.profile_photo.url | default:'/statics/assets/pin.png'}}'>" +  "<div class = 'popup-username'>" +  "<a>{{post.user | default:'None available'}}</a>" + "</div>" + "<i class = 'fa-solid fa-square-xmark popup-back'></i>" + "</div>" + "<div class = 'popup-post'>" + "<div class = 'post-gallery'>" + "<img src = '{{post.post_photos.all.first.post_photo.url | default:'/statics/assets/pin.png'}}'>" + "<div class = 'post-context'>" + "<p>{{post.capture_date | date:'m/d/Y' | default:'None available'}}</p>" + "<a>{{post.location | default:'None available'}}</a>" + "</div>" + "</div>" + "</div>" + "<div class = 'button'><a class = 'read-post' href = '{% url 'Post Valid Read Redirect' id=post.id %}'>Read</a></div>", {closeOnClick: false, autoClose: false});
+
+                    postMarker.on("popupopen", function(e){
+                        var popup = e.popup;
+                        
+                        var popupBack = popup.getElement().querySelector(".popup-back");
+                        
+                        popupBack.onclick = function(){
+                            popup.close();
+                        };
+                    });
+
+                    postMarker.on("click", function(event){                    
+                        if (!this.isPopupOpen()){
+                            this.openPopup();
+                        }
+                    });
+
+                    map_posts.addLayer(postMarker);
+                {% endfor %}
+
+
+                var map = document.getElementsByClassName("map")[0];
+
+                var background = L.tileLayer("http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}", {minZoom: 12, maxZoom: 20, subdomains:["mt0", "mt1", "mt2", "mt3"]});
+
+                var map = L.map(map, {zoomControl: true, scrollWheelZoom: false, dragging: true, maxBounds: [[5.266008, 124.277344], [6.489983, 126.035156]], layers: [background, map_posts]}).setView([5.9656, 125.1929], 12);
+                
+                map.on("popupopen", function(event){
+                    var popup = map.project(event.target._popup._latlng);
+                    
+                    popup.y -= event.target._popup._container.clientHeight / 2;
+                    
+                    map.panTo(map.unproject(popup), {animate: true});
+                });
+
+                map.attributionControl.remove();
+
+                var bases = {};
+                
+                var overlays = {
+                    "Posts": map_posts, 
+
+                    "COTS Status": map_statuses
+                };
+
+                var management = L.control.layers(bases, overlays).addTo(map);
+
+                management.setPosition("bottomright");
+
+                var legend = L.control({position: "topright"});
+
+                legend.onAdd = function(map){
+                    this._div = L.DomUtil.create("div", "legend");
+
+                    this.update();
+                    
+                    return this._div;
+                };
+
+                legend.update = function(property){
+                    if (map.hasLayer(map_statuses)){
+                        this._div.style.display = "grid";
+                        
+                        this._div.innerHTML = "<div class = 'popup-header'>" + "<a>" + "Legend:" + "</a>" + "</div>";
+                        
+                        var ranges = ["25 and up", "19 to 24", "13 to 18", "6 to 12"];
+                        
+                        var labels = ["Critical", "High", "Moderate", "Low"];
+                        
+                        var colors = ["#C90016", "#FF7518", "#F4C430", "#698F3F"];
+
+                        let popupStatistics = "";
+
+                        for (let i = 0; i < labels.length; i++) {
+                            popupStatistics += "<div class = 'popup-statistics'>" +  "<i style = 'background:" + colors[i] + "'>" + "</i>" + "<a>" + labels[i] + " " + "<p>" + "(" + ranges[i] + ")" + "</p>" + "</a>" + "</div>";
+                        }
+
+                        this._div.innerHTML += popupStatistics + "<div class = 'popup-alert'>" + "<p>" + "*Based on COTS collected." + "</p>" + "</div>";
+
+                    } else{
+                        this._div.style.display = "none";
                     };
-                }, 
+                };
 
-                onEachFeature: function (feature, layer){
-                    layer.on({
-                        mouseover: highlightBarangay, 
+                legend.addTo(map);
 
-                        mouseout: resetBarangay, 
+                map.on("overlayadd overlayremove", function(event){
+                    if (event.name === "COTS Status"){
+                        legend.update();
+                    }
+                });
+            };
 
-                        click: zoomBarangay
+            window.addEventListener("load", function (){
+                revealMap();
+            });
+        </script>
+
+        <!-- <h1 style="text-align: center;">COTS STATUS GRAPH</h1> -->
+
+    
+        <link rel="stylesheet" type="text/css" href="{% static 'css/officer/control/home/card.css' %}">
+
+        <div style="background-color: rgb(248, 248, 248); margin: 20px; padding: 20px; border-radius: 10px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
+                <h1 style="text-align: center; font-family: 'Montserrat'; font-size: 23px; color: #111111; font-weight: 600;">COTS COLLECTION BY BARANGAY</h1>
+                <div class="d-flex justify-content-end">
+                    <button style="background-color: #1ead5f; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-family: Arial, sans-serif; cursor: pointer;" onclick="window.location.href='{% url 'Officer Control Report' %}'" class="btn btn-primary">GENERATE REPORT</button>
+                </div>
+            </div>  
+
+            <!-- Filter Form -->
+            <form method="get" action="{% url 'Officer Control Home' %}">
+                <div class="filter-container" style="display: flex; justify-content: flex-end; align-items: flex-end; flex-wrap: wrap; gap: 15px; padding: 20px; border: 1px solid #f0f0f0; border-radius: 10px; background-color: #f9f9f9;">
+                    <div class="filter-item">
+                        <label for="municipalityFilter" style="display: block; margin-bottom: 5px; font-weight: bold; font-family: 'Montserrat';">Municipality:</label>
+                        <select id="municipalityFilter" name="municipality" style="width: 100%; padding: 8px; border: 1px solid #eeeeee; border-radius: 5px; font-family: Arial, sans-serif;"  onchange="updateBarangayOptions()">
+                            <option value="">Select Municipality</option>
+                            {% for municipality in municipalities %}
+                                <option value="{{ municipality.municipality }}" {% if selected_municipality == municipality.municipality %}selected{% endif %}>{{ municipality.municipality }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="filter-item">
+                        <label for="barangayFilter" style="display: block; margin-bottom: 5px; font-weight: bold; font-family: 'Montserrat';">Barangay:</label>
+                        <select id="barangayFilter"  style="width: 100%; padding: 8px; border: 1px solid #eeeeee; border-radius: 5px; font-family: Arial, sans-serif;" onchange="setBarangayValue()">
+                            {% if selected_barangay == '' %}
+
+                                <option value="">Select Barangay</option>
+                            {% endif %}
+                            {% for barangay in barangays %}
+                                <option value="{{ barangay.barangay }}" {% if selected_barangay == barangay.barangay %}selected{% endif %}>{{ barangay.barangay }}</option>
+                            {% endfor %}    
+                        </select>
+                    </div>
+            
+                    <!-- <div class="filter-item" style="flex: 1 1 200px;">
+                        <label for="startDateFilter" style="display: block; margin-bottom: 5px; font-weight: bold; font-family: 'Montserrat';">From:</label>
+                        <input type="date" id="startDateFilter" name="start_date" value="{{ start_date_filter|default_if_none:'' }}" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+                    </div>
+            
+                    <div class="filter-item" style="flex: 1 1 200px;">
+                        <label for="endDateFilter" style="display: block; margin-bottom: 5px; font-weight: bold; font-family: 'Montserrat';">To:</label>
+                        <input type="date" id="endDateFilter" name="end_date" value="{{ end_date_filter|default_if_none:'' }}" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+                    </div> -->
+            
+                    <div class="filter-item">
+                        <label for="yearFilter" style="display: block; margin-bottom: 5px; font-weight: bold; font-family: 'Montserrat';">Year:</label>
+                        <input type="number" id="yearFilter" name="year" value="{{ year_filter|default_if_none:current_year }}" min="1900" max="{{ current_year }}" style="width: 100%; padding: 5px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;">
+                    </div>
+                    
+                    <div class="filter-item" style="display: flex; align-items: flex-end;">
+                        <button type="submit" class="filter-button" style="background-color: unset; color: black; border: none; appearance: none; cursor: pointer;">
+                            <i class="fa-solid fa-filter" style="font-size: 16px;"></i>
+                        </button>
+                    </div>
+                    <div class="filter-item" style="display: flex; align-items: flex-end;">
+                        <button type="submit" class="filter-button" style="background-color: unset; color: black; border: none; appearance: none; cursor: pointer;" onclick="resetFilter()">
+                            <i class="fa-solid fa-arrow-rotate-left" style="font-size: 16px;"></i>
+                        </button>
+                        
+                    </div>
+                    
+                    <input type="hidden" id="id_municipality" name="municipality">
+                    <input type="hidden" id="id_barangay" name="barangay">
+                    
+                    
+                </div>
+                <div class="status-header">
+                    <h2>COTS Infestation Status Graph</h2>
+                    <h3 id="barangay"></h3>
+                    <h3 id="status"></h3>
+                    <h3 id="asOfDate"></h3>
+                </div>
+                <div class="h1 mt-5 mb-5" id="noDataMessage" style="display: none; text-align: center;">No data available for the selected year.</div>
+
+                <canvas id="interventionChart" width="200" height="100"></canvas>
+                <div class="legend-container">
+                    <div id="legends"></div>
+                    <p class="text-muted" style="text-align: center;" ><small >based on COTS collected amount.</small></p>
+                </div>
+                <!-- Tabular Data -->
+            
+            </form>
+        
+            <!-- Barangay Cards -->
+            
+        </div>
+        <div class="container-fluid mt-3 mb-3" style="padding-left: 25px !important; padding-right: 25px !important;">
+            <div class="card-header">
+                <h4>Activity Data Table</h4>
+                <button class="btn btn-link" data-toggle="collapse" data-target="#dataTable" aria-expanded="true" aria-controls="dataTable">
+                    Toggle Table
+                </button>
+            </div>
+            <div id="dataTable" class="collapse show">
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Title</th>
+                                <th>Location</th>
+                                <th>Caught Amount</th>
+                                <th>Volunteer Amount</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dataTableBody">
+                            <!-- Rows will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <script>
+            window.updateBarangayOptions = function() {
+            const municipalityFilter = document.getElementById('municipalityFilter').value;
+            const barangayFilter = document.getElementById('barangayFilter');
+            const municipalityInput = document.getElementById('id_municipality');
+
+            municipalityInput.value = municipalityFilter;
+
+            barangayFilter.innerHTML = '<option value="">Select Barangay</option>';
+
+            if (municipalityFilter) {
+                $.ajax({
+                    url: '{% url "get_barangays" %}',
+                    data: {
+                        'municipality': municipalityFilter
+                    },
+                    success: function(data) {
+                        data.forEach(function(barangay) {
+                            const option = document.createElement('option');
+                            option.value = barangay;
+                            option.textContent = barangay;
+                            barangayFilter.appendChild(option);
+                        });
+                    }
+                });
+            }
+        }
+
+            window.setBarangayValue = function() {
+                const barangayFilter = document.getElementById('barangayFilter');
+                const barangayInput = document.getElementById('id_barangay');
+                barangayInput.value = barangayFilter.value;
+            }
+        </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const cardContainer = document.getElementById('card-container');
+                const municipalityFilter = document.getElementById('municipalityFilter');
+            
+                function getStatusColor(status) {
+                    switch (status) {
+                        case 'Low':
+                            return '#1b8a5a';
+                        case 'Moderate':
+                            return '#FFBF00';
+                        case 'High':
+                            return '#f3903f';
+                        case 'Critical':
+                            return '#e93e3a';
+                    }
+                }
+            
+                function displayCards(filteredData) {
+                    cardContainer.innerHTML = ''; // Clear existing cards
+            
+                    // Group by municipality and aggregate data
+                    const aggregatedData = filteredData.reduce((acc, entry) => {
+                        if (!acc[entry.municipality]) {
+                            acc[entry.municipality] = {
+                                municipality: entry.municipality,
+                                caught_amount: 0,
+                                volunteer_amount: 0,
+                                status_type: entry.status_type,
+                                intervention_date: entry.intervention_date
+                            };
+                        }
+                        acc[entry.municipality].caught_amount += entry.caught_amount;
+                        acc[entry.municipality].volunteer_amount += entry.volunteer_amount;
+            
+                        // Update the latest status and date if the current entry is more recent
+                        if (new Date(acc[entry.municipality].intervention_date) < new Date(entry.intervention_date)) {
+                            acc[entry.municipality].status_type = entry.status_type;
+                            acc[entry.municipality].intervention_date = entry.intervention_date;
+                        }
+            
+                        return acc;
+                    }, {});
+            
+                    Object.values(aggregatedData).forEach(entry => {
+                        const card = document.createElement('div');
+                        card.className = 'card';
+                        card.style.backgroundColor = getStatusColor(entry.status_type); // Set background color based on status
+                        
+                        const cardBody = document.createElement('div');
+                        cardBody.className = 'card-body';
+        
+                        const location = document.createElement('h5');
+                        location.style.fontSize = '16px';
+                        location.className = 'card-title';
+                        location.innerText = entry.municipality;
+                        cardBody.appendChild(location);
+
+                        const status = document.createElement('p');
+                        status.style.fontSize = '24px';
+                        status.style.textTransform = 'uppercase';
+                        status.style.fontWeight = '700';
+                        status.innerText = `${entry.status_type}`;
+                        cardBody.appendChild(status);
+            
+                        const combinedAmount = document.createElement('p');
+                        combinedAmount.style.fontSize = '48px';
+                        combinedAmount.style.fontWeight = '700';
+                        combinedAmount.className = 'card-text';
+                        combinedAmount.innerText = entry.caught_amount;
+                        cardBody.appendChild(combinedAmount);
+
+                        const cotsCollected = document.createElement('p');
+                        cotsCollected.style.fontSize = '14px';
+                        cotsCollected.style.marginBottom = '10px';
+                        cotsCollected.innerText = 'COTS Collected';
+                        cardBody.appendChild(cotsCollected);
+            
+                        const date = document.createElement('p');
+                        date.className = 'card-text';
+            
+                        const formattedDate = new Date(entry.intervention_date).toLocaleDateString('en-US', {
+                            month: '2-digit',
+                            day: '2-digit',
+                            year: 'numeric'
+                        });
+            
+                        date.innerHTML = `As of <strong style="font-size:16px;">${formattedDate}</strong>`;
+                        date.style.fontSize = '14px';
+                        cardBody.appendChild(date);
+            
+                        card.appendChild(cardBody);
+                        cardContainer.appendChild(card);
+        
+                        // Add event listener for click to redirect to status page
+                        card.addEventListener('click', function() {
+                            const municipalitySlug = entry.municipality.toLowerCase().replace(/ /g, '-');
+                            window.location.href = `/officer/control/status#${municipalitySlug}`;
+                        });
                     });
                 }
-            });
-
-            status.addTo(map_statuses);
-
-            {% for post in map_posts %}
-                var starfish = L.icon({iconUrl: "{{post.post_photos.first.post_photo.url}}", iconSize: [30, 30], iconAnchor: [15, 15], className: "custom-leaflet-icon"});
-        
-                var map_posts = L.markerClusterGroup({iconCreateFunction: function(cluster){return starfish}, removeOutsideVisibleBounds: false});
-        
-                var postMarker = L.marker([{{post.coordinates.latitude}}, {{post.coordinates.longitude}}], {icon: starfish});
-                
-                postMarker.bindPopup("<div class = 'popup'>" + "<div class = 'popup-header'>" +  "<img src = '{{post.user.profile_photo.url | default:''}}'>" +  "<div class='popup-username'>" +  "<p><a>{{post.user | default:'None available'}}</a></p>" + "</div>" + "<i class = 'fa-solid fa-square-xmark popup-back'></i>" + "</div>" + "<div class = 'popup-post'>" + "<div class = 'post-gallery'>" + "<img src = '{{post.post_photos.all.first.post_photo.url}}'>" + "<div class = 'post-context'>" + "<p>{{post.capture_date | default:'None available'}}</p>" + "<a>{{post.location | default:'None available'}}</a>" + "</div>" + "</div>" + "</div>" + "<div class = 'button'><a class = 'read-post' href = '{% url 'Post Valid Read Redirect' %}'>Read</a></div>", {closeOnClick: false, autoClose: false});
-
-                postMarker.on("popupopen", function(e){
-                    var popup = e.popup;
-                    
-                    var popupBack = popup.getElement().querySelector(".popup-back");
-                    
-                    popupBack.onclick = function(){
-                        popup.close();
-                    };
-                });
-
-                postMarker.on("click", function(event){                    
-                    if (!this.isPopupOpen()){
-                        this.openPopup();
-                    }
-                });
-
-                map_posts.addLayer(postMarker);
-            {% endfor %}
-
-
-            var map = document.getElementsByClassName("map")[0];
-
-            var background = L.tileLayer("http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}", {minZoom: 11, maxZoom: 15, subdomains:["mt0", "mt1", "mt2", "mt3"]});
-
-            var map = L.map(map, {zoomControl: true, scrollWheelZoom: false, dragging: true, maxBounds: [[5.266008, 124.277344], [6.489983, 126.035156]], layers: [background, map_posts]}).setView([5.9656, 125.1929], 11);
             
-            map.on("popupopen", function(event){
-                var popup = map.project(event.target._popup._latlng);
-                
-                popup.y -= event.target._popup._container.clientHeight / 2;
-                
-                map.panTo(map.unproject(popup), {animate: true});
-            });
-
-            map.attributionControl.remove();
-
-            var bases = {};
+                // Initial display of cards
+                displayCards(chartData);
             
-            var overlays = {
-                "Posts": map_posts, 
-
-                "COTS Status": map_statuses
-            };
-
-            var management = L.control.layers(bases, overlays).addTo(map);
-
-            management.setPosition("bottomright");
-
-            var legend = L.control({position: "topright"});
-
-            legend.onAdd = function(map){
-                this._div = L.DomUtil.create("div", "legend");
-
-                this.update();
-                
-                return this._div;
-            };
-
-            legend.update = function(property){
-                if (map.hasLayer(map_statuses)){
-                    this._div.style.display = "grid";
-                    
-                    this._div.innerHTML = "<div class = 'popup-header'>" + "<p>" + "<a>" + "Map " + "</a>" + "legend" + ":" + "</a>" + "</p>" + "</div>";
-                    
-                    var ranges = ["75 and up", "25 to 75", "0 to 25"];
-                    
-                    var labels = ["Critical", "Moderate", "Low"];
-                    
-                    var colors = ["#C90016", "#F4C430", "#698F3F"];
-
-                    for (var i = 0; i < ranges.length; i++){
-                        this._div.innerHTML += "<div class = 'popup-statistics'>" + "<i style = 'background:" + colors[i] + "'>" + "</i>" + "<p>" + labels[i] + ", " + "<a>" + ranges[i] + "</a>" + "." + "</p>" + "</div>";
-                    }
-
-                } else{
-                    this._div.style.display = "none";
-                };
-            };
-
-            legend.addTo(map);
-
-            map.on("overlayadd overlayremove", function(event){
-                if (event.name === "COTS Status"){
-                    legend.update();
-                }
+                // Filter cards based on selected municipality
+                municipalityFilter.addEventListener('change', function() {
+                    const selectedMunicipality = municipalityFilter.value;
+                    const filteredData = selectedMunicipality ? 
+                        chartData.filter(entry => entry.municipality === selectedMunicipality) : 
+                        chartData;
+            
+                    displayCards(filteredData);
+                });
             });
-        };
+        </script>
+        
+            
 
-        window.addEventListener("load", function (){
-            revealMap();
-        });
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0"></script>
 
-    <!-- <h1 style="text-align: center;">COTS STATUS GRAPH</h1> -->
+    <style>
+        #legends {
+            margin-top: 10px;
+            align-items: center;
+            font-weight: bold;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* Four items in a row */
+            gap: 10px; /* Adjust gap between grid items if needed */
+            justify-content: center; /* Center the grid within the container */
+            margin-left: 3rem;
+            
+        }
+        .legend-item {
+            display: inline-block;
+            margin-right: 15px;
+        }
+        .legend-color-box {
+            display: inline-block;
+            width: 45px;
+            height: 15px; /* Rectangle shape */
+            margin-right: 5px;
+        }
 
-  
-    {% include 'officer/control/home/card_count.html' %}
+        .status-header {
+            text-align: center;
+            margin-top: 20px;
+        }
 
+        .status-header h2 {
+            margin-bottom: 5px;
+        }
 
-    <!-- <script>
-        var categories = [];
-        var data = [];
-    
-        {% for map_status in map_graphs %}
-            categories.push("{{map_status.location}}");
-            data.push({
-                x: "{{map_status.location}}",
-                y: {{map_status.caught_overall}}, fillColor: {{map_status.caught_overall}} < 25 ? "#698F3F" : {{map_status.caught_overall}} < 75 ? "#F4C430" : "#C90016"
-            });
-        {% endfor %}
-    
-        var configurations = {
-            series: [{
-                name: "Caught Overall",
-                data: data
-            }],
-            chart: {
-                fontFamily: "Montserrat",
-                height: 500,
-                type: "bar",
-                toolbar: { show: false },
-                zoom: { enabled: false }
-            },
-            legend: { show: false },
-            plotOptions: {
-                bar: {
-                    distributed: true,
-                    colors: {
-                        ranges: [{
-                            from: 0, to: 24, color: "#698F3F"
-                        }, {
-                            from: 25, to: 74, color: "#F4C430"
-                        }, {
-                            from: 75, to: undefined, color: "#C90016"
-                        }]
-                    }
-                }
-            },
-            tooltip: {
-                style: { fontSize: '14px' }
-            },
-            xaxis: {
-                categories: categories,
-                title: {
-                    text: "Coastal Barangays",
-                    style: { fontSize: "14px", fontWeight: "700" }
-                },
-                labels: { style: { fontSize: "14px", fontWeight: "400" } }
-            },
-            yaxis: {
-                title: {
-                    text: "COTS Caught",
-                    style: { fontSize: "14px", fontWeight: "700" }
-                },
-                labels: { style: { fontSize: "14px", fontWeight: "400" } }
+        .status-header h3 {
+            margin-top: 0;
+            font-size: 1.2em;
+        }
+    </style>
+    <style>
+        .status-header {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .status-header h2 {
+            margin-bottom: 5px;
+        }
+
+        .status-header h3 {
+            margin-top: 0;
+            font-size: 1.2em;
+        }
+
+        .legend-item {
+            display: inline-block;
+            margin-right: 15px;
+        }
+
+        .legend-color-box {
+            display: inline-block;
+            width: 30px;
+            height: 15px; /* Rectangle shape */
+            margin-right: 5px;
+        }
+    </style>
+
+    <script>
+        function getStatusColor(statusType) {
+            switch (statusType) {
+                case 'Low':
+                    return '#1b8a5a';
+                case 'Moderate':
+                    return '#fff33b';
+                case 'High':
+                    return '#f3903f';
+                case 'Critical':
+                    return '#e93e3a';
+                default:
+                    return null; // Exclude "N/A" from the legends
             }
-        };
-    
-        var graph = new ApexCharts(document.querySelector(".map-graph"), configurations);
-        graph.render();
-    </script> -->
-</div>
+        }
+
+        const chartData = JSON.parse('{{ chart_data|escapejs }}');
+        const statusOrder = ['Low', 'Moderate', 'High', 'Critical'];
+
+        // Sort the chartData based on intervention_date
+        chartData.sort((a, b) => new Date(a.intervention_date) - new Date(b.intervention_date));
+
+        if (chartData.length === 0) {
+            document.getElementById('interventionChart').style.display = 'none';
+            document.getElementById('noDataMessage').style.display = 'block';
+        } else {
+            document.getElementById('interventionChart').style.display = 'block';
+            document.getElementById('noDataMessage').style.display = 'none';
+
+            const uniqueLocations = [...new Set(chartData.map(entry => entry.location))];
+            const barangay = uniqueLocations.length > 1 ? "All" : (uniqueLocations[0] || "All");
+            const latestEntry = chartData[chartData.length - 1];
+            const status = latestEntry.status_type.toUpperCase();
+            const asOfDate = `As of: ${new Date(latestEntry.intervention_date).toLocaleDateString('en-US', {
+                month: '2-digit',
+                day: '2-digit',
+                year: 'numeric'
+            })}`;
+
+            document.getElementById('barangay').innerText = `Barangay: ${barangay}`;
+            document.getElementById('status').innerText = `Status: ${status}`;
+            document.getElementById('asOfDate').innerText = asOfDate;
+
+            const data = {
+                datasets: [{
+                    label: 'Caught Amount',
+                    data: chartData.map(entry => ({
+                        x: entry.intervention_date,
+                        y: entry.caught_amount,
+                        location: entry.location,
+                        title: entry.title,
+                        statusType: getStatusType(entry.caught_amount),
+                        volunteerAmount: entry.volunteer_amount
+                    })),
+                    borderColor: 'black',
+                    backgroundColor: 'black',
+                    borderWidth: 1,
+                    fill: false,
+                    spanGaps: true, // This option will connect the line even if there are missing data points
+                    pointBackgroundColor: chartData.map(entry => getStatusColor(getStatusType(entry.caught_amount))),
+                    pointRadius: 5,
+                    pointHoverRadius: 7 // Make points bigger when hovered
+                }]
+            };
+
+            function getStatusType(caughtAmount) {
+                if (caughtAmount >= 0 && caughtAmount <= 12) {
+                    return 'Low';
+                } else if (caughtAmount >= 13 && caughtAmount <= 18) {
+                    return 'Moderate';
+                } else if (caughtAmount >= 19 && caughtAmount <= 24) {
+                    return 'High';
+                } else {
+                    return 'Critical';
+                }
+            }
+
+            const config = {
+                type: 'line',
+                data: data,
+                options: {
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                title: function(tooltipItems) {
+                                    return tooltipItems[0].raw.location; // Display the location in the tooltip title
+                                },
+                                label: function(context) {
+                                    const dataPoint = context.raw;
+                                    const date = new Date(dataPoint.x).toLocaleDateString('en-US', {
+                                        month: '2-digit',
+                                        day: '2-digit',
+                                        year: 'numeric'
+                                    });
+                                    return [`Date: ${date}`, `Title: ${dataPoint.title}`]; // Return an array for multiple lines
+                                }
+                            }
+                        },
+                        legend: {
+                            display: false // Disable the legend from Chart.js
+                        }
+                    },
+                    scales: {
+                        x: {
+                            type: 'time',
+                            time: {
+                                unit: 'month',
+                                tooltipFormat: 'MM/dd/yyyy',
+                                displayFormats: {
+                                    month: 'MMM yyyy' // Format for the x-axis labels
+                                }
+                            },
+                            title: {
+                                display: true,
+                                text: 'Activity Date'
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Number of COTS Collected'
+                            }
+                        }
+                    }
+                }
+            };
+
+            const interventionChart = new Chart(
+                document.getElementById('interventionChart'),
+                config
+            );
+
+            // Generate the legends
+            const legendsDiv = document.getElementById('legends');
+            statusOrder.forEach(statusType => {
+                const legendItem = document.createElement('div');
+                legendItem.className = 'legend-item';
+
+                const legendColorBox = document.createElement('span');
+                legendColorBox.className = 'legend-color-box';
+                legendColorBox.style.backgroundColor = getStatusColor(statusType);
+
+                const legendText = document.createElement('span');
+                legendText.innerText = `${statusType.toUpperCase()} (${getStatusRange(statusType)})`;
+
+                legendItem.appendChild(legendColorBox);
+                legendItem.appendChild(legendText);
+                legendsDiv.appendChild(legendItem);
+            });
+
+            function getStatusRange(statusType) {
+                switch (statusType) {
+                    case 'Low':
+                        return '0-12';
+                    case 'Moderate':
+                        return '13-18';
+                    case 'High':
+                        return '19-24';
+                    case 'Critical':
+                        return '25 and above';
+                }
+            }
+
+            // Populate the data table
+            const dataTableBody = document.getElementById('dataTableBody');
+            chartData.forEach(entry => {
+                if (entry.title !== "N/A") { // Skip rows where title is "N/A"
+                    const row = document.createElement('tr');
+
+                    const dateCell = document.createElement('td');
+                    dateCell.innerText = new Date(entry.intervention_date).toLocaleDateString('en-US', {
+                        month: '2-digit',
+                        day: '2-digit',
+                        year: 'numeric'
+                    });
+                    row.appendChild(dateCell);
+
+                    const titleCell = document.createElement('td');
+                    titleCell.innerText = entry.title;
+                    row.appendChild(titleCell);
+
+                    const locationCell = document.createElement('td');
+                    locationCell.innerText = entry.location;
+                    row.appendChild(locationCell);
+
+                    const caughtAmountCell = document.createElement('td');
+                    caughtAmountCell.innerText = entry.caught_amount;
+                    row.appendChild(caughtAmountCell);
+
+                    const volunteerAmountCell = document.createElement('td');
+                    volunteerAmountCell.innerText = entry.volunteer_amount;
+                    row.appendChild(volunteerAmountCell);
+
+                    const statusCell = document.createElement('td');
+                    statusCell.innerText = getStatusType(entry.caught_amount);
+                    row.appendChild(statusCell);
+
+                    dataTableBody.appendChild(row);
+                }
+            });
+        }
+    </script>   
+    </div>
 {% endblock %}

@@ -2,8 +2,6 @@
 {% load static %}
 
 {% block content %}
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-
     <div class = "post-body">
         <div class = "post-section">
             <h1>{% if post_status == "1" %} VALID POSTS {% elif post_status == "2" %} INVALID POSTS {% elif post_status == "3" %} PENDING POSTS {% elif post_status == "4" %} DRAFT POSTS {% else %} MY POSTS {% endif %}</h1>
@@ -32,21 +30,37 @@
         <div class = "post-post">
             {% for post in results %}
                 <div class = "post">
-                    <div class = "post-header">
-                        <p><img src = "{{post.user.profile_photo.url}}">{{post.user | default:'None available'}}</p>
+                    <div class = "post-header">                    
+                        <div class = "header-context">
+                            <img src = "{{post.user.profile_photo.url}}">
+    
+                            <div class = "context-caption">
+                                <p>{{post.user | default:'None available'}}</p>
+    
+                                <p>{{post.location | default:'None available'}}</p>
+                            </div>
+                        </div>
                         
-                        <p>{{post.capture_date | date:'m/d/y' | default:'None available'}}</p>
-                    </div>
-                    
-                    <img class = "post-image" src = "{{post.post_photos.first.post_photo.url | default:'None available'}}">
+                        <div class = "header-context">
+                            <p>{{post.creation_date | date:'m/d/Y' | default:'None available'}}</p>
 
-                    <div class = "post-context">
+                            <p>{{post.post_status | default:'None available'}}</p>
+                        </div>
+                    </div>
+
+                    <h1>{{post.description | default:'None available'}}</h1>
+                    
+                    <a href = "{% url 'Contributor Service Post Read' post.id %}">
+                        <img class = "post-image" src = "{{post.post_photos.first.post_photo.url | default:'None available'}}">
+                    </a>
+
+                    <!-- <div class = "post-context">
                         <h1>{{post.location | default:'None available'}}</h1>
                         
                         <div class = "button">
                             <a href = "{% url 'Contributor Service Post Read' post.id %}">See more</a>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             {% endfor %}
         </div>

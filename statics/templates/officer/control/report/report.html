@@ -16,17 +16,25 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> <!-- Include Bootstrap JS for tabs -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <style>
         .report-header {
             display: none;
+            text-align: center;
+            margin-bottom: 20px;
         }
         @media print {
+            body {
+                margin: 36pt;
+            }
             .report-header {
                 display: block;
             }
-            .print-button, .filter-button {
+            .print-button, .filter-button, .header-section, form, .text-center.mt-5.mb-5 {
                 display: none;
+            }
+            .table-responsive {
+                overflow: visible;
             }
         }
         .header-section {
@@ -34,6 +42,9 @@
             padding: 20px;
             border-bottom: 1px solid #dee2e6;
             margin-bottom: 20px;
+        }
+        .table-responsive {
+            margin: 0 auto;
         }
     </style>
 </head>
@@ -105,7 +116,7 @@
         {% endif %}
 
         <div class="report-header">
-            <img src="{% static 'assets/sbps-header.png' %}" width="50%">
+            <img src="{% static 'assets/sbps-header.png' %}" width="50%" class="mx-auto d-block">
         </div>
 
         <div class="table-responsive">
@@ -133,44 +144,54 @@
                     {% endfor %}
                 </tbody>
             </table>
-            <div class="col-md-12 text-end mt-3" >
+            <div class="col-md-12 text-end mt-3">
                 <button type="button" class="btn btn-secondary print-button" onclick="printPage()">Print</button>
                 <button type="button" class="btn btn-secondary print-button" onclick="exportToPDF()">Export to PDF</button>
             </div>
         </div>
-       
-        <br>
     </div>
 
     <script>
         function printPage() {
-            const elementsToHide = document.querySelectorAll('.filter-button');
+            const elementsToHide = document.querySelectorAll('.filter-button, .header-section, form, .text-center.mt-5.mb-5');
             elementsToHide.forEach(element => {
                 element.style.display = 'none';
             });
+            document.querySelector('.report-header').style.display = 'block';
             window.print();
             elementsToHide.forEach(element => {
                 element.style.display = '';
             });
+            document.querySelector('.report-header').style.display = 'none';
         }
 
         async function exportToPDF() {
             const { jsPDF } = window.jspdf;
             const pdf = new jsPDF('p', 'pt', 'a4');
-            const elementsToHide = document.querySelectorAll('.filter-button');
+            const elementsToHide = document.querySelectorAll('.filter-button, .print-button, .header-section, form, .text-center.mt-5.mb-5');
             
             elementsToHide.forEach(element => {
                 element.style.display = 'none';
             });
-
             document.querySelector('.report-header').style.display = 'block';
             
-            const canvas = await html2canvas(document.body, { scale: 2 });
-            const imgData = canvas.toDataURL('image/png');
+            const headerCanvas = await html2canvas(document.querySelector('.report-header'));
+            const headerImgData = headerCanvas.toDataURL('image/png');
+            const headerImgProps = pdf.getImageProperties(headerImgData);
+            const headerPdfWidth = pdf.internal.pageSize.getWidth() - 72; // 1 inch margins
+            const headerPdfHeight = (headerImgProps.height * headerPdfWidth) / headerImgProps.width;
+            const headerX = (pdf.internal.pageSize.getWidth() - headerPdfWidth) / 2; // Center horizontally
+            pdf.addImage(headerImgData, 'PNG', headerX, 36, headerPdfWidth, headerPdfHeight);
+            
+            const tableCanvas = await html2canvas(document.querySelector('.table-responsive'));
+            const imgData = tableCanvas.toDataURL('image/png');
             const imgProps = pdf.getImageProperties(imgData);
-            const pdfWidth = pdf.internal.pageSize.getWidth();
+            const pdfWidth = pdf.internal.pageSize.getWidth() - 72; // 1 inch margins
             const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-            pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+
+            const tableX = (pdf.internal.pageSize.getWidth() - pdfWidth) / 2; // Center horizontally
+            pdf.addImage(imgData, 'PNG', tableX, 36 + headerPdfHeight + 10, pdfWidth, pdfHeight);
+            
             pdf.save('report.pdf');
 
             elementsToHide.forEach(element => {
@@ -179,7 +200,7 @@
             document.querySelector('.report-header').style.display = 'none';
         }
 
-        window.updateBarangayOptions = function(){
+        window.updateBarangayOptions = function() {
             const municipalityFilter = document.getElementById("municipalityFilter").value;
             const barangayFilter = document.getElementById("barangayFilter");
             barangayFilter.innerHTML = "<option value=''>All</option>";

@@ -1,30 +1,28 @@
 {% extends "officer/control/index/index.html" %}
 {% load static %}
+{% load custom_filters %}
 {% block content %}
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 <div class="container-fluid mt-3">
-    <div class="row">
-        <!-- First grid column: Map -->
-        <div class="col-md-6" style="position: relative; flex: 0 0 50%;">
-            <a class="" style="position: absolute; top: 10px; right: 20px; z-index: 1000;" onclick="showPopup({{ post.id }})">
-                <img width="20px" src = "{% static 'assets/edit.png' %}">
-            </a>
-            <div id="map" style="height: 810px;"></div>
-        </div>
-
-        <!-- Second grid column: Capture photo and other details -->
-        <div class="col-md-4" style="flex: 0 0 30%;">
+    
+    <div class="container-fluid">
+        <div class="row">
+        <div class="col-md-7">
             <div class="card mb-4" style="padding: 12px;">
                 <div id="postCarousel" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         {% for photo in post_photos %}
                             <div class="carousel-item {% if forloop.first %}active{% endif %}">
                                 <img src="{{ photo.post_photo.url }}" class="d-block w-100 carousel-image" alt="...">
+                                {% if post.post_status.is_pending != True %}
+
+                                {% else %}
                                 <a href="#" class="delete-photo" data-photo-id="{{ photo.id }}" onclick="deletePhoto({{ photo.id }})" style="position: absolute; top: 10px; right: 10px; z-index: 1000;">
                                     <i class="fa fa-trash" style="color: white; font-size: 15px;"></i>
                                 </a>
+                                {% endif %}
                             </div>
                         {% endfor %}
                     </div>
@@ -38,86 +36,123 @@
                     </button>
                 </div>
                 <div class="card-body">
-                    <p><strong>Contributor: </strong>{{ post.user }}</p>
-                    <p><strong>Barangay: </strong>{{ post.location.barangay }}</p>
-                    <p><strong>Municipality: </strong>{{ post.location.municipality }}</p>
-                    <p><strong>Created Date: </strong>{{ post.creation_date }}</p>
-                    <p><strong>Capture Date: </strong>{{ post.capture_date }}</p>
-                    <p><strong>Description: </strong>{{ post.description }}</p>
-                    <p><strong>Coordinates: </strong>{{ post.coordinates }}</p>
-                    <p><strong>Size: </strong>{{ post.post_observation.size }}</p>
-                    <p><strong>Depth: </strong>{{ post.post_observation.depth }}</p>
-                    <p><strong>Density: </strong>{{ post.post_observation.density }}</p>
-                    <p><strong>Weather: </strong>{{ post.post_observation.weather }}</p>
-                    {% if post.validated_by is not None %}
-                    <p><strong>Validated by: </strong>{{ post.validated_by }}</p>
-                    <p><strong>Read date: </strong>{{ post.read_date }}</p>
-                    {% if post.remarks is not None %}
-                    <p><strong>Remarks: </strong>{{ post.remarks }}</p>
-                    {% endif %}
-                    {% endif %}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>Sighting Dates</h5>
+                            <p><strong>Created Date: </strong>{{ post.creation_date|format_date_mmddyy  }}</p>
+                            <p><strong>Capture Date: </strong>{{ post.capture_date |format_date_mmddyy  }}</p>
+                            
+                        </div>
+                        <div class="col-md-6">
+                            <h5>Observation</h5>
+                            <p><strong>Size: </strong>{{ post.post_observation.size }}</p>
+                            <p><strong>Depth: </strong>{{ post.post_observation.depth }}</p>
+                            <p><strong>Density: </strong>{{ post.post_observation.density }}</p>
+                            <p><strong>Weather: </strong>{{ post.post_observation.weather }}</p>
+                        </div>           
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>Location Details</h5>
+                            <p><strong>Municipality: </strong>{{ post.location.municipality }}</p>
+                            <p><strong>Barangay: </strong>{{ post.location.barangay }}</p>
+                            <p><strong>Coordinates: </strong>{{ post.coordinates }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h5>Other Details</h5>
+                            <p><strong>Contributor: </strong>{{ post.user }}</p>   
+                            {% if post.validated_by is not None %}
+                            <p><strong>Validated by: </strong>{{ post.validated_by }}</p>
+                            <p><strong>Validated date: </strong>{{ post.read_date }}</p>
+                            {% if post.remarks is not None %}
+                            <p><strong>Remarks: </strong>{{ post.remarks }}</p>
+                            {% endif %}
+                            {% endif %}
+                        </div>           
+                    </div>
+                    <hr>
+                    <h5>Description</h5>
+                    <p>{{ post.description }}</p>     
                 </div>
             </div>
         </div>
-        
-        <script>
-            function deletePhoto(photoId) {
-                console.log("test")
-                Swal.fire({
-                    title: 'Are you sure?',
-                    text: 'Do you want to delete this photo?',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        fetch(`/officer/control/sighting/delete_photo/${photoId}/`, {
-                            method: 'DELETE',
-                            headers: {
-                                'X-CSRFToken': '{{ csrf_token }}',
-                            },
-                        })
-                        .then(response => {
-                            if (response.ok) {
-                                Swal.fire(
-                                    'Deleted!',
-                                    'The photo has been deleted.',
-                                    'success'
-                                ).then(() => {
-                                    location.reload();
-                                });
-                            } else {
-                                Swal.fire(
-                                    'Error!',
-                                    'Failed to delete photo.',
-                                    'error'
-                                );
-                            }
-                        });
-                    }
-                });
-            }
-        </script>
-        
-
-        <!-- Third grid column: Actions -->
-        <div class="col-md-2" style="flex: 0 0 20%;">
+        <div class="col-md-5" >
+            <a class="" style="position: absolute; margin-top: 5px; right: 30px; z-index: 1000;" onclick="showPopup({{ post.id }})">
+                <img width="20px" src = "{% static 'assets/edit.png' %}">
+            </a>
+            <div id="map" class="mb-3" style="height: 810px;"></div>
+            
             <div class="card mb-4" style="border:none !important;">
                 <div class="card-body">
-                    <!-- <h5 class="card-title">Actions</h5> -->
-                    
+                    <!-- <h5 class="card-title">Actions</h5> -->                    
+                    {% if post.post_status.is_pending != True %}
+                    <div class="button-container" style="display: flex; gap: 10px; flex-direction: column;">
+                        <button title="Action Diasabled" style="font-family: 'Montserrat' !important; font-size: 12px !important;" class="btn btn-success w-100 disabled" >Approve</button>
+                        <button title="Action Diasabled" style="font-family: 'Montserrat' !important; font-size: 12px !important;" class="btn btn-danger w-100 disabled   ">Disapprove</button>
+                    </div>
+
+                    {% else %}
                     <div class="button-container" style="display: flex; gap: 10px; flex-direction: column;">
                         <button style="background-color: rgb(76, 196, 76); font-family: 'Montserrat' !important; font-size: 12px !important;" class="btn btn-success w-100" onclick="changeStatus({{ post.id }})">Approve</button>
                         <button style="background-color: rgb(226, 51, 51); font-family: 'Montserrat' !important; font-size: 12px !important;" class="btn btn-danger w-100" onclick="invalidStatus({{ post.id }})">Disapprove</button>
-                        <button style="background-color: rgb(55, 55, 224); font-family: 'Montserrat' !important; font-size: 12px !important;" class="btn btn-primary w-100" onclick="addRemarks({{ post.id }})">Add Remarks</button>
                     </div>
-                   
+                    {% endif %}
                 </div>
             </div>
+
         </div>
     </div>
+    </div>
+    <!-- First grid column: Map -->
+    
+    <!-- Second grid column: Capture photo and other details -->
+    
+    
+    <script>
+        function deletePhoto(photoId) {
+            console.log("test")
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'Do you want to delete this photo?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch(`/officer/control/sighting/delete_photo/${photoId}/`, {
+                        method: 'DELETE',
+                        headers: {
+                            'X-CSRFToken': '{{ csrf_token }}',
+                        },
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            Swal.fire(
+                                'Deleted!',
+                                'The photo has been deleted.',
+                                'success'
+                            ).then(() => {
+                                location.reload();
+                            });
+                        } else {
+                            Swal.fire(
+                                'Error!',
+                                'Failed to delete photo.',
+                                'error'
+                            );
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+    
+
+    <!-- Third grid column: Actions -->
+    
 </div>
 
 <!-- Leaflet CSS and JS -->
@@ -145,38 +180,50 @@
     });
 
     function changeStatus(postId) {
-        $.ajax({
-            type: 'POST',
-            url: '{% url "Officer Control Sighting Valid" %}',
-            data: {
-                'post_id': postId,
-                'csrfmiddlewaretoken': '{{ csrf_token }}'
-            },
-            success: function(response) {
-                if (response.success) {
-                    Swal.fire({
-                        title: 'Success',
-                        text: response.message,
-                        icon: 'success',
-                        confirmButtonText: 'OK'
-                    }).then(() => {
-                        location.reload();  // Reload the page after successful operation
-                    });
-                } else {
-                    Swal.fire({
-                        title: 'Error',
-                        text: response.message,
-                        icon: 'error',
-                        confirmButtonText: 'OK'
-                    });
-                }
-            },
-            error: function() {
-                Swal.fire({
-                    title: 'Error',
-                    text: 'Update is not available after 24 hours from the first read.',
-                    icon: 'error',
-                    confirmButtonText: 'OK'
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Do you really want to change the status of this post?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, change it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: 'POST',
+                    url: '{% url "Officer Control Sighting Valid" %}',
+                    data: {
+                        'post_id': postId,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            Swal.fire({
+                                title: 'Success',
+                                text: response.message,
+                                icon: 'success',
+                                confirmButtonText: 'OK'
+                            }).then(() => {
+                                location.reload();  // Reload the page after successful operation
+                            });
+                        } else {
+                            Swal.fire({
+                                title: 'Error',
+                                text: response.message,
+                                icon: 'error',
+                                confirmButtonText: 'OK'
+                            });
+                        }
+                    },
+                    error: function() {
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Update is not available after 24 hours from the first read.',
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    }
                 });
             }
         });
@@ -186,7 +233,6 @@
         Swal.fire({
             title: 'Add Remarks',
             input: 'textarea',
-            inputLabel: 'Remarks',
             inputPlaceholder: 'Enter your remarks here...',
             showCancelButton: true,
             confirmButtonText: 'Submit',
@@ -280,7 +326,7 @@
                             <label style="margin-top: 12px; margin-bottom: 12px" for="municipality">Municipality:</label>
                             <select name="municipality" id="popupMunicipality" onchange="updateBarangayOptions()">
                                 <option value="${data.location.municipality}" selected>${data.location.municipality}</option>
-                                {% for location in locations %}
+                                {% for location in municipalities %}
                                     {% if location.municipality != data.location.municipality %}
                                         <option value="{{location.municipality}}">{{location.municipality}}</option>
                                     {% endif %}
@@ -292,9 +338,7 @@
                             <label for="barangay">Barangay:</label>
                             <select name="barangay" id="popupBarangay" onchange="updateMarker()">
                                 <option value="${data.location.barangay}" selected>${data.location.barangay}</option>
-                                {% for location in locations %}
-                                    <option id="barangayOption" value="{{location.barangay}}">{{location.barangay}}</option>
-                                {% endfor %}
+                               
                             </select>
                         </div>
 
@@ -368,7 +412,7 @@
             filteredLocations.forEach(location => {
                 const option = document.createElement("option");
     
-                option.value = location.id;
+                option.value = location.barangay;
                 option.textContent = location.barangay;
     
                 barangay.appendChild(option);
@@ -508,7 +552,9 @@
                     text: 'The form has been submitted.',
                     icon: 'success',
                     confirmButtonText: 'Close'
-                });
+                }).then(() => {
+                    window.location.reload();
+                }); 
             } else {
                 Swal.fire({
                     title: 'Error!',

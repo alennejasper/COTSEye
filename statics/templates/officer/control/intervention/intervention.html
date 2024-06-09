@@ -2,6 +2,11 @@
 {% load static %}
 {% block content %}
 <style>
+    .center-text {
+        text-align: center;
+        vertical-align: middle;
+    }
+
     .dropdown {
         display: none;
         position: absolute;
@@ -37,6 +42,32 @@
         padding: 9px !important;
     }
 
+    .status-low {
+        color: #698F3F !important;
+        font-weight: bold;
+    }
+
+    .status-med {
+        color: #F4C430 !important;
+        font-weight: bold;
+    }
+
+    .status-high {
+        color: #C90016 !important;
+        font-weight: bold;
+    }
+
+    .status-crit {
+        color: #483248 !important;
+        font-weight: bold;
+    }
+
+    .status-default {
+        color: black !important;    
+        font-weight: bold;
+    }
+    
+
 </style>
 
 <head>
@@ -61,7 +92,7 @@
                         <input  style="font-size: 13px !important;" type="text" id="searchBar" class="form-control" placeholder="Search by title...">
                     </div>
 
-                    <div class="mb-3">
+                    <!-- <div class="mb-3">
                         <label style="font-size: 15px; color: rgb(28, 186, 234); margin-top: 0px !important; margin-bottom: 0px !important;" for="hostingAgencyFilter" class="form-label">Hosting Agency</label>
                         
                         <select id="hostingAgencyFilter" class="form-control select2">
@@ -71,12 +102,12 @@
                                 <option value="{{ agency.hosting_agency }}">{{ agency.hosting_agency }}</option>
                             {% endfor %}
                         </select>
-                    </div>
+                    </div> -->
 
                     <select id="municipalityFilter" class="form-select form-select-sm mb-3 select2" onchange="updateBarangayOptions()">
                         <option value="">Municipality</option>
-                        {% for location in locations %}
-                            <option value="{{ location.municipality }}">{{ location.municipality }}</option>
+                        {% for municipality in municipalities %}
+                            <option value="{{ municipality.municipality }}" {% if selected_municipality == municipality.municipality %}selected{% endif %}>{{ municipality.municipality }}</option>
                         {% endfor %}
                     </select>
 
@@ -121,12 +152,13 @@
                     <table class="table table-hover">
                         <thead class="thead-dark">
                             <tr>
-                                <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Title</th>
-                                <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Date</th>
-                                <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Location</th>
-                                <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Hosting Agency</th>
-                                <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Volunteers</th>
-                                <th></th>
+                                <th style="text-align: center; font-size: 15px; color: rgb(28, 169, 234);" scope="col">Activity Date</th>
+                                <th style="text-align: center; font-size: 15px; color: rgb(28, 169, 234);" scope="col">Title</th>
+                                <th style="text-align: center; font-size: 15px; color: rgb(28, 169, 234);" scope="col">Municipality</th>
+                                <th style="text-align: center; font-size: 15px; color: rgb(28, 169, 234);" scope="col">Barangay</th>
+                                <th style="text-align: center; font-size: 15px; color: rgb(28, 169, 234);" scope="col">COTS Collected</th>
+                                <!-- <th style="text-align: center; font-size: 15px; color: rgb(28, 169, 234);" scope="col">Status</th> -->
+                                <th style="text-align: center; font-size: 15px; color: rgb(28, 169, 234);" scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody class="table-group-divider" id="interventionsTable">
@@ -169,49 +201,80 @@
 
             paginatedInterventions.forEach(intervention => {
                 let row = table.insertRow();
-                
-                let titleCell = row.insertCell(0);
-                titleCell.innerText = intervention.title;
-                titleCell.addEventListener('click', function() {
-                    window.location.href = "{% url 'Officer Control Intervention Detail' 0 %}".replace('0', intervention.id);
-                });
 
-                let dateCell = row.insertCell(1);
-                dateCell.innerText = intervention.intervention_date;
+                let dateCell = row.insertCell(0);
+                const date = new Date(intervention.intervention_date);
+                // Format the date to mm-dd-yy
+                const formattedDate = ('0' + (date.getMonth() + 1)).slice(-2) + '/' +
+                                    ('0' + date.getDate()).slice(-2) + '/' +
+                                    date.getFullYear().toString().slice(-4);
+
+                dateCell.innerText = formattedDate;
+                dateCell.className = 'center-text';
+                
                 dateCell.addEventListener('click', function() {
                     window.location.href = "{% url 'Officer Control Intervention Detail' 0 %}".replace('0', intervention.id);
                 });
 
-                let locationCell = row.insertCell(2);
-                locationCell.innerText = intervention.location;
-                locationCell.addEventListener('click', function() {
+                let titleCell = row.insertCell(1);
+                titleCell.innerText = intervention.title;
+                titleCell.className = 'center-text';
+                titleCell.addEventListener('click', function() {
                     window.location.href = "{% url 'Officer Control Intervention Detail' 0 %}".replace('0', intervention.id);
                 });
 
-                let agencyCell = row.insertCell(3);
-                agencyCell.innerText = intervention.hosting_agency;
-                agencyCell.addEventListener('click', function() {
+                let municipalityCell = row.insertCell(2);
+                municipalityCell.innerText = intervention.municipality;
+                municipalityCell.className = 'center-text';
+                municipalityCell.addEventListener('click', function() {
                     window.location.href = "{% url 'Officer Control Intervention Detail' 0 %}".replace('0', intervention.id);
                 });
 
-                let volunteerAmountCell = row.insertCell(4);
-                volunteerAmountCell.innerText = intervention.volunteer_amount !== undefined ? intervention.volunteer_amount : 'N/A';
-                volunteerAmountCell.addEventListener('click', function() {
+                let barangayCell = row.insertCell(3);
+                barangayCell.innerText = intervention.barangay;
+                barangayCell.className = 'center-text';
+                barangayCell.addEventListener('click', function() {
                     window.location.href = "{% url 'Officer Control Intervention Detail' 0 %}".replace('0', intervention.id);
                 });
+
+                let caughtCell = row.insertCell(4);
+                caughtCell.innerText = intervention.caught_amount;
+                caughtCell.className = 'center-text';
+                caughtCell.addEventListener('click', function() {
+                    window.location.href = "{% url 'Officer Control Intervention Detail' 0 %}".replace('0', intervention.id);
+                });
+                
+                // const statusCell = row.insertCell(5);
+                // statusCell.innerText = intervention.status;
+                // statusCell.className = 'center-text ' + getStatusClass(intervention.status);
+                // statusCell.addEventListener('click', function() {
+                //     window.location.href = "{% url 'Officer Control Intervention Detail' 0 %}".replace('0', intervention.id);
+                // });
+
+
+                // let agencyCell = row.insertCell(4);
+                // agencyCell.innerText = intervention.hosting_agency;
+                // agencyCell.addEventListener('click', function() {
+                //     window.location.href = "{% url 'Officer Control Intervention Detail' 0 %}".replace('0', intervention.id);
+                // });
+
+                // let volunteerAmountCell = row.insertCell(5);
+                // volunteerAmountCell.innerText = intervention.volunteer_amount !== undefined ? intervention.volunteer_amount : 'N/A';
+                // volunteerAmountCell.addEventListener('click', function() {
+                //     window.location.href = "{% url 'Officer Control Intervention Detail' 0 %}".replace('0', intervention.id);
+                // });
 
                 let actionsCell = row.insertCell(5);
+                actionsCell.className = 'center-text';
+
                 actionsCell.innerHTML = `
                     <div class="button-container">
-                        <a onclick="showDropdown(event)"><img height="15px" style="margin-right: 13px" src="{% static 'assets/3dots.png' %}" class="drop"></a>
-                        <div class="dropdown">
-                            <div class="dropdown-content">
-                                <a class="dropdown-header" onclick="updateIntervention(${intervention.id})">Update</a>
-                                <a class="dropdown-footer" onclick="deleteIntervention(${intervention.id})">Delete</a>
-                            </div>
-                        </div>
+                        <a class="btn btn-primary btn-sm"  onclick="updateIntervention(${intervention.id})">Update</a>
                     </div>`;
             });
+
+
+
 
             const pagination = document.getElementById('pagination');
             const totalPages = Math.ceil(filteredInterventions.length / itemsPerPage);
@@ -236,6 +299,20 @@
             `;
         }
 
+        function getStatusClass(status) {
+            switch (status) {
+                case 'Low':
+                    return 'status-low';
+                case 'Moderate':
+                    return 'status-med';
+                case 'High':
+                    return 'status-high';
+                case 'Critical':
+                    return 'status-crit';
+                default:
+                    return 'status-default';
+            }
+        }
         window.showDropdown = function(event) {
             event.stopPropagation();
             const dropdown = event.currentTarget.nextElementSibling;
@@ -300,8 +377,8 @@
 
         window.filterInterventions = function() {
             const searchQuery = document.getElementById('searchBar').value.toLowerCase();
-            const hostingAgencyFilterValue = document.getElementById('hostingAgencyFilter').value;
             const municipalityFilterValue = document.getElementById('municipalityFilter').value;
+            console.log(municipalityFilterValue)
             const barangayFilterValue = document.getElementById('barangayFilter').value;
             const dateFrom = document.getElementById('dateFrom').value;
             const dateTo = document.getElementById('dateTo').value;
@@ -309,13 +386,12 @@
 
             filteredInterventions = interventions.filter(intervention => {
                 const matchesSearch = intervention.title.toLowerCase().includes(searchQuery);
-                const matchesAgency = hostingAgencyFilterValue ? intervention.hosting_agency === hostingAgencyFilterValue : true;
-                const matchesMunicipality = municipalityFilterValue ? intervention.location.includes(municipalityFilterValue) : true;
-                const matchesBarangay = barangayFilterValue ? intervention.location.includes(barangayFilterValue) : true;
+                const matchesMunicipality = municipalityFilterValue ? intervention.municipality.includes(municipalityFilterValue) : true;
+                const matchesBarangay = barangayFilterValue ? intervention.barangay.includes(barangayFilterValue) : true;
                 const matchesDateFrom = dateFrom ? new Date(intervention.intervention_date) >= new Date(dateFrom) : true;
                 const matchesDateTo = dateTo ? new Date(intervention.intervention_date) <= new Date(dateTo) : true;
 
-                return matchesSearch && matchesAgency && matchesMunicipality && matchesBarangay && matchesDateFrom && matchesDateTo;
+                return matchesSearch && matchesMunicipality && matchesBarangay && matchesDateFrom && matchesDateTo;
             });
 
             if (orderBy === "latest") {
@@ -329,12 +405,7 @@
         };
 
         window.resetFilter = function() {
-            document.getElementById('searchBar').value = '';
-            document.getElementById('hostingAgencyFilter').value = '';
-            document.getElementById('municipalityFilter').value = '';
-            document.getElementById('barangayFilter').innerHTML = '<option value="">Select Barangay</option>';
-            document.getElementById('dateFrom').value = '';
-            document.getElementById('dateTo').value = '';
+            window.location.reload();
             document.getElementById('orderBy').value = 'latest';
 
             filteredInterventions = interventions;

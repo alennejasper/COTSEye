@@ -1,14 +1,11 @@
 .profileupdate-body{
     position: relative;
-    gap: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
     width: 100%;
     height: 100%;
-    color: #000000;
+    color: #003755;
 }
 
-.profileupdate-body .profileupdate-section{
+/* .profileupdate-body .profileupdate-section{
     display: flex;                   
     align-items: center; 
     justify-content: center;          
@@ -24,46 +21,116 @@
     white-space: nowrap;
     font-family: "Montserrat";    
     font-weight: 700;       
-    font-size: 22px;     
-    color: #000000;   
+    font-size: 36px;     
+    color: #003755;   
     text-align: center;  
 }
 
-.profileupdate-body .profileupdate-user{
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .profileupdate-body .profileupdate-section h1{
+        font-size: 24px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .profileupdate-body .profileupdate-section h1{
+        font-size: 22px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .profileupdate-body .profileupdate-section h1{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .profileupdate-body .profileupdate-section h1{
+        font-size: 18px !important;
+    }
+} */
+
+.profileupdate-body form{
+    display: grid;
+    place-items: center;
+    align-items: center; 
+    justify-content: center;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 15px;
+    height: 100% !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .profileupdate-body form{
+        grid-template-columns: 100%;
+    }
+}
+
+.profileupdate-body form .profileupdate-section{
     display: flex;                   
     align-items: center; 
     justify-content: center;          
     flex-direction: column;
-    row-gap: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    width: 100%;                     
+    row-gap: 15px;
+    width: 100%;               
+    height: fit-content;
     text-align: center;                                   
 }
 
-.profileupdate-body .profileupdate-user img{
-    width: 250px;
-    height: 250px;
+.profileupdate-body form .profileupdate-section img{
+    width: 350px;
+    height: 350px;
     border-radius: 50%;
     cursor: pointer;
 }
 
-.profileupdate-body .profileupdate-user .browse-photo{
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .profileupdate-body form .profileupdate-section img{
+        width: 175px;
+        height: 175px;
+    }
+}
+
+.profileupdate-body form .profileupdate-section .browse-photo{
     display: none;
 }
 
-.profileupdate-body .profileupdate-user h1{
+.profileupdate-body form .profileupdate-section h1{
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     font-family: "Montserrat";    
     font-weight: 700;       
-    font-size: 20px;     
-    color: #000000;   
+    font-size: 24px;     
+    color: #003755;   
     text-align: center;  
 }
 
-.profileupdate-body .profileupdate-user p{
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .profileupdate-body form .profileupdate-section h1{
+        font-size: 22px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .profileupdate-body form .profileupdate-section h1{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .profileupdate-body form .profileupdate-section h1{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .profileupdate-body form .profileupdate-section h1{
+        font-size: 16px !important;
+    }
+}
+
+.profileupdate-body form .profileupdate-section p{
     display: flex;
     align-items: center;
     white-space: nowrap;
@@ -71,32 +138,80 @@
     text-overflow: ellipsis;
     font-family: "Montserrat";
     font-weight: 400;
-    font-size: 14px !important;
-    color: #000000;
+    font-size: 20px !important;
+    color: #003755;
     text-transform: uppercase;
 }
 
-.profileupdate-body .profile-form{
-    width: 100% !important;
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .profileupdate-body form .profileupdate-section p{
+        font-size: 18px !important;
+    }
 }
 
-.profileupdate-body .profile-form .first-name{
-    padding-top: 10px;
-    padding-bottom: 10px;
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .profileupdate-body form .profileupdate-section p{
+        font-size: 16px !important;
+    }
 }
 
-.profileupdate-body .profile-form .first-name label{
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .profileupdate-body form .profileupdate-section p{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .profileupdate-body form .profileupdate-section p{
+        font-size: 12px !important;
+    }
+}
+
+.profileupdate-body form .profileupdate-details{
+    display: grid;
+    align-items: center; 
+    justify-content: center;
+    row-gap: 15px;
+    width: 100%;               
+    height: fit-content;
+}
+
+.profileupdate-body form .profileupdate-details .first-name label{
     font-family: "Montserrat";
     font-weight: 400;
-    font-size: 14px;
-    color: #000000 !important;
+    font-size: 20px;
+    color: #003755 !important;
 }
 
-.profileupdate-body .profile-form .first-name input{
-    padding-left: 5px;
-    padding-right: 5px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .profileupdate-body form .profileupdate-details .first-name label{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .profileupdate-body form .profileupdate-details .first-name label{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .profileupdate-body form .profileupdate-details .first-name label{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .profileupdate-body form .profileupdate-details .first-name label{
+        font-size: 12px !important;
+    }
+}
+
+.profileupdate-body form .profileupdate-details .first-name input{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     width: 100%;
     border: 1px solid #003755;
     border-radius: 5px;
@@ -104,26 +219,115 @@
     font-family: "Montserrat";
     font-weight: 700;
     font-size: 20px;
-    color: #000000 !important;
+    color: #003755 !important;
 }
 
-.profileupdate-body .profile-form .last-name{
-    padding-top: 10px;
-    padding-bottom: 10px;
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .profileupdate-body form .profileupdate-details .first-name input{
+        font-size: 18px !important;
+    }
 }
 
-.profileupdate-body .profile-form .last-name label{
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .profileupdate-body form .profileupdate-details .first-name input{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .profileupdate-body form .profileupdate-details .first-name input{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .profileupdate-body form .profileupdate-details .first-name input{
+        font-size: 12px !important;
+    }
+}
+
+.profileupdate-body form .profileupdate-details .last-name label{
     font-family: "Montserrat";
     font-weight: 400;
-    font-size: 14px;
-    color: #000000 !important;
+    font-size: 20px;
+    color: #003755 !important;
 }
 
-.profileupdate-body .profile-form .last-name input{
-    padding-left: 5px;
-    padding-right: 5px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .profileupdate-body form .profileupdate-details .last-name label{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .profileupdate-body form .profileupdate-details .last-name label{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .profileupdate-body form .profileupdate-details .last-name label{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .profileupdate-body form .profileupdate-details .last-name label{
+        font-size: 12px !important;
+    }
+}
+
+.profileupdate-body form .profileupdate-details .last-name input{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 100%;
+    border: 1px solid #003755;
+    border-radius: 5px;
+    outline: none;
+    font-family: "Montserrat";
+    font-weight: 700;
+    font-size: 22px;
+    color: #003755 !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .profileupdate-body form .profileupdate-details .last-name input{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .profileupdate-body form .profileupdate-details .last-name input{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .profileupdate-body form .profileupdate-details .last-name input{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .profileupdate-body form .profileupdate-details .last-name input{
+        font-size: 12px !important;
+    }
+}
+
+.profileupdate-body form .profileupdate-details .email label{
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 20px;
+    color: #003755 !important;
+}
+
+.profileupdate-body form .profileupdate-details .email input{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     width: 100%;
     border: 1px solid #003755;
     border-radius: 5px;
@@ -131,26 +335,69 @@
     font-family: "Montserrat";
     font-weight: 700;
     font-size: 20px;
-    color: #000000 !important;
+    color: #003755 !important;
 }
 
-.profileupdate-body .profile-form .email{
-    padding-top: 10px;
-    padding-bottom: 10px;
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .profileupdate-body form .profileupdate-details .email input{
+        font-size: 18px !important;
+    }
 }
 
-.profileupdate-body .profile-form .email label{
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .profileupdate-body form .profileupdate-details .email input{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .profileupdate-body form .profileupdate-details .email input{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .profileupdate-body form .profileupdate-details .email input{
+        font-size: 12px !important;
+    }
+}
+
+.profileupdate-body form .profileupdate-details .phone-number label{
     font-family: "Montserrat";
     font-weight: 400;
-    font-size: 14px;
-    color: #000000 !important;
+    font-size: 20px;
+    color: #003755 !important;
 }
 
-.profileupdate-body .profile-form .email input{
-    padding-left: 5px;
-    padding-right: 5px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .profileupdate-body form .profileupdate-details .phone-number label{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .profileupdate-body form .profileupdate-details .phone-number label{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .profileupdate-body form .profileupdate-details .phone-number label{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .profileupdate-body form .profileupdate-details .phone-number label{
+        font-size: 12px !important;
+    }
+}
+
+.profileupdate-body form .profileupdate-details .phone-number input{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     width: 100%;
     border: 1px solid #003755;
     border-radius: 5px;
@@ -158,44 +405,40 @@
     font-family: "Montserrat";
     font-weight: 700;
     font-size: 20px;
-    color: #000000 !important;
+    color: #003755 !important;
 }
 
-.profileupdate-body .profile-form .phone-number{
-    padding-top: 10px;
-    padding-bottom: 10px;
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .profileupdate-body form .profileupdate-details .phone-number input{
+        font-size: 18px !important;
+    }
 }
 
-.profileupdate-body .profile-form .phone-number label{
-    font-family: "Montserrat";
-    font-weight: 400;
-    font-size: 14px;
-    color: #000000 !important;
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .profileupdate-body form .profileupdate-details .phone-number input{
+        font-size: 16px !important;
+    }
 }
 
-.profileupdate-body .profile-form .phone-number input{
-    padding-left: 5px;
-    padding-right: 5px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    width: 100%;
-    border: 1px solid #003755;
-    border-radius: 5px;
-    outline: none;
-    font-family: "Montserrat";
-    font-weight: 700;
-    font-size: 20px;
-    color: #000000 !important;
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .profileupdate-body form .profileupdate-details .phone-number input{
+        font-size: 14px !important;
+    }
 }
 
-.profileupdate-body .profile-form .button{
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .profileupdate-body form .profileupdate-details .phone-number input{
+        font-size: 12px !important;
+    }
+}
+
+.profileupdate-body form .profileupdate-details .button{
     display: flex;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
+    justify-content: center;
     width: 100%;
 }
 
-.profileupdate-body .profile-form .button a{
+.profileupdate-body form .profileupdate-details .button a{
     padding-left: 10px !important;
     padding-right: 10px !important;
     padding-top: 5px !important;
@@ -206,11 +449,35 @@
     font-family: "Montserrat";
     text-align: center;                                   
     font-weight: 400;
-    font-size: 14px;
+    font-size: 20px;
     color: #FFFFFF !important;
     background-color: #003755 !important;
     text-decoration: none;
     cursor: pointer;  
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .profileupdate-body form .profileupdate-details .button a{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .profileupdate-body form .profileupdate-details .button a{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .profileupdate-body form .profileupdate-details .button a{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .profileupdate-body form .profileupdate-details .button a{
+        font-size: 12px !important;
+    }
 }
 
 input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus input:-webkit-autofill, textarea:-webkit-autofill, textarea:-webkit-autofill:hover textarea:-webkit-autofill:focus, select:-webkit-autofill, select:-webkit-autofill:hover, select:-webkit-autofill:focus{
@@ -221,6 +488,18 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 
 input:autofill{
     background: #FFFFFF !important;
+}
+
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button{
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    -webkit-appearance: none;
+}
+
+input[type = "number"]{
+    -moz-appearance: textfield;
 }
 
 select::-ms-expand{

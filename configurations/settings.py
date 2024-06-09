@@ -274,8 +274,6 @@ RECAPTCHA_PRIVATE_KEY = "6LfYwRMnAAAAAIHt-ewPrUDtpE3Uxwr5Xa6-tqL-"
 JAZZMIN_SETTINGS = {
     "changeform_format": "horizontal_tabs",
         
-    "custom_css": "css/officer/control/index/index.css",
-
     "custom_css": "css/admin/control/index/index.css", 
 
     "copyright": "Team Rocket",
@@ -287,8 +285,4 @@ JAZZMIN_SETTINGS = {
     "site_brand": "COTSEye",
     
     "site_logo": "assets/icons/logo.png",
-
-    "topmenu_links": [
-        {"name": "Access statistics", "url": reverse_lazy("admin:Administrator Control Statistics")}
-    ]
 }

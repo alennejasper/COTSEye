@@ -1,7 +1,7 @@
 {% extends "officer/control/index/index.html" %}
 
 {% block content %}
-    <div class="container-fluid mt-3">
+    <div class="container mt-3">
         <h1 style="font-size: 25px; font-weight: 600;" class="required text-center">Add New Announcement</h1>
         
         <div class="card mt-4">
@@ -11,15 +11,24 @@
 
                     <div class="row">
                         <div class="col-md-8">
+                            <div class="mb-1"><div class="h5">Announcement Details</div></div>
                             <div class="mb-3">
                                 <label for="id_title" class="required form-label">Title:</label>
                                 {{ form.title }}
                             </div>
                             <div class="mb-3">
+                                <label for="id_release_date" class="required form-label">Event Date:</label>
+                                {{ form.release_date }}
+                            </div>
+                            
+                           
+                            <hr>
+                            <div class="mb-1"><div class="h5">Location Details</div></div>
+                            <div class="mb-3">
                                 <label for="municipalityFilter" class="required form-label">Municipality:</label>
                                 <select id="municipalityFilter" class="form-select form-select-sm mb-3 select2" onchange="updateBarangayOptions()">
                                     <option value="">Municipality</option>
-                                    {% for location in locations %}
+                                    {% for location in municipalities %}
                                         <option value="{{ location.municipality }}">{{ location.municipality }}</option>
                                     {% endfor %}
                                 </select>
@@ -30,13 +39,11 @@
                                     <option value="">Select Barangay</option>
                                 </select>
                             </div>
+                            <hr>
+                            <div class="mb-1"><div class="h5">Other Details</div></div>
                             <div class="mb-3">
-                                <label for="id_user" class="required form-label">User:</label>
-                                {{ form.user }}
-                            </div>
-                            <div class="mb-3">
-                                <label for="id_release_date" class="required form-label">Release Date:</label>
-                                {{ form.release_date }}
+                                <label for="id_details" class="required form-label">Hosting Agency:</label>
+                                {{ form.hosting_agency }}
                             </div>
                             <div class="mb-3">
                                 <label for="id_details" class="required form-label">Context:</label>
@@ -50,7 +57,7 @@
                                 <label for="announcementPhoto" class="required form-label">Announcement Photo:</label>
                                 <input type="file" id="announcementPhoto" name="announcement_photo" class="form-control">
                             </div>
-                            <img id="photoPreview" src="#" alt="Photo Preview" style="display: block; width: 100%; height: auto;">
+                            <img id="photoPreview"   style="display: block; width: 100%; height: auto;">
                         </div>
                     </div>
 
@@ -133,4 +140,46 @@
             }
         });
     </script>
+
+     <!-- Include SweetAlert CSS and JS -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+ 
+     <!-- Your existing HTML content -->
+ 
+     
+     <script>
+       document.addEventListener('DOMContentLoaded', function() {
+           // Check if there are any errors passed to the context
+           {% if errors and field_labels %}
+               var errorMessages = {{ errors|safe }};
+               var fieldLabels = {{ field_labels|safe }};
+       
+               // Loop through the error messages and display them using SweetAlert
+               for (var field in errorMessages) {
+                   if (errorMessages.hasOwnProperty(field)) {
+                       var fieldErrors = errorMessages[field];
+                       var fieldLabel = fieldLabels[field];
+                       fieldErrors.forEach(function(error) {
+                           swal({
+                               title: "Error in " + fieldLabel,
+                               text: error.message,
+                               type: "error",
+                               confirmButtonText: "OK"
+                           });
+                       });
+                   }
+               }
+           {% endif %}
+ 
+           {% if location_error %}
+             swal({
+                 title: "Error in Municipality and Barangay",
+                 text: "{{ location_error }}",
+                 type: "error",
+                 confirmButtonText: "OK"
+             });
+         {% endif %}
+       });
+       </script>
 {% endblock %}

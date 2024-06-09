@@ -1,42 +1,96 @@
-.intervention-body{
+.interventionread-body{
     position: relative;
-    padding-left: 10px;
-    padding-right: 10px;
-    width: 100vw;
+    width: 100%;
     height: 100%;
-    color: #000000;
+    color: #003755;
 }
 
-.intervention-body .intervention-section{
+/* .interventionread-body .interventionread-section{
     display: flex;                   
     align-items: center; 
     justify-content: center;          
-    flex-direction: column;
+    padding-top: 10px;
+    padding-bottom: 10px;      
     width: 100%;                     
     text-align: center;                                   
 }
 
-.intervention-body .intervention-section h1{
-    text-align: center;     
+.interventionread-body .interventionread-section h1{
+    font-family: "Montserrat";
     font-weight: 700;       
     font-size: 22px;        
-    letter-spacing: 2.5px;
-}
+    text-align: center;     
+} */
 
-.intervention-body .intervention{
+.interventionread-body .interventionread{
     display: grid;
-    row-gap: 10px;
-    border: unset !important;
+    row-gap: 15px;
 }
 
-.intervention-body .intervention .intervention-header{
-    display: grid;
-    row-gap: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .interventionread-body .interventionread{
+        row-gap: 5px;
+    }
 }
 
-.intervention-body .intervention .intervention-header p{
+.interventionread-body .interventionread .interventionread-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    row-gap: 15px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .interventionread-body .interventionread .interventionread-header{
+        row-gap: 5px;
+    }
+}
+
+.interventionread-body .interventionread .interventionread-header .header-context{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.interventionread-body .interventionread .interventionread-header .header-context .context-caption p:first-child{
+    margin-bottom: 0px !important;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: "Montserrat";
+    font-weight: 700;
+    font-size: 20px !important;
+    color: #003755;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .interventionread-body .interventionread .interventionread-header .header-context .context-caption p:first-child{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .interventionread-body .interventionread .interventionread-header .header-context .context-caption p:first-child{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .interventionread-body .interventionread .interventionread-header .header-context .context-caption p:first-child{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .interventionread-body .interventionread .interventionread-header .header-context .context-caption p:first-child{
+        font-size: 12px !important;
+    }
+}
+
+.interventionread-body .interventionread .interventionread-header .header-context .context-caption p:last-child{
+    margin-bottom: 0px !important;
     display: flex;
     align-items: center;
     white-space: nowrap;
@@ -44,74 +98,643 @@
     text-overflow: ellipsis;
     font-family: "Montserrat";
     font-weight: 400;
-    font-size: 14px !important;
+    font-size: 20px !important;
     color: #003755;
 }
 
-.intervention-body .intervention .intervention-header i{
-    margin-right: 10px;
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .interventionread-body .interventionread .interventionread-header .header-context .context-caption p:last-child{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .interventionread-body .interventionread .interventionread-header .header-context .context-caption p:last-child{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .interventionread-body .interventionread .interventionread-header .header-context .context-caption p:last-child{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .interventionread-body .interventionread .interventionread-header .header-context .context-caption p:last-child{
+        font-size: 12px !important;
+    }
+}
+
+.interventionread-body .interventionread .interventionread-header > p{
+    margin-bottom: 0px !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: "Montserrat";
+    font-weight: 400;
     font-size: 20px;
-    color: #003755;  
+    color: #003755;
 }
 
-.intervention-body .intervention .intervention-gallery{
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .interventionread-body .interventionread .interventionread-header > p{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .interventionread-body .interventionread .interventionread-header > p{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .interventionread-body .interventionread .interventionread-header > p{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .interventionread-body .interventionread .interventionread-header > p{
+        font-size: 12px !important;
+    }
+}
+
+.interventionread-body .interventionread .interventionread-header i{
+    margin-right: 10px !important;
+    margin-bottom: 0px !important;
+    font-size: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .interventionread-body .interventionread .interventionread-header i{
+        font-size: 22px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .interventionread-body .interventionread .interventionread-header i{
+        font-size: 20px;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .interventionread-body .interventionread .interventionread-header i{
+        font-size: 18px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .interventionread-body .interventionread .interventionread-header i{
+        font-size: 16px;
+    }
+}
+
+.interventionread-body .interventionread > h1{
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    margin-bottom: 0px !important;
+    overflow: hidden;
+    font-family: "Montserrat";
+    font-weight: 700;
+    font-size: 24px;
+    color: #003755;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .interventionread-body .interventionread > h1{
+        font-size: 22px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .interventionread-body .interventionread > h1{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .interventionread-body .interventionread > h1{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .interventionread-body .interventionread > h1{
+        font-size: 16px !important;
+    }
+}
+
+.interventionread-body .interventionread .interventionread-gallery{
     position: relative;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    height: 250px;                
-    border-radius: 5px !important;
+    height: 100%;                
     background-color: #FFFFFF;
+    white-space: nowrap;
 }
 
-.intervention-body .intervention .intervention-gallery img{
+.interventionread-body .interventionread .interventionread-gallery img{
     position: relative;
     display: inline-block;
     place-items: center;
-    object-fit: cover;
-    margin-right: 10px;
+    object-fit: contain;
     width: 100%;
-    height: 100%;
-    border-radius: 5px;
+    height: 500px;
     overflow: hidden !important;
 }
 
-.intervention-body .intervention p{
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .interventionread-body .interventionread .interventionread-gallery img{
+        height: 250px;
+    }
+}
+
+.interventionread-body .interventionread .interventionread-remarks{
+    display: grid;
+    row-gap: 15px;
+    padding-bottom: 15px;
+    width: 100%; 
+    border-bottom: 1px solid #003755;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .interventionread-body .interventionread .interventionread-remarks{
+        gap: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+.interventionread-body .interventionread .interventionread-remarks .remarks-context{
+    padding-left: 30px;
+    padding-right: 30px;
+    border: 1px solid #003755;
+    border-radius: 5px;
+    background-color: #C90016;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .interventionread-body .interventionread .interventionread-remarks .remarks-context{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+.interventionread-body .interventionread .interventionread-remarks .remarks-context h1{
     display: flex;
     align-items: center;
+    justify-content: center;
+    margin-bottom: 0px !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-family: "Montserrat";
-    font-weight: 400;
-    font-size: 14px !important;
+    font-weight: 700; 
+    font-size: 24px;      
+    color: #FFFFFF;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .interventionread-body .interventionread .interventionread-remarks .remarks-context h1{
+        font-size: 22px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .interventionread-body .interventionread .interventionread-remarks .remarks-context h1{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .interventionread-body .interventionread .interventionread-remarks .remarks-context h1{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .interventionread-body .interventionread .interventionread-remarks .remarks-context h1{
+        font-size: 16px !important;
+    }
+}
+
+.interventionread-body .interventionread .interventionread-remarks .remarks-context p{ 
+    margin-bottom: 0px !important;
+    font-family: "Montserrat";
+    font-weight: 400;       
+    font-size: 20px;
+    color: #FFFFFF;
+    text-align: justify;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .interventionread-body .interventionread .interventionread-remarks .remarks-context p{ 
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .interventionread-body .interventionread .interventionread-remarks .remarks-context p{ 
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .interventionread-body .interventionread .interventionread-remarks .remarks-context p{ 
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .interventionread-body .interventionread .interventionread-remarks .remarks-context p{ 
+        font-size: 12px !important;
+    }
+}
+
+.interventionread-body .interventionread .interventionread-origin{  
+    display: grid !important;    
+    gap: 15px;  
+    padding-bottom: 15px;
+    width: 100%; 
+    border-bottom: 1px solid #003755;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .interventionread-body .interventionread .interventionread-origin{      
+        gap: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+.interventionread-body .interventionread .interventionread-origin h1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0px !important;
+    font-family: "Montserrat";
+    font-weight: 700; 
+    font-size: 24px;      
     color: #003755;
 }
 
-.intervention-body .intervention i{
-    margin-right: 10px;
-    font-size: 20px;
-    color: #003755;  
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .interventionread-body .interventionread .interventionread-origin h1{
+        font-size: 22px !important;
+    }
 }
 
-.intervention-body .intervention .button{
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .interventionread-body .interventionread .interventionread-origin h1{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .interventionread-body .interventionread .interventionread-origin h1{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .interventionread-body .interventionread .interventionread-origin h1{
+        font-size: 16px !important;
+    }
+}
+
+.interventionread-body .interventionread .interventionread-origin .origin-context p:first-child{
+    display: flex;
+    align-items: center;
+    margin-bottom: 0px !important;
+    white-space: wrap;
+    font-family: "Montserrat";
+    font-weight: 400; 
+    font-size: 20px;      
+    color: #003755;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .interventionread-body .interventionread .interventionread-origin .origin-context p:first-child{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .interventionread-body .interventionread .interventionread-origin .origin-context p:first-child{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .interventionread-body .interventionread .interventionread-origin .origin-context p:first-child{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .interventionread-body .interventionread .interventionread-origin .origin-context p:first-child{
+        font-size: 12px !important;
+    }
+}
+
+.interventionread-body .interventionread .interventionread-origin .origin-context p:last-child{
+    display: flex;
+    align-items: center;
+    margin-bottom: 0px !important;
+    white-space: wrap;
+    font-family: "Montserrat";
+    font-weight: 700;       
+    font-size: 20px;
+    color: #003755;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .interventionread-body .interventionread .interventionread-origin .origin-context p:last-child{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .interventionread-body .interventionread .interventionread-origin .origin-context p:last-child{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .interventionread-body .interventionread .interventionread-origin .origin-context p:last-child{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .interventionread-body .interventionread .interventionread-origin .origin-context p:last-child{
+        font-size: 12px !important;
+    }
+}
+
+/* .interventionread-body .interventionread .interventionread-origin i{
+    margin-right: 10px;
+    font-size: 22px;
+    color: #003755;  
+} */
+
+.interventionread-body .interventionread .interventionread-observation{
+    display: grid;
+    row-gap: 15px;
+    padding-bottom: 15px;
+    width: 100%; 
+    border-bottom: 1px solid #003755;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .interventionread-body .interventionread .interventionread-observation{
+        gap: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+.interventionread-body .interventionread .interventionread-observation h1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0px !important;
+    font-family: "Montserrat";
+    font-weight: 700; 
+    font-size: 24px;      
+    color: #003755;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .interventionread-body .interventionread .interventionread-observation h1{
+        font-size: 22px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .interventionread-body .interventionread .interventionread-observation h1{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .interventionread-body .interventionread .interventionread-observation h1{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .interventionread-body .interventionread .interventionread-observation h1{
+        font-size: 16px !important;
+    }
+}
+
+.interventionread-body .interventionread .interventionread-observation .observation-context p:first-child{
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    margin-bottom: 0px !important;
+    white-space: wrap;
+    font-family: "Montserrat";
+    font-weight: 400;       
+    font-size: 20px;
+    color: #003755;                          
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .interventionread-body .interventionread .interventionread-observation .observation-context p:first-child{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .interventionread-body .interventionread .interventionread-observation .observation-context p:first-child{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .interventionread-body .interventionread .interventionread-observation .observation-context p:first-child{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .interventionread-body .interventionread .interventionread-observation .observation-context p:first-child{
+        font-size: 12px !important;
+    }
+}
+
+.interventionread-body .interventionread .interventionread-observation .observation-context p:last-child{
+    display: flex;
+    align-items: center;
+    margin-bottom: 0px !important;
+    white-space: wrap;
+    font-family: "Montserrat";
+    font-weight: 700;       
+    font-size: 20px;
+    color: #003755;                          
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .interventionread-body .interventionread .interventionread-observation .observation-context p:last-child{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .interventionread-body .interventionread .interventionread-observation .observation-context p:last-child{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .interventionread-body .interventionread .interventionread-observation .observation-context p:last-child{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .interventionread-body .interventionread .interventionread-observation .observation-context p:last-child{
+        font-size: 12px !important;
+    }
+}
+
+.interventionread-body .interventionread .interventionread-description{
+    display: grid;
+    row-gap: 15px;
+    padding-bottom: 15px;
+    width: 100%; 
+    border-bottom: 1px solid #003755;
+}
+
+.interventionread-body .interventionread .interventionread-description:last-child{
+    border-bottom: 0px !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .interventionread-body .interventionread .interventionread-description{
+        gap: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+.interventionread-body .interventionread .interventionread-description h1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0px !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: "Montserrat";
+    font-weight: 700; 
+    font-size: 24px;      
+    color: #003755;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .interventionread-body .interventionread .interventionread-description h1{
+        font-size: 22px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .interventionread-body .interventionread .interventionread-description h1{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .interventionread-body .interventionread .interventionread-description h1{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .interventionread-body .interventionread .interventionread-description h1{
+        font-size: 16px !important;
+    }
+}
+
+.interventionread-body .interventionread .interventionread-description .description-context p{ 
+    margin-bottom: 0px !important;
+    font-family: "Montserrat";
+    font-weight: 400;       
+    font-size: 20px;
+    color: #003755;
+    text-align: justify;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .interventionread-body .interventionread .interventionread-description .description-context p{ 
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .interventionread-body .interventionread .interventionread-description .description-context p{ 
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .interventionread-body .interventionread .interventionread-description .description-context p{ 
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .interventionread-body .interventionread .interventionread-description .description-context p{ 
+        font-size: 12px !important;
+    }
+}
+
+.interventionread-body .interventionread .button{
     margin-left: auto;
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
     width: fit-content;
     height: 100% !important;
 }
 
-.intervention-body .intervention a{
+.interventionread-body .interventionread a{
     padding-left: 10px !important;
     padding-right: 10px !important;
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
     border-radius: 5px;
     outline: none !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     font-family: "Montserrat";
     font-weight: 400;
-    font-size: 14px;
+    font-size: 20px;
     color: #FFFFFF !important;
     background-color: #003755 !important;
     text-decoration: none;
     cursor: pointer;  
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .interventionread-body .interventionread a{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .interventionread-body .interventionread a{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .interventionread-body .interventionread a{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .interventionread-body .interventionread a{
+        font-size: 12px !important;
+    }
 }

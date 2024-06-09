@@ -1,16 +1,14 @@
 .home-body{
     position: relative;
-    width: 100vw;
+    display: grid;
+    gap: 15px;
+    width: 100%;
     height: 100%;
 }
 
 @media screen and (min-width: 320px) and (max-width: 775px){
     .home-body{
-        position: relative;
-        padding-left: 10px;
-        padding-right: 10px;
-        width: 100vw;
-        height: 100%;
+        gap: 5px;
     }
 }
 
@@ -24,59 +22,71 @@
 }
 
 .home-body .home-section h1{
+    margin-bottom: 0px !important;
     text-align: center;     
     font-weight: 700;       
-    font-size: 36px;        
+    font-size: 24px;        
     font-family: "Montserrat";
 }
 
-@media screen and (min-width: 320px) and (max-width: 775px){
+@media screen and (min-width: 446px) and (max-width: 775px){
     .home-body .home-section h1{
-        text-align: center;     
-        font-weight: 700;       
-        font-size: 22px;        
-        font-family: "Montserrat";
+        font-size: 22px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-body .home-section h1{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-body .home-section h1{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-body .home-section h1{
+        font-size: 16px !important;
     }
 }
 
 .home-body .home-section p{
-    text-align: center;
-    padding-left: 30px;    
-    padding-right: 30px;
-    padding-top: 5px;
-    padding-bottom: 20px;
-    font-weight: 400;       
-    font-size: 22px;        
+    margin-bottom: 0px !important;
     font-family: "Montserrat";
-    color: #505050;
+    font-weight: 400;       
+    font-size: 20px;        
+    color: #003755;
+    text-align: center;
 }
 
-@media screen and (min-width: 320px) and (max-width: 775px){
+@media screen and (min-width: 446px) and (max-width: 775px){
     .home-body .home-section p{
-        text-align: center;
-        padding-left: 30px;    
-        padding-right: 30px;
-        padding-top: 5px;
-        padding-bottom: 20px;
-        font-weight: 400;       
-        font-size: 14px;        
-        font-family: "Montserrat";
-        color: #505050;
+        font-size: 18px !important;
     }
 }
 
-.home-body .map-section{
-    display: flex;                   
-    align-items: center; 
-    justify-content: center;          
-    flex-direction: column;
-    width: 100%;                     
-    text-align: center;                                   
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-body .home-section p{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-body .home-section p{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-body .home-section p{
+        font-size: 12px !important;
+    }
 }
 
 .home-body .home-map{ 
-    margin-top: 10px;
-    margin-bottom: 10px;
     width: 100%;
     height: 100vh;
 }
@@ -88,8 +98,6 @@
 }
 
 .home-body .home-map .map{
-    margin-top: 10px;
-    margin-bottom: 10px;
     width: 100%;
     height: 100vh;
     border-radius: 5px; 
@@ -110,19 +118,43 @@
 }
 
 .home-body .home-map .map .leaflet-left{
-    margin-left: 10px !important;
+    margin-left: 30px !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .home-body .home-map .map .leaflet-left{
+        margin-left: 10px !important;
+    }
 }
 
 .home-body .home-map .map .leaflet-right{
-    margin-right: 10px !important;
+    margin-right: 30px !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .home-body .home-map .map .leaflet-right{
+        margin-right: 10px !important;
+    }
 }
 
 .home-body .home-map .map .leaflet-top{
-    margin-top: 10px !important;
+    margin-top: 15px !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .home-body .home-map .map .leaflet-top{
+        margin-top: 5px !important;
+    }
 }
 
 .home-body .home-map .map .leaflet-bottom{
-    margin-bottom: 10px !important;
+    margin-bottom: 15px !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .home-body .home-map .map .leaflet-bottom{
+        margin-bottom: 5px !important;
+    }
 }
 
 .home-body .home-map .map .leaflet-bar{
@@ -158,6 +190,16 @@
     color: #002C44 !important;
 }
 
+.home-body .home-map .map .leaflet-control-zoom a.leaflet-control-zoom-in:focus{
+    background-color: #B2BEB5 !important;
+    color: #002C44 !important;
+}
+
+.home-body .home-map .map .leaflet-control-zoom a.leaflet-control-zoom-in:active{
+    background-color: #B2BEB5 !important;
+    color: #002C44 !important;
+}
+
 .home-body .home-map .map .leaflet-control-zoom a.leaflet-control-zoom-in.leaflet-disabled{
     background-color: #B2BEB5 !important;
     color: #002C44 !important;
@@ -182,6 +224,16 @@
     color: #B2BEB5 !important;
 }
 
+.home-body .home-map .map .leaflet-control-zoom a.leaflet-control-zoom-out:focus{
+    background-color: #002C44 !important;
+    color: #B2BEB5 !important;
+}
+
+.home-body .home-map .map .leaflet-control-zoom a.leaflet-control-zoom-out:active{
+    background-color: #002C44 !important;
+    color: #B2BEB5 !important;
+}
+
 .home-body .home-map .map .leaflet-control-zoom a.leaflet-control-zoom-out.leaflet-disabled{
     background-color: #002C44 !important;
     color: #B2BEB5 !important;
@@ -193,114 +245,59 @@
 }
 
 .home-body .home-map .map .legend{
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     width: 100%;
     border-radius: 5px;
     background-color: #FFFFFF;
 }
 
-@media screen and (min-width: 369px) and (max-width: 445px){
+@media screen and (min-width: 320px) and (max-width: 775px){
     .home-body .home-map .map .legend{
         padding-left: 10px;
         padding-right: 10px;
-        padding-top: 10px;
-        padding-bottom: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .home-body .home-map .map .legend{
-        padding-left: 10px;
-        padding-right: 10px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .home-body .home-map .map .legend{
-        padding-left: 10px;
-        padding-right: 10px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
-}
-
-.home-body .home-map .map .legend .popup-header p{
-    margin-top: 0px !important;
-    margin-bottom: 0px !important;
-    font-family: "Montserrat";
-    font-weight: 400;
-    font-size: 22px !important;
-    color: #000000;
-    text-align: center;
+.home-body .home-map .map .legend .popup-header{
+    text-align: center !important;
     cursor: default;
 }
 
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .home-body .home-map .map .legend .popup-header p{
-        font-family: "Montserrat";
-        font-weight: 400;
-        font-size: 14px !important;
-        color: #000000;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .home-body .home-map .map .legend .popup-header p{
-        font-family: "Montserrat";
-        font-weight: 400;
-        font-size: 12px !important;
-        color: #000000;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .home-body .home-map .map .legend .popup-header p{
-        font-family: "Montserrat";
-        font-weight: 400;
-        font-size: 12px !important;
-        color: #000000;
-    }
-}
-
-.home-body .home-map .map .legend .popup-header p a{
+.home-body .home-map .map .legend .popup-header a{
     margin-top: 0px !important;
     margin-bottom: 0px !important;
     font-family: "Montserrat";
     font-weight: 700;
-    font-size: 22px !important;
-    color: #000000;
-    cursor: default;
+    font-size: 24px !important;
+    color: #003755;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home-body .home-map .map .legend .popup-header a{
+        font-size: 22px !important;
+    }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .home-body .home-map .map .legend .popup-header p a{
-        font-family: "Montserrat";
-        font-weight: 700;
-        font-size: 14px !important;
-        color: #000000;
+    .home-body .home-map .map .legend .popup-header a{
+        font-size: 20px !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .home-body .home-map .map .legend .popup-header p a{
-        font-family: "Montserrat";
-        font-weight: 700;
-        font-size: 12px !important;
-        color: #000000;
+    .home-body .home-map .map .legend .popup-header a{
+        font-size: 18px !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .home-body .home-map .map .legend .popup-header p a{
-        font-family: "Montserrat";
-        font-weight: 700;
-        font-size: 12px !important;
-        color: #000000;
+    .home-body .home-map .map .legend .popup-header a{
+        font-size: 16px !important;
     }
 }
 
@@ -309,7 +306,13 @@
     grid-template-columns: auto auto;
     align-items: center;
     justify-content: flex-start;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .home-body .home-map .map .legend .popup-statistics{
+        margin-bottom: 5px;
+    }
 }
 
 .home-body .home-map .map .legend .popup-statistics:last-child{
@@ -318,131 +321,174 @@
 
 .home-body .home-map .map .legend .popup-statistics i{
     margin-right: 10px;
-    width: 30px; 
-    height: 30px;
+    width: 20px; 
+    height: 20px;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home-body .home-map .map .legend .popup-statistics i{
+        width: 18px; 
+        height: 18px;
+    }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .home-body .home-map .map .legend .popup-statistics i{
-        width: 15px; 
-        height: 15px;
+        width: 16px; 
+        height: 16px;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .home-body .home-map .map .legend .popup-statistics i{
-        width: 15px; 
-        height: 15px;
+        width: 14px; 
+        height: 14px;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .home-body .home-map .map .legend .popup-statistics i{
-        width: 15px; 
-        height: 15px;
+        width: 12px; 
+        height: 12px;
     }
 }
 
-.home-body .home-map .map .legend .popup-statistics p{
-    margin-top: 0px !important;
-    margin-bottom: 0px !important;
-    font-family: "Montserrat";
-    font-weight: 400;
-    font-size: 22px !important;
-    color: #000000;
-    cursor: default;
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .home-body .home-map .map .legend .popup-statistics p{
-        font-family: "Montserrat";
-        font-weight: 400;
-        font-size: 16px !important;
-        color: #000000;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .home-body .home-map .map .legend .popup-statistics p{
-        font-family: "Montserrat";
-        font-weight: 400;
-        font-size: 14px !important;
-        color: #000000;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .home-body .home-map .map .legend .popup-statistics p{
-        font-family: "Montserrat";
-        font-weight: 400;
-        font-size: 12px !important;
-        color: #000000;
-    }
-}
-
-.home-body .home-map .map .legend .popup-statistics p a{
-    display: inline-block !important;
+.home-body .home-map .map .legend .popup-statistics a{
     margin-top: 0px !important;
     margin-bottom: 0px !important;
     font-family: "Montserrat";
     font-weight: 700;
-    font-size: 22px !important;
-    color: #000000;
+    font-size: 20px !important;
+    color: #003755;
     cursor: default;
 }
 
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home-body .home-map .map .legend .popup-statistics a{
+        font-size: 18px !important;
+    }
+}
+
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .home-body .home-map .map .legend .popup-statistics p a{
-        font-family: "Montserrat";
-        font-weight: 700;
+    .home-body .home-map .map .legend .popup-statistics a{
         font-size: 16px !important;
-        color: #000000;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .home-body .home-map .map .legend .popup-statistics p a{
-        font-family: "Montserrat";
-        font-weight: 700;
+    .home-body .home-map .map .legend .popup-statistics a{
         font-size: 14px !important;
-        color: #000000;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .home-body .home-map .map .legend .popup-statistics p a{
-        font-family: "Montserrat";
-        font-weight: 700;
+    .home-body .home-map .map .legend .popup-statistics a{
         font-size: 12px !important;
-        color: #000000;
+    }
+}
+
+.home-body .home-map .map .legend .popup-statistics p{
+    display: inline-block !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #003755;
+    cursor: default;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home-body .home-map .map .legend .popup-statistics p{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-body .home-map .map .legend .popup-statistics p{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-body .home-map .map .legend .popup-statistics p{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-body .home-map .map .legend .popup-statistics p{
+        font-size: 12px !important;
+    }
+}
+
+.home-body .home-map .map .legend .popup-alert p{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #003755;
+    text-align: right;
+    cursor: default;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home-body .home-map .map .legend .popup-alert p{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-body .home-map .map .legend .popup-alert p{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-body .home-map .map .legend .popup-alert p{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-body .home-map .map .legend .popup-alert p{
+        font-size: 12px !important;
     }
 }
 
 .home-body .home-map .map .leaflet-control-attribution{
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     width: 100%;
     border-radius: 5px;
     font-family: "Montserrat";
     font-weight: 400;
-    font-size: 22px !important;
+    font-size: 24px !important;
     background: #FFFFFF !important;
-    color: #000000;
+    color: #003755;
     cursor: default;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home-body .home-map .map .leaflet-control-attribution{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        font-size: 22px !important;
+    }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .home-body .home-map .map .leaflet-control-attribution{
         padding-left: 10px;
         padding-right: 10px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        font-family: "Montserrat";
-        font-weight: 400;
-        font-size: 16px !important;
-        color: #000000;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        font-size: 20px !important;
     }
 }
 
@@ -450,12 +496,9 @@
     .home-body .home-map .map .leaflet-control-attribution{
         padding-left: 10px;
         padding-right: 10px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        font-family: "Montserrat";
-        font-weight: 400;
-        font-size: 14px !important;
-        color: #000000;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        font-size: 18px !important;
     }
 }
 
@@ -463,12 +506,9 @@
     .home-body .home-map .map .leaflet-control-attribution{
         padding-left: 10px;
         padding-right: 10px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        font-family: "Montserrat";
-        font-weight: 400;
-        font-size: 12px !important;
-        color: #000000;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        font-size: 16px !important;
     }
 }
 
@@ -477,35 +517,27 @@
     margin-bottom: 0px !important;
     font-family: "Montserrat";
     font-weight: 700;
-    font-size: 22px !important;
-    color: #000000;
+    font-size: 24px !important;
+    color: #003755;
+    text-decoration: none !important;
     cursor: default;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .home-body .home-map .map .leaflet-control-attribution a{
-        font-family: "Montserrat";
-        font-weight: 700;
-        font-size: 16px !important;
-        color: #000000;
+        font-size: 22px !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .home-body .home-map .map .leaflet-control-attribution a{
-        font-family: "Montserrat";
-        font-weight: 700;
-        font-size: 14px !important;
-        color: #000000;
+        font-size: 20px !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .home-body .home-map .map .leaflet-control-attribution a{
-        font-family: "Montserrat";
-        font-weight: 700;
-        font-size: 12px !important;
-        color: #000000;
+        font-size: 18px !important;
     }
 }
 
@@ -518,35 +550,32 @@
     margin-bottom: 0px !important;
     font-family: "Montserrat";
     font-weight: 400;
-    font-size: 22px !important;
-    color: #000000;
+    font-size: 24px !important;
+    color: #003755;
     cursor: default;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home-body .home-map .map .leaflet-control-attribution span{
+        font-size: 22px !important;
+    }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .home-body .home-map .map .leaflet-control-attribution span{
-        font-family: "Montserrat";
-        font-weight: 400;
-        font-size: 16px !important;
-        color: #000000;
+        font-size: 20px !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .home-body .home-map .map .leaflet-control-attribution span{
-        font-family: "Montserrat";
-        font-weight: 400;
-        font-size: 14px !important;
-        color: #000000;
+        font-size: 18px !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .home-body .home-map .map .leaflet-control-attribution span{
-        font-family: "Montserrat";
-        font-weight: 400;
-        font-size: 12px !important;
-        color: #000000;
+        font-size: 16px !important;
     }
 }
 
@@ -555,23 +584,53 @@
     background: #003755 !important;
 }
 
-.home-body .home-map .map .leaflet-control-layers{
-    border: none !important;
-    background: #003755 !important;
+.home-body .home-map .map .leaflet-control-layers label{
+    margin-bottom: 0px !important;
 }
 
 .home-body .home-map .map .leaflet-control-layers span{
     display: flex !important;
     align-items: center;
     justify-content: flex-start;
+    font-family: "Montserrat" !important;
+    font-weight: 400 !important;
+    font-size: 24px !important;
 }
 
-.home-body .home-map .map .leaflet-touch .leaflet-control-layers-toggle{
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home-body .home-map .map .leaflet-control-layers span{
+        font-size: 22px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-body .home-map .map .leaflet-control-layers span{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-body .home-map .map .leaflet-control-layers span{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-body .home-map .map .leaflet-control-layers span{
+        font-size: 16px !important;
+    }
+}
+
+.home-body .home-map .map a.leaflet-control-layers-toggle{
+    display: none !important;
+    width: 0px !important;
+    height: 0px !important;
     border-radius: 5px !important;
     background-color: #003755 !important;
 }
 
 .home-body .home-map .map .leaflet-control-layers-expanded{
+    display: block !important;
     padding-left: 0px !important;
     padding-right: 0px !important;
     padding-top: 0px !important;
@@ -581,44 +640,55 @@
 }
 
 .home-body .home-map .map .leaflet-control-layers-list{
-    padding-left: 10px !important;
-    padding-right: 10px !important;
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
+    display: block !important;
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
     font-family: "Montserrat" !important;
-    font-weight: 200 !important;
-    font-size: 22px !important;
+    font-weight: 400 !important;
+    font-size: 24px !important;
     color: #FFFFFF !important;
     text-align: justify;
 }
 
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home-body .home-map .map .leaflet-control-layers-list{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        font-size: 22px !important;
+    }
+}
+
 @media screen and (min-width: 369px) and (max-width: 445px){
     .home-body .home-map .map .leaflet-control-layers-list{
-        font-family: "Montserrat";
-        font-weight: 200;
-        font-size: 16px !important;
-        color: #FFFFFF !important;
-        text-align: justify;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        font-size: 20px !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .home-body .home-map .map .leaflet-control-layers-list{
-        font-family: "Montserrat";
-        font-weight: 200;
-        font-size: 14px !important;
-        color: #FFFFFF !important;
-        text-align: justify;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        font-size: 18px !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .home-body .home-map .map .leaflet-control-layers-list{
-        font-family: "Montserrat";
-        font-weight: 200;
-        font-size: 12px !important;
-        color: #FFFFFF !important;
-        text-align: justify;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        font-size: 16px !important;
     }
 }
 
@@ -630,7 +700,7 @@
     appearance: none !important;
     outline: none !important;
     border-radius: 5px;
-    border: 1px solid #B2BEB5;
+    border: 1px solid #003755;
     background-color: #FFFFFF;
     cursor: pointer !important;
 }
@@ -650,8 +720,22 @@
 .home-body .home-map .map .leaflet-control-layers-list input[type = "checkbox"]{
     margin-right: 10px !important;
     margin-top: 0px !important;
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home-body .home-map .map .leaflet-control-layers-list input[type = "checkbox"]{
+        width: 22px;
+        height: 22px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-body .home-map .map .leaflet-control-layers-list input[type = "checkbox"]{
+        width: 20px;
+        height: 20px;
+    }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
@@ -730,10 +814,10 @@
 }
 
 .home-body .home-map .map .popup{
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     width: 326px;
     border-radius: 5px !important;
     background-color: #FFFFFF;
@@ -742,22 +826,31 @@
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .home-body .home-map .map .popup{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
         width: 249px !important;
-        word-break: break-word !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .home-body .home-map .map .popup{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
         width: 229px !important;
-        word-break: break-word !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .home-body .home-map .map .popup{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
         width: 200px !important;
-        word-break: break-word !important;
     }
 }
 
@@ -768,8 +861,33 @@
 }
 
 .home-body .home-map .map .popup .popup-header i.fa-solid.fa-circle-exclamation{
-    font-size: 30px !important;
+    font-size: 24px;
     color: #003755;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home-body .home-map .map .popup .popup-header i.fa-solid.fa-circle-exclamation{
+        font-size: 22px !important;
+
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-body .home-map .map .popup .popup-header i.fa-solid.fa-circle-exclamation{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-body .home-map .map .popup .popup-header i.fa-solid.fa-circle-exclamation{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-body .home-map .map .popup .popup-header i.fa-solid.fa-circle-exclamation{
+        font-size: 16px !important;
+    }
 }
 
 .leaflet-popup-close-button{
@@ -777,7 +895,7 @@
 }
 
 .home-body .home-map .map .popup .popup-header .popup-back{
-    font-size: 30px !important;
+    font-size: 24px !important;
     color: #003755;
     cursor: pointer;
 }
@@ -797,13 +915,70 @@
     cursor: pointer;
 }
 
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home-body .home-map .map .popup .popup-header .popup-back{
+        font-size: 22px !important;
+
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-body .home-map .map .popup .popup-header .popup-back{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-body .home-map .map .popup .popup-header .popup-back{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-body .home-map .map .popup .popup-header .popup-back{
+        font-size: 16px !important;
+    }
+}
+
 .popup .popup-place{
     display: grid;
-    gap: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    gap: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     width: 100%;
     background-color: #FFFFFF;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .popup .popup-place{
+        gap: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .popup .popup-place{
+        gap: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .popup .popup-place{
+        gap: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .popup .popup-place{
+        gap: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
 }
 
 .home-body .home-map .map .popup .popup-place p{
@@ -811,44 +986,32 @@
     margin-bottom: 0px !important;
     font-family: "Montserrat";
     font-weight: 400;
-    font-size: 22px !important;
-    color: #000000;
+    font-size: 24px !important;
+    color: #003755;
     cursor: default;
 }
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .home-body .home-map .map .popup .popup-place p{
-        font-family: "Montserrat";
-        font-weight: 400;
-        font-size: 20px !important;
-        color: #000000;
+        font-size: 22px !important;
     }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .home-body .home-map .map .popup .popup-place p{
-        font-family: "Montserrat";
-        font-weight: 400;
-        font-size: 18px !important;
-        color: #000000;
+        font-size: 20px !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .home-body .home-map .map .popup .popup-place p{
-        font-family: "Montserrat";
-        font-weight: 400;
-        font-size: 16px !important;
-        color: #000000;
+        font-size: 18px !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .home-body .home-map .map .popup .popup-place p{
-        font-family: "Montserrat";
-        font-weight: 400;
-        font-size: 14px !important;
-        color: #000000;
+        font-size: 16px !important;
     }
 }
 
@@ -857,48 +1020,54 @@
     margin-bottom: 0px !important;
     font-family: "Montserrat";
     font-weight: 700;
-    font-size: 22px !important;
-    color: #000000;
+    font-size: 24px !important;
+    color: #003755;
     cursor: default;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home-body .home-map .map .popup .popup-place p a{
+        font-size: 22px !important;
+    }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .home-body .home-map .map .popup .popup-place p a{
-        font-family: "Montserrat";
-        font-weight: 700;
-        font-size: 16px !important;
-        color: #000000;
+        font-size: 20px !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .home-body .home-map .map .popup .popup-place p a{
-        font-family: "Montserrat";
-        font-weight: 700;
-        font-size: 14px !important;
-        color: #000000;
+        font-size: 18px !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .home-body .home-map .map .popup .popup-place p a{
-        font-family: "Montserrat";
-        font-weight: 700;
-        font-size: 12px !important;
-        color: #000000;
+        font-size: 16px !important;
     }
 }
 
 .home-body .home-map .map .popup .popup-statistics{
-    margin-bottom: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
     display: flex;
     align-items: flex-start;        
     flex-direction: column;
     gap: 15px;
-    border-top: 1px solid #B2BEB5;
-    border-bottom: 1px solid #B2BEB5;
+    margin-bottom: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-top: 1px solid #003755;
+    border-bottom: 1px solid #003755;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .home-body .home-map .map .popup .popup-statistics{
+        gap: 5px;
+        margin-bottom: 5px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
 }
 
 .home-body .home-map .map .popup .popup-statistics p{
@@ -906,35 +1075,32 @@
     margin-bottom: 0px !important;
     font-family: "Montserrat";
     font-weight: 400;
-    font-size: 22px !important;
-    color: #000000;
+    font-size: 20px !important;
+    color: #003755;
     cursor: default;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home-body .home-map .map .popup .popup-statistics p{
+        font-size: 18px !important;
+    }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .home-body .home-map .map .popup .popup-statistics p{
-        font-family: "Montserrat";
-        font-weight: 400;
         font-size: 16px !important;
-        color: #000000;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .home-body .home-map .map .popup .popup-statistics p{
-        font-family: "Montserrat";
-        font-weight: 400;
         font-size: 14px !important;
-        color: #000000;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .home-body .home-map .map .popup .popup-statistics p{
-        font-family: "Montserrat";
-        font-weight: 400;
         font-size: 12px !important;
-        color: #000000;
     }
 }
 
@@ -943,54 +1109,87 @@
     margin-bottom: 0px !important;
     font-family: "Montserrat";
     font-weight: 700;
-    font-size: 22px !important;
-    color: #000000;
+    font-size: 20px !important;
+    color: #003755;
     cursor: default;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home-body .home-map .map .popup .popup-statistics p a{
+        font-size: 18px !important;
+    }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .home-body .home-map .map .popup .popup-statistics p a{
-        font-family: "Montserrat";
-        font-weight: 700;
         font-size: 16px !important;
-        color: #000000;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .home-body .home-map .map .popup .popup-statistics p a{
-        font-family: "Montserrat";
-        font-weight: 700;
         font-size: 14px !important;
-        color: #000000;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .home-body .home-map .map .popup .popup-statistics p a{
-        font-family: "Montserrat";
-        font-weight: 700;
         font-size: 12px !important;
-        color: #000000;
     }
 }
 
 .home-body .home-map .map .popup .popup-header img{
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home-body .home-map .map .popup .popup-header img{
+        width: 22px;
+        height: 22px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-body .home-map .map .popup .popup-header img{
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-body .home-map .map .popup .popup-header img{
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-body .home-map .map .popup .popup-header img{
+        width: 16px;
+        height: 16px;
+    }
 }
 
 .home-body .home-map .map .popup .popup-username{
     display: grid;
-    gap: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    gap: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     width: 100%;
     background-color: #FFFFFF;
 }
 
-.home-body .home-map .map .popup .popup-username p{
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .home-body .home-map .map .popup .popup-username{
+        gap: 5px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+.home-body .home-map .map .popup .popup-username a{
     margin-left: 10px !important;
     margin-right: 10px !important;
     margin-top: 0px !important;
@@ -999,85 +1198,54 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     font-family: "Montserrat";
-    font-weight: 400;
-    font-size: 22px !important;
-    color: #000000;
-    cursor: default;
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .home-body .home-map .map .popup .popup-username p{
-        font-family: "Montserrat";
-        font-weight: 400;
-        font-size: 16px !important;
-        color: #000000;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .home-body .home-map .map .popup .popup-username p{
-        font-family: "Montserrat";
-        font-weight: 400;
-        font-size: 14px !important;
-        color: #003755;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .home-body .home-map .map .popup .popup-username p{
-        font-family: "Montserrat";
-        font-weight: 400;
-        font-size: 12px !important;
-        color: #000000;
-    }
-}
-
-.home-body .home-map .map .popup .popup-username p a{
-    margin-top: 0px !important;
-    margin-bottom: 0px !important;
-    font-family: "Montserrat";
     font-weight: 700;
-    font-size: 22px !important;
-    color: #000000;
+    font-size: 24px !important;
+    color: #003755;
     cursor: default;
 }
 
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home-body .home-map .map .popup .popup-username a{
+        font-size: 22px !important;
+    }
+}
+
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .home-body .home-map .map .popup .popup-username p a{
-        font-family: "Montserrat";
-        font-weight: 700;
-        font-size: 16px !important;
-        color: #000000;
+    .home-body .home-map .map .popup .popup-username a{
+        font-size: 20px !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .home-body .home-map .map .popup .popup-username p a{
-        font-family: "Montserrat";
-        font-weight: 700;
-        font-size: 14px !important;
-        color: #000000;
+    .home-body .home-map .map .popup .popup-username a{
+        font-size: 18px !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .home-body .home-map .map .popup .popup-username p a{
-        font-family: "Montserrat";
-        font-weight: 700;
-        font-size: 12px !important;
-        color: #000000;
+    .home-body .home-map .map .popup .popup-username a{
+        font-size: 16px !important;
     }
 }
 
 .home-body .home-map .map .popup .popup-post{
     position: relative;
     display: grid;
-    gap: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-top: 1px solid #B2BEB5;
-    border-bottom: 1px solid #B2BEB5;
+    gap: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-top: 1px solid #003755;
+    border-bottom: 1px solid #003755;
     background-color: #FFFFFF;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .home-body .home-map .map .popup .popup-post{
+        gap: 5px;
+        margin-bottom: 5px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
 }
 
 .home-body .home-map .map .popup .popup-post .post-gallery{
@@ -1101,45 +1269,50 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .home-body .home-map .map .popup .popup-post .post-gallery .post-context{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
 .home-body .home-map .map .popup .popup-post .post-gallery .post-context p{
     margin-top: 0px;
     margin-bottom: 0px;
     font-family: "Montserrat";
     font-weight: 400;
-    font-size: 22px !important;
+    font-size: 20px !important;
     color: #FFFFFF;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home-body .home-map .map .popup .popup-post .post-gallery .post-context p{
+        font-size: 18px !important;
+    }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .home-body .home-map .map .popup .popup-post .post-gallery .post-context p{
-        font-family: "Montserrat";
-        font-weight: 400;
         font-size: 16px !important;
-        color: #FFFFFF;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .home-body .home-map .map .popup .popup-post .post-gallery .post-context p{
-        font-family: "Montserrat";
-        font-weight: 400;
         font-size: 14px !important;
-        color: #FFFFFF;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .home-body .home-map .map .popup .popup-post .post-gallery .post-context p{
-        font-family: "Montserrat";
-        font-weight: 400;
         font-size: 12px !important;
-        color: #FFFFFF;
     }
 }
 
@@ -1148,40 +1321,37 @@
     margin-bottom: 0px !important;
     font-family: "Montserrat";
     font-weight: 700;
-    font-size: 22px !important;
+    font-size: 20px !important;
     color: #FFFFFF;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home-body .home-map .map .popup .popup-post .post-gallery .post-context a{
+        font-size: 18px !important;
+    }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .home-body .home-map .map .popup .popup-post .post-gallery .post-context a{
-        font-family: "Montserrat";
-        font-weight: 700;
         font-size: 16px !important;
-        color: #FFFFFF;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .home-body .home-map .map .popup .popup-post .post-gallery .post-context a{
-        font-family: "Montserrat";
-        font-weight: 700;
         font-size: 14px !important;
-        color: #FFFFFF;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .home-body .home-map .map .popup .popup-post .post-gallery .post-context a{
-        font-family: "Montserrat";
-        font-weight: 700;
         font-size: 12px !important;
-        color: #FFFFFF;
     }
 }
 
 .home-body .home-map .map .popup .button{
     margin-left: auto;
-    margin-top: 10px;
+    margin-top: 15px;
     padding-left: 10px !important;
     padding-right: 10px !important;
     padding-top: 5px !important;
@@ -1190,6 +1360,12 @@
     height: fit-content;
     border-radius: 5px;
     background-color: #003755 !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .home-body .home-map .map .popup .popup-post .post-gallery .post-context a{
+        margin-top: 5px;
+    }
 }
 
 .home-body .home-map .map .popup .button:hover{
@@ -1213,38 +1389,32 @@
 .home-body .home-map .map .popup .button a.read-post{
     font-family: "Montserrat";
     font-weight: 400;
-    font-size: 22px;
+    font-size: 20px;
     color: #FFFFFF !important;
     text-decoration: none;
 }
 
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home-body .home-map .map .popup .button a.read-post{
+        font-size: 18px !important;
+    }
+}
+
 @media screen and (min-width: 369px) and (max-width: 445px){
     .home-body .home-map .map .popup .button a.read-post{
-        font-family: "Montserrat";
-        font-weight: 400;
         font-size: 16px !important;
-        color: #FFFFFF !important;
-        text-decoration: none;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .home-body .home-map .map .popup .button a.read-post{
-        font-family: "Montserrat";
-        font-weight: 400;
         font-size: 14px !important;
-        color: #FFFFFF !important;
-        text-decoration: none;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .home-body .home-map .map .popup .button a.read-post{
-        font-family: "Montserrat";
-        font-weight: 400;
         font-size: 12px !important;
-        color: #FFFFFF !important;
-        text-decoration: none;
     }
 }
 
@@ -1254,8 +1424,6 @@
 
 .home-body .home-cots{
     position: relative;           
-    margin-top: 30px;              
-    margin-bottom: 30px;
     height: 500px;                
     width: 100%;                                
     overflow: hidden;              
@@ -1263,12 +1431,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 775px){
     .home-body .home-cots{
-        position: relative;           
-        margin-top: 15px;              
-        margin-bottom: 10px;
         height: 250px;                
-        width: 100%;                                
-        overflow: hidden;              
     }
 }
 
@@ -1307,54 +1470,100 @@
 
 .home-body .home-cots .cots-context p{
     position: relative;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    margin-bottom: 0px !important;
+    white-space: wrap;
     font-family: "Montserrat";
     font-weight: 400;
-    font-size: 22px !important;
+    font-size: 20px !important;
     color: #FFFFFF;
-    text-align: justify !important;
-    cursor: default;
 }
 
-@media screen and (min-width: 320px) and (max-width: 775px){
+@media screen and (min-width: 446px) and (max-width: 775px){
     .home-body .home-cots .cots-context p{
-        font-weight: 400;
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-body .home-cots .cots-context p{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-body .home-cots .cots-context p{
         font-size: 14px !important;
     }
 }
 
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-body .home-cots .cots-context p{
+        font-size: 12px !important;
+    }
+}
+
 .home-body .home-cots .cots-context h1{
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    margin-bottom: 0px !important;
+    white-space: wrap;
     font-family: "Montserrat";
     font-weight: 700;       
-    font-size: 36px;
+    font-size: 24px;
     color: #FFFFFF;   
 }
 
-@media screen and (min-width: 320px) and (max-width: 775px){
+@media screen and (min-width: 446px) and (max-width: 775px){
     .home-body .home-cots .cots-context h1{
-        font-weight: 700;       
-        font-size: 18px;
+        font-size: 22px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-body .home-cots .cots-context h1{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-body .home-cots .cots-context h1{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-body .home-cots .cots-context h1{
+        font-size: 16px !important;
     }
 }
 
 .home-body .home-post > h1{
-    margin-top: 30px;
+    margin-bottom: 0px !important;
     font-family: "Montserrat";
     font-weight: 700;       
-    font-size: 36px; 
+    font-size: 24px; 
     text-align: center;
 }
 
-@media screen and (min-width: 320px) and (max-width: 775px){
+@media screen and (min-width: 446px) and (max-width: 775px){
     .home-body .home-post > h1{
-        margin-top: 15px;
-        font-weight: 700;       
-        font-size: 18px; 
+        font-size: 22px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-body .home-post > h1{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-body .home-post > h1{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-body .home-post > h1{
+        font-size: 16px !important;
     }
 }
 
@@ -1369,19 +1578,14 @@
 
 @media screen and (min-width: 320px) and (max-width: 775px){
     .home-body .home-post .post{
-        position: relative;
         height: 250px;                
-        background-color: #FFFFFF;
-        overflow-x: auto !important;
-        overflow-y: hidden !important;
-        white-space: nowrap;
     }
 }
 
 .home-body .home-post .post-gallery{
     position: relative;
     display: inline-block;
-    margin-right: 10px;
+    margin-right: 30px;
     width: 100%;
     height: 100%;
     overflow: hidden !important;
@@ -1391,13 +1595,25 @@
     margin-right: 0px !important;
 }
 
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .home-body .home-post .post-gallery{
+        margin-right: 10px;
+    }
+}
+
 .home-body .home-post .post-gallery a img{
     place-items: center;
     object-fit: cover;
-    margin-right: 10px;
+    margin-right: 30px;
     height: 100%;              
     width: 100%;               
     transition: all 0.5s;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .home-body .home-post .post-gallery a img{
+        margin-right: 10px;
+    }
 }
 
 .home-body .home-post .post-gallery a img:hover{
@@ -1405,6 +1621,172 @@
 }
 
 .home-body .home-post .post-gallery .post-context{
+    position: absolute;                    
+    bottom: 0;                       
+    padding-left: 30px;        
+    padding-right: 30px; 
+    padding-top: 15px; 
+    padding-bottom: 15px;   
+    width: 100%;                                      
+    max-height: 50%;                
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.75) 50%)    
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .home-body .home-post .post-gallery .post-context{
+        padding-left: 10px;        
+        padding-right: 10px; 
+        padding-top: 5px; 
+        padding-bottom: 5px;                   
+    }
+}
+
+.home-body .home-post .post-gallery .post-context p{
+    margin-bottom: 0px !important;
+    white-space: wrap;
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #FFFFFF;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-body .home-post .post-gallery .post-context p{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-body .home-post .post-gallery .post-context p{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-body .home-post .post-gallery .post-context p{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-body .home-post .post-gallery .post-context p{
+        font-size: 12px !important;
+    }
+}
+
+.home-body .home-post .post-gallery .post-context > h1{
+    margin-bottom: 0px !important;    
+    white-space: wrap;
+    font-family: "Montserrat";
+    font-weight: 700; 
+    font-size: 24px;
+    color: #FFFFFF;                          
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home-body .home-post .post-gallery .post-context > h1{
+        font-size: 22px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-body .home-post .post-gallery .post-context > h1{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-body .home-post .post-gallery .post-context > h1{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-body .home-post .post-gallery .post-context > h1{
+        font-size: 16px !important;
+    }
+}
+
+.home-body .home-announcement > h1{
+    margin-bottom: 0px !important;
+    font-family: "Montserrat";
+    font-weight: 700;       
+    font-size: 24px; 
+    text-align: center;       
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home-body .home-announcement > h1{
+        font-size: 22px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-body .home-announcement > h1{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-body .home-announcement > h1{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-body .home-announcement > h1{
+        font-size: 16px !important;
+    }
+}
+
+.home-body .home-announcement .announcement{
+    position: relative;
+    height: 500px;                
+    background-color: #FFFFFF;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    white-space: nowrap;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .home-body .home-announcement .announcement{
+        height: 250px;                
+    }
+}
+
+.home-body .home-announcement .announcement-gallery{
+    position: relative;
+    display: inline-block;
+    margin-right: 30px;
+    width: 100%;
+    height: 100%;
+    vertical-align: top;
+    overflow: hidden !important;
+}
+
+.home-body .home-announcement .announcement-gallery:last-child{
+    margin-right: 0px !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .home-body .home-announcement .announcement-gallery{
+        margin-right: 10px;
+    }
+}
+.home-body .home-announcement .announcement-gallery a img{
+    place-items: center;
+    object-fit: contain;
+    margin-right: 10px;
+    height: 100%;              
+    width: 100%;               
+    transition: all 0.5s;
+}
+
+.home-body .home-announcement .announcement-gallery a img:hover{
+    transform: scale(1.25);
+}
+
+/* .home-body .home-announcement .announcement-gallery .announcement-context{
     position: absolute;
     bottom: 0;
     left: 0;
@@ -1417,24 +1799,29 @@
     background-color: rgba(0, 0, 0, 0.75);  
 }
 
-.home-body .home-post .post-gallery .post-context > h1{
-    margin-bottom: 0px !important;    
-    white-space: wrap;
+.home-body .home-announcement .announcement-gallery .announcement-context > h1{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-family: "Montserrat";
-    font-weight: 700; 
+    font-weight: 700;       
     font-size: 36px;
     color: #FFFFFF;                          
 }
 
 @media screen and (min-width: 320px) and (max-width: 775px){
-    .home-body .home-post .post-gallery .post-context > h1{
-        font-weight: 700; 
+    .home-body .home-announcement .announcement-gallery .announcement-context > h1{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-family: "Montserrat";
+        font-weight: 700;       
         font-size: 18px;
+        color: #FFFFFF;                          
     }
 }
 
-.home-body .home-post .post-gallery .post-context p{
-    margin-bottom: 0px !important;
+.home-body .home-announcement .announcement-gallery .announcement-context p{
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1445,7 +1832,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 775px){
-    .home-body .home-post .post-gallery .post-context p{
+    .home-body .home-announcement .announcement-gallery .announcement-context p{
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -1454,55 +1841,4 @@
         font-size: 14px !important;
         color: #FFFFFF;
     }
-}
-
-.home-body .home-announcement > h1{
-    margin-top: 30px;
-    font-family: "Montserrat";
-    font-weight: 700;       
-    font-size: 36px; 
-    text-align: center;       
-}
-
-@media screen and (min-width: 320px) and (max-width: 775px){
-    .home-body .home-announcement > h1{
-        margin-top: 15px;
-        font-weight: 700;       
-        font-size: 18px;        
-    }
-}
-
-.home-body .home-announcement .announcement{
-    position: relative;
-    height: 100%;                
-    background-color: #FFFFFF;
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-    white-space: nowrap;
-}
-
-.home-body .home-announcement .announcement-gallery{
-    position: relative;
-    display: inline-block;
-    margin-right: 10px;
-    width: 100%;
-    height: 100%;
-    overflow: hidden !important;
-}
-
-.home-body .home-announcement .announcement-gallery:last-child{
-    margin-right: 0px !important;
-}
-
-.home-body .home-announcement .announcement-gallery a img{
-    place-items: center;
-    object-fit: cover;
-    margin-right: 10px;
-    height: 100%;              
-    width: 100%;               
-    transition: all 0.5s;
-}
-
-.home-body .home-announcement .announcement-gallery a img:hover{
-    transform: scale(1.25);
-}
+} */

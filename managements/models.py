@@ -64,14 +64,15 @@ class Status(models.Model):
 
 
 class Intervention(models.Model):
-    title = models.CharField(max_length = 150, help_text = "Designates the title of the intervention.", verbose_name = "Title")
-    location = models.ForeignKey(Location, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Location model.", verbose_name = "Location")
-    volunteer_amount = models.IntegerField(null=True, blank=True, validators = [MinValueValidator(0)], help_text = "Designates the amount of the volunteers at the moment the intervention took place.", verbose_name = "Volunteer Amount")
-    caught_amount = models.IntegerField(null=True, blank=True, validators = [MinValueValidator(0)], help_text = "Designates the amount of the caught Crown-of-Thorns Starfish at the moment the intervention took place.", verbose_name = "Caught Amount")
-    details = models.TextField(max_length = 5000, help_text = "Designates the details of the intervention.", verbose_name = "Details")
-    hosting_agency = models.CharField(max_length = 150, help_text = "Designates the name of the hosting agency.", verbose_name = "Hosting Agency")
-    intervention_photo = models.ImageField(default = "interventions/default.png", upload_to = "interventions", help_text = "Designates the photo of the intervention.", verbose_name = "Intervention Photo")
-    intervention_date = models.DateField(default = datetime.date.today(), help_text = "Designates the date of the intervention.", verbose_name = "Intervention Date")
+    title = models.CharField(max_length=150, help_text="Designates the title of the intervention.", verbose_name="Title")
+    location = models.ForeignKey(Location, on_delete=models.CASCADE, help_text="Designates the foreign key of the Location model.", verbose_name="Location")
+    statustype = models.ForeignKey(StatusType, null=True, blank=True, on_delete=models.CASCADE, help_text="Designates the foreign key of the Status Type model.", verbose_name="Status Type")
+    volunteer_amount = models.IntegerField(null=True, blank=True, validators=[MinValueValidator(0)], help_text="Designates the amount of the volunteers at the moment the intervention took place.", verbose_name="Volunteer Amount")
+    caught_amount = models.IntegerField(null=True, blank=True, validators=[MinValueValidator(0)], help_text="Designates the amount of the caught Crown-of-Thorns Starfish at the moment the intervention took place.", verbose_name="Caught Amount")
+    details = models.TextField(max_length=5000, help_text="Designates the details of the intervention.", verbose_name="Details")
+    hosting_agency = models.CharField(max_length=150, help_text="Designates the name of the hosting agency.", verbose_name="Hosting Agency")
+    intervention_photo = models.ImageField(default="interventions/default.png", upload_to="interventions", help_text="Designates the photo of the intervention.", verbose_name="Intervention Photo")
+    intervention_date = models.DateField(default=datetime.date.today(), help_text="Designates the date of the intervention.", verbose_name="Intervention Date")
 
     class Meta:
         db_table = "managements_intervention"
@@ -80,9 +81,44 @@ class Intervention(models.Model):
 
     def gallery_photo(self):
         if self.intervention_photo != "":
-            return mark_safe("<img src = '%s%s'/>" % (f"{settings.MEDIA_URL}", self.intervention_photo))
-    
+            return mark_safe("<img src='%s%s'/>" % (f"{settings.MEDIA_URL}", self.intervention_photo))
+
     gallery_photo.short_description = "Gallery Photo"
-    
+
     def __str__(self):
-        return str(self.title) + " | " +  str(self.intervention_date.strftime("%b. %d, %Y"))
+        return str(self.title) + " | " + str(self.intervention_date.strftime("%b. %d, %Y"))
+
+    def save(self, *args, **kwargs):
+        # Determine status type based on caught_amount
+        if self.caught_amount is not None:
+            if 0 <= self.caught_amount <= 12:
+                self.statustype = StatusType.objects.get(is_low=True)
+            elif 13 <= self.caught_amount <= 18:
+                self.statustype = StatusType.objects.get(is_moderate=True)
+            elif 19 <= self.caught_amount <= 24:
+                self.statustype = StatusType.objects.get(is_high=True)
+            elif self.caught_amount >= 25:
+                self.statustype = StatusType.objects.get(is_critical=True)
+
+        super(Intervention, self).save(*args, **kwargs)
+
+        # Calculate overall caught and volunteer amounts within the year for the location
+        start_of_year = datetime.date(self.intervention_date.year, 1, 1)
+        end_of_year = datetime.date(self.intervention_date.year, 12, 31)
+
+        interventions_in_year = Intervention.objects.filter(
+            location=self.location,
+            intervention_date__range=(start_of_year, end_of_year)
+        )
+
+        caught_overall = interventions_in_year.aggregate(models.Sum('caught_amount'))['caught_amount__sum'] or 0
+        volunteer_overall = interventions_in_year.aggregate(models.Sum('volunteer_amount'))['volunteer_amount__sum'] or 0
+
+        # Create a new status
+        Status.objects.create(
+            location=self.location,
+            statustype=self.statustype,
+            caught_overall=caught_overall,
+            volunteer_overall=volunteer_overall,
+            onset_date=self.intervention_date
+        )

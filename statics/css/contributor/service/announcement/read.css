@@ -1,11 +1,11 @@
 .announcementread-body{
     position: relative;
-    width: 100vw;
+    width: 100%;
     height: 100%;
-    color: #000000;
+    color: #003755;
 }
 
-.announcementread-body .announcementread-section{
+/* .announcementread-body .announcementread-section{
     display: flex;                   
     align-items: center; 
     justify-content: center;          
@@ -20,51 +20,224 @@
     font-weight: 700;       
     font-size: 22px;        
     text-align: center;     
-}
+} */
 
 .announcementread-body .announcementread{
     display: grid;
-    row-gap: 10px;
+    row-gap: 15px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .announcementread-body .announcementread{
+        row-gap: 5px;
+    }
 }
 
 .announcementread-body .announcementread .announcementread-header{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    row-gap: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    row-gap: 15px;
 }
 
-.announcementread-body .announcementread .announcementread-header p{
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .announcementread-body .announcementread .announcementread-header{
+        row-gap: 5px;
+    }
+}
+
+.announcementread-body .announcementread .announcementread-header .header-context{
     display: flex;
     align-items: center;
+    justify-content: space-between;
+}
+
+.announcementread-body .announcementread .announcementread-header .header-context .context-caption p:first-child{
+    margin-bottom: 0px !important;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-family: "Montserrat";
+    font-weight: 700;
+    font-size: 20px !important;
+    color: #003755;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .announcementread-body .announcementread .announcementread-header .header-context .context-caption p:first-child{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .announcementread-body .announcementread .announcementread-header .header-context .context-caption p:first-child{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .announcementread-body .announcementread .announcementread-header .header-context .context-caption p:first-child{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .announcementread-body .announcementread .announcementread-header .header-context .context-caption p:first-child{
+        font-size: 12px !important;
+    }
+}
+
+.announcementread-body .announcementread .announcementread-header .header-context .context-caption p:last-child{
+    margin-bottom: 0px !important;
+    display: flex;
+    align-items: center;
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-family: "Montserrat";
     font-weight: 400;
-    font-size: 14px !important;
-    color: #000000;
+    font-size: 20px !important;
+    color: #003755;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .announcementread-body .announcementread .announcementread-header .header-context .context-caption p:last-child{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .announcementread-body .announcementread .announcementread-header .header-context .context-caption p:last-child{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .announcementread-body .announcementread .announcementread-header .header-context .context-caption p:last-child{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .announcementread-body .announcementread .announcementread-header .header-context .context-caption p:last-child{
+        font-size: 12px !important;
+    }
+}
+
+.announcementread-body .announcementread .announcementread-header > p{
+    margin-bottom: 0px !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 20px;
+    color: #003755;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .announcementread-body .announcementread .announcementread-header > p{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .announcementread-body .announcementread .announcementread-header > p{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .announcementread-body .announcementread .announcementread-header > p{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .announcementread-body .announcementread .announcementread-header > p{
+        font-size: 12px !important;
+    }
 }
 
 .announcementread-body .announcementread .announcementread-header img{
     margin-right: 10px !important;
     margin-bottom: 0px !important;
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
     cursor: pointer;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .announcementread-body .announcementread .announcementread-header img{
+        width: 22px;
+        height: 22px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .announcementread-body .announcementread .announcementread-header img{
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .announcementread-body .announcementread .announcementread-header img{
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .announcementread-body .announcementread .announcementread-header img{
+        width: 16px;
+        height: 16px;
+    }
+}
+
+.announcementread-body .announcementread > h1{
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    margin-bottom: 0px !important;
+    overflow: hidden;
+    font-family: "Montserrat";
+    font-weight: 700;
+    font-size: 24px;
+    color: #003755;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .announcementread-body .announcementread > h1{
+        font-size: 22px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .announcementread-body .announcementread > h1{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .announcementread-body .announcementread > h1{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .announcementread-body .announcementread > h1{
+        font-size: 16px !important;
+    }
 }
 
 .announcementread-body .announcementread .announcementread-gallery{
     position: relative;
     height: 100%;                
     background-color: #FFFFFF;
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
     white-space: nowrap;
 }
 
@@ -72,104 +245,456 @@
     position: relative;
     display: inline-block;
     place-items: center;
-    object-fit: cover;
-    margin-right: 1px;
+    object-fit: contain;
     width: 100%;
-    height: 100%;
+    height: 500px;
     overflow: hidden !important;
 }
 
-.announcementread-body .announcementread .announcementread-origin{
-    display: flex;                   
-    align-items: center; 
-    justify-content: space-between;          
-    width: 100%; 
-    padding-left: 10px;
-    padding-right: 10px;                                          
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .announcementread-body .announcementread .announcementread-gallery img{
+        height: 250px;
+    }
 }
 
-.announcementread-body .announcementread .announcementread-origin p{
+.announcementread-body .announcementread .announcementread-remarks{
+    display: grid;
+    row-gap: 15px;
+    padding-bottom: 15px;
+    width: 100%; 
+    border-bottom: 1px solid #003755;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .announcementread-body .announcementread .announcementread-remarks{
+        gap: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+.announcementread-body .announcementread .announcementread-remarks .remarks-context{
+    padding-left: 30px;
+    padding-right: 30px;
+    border: 1px solid #003755;
+    border-radius: 5px;
+    background-color: #C90016;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .announcementread-body .announcementread .announcementread-remarks .remarks-context{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+.announcementread-body .announcementread .announcementread-remarks .remarks-context h1{
     display: flex;
     align-items: center;
+    justify-content: center;
+    margin-bottom: 0px !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-family: "Montserrat";
-    font-weight: 400;
-    font-size: 14px !important;
-    color: #000000;
+    font-weight: 700; 
+    font-size: 24px;      
+    color: #FFFFFF;
 }
 
-.announcementread-body .announcementread .origin i{
-    margin-right: 10px;
-    font-size: 20px;
-    color: #003755;  
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .announcementread-body .announcementread .announcementread-remarks .remarks-context h1{
+        font-size: 22px !important;
+    }
 }
 
-.announcementread-body .announcementread > p{
-    padding-left: 10px;
-    padding-right: 10px;
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .announcementread-body .announcementread .announcementread-remarks .remarks-context h1{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .announcementread-body .announcementread .announcementread-remarks .remarks-context h1{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .announcementread-body .announcementread .announcementread-remarks .remarks-context h1{
+        font-size: 16px !important;
+    }
+}
+
+.announcementread-body .announcementread .announcementread-remarks .remarks-context p{ 
+    margin-bottom: 0px !important;
     font-family: "Montserrat";
-    font-size: 14px;
     font-weight: 400;       
-    color: #000000;
+    font-size: 20px;
+    color: #FFFFFF;
     text-align: justify;
 }
 
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .announcementread-body .announcementread .announcementread-remarks .remarks-context p{ 
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .announcementread-body .announcementread .announcementread-remarks .remarks-context p{ 
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .announcementread-body .announcementread .announcementread-remarks .remarks-context p{ 
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .announcementread-body .announcementread .announcementread-remarks .remarks-context p{ 
+        font-size: 12px !important;
+    }
+}
+
+.announcementread-body .announcementread .announcementread-origin{  
+    display: grid !important;    
+    gap: 15px;  
+    padding-bottom: 15px;
+    width: 100%; 
+    border-bottom: 1px solid #003755;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .announcementread-body .announcementread .announcementread-origin{      
+        gap: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+.announcementread-body .announcementread .announcementread-origin h1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0px !important;
+    font-family: "Montserrat";
+    font-weight: 700; 
+    font-size: 24px;      
+    color: #003755;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .announcementread-body .announcementread .announcementread-origin h1{
+        font-size: 22px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .announcementread-body .announcementread .announcementread-origin h1{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .announcementread-body .announcementread .announcementread-origin h1{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .announcementread-body .announcementread .announcementread-origin h1{
+        font-size: 16px !important;
+    }
+}
+
+.announcementread-body .announcementread .announcementread-origin .origin-context p:first-child{
+    display: flex;
+    align-items: center;
+    margin-bottom: 0px !important;
+    white-space: wrap;
+    font-family: "Montserrat";
+    font-weight: 400; 
+    font-size: 20px;      
+    color: #003755;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .announcementread-body .announcementread .announcementread-origin .origin-context p:first-child{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .announcementread-body .announcementread .announcementread-origin .origin-context p:first-child{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .announcementread-body .announcementread .announcementread-origin .origin-context p:first-child{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .announcementread-body .announcementread .announcementread-origin .origin-context p:first-child{
+        font-size: 12px !important;
+    }
+}
+
+.announcementread-body .announcementread .announcementread-origin .origin-context p:last-child{
+    display: flex;
+    align-items: center;
+    margin-bottom: 0px !important;
+    white-space: wrap;
+    font-family: "Montserrat";
+    font-weight: 700;       
+    font-size: 20px;
+    color: #003755;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .announcementread-body .announcementread .announcementread-origin .origin-context p:last-child{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .announcementread-body .announcementread .announcementread-origin .origin-context p:last-child{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .announcementread-body .announcementread .announcementread-origin .origin-context p:last-child{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .announcementread-body .announcementread .announcementread-origin .origin-context p:last-child{
+        font-size: 12px !important;
+    }
+}
+
+/* .announcementread-body .announcementread .announcementread-origin i{
+    margin-right: 10px;
+    font-size: 22px;
+    color: #003755;  
+} */
+
 .announcementread-body .announcementread .announcementread-observation{
     display: grid;
-    row-gap: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    row-gap: 15px;
+    padding-bottom: 15px;
+    width: 100%; 
+    border-bottom: 1px solid #003755;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .announcementread-body .announcementread .announcementread-observation{
+        gap: 5px;
+        padding-bottom: 5px;
+    }
 }
 
 .announcementread-body .announcementread .announcementread-observation h1{
     display: flex;
     align-items: center;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    justify-content: center;
+    margin-bottom: 0px !important;
     font-family: "Montserrat";
-    font-size: 22px;
-    font-weight: 700;       
-    color: #000000;                          
-    text-align: center;
+    font-weight: 700; 
+    font-size: 24px;      
+    color: #003755;
 }
 
-.announcementread-body .announcementread .announcementread-observation .observation-context{
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .announcementread-body .announcementread .announcementread-observation h1{
+        font-size: 22px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .announcementread-body .announcementread .announcementread-observation h1{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .announcementread-body .announcementread .announcementread-observation h1{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .announcementread-body .announcementread .announcementread-observation h1{
+        font-size: 16px !important;
+    }
 }
 
 .announcementread-body .announcementread .announcementread-observation .observation-context p:first-child{
     display: flex;
     align-items: center;
     margin-right: 10px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    margin-bottom: 0px !important;
+    white-space: wrap;
     font-family: "Montserrat";
-    font-size: 14px;
-    font-weight: 700;       
-    color: #000000;                          
+    font-weight: 400;       
+    font-size: 20px;
+    color: #003755;                          
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .announcementread-body .announcementread .announcementread-observation .observation-context p:first-child{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .announcementread-body .announcementread .announcementread-observation .observation-context p:first-child{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .announcementread-body .announcementread .announcementread-observation .observation-context p:first-child{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .announcementread-body .announcementread .announcementread-observation .observation-context p:first-child{
+        font-size: 12px !important;
+    }
 }
 
 .announcementread-body .announcementread .announcementread-observation .observation-context p:last-child{
     display: flex;
     align-items: center;
-    white-space: nowrap;
+    margin-bottom: 0px !important;
+    white-space: wrap;
+    font-family: "Montserrat";
+    font-weight: 700;       
+    font-size: 20px;
+    color: #003755;                          
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .announcementread-body .announcementread .announcementread-observation .observation-context p:last-child{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .announcementread-body .announcementread .announcementread-observation .observation-context p:last-child{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .announcementread-body .announcementread .announcementread-observation .observation-context p:last-child{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .announcementread-body .announcementread .announcementread-observation .observation-context p:last-child{
+        font-size: 12px !important;
+    }
+}
+
+.announcementread-body .announcementread .announcementread-description{
+    display: grid;
+    row-gap: 15px;
+    padding-bottom: 15px;
+    width: 100%; 
+    border-bottom: 1px solid #003755;
+}
+
+.announcementread-body .announcementread .announcementread-description:last-child{
+    border-bottom: 0px !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .announcementread-body .announcementread .announcementread-description{
+        gap: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+.announcementread-body .announcementread .announcementread-description h1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0px !important;
     overflow: hidden;
     text-overflow: ellipsis;
     font-family: "Montserrat";
-    font-size: 14px;
+    font-weight: 700; 
+    font-size: 24px;      
+    color: #003755;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .announcementread-body .announcementread .announcementread-description h1{
+        font-size: 22px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .announcementread-body .announcementread .announcementread-description h1{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .announcementread-body .announcementread .announcementread-description h1{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .announcementread-body .announcementread .announcementread-description h1{
+        font-size: 16px !important;
+    }
+}
+
+.announcementread-body .announcementread .announcementread-description .description-context p{ 
+    margin-bottom: 0px !important;
+    font-family: "Montserrat";
     font-weight: 400;       
-    color: #000000;                          
+    font-size: 20px;
+    color: #003755;
+    text-align: justify;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .announcementread-body .announcementread .announcementread-description .description-context p{ 
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .announcementread-body .announcementread .announcementread-description .description-context p{ 
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .announcementread-body .announcementread .announcementread-description .description-context p{ 
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .announcementread-body .announcementread .announcementread-description .description-context p{ 
+        font-size: 12px !important;
+    }
 }
 
 .announcementread-body .announcementread .button{
     margin-left: auto;
-    padding-left: 10px !important;
-    padding-right: 10px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: fit-content;
@@ -188,9 +713,33 @@
     white-space: nowrap;
     font-family: "Montserrat";
     font-weight: 400;
-    font-size: 14px;
+    font-size: 20px;
     color: #FFFFFF !important;
     background-color: #003755 !important;
     text-decoration: none;
     cursor: pointer;  
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .announcementread-body .announcementread a{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .announcementread-body .announcementread a{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .announcementread-body .announcementread a{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .announcementread-body .announcementread a{
+        font-size: 12px !important;
+    }
 }

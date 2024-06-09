@@ -55,3 +55,29 @@ label.required::after{
     display: inline-block;
 }
 
+#notification-bell{
+    position: relative !important;
+    display: block;
+}
+
+nav .dropdown{
+    max-width: 150px !important;
+    min-width: unset !important;
+    right: 1rem !important;
+    background-color: none !important;
+    box-shadow: none !important;
+}
+
+
+
+
+.notification-badge {
+    position: absolute;
+    top: -5px; /* Adjust the top position to move the badge vertically */
+    right: 0 !important; /* Adjust the right position to move the badge horizontally */
+    background-color: red;
+    color: white;
+    padding: 2px 5px;
+    border-radius: 50%;
+    font-size: 0.75em; /* Adjust font size if needed */
+}

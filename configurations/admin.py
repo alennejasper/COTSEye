@@ -3,7 +3,6 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse, path
 from authentications.views import AdministratorControlLogin, AdministratorControlStatistics, AdministratorControlLogout, ControlHomeRedirect, ControlPasswordRedirect, ControlProfileRedirect
 from managements.views import AdministratorControlStatisticsIntervention, ControlStatisticsStatusReadRedirect, ControlStatisticsInterventionReadRedirect
-from reports.views import AdministratorControlStatisticsPost, ControlStatisticsPostReadRedirect
 
 
 # Register your models here.
@@ -34,8 +33,6 @@ class AdministratorSite(admin.AdminSite):
 
             path("statistics/", AdministratorControlStatistics, name = "Administrator Control Statistics"),
 
-            path("statistics/post/", AdministratorControlStatisticsPost, name = "Administrator Control Statistics Post"),
-
             path("statistics/intervention/", AdministratorControlStatisticsIntervention, name = "Administrator Control Statistics Intervention"),
             
             path("logout/", AdministratorControlLogout, name = "Administrator Control Logout"),
@@ -45,8 +42,6 @@ class AdministratorSite(admin.AdminSite):
             path("password/redirect/", ControlPasswordRedirect, name = "Control Password Redirect"),
 
             path("profile/redirect/", ControlProfileRedirect, name = "Control Profile Redirect"),
-
-            path("statistics/post/read/<int:object_id>/redirect/", ControlStatisticsPostReadRedirect, name = "Control Statistics Post Read Redirect"),
 
             path("statistics/status/read/<int:object_id>/redirect/", ControlStatisticsStatusReadRedirect, name = "Control Statistics Status Read Redirect"),
 

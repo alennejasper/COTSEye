@@ -34,69 +34,107 @@
 
 
 .content{
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 80px;
-    padding-bottom: 80px;
-    height: 100%;
     display: grid;
     grid-template-columns: 100%;
     place-items: center;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    min-height: 100vh;
 }
 
-@media screen and (min-width: 320px) and (max-width: 775px){
+/* @media screen and (min-width: 320px) and (max-width: 775px){
     .content{
-        padding-top: 60px;
-        padding-bottom: 60px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 40px;
+        padding-bottom: 40px;
     }
-}
+} */
 
 .register{
     width: 100%;
     display: grid;
     grid-column: 1;
-    border: 1px solid #B2BEB5;
+    border: 1px solid #003755;
     border-radius: 5px !important;
 }
 
 .register .card-header{
     display: grid;
     place-items: center;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     border-top-left-radius: 5px !important;
     border-top-right-radius: 5px !important;
     background-color: #003755;
 }
 
+/* @media screen and (min-width: 320px) and (max-width: 775px){
+    .register .card-header{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+} */
+
 .register .card-header header{
     font-family: "Montserrat";
     font-weight: 700;
-    font-size: 36px !important;
+    font-size: 24px !important;
     color: #FFFFFF;
     white-space: nowrap !important; 
     overflow: auto !important;
 }
 
-@media screen and (min-width: 320px) and (max-width: 775px){
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .register .card-header header{
+        font-size: 22px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .register .card-header header{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
     .register .card-header header{
         font-size: 18px !important;
     }
 }
 
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .register .card-header header{
+        font-size: 16px !important;
+    }
+}
+
 .register .card-body{
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     border-bottom-left-radius: 5px !important;
     border-bottom-right-radius: 5px !important;
     display: grid;
     place-items: center;
     background-color: #FFFFFF;
 }
+
+/* @media screen and (min-width: 320px) and (max-width: 348px){
+    .register .card-body{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+} */
 
 .register .card-body form{
     width: 100%;
@@ -120,13 +158,31 @@
     display: inline-block;
     font-family: "Montserrat";
     font-weight: 400;
-    font-size: 22px !important;
+    font-size: 20px !important;
     color: #003755 !important;
 }
 
-@media screen and (min-width: 320px) and (max-width: 775px){
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .register .card-body form .field .column label[for = "username"]{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .register .card-body form .field .column label[for = "username"]{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
     .register .card-body form .field .column label[for = "username"]{
         font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .register .card-body form .field .column label[for = "username"]{
+        font-size: 12px !important;
     }
 }
 
@@ -137,15 +193,15 @@
 .register .card-body form .field .column .username input{
     padding-left: 10px !important;
     padding-right: 40px !important;
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
     width: 100%;
-    border: 1px solid #B2BEB5;
+    border: 1px solid #003755;
     border-radius: 5px; 
     outline: none !important;
     font-family: "Montserrat";
     font-weight: 700 !important;
-    font-size: 22px !important;   
+    font-size: 20px !important;   
     color: #003755 !important;
 }
 
@@ -153,10 +209,31 @@
     border-bottom-width: 2.5px !important;
 }
 
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .register .card-body form .field .column .username input{
+        padding-right: 38px !important;
+        font-size: 18px !important;   
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .register .card-body form .field .column .username input{
+        padding-right: 36px !important;
+        font-size: 16px !important;   
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
     .register .card-body form .field .column .username input{
         padding-right: 34px !important;
         font-size: 14px !important;   
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .register .card-body form .field .column .username input{
+        padding-right: 32px !important;
+        font-size: 12px !important;   
     }
 }
 
@@ -166,29 +243,65 @@
     place-items: center;
     right: 10px;
     top: 50%;
-    font-size: 22px;
+    font-size: 20px;
     color: #003755;
     transform: translateY(-50%);
 }
 
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .register .card-body form .field .column .username i{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .register .card-body form .field .column .username i{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .register .card-body form .field .column .username i{
+        font-size: 14px !important;
+    }
+}
+
 @media screen and (min-width: 320px) and (max-width: 348px){
     .register .card-body form .field .column .username i{
-        font-size: 14px;
+        font-size: 12px !important;
     }
 }
 
 .register .card-body form .field .column label[for = "first-name"]{
-    margin-top: 10px;
+    margin-top: 15px;
     display: inline-block;
     font-family: "Montserrat";
     font-weight: 400;
-    font-size: 22px !important;
+    font-size: 20px !important;
     color: #003755 !important;
 }
 
-@media screen and (min-width: 320px) and (max-width: 775px){
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .register .card-body form .field .column label[for = "first-name"]{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .register .card-body form .field .column label[for = "first-name"]{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
     .register .card-body form .field .column label[for = "first-name"]{
         font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .register .card-body form .field .column label[for = "first-name"]{
+        font-size: 12px !important;
     }
 }
 
@@ -199,15 +312,15 @@
 .register .card-body form .field .column .first-name input{
     padding-left: 10px !important;
     padding-right: 40px !important;
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
     width: 100%;
-    border: 1px solid #B2BEB5;
+    border: 1px solid #003755;
     border-radius: 5px; 
     outline: none !important;
     font-family: "Montserrat";
     font-weight: 700 !important;
-    font-size: 22px !important;   
+    font-size: 20px !important;   
     color: #003755 !important;
 }
 
@@ -215,10 +328,31 @@
     border-bottom-width: 2.5px !important;
 }
 
-@media screen and (min-width: 320px) and (max-width: 775px){
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .register .card-body form .field .column .first-name input{
+        padding-right: 38px !important;
+        font-size: 18px !important;   
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .register .card-body form .field .column .first-name input{
+        padding-right: 36px !important;
+        font-size: 16px !important;   
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
     .register .card-body form .field .column .first-name input{
         padding-right: 34px !important;
         font-size: 14px !important;   
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .register .card-body form .field .column .first-name input{
+        padding-right: 32px !important;
+        font-size: 12px !important;   
     }
 }
 
@@ -228,159 +362,65 @@
     place-items: center;
     right: 10px;
     top: 50%;
-    font-size: 22px;
+    font-size: 20px;
     color: #003755;
     transform: translateY(-50%);
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .register .card-body form .field .column .first-name i{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .register .card-body form .field .column .first-name i{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .register .card-body form .field .column .first-name i{
+        font-size: 14px !important;
+    }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .register .card-body form .field .column .first-name i{
-        font-size: 14px;
-    }
-}
-
-.register .card-body form .field .column label[for = "password1"]{
-    margin-top: 10px;
-    display: inline-block;
-    font-family: "Montserrat";
-    font-weight: 400;
-    font-size: 22px !important;
-    color: #003755 !important;
-}
-
-@media screen and (min-width: 320px) and (max-width: 775px){
-    .register .card-body form .field .column label[for = "password1"]{
-        font-size: 14px !important;
-    }
-}
-
-.register .card-body form .field .column .password1{
-    position: relative;
-}
-
-.register .card-body form .field .column .password1 input{
-    padding-left: 10px !important;
-    padding-right: 40px !important;
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
-    width: 100%;
-    border: 1px solid #B2BEB5;
-    border-radius: 5px; 
-    outline: none !important;
-    font-family: "Montserrat";
-    font-weight: 700 !important;
-    font-size: 22px !important;   
-    color: #003755 !important;
-}
-
-.register .card-body form .field .column .password1 input:focus{
-    border-bottom-width: 2.5px !important;
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .register .card-body form .field .column .password1 input{
-        padding-right: 34px !important;
-        font-size: 14px !important;   
-    }
-}
-
-.register .card-body form .field .column .password1 i{
-    display: grid;
-    position: absolute;
-    place-items: center;
-    right: 10px;
-    top: 50%;
-    font-size: 22px;
-    color: #003755;
-    transform: translateY(-50%);
-    cursor: pointer;
-}
-
-.register .card-body form .field .column .password1 i:hover{
-    color: #002C44 !important;
-}
-
-@media screen and (min-width: 320px) and (max-width: 775px){
-    .register .card-body form .field .column .password1 i{
-        font-size: 14px;
-    }
-}
-
-.register .card-body form .field .column label[for = "email"]{
-    margin-top: 0px;
-    display: inline-block;
-    font-family: "Montserrat";
-    font-weight: 400;
-    font-size: 22px !important;
-    color: #003755 !important;
-}
-
-@media screen and (min-width: 320px) and (max-width: 775px){
-    .register .card-body form .field .column label[for = "email"]{
-        margin-top: 10px;
-        font-size: 14px !important;
-    }
-}
-
-.register .card-body form .field .column .email{
-    position: relative;
-}
-
-.register .card-body form .field .column .email input{
-    padding-left: 10px !important;
-    padding-right: 40px !important;
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
-    width: 100%;
-    border: 1px solid #B2BEB5;
-    border-radius: 5px; 
-    outline: none !important;
-    font-family: "Montserrat";
-    font-weight: 700 !important;
-    font-size: 22px !important;   
-    color: #003755 !important;
-}
-
-.register .card-body form .field .column .email input:focus{
-    border-bottom-width: 2.5px !important;
-}
-
-@media screen and (min-width: 320px) and (max-width: 775px){
-    .register .card-body form .field .column .email input{
-        padding-right: 34px !important;
-        font-size: 14px !important;   
-    }
-}
-
-.register .card-body form .field .column .email i{
-    display: grid;
-    position: absolute;
-    place-items: center;
-    right: 10px;
-    top: 50%;
-    font-size: 22px;
-    color: #003755;
-    transform: translateY(-50%);
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .register .card-body form .field .column .email i{
-        font-size: 14px;
+        font-size: 12px !important;
     }
 }
 
 .register .card-body form .field .column label[for = "last-name"]{
-    margin-top: 10px;
+    margin-top: 15px;
     display: inline-block;
     font-family: "Montserrat";
     font-weight: 400;
-    font-size: 22px !important;
+    font-size: 20px !important;
     color: #003755 !important;
 }
 
-@media screen and (min-width: 320px) and (max-width: 775px){
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .register .card-body form .field .column label[for = "last-name"]{      
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .register .card-body form .field .column label[for = "last-name"]{     
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
     .register .card-body form .field .column label[for = "last-name"]{
         font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .register .card-body form .field .column label[for = "last-name"]{
+        font-size: 12px !important;
     }
 }
 
@@ -391,15 +431,15 @@
 .register .card-body form .field .column .last-name input{
     padding-left: 10px !important;
     padding-right: 40px !important;
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
     width: 100%;
-    border: 1px solid #B2BEB5;
+    border: 1px solid #003755;
     border-radius: 5px; 
     outline: none !important;
     font-family: "Montserrat";
     font-weight: 700 !important;
-    font-size: 22px !important;   
+    font-size: 20px !important;   
     color: #003755 !important;
 }
 
@@ -407,10 +447,31 @@
     border-bottom-width: 2.5px !important;
 }
 
-@media screen and (min-width: 320px) and (max-width: 775px){
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .register .card-body form .field .column .last-name input{
+        padding-right: 38px !important;
+        font-size: 18px !important;   
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .register .card-body form .field .column .last-name input{
+        padding-right: 36px !important;
+        font-size: 16px !important;   
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
     .register .card-body form .field .column .last-name input{
         padding-right: 34px !important;
         font-size: 14px !important;   
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .register .card-body form .field .column .last-name input{
+        padding-right: 32px !important;
+        font-size: 12px !important;   
     }
 }
 
@@ -420,29 +481,313 @@
     place-items: center;
     right: 10px;
     top: 50%;
-    font-size: 22px;
+    font-size: 20px;
     color: #003755;
     transform: translateY(-50%);
 }
 
-@media screen and (min-width: 320px) and (max-width: 775px){
+@media screen and (min-width: 446px) and (max-width: 775px){
     .register .card-body form .field .column .last-name i{
-        font-size: 14px;
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .register .card-body form .field .column .last-name i{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .register .card-body form .field .column .last-name i{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .register .card-body form .field .column .last-name i{
+        font-size: 12px !important;
+    }
+}
+
+.register .card-body form .field .column label[for = "email"]{
+    margin-top: 0px;
+    display: inline-block;
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #003755 !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .register .card-body form .field .column label[for = "email"]{
+        margin-top: 15px;        
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .register .card-body form .field .column label[for = "email"]{
+        margin-top: 15px;        
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .register .card-body form .field .column label[for = "email"]{
+        margin-top: 15px;        
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .register .card-body form .field .column label[for = "email"]{
+        margin-top: 15px;
+        font-size: 12px !important;
+    }
+}
+
+.register .card-body form .field .column .email{
+    position: relative;
+}
+
+.register .card-body form .field .column .email input{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #003755;
+    border-radius: 5px; 
+    outline: none !important;
+    font-family: "Montserrat";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #003755 !important;
+}
+
+.register .card-body form .field .column .email input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .register .card-body form .field .column .email input{
+        padding-right: 38px !important;
+        font-size: 18px !important;   
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .register .card-body form .field .column .email input{
+        padding-right: 36px !important;
+        font-size: 16px !important;   
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .register .card-body form .field .column .email input{
+        padding-right: 34px !important;
+        font-size: 14px !important;   
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .register .card-body form .field .column .email input{
+        padding-right: 32px !important;
+        font-size: 12px !important;   
+    }
+}
+
+.register .card-body form .field .column .email i{
+    display: grid;
+    position: absolute;
+    place-items: center;
+    right: 10px;
+    top: 50%;
+    font-size: 20px;
+    color: #003755;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .register .card-body form .field .column .email i{
+        font-size: 18px !important;   
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .register .card-body form .field .column .email i{
+        font-size: 16px !important;   
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .register .card-body form .field .column .email i{
+        font-size: 14px !important;   
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .register .card-body form .field .column .email i{
+        font-size: 12px !important;   
+    }
+}
+
+.register .card-body form .field .column label[for = "password1"]{
+    margin-top: 15px;
+    display: inline-block;
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #003755 !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .register .card-body form .field .column label[for = "password1"]{
+        margin-top: 5px;
+        font-size: 18px !important;   
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .register .card-body form .field .column label[for = "password1"]{
+        font-size: 16px !important;   
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .register .card-body form .field .column label[for = "password1"]{
+        font-size: 14px !important;   
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .register .card-body form .field .column label[for = "password1"]{
+        font-size: 12px !important;   
+    }
+}
+
+.register .card-body form .field .column .password1{
+    position: relative;
+}
+
+.register .card-body form .field .column .password1 input{
+    padding-left: 10px !important;
+    padding-right: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border: 1px solid #003755;
+    border-radius: 5px; 
+    outline: none !important;
+    font-family: "Montserrat";
+    font-weight: 700 !important;
+    font-size: 20px !important;   
+    color: #003755 !important;
+}
+
+.register .card-body form .field .column .password1 input:focus{
+    border-bottom-width: 2.5px !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .register .card-body form .field .column .password1 input{
+        padding-right: 38px !important;
+        font-size: 18px !important;   
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .register .card-body form .field .column .password1 input{
+        padding-right: 36px !important;
+        font-size: 16px !important;   
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .register .card-body form .field .column .password1 input{
+        padding-right: 34px !important;
+        font-size: 14px !important;   
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .register .card-body form .field .column .password1 input{
+        padding-right: 32px !important;
+        font-size: 12px !important;   
+    }
+}
+
+.register .card-body form .field .column .password1 i{
+    display: grid;
+    position: absolute;
+    place-items: center;
+    right: 10px;
+    top: 50%;
+    font-size: 20px;
+    color: #003755;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.register .card-body form .field .column .password1 i:hover{
+    color: #002C44 !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .register .card-body form .field .column .password1 i{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .register .card-body form .field .column .password1 i{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .register .card-body form .field .column .password1 i{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .register .card-body form .field .column .password1 i{
+        font-size: 12px !important;
     }
 }
 
 .register .card-body form .field .column label[for = "password2"]{
-    margin-top: 10px;
+    margin-top: 15px;
     display: inline-block;
     font-family: "Montserrat";
     font-weight: 400;
-    font-size: 22px !important;
+    font-size: 20px !important;
     color: #003755 !important;
 }
 
-@media screen and (min-width: 320px) and (max-width: 775px){
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .register .card-body form .field .column label[for = "password2"]{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .register .card-body form .field .column label[for = "password2"]{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
     .register .card-body form .field .column label[for = "password2"]{
         font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .register .card-body form .field .column label[for = "password2"]{
+        font-size: 12px !important;
     }
 }
 
@@ -453,15 +798,15 @@
 .register .card-body form .field .column .password2 input{
     padding-left: 10px !important;
     padding-right: 40px !important;
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
     width: 100%;
-    border: 1px solid #B2BEB5;
+    border: 1px solid #003755;
     border-radius: 5px; 
     outline: none !important;
     font-family: "Montserrat";
     font-weight: 700 !important;
-    font-size: 22px !important;   
+    font-size: 20px !important;   
     color: #003755 !important;
 }
 
@@ -469,10 +814,31 @@
     border-bottom-width: 2.5px !important;
 }
 
-@media screen and (min-width: 320px) and (max-width: 775px){
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .register .card-body form .field .column .password2 input{
+        padding-right: 38px !important;
+        font-size: 18px !important;   
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .register .card-body form .field .column .password2 input{
+        padding-right: 36px !important;
+        font-size: 16px !important;   
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
     .register .card-body form .field .column .password2 input{
         padding-right: 34px !important;
         font-size: 14px !important;   
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .register .card-body form .field .column .password2 input{
+        padding-right: 32px !important;
+        font-size: 12px !important;   
     }
 }
 
@@ -492,18 +858,42 @@
     color: #002C44 !important;
 }
 
-@media screen and (min-width: 320px) and (max-width: 775px){
+@media screen and (min-width: 446px) and (max-width: 775px){
     .register .card-body form .field .column .password2 i{
-        font-size: 14px;
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .register .card-body form .field .column .password2 i{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .register .card-body form .field .column .password2 i{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .register .card-body form .field .column .password2 i{
+        font-size: 12px !important;
     }
 }
 
 .register .card-body form .g-recaptcha{
-    margin-top: 10px !important;
+    margin-top: 15px !important;
     display: grid !important;
     place-items: center;
     position: relative !important;
 }
+
+/* @media screen and (min-width: 320px) and (max-width: 775px){
+    .login .card-body form .g-recaptcha{
+        margin-top: 5px !important;
+    }
+} */
 
 @media screen and (min-width: 320px) and (max-width: 775px){
     .register .card-body form .g-recaptcha > div{
@@ -515,19 +905,19 @@
 }
 
 .register .card-body form button{
-    margin-top: 10px;
+    margin-top: 15px;
     padding-left: 10px !important;
     padding-right: 10px !important;
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
     width: 100%;
     height: 100% !important;
-    border: 1px solid #B2BEB5; 
+    border: 1px solid #003755; 
     border-radius: 5px;
     outline: none !important;
     font-family: "Montserrat";
     font-weight: 400;
-    font-size: 22px !important;
+    font-size: 20px !important;
     background-color: #003755 !important;
     color: #FFFFFF !important;
     cursor: pointer;
@@ -538,30 +928,67 @@
     color: #B2BEB5 !important;
 }
 
-@media screen and (min-width: 320px) and (max-width: 775px){
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .register .card-body form button{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .register .card-body form button{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
     .register .card-body form button{
         font-size: 14px !important;
     }
 }
 
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .register .card-body form button{
+        font-size: 12px !important;
+    }
+}
+
 .register .card-body .login{
-    margin-top: 10px;
+    margin-top: 15px;
     display: inline-block;
     font-family: "Montserrat";
     font-weight: 400;
-    font-size: 22px;
+    font-size: 20px;
     color: #003755;
     text-align: center;
 }
 
-@media screen and (min-width: 320px) and (max-width: 775px){
+@media screen and (min-width: 446px) and (max-width: 775px){
     .register .card-body .login{
-        font-size: 14px;
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .register .card-body .login{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .register .card-body .login{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .register .card-body .login{
+        font-size: 12px !important;
     }
 }
 
 .register .card-body .login a{
-    font-size: 23px;
+    font-family: "Montserrat";
+    font-size: 20px;
     color: #003755;
     text-decoration: none;
 }
@@ -570,11 +997,27 @@
     color: #002C44;
 }
 
-@media screen and (min-width: 320px) and (max-width: 775px){
+@media screen and (min-width: 446px) and (max-width: 775px){
     .register .card-body .login a{
-        font-size: 14px;
-        color: #003755;
-        text-decoration: none;
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .register .card-body .login a{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .register .card-body .login a{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .register .card-body .login a{
+        font-size: 12px !important;
     }
 }
 
@@ -590,10 +1033,18 @@ input:autofill{
 
 
 .swal2-container .swal2-popup{
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
     border-radius: 5px !important;
-    border: 1px solid #B2BEB5 !important; 
+    border: 1px solid #003755 !important; 
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .swal2-container .swal2-popup{
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        border-radius: 5px !important;
+    }
 }
 
 .swal2-container .swal2-popup .swal2-styled:focus{
@@ -605,27 +1056,53 @@ input:autofill{
     margin-right: 0px !important;
     margin-top: 0px !important;
     margin-bottom: 0px !important;
-    padding-left: 10px !important;
-    padding-right: 10px !important;
+    padding-left: 30px !important;
+    padding-right: 30px !important;
     padding-top: 0px !important;
-    padding-bottom: 10px !important;
+    padding-bottom: 15px !important;
     font-family: "Montserrat" !important;
     font-weight: 400 !important;
-    font-size: 22px !important;
+    font-size: 20px !important;
     color: #003755 !important;
 }
 
-@media screen and (min-width: 320px) and (max-width: 775px){
+@media screen and (min-width: 446px) and (max-width: 775px){
     .swal2-container .swal2-html-container{
         padding-left: 10px !important;
         padding-right: 10px !important;
         padding-top: 0px !important;
-        padding-bottom: 10px !important;
-        margin: 0px !important;
-        font-family: "Montserrat" !important;
-        font-weight: 400 !important;
+        padding-bottom: 5px !important;
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .swal2-container .swal2-html-container{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 0px !important;
+        padding-bottom: 5px !important;
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .swal2-container .swal2-html-container{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 0px !important;
+        padding-bottom: 5px !important;
         font-size: 14px !important;
-        color: #003755 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .swal2-container .swal2-html-container{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 0px !important;
+        padding-bottom: 5px !important;
+        font-size: 12px !important;
     }
 }
 
@@ -633,7 +1110,18 @@ input:autofill{
     margin-left: auto !important;
     margin-right: auto !important;
     margin-top: 0px !important;
-    margin-bottom: 10px !important;
+    margin-bottom: 15px !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .swal2-container div:where(.swal2-icon){
+        margin-bottom: 5px !important;
+    }
+}
+
+.swal2-container div:where(.swal2-icon).swal2-warning{
+    border-color: #003755 !important;
+    color: #003755 !important;
 }
 
 .swal2-container div:where(.swal2-icon).swal2-success .swal2-success-ring{
@@ -654,27 +1142,50 @@ input:autofill{
 }
 
 .swal2-container h2:where(.swal2-title){
-    padding-left: 10px !important;
-    padding-right: 10px !important;
+    padding-left: 30px !important;
+    padding-right: 30px !important;
     padding-top: 0px !important;
-    padding-bottom: 10px !important;
+    padding-bottom: 15px !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .swal2-container h2:where(.swal2-title){
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 0px !important;
+        padding-bottom: 5px !important;
+    }
 }
 
 .swal2-container .title{
     font-family: "Montserrat" !important;
     font-weight: 700 !important;
-    font-size: 36px !important;   
+    font-size: 24px !important;   
     color: #003755 !important;
     pointer-events: none !important;
 }
 
-@media screen and (min-width: 320px) and (max-width: 775px){
+@media screen and (min-width: 446px) and (max-width: 775px){
     .swal2-container .title{
-        font-family: "Montserrat" !important;
-        font-weight: 700 !important;
-        font-size: 18px !important;   
-        color: #003755 !important;
-        pointer-events: none !important;
+        font-size: 22px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .swal2-container .title{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .swal2-container .title{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .swal2-container .title{
+        font-size: 16px !important;
     }
 }
 
@@ -684,29 +1195,46 @@ input:autofill{
 }
 
 .swal2-container .swal2-actions{
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
     height: fit-content !important;
+}
+
+.swal2-container .swal2-actions button{
+    background-color: #003755 !important;
 }
 
 .swal2-container .info-button{
     visibility: hidden;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     font-size: 0px !important;
 }
 
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .swal2-container .info-button{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+
 .swal2-container .info-button::before{
-    padding-left: 10px !important;
-    padding-right: 10px !important;
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     content: "Ok" !important;
     visibility: visible !important;
-    border: 1px solid #B2BEB5 !important; 
+    border: 1px solid #003755 !important; 
     border-radius: 5px !important;
     outline: none !important;
     font-family: "Montserrat" !important;
     font-weight: 400 !important;
-    font-size: 22px !important;
+    font-size: 20px !important;
     background-color: #003755 !important;
     color: #FFFFFF !important;
     pointer-events: auto !important;
@@ -718,45 +1246,61 @@ input:autofill{
     color: #B2BEB5 !important;        
 }
 
-@media screen and (min-width: 320px) and (max-width: 775px){
-    .info-button::before{
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 10px !important;
-        padding-bottom: 10px !important;
-        content: "Ok" !important;
-        visibility: visible !important;
-        border: 1px solid #B2BEB5 !important; 
-        border-radius: 5px !important;
-        outline: none !important;
-        font-family: "Montserrat" !important;
-        font-weight: 400 !important;
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .swal2-container .info-button::before{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .swal2-container .info-button::before{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .swal2-container .info-button::before{
         font-size: 14px !important;
-        background-color: #003755 !important;
-        color: #FFFFFF !important;
-        pointer-events: auto !important;
-        cursor: pointer;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .swal2-container .info-button::before{
+        font-size: 12px !important;
     }
 }
 
 .swal2-container .success-button{
     visibility: hidden;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     font-size: 0px !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .swal2-container .success-button{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
 }
 
 .swal2-container .success-button::before{
     padding-left: 10px !important;
     padding-right: 10px !important;
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
     content: "Ok" !important;
     visibility: visible !important;
-    border: 1px solid #B2BEB5 !important; 
+    border: 1px solid #003755 !important; 
     border-radius: 5px !important;
     outline: none !important;
     font-family: "Montserrat" !important;
     font-weight: 400 !important;
-    font-size: 22px !important;
+    font-size: 20px !important;
     background-color: #003755 !important;
     color: #FFFFFF !important;
     pointer-events: auto !important;
@@ -768,45 +1312,61 @@ input:autofill{
     color: #B2BEB5 !important;        
 }
 
-@media screen and (min-width: 320px) and (max-width: 775px){
+@media screen and (min-width: 446px) and (max-width: 775px){
     .swal2-container .success-button::before{
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 10px !important;
-        padding-bottom: 10px !important;
-        content: "Ok" !important;
-        visibility: visible !important;
-        border: 1px solid #B2BEB5 !important; 
-        border-radius: 5px !important;
-        outline: none !important;
-        font-family: "Montserrat" !important;
-        font-weight: 400 !important;
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .swal2-container .success-button::before{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .swal2-container .success-button::before{
         font-size: 14px !important;
-        background-color: #003755 !important;
-        color: #FFFFFF !important;
-        pointer-events: auto !important;
-        cursor: pointer;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .swal2-container .success-button::before{
+        font-size: 12px !important;
     }
 }
 
 .swal2-container .error-button{
     visibility: hidden;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     font-size: 0px !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .swal2-container .error-button{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
 }
 
 .swal2-container .error-button::before{
     padding-left: 10px !important;
     padding-right: 10px !important;
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
     content: "Ok" !important;
     visibility: visible !important;
-    border: 1px solid #B2BEB5 !important; 
+    border: 1px solid #003755 !important; 
     border-radius: 5px !important;
     outline: none !important;
     font-family: "Montserrat" !important;
     font-weight: 400 !important;
-    font-size: 22px !important;
+    font-size: 20px !important;
     background-color: #003755 !important;
     color: #FFFFFF !important;
     pointer-events: auto !important;
@@ -818,23 +1378,26 @@ input:autofill{
     color: #B2BEB5 !important;        
 }
 
-@media screen and (min-width: 320px) and (max-width: 775px){
+@media screen and (min-width: 446px) and (max-width: 775px){
     .swal2-container .error-button::before{
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 10px !important;
-        padding-bottom: 10px !important;
-        content: "Ok" !important;
-        visibility: visible !important;
-        border: 1px solid #B2BEB5 !important; 
-        border-radius: 5px !important;
-        outline: none !important;
-        font-family: "Montserrat" !important;
-        font-weight: 400 !important;
         font-size: 18px !important;
-        background-color: #003755 !important;
-        color: #FFFFFF !important;
-        pointer-events: auto !important;
-        cursor: pointer;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .swal2-container .error-button::before{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .swal2-container .error-button::before{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .swal2-container .error-button::before{
+        font-size: 12px !important;
     }
 }

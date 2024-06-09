@@ -1,13 +1,11 @@
 .inquiry-body{
     position: relative;
-    padding-left: 10px;
-    padding-right: 10px;
-    width: 100vw;
+    width: 100%;
     height: 100%;
-    color: #000000;
+    color: #003755;
 }
 
-.inquiry-body .inquiry-section{
+/* .inquiry-body .inquiry-section{
     display: flex;                   
     align-items: center; 
     justify-content: center;          
@@ -17,40 +15,131 @@
 }
 
 .inquiry-body .inquiry-section h1{
+    margin-bottom: 0px !important;
+    font-family: "Montserrat";
+    font-weight: 700; 
+    font-size: 24px;      
+    color: #003755; 
     text-align: center;     
-    font-weight: 700;       
-    font-size: 22px;     
-    color: #000000;   
 }
 
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .inquiry-body .inquiry-section h1{
+        font-size: 22px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .inquiry-body .inquiry-section h1{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .inquiry-body .inquiry-section h1{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .inquiry-body .inquiry-section h1{
+        font-size: 16px !important;
+    }
+} */
+
 .inquiry-body .inquiry{
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .inquiry-body .inquiry:last-child{
     margin-bottom: 0px;
 }
 
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .inquiry-body .inquiry{
+        margin-bottom: 5px;
+    }
+}
+
 .inquiry-body .inquiry .inquiry-context{
     display: grid;
-    row-gap: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
     border-bottom: 1px solid #003755;
 }
 
-.inquiry-body .inquiry .inquiry-context h3{
-    font-family: "Montserrat";
-    font-weight: 700;
-    font-size: 22px !important;
-    color: #000000;
+.inquiry-body .inquiry .inquiry-context:last-child{
+    border-bottom: unset;
 }
 
-.inquiry-body .inquiry .inquiry-context p{
+.inquiry-body .inquiry .inquiry-context p:first-child{
+    margin-bottom: 0px !important;
+    padding-top: 15px;
+    font-family: "Montserrat";
+    font-weight: 700; 
+    font-size: 24px;      
+    color: #003755; 
+}
+
+.inquiry-body .inquiry .inquiry-context:first-child p:first-child{
+    padding-top: 0px;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .inquiry-body .inquiry .inquiry-context p:first-child{
+        font-size: 22px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .inquiry-body .inquiry .inquiry-context p:first-child{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .inquiry-body .inquiry .inquiry-context p:first-child{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .inquiry-body .inquiry .inquiry-context p:first-child{
+        font-size: 16px !important;
+    }
+}
+
+.inquiry-body .inquiry .inquiry-context p:last-child{
+    margin-bottom: 0px !important;
+    padding-bottom: 15px;
     font-family: "Montserrat";
     font-weight: 400;
-    font-size: 14px !important;
-    color: #000000;
+    font-size: 20px !important;
+    color: #003755;
+}
+
+.inquiry-body .inquiry .inquiry-context:last-child p:last-child{
+    padding-bottom: 0px;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .inquiry-body .inquiry .inquiry-context p:last-child{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .inquiry-body .inquiry .inquiry-context p:last-child{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .inquiry-body .inquiry .inquiry-context p:last-child{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .inquiry-body .inquiry .inquiry-context p:last-child{
+        font-size: 12px !important;
+    }
 }

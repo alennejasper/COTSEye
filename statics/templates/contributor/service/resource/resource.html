@@ -2,27 +2,39 @@
 {% load static %}
 
 {% block content %}
-<div class = "resource-body">
-    <div class = "resource-section">
-        <h1>RESOURCES</h1>
-    </div>
+    <div class = "resource-body">
+        <!-- <div class = "resource-section">
+            <h1>RESOURCES</h1>
+        </div> -->
 
-    <div class = "resource">
-        {% for resource in resource_links %}
-            <a href = "{% url 'Service Resource Link Read Redirect' resource.id %}" class = "resource-context">
-                <h3>{{resource.resource.title | default:'None available'}}</h3>
-                
-                <i class = "fa-solid fa-play"></i>
-            </a>
-        {% endfor %}
+        <div class = "resource">
+            {% for resource in resource_links %}
+                <a href = "{% url 'Service Link Read Redirect' resource.id %}" class = "resource-context">
+                    <div class = "context-header">
+                        <p>{{resource.release_date | date:'m/d/Y' | default:'None available'}}</p>
 
-        {% for resource in resource_files %}
-            <a href = "{% url 'Service Resource File Read Redirect' resource.id %}" class = "resource-context">
-                <h3>{{resource.resource.title | default:'None available'}}</h3>
-                
-                <i class = "fa-solid fa-play"></i>
-            </a>
-        {% endfor %}
+                        <strong>{{resource.title | default:'None available'}}</strong>
+
+                        <p>{{resource.author | default:'None available'}}</p>
+                    </div>
+                    
+                    <i class = "fa-solid fa-play"></i>
+                </a>
+            {% endfor %}
+
+            {% for resource in resource_files %}
+                <a href = "{% url 'Service File Read Redirect' resource.id %}" class = "resource-context">
+                    <div class = "context-header">
+                        <p>{{resource.release_date | date:'m/d/Y' | default:'None available'}}</p>
+
+                        <strong>{{resource.title | default:'None available'}}</strong>
+
+                        <p>{{resource.author | default:'None available'}}</p>
+                    </div>
+                    
+                    <i class = "fa-solid fa-play"></i>
+                </a>
+            {% endfor %}
+        </div>
     </div>
-</div>
 {% endblock content %}

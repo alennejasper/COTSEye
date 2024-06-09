@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.files.base import ContentFile
 from django.dispatch import receiver
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from allauth.socialaccount.signals import social_account_updated
@@ -11,17 +12,14 @@ from authentications.models import *
 from auxiliaries.models import Announcement
 from managements.models import Status, Intervention, Location
 from reports.models import Post
-from django.http import JsonResponse
 from django.utils import timezone
-import base64
-import json
-from django.db.models import F, Value
-from django.db.models.functions import Concat
-from django.db.models import Sum
 from django.utils import timezone
 from datetime import timedelta
 from django.core.paginator import Paginator
+from datetime import datetime, timedelta
 
+import base64
+import json
 
 
 # Create your views here.
@@ -287,13 +285,13 @@ def ContributorServiceHome(request):
     username = request.user.username
 
     user_profile = User.objects.get(account = request.user)
+    
+    unread_notifications = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:3]
 
     latest_announcements = Announcement.objects.all().order_by("-release_date")[:3]
 
     valid_posts = Post.objects.filter(post_status = 1).order_by("-capture_date")[:3]
-    
-    unread_posts = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:5]
-        
+            
     try:
         map_posts = Post.objects.filter(post_status = 1)
 
@@ -304,10 +302,45 @@ def ContributorServiceHome(request):
 
         map_statuses = None
     
-    context = {"username": username, "user_profile": user_profile, "map_posts": map_posts, "map_statuses": map_statuses, "latest_announcements": latest_announcements, "valid_posts": valid_posts, "unread_posts": unread_posts}
+    context = {"username": username, "user_profile": user_profile, "unread_notifications": unread_notifications, "map_posts": map_posts, "map_statuses": map_statuses, "latest_announcements": latest_announcements, "valid_posts": valid_posts}
 
     return render(request, "contributor/service/home/home.html", context)
     
+
+@login_required(login_url = "Contributor Service Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
+def ContributorServiceNotification(request):
+    username = request.user.username
+
+    user_profile = User.objects.get(account = request.user)
+
+    unread_notifications = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:3]
+
+    unread_items = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")
+
+    read_items = Post.objects.filter(contrib_read_status = True).filter(contrib_read_date__gte = timezone.now() - timedelta(days = 30), contrib_read_date__lte = timezone.now()).order_by("-creation_date")
+            
+    context = {"username": username, "user_profile": user_profile, "unread_notifications": unread_notifications, "unread_items": unread_items, "read_items": read_items}
+    
+    return render(request, "contributor/service/notification/notification.html", context)
+
+
+def ContributorServiceNotificationMark(request, id):
+    try:
+        post = Post.objects.get(id = id)
+
+        post.contrib_read_status = True
+
+        post.contrib_read_date = timezone.now()
+
+        post.save()
+
+        return redirect("Contributor Service Notification") 
+    
+    except Post.DoesNotExist:
+        return JsonResponse({"success": False, "error": "COTSEye cannot find the post."})
+    
+
 @login_required(login_url = "Contributor Service Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
 def ContributorServiceProfile(request):
@@ -317,9 +350,9 @@ def ContributorServiceProfile(request):
 
     user_profile = User.objects.get(account = request.user)
 
-    unread_posts = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:5]
+    unread_notifications = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:3]
 
-    context = {"user": user, "username": username, "user_profile": user_profile, "unread_posts": unread_posts}
+    context = {"user": user, "username": username, "user_profile": user_profile, "unread_notifications": unread_notifications}
 
     return render(request, "contributor/service/profile/profile.html", context)
 
@@ -333,7 +366,7 @@ def ContributorServiceProfileUpdate(request):
 
     user_profile = User.objects.get(account = request.user)
 
-    unread_posts = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:5]
+    unread_notifications = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:3]
 
     if request.method == "POST":
         profile_form = ProfileForm(request.POST, request.FILES, instance = request.user.user)
@@ -350,7 +383,7 @@ def ContributorServiceProfileUpdate(request):
     else:
         profile_form = ProfileForm(request.user.user)
 
-    context = {"user": user, "username": username, "user_profile": user_profile, "profile_form": profile_form, "unread_posts": unread_posts}
+    context = {"user": user, "username": username, "user_profile": user_profile, "unread_notifications": unread_notifications, "profile_form": profile_form}
     
     return render(request, "contributor/service/profile/update.html", context)
 
@@ -629,66 +662,116 @@ def OfficerCheck(account):
             return False
     
 
-@login_required(login_url="Officer Control Login")
-@user_passes_test(OfficerCheck, login_url="Officer Control Login")
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def OfficerControlHome(request):
-    municipality_filter = request.GET.get('municipality')
-    start_date_filter = request.GET.get('start_date')
-    end_date_filter = request.GET.get('end_date')
+    username = request.user.username
+
+    user_profile = User.objects.get(account = request.user)
+
+    notification_life = timezone.now() - timedelta(days = 30)
+
+    unread_notifications = Post.objects.filter(read_status = False, creation_date__gte = notification_life).order_by("-creation_date")[:3]
+
+    municipality_filter = request.GET.get("municipality")
+
+    barangay_filter = request.GET.get("barangay")
+
+    year_filter = request.GET.get("year")
 
     # Fetch distinct municipalities
-    municipalities = Location.objects.values('municipality').distinct()
+    municipalities = Location.objects.values("municipality").distinct()
 
-    # Fetch locations with optional filters
-    locations_query = Location.objects.filter(status__isnull=False)
+    barangays = Location.objects.filter(municipality = municipality_filter).values("barangay").distinct() if municipality_filter else []
+
+    # Fetch locations with optional filters but without filtering on status
+    locations_query = Location.objects.all()
+
     if municipality_filter:
-        locations_query = locations_query.filter(municipality=municipality_filter)
+        locations_query = locations_query.filter(municipality = municipality_filter)
+
+    if barangay_filter:
+        locations_query = locations_query.filter(barangay = barangay_filter)
 
     locations = locations_query.distinct()
 
-    notification_life = timezone.now() - timedelta(days=30)
-    unread_posts = Post.objects.filter(read_status=False, creation_date__gte=notification_life).order_by('-creation_date')[:5]
+    data = []
 
-    data = {}
     total_caught_overall = 0
 
-    barangay_data = []
-
     for location in locations:
-        location_str = f"{location.barangay}, {location.municipality}"
-        statuses_query = Status.objects.filter(location=location).order_by('onset_date')
+        interventions_query = Intervention.objects.filter(location = location).order_by("intervention_date")
 
-        if start_date_filter and end_date_filter:
-            statuses_query = statuses_query.filter(onset_date__range=[start_date_filter, end_date_filter])
+        if year_filter:
+            start_date = datetime.strptime(year_filter, "%Y").replace(month = 1, day = 1)
 
-        latest_status = statuses_query.latest('onset_date')
-        caught_overall_sum = latest_status.caught_overall
+            end_date = datetime.strptime(year_filter, "%Y").replace(month = 12, day = 31)
+
+            interventions_query = interventions_query.filter(intervention_date__range = [start_date, end_date])
+
+        intervention_dates = []
+
+        caught_overalls = []
+        
+        titles = []
+        
+        status_types = []
+        
+        volunteer_amounts = []
+        
+        caught_overall_sum = 0
+
+        for intervention in interventions_query:
+            if intervention.statustype:  # Exclude interventions with N/A status
+                intervention_dates.append(intervention.intervention_date.strftime("%Y-%m-%d"))
+
+                caught_overalls.append(intervention.caught_amount)
+                
+                titles.append(intervention.title)
+                
+                status_types.append(str(intervention.statustype))
+                
+                volunteer_amounts.append(intervention.volunteer_amount)
+                
+                caught_overall_sum += intervention.caught_amount
+
         total_caught_overall += caught_overall_sum
 
-        data[location_str] = {
-            'onset_dates': [latest_status.onset_date.strftime('%Y-%m-%d')],
-            'caught_overalls': [caught_overall_sum],
-            'caught_overall_sum': caught_overall_sum
-        }
+        # Fill missing dates with null values
+        if intervention_dates:
+            min_date = datetime.strptime(intervention_dates[0], "%Y-%m-%d")
 
-        barangay_data.append({
-            'barangay': location.barangay,
-            'municipality': location.municipality,
-            'caught_overall_sum': caught_overall_sum,
-            'latest_onset_date': latest_status.onset_date.strftime('%Y-%m-%d')
-        })
+            max_date = datetime.strptime(intervention_dates[-1], "%Y-%m-%d")
+            
+            current_date = min_date
+            
+            date_set = set(intervention_dates)
 
-    context = {
-        'chart_data': json.dumps(data),
-        'locations': locations,
-        'municipalities': municipalities,
-        'unread_posts': unread_posts,
-        'total_caught_overall': total_caught_overall,
-        'barangay_data': barangay_data,
-        'selected_municipality': municipality_filter,
-        'start_date_filter': start_date_filter,
-        'end_date_filter': end_date_filter
-    }
+            while current_date <= max_date:
+                date_string = current_date.strftime("%Y-%m-%d")
+
+                if date_string not in date_set:
+                    intervention_dates.append(date_string)
+                
+                    caught_overalls.append(None)
+                
+                    titles.append("N/A")
+                
+                    status_types.append("N/A")
+                
+                    volunteer_amounts.append(None)
+                
+                current_date += timedelta(days=1)
+
+            # Sort by date after filling missing dates
+            sorted_data = sorted(zip(intervention_dates, caught_overalls, titles, status_types, volunteer_amounts))
+
+            intervention_dates, caught_overalls, titles, status_types, volunteer_amounts = zip(*sorted_data)
+
+            for item in range(len(intervention_dates)):
+                data.append({"location": f"{location.barangay}, {location.municipality}", "municipality": location.municipality, "intervention_date": intervention_dates[item], "caught_amount": caught_overalls[item], "title": titles[item], "status_type": status_types[item], "volunteer_amount": volunteer_amounts[item]})
+
+    context = {"username": username, "user_profile": user_profile, "unread_notifications": unread_notifications, "chart_data": json.dumps(data), "locations": locations, "municipalities": municipalities, "barangays": barangays, "total_caught_overall": total_caught_overall, "selected_municipality": municipality_filter, "selected_barangay": barangay_filter, "year_filter": year_filter, "current_year": timezone.now().year}
 
     return render(request, "officer/control/home/home.html", context)
 
@@ -703,9 +786,9 @@ def OfficerControlProfile(request):
     user_profile = User.objects.get(account = request.user)
 
     notification_life = timezone.now() - timedelta(days=30)
-    unread_posts = Post.objects.filter(read_status=False, creation_date__gte=notification_life).order_by('-creation_date')[:5]
+    unread_notifications = Post.objects.filter(read_status=False, creation_date__gte=notification_life).order_by('-creation_date')[:5]
 
-    context = {"user": user, "username": username, "user_profile": user_profile, "unread_posts": unread_posts}
+    context = {"user": user, "username": username, "user_profile": user_profile, "unread_notifications": unread_notifications}
 
     return render(request, "officer/control/profile/profile.html", context)
 
@@ -722,7 +805,7 @@ def OfficerControlProfileUpdate(request):
 
     notification_life = timezone.now() - timedelta(days=30)
     
-    unread_posts = Post.objects.filter(read_status=False, creation_date__gte=notification_life).order_by('-creation_date')[:5]
+    unread_notifications = Post.objects.filter(read_status=False, creation_date__gte=notification_life).order_by('-creation_date')[:5]
     
     if request.method == "POST":
         profile_form = ProfileForm(request.POST, request.FILES, instance = request.user.user)
@@ -734,12 +817,10 @@ def OfficerControlProfileUpdate(request):
 
             messages.success(request, username + ", " + "your information input was recorded online for COTSEye.")
             
-            return redirect("Contributor Service Home")
-            
     else:
         profile_form = ProfileForm(request.user.user)
 
-    context = {"user": user, "username": username, "user_profile": user_profile, "profile_form": profile_form, "unread_posts": unread_posts}
+    context = {"user": user, "username": username, "user_profile": user_profile, "profile_form": profile_form, "unread_notifications": unread_notifications}
     
     return render(request, "officer/control/profile/update.html", context)
 
@@ -921,27 +1002,27 @@ def ControlProfileRedirect(request):
         return redirect(reverse("authentications_account_change", kwargs = {"object_id": object.id}))
     
 
-@login_required(login_url="Officer Control Login")
-@user_passes_test(OfficerCheck, login_url="Officer Control Login")
-def post_list(request):
-    unread_posts_list = Post.objects.filter(read_status=False).order_by("-creation_date")
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
+def OfficerControlNotification(request):
+    unread_notifications_list = Post.objects.filter(read_status=False).order_by("-creation_date")
     now = timezone.now()
     read_posts_list = Post.objects.filter(read_status=True).filter(
         read_date__gte=now - timedelta(days=30),
         read_date__lte=now
     ).order_by("-creation_date")
     
-    unread_paginator = Paginator(unread_posts_list, 10)  # Show 10 unread posts per page
+    unread_paginator = Paginator(unread_notifications_list, 10)  # Show 10 unread posts per page
     read_paginator = Paginator(read_posts_list, 10)  # Show 10 read posts per page
     
     unread_page_number = request.GET.get('unread_page')
     read_page_number = request.GET.get('read_page')
     
-    unread_posts = unread_paginator.get_page(unread_page_number)
+    unread_notifications = unread_paginator.get_page(unread_page_number)
     read_posts = read_paginator.get_page(read_page_number)
     
     context = {
-        'unread_posts': unread_posts,
+        'unread_notifications': unread_notifications,
         'read_posts': read_posts,
     }
     return render(request, 'officer/control/notification/notification.html', context)

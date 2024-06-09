@@ -1,10 +1,20 @@
 {% extends "officer/control/index/index.html" %}
 {% load static %}
+{% load custom_filters %}
 {% block content %}
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<!-- Tippy.js CSS -->
+<link rel="stylesheet" href="https://unpkg.com/tippy.js@6/dist/tippy.css">
+
+<!-- Tippy.js JS -->
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="https://unpkg.com/tippy.js@6"></script>
+
 <style>
     .status-invalid {
         font-weight: 600;
@@ -22,6 +32,8 @@
     .table>:not(caption)>*>*{
         padding: 9px !important;
     }
+    
+    
 </style>
 
 <div class="container-fluid mt-3">
@@ -33,8 +45,8 @@
                 <select id="municipalityFilter" class="form-select form-select-sm mb-3 select2" onchange="updateBarangayOptions()">
                     <option value="">Municipality</option>
 
-                    {% for location in locations %}
-                        <option value="{{ location.municipality }}">{{ location.municipality }}</option>
+                    {% for municipality in municipalities %}
+                        <option value="{{ municipality.municipality }}" {% if selected_municipality == municipality.municipality %}selected{% endif %}>{{ municipality.municipality }}</option>
                     {% endfor %}
                 </select>
 
@@ -96,9 +108,8 @@
                             <!-- <th><input type="checkbox" id="selectAllHeader" onclick="toggleSelectAll()"></th> -->
                             <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Date Created</th>
                             <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Contributor</th>
-                            <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Phone Number</th>
-                            <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Barangay</th>
                             <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Municipality</th>
+                            <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Barangay</th>
                             <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Status</th>
                             <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Remarks</th>
                             <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col"></th>
@@ -123,7 +134,7 @@
                                             <div class="dropdown-content">
                                                 <a class="dropdown-header" onclick="changeStatus(${item.id}, 'Valid')">Approve</a>
                                                 <a class="dropdown-item" onclick="invalidStatus(${item.id})">Disapprove</a>
-                                                <a class="dropdown-footer" onclick="invalidStatus(${item.id})">Verifying</a>
+                                               
             
                                             </div>
                                         </div>
@@ -170,140 +181,9 @@
         dropdowns.forEach(dropdown => dropdown.classList.remove('show'));
     });
 
-    function showPopup(postId) {
-        fetch(`/officer/control/sighting/update/${postId}/`)
-            .then(response => response.json())
-            .then(data => {
-                Swal.fire({
-                    title: 'Popup Window',
-                    html: `
-                        <div class="map">
-                            <div class="report-map" id="map" style="height: 300px;"></div>
-                        </div>
-
-                        <div class="coordinates">
-                            <input type="hidden" id="latitude" name="latitude" value="${data.latitude}" required>
-                            <input type="hidden" id="longitude" name="longitude" value="${data.longitude}" required>
-                        </div>
-
-                        <div class="municipality">
-                            <label for="municipality">Municipality</label>
-                            <select name="municipality" id="popupMunicipality" onchange="updateBarangayOptions()">
-                                <option value="${data.location.municipality}" selected>${data.location.municipality}</option>
-                                {% for location in locations %}
-                                    {% if location.municipality != data.location.municipality %}
-                                        <option value="{{location.municipality}}">{{location.municipality}}</option>
-                                    {% endif %}
-                                {% endfor %}
-                            </select>
-                        </div>
-
-                        <div class="barangay">
-                            <label for="barangay">Barangay</label>
-                            <select name="barangay" id="popupBarangay" onchange="updateMarker()">
-                                <option value="${data.location.barangay}" selected>${data.location.barangay}</option>
-                                {% for location in locations %}
-                                    <option id="barangayOption" value="{{location.barangay}}">{{location.barangay}}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-
-                        <button type="button" onclick="submitPopup(${postId})">Submit</button>
-                    `,
-                    didOpen: () => {
-                        const latitude = parseFloat(document.getElementById('latitude').value);
-                        const longitude = parseFloat(document.getElementById('longitude').value);
-                        revealMap(latitude, longitude);
-
-                        document.getElementById("popupBarangay").addEventListener("click", function() {
-                            var barangayId = this.value;
-                            console.log(barangayId)
-                            updateMarker(barangayId);
-                            
-                        });
-                    },
-                    showConfirmButton: false
-                });
-            });
-    }
-
-    var map;
-    var report;
-
-    function revealMap(latitude, longitude) {
-        var starfish = L.icon({iconUrl: "{% static 'assets/pin.png' %}", iconSize: [30, 30], iconAnchor: [15, 15]});
-        report = L.marker([latitude, longitude], {draggable: true, icon: starfish});
-        var reportMap = document.getElementsByClassName("report-map")[0];
-        var background = L.tileLayer("http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}", {minZoom: 11, maxZoom: 15, subdomains: ["mt0", "mt1", "mt2", "mt3"], attribution: "Google"});
-
-        map = L.map(reportMap, {zoomControl: true, scrollWheelZoom: false, dragging: true, maxBounds: [[5.3, 124.3], [6.3, 126.3]], layers: [background, report]}).setView([latitude, longitude], 15);
-        map.attributionControl.remove();
-
-        {% for location in locations %}
-            var originalCoordinates = {{location.perimeters|safe}};
-            var swappedCoordinates = swapCoordinates(originalCoordinates);
-            var polygon = L.polygon(swappedCoordinates, {color: "transparent", fillColor: "transparent", fillOpacity: 0}).addTo(map);
-            polygon.locationId = {{location.id}};
-            polygon.locationName = "{{location}}";
-        {% endfor %}
-
-        report.on("drag", function(event) {
-            var position = event.target.getLatLng();
-            updateCoordinates(position.lat, position.lng);
-        });
-
-        report.on("dragend", function(event) {
-            var position = event.target.getLatLng();
-            updateCoordinates(position.lat, position.lng);
-
-            var selectElement = document.getElementById("popupBarangay");
-            selectElement.value = "";
-
-            var selectElement2 = document.getElementById("popupMunicipality");
-            selectElement2.value = "";
-
-            map.eachLayer(function(layer){
-                if (layer instanceof L.Polygon){
-                    if (layer.getBounds().contains(position) && layer.locationId){
-                        selectElement.value = layer.locationId;
-                        setMunicipalityByBarangay(layer.locationId);  // Set the municipality based on the barangay
-                        return;
-                    }
-                }
-            });
-        });
-
-        updateBarangayOptions();
-    }
-
-    function updateCoordinates(latitude, longitude) {
-        var latitudeInput = document.getElementById("latitude");
-        var longitudeInput = document.getElementById("longitude");
-        latitudeInput.value = latitude.toFixed(6);
-        longitudeInput.value = longitude.toFixed(6);
-    }
-
-    function updateMarker() {
-        var barangayId = document.getElementById("popupBarangay").value;
-        if (barangayCoordinates[barangayId]) {
-            var coordinates = barangayCoordinates[barangayId];
-            map.setView(coordinates, 15);
-            report.setLatLng(coordinates);
-            updateCoordinates(coordinates[0], coordinates[1]);
-        }
-    }
-
-    function swapCoordinates(coordinates) {
-        return coordinates.map(function(ring) {
-            return ring.map(function(point) {
-                return [point[1], point[0]];
-            });
-        });
-    }
-
     function updateBarangayOptions() {
-        const municipalityFilter = document.getElementById("popupMunicipality").value;
-        const barangayFilter = document.getElementById("popupBarangay");
+        const municipalityFilter = document.getElementById("municipalityFilter").value;
+        const barangayFilter = document.getElementById("barangayFilter");
 
         if (municipalityFilter) {
             $.ajax({
@@ -412,7 +292,7 @@
 
     const sightingsData = [
         {% for post in posts %}
-            {id: {{ post.id }}, date: "{{ post.creation_date | date:'F j, Y, g:i a' }}", user: "{{ post.user }}", phone_number: "{{ post.user.phone_number }}", barangay: "{{ post.location.barangay }}", municipality: "{{ post.location.municipality }}", status: "{{ post.post_status }}", remarks: "{{post.remarks}}"},
+            {id: {{ post.id }}, date: "{{ post.creation_date | format_date_mmddyy }}", user: "{{ post.user }}", phone_number: "{{ post.user.phone_number }}", barangay: "{{ post.location.barangay }}", municipality: "{{ post.location.municipality }}", status: "{{ post.post_status }}", remarks: "{{post.remarks}}"},
         {% endfor %}
     ];
 
@@ -431,7 +311,6 @@
         pageData.forEach(item => {
             const statusClass = getStatusClass(item.status);
             const baseUrl = "{% url 'Officer Control Sighting Read' id=0 %}".replace("0", item.id);
-            const disabled = (item.status === "Valid" || item.status === "Invalid") ? "disabled" : "";
             const remarksOrStatus = item.remarks ? item.remarks : item.status;
 
             let remarkLink = "";
@@ -439,23 +318,25 @@
                 remarkLink = `<a class="dropdown-footer" onclick="addRemarks(${item.id})">Remark</a>`;
             }
 
+            const approveDisabled = item.status !== "Pending";
+            const disapproveDisabled = item.status !== "Pending";
+            const tooltipText = "Action not allowed in current status";
+
             const row = `
                 <tr data-id="${item.id}">
                     <td onclick="window.location.href='${baseUrl}'">${item.date}</td>
                     <td onclick="window.location.href='${baseUrl}'">${item.user}</td>
-                    <td onclick="window.location.href='${baseUrl}'">${item.phone_number}</td>
-                    <td onclick="window.location.href='${baseUrl}'">${item.barangay}</td>
                     <td onclick="window.location.href='${baseUrl}'">${item.municipality}</td>
+                    <td onclick="window.location.href='${baseUrl}'">${item.barangay}</td>
                     <td class="${statusClass}" onclick="window.location.href='${baseUrl}'">${item.status}</td>
                     <td onclick="window.location.href='${baseUrl}'">${remarksOrStatus}</td>
                     <td>
-                        <div class="button-container">
+                        <div class="button-container" ${approveDisabled ? `data-tippy-content="${tooltipText}"` : ""}>
                             <a onclick="shownDropdown(event)"><img height="15px" style="margin-right: 13px" src="{% static 'assets/3dots.png' %}" class="drop"></a>
                             <div class="dropdown">
                                 <div class="dropdown-content">
-                                    <a class="dropdown-header" onclick="changeStatus(${item.id}, 'Valid')">Approve</a>
-                                    <a class="dropdown-item" onclick="invalidStatus(${item.id})">Disapprove</a>
-                                    ${remarkLink}
+                                    <a class="dropdown-item ${approveDisabled ? 'disabled' : ''}" onclick="changeStatus(${item.id}, 'Valid')">Approve</a>
+                                    <a class="dropdown-item ${disapproveDisabled ? 'disabled' : ''}" onclick="invalidStatus(${item.id})">Disapprove</a>
                                 </div>
                             </div>
                         </div>
@@ -466,10 +347,12 @@
 
         document.getElementById("previousPage").classList.toggle("disabled", page === 1);
         document.getElementById("nextPage").classList.toggle("disabled", end >= filteredData.length);
+
+        // Initialize Tippy.js tooltips
+        tippy('[data-tippy-content]');
     }
 
-
-    function changePage(direction) {
+   function changePage(direction) {
         if (direction === 'prev' && currentPage > 1) {
             currentPage--;
         } else if (direction === 'next' && (currentPage * rowsPerPage) < filteredData.length) {
@@ -506,41 +389,22 @@
 
     function parseDate(dateString) {
         try {
-            const dateTimeRegex = /(\w+ \d+, \d+), (\d+:\d+ [ap]\.m\.)/;
-            const match = dateTimeRegex.exec(dateString);
+            const dateRegex = /(\d{2})\/(\d{2})\/(\d{4})/;
+            const match = dateRegex.exec(dateString);
             if (!match) {
                 throw new Error("Date format is invalid.");
             }
-            const [_, datePart, timePart] = match;
-            const [month, dayWithComma, year] = datePart.split(" ");
-            const day = dayWithComma.replace(",", "");
+            const [_, month, day, year] = match;
             if (!month || !day || !year) {
                 throw new Error("Date format is invalid.");
             }
-            const [time, period] = timePart.split(" ");
-            if (!time || !period) {
-                throw new Error("Time format is invalid.");
-            }
-            let [hours, minutes] = time.split(":").map(Number);
-            if (isNaN(hours) || isNaN(minutes)) {
-                throw new Error("Time format is invalid.");
-            }
-            if (period.toLowerCase() === 'p.m.' && hours < 12) {
-                hours += 12;
-            } else if (period.toLowerCase() === 'a.m.' && hours === 12) {
-                hours = 0;
-            }
-            const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-            const monthIndex = monthNames.indexOf(month);
-            if (monthIndex === -1) {
-                throw new Error("Month format is invalid.");
-            }
-            return new Date(year, monthIndex, parseInt(day), hours, minutes);
+            return new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
         } catch (error) {
             console.error("Failed to parse date:", error);
             return null;
         }
     }
+
 
     function applyFilter() {
         const municipality = document.getElementById("municipalityFilter").value;
@@ -565,14 +429,7 @@
     }
 
     function resetFilter() {
-        document.getElementById("municipalityFilter").value = "";
-        document.getElementById("barangayFilter").innerHTML = "<option value=''>Select Barangay</option>";
-        document.getElementById("dateFrom").value = "";
-        document.getElementById("dateTo").value = "";
-        const checkedStatus = document.querySelector('input[name="status"]:checked');
-        if (checkedStatus) {
-            checkedStatus.checked = false;
-        }
+        window.location.reload();
         filteredData = sightingsData;
         currentPage = 1;
         displayTableData(currentPage);
@@ -677,7 +534,6 @@
         Swal.fire({
             title: 'Add Remarks',
             input: 'textarea',
-            inputLabel: 'Remarks',
             inputPlaceholder: 'Enter your remarks here...',
             showCancelButton: true,
             confirmButtonText: 'Submit',

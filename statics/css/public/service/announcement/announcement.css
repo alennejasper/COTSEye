@@ -1,14 +1,17 @@
 .announcement-body{
     position: relative;
-    width: 100vw;
+    width: 100%;
     height: 100%;
-    color: #000000;
+    color: #003755;
 }
 
-.announcement-body .announcement-section{
+/* .announcement-body .announcement-section{
     display: flex;                   
     align-items: center; 
     justify-content: center;          
+    flex-direction: column;
+    padding-top: 10px !important; 
+    padding-bottom: 10px !important; 
     width: 100%;                     
     text-align: center;                                   
 }
@@ -17,84 +20,362 @@
     font-family: "Montserrat"; 
     font-weight: 700;       
     font-size: 22px;     
-    text-align: center;  
-}
+    text-align: center;     
+} */
 
-.announcement-body .announcement{
-    margin-bottom: 10px;
-}
-
-.announcement-body .announcement:last-child{
-    margin-bottom: 0px;
-
-}
-
-.announcement-body .announcement .announcement-header{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
-.announcement-body .announcement .announcement-header p{
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-family: "Montserrat";
-    font-weight: 700;
-    font-size: 14px !important;
-    color: #000000;
-}
-
-.announcement-body .announcement .announcement-header img{
-    margin-right: 10px !important;
-    margin-bottom: 0px !important;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
+.announcement-body .announcement-filter button{
+    display: block;
+    margin-left: auto;
+    padding-bottom: 15px;
+    outline: none !important;
+    border: none !important;
+    font-size: 24px;
+    background-color: #FFFFFF;
+    color: #003755;
     cursor: pointer;
 }
 
-.announcement-body .announcement .announcement-header i{
-    margin-right: 10px;
-    font-size: 20px;
-    color: #003755;  
+@media screen and (min-width: 445px) and (max-width: 775px){
+    .announcement-body .announcement-filter button{
+        padding-bottom: 5px;
+        font-size: 22px;
+    }
 }
 
-.announcement-body .announcement img.announcement-image{
-    place-items: center;
-    object-fit: cover;
-    width: 100%;
-    height: 250px;
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .announcement-body .announcement-filter button{
+        padding-bottom: 5px;
+        font-size: 20px;
+    }
 }
 
-.announcement-body .announcement .announcement-context{
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .announcement-body .announcement-filter button{
+        padding-bottom: 5px;
+        font-size: 18px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .announcement-body .announcement-filter button{
+        padding-bottom: 5px;
+        font-size: 16px;
+    }
+}
+
+.announcement-body .announcement-filter .options{
+    display: none;
+}
+
+.announcement-body .announcement-filter .hidden{
     display: grid;
-    align-items: center;
-    grid-template-columns: auto auto;
-    gap: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 1px solid #003755;
+    border-radius: 5px;
 }
 
-.announcement-body .announcement .announcement-context h1{
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .announcement-body .announcement-filter .hidden{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+.announcement-body .announcement-filter .hidden form h1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0px !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: "Montserrat";
+    font-weight: 700; 
+    font-size: 24px;      
+    color: #003755;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .announcement-body .announcement-filter .hidden form h1{
+        font-size: 22px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .announcement-body .announcement-filter .hidden form h1{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .announcement-body .announcement-filter .hidden form h1{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .announcement-body .announcement-filter .hidden form h1{
+        font-size: 16px !important;
+    }
+}
+
+.announcement-body .announcement-filter .hidden form select{
+    width: 100%;
+    margin-bottom: 15px;
+    padding-top:  15px;
+    padding-bottom: 15px;
+    border: 1px solid #003755;
+    border-radius: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: "Montserrat";
+    font-weight: 700; 
+    font-size: 20px;      
+    color: #003755;
+    cursor: pointer;
+}
+
+.announcement-body .announcement-filter .hidden form select#barangay{
+    display: none;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .announcement-body .announcement-filter .hidden form select{
+        margin-bottom: 5px;        
+        padding-top:  5px;
+        padding-bottom: 5px;
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .announcement-body .announcement-filter .hidden form select{
+        margin-bottom: 5px;        
+        padding-top:  5px;
+        padding-bottom: 5px;
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .announcement-body .announcement-filter .hidden form select{
+        margin-bottom: 5px;       
+        padding-top:  5px;
+        padding-bottom: 5px;
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .announcement-body .announcement-filter .hidden form select{
+        margin-bottom: 5px;
+        padding-top:  5px;
+        padding-bottom: 5px;
+        font-size: 12px;
+    }
+}
+
+.announcement-body .announcement-filter .hidden form .from-date{
+    display: grid;
+    margin-bottom: 15px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .announcement-body .announcement-filter .hidden form .from-date{
+        margin-bottom: 5px;
+    }
+}
+
+.announcement-body .announcement-filter .hidden form .from-date label{
+    margin-bottom: 0px !important;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     font-family: "Montserrat";
-    font-weight: 700;       
-    font-size: 14px;
-    color: #000000;  
+    font-weight: 400;
+    font-size: 24px;
+    color: #003755;
 }
 
-.announcement-body .announcement .announcement-context .button{
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .announcement-body .announcement-filter .hidden form .from-date label{
+        font-size: 22px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .announcement-body .announcement-filter .hidden form .from-date label{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .announcement-body .announcement-filter .hidden form .from-date label{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .announcement-body .announcement-filter .hidden form .from-date label{
+        font-size: 16px !important;
+    }
+}
+
+.announcement-body .announcement-filter .hidden form .from-date input{
+    width: 100%;
+    margin-bottom: 15px;
+    padding-top:  15px;
+    padding-bottom: 15px;
+    border: 1px solid #003755;
+    border-radius: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: "Montserrat";
+    font-weight: 700; 
+    font-size: 20px;      
+    color: #003755;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .announcement-body .announcement-filter .hidden form .from-date input{
+        margin-bottom: 5px;        
+        padding-top:  5px;
+        padding-bottom: 5px;
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .announcement-body .announcement-filter .hidden form .from-date input{
+        margin-bottom: 5px;        
+        padding-top:  5px;
+        padding-bottom: 5px;
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .announcement-body .announcement-filter .hidden form .from-date input{
+        margin-bottom: 5px;       
+        padding-top:  5px;
+        padding-bottom: 5px;
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .announcement-body .announcement-filter .hidden form .from-date input{
+        margin-bottom: 5px;
+        padding-top:  5px;
+        padding-bottom: 5px;
+        font-size: 12px;
+    }
+}
+
+.announcement-body .announcement-filter .hidden form .to-date{
+    display: grid;
+    margin-bottom: 15px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .announcement-body .announcement-filter .hidden form .to-date{
+        margin-bottom: 5px;
+    }
+}
+
+.announcement-body .announcement-filter .hidden form .to-date label{
+    margin-bottom: 0px !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 24px;
+    color: #003755;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .announcement-body .announcement-filter .hidden form .to-date label{
+        font-size: 22px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .announcement-body .announcement-filter .hidden form .to-date label{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .announcement-body .announcement-filter .hidden form .to-date label{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .announcement-body .announcement-filter .hidden form .to-date label{
+        font-size: 16px !important;
+    }
+}
+
+.announcement-body .announcement-filter .hidden form .to-date input{
+    width: 100%;
+    margin-bottom: 15px;
+    padding-top:  15px;
+    padding-bottom: 15px;
+    border: 1px solid #003755;
+    border-radius: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: "Montserrat";
+    font-weight: 700; 
+    font-size: 20px;      
+    color: #003755;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .announcement-body .announcement-filter .hidden form .to-date input{
+        margin-bottom: 5px;        
+        padding-top:  5px;
+        padding-bottom: 5px;
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .announcement-body .announcement-filter .hidden form .to-date input{
+        margin-bottom: 5px;        
+        padding-top:  5px;
+        padding-bottom: 5px;
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .announcement-body .announcement-filter .hidden form .to-date input{
+        margin-bottom: 5px;       
+        padding-top:  5px;
+        padding-bottom: 5px;
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .announcement-body .announcement-filter .hidden form .to-date input{
+        margin-bottom: 5px;
+        padding-top:  5px;
+        padding-bottom: 5px;
+        font-size: 12px;
+    }
+}
+
+.announcement-body .announcement-filter .hidden form .button{
     margin-left: auto;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
@@ -102,7 +383,7 @@
     height: 100% !important;
 }
 
-.announcement-body .announcement .announcement-context a{
+.announcement-body .announcement-filter .hidden form .button a{
     padding-left: 10px !important;
     padding-right: 10px !important;
     padding-top: 5px !important;
@@ -114,11 +395,364 @@
     white-space: nowrap;
     font-family: "Montserrat";
     font-weight: 400;
+    font-size: 20px;
+    color: #FFFFFF !important;
+    background-color: #003755 !important;
+    text-decoration: none;
+    cursor: pointer;  
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .announcement-body .announcement-filter .hidden form .button a{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .announcement-body .announcement-filter .hidden form .button a{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .announcement-body .announcement-filter .hidden form .button a{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .announcement-body .announcement-filter .hidden form .button a{
+        font-size: 12px !important;
+    }
+}
+
+.announcement-body .announcement{
+    padding-bottom: 15px;
+    border-bottom: 1px solid #003755;
+}
+
+.announcement-body .announcement:last-child{
+    padding-bottom: 0px;
+    border-bottom: 0px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .announcement-body .announcement{
+        padding-bottom: 5px;
+    }
+}
+
+.announcement-body .announcement .announcement-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.announcement-body .announcement:first-child .announcement-header{
+    padding-top: 0px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .announcement-body .announcement .announcement-header{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+.announcement-body .announcement .announcement-header .header-context{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.announcement-body .announcement .announcement-header .header-context .context-caption p:first-child{
+    margin-bottom: 0px !important;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: "Montserrat";
+    font-weight: 700;
+    font-size: 20px !important;
+    color: #003755;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .announcement-body .announcement .announcement-header .header-context .context-caption p:first-child{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .announcement-body .announcement .announcement-header .header-context .context-caption p:first-child{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .announcement-body .announcement .announcement-header .header-context .context-caption p:first-child{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .announcement-body .announcement .announcement-header .header-context .context-caption p:first-child{
+        font-size: 12px !important;
+    }
+}
+
+.announcement-body .announcement .announcement-header .header-context .context-caption p:last-child{
+    margin-bottom: 0px !important;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #003755;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .announcement-body .announcement .announcement-header .header-context .context-caption p:last-child{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .announcement-body .announcement .announcement-header .header-context .context-caption p:last-child{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .announcement-body .announcement .announcement-header .header-context .context-caption p:last-child{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .announcement-body .announcement .announcement-header .header-context .context-caption p:last-child{
+        font-size: 12px !important;
+    }
+}
+
+.announcement-body .announcement .announcement-header > p{
+    margin-bottom: 0px !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 20px;
+    color: #003755;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .announcement-body .announcement .announcement-header > p{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .announcement-body .announcement .announcement-header > p{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .announcement-body .announcement .announcement-header > p{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .announcement-body .announcement .announcement-header > p{
+        font-size: 12px !important;
+    }
+}
+
+.announcement-body .announcement .announcement-header img{
+    margin-right: 10px !important;
+    margin-bottom: 0px !important;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .announcement-body .announcement .announcement-header img{
+        width: 22px;
+        height: 22px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .announcement-body .announcement .announcement-header img{
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .announcement-body .announcement .announcement-header img{
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .announcement-body .announcement .announcement-header img{
+        width: 16px;
+        height: 16px;
+    }
+}
+
+/* .announcement-body .announcement .announcement-header i{
+    margin-right: 10px;
+    font-size: 22px;
+    color: #003755;  
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .announcement-body .announcement .announcement-header i{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .announcement-body .announcement .announcement-header i{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .announcement-body .announcement .announcement-header i{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .announcement-body .announcement .announcement-header i{
+        font-size: 14px !important;
+    }
+} */
+
+.announcement-body .announcement > h1{
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    margin-bottom: 0px !important;
+    margin-bottom: 15px;
+    overflow: hidden;
+    font-family: "Montserrat";
+    font-weight: 700;
+    font-size: 24px;
+    color: #003755;
+    line-height: unset !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .announcement-body .announcement > h1{
+        margin-bottom: 5px;
+        font-size: 22px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .announcement-body .announcement > h1{
+        margin-bottom: 5px;
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .announcement-body .announcement > h1{
+        margin-bottom: 5px;
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .announcement-body .announcement > h1{
+        margin-bottom: 5px;
+        font-size: 16px !important;
+    }
+}
+
+.announcement-body .announcement > a{
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden !important;
+}
+
+.announcement-body .announcement img.announcement-image{
+    place-items: center;
+    object-fit: contain;
+    width: 100%;
+    height: 500px;
+}
+
+.announcement-body .announcement img.announcement-image:hover{
+    transform: scale(1.25);
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .announcement-body .announcement img.announcement-image{
+        height: 250px;
+    }
+}
+/* .announcement-body .announcement .announcement-context{
+    display: grid;
+    align-items: center;
+    grid-template-columns: auto auto;
+    gap: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 0px;
+    padding-bottom: 10px;
+}
+
+.announcement-body .announcement .announcement-context h1{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: "Montserrat";
+    font-weight: 400;       
+    font-size: 14px;
+    color: #000000;  
+}
+
+.announcement-body .announcement .announcement-context .button{
+    margin-left: auto;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    width: fit-content;
+    height: 100% !important;
+}
+
+.announcement-body .announcement .announcement-context a{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    border-radius: 5px;
+    outline: none !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: "Montserrat";
+    font-weight: 400;
     font-size: 14px;
     color: #FFFFFF !important;
     background-color: #003755 !important;
     text-decoration: none;
-    cursor: pointer;
-}
-
-
+    cursor: pointer;  
+} */

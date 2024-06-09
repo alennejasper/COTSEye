@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="container mt-3">
-    <h1 class="text-center">{% if update %}Update{% else %}Add{% endif %} Intervention</h1>
+    <h1 class="text-center">{% if update %}Update{% else %}Add{% endif %} Activity</h1>
     
     <div class="card mt-4">
         <div class="card-body">
@@ -12,28 +12,37 @@
                 
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="{{ form.title.id_for_label }}">Title</label>
+                        <div class="mb-1"><div class="h5">Activity Details</div></div>
+                        <div class="form-group mb-3">
+                            <label class="required" for="{{ form.title.id_for_label }}">Title:</label>
                             {{ form.title }}
                         </div>
-                        
-                        <div class="form-group">
-                            <label for="{{ form.caught_amount.id_for_label }}">Caught Amount</label>
-                            {{ form.caught_amount }}
+                        <div class="form-group mb-3">
+                            <label class="required" for="{{ form.intervention_date.id_for_label }}">Date:</label>
+                            {{ form.intervention_date }}
                         </div>
                         
-                        <div class="form-group">
-                            <label for="municipalityFilter" class="form-label">Municipality:</label>
+                        <div class="form-group mb-3">
+                            <label class="required" for="{{ form.hosting_agency.id_for_label }}">Hosting Agency:</label>
+                            {{ form.hosting_agency }}
+                        </div>
+                        
+                       
+                      
+                        <hr>
+                        <div class="mb-1"><div class="h5">Location Details</div></div>
+                        <div class="form-group mb-3">
+                            <label class="required" for="municipalityFilter" class="form-label">Municipality:</label>
                             <select id="municipalityFilter" class="form-select form-select-sm mb-3 select2" onchange="updateBarangayOptions()">
-                                <option value="">Municipality</option>
-                                {% for location in locations %}
+                                <option value="">Select Municipality</option>
+                                {% for location in municipalities %}
                                     <option value="{{ location.municipality }}" {% if location.municipality == intervention.location.municipality %}selected{% endif %}>{{ location.municipality }}</option>
                                 {% endfor %}
                             </select>
                         </div>
                     
-                        <div class="form-group">
-                            <label for="barangayFilter" class="form-label">Barangay:</label>
+                        <div class="form-group mb-3">
+                            <label class="required" for="barangayFilter" class="form-label">Barangay:</label>
                             <select id="barangayFilter" class="form-select form-select-sm mb-3 select2" onchange="setBarangayValue()">
                                 <option value="">Select Barangay</option>
                                 {% for location in locations %}
@@ -43,31 +52,26 @@
                                 {% endfor %}
                             </select>
                         </div>
-                        
-                        <div class="form-group">
-                            <label for="{{ form.hosting_agency.id_for_label }}">Hosting Agency</label>
-                            {{ form.hosting_agency }}
+                        <hr>
+                        <div class="mb-1"><div class="h5">Other Activity Details</div></div>
+                        <div class="form-group mb-3">
+                            <label class="required" for="{{ form.caught_amount.id_for_label }}">COTS Collected:</label>
+                            {{ form.caught_amount }}
                         </div>
-                        
-                        <div class="form-group">
-                            <label for="{{ form.intervention_date.id_for_label }}">Intervention Date</label>
-                            {{ form.intervention_date }}
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="{{ form.volunteer_amount.id_for_label }}">Volunteer Amount</label>
+                        <div class="form-group mb-3">
+                            <label class="required" for="{{ form.volunteer_amount.id_for_label }}">Volunteer Count:</label>
                             {{ form.volunteer_amount }}
                         </div>
 
-                        <div class="form-group">
-                            <label for="{{ form.details.id_for_label }}">Details</label>
+                        <div class="form-group mb-3">
+                            <label class="required" for="{{ form.details.id_for_label }}">Details:</label>
                             {{ form.details }}
                         </div>
                     </div>
                     
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="{{ form.intervention_photo.id_for_label }}">Intervention Photo</label>
+                        <div class="form-group mb-3">
+                            <label class="required" for="{{ form.intervention_photo.id_for_label }}">Photo:</label>
                             {{ form.intervention_photo }}
                         </div>
                         
@@ -76,7 +80,7 @@
                         <input type="hidden" id="id_municipality" name="municipality" value="{{ intervention.location.municipality }}">
                         <input type="hidden" id="id_barangay" name="barangay" value="{{ intervention.location.barangay }}">
                         
-                        <button type="submit" class="btn btn-primary btn-block" id="submitButton">{% if update %}Update{% else %}Add{% endif %} Intervention</button>
+                        <button type="submit" class="btn btn-primary btn-flex" style="bottom: 0; float: inline-end;" id="submitButton">{% if update %}Update{% else %}Add{% endif %} Activity</button>
                     </div>
                 </div>
             </form>

@@ -1,6 +1,5 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.core.serializers import serialize
 from django.core.serializers.json import DjangoJSONEncoder
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
@@ -13,9 +12,9 @@ from reports.models import Post
 from .forms import InterventionForm, StatusForm
 from .models import Intervention
 from django.http import JsonResponse
-from django.views.decorators.http import require_POST
 from django.db.models import Q
-
+from django.core.paginator import Paginator
+from django.utils.dateformat import DateFormat
 
 import datetime
 import json
@@ -25,9 +24,37 @@ import json
 def PublicServiceIntervention(request):
     username = "public/everyone"
 
+    locations = Location.objects.all()
+
+    municipalities = Location.objects.values("municipality").distinct()
+
+    municipality = request.GET.get("municipality")
+
+    barangay = request.GET.get("barangay")
+
+    from_date = request.GET.get("from_date")
+
+    to_date = request.GET.get("to_date")
+
     interventions = Intervention.objects.all().order_by("-intervention_date")
 
-    context = {"username": username, "interventions": interventions}
+    if municipality:
+        interventions = interventions.filter(location__municipality = municipality)
+
+    if barangay:
+        interventions = interventions.filter(location__barangay = barangay)
+
+    if from_date:
+        from_date = datetime.datetime.strptime(from_date, '%Y-%m-%d')
+
+        interventions = interventions.filter(intervention_date__gte = from_date)
+    
+    if to_date:
+        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d")
+
+        interventions = interventions.filter(intervention_date__lte = to_date)
+
+    context = {"username": username, "locations": locations, "municipalities": municipalities, "interventions": interventions}
 
     return render(request, "public/service/intervention/intervention.html", context)
 
@@ -53,11 +80,39 @@ def ContributorServiceIntervention(request):
 
     user_profile = User.objects.get(account = request.user)
 
+    unread_notifications = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:3]
+
+    locations = Location.objects.all()
+
+    municipalities = Location.objects.values("municipality").distinct()
+
+    municipality = request.GET.get("municipality")
+
+    barangay = request.GET.get("barangay")
+
+    from_date = request.GET.get("from_date")
+
+    to_date = request.GET.get("to_date")
+
     interventions = Intervention.objects.all().order_by("-intervention_date")
 
-    unread_posts = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:5]
+    if municipality:
+        interventions = interventions.filter(location__municipality = municipality)
 
-    context = {"username": username, "user_profile": user_profile, "interventions": interventions, "unread_posts": unread_posts}
+    if barangay:
+        interventions = interventions.filter(location__barangay = barangay)
+
+    if from_date:
+        from_date = datetime.datetime.strptime(from_date, '%Y-%m-%d')
+
+        interventions = interventions.filter(intervention_date__gte = from_date)
+    
+    if to_date:
+        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d")
+
+        interventions = interventions.filter(intervention_date__lte = to_date)
+
+    context = {"username": username, "user_profile": user_profile, "unread_notifications": unread_notifications, "locations": locations, "municipalities": municipalities, "interventions": interventions}
 
     return render(request, "contributor/service/intervention/intervention.html", context)
 
@@ -69,15 +124,15 @@ def ContributorServiceInterventionRead(request, id):
 
     user_profile = User.objects.get(account = request.user)
 
+    unread_notifications = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:3]
+
     scheme = request.scheme
 
     host = request.META["HTTP_HOST"]
 
     intervention = Intervention.objects.get(id = id)
 
-    unread_posts = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:5]
-
-    context = {"username": username, "user_profile": user_profile, "scheme": scheme, "host": host, "intervention": intervention, "unread_posts": unread_posts}
+    context = {"username": username, "user_profile": user_profile, "unread_notifications": unread_notifications, "scheme": scheme, "host": host, "intervention": intervention}
 
     return render(request, "contributor/service/intervention/read.html", context)
 
@@ -90,10 +145,14 @@ def serialize_interventions(interventions):
             "id": intervention.id,
             "title": intervention.title,
             "intervention_date": intervention.intervention_date,
-            "location": intervention.location.barangay + ", " + intervention.location.municipality,
+            "municipality": intervention.location.municipality,
+            "barangay": intervention.location.barangay,
             "details": intervention.details,
             "hosting_agency": intervention.hosting_agency,
-            "volunteer_amount": intervention.volunteer_amount
+            "caught_amount": intervention.caught_amount,
+            "volunteer_amount": intervention.volunteer_amount,
+            "status": str(intervention.statustype)
+
         })
     
     return json.dumps(interventions_list, cls=DjangoJSONEncoder)
@@ -104,45 +163,57 @@ def serialize_interventions(interventions):
 def OfficerControlIntervention(request):
     notification_life = timezone.now() - timedelta(days = 30) 
 
-    unread_posts = Post.objects.filter(read_status = False, creation_date__gte = notification_life).order_by("-creation_date")[:5]
+    unread_notifications = Post.objects.filter(read_status = False, creation_date__gte = notification_life).order_by("-creation_date")[:5]
 
     locations = Location.objects.all()
 
     interventions = Intervention.objects.all().order_by('-intervention_date')
 
+    municipalities = Location.objects.values('municipality').distinct()
+    
     interventions_json = serialize_interventions(interventions)
 
     hosting_agencies = interventions.values("hosting_agency").distinct()
 
-    context = {"unread_posts": unread_posts, "interventions": interventions, "interventions_json": interventions_json, "locations": locations, "hosting_agencies": hosting_agencies}
+    context = {"unread_notifications": unread_notifications, "interventions": interventions, 'municipalities': municipalities, "interventions_json": interventions_json, "locations": locations, "hosting_agencies": hosting_agencies}
     
     return render(request, "officer/control/intervention/intervention.html", context)
 
 from django.utils import timezone
 from datetime import timedelta
 
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
+@login_required(login_url="Officer Control Login")
+@user_passes_test(OfficerCheck, login_url="Officer Control Login")
 def OfficerControlInterventionAdd(request):
-    notification_life = timezone.now() - timedelta(days = 30)
+    notification_life = timezone.now() - timedelta(days=30)
 
-    unread_posts = Post.objects.filter(read_status=False, creation_date__gte=notification_life).order_by("-creation_date")[:5]
+    unread_notifications = Post.objects.filter(read_status=False, creation_date__gte=notification_life).order_by("-creation_date")[:5]
+
+    municipalities = Location.objects.values('municipality').distinct()
 
     locations = Location.objects.all().distinct("municipality")
 
+    errors = None
+
+    field_labels = None
+
+    location_error = None
+
     if request.method == "POST":
+
         form = InterventionForm(request.POST, request.FILES)
-        
+
         if form.is_valid():
+
             municipality = request.POST.get("municipality")
 
             barangay = request.POST.get("barangay")
 
             try:
-                location = Location.objects.get(municipality = municipality, barangay = barangay)
+                location = Location.objects.get(municipality=municipality, barangay=barangay)
 
-                intervention = form.save(commit = False)
-
+                intervention = form.save(commit=False)
+                
                 intervention.location = location
 
                 intervention.save()
@@ -150,51 +221,71 @@ def OfficerControlInterventionAdd(request):
                 return redirect("Officer Control Intervention")
             
             except Location.DoesNotExist:
-                form.add_error(None, "The selected location does not exist.")
 
+                location_error = "The selected location does not exist."
+
+        errors = form.errors.as_json()
+        field_labels = {field.name: field.label for field in form}
     else:
+
         form = InterventionForm()
 
-    context = {"unread_posts": unread_posts, "form": form, "locations": locations}
+    context = {"unread_notifications": unread_notifications, "form": form, 'municipalities': municipalities, "locations": locations, "errors": errors, "field_labels": field_labels, "location_error": location_error}
 
     return render(request, "officer/control/intervention/addintervention.html", context)
 
 
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
+@login_required(login_url="Officer Control Login")
+@user_passes_test(OfficerCheck, login_url="Officer Control Login")
 def OfficerControlInterventionUpdate(request, pk):
-    notification_life = timezone.now() - timedelta(days = 30)
+    notification_life = timezone.now() - timedelta(days=30)
 
-    unread_posts = Post.objects.filter(read_status = False, creation_date__gte=notification_life).order_by("-creation_date")[:5] 
+    unread_notifications = Post.objects.filter(read_status=False, creation_date__gte=notification_life).order_by("-creation_date")[:5]
 
-    intervention = get_object_or_404(Intervention, pk = pk)
+    intervention = get_object_or_404(Intervention, pk=pk)
 
     locations = Location.objects.all().distinct("municipality")
-    
+    municipalities = Location.objects.values('municipality').distinct()
+
+    errors = None
+    field_labels = None
+    location_error = None
     if request.method == "POST":
-        form = InterventionForm(request.POST, request.FILES, instance = intervention)
+        form = InterventionForm(request.POST, request.FILES, instance=intervention)
 
         if form.is_valid():
             municipality = request.POST.get("municipality")
-
             barangay = request.POST.get("barangay")
 
             try:
-                location = Location.objects.get(municipality = municipality, barangay = barangay)
+                location = Location.objects.get(municipality=municipality, barangay=barangay)
 
                 intervention.location = location
-
                 form.save()
 
                 return redirect("Officer Control Intervention")
-            
+
             except Location.DoesNotExist:
-                form.add_error(None, "The selected location does not exist.")
+                
+                location_error = "The selected location does not exist."
+
+        errors = form.errors.as_json()
+        field_labels = {field.name: field.label for field in form}
 
     else:
-        form = InterventionForm(instance = intervention)
-    
-    context = {"unread_posts": unread_posts, "form": form, "update": True, "intervention": intervention, "locations": locations}
+        form = InterventionForm(instance=intervention)
+
+    context = {
+        "unread_notifications": unread_notifications,
+        "form": form,
+        "update": True,
+        "intervention": intervention,
+        "municipalities": municipalities,
+        "locations": locations,
+        "errors": errors,
+        "field_labels": field_labels,
+        "location_error": location_error
+    }
 
     return render(request, "officer/control/intervention/updateintervention.html", context)
 
@@ -214,13 +305,18 @@ def OfficerControlInterventionDelete(request, pk):
 def OfficerControlInterventionDetail(request, pk):
     notification_life = timezone.now() - timedelta(days = 30)
 
-    unread_posts = Post.objects.filter(read_status = False, creation_date__gte = notification_life).order_by("-creation_date")[:5]
+    unread_notifications = Post.objects.filter(read_status = False, creation_date__gte = notification_life).order_by("-creation_date")[:5]
 
     intervention = get_object_or_404(Intervention, id = pk)
 
     other_interventions = Intervention.objects.exclude(pk = pk)[:5]
+    last_intervention = (Intervention.objects
+                        .filter(location=intervention.location)
+                        .exclude(pk=pk)
+                        .order_by('-intervention_date')
+                        .first())
 
-    context = {"unread_posts": unread_posts, "intervention": intervention, "other_interventions": other_interventions}
+    context = {"unread_notifications": unread_notifications, "intervention": intervention, "other_interventions": other_interventions, "last_intervention": last_intervention }
 
     return render(request, "officer/control/intervention/detailintervention.html", context)
 
@@ -239,23 +335,88 @@ def serialize_statuses(statuses):
     
     return json.dumps(statuses_list, cls=DjangoJSONEncoder)
 
-
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
+@login_required(login_url="Officer Control Login")
+@user_passes_test(OfficerCheck, login_url="Officer Control Login")
 def OfficerControlStatus(request):
-    notification_life = timezone.now() - timedelta(days = 30)
-
-    unread_posts = Post.objects.filter(read_status=False, creation_date__gte=notification_life).order_by("-creation_date")[:5]
+    notification_life = timezone.now() - timedelta(days=30)
+    unread_notifications = Post.objects.filter(read_status=False, creation_date__gte=notification_life).order_by("-creation_date")[:5]
 
     statuses = Status.objects.all().order_by('-onset_date')
-
-    distinct_statuses = statuses.values("statustype").distinct()
-
     locations = Location.objects.all()
+
+    # Filtering based on year
+    year_filter = request.GET.get('year')
+    if year_filter:
+        statuses = statuses.filter(onset_date__year=year_filter)
+
+    # Sorting
+    sort_by = request.GET.get('sort', 'onset_date')
+    sort_order = request.GET.get('order', 'desc')
+    if sort_by in ['statustype', 'caught_overall', 'volunteer_overall', 'onset_date']:
+        if sort_order == 'asc':
+            statuses = statuses.order_by(sort_by)
+        else:
+            statuses = statuses.order_by(f'-{sort_by}')
+
+    # Organize statuses by municipality and barangay
+    municipalities = {}
+    for status in statuses:
+        municipality = status.location.municipality
+        barangay = status.location.barangay
+
+        if municipality not in municipalities:
+            municipalities[municipality] = {
+                'latest_status': None,
+                'barangays': {}
+            }
+
+        if barangay not in municipalities[municipality]['barangays']:
+            municipalities[municipality]['barangays'][barangay] = {
+                'latest_status': None,
+                'statuses': []
+            }
+
+        municipalities[municipality]['barangays'][barangay]['statuses'].append(status)
+
+    # Get latest status for each barangay and municipality and set totals based on latest status
+    for municipality, data in municipalities.items():
+        for barangay, barangay_data in data['barangays'].items():
+            if barangay_data['statuses']:
+                latest_status = max(barangay_data['statuses'], key=lambda status: status.onset_date)
+                latest_status.onset_date = DateFormat(latest_status.onset_date).format('m/d/Y')
+                barangay_data['latest_status'] = latest_status
+                barangay_data['total_caught'] = latest_status.caught_overall or 0
+                barangay_data['total_volunteers'] = latest_status.volunteer_overall or 0
+            else:
+                barangay_data['total_caught'] = 0
+                barangay_data['total_volunteers'] = 0
+        
+        data['total_caught'] = sum(barangay_data['total_caught'] for barangay_data in data['barangays'].values())
+        data['total_volunteers'] = sum(barangay_data['total_volunteers'] for barangay_data in data['barangays'].values())
+        if data['barangays']:
+            data['latest_status'] = max(
+                (barangay_data['latest_status'] for barangay_data in data['barangays'].values() if barangay_data['latest_status']),
+                key=lambda status: status.onset_date
+            )
+
+    # Pagination
+    paginator = Paginator(statuses, 10)  # Show 10 statuses per page
+    page_number = request.GET.get('page')
+    paginated_statuses = paginator.get_page(page_number)
 
     statuses_json = serialize_statuses(statuses)
 
-    context = {"unread_posts": unread_posts, "statuses": statuses, "statuses_json": statuses_json, "distinct_statuses": distinct_statuses, "locations": locations}
+    context = {
+        "unread_notifications": unread_notifications,
+        "municipalities": municipalities,
+        "statuses_json": statuses_json,
+        "locations": locations,
+        "year_filter": year_filter,
+        "years": Status.objects.dates('onset_date', 'year', order='DESC'),
+        "paginated_statuses": paginated_statuses,
+        "sort_by": sort_by,
+        "sort_order": sort_order,
+    }
 
     return render(request, "officer/control/status/status.html", context)
 
@@ -278,7 +439,7 @@ def OfficerControlDeleteStatus(request, status_id):
 def OfficerControlStatusAdd(request):
     notification_life = timezone.now() - timedelta(days = 30) 
 
-    unread_posts = Post.objects.filter(read_status=False, creation_date__gte=notification_life).order_by("-creation_date")[:5]
+    unread_notifications = Post.objects.filter(read_status=False, creation_date__gte=notification_life).order_by("-creation_date")[:5]
 
     if request.method == "POST":
         form = StatusForm(request.POST)
@@ -290,7 +451,7 @@ def OfficerControlStatusAdd(request):
     else:
         form = StatusForm()
 
-    context = {"unread_posts": unread_posts, "form": form}
+    context = {"unread_notifications": unread_notifications, "form": form}
 
     return render(request, "officer/control/status/addstatus.html", context) 
 
@@ -301,7 +462,7 @@ def OfficerControlReport(request):
     username = request.user.username
 
     notification_life = timezone.now() - timedelta(days=30)
-    unread_posts = Post.objects.filter(read_status=False, creation_date__gte=notification_life).order_by('-creation_date')[:5]
+    unread_notifications = Post.objects.filter(read_status=False, creation_date__gte=notification_life).order_by('-creation_date')[:5]
 
     from_date = request.GET.get("from_date")
     to_date = request.GET.get("to_date")
@@ -346,7 +507,7 @@ def OfficerControlReport(request):
 
     context = {
         "username": username,
-        "unread_posts": unread_posts,
+        "unread_notifications": unread_notifications,
         "chart_data": json.dumps(data),
         "status_options": status_options,
         "location_options": location_options,

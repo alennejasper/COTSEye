@@ -3,42 +3,44 @@
 
 {% block content %}
 <div class = "profile-body">
-    <div class = "profile-section">
-        <img src = "{{user.profile_photo.url}}">
-
-        <h1>{{user.account.username}}</h1>
-                    
-        <p>{{user.account.usertype}}</p>
-    </div>
-
-    <div class = "profile-details">
-        <div class = "profile-context">
-            <p>First Name</p>
-
-            <p>{{user.first_name | default:'None available'}}</p>
+    <div class = "profile">
+        <div class = "profile-section">
+            <img src = "{{user.profile_photo.url}}">
+    
+            <h1>{{user.account.username}}</h1>
+                        
+            <p>{{user.account.usertype}}</p>
         </div>
-
-        <div class = "profile-context">
-            <p>Last Name</p>
-
-            <p>{{user.last_name | default:'None available'}}</p>
+    
+        <div class = "profile-details">
+            <div class = "profile-context">
+                <p>First Name:</p>
+    
+                <p>{{user.first_name | default:'None available'}}</p>
+            </div>
+    
+            <div class = "profile-context">
+                <p>Last Name:</p>
+    
+                <p>{{user.last_name | default:'None available'}}</p>
+            </div>
+    
+            <div class = "profile-context">
+                <p>Email:</p>
+    
+                <p>{{user.email | default:'None available'}}</p>
+            </div>
+    
+            <div class = "profile-context">
+                <p>Phone Number:</p>
+    
+                <p>{{user.phone_number | default:'None available'}}</p>
+            </div>
+    
+            <div class = "button">
+                <a href = "{% url 'Contributor Service Profile Update' %}">Update</a>
+            </div>
         </div>
-
-        <div class = "profile-context">
-            <p>Email</p>
-
-            <p>{{user.email | default:'None available'}}</p>
-        </div>
-
-        <div class = "profile-context">
-            <p>Phone Number</p>
-
-            <p>{{user.phone_number | default:'None available'}}</p>
-        </div>
-    </div>
-
-    <div class = "button">
-        <a href = "{% url 'Contributor Service Profile Update' %}">Update</a>
     </div>
 </div>
 {% endblock content %}

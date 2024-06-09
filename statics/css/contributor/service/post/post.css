@@ -1,6 +1,6 @@
 .post-body{
     position: relative;
-    width: 100vw;
+    width: 100%;
     height: 100%;
     color: #003755;
 }
@@ -14,23 +14,77 @@
 }
 
 .post-body .post-section h1{
+    margin-bottom: 0px !important;
     font-weight: 700;       
-    font-size: 22px; 
+    font-size: 24px; 
     font-family: "Montserrat";       
-    color: #000000;
+    color: #003755;
     text-align: center;    
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .post-body .post-section h1{    
+        font-size: 22px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post-body .post-section h1{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post-body .post-section h1{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post-body .post-section h1{
+        font-size: 16px !important;
+    }
 }
 
 .post-body .post-filter button{
     display: block;
     margin-left: auto;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-bottom: 15px;
     outline: none !important;
     border: none !important;
-    font-size: 20px;
-    background-color: #ffffff;
+    font-size: 24px;
+    background-color: #FFFFFF;
     color: #003755;
+    height: 100%;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .post-body .post-filter button{
+        padding-bottom: 5px;
+        font-size: 22px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post-body .post-filter button{
+        padding-bottom: 5px;
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post-body .post-filter button{
+        padding-bottom: 5px;
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post-body .post-filter button{
+        padding-bottom: 5px;
+        font-size: 16px !important;
+    }
 }
 
 .post-body .post-filter .options{
@@ -39,67 +93,266 @@
 
 .post-body .post-filter .hidden{
     display: grid;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-bottom: 15px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .post-body .post-filter .hidden{
+        padding-bottom: 5px;
+    }
 }
 
 .post-body .post-filter .hidden a:first-child{
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border: 1px solid #dfdfdf;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-left: 1px solid #003755;
+    border-right: 1px solid #003755;
+    border-top: 1px solid #003755;
+    border-bottom: 1px solid #003755;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     font-family: "Montserrat";
-    font-weight: 600;
-    font-size: 10px;
-    color: #000000 !important;
-    background-color: #ffffff !important;
-    text-decoration: none;
-}
-
-.post-body .post-filter .hidden a{
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border: 1px solid #dfdfdf;
-    font-family: "Montserrat";
-    font-weight: 600;
-    font-size: 10px;
-    color: #000000 !important;
+    font-weight: 700;
+    font-size: 20px;
+    color: #003755 !important;
     background-color: #FFFFFF !important;
     text-decoration: none;
 }
 
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .post-body .post-filter .hidden a:first-child{  
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;  
+        font-size: 18px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post-body .post-filter .hidden a:first-child{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;  
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post-body .post-filter .hidden a:first-child{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;  
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post-body .post-filter .hidden a:first-child{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;  
+        font-size: 12px !important;
+    }
+}
+
+.post-body .post-filter .hidden a{
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-left: 1px solid #003755;
+    border-right: 1px solid #003755;
+    border-bottom: 1px solid #003755;
+    font-family: "Montserrat";
+    font-weight: 700;
+    font-size: 20px;
+    color: #003755 !important;
+    background-color: #FFFFFF !important;
+    text-decoration: none;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .post-body .post-filter .hidden a{   
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px; 
+        font-size: 18px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post-body .post-filter .hidden a{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;  
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post-body .post-filter .hidden a{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;  
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post-body .post-filter .hidden a{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;  
+        font-size: 12px !important;
+    }
+}
+
 .post-body .post-filter .hidden a:last-child{
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border: 1px solid #dfdfdf;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #003755;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     font-family: "Montserrat";
-    font-weight: 600;
-    font-size: 10px;
-    color: #000000 !important;
-    background-color: #ffffff !important;
+    font-weight: 700;
+    font-size: 20px;
+    color: #003755 !important;
+    background-color: #FFFFFF !important;
     text-decoration: none;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .post-body .post-filter .hidden a:last-child{  
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;  
+        font-size: 18px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post-body .post-filter .hidden a:last-child{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;  
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post-body .post-filter .hidden a:last-child{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;  
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post-body .post-filter .hidden a:last-child{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;  
+        font-size: 12px !important;
+    }
+}
+
+.post-body .post{
+    padding-bottom: 15px;
+    border-bottom: 1px solid #003755;
+}
+
+.post-body .post:last-child{
+    padding-bottom: 0px;
+    border-bottom: 0px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .post-body .post{
+        padding-bottom: 5px;
+    }
 }
 
 .post-body .post-post .post .post-header{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
-.post-body .post-post .post .post-header p{
+.post-body .post:first-child .post-header{
+    padding-top: 0px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .post-body .post .post-header{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+.post-body .post .post-header .header-context:first-child{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.post-body .post .post-header .header-context:first-child .context-caption p:first-child{
+    margin-bottom: 0px !important;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: "Montserrat";
+    font-weight: 700;
+    font-size: 20px !important;
+    color: #003755;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .post-body .post .post-header .header-context:first-child .context-caption p:first-child{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post-body .post .post-header .header-context:first-child .context-caption p:first-child{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post-body .post .post-header .header-context:first-child .context-caption p:first-child{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post-body .post .post-header .header-context:first-child .context-caption p:first-child{
+        font-size: 12px !important;
+    }
+}
+
+.post-body .post .post-header .header-context:first-child .context-caption p:last-child{
+    margin-bottom: 0px !important;
     display: flex;
     align-items: center;
     white-space: nowrap;
@@ -107,33 +360,210 @@
     text-overflow: ellipsis;
     font-family: "Montserrat";
     font-weight: 400;
-    font-size: 14px !important;
-    color: #000000;
+    font-size: 20px !important;
+    color: #003755;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .post-body .post .post-header .header-context:first-child .context-caption p:last-child{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post-body .post .post-header .header-context:first-child .context-caption p:last-child{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post-body .post .post-header .header-context:first-child .context-caption p:last-child{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post-body .post .post-header .header-context:first-child .context-caption p:last-child{
+        font-size: 12px !important;
+    }
+}
+
+.post-body .post .post-header .header-context:last-child{
+    display: flex;
+    align-items: end;
+    justify-content: flex-end;
+    flex-direction: column;
+}
+
+.post-body .post .post-header .header-context:last-child p{
+    margin-bottom: 0px !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 20px;
+    color: #003755;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .post-body .post .post-header .header-context:last-child p{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post-body .post .post-header .header-context:last-child p{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post-body .post .post-header .header-context:last-child p{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post-body .post .post-header .header-context:last-child p{
+        font-size: 12px !important;
+    }
 }
 
 .post-body .post-post .post .post-header img{
     margin-right: 10px !important;
     margin-bottom: 0px !important;
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
     cursor: pointer;
 }
 
-.post-body .post-post .post .post-header i{
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .post-body .post-post .post .post-header img{
+        width: 22px;
+        height: 22px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post-body .post-post .post .post-header img{
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post-body .post-post .post .post-header img{
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post-body .post-post .post .post-header img{
+        width: 16px;
+        height: 16px;
+    }
+}
+
+/* .post-body .post-post .post .post-header i{
     margin-right: 10px;
-    font-size: 20px;
+    font-size: 22px;
     color: #003755;  
 }
 
-.post-body .post-post .post img.post-image{
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .post-body .post .post-header i{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post-body .post .post-header i{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post-body .post .post-header i{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post-body .post .post-header i{
+        font-size: 14px !important;
+    }
+} */
+
+.post-body .post > h1{
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    margin-bottom: 0px !important;
+    padding-bottom: 15px;
+    overflow: hidden;
+    font-family: "Montserrat";
+    font-weight: 700;
+    font-size: 24px;
+    color: #003755;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .post-body .post > h1{
+        padding-bottom: 5px;
+        font-size: 22px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .post-body .post > h1{
+        padding-bottom: 5px;
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .post-body .post > h1{
+        padding-bottom: 5px;
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .post-body .post > h1{
+        padding-bottom: 5px;
+        font-size: 16px !important;
+    }
+}
+
+.post-body .post > a{
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden !important;
+}
+
+.post-body .post img.post-image{
     place-items: center;
     object-fit: cover;
     width: 100%;
-    height: 250px;
+    height: 500px;
 }
 
-.post-body .post-post .post .post-context{
+.post-body .post img.post-image:hover{
+    transform: scale(1.25);
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .post-body .post img.post-image{
+        height: 250px;
+    }
+}
+
+/* .post-body .post-post .post .post-context{
     display: grid;
     align-items: center;
     grid-template-columns: auto auto;
@@ -176,4 +606,4 @@
     background-color: #003755 !important;
     text-decoration: none;
     cursor: pointer;  
-}
+} */

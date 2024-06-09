@@ -33,9 +33,9 @@ urlpatterns = [
 
     path('officer/control/announcement/<int:pk>/', views.officer_control_announcement, name='Officer Control Announcement'),
 
-    path("service/resource/link/read/<int:id>/redirect/", views.ServiceResourceLinkReadRedirect, name = "Service Resource Link Read Redirect"),
+    path("service/link/read/<int:id>/redirect/", views.ServiceLinkReadRedirect, name = "Service Link Read Redirect"),
 
-    path("service/resource/file/read/<int:id>/redirect/", views.ServiceResourceFileReadRedirect, name = "Service Resource File Read Redirect"),
+    path("service/file/read/<int:id>/redirect/", views.ServiceFileReadRedirect, name = "Service File Read Redirect"),
     
     path('get_barangays/', views.get_barangays, name='get_barangays'),
 ]

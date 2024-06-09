@@ -12,15 +12,44 @@ from auxiliaries.forms import AnnouncementForm
 from django.http import JsonResponse
 
 
+import datetime
 import json
 
 # Create your views here.
 def PublicServiceAnnouncement(request):
     username = "public/everyone"
 
+    locations = Location.objects.all()
+
+    municipalities = Location.objects.values("municipality").distinct()
+
+    municipality = request.GET.get("municipality")
+
+    barangay = request.GET.get("barangay")
+
+    from_date = request.GET.get("from_date")
+
+    to_date = request.GET.get("to_date")
+
     announcements = Announcement.objects.all().order_by("-release_date")
 
-    context = {"username": username, "announcements": announcements}
+    if municipality:
+        announcements = announcements.filter(location__municipality = municipality)
+
+    if barangay:
+        announcements = announcements.filter(location__barangay = barangay)
+
+    if from_date:
+        from_date = datetime.datetime.strptime(from_date, '%Y-%m-%d')
+
+        announcements = announcements.filter(release_date__gte = from_date)
+    
+    if to_date:
+        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d")
+
+        announcements = announcements.filter(release_date__lte = to_date)
+
+    context = {"username": username, "locations": locations, "municipalities": municipalities, "announcements": announcements}
 
     return render(request, "public/service/announcement/announcement.html", context)
 
@@ -52,71 +81,17 @@ def PublicServiceInquiry(request):
 def PublicServiceMap(request):
     username = "public/everyone"
 
-    municipality_filter = request.GET.get('municipality')
-    start_date_filter = request.GET.get('start_date')
-    end_date_filter = request.GET.get('end_date')
-
-    # Fetch distinct municipalities
-    municipalities = Location.objects.values('municipality').distinct()
-
-    # Fetch locations with optional filters
-    locations_query = Location.objects.filter(status__isnull=False)
-    if municipality_filter:
-        locations_query = locations_query.filter(municipality=municipality_filter)
-
-    locations = locations_query.distinct()
-
-    data = {}
-    total_caught_overall = 0
-
-    barangay_data = []
-
-    for location in locations:
-        location_str = f"{location.barangay}, {location.municipality}"
-        statuses_query = Status.objects.filter(location=location).order_by('onset_date')
-
-        if start_date_filter and end_date_filter:
-            statuses_query = statuses_query.filter(onset_date__range=[start_date_filter, end_date_filter])
-
-        latest_status = statuses_query.latest('onset_date')
-        caught_overall_sum = latest_status.caught_overall
-        total_caught_overall += caught_overall_sum
-
-        data[location_str] = {
-            'onset_dates': [latest_status.onset_date.strftime('%Y-%m-%d')],
-            'caught_overalls': [caught_overall_sum],
-            'caught_overall_sum': caught_overall_sum
-        }
-
-        barangay_data.append({
-            'barangay': location.barangay,
-            'municipality': location.municipality,
-            'caught_overall_sum': caught_overall_sum,
-            'latest_onset_date': latest_status.onset_date.strftime('%Y-%m-%d')
-        })
-
     try:
         map_posts = Post.objects.filter(post_status = 1)
 
         map_statuses = Status.objects.all()
-
-        map_graphs = Status.objects.order_by("location", "-onset_date").distinct("location")[:5]
 
     except:
         map_posts = None
 
         map_statuses = None
 
-        map_graphs = None
-
-    context = {"username": username, "map_posts": map_posts, "map_statuses": map_statuses, "map_graphs": map_graphs,'chart_data': json.dumps(data),
-        'locations': locations,
-        'municipalities': municipalities,
-        'total_caught_overall': total_caught_overall,
-        'barangay_data': barangay_data,
-        'selected_municipality': municipality_filter,
-        'start_date_filter': start_date_filter,
-        'end_date_filter': end_date_filter}
+    context = {"username": username, "map_posts": map_posts, "map_statuses": map_statuses}
     
     return render(request, "public/service/map/map.html", context)
 
@@ -124,9 +99,9 @@ def PublicServiceMap(request):
 def PublicServiceResource(request):
     username = "public/everyone"
 
-    resource_links = ResourceLink.objects.all()
+    resource_links = Link.objects.all()
 
-    resource_files = ResourceFile.objects.all()
+    resource_files = File.objects.all()
     
     context = {"username": username, "resource_links": resource_links, "resource_files": resource_files}
     
@@ -140,15 +115,39 @@ def ContributorServiceAnnouncement(request):
 
     user_profile = User.objects.get(account = request.user)
 
+    unread_notifications = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:3]
+
+    locations = Location.objects.all()
+
+    municipalities = Location.objects.values("municipality").distinct()
+
+    municipality = request.GET.get("municipality")
+
+    barangay = request.GET.get("barangay")
+
+    from_date = request.GET.get("from_date")
+
+    to_date = request.GET.get("to_date")
+
     announcements = Announcement.objects.all().order_by("-release_date")
 
-    scheme = request.scheme
+    if municipality:
+        announcements = announcements.filter(location__municipality = municipality)
 
-    host = request.META["HTTP_HOST"]
+    if barangay:
+        announcements = announcements.filter(location__barangay = barangay)
 
-    unread_posts = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:5]
+    if from_date:
+        from_date = datetime.datetime.strptime(from_date, '%Y-%m-%d')
 
-    context = {"username": username, "user_profile": user_profile, "announcements": announcements, "unread_posts": unread_posts, "scheme": scheme, "host": host}
+        announcements = announcements.filter(release_date__gte = from_date)
+    
+    if to_date:
+        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d")
+
+        announcements = announcements.filter(release_date__lte = to_date)
+
+    context = {"username": username, "user_profile": user_profile, "unread_notifications": unread_notifications, "locations": locations, "municipalities": municipalities, "announcements": announcements}
 
     return render(request, "contributor/service/announcement/announcement.html", context)
 
@@ -160,15 +159,15 @@ def ContributorServiceAnnouncementRead(request, id):
 
     user_profile = User.objects.get(account = request.user)
 
+    unread_notifications = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:3]
+
     scheme = request.scheme
 
     host = request.META["HTTP_HOST"]
 
     announcement = Announcement.objects.get(id = id)
 
-    unread_posts = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:5]
-
-    context = {"username": username, "user_profile": user_profile, "scheme": scheme, "host": host, "announcement": announcement, "unread_posts": unread_posts}
+    context = {"username": username, "user_profile": user_profile, "unread_notifications": unread_notifications, "scheme": scheme, "host": host, "announcement": announcement}
 
     return render(request, "contributor/service/announcement/read.html", context)
 
@@ -180,11 +179,11 @@ def ContributorServiceInquiry(request):
 
     user_profile = User.objects.get(account = request.user)
 
+    unread_notifications = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:3]
+
     inquiries = Inquiry.objects.all()
 
-    unread_posts = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:5]
-
-    context = {"username": username, "user_profile": user_profile, "inquiries": inquiries, "unread_posts": unread_posts}
+    context = {"username": username, "user_profile": user_profile, "unread_notifications": unread_notifications, "inquiries": inquiries}
 
     return render(request, "contributor/service/inquiry/inquiry.html", context)
 
@@ -196,75 +195,19 @@ def ContributorServiceMap(request):
 
     user_profile = User.objects.get(account = request.user)
 
-    unread_posts = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:5]
+    unread_notifications = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:3]
 
     try:
         map_posts = Post.objects.filter(post_status = 1)
 
         map_statuses = Status.objects.all()
 
-        map_graphs = Status.objects.order_by("location", "-onset_date").distinct("location")[:5]
-
     except:
         map_posts = None
 
         map_statuses = None
 
-        map_graphs = None
-
-    municipality_filter = request.GET.get('municipality')
-    start_date_filter = request.GET.get('start_date')
-    end_date_filter = request.GET.get('end_date')
-
-    # Fetch distinct municipalities
-    municipalities = Location.objects.values('municipality').distinct()
-
-    # Fetch locations with optional filters
-    locations_query = Location.objects.filter(status__isnull=False)
-    if municipality_filter:
-        locations_query = locations_query.filter(municipality=municipality_filter)
-
-    locations = locations_query.distinct()
-
-    unread_posts = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:5]
-
-    data = {}
-    total_caught_overall = 0
-
-    barangay_data = []
-
-    for location in locations:
-        location_str = f"{location.barangay}, {location.municipality}"
-        statuses_query = Status.objects.filter(location=location).order_by('onset_date')
-
-        if start_date_filter and end_date_filter:
-            statuses_query = statuses_query.filter(onset_date__range=[start_date_filter, end_date_filter])
-
-        latest_status = statuses_query.latest('onset_date')
-        caught_overall_sum = latest_status.caught_overall
-        total_caught_overall += caught_overall_sum
-
-        data[location_str] = {
-            'onset_dates': [latest_status.onset_date.strftime('%Y-%m-%d')],
-            'caught_overalls': [caught_overall_sum],
-            'caught_overall_sum': caught_overall_sum
-        }
-
-        barangay_data.append({
-            'barangay': location.barangay,
-            'municipality': location.municipality,
-            'caught_overall_sum': caught_overall_sum,
-            'latest_onset_date': latest_status.onset_date.strftime('%Y-%m-%d')
-        })
-
-    context = {"username": username, "user_profile": user_profile, "map_posts": map_posts, "map_statuses": map_statuses, "map_graphs": map_graphs, "unread_posts": unread_posts, 'chart_data': json.dumps(data),
-        'locations': locations,
-        'municipalities': municipalities,
-        'total_caught_overall': total_caught_overall,
-        'barangay_data': barangay_data,
-        'selected_municipality': municipality_filter,
-        'start_date_filter': start_date_filter,
-        'end_date_filter': end_date_filter}
+    context = {"username": username, "user_profile": user_profile, "unread_notifications": unread_notifications, "map_posts": map_posts, "map_statuses": map_statuses}
 
     return render(request, "contributor/service/map/map.html", context)
 
@@ -275,13 +218,13 @@ def ContributorServiceResource(request):
 
     user_profile = User.objects.get(account = request.user)
 
-    resource_links = ResourceLink.objects.all()
+    unread_notifications = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:3]
 
-    resource_files = ResourceFile.objects.all()
+    resource_links = Link.objects.all()
 
-    unread_posts = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:5]
+    resource_files = File.objects.all()
     
-    context = {"username": username, "user_profile": user_profile, "resource_links": resource_links, "resource_files": resource_files, "unread_posts": unread_posts}
+    context = {"username": username, "user_profile": user_profile, "unread_notifications": unread_notifications, "resource_links": resource_links, "resource_files": resource_files}
     
     return render(request, "contributor/service/resource/resource.html", context)
 
@@ -291,13 +234,15 @@ def ContributorServiceResource(request):
 def OfficerControlAnnouncement(request):
     notification_life = timezone.now() - timedelta(days = 30) 
 
-    unread_posts = Post.objects.filter(read_status = False, creation_date__gte = notification_life).order_by("-creation_date")[:5]
+    unread_notifications = Post.objects.filter(read_status = False, creation_date__gte = notification_life).order_by("-creation_date")[:5]
 
     announcements = Announcement.objects.all().order_by('-release_date')
 
+    municipalities = Location.objects.values('municipality').distinct()
+
     locations = Location.objects.all()
 
-    context = {"unread_posts": unread_posts, "announcements": announcements, "locations": locations}
+    context = {"unread_notifications": unread_notifications, "announcements": announcements, 'municipalities': municipalities, "locations": locations}
 
     return render(request, "officer/control/announcement/announcement.html", context)
 
@@ -307,53 +252,71 @@ def OfficerControlAnnouncement(request):
 def officer_control_announcement(request, pk):
     notification_life = timezone.now() - timedelta(days = 30)
 
-    unread_posts = Post.objects.filter(read_status = False, creation_date__gte = notification_life).order_by("-creation_date")[:5]
+    unread_notifications = Post.objects.filter(read_status = False, creation_date__gte = notification_life).order_by("-creation_date")[:5]
 
     announcement = get_object_or_404(Announcement, pk = pk)
 
     other_announcements = Announcement.objects.exclude(pk = pk)
 
-    context = {"unread_posts": unread_posts, "announcement": announcement, "other_announcements": other_announcements}
+    announcements = Announcement.objects.all().order_by('-release_date')
+
+    municipalities = Location.objects.values('municipality').distinct()
+
+    context = {"unread_notifications": unread_notifications, "announcement": announcement, 'municipalities': municipalities, "other_announcements": other_announcements}
 
     return render(request, "officer/control/announcement/specific_announcement.html", context)
 
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
+@login_required(login_url="Officer Control Login")
+@user_passes_test(OfficerCheck, login_url="Officer Control Login")
 def officercontroladdannouncement(request):
-    notification_life = timezone.now() - timedelta(days = 30)
+    notification_life = timezone.now() - timedelta(days=30)
 
-    unread_posts = Post.objects.filter(read_status = False, creation_date__gte = notification_life).order_by("-creation_date")[:5]
+    unread_notifications = Post.objects.filter(read_status=False, creation_date__gte=notification_life).order_by("-creation_date")[:5]
 
     locations = Location.objects.all().distinct("municipality")
+    municipalities = Location.objects.values('municipality').distinct()
+
+    errors = None
+    field_labels = None
+    location_error = None
 
     if request.method == "POST":
-        form = AnnouncementForm(request.POST, request.FILES)
+        form = AnnouncementForm(request.POST, request.FILES, user=request.user.user)
 
         if form.is_valid():
             municipality = request.POST.get("municipality")
-
             barangay = request.POST.get("barangay")
 
             try:
-                location = Location.objects.get(municipality = municipality, barangay = barangay)
+                location = Location.objects.get(municipality=municipality, barangay=barangay)
 
-                announcement = form.save(commit = False)
-
+                announcement = form.save(commit=False)
                 announcement.location = location
-
                 announcement.save()
 
-            except Location.DoesNotExist:
-                form.add_error(None, "The selected location does not exist.")
+                return redirect("Officer Control Announcement")
 
-            return redirect("Officer Control Announcement")
-        
+            except Location.DoesNotExist:
+                location_error = "The selected location does not exist."
+
+        errors = form.errors.as_json()
+        field_labels = {field.name: field.label for field in form}
+
     else:
         form = AnnouncementForm()
 
-    context = {"unread_posts": unread_posts, "form": form, "locations": locations}
+    context = {
+        "unread_notifications": unread_notifications,
+        "form": form,
+        "municipalities": municipalities,
+        "locations": locations,
+        "errors": errors,
+        "field_labels": field_labels,
+        "location_error": location_error
+    }
 
     return render(request, "officer/control/announcement/addannouncement.html", context)
+
 
 @login_required(login_url = "Officer Control Login")
 @user_passes_test(OfficerCheck, login_url = "Officer Control Login")
@@ -364,45 +327,60 @@ def get_barangays(request):
 
     return JsonResponse(list(barangays), safe = False)
 
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
+@login_required(login_url="Officer Control Login")
+@user_passes_test(OfficerCheck, login_url="Officer Control Login")
 def officercontrolupdateannouncement(request, pk):
-    notification_life = timezone.now() - timedelta(days = 30)
+    notification_life = timezone.now() - timedelta(days=30)
 
-    unread_posts = Post.objects.filter(read_status = False, creation_date__gte = notification_life).order_by("-creation_date")[:5]
+    unread_notifications = Post.objects.filter(read_status=False, creation_date__gte=notification_life).order_by("-creation_date")[:5]
 
-    announcement = get_object_or_404(Announcement, pk = pk)
+    announcement = get_object_or_404(Announcement, pk=pk)
 
+    municipalities = Location.objects.values('municipality').distinct()
     locations = Location.objects.all().distinct("municipality")
 
+    errors = None
+    field_labels = None
+    location_error = None
+
     if request.method == "POST":
-        form = AnnouncementForm(request.POST, request.FILES, instance = announcement)
+        form = AnnouncementForm(request.POST, request.FILES, instance=announcement)
 
         if form.is_valid():
             municipality = request.POST.get("municipality")
-
             barangay = request.POST.get("barangay")
 
             try:
-                location = Location.objects.get(municipality = municipality, barangay = barangay)
+                location = Location.objects.get(municipality=municipality, barangay=barangay)
 
-                updated_announcement = form.save(commit = False)
-
+                updated_announcement = form.save(commit=False)
                 updated_announcement.location = location
-
                 updated_announcement.save()
 
                 return redirect("Officer Control Announcement")
-            
+
             except Location.DoesNotExist:
-                form.add_error(None, "The selected location does not exist.")
+                location_error = "The selected location does not exist."
+
+        errors = form.errors.as_json()
+        field_labels = {field.name: field.label for field in form}
 
     else:
         form = AnnouncementForm(instance=announcement)
-    
-    context = {"unread_posts": unread_posts, "form": form, "announcement": announcement, "locations": locations}
+
+    context = {
+        "unread_notifications": unread_notifications,
+        "form": form,
+        "announcement": announcement,
+        "municipalities": municipalities,
+        "locations": locations,
+        "errors": errors,
+        "field_labels": field_labels,
+        "location_error": location_error
+    }
 
     return render(request, "officer/control/announcement/updateannouncement.html", context)
+
 
 @login_required(login_url = "Officer Control Login")
 @user_passes_test(OfficerCheck, login_url = "Officer Control Login")
@@ -417,13 +395,13 @@ def officercontroldeleteannouncement(request, pk):
     return JsonResponse({"success": False})
 
 
-def ServiceResourceLinkReadRedirect(request, id):
+def ServiceLinkReadRedirect(request, id):
     if request.user.is_authenticated:
         usertype = request.user.usertype_id
 
         if usertype == 3:
             try:
-                resource_link = ResourceLink.objects.get(id = id).resource_link
+                resource_link = Link.objects.get(id = id).resource_link
             
             except:
                 resource_link = ""
@@ -432,7 +410,7 @@ def ServiceResourceLinkReadRedirect(request, id):
     
     else:
         try:
-            resource_link = ResourceLink.objects.get(id = id).resource_link
+            resource_link = Link.objects.get(id = id).resource_link
             
         except:
             resource_link = ""
@@ -440,13 +418,13 @@ def ServiceResourceLinkReadRedirect(request, id):
         return redirect(resource_link)
     
 
-def ServiceResourceFileReadRedirect(request, id):
+def ServiceFileReadRedirect(request, id):
     if request.user.is_authenticated:
         usertype = request.user.usertype_id
 
         if usertype == 3:
             try:
-                resource_file = ResourceFile.objects.get(id = id).resource_file
+                resource_file = File.objects.get(id = id).resource_file
             
             except:
                 resource_file = ""
@@ -457,7 +435,7 @@ def ServiceResourceFileReadRedirect(request, id):
         
     else:
         try:
-            resource_file = ResourceFile.objects.get(id = id).resource_file
+            resource_file = File.objects.get(id = id).resource_file
             
         except:
             resource_file = ""

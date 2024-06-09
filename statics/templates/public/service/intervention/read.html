@@ -1,32 +1,75 @@
 {% extends "public/service/index/index.html" %}
 {% load static %}
 
-
 {% block content %}
     <div class = "interventionread-body">
-        <div class = "interventionread-section">
+        <!-- <div class = "interventionread-section">
             <h1>ACTIVITY DETAILS</h1>
-        </div>
+        </div> -->
 
         {% if intervention %}
             <div class = "interventionread">
                 <div class = "interventionread-header">
-                    <p><i class = "fa-solid fa-user"></i>{{intervention.hosting_agency | default:'None available'}}</p>
+                    <div class = "header-context">
+                        <i class = "fa-solid fa-user"></i>
 
-                    <p><i class = "fa-solid fa-calendar-check"></i>{{intervention.intervention_date | date:'m/d/y' | default:'None available'}}</p>
+                        <div class = "context-caption">
+                            <p>{{intervention.hosting_agency | default:'None available'}}</p>
+
+                            <p>{{intervention.location | default:'None available'}}</p>
+                        </div>
+                    </div>
+
+                    <p>{{intervention.intervention_date | date:'m/d/Y' | default:'None available'}}</p>
                 </div>
+
+                <h1>{{intervention.title | default:'None available'}}</h1>
 
                 <div class = "interventionread-gallery">
                     <img src = "{{intervention.intervention_photo.url}}">
                 </div>
 
                 <div class = "interventionread-origin">
-                    <p>{{intervention.location | default:'None available'}}</p>
+                    <h1>Major Details</h1>
 
-                    <p>{{intervention.caught_amount | default:'0'}} COTS caught</p>
+                    <div class = "origin-context">
+                        <p>Activity Date:</p>
+
+                        <p>{{intervention.activity_date | default:'None available'}}</p>
+                    </div>
+
+                    <div class = "origin-context">
+                        <p>Place:</p>
+
+                        <p>{{intervention.place | default:'None available'}}</p>
+                    </div>
+
+                    <div class = "origin-context">
+                        <p>Infestation Status:</p>
+    
+                        <p>{{intervention.statustype | default:'None available'}}</p>
+                    </div>
+
+                    <div class = "origin-context">
+                        <p>COTS Collected:</p>
+    
+                        <p>{{intervention.caught_amount | default:'0'}}</p>
+                    </div>
+    
+                    <div class = "origin-context">
+                        <p>Volunteer Count:</p>
+    
+                        <p>{{intervention.volunteer_amount | default:'0'}}</p>
+                    </div>
                 </div>
 
-                <p>{{intervention.description | default:'None available'}}</p>
+                <div class = "interventionread-description">
+                    <h1>Activity Description</h1>
+    
+                    <div class = "description-context">
+                        <p>{{intervention.details | default:'None available'}}</p>
+                    </div>
+                </div>
 
                 <div class = "button">
                     <a class = "share-intervention" target = "blank">Share</a>

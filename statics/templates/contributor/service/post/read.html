@@ -11,17 +11,17 @@
         {% if valid_post %}
             <div class = "postandfeedread">
                 <div class = "postandfeedread-header">
-                    <div style = "display: flex; align-items: center; justify-content: space-between;">
+                    <div class = "header-context">
                         <img src = "{{valid_post.user.profile_photo.url}}">
 
-                        <div>
-                            <p style="font-weight: 550; font-size: 13px !important;">{{valid_post.user}}</p>
+                        <div class = "context-caption">
+                            <p>{{valid_post.user}}</p>
 
-                            <p style="font-weight: 400; font-size: 13px !important;">{{valid_post.location | default:'None available'}}</p>
+                            <p>{{valid_post.location | default:'None available'}}</p>
                         </div>
                     </div>
 
-                    <p>{{valid_post.capture_date | date:'m/d/y' | default:'None available'}}</p>
+                    <p>{{valid_post.creation_date | date:'m/d/Y' | default:'None available'}}</p>
                 </div>
 
                 <div class = "postandfeedread-gallery">
@@ -31,35 +31,54 @@
                 </div>
 
                 <div class = "postandfeedread-origin">
-                    <p>{{valid_post.post_status | default:'None available'}}</p>
+                    <h1>Major Details</h1>
+
+                    <div class = "origin-context">
+                        <p>Capture Date:</p>
+
+                        <p>{{valid_post.capture_date | date:'m/d/Y' | default:'None available'}}</p>
+                    </div>
+
+                    <div class = "origin-context">
+                        <p>Post Status:</p>
+
+                        <p>{{valid_post.post_status | default:'None available'}}</p>
+                    </div>
                 </div>
 
-                <p>{{valid_post.description | default:'None available'}}</p>
-
                 <div class = "postandfeedread-observation">
+                    <h1>Observations</h1>
 
                     <div class = "observation-context">
-                        <p>Size</p>
+                        <p>Size (How big were the COTS):</p>
 
                         <p>{{valid_post.post_observation.size | default:'0'}}</p>
                     </div>
 
                     <div class = "observation-context">
-                        <p>Depth</p>
+                        <p>Depth (Where the COTS was sighted):</p>
 
                         <p>{{valid_post.post_observation.depth | default:'0'}}</p>
                     </div>
 
                     <div class = "observation-context">
-                        <p>Density</p>
+                        <p>Density (COTS per m²):</p>
 
                         <p>{{valid_post.post_observation.density | default:'0'}}</p>
                     </div>
 
                     <div class = "observation-context">
-                        <p>Weather</p>
+                        <p>Weather (Weather during sighting):</p>
 
                         <p>{{valid_post.post_observation.weather | default:'None available'}}</p>
+                    </div>
+                </div>
+
+                <div class = "postandfeedread-description">
+                    <h1>Sighting Description</h1>
+
+                    <div class = "description-context">
+                        <p>{{valid_post.description | default:'None available'}}</p>
                     </div>
                 </div>
 
@@ -72,17 +91,17 @@
         {% if invalid_post %}
             <div class = "postandfeedread">
                 <div class = "postandfeedread-header">
-                    <div style = "display: flex; align-items: center; justify-content: space-between;">
+                    <div class = "header-context">
                         <img src = "{{invalid_post.user.profile_photo.url}}">
 
-                        <div>
-                            <p style="font-weight: 550; font-size: 13px !important;">{{invalid_post.user}}</p>
+                        <div class = "context-caption">
+                            <p>{{invalid_post.user}}</p>
 
-                            <p style="font-weight: 400; font-size: 13px !important;">{{invalid_post.location | default:'None available'}}</p>
+                            <p>{{invalid_post.location | default:'None available'}}</p>
                         </div>
                     </div>
 
-                    <p>{{invalid_post.capture_date | date:'m/d/y' | default:'None available'}}</p>
+                    <p>{{invalid_post.creation_date | date:'m/d/Y' | default:'None available'}}</p>
                 </div>
 
                 <div class = "postandfeedread-gallery">
@@ -91,44 +110,64 @@
                     {% endfor %}
                 </div>
 
-                <div class = "postandfeedread-origin">
-                    <p>{{invalid_post.location | default:'None available'}}</p>
-                    
-                    <p>{{invalid_post.post_status | default:'None available'}}</p>
+                <div class = "postandfeedread-remarks">
+                    <div class = "remarks-context">
+                        <h1>Remarks</h1>
+
+                        <p>{{invalid_post.remarks | default:'None available'}}</p>
+                    </div>
                 </div>
 
-                <p>{{invalid_post.description | default:'None available'}}</p>
+                <div class = "postandfeedread-origin">
+                    <h1>Major Details</h1>
+
+                    <div class = "origin-context">
+                        <p>Capture Date:</p>
+
+                        <p>{{invalid_post.capture_date | date:'m/d/Y' | default:'None available'}}</p>
+                    </div>
+
+                    <div class = "origin-context">
+                        <p>Post Status:</p>
+
+                        <p>{{invalid_post.post_status | default:'None available'}}</p>
+                    </div>
+                </div>
 
                 <div class = "postandfeedread-observation">
-
+                    <h1>Observations</h1>
 
                     <div class = "observation-context">
-                        <p>Size</p>
+                        <p>Size (How big were the COTS):</p>
 
                         <p>{{invalid_post.post_observation.size | default:'0'}}</p>
                     </div>
 
                     <div class = "observation-context">
-                        <p>Depth</p>
+                        <p>Depth (Where the COTS was sighted):</p>
 
                         <p>{{invalid_post.post_observation.depth | default:'0'}}</p>
                     </div>
 
                     <div class = "observation-context">
-                        <p>Density</p>
+                        <p>Density (COTS per m²):</p>
 
                         <p>{{invalid_post.post_observation.density | default:'0'}}</p>
                     </div>
 
                     <div class = "observation-context">
-                        <p>Weather</p>
+                        <p>Weather (Weather during sighting):</p>
 
                         <p>{{invalid_post.post_observation.weather | default:'None available'}}</p>
                     </div>
+                </div>
 
-                    <h1>POST REMARKS</h1>
+                <div class = "postandfeedread-description">
+                    <h1>Sighting Description</h1>
 
-                    <p>{{invalid_post.remarks | default:'None available'}}</p>
+                    <div class = "description-context">
+                        <p>{{invalid_post.description | default:'None available'}}</p>
+                    </div>
                 </div>
 
                 <div class = "button">
@@ -140,17 +179,17 @@
         {% if pending_post %}
             <div class = "postandfeedread">
                 <div class = "postandfeedread-header">
-                    <div style = "display: flex; align-items: center; justify-content: space-between;">
+                    <div class = "header-context">
                         <img src = "{{pending_post.user.profile_photo.url}}">
 
-                        <div>
-                            <p style="font-weight: 550; font-size: 13px !important;">{{pending_post.user}}</p>
+                        <div class = "context-caption">
+                            <p>{{pending_post.user}}</p>
 
-                            <p style="font-weight: 400; font-size: 13px !important;">{{pending_post.location | default:'None available'}}</p>
+                            <p>{{pending_post.location | default:'None available'}}</p>
                         </div>
                     </div>
 
-                    <p>{{pending_post.capture_date | date:'m/d/y' | default:'None available'}}</p>
+                    <p>{{pending_post.creation_date | date:'m/d/Y' | default:'None available'}}</p>
                 </div>
 
                 <div class = "postandfeedread-gallery">
@@ -160,42 +199,55 @@
                 </div>
 
                 <div class = "postandfeedread-origin">
-                    <p>{{pending_post.location | default:'None available'}}</p>
-                    
-                    <p>{{pending_post.post_status | default:'None available'}}</p>
+                    <h1>Major Details</h1>
+
+                    <div class = "origin-context">
+                        <p>Capture Date:</p>
+
+                        <p>{{pending_post.capture_date | date:'m/d/Y' | default:'None available'}}</p>
+                    </div>
+
+                    <div class = "origin-context">
+                        <p>Post Status:</p>
+
+                        <p>{{pending_post.post_status | default:'None available'}}</p>
+                    </div>
                 </div>
 
-                <p>{{pending_post.description | default:'None available'}}</p>
-
                 <div class = "postandfeedread-observation">
+                    <h1>Observations</h1>
 
                     <div class = "observation-context">
-                        <p>Size</p>
+                        <p>Size (How big were the COTS):</p>
 
                         <p>{{pending_post.post_observation.size | default:'0'}}</p>
                     </div>
 
                     <div class = "observation-context">
-                        <p>Depth</p>
+                        <p>Depth (Where the COTS was sighted):</p>
 
                         <p>{{pending_post.post_observation.depth | default:'0'}}</p>
                     </div>
 
                     <div class = "observation-context">
-                        <p>Density</p>
+                        <p>Density (COTS per m²):</p>
 
                         <p>{{pending_post.post_observation.density | default:'0'}}</p>
                     </div>
 
                     <div class = "observation-context">
-                        <p>Weather</p>
+                        <p>Weather (Weather during sighting):</p>
 
                         <p>{{pending_post.post_observation.weather | default:'None available'}}</p>
                     </div>
+                </div>
 
-                    <h1>POST REMARKS</h1>
+                <div class = "postandfeedread-description">
+                    <h1>Sighting Description</h1>
 
-                    <p>{{pending_post.remarks | default:'None available'}}</p>
+                    <div class = "description-context">
+                        <p>{{pending_post.description | default:'None available'}}</p>
+                    </div>
                 </div>
             </div>
         {% endif %}
@@ -203,17 +255,17 @@
         {% if draft_post %}
             <div class = "postandfeedread">
                 <div class = "postandfeedread-header">
-                    <div style = "display: flex; align-items: center; justify-content: space-between;">
+                    <div class = "header-context">
                         <img src = "{{draft_post.user.profile_photo.url}}">
 
-                        <div>
-                            <p style="font-weight: 550; font-size: 13px !important;">{{draft_post.user}}</p>
+                        <div class = "context-caption">
+                            <p>{{draft_post.user}}</p>
 
-                            <p style="font-weight: 400; font-size: 13px !important;">{{draft_post.location | default:'None available'}}</p>
+                            <p>{{draft_post.location | default:'None available'}}</p>
                         </div>
                     </div>
 
-                    <p>{{draft_post.capture_date | date:'m/d/y' | default:'None available'}}</p>
+                    <p>{{draft_post.creation_date | date:'m/d/Y' | default:'None available'}}</p>
                 </div>
 
                 <div class = "postandfeedread-gallery">
@@ -223,46 +275,61 @@
                 </div>
 
                 <div class = "postandfeedread-origin">
-                    <p>{{draft_post.location | default:'None available'}}</p>
-                    
-                    <p>{{draft_post.post_status | default:'None available'}}</p>
+                    <h1>Major Details</h1>
+
+                    <div class = "origin-context">
+                        <p>Capture Date:</p>
+
+                        <p>{{draft_post.capture_date | date:'m/d/Y' | default:'None available'}}</p>
+                    </div>
+
+                    <div class = "origin-context">
+                        <p>Post Status:</p>
+
+                        <p>{{draft_post.post_status | default:'None available'}}</p>
+                    </div>
                 </div>
 
-                <p>{{draft_post.description | default:'None available'}}</p>
-
                 <div class = "postandfeedread-observation">
+                    <h1>Observations</h1>
 
                     <div class = "observation-context">
-                        <p>Size</p>
+                        <p>Size (How big were the COTS):</p>
 
                         <p>{{draft_post.post_observation.size | default:'0'}}</p>
                     </div>
 
                     <div class = "observation-context">
-                        <p>Depth</p>
+                        <p>Depth (Where the COTS was sighted):</p>
 
                         <p>{{draft_post.post_observation.depth | default:'0'}}</p>
                     </div>
 
                     <div class = "observation-context">
-                        <p>Density</p>
+                        <p>Density (COTS per m²):</p>
 
                         <p>{{draft_post.post_observation.density | default:'0'}}</p>
                     </div>
 
                     <div class = "observation-context">
-                        <p>Weather</p>
+                        <p>Weather (Weather during sighting):</p>
 
                         <p>{{draft_post.post_observation.weather | default:'None available'}}</p>
                     </div>
+                </div>
 
-                    <h1 style="font-size: 15px !important;">Remarks:</h1>
+                <div class = "postandfeedread-description">
+                    <h1>Sighting Description</h1>
 
-                    <p>{{draft_post.remarks | default:'None available'}}</p>
+                    <div class = "description-context">
+                        <p>{{draft_post.description | default:'None available'}}</p>
+                    </div>
                 </div>
 
                 <div class = "button">
-                    <a class = "update-post" href = "{% url 'Contributor Service Report Update' draft_post.id %}">Update</a>
+                    <a class = "delete-post" href = "{% url 'Contributor Service Post Draft Delete' draft_post.id %}">Delete</a>
+
+                    <a class = "update-post" href = "{% url 'Contributor Service Post Draft Update' draft_post.id %}">Update</a>
                     
                     <a class = "send-post" href = "{% url 'Contributor Service Post Draft Send' draft_post.id %}">Send</a>
                 </div>
@@ -292,7 +359,7 @@
                 });
 
             } else{
-                window.location.href = "{% if invalid_post %}{% url 'Contributor Service Post Invalid Delete' invalid_post.id %}{% endif %}";
+                window.location.href = "{% if invalid_post %}{% url 'Contributor Service Post Invalid Delete' invalid_post.id %}{% elif draft_post.id %}{% url 'Contributor Service Post Draft Delete' draft_post.id %}{% endif %}";
             };
         };
     </script>
@@ -309,9 +376,7 @@
                 });
 
             } else{
-                Swal.fire({ title: "Yay!", text: username + ", " + "your information input was sent offline to COTSEye. Kindly visit the current page again if back online.", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: { confirmButton: "success-button", title: "title" } }).then(() => {
-                    window.location.href = "{% if draft_post %}{% url 'Contributor Service Post Draft Send' draft_post.id %}{% endif %}";
-                });
+                window.location.href = "{% if draft_post %}{% url 'Contributor Service Post Draft Send' draft_post.id %}{% endif %}";
             };
         };
     </script>
@@ -354,6 +419,28 @@
                 });
 
             {% else %}
+                document.querySelector(".delete-post").addEventListener("click", (event) => {
+                    if (!navigator.onLine) {
+                        event.preventDefault();
+
+                        const id = "{{draft_post.id}}";
+
+                        const user = "{{request.user.id}}";
+
+                        const transaction = cotseye.transaction("cotseye_schema", "readwrite");
+
+                        const cotseye_schema = transaction.objectStore("cotseye_schema");
+
+                        const post = {
+                            id: parseInt(id),
+
+                            user: parseInt(user)
+                        };
+
+                        cotseye_schema.add(post);
+                    };
+                });
+
                 document.querySelector(".send-post").addEventListener("click", (event) => {
                     if (!navigator.onLine) {
                         event.preventDefault();
@@ -414,13 +501,40 @@
 
                                     const username = "{{request.user.username}}";
 
-                                    Swal.fire({ title: "Yay!", text: username + ", " + "your information input recorded offline was delivered to COTSEye.", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: { confirmButton: "success-button", title: "title" } }).then(() => {
+                                    Swal.fire({ title: "Yay!", text: username + ", " + "your information input deleted offline was delivered to COTSEye.", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: { confirmButton: "success-button", title: "title" } }).then(() => {
                                         window.location.href = "{% url 'Contributor Service Home' %}";
                                     });
                                 };
                             });
 
                         {% else %}
+                            fetch("{% url 'Contributor Service Post Draft Delete Fetch' %}", {
+                                method: "POST",
+
+                                headers: { "Content-Type": "application/json", "X-CSRFToken": token },
+
+                                body: json
+
+                            }).then((event) => {
+                                const request = indexedDB.open("cotseye", 1);
+
+                                request.onsuccess = (event) => {
+                                    const cotseye = event.target.result;
+
+                                    const transaction = cotseye.transaction("cotseye_schema", "readwrite");
+
+                                    const cotseye_schema = transaction.objectStore("cotseye_schema");
+
+                                    cotseye_schema.clear();
+
+                                    const username = "{{request.user.username}}";
+
+                                    Swal.fire({ title: "Yay!", text: username + ", " + "your information input deleted offline was delivered to COTSEye.", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: { confirmButton: "success-button", title: "title" } }).then(() => {
+                                        window.location.href = "{% url 'Contributor Service Home' %}";
+                                    });
+                                };
+                            });
+
                             fetch("{% url 'Contributor Service Post Draft Send Fetch' %}", {
                                 method: "POST",
 

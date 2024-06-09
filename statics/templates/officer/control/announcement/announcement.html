@@ -3,6 +3,7 @@
 
 {% block content %}
     <style>
+        
         .dropdown {
             display: none;
             position: absolute;
@@ -53,16 +54,16 @@
                             <input style="font-size: 13px !important;" type="text" id="searchBar" class="form-control" placeholder="Search by title...">
                         </div>
 
-                        <div class="mb-3">
+                        <!-- <div class="mb-3">
                             <label style="font-size: 15px; color: rgb(28, 186, 234); margin-top: 0px !important; margin-bottom: 0px !important;" for="userFilter" class="form-label">User</label>
                             <select id="userFilter" class="form-control select2">
                                 <option value="">Filter by user</option>
                             </select>
-                        </div>
+                        </div> -->
 
                         <select id="municipalityFilter" class="form-select form-select-sm mb-3 select2" onchange="updateBarangayOptions()">
                             <option value="">Municipality</option>
-                            {% for location in locations %}
+                            {% for location in municipalities %}
                                 <option value="{{ location.municipality }}">{{ location.municipality }}</option>
                             {% endfor %}
                         </select>
@@ -104,10 +105,11 @@
                     <table class="table table-hover">
                         <thead class="thead-dark">
                             <tr>
+                                <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Event Date</th>
                                 <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Title</th>
-                                <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Date</th>
-                                <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Location</th>
-                                <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Posted By</th>
+                                <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Municipality</th>
+                                <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Barangay</th>
+                                <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Hosting Agency</th>
                                 <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col"></th>
                             </tr>
                         </thead>
@@ -132,7 +134,7 @@
         document.addEventListener("DOMContentLoaded", function() {
             const announcements = [
                 {% for announcement in announcements %}
-                    {id: {{ announcement.id }}, title: "{{ announcement.title }}", date: "{{ announcement.release_date|date:'Y-m-d' }}", location: "{{ announcement.location }}", user: "{{ announcement.user }}"},
+                    {id: {{ announcement.id }}, title: "{{ announcement.title }}", date: "{{ announcement.release_date|date:'Y-m-d' }}", location: "{{ announcement.location }}", user: "{{ announcement.user }}", barangay: "{{ announcement.location.barangay}}", municipality: "{{ announcement.location.municipality }}", hosting_agency: "{{ announcement.hosting_agency }}"},
                 {% endfor %}
             ];
 
@@ -141,14 +143,7 @@
             let filteredAnnouncements = [...announcements];
 
             const users = [...new Set(announcements.map(a => a.user))];
-            const userFilter = document.getElementById("userFilter");
-
-            users.forEach(user => {
-                const option = document.createElement("option");
-                option.value = user;
-                option.text = user;
-                userFilter.add(option);
-            });
+           
 
             function displayAnnouncements(page) {
                 const startIndex = (page - 1) * itemsPerPage;
@@ -160,32 +155,46 @@
 
                 paginatedAnnouncements.forEach((announcement, index) => {
                     let row = table.insertRow();
+                    let dateCell = row.insertCell(0);
+                    const date = new Date( announcement.date);
+                    // Format the date to mm-dd-yy
+                    const formattedDate = ('0' + (date.getMonth() + 1)).slice(-2) + '/' +
+                                        ('0' + date.getDate()).slice(-2) + '/' +
+                                        date.getFullYear().toString().slice(-4);
+
+                    dateCell.innerText = formattedDate;
                     
-                    let titleCell = row.insertCell(0);
+                    let titleCell = row.insertCell(1);
                     titleCell.innerText = announcement.title;
                     titleCell.addEventListener('click', function() {
                         window.location.href = "{% url 'Officer Control Announcement' 0 %}".replace('0', announcement.id);
                     });
 
-                    let dateCell = row.insertCell(1);
-                    dateCell.innerText = announcement.date;
+                 
+
                     dateCell.addEventListener('click', function() {
                         window.location.href = "{% url 'Officer Control Announcement' 0 %}".replace('0', announcement.id);
                     });
 
-                    let locationCell = row.insertCell(2);
-                    locationCell.innerText = announcement.location;
-                    locationCell.addEventListener('click', function() {
-                        window.location.href = "{% url 'Officer Control Announcement' 0 %}".replace('0', announcement.id);
+                    let municipalityCell = row.insertCell(2);
+                    municipalityCell.innerText = announcement.municipality;
+                    municipalityCell.addEventListener('click', function() {
+                        window.location.href = "{% url 'Officer Control Intervention Detail' 0 %}".replace('0', announcement.id);
                     });
 
-                    let userCell = row.insertCell(3);
-                    userCell.innerText = announcement.user;
+                    let barangayCell = row.insertCell(3);
+                    barangayCell.innerText = announcement.barangay;
+                    barangayCell.addEventListener('click', function() {
+                        window.location.href = "{% url 'Officer Control Intervention Detail' 0 %}".replace('0', announcement.id);
+                    });
+
+                    let userCell = row.insertCell(4);
+                    userCell.innerText = announcement.hosting_agency;
                     userCell.addEventListener('click', function() {
                         window.location.href = "{% url 'Officer Control Announcement' 0 %}".replace('0', announcement.id);
                     });
 
-                    let actionsCell = row.insertCell(4);
+                    let actionsCell = row.insertCell(5);
                     actionsCell.innerHTML = `
                         <div class="button-container">
                             <a onclick="showDropdown(event)"><img height="15px" style="margin-right: 13px" src="{% static 'assets/3dots.png' %}" class="drop"></a>
@@ -266,7 +275,6 @@
 
             window.filterAnnouncements = function(){
                 const searchQuery = document.getElementById("searchBar").value.toLowerCase();
-                const userFilterValue = document.getElementById("userFilter").value;
                 const municipalityFilterValue = document.getElementById("municipalityFilter").value;
                 const barangayFilterValue = document.getElementById("barangayFilter").value;
                 const dateFrom = document.getElementById("dateFrom").value;
@@ -275,12 +283,11 @@
 
                 filteredAnnouncements = announcements.filter(announcement => {
                     const matchesSearch = announcement.title.toLowerCase().includes(searchQuery);
-                    const matchesUser = userFilterValue ? announcement.user === userFilterValue : true;
                     const matchesMunicipality = municipalityFilterValue ? announcement.location.includes(municipalityFilterValue) : true;
                     const matchesBarangay = barangayFilterValue ? announcement.location.includes(barangayFilterValue) : true;
                     const matchesDateFrom = dateFrom ? new Date(announcement.date) >= new Date(dateFrom) : true;
                     const matchesDateTo = dateTo ? new Date(announcement.date) <= new Date(dateTo) : true;
-                    return matchesSearch && matchesUser && matchesMunicipality && matchesBarangay && matchesDateFrom && matchesDateTo;
+                    return matchesSearch  && matchesMunicipality && matchesBarangay && matchesDateFrom && matchesDateTo;
                 });
 
                 if (orderBy === "latest") {
@@ -316,14 +323,7 @@
             };
 
             window.resetFilter = function(){
-                document.getElementById("searchBar").value = "";
-                document.getElementById("userFilter").value = "";
-                document.getElementById("municipalityFilter").value = "";
-                document.getElementById("barangayFilter").innerHTML = "<option value=''>Select Barangay</option>";
-                document.getElementById("dateFrom").value = "";
-                document.getElementById("dateTo").value = "";
-                document.getElementById("orderBy").value = "latest";
-                filteredAnnouncements = [...announcements];
+                window.location.reload();
                 currentPage = 1;
                 displayAnnouncements(currentPage);
             };

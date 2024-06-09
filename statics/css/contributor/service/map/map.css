@@ -1,69 +1,88 @@
 .map-body{
     position: relative;
-    padding-left: 10px;
-    padding-right: 10px;
-    width: 100vw;
+    width: 100%;
     height: 100%;
-    color: #000000;
 }
 
-.map-body .map-section{
-    display: flex;                   
-    align-items: center; 
-    justify-content: center;          
-    flex-direction: column;
-    width: 100%;                     
-    text-align: center;                                   
-}
-
-.map-body .map-section h1{
-    text-align: center;     
-    font-weight: 700;       
-    font-size: 22px;        
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .map-body{
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
 }
 
 .map-body .map-map{ 
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
     width: 100%;
-    height: 75vh;
+    height: 100vh;
 }
 
 @media screen and (min-width: 320px) and (max-width: 935px){
     .map-body .map-map{ 
-        height: 80vh;
+        height: 85vh;
     }
 }
 
 .map-body .map-map .map{
-    margin-top: 10px;
-    margin-bottom: 10px;
     width: 100%;
-    height: 75vh;
+    height: 100vh;
     border-radius: 5px; 
     z-index: 1;
 }
 
 @media screen and (min-width: 320px) and (max-width: 935px){
     .map-body .map-map .map{
-        height: 80vh;
+        height: 85vh;
     }
 }
 
+.map-body .map-map .map .pin{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid #003755;
+}
+
 .map-body .map-map .map .leaflet-left{
-    margin-left: 10px !important;
+    margin-left: 30px !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .map-body .map-map .map .leaflet-left{
+        margin-left: 10px !important;
+    }
 }
 
 .map-body .map-map .map .leaflet-right{
-    margin-right: 10px !important;
+    margin-right: 30px !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .map-body .map-map .map .leaflet-right{
+        margin-right: 10px !important;
+    }
 }
 
 .map-body .map-map .map .leaflet-top{
-    margin-top: 10px !important;
+    margin-top: 15px !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .map-body .map-map .map .leaflet-top{
+        margin-top: 5px !important;
+    }
 }
 
 .map-body .map-map .map .leaflet-bottom{
-    margin-bottom: 10px !important;
+    margin-bottom: 15px !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .map-body .map-map .map .leaflet-bottom{
+        margin-bottom: 5px !important;
+    }
 }
 
 .map-body .map-map .map .leaflet-bar{
@@ -99,6 +118,16 @@
     color: #002C44 !important;
 }
 
+.map-body .map-map .map .leaflet-control-zoom a.leaflet-control-zoom-in:focus{
+    background-color: #B2BEB5 !important;
+    color: #002C44 !important;
+}
+
+.map-body .map-map .map .leaflet-control-zoom a.leaflet-control-zoom-in:active{
+    background-color: #B2BEB5 !important;
+    color: #002C44 !important;
+}
+
 .map-body .map-map .map .leaflet-control-zoom a.leaflet-control-zoom-in.leaflet-disabled{
     background-color: #B2BEB5 !important;
     color: #002C44 !important;
@@ -123,6 +152,16 @@
     color: #B2BEB5 !important;
 }
 
+.map-body .map-map .map .leaflet-control-zoom a.leaflet-control-zoom-out:focus{
+    background-color: #002C44 !important;
+    color: #B2BEB5 !important;
+}
+
+.map-body .map-map .map .leaflet-control-zoom a.leaflet-control-zoom-out:active{
+    background-color: #002C44 !important;
+    color: #B2BEB5 !important;
+}
+
 .map-body .map-map .map .leaflet-control-zoom a.leaflet-control-zoom-out.leaflet-disabled{
     background-color: #002C44 !important;
     color: #B2BEB5 !important;
@@ -134,114 +173,59 @@
 }
 
 .map-body .map-map .map .legend{
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     width: 100%;
     border-radius: 5px;
     background-color: #FFFFFF;
 }
 
-@media screen and (min-width: 369px) and (max-width: 445px){
+@media screen and (min-width: 320px) and (max-width: 775px){
     .map-body .map-map .map .legend{
         padding-left: 10px;
         padding-right: 10px;
-        padding-top: 10px;
-        padding-bottom: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .map-body .map-map .map .legend{
-        padding-left: 10px;
-        padding-right: 10px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .map-body .map-map .map .legend{
-        padding-left: 10px;
-        padding-right: 10px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
-}
-
-.map-body .map-map .map .legend .popup-header p{
-    margin-top: 0px !important;
-    margin-bottom: 0px !important;
-    font-family: "Montserrat";
-    font-weight: 400;
-    font-size: 22px !important;
-    color: #000000;
-    text-align: center;
+.map-body .map-map .map .legend .popup-header{
+    text-align: center !important;
     cursor: default;
 }
 
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .map-body .map-map .map .legend .popup-header p{
-        font-family: "Montserrat";
-        font-weight: 400;
-        font-size: 14px !important;
-        color: #000000;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .map-body .map-map .map .legend .popup-header p{
-        font-family: "Montserrat";
-        font-weight: 400;
-        font-size: 12px !important;
-        color: #000000;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .map-body .map-map .map .legend .popup-header p{
-        font-family: "Montserrat";
-        font-weight: 400;
-        font-size: 12px !important;
-        color: #000000;
-    }
-}
-
-.map-body .map-map .map .legend .popup-header p a{
+.map-body .map-map .map .legend .popup-header a{
     margin-top: 0px !important;
     margin-bottom: 0px !important;
     font-family: "Montserrat";
     font-weight: 700;
-    font-size: 22px !important;
-    color: #000000;
-    cursor: default;
+    font-size: 24px !important;
+    color: #003755;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .map-body .map-map .map .legend .popup-header a{
+        font-size: 22px !important;
+    }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .map-body .map-map .map .legend .popup-header p a{
-        font-family: "Montserrat";
-        font-weight: 700;
-        font-size: 14px !important;
-        color: #000000;
+    .map-body .map-map .map .legend .popup-header a{
+        font-size: 20px !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .map-body .map-map .map .legend .popup-header p a{
-        font-family: "Montserrat";
-        font-weight: 700;
-        font-size: 12px !important;
-        color: #000000;
+    .map-body .map-map .map .legend .popup-header a{
+        font-size: 18px !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .map-body .map-map .map .legend .popup-header p a{
-        font-family: "Montserrat";
-        font-weight: 700;
-        font-size: 12px !important;
-        color: #000000;
+    .map-body .map-map .map .legend .popup-header a{
+        font-size: 16px !important;
     }
 }
 
@@ -250,7 +234,13 @@
     grid-template-columns: auto auto;
     align-items: center;
     justify-content: flex-start;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .map-body .map-map .map .legend .popup-statistics{
+        margin-bottom: 5px;
+    }
 }
 
 .map-body .map-map .map .legend .popup-statistics:last-child{
@@ -259,131 +249,174 @@
 
 .map-body .map-map .map .legend .popup-statistics i{
     margin-right: 10px;
-    width: 30px; 
-    height: 30px;
+    width: 20px; 
+    height: 20px;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .map-body .map-map .map .legend .popup-statistics i{
+        width: 18px; 
+        height: 18px;
+    }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .map-body .map-map .map .legend .popup-statistics i{
-        width: 15px; 
-        height: 15px;
+        width: 16px; 
+        height: 16px;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .map-body .map-map .map .legend .popup-statistics i{
-        width: 15px; 
-        height: 15px;
+        width: 14px; 
+        height: 14px;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .map-body .map-map .map .legend .popup-statistics i{
-        width: 15px; 
-        height: 15px;
+        width: 12px; 
+        height: 12px;
     }
 }
 
-.map-body .map-map .map .legend .popup-statistics p{
-    margin-top: 0px !important;
-    margin-bottom: 0px !important;
-    font-family: "Montserrat";
-    font-weight: 400;
-    font-size: 22px !important;
-    color: #000000;
-    cursor: default;
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .map-body .map-map .map .legend .popup-statistics p{
-        font-family: "Montserrat";
-        font-weight: 400;
-        font-size: 16px !important;
-        color: #000000;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .map-body .map-map .map .legend .popup-statistics p{
-        font-family: "Montserrat";
-        font-weight: 400;
-        font-size: 14px !important;
-        color: #000000;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .map-body .map-map .map .legend .popup-statistics p{
-        font-family: "Montserrat";
-        font-weight: 400;
-        font-size: 12px !important;
-        color: #000000;
-    }
-}
-
-.map-body .map-map .map .legend .popup-statistics p a{
-    display: inline-block !important;
+.map-body .map-map .map .legend .popup-statistics a{
     margin-top: 0px !important;
     margin-bottom: 0px !important;
     font-family: "Montserrat";
     font-weight: 700;
-    font-size: 22px !important;
-    color: #000000;
+    font-size: 20px !important;
+    color: #003755;
     cursor: default;
 }
 
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .map-body .map-map .map .legend .popup-statistics a{
+        font-size: 18px !important;
+    }
+}
+
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .map-body .map-map .map .legend .popup-statistics p a{
-        font-family: "Montserrat";
-        font-weight: 700;
+    .map-body .map-map .map .legend .popup-statistics a{
         font-size: 16px !important;
-        color: #000000;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .map-body .map-map .map .legend .popup-statistics p a{
-        font-family: "Montserrat";
-        font-weight: 700;
+    .map-body .map-map .map .legend .popup-statistics a{
         font-size: 14px !important;
-        color: #000000;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .map-body .map-map .map .legend .popup-statistics p a{
-        font-family: "Montserrat";
-        font-weight: 700;
+    .map-body .map-map .map .legend .popup-statistics a{
         font-size: 12px !important;
-        color: #000000;
+    }
+}
+
+.map-body .map-map .map .legend .popup-statistics p{
+    display: inline-block !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #003755;
+    cursor: default;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .map-body .map-map .map .legend .popup-statistics p{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .map-body .map-map .map .legend .popup-statistics p{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .map-body .map-map .map .legend .popup-statistics p{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .map-body .map-map .map .legend .popup-statistics p{
+        font-size: 12px !important;
+    }
+}
+
+.map-body .map-map .map .legend .popup-alert p{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #003755;
+    text-align: right;
+    cursor: default;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .map-body .map-map .map .legend .popup-alert p{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .map-body .map-map .map .legend .popup-alert p{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .map-body .map-map .map .legend .popup-alert p{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .map-body .map-map .map .legend .popup-alert p{
+        font-size: 12px !important;
     }
 }
 
 .map-body .map-map .map .leaflet-control-attribution{
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     width: 100%;
     border-radius: 5px;
     font-family: "Montserrat";
     font-weight: 400;
-    font-size: 22px !important;
+    font-size: 24px !important;
     background: #FFFFFF !important;
-    color: #000000;
+    color: #003755;
     cursor: default;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .map-body .map-map .map .leaflet-control-attribution{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        font-size: 22px !important;
+    }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .map-body .map-map .map .leaflet-control-attribution{
         padding-left: 10px;
         padding-right: 10px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        font-family: "Montserrat";
-        font-weight: 400;
-        font-size: 16px !important;
-        color: #000000;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        font-size: 20px !important;
     }
 }
 
@@ -391,12 +424,9 @@
     .map-body .map-map .map .leaflet-control-attribution{
         padding-left: 10px;
         padding-right: 10px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        font-family: "Montserrat";
-        font-weight: 400;
-        font-size: 14px !important;
-        color: #000000;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        font-size: 18px !important;
     }
 }
 
@@ -404,12 +434,9 @@
     .map-body .map-map .map .leaflet-control-attribution{
         padding-left: 10px;
         padding-right: 10px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        font-family: "Montserrat";
-        font-weight: 400;
-        font-size: 12px !important;
-        color: #000000;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        font-size: 16px !important;
     }
 }
 
@@ -418,35 +445,27 @@
     margin-bottom: 0px !important;
     font-family: "Montserrat";
     font-weight: 700;
-    font-size: 22px !important;
-    color: #000000;
+    font-size: 24px !important;
+    color: #003755;
+    text-decoration: none !important;
     cursor: default;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .map-body .map-map .map .leaflet-control-attribution a{
-        font-family: "Montserrat";
-        font-weight: 700;
-        font-size: 16px !important;
-        color: #000000;
+        font-size: 22px !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .map-body .map-map .map .leaflet-control-attribution a{
-        font-family: "Montserrat";
-        font-weight: 700;
-        font-size: 14px !important;
-        color: #000000;
+        font-size: 20px !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .map-body .map-map .map .leaflet-control-attribution a{
-        font-family: "Montserrat";
-        font-weight: 700;
-        font-size: 12px !important;
-        color: #000000;
+        font-size: 18px !important;
     }
 }
 
@@ -459,35 +478,32 @@
     margin-bottom: 0px !important;
     font-family: "Montserrat";
     font-weight: 400;
-    font-size: 22px !important;
-    color: #000000;
+    font-size: 24px !important;
+    color: #003755;
     cursor: default;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .map-body .map-map .map .leaflet-control-attribution span{
+        font-size: 22px !important;
+    }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .map-body .map-map .map .leaflet-control-attribution span{
-        font-family: "Montserrat";
-        font-weight: 400;
-        font-size: 16px !important;
-        color: #000000;
+        font-size: 20px !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .map-body .map-map .map .leaflet-control-attribution span{
-        font-family: "Montserrat";
-        font-weight: 400;
-        font-size: 14px !important;
-        color: #000000;
+        font-size: 18px !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .map-body .map-map .map .leaflet-control-attribution span{
-        font-family: "Montserrat";
-        font-weight: 400;
-        font-size: 12px !important;
-        color: #000000;
+        font-size: 16px !important;
     }
 }
 
@@ -496,18 +512,53 @@
     background: #003755 !important;
 }
 
+.map-body .map-map .map .leaflet-control-layers label{
+    margin-bottom: 0px !important;
+}
+
 .map-body .map-map .map .leaflet-control-layers span{
     display: flex !important;
     align-items: center;
     justify-content: flex-start;
+    font-family: "Montserrat" !important;
+    font-weight: 400 !important;
+    font-size: 24px !important;
 }
 
-.map-body .map-map .map .leaflet-touch .leaflet-control-layers-toggle{
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .map-body .map-map .map .leaflet-control-layers span{
+        font-size: 22px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .map-body .map-map .map .leaflet-control-layers span{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .map-body .map-map .map .leaflet-control-layers span{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .map-body .map-map .map .leaflet-control-layers span{
+        font-size: 16px !important;
+    }
+}
+
+.map-body .map-map .map a.leaflet-control-layers-toggle{
+    display: none !important;
+    width: 0px !important;
+    height: 0px !important;
     border-radius: 5px !important;
     background-color: #003755 !important;
 }
 
 .map-body .map-map .map .leaflet-control-layers-expanded{
+    display: block !important;
     padding-left: 0px !important;
     padding-right: 0px !important;
     padding-top: 0px !important;
@@ -517,44 +568,55 @@
 }
 
 .map-body .map-map .map .leaflet-control-layers-list{
-    padding-left: 10px !important;
-    padding-right: 10px !important;
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
+    display: block !important;
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
     font-family: "Montserrat" !important;
-    font-weight: 200 !important;
-    font-size: 22px !important;
+    font-weight: 400 !important;
+    font-size: 24px !important;
     color: #FFFFFF !important;
     text-align: justify;
 }
 
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .map-body .map-map .map .leaflet-control-layers-list{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        font-size: 22px !important;
+    }
+}
+
 @media screen and (min-width: 369px) and (max-width: 445px){
     .map-body .map-map .map .leaflet-control-layers-list{
-        font-family: "Montserrat";
-        font-weight: 200;
-        font-size: 16px !important;
-        color: #FFFFFF !important;
-        text-align: justify;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        font-size: 20px !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .map-body .map-map .map .leaflet-control-layers-list{
-        font-family: "Montserrat";
-        font-weight: 200;
-        font-size: 14px !important;
-        color: #FFFFFF !important;
-        text-align: justify;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        font-size: 18px !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .map-body .map-map .map .leaflet-control-layers-list{
-        font-family: "Montserrat";
-        font-weight: 200;
-        font-size: 12px !important;
-        color: #FFFFFF !important;
-        text-align: justify;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        font-size: 16px !important;
     }
 }
 
@@ -566,7 +628,7 @@
     appearance: none !important;
     outline: none !important;
     border-radius: 5px;
-    border: 1px solid #B2BEB5;
+    border: 1px solid #003755;
     background-color: #FFFFFF;
     cursor: pointer !important;
 }
@@ -586,8 +648,22 @@
 .map-body .map-map .map .leaflet-control-layers-list input[type = "checkbox"]{
     margin-right: 10px !important;
     margin-top: 0px !important;
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .map-body .map-map .map .leaflet-control-layers-list input[type = "checkbox"]{
+        width: 22px;
+        height: 22px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .map-body .map-map .map .leaflet-control-layers-list input[type = "checkbox"]{
+        width: 20px;
+        height: 20px;
+    }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
@@ -666,10 +742,10 @@
 }
 
 .map-body .map-map .map .popup{
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     width: 326px;
     border-radius: 5px !important;
     background-color: #FFFFFF;
@@ -678,22 +754,31 @@
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .map-body .map-map .map .popup{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
         width: 249px !important;
-        word-break: break-word !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .map-body .map-map .map .popup{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
         width: 229px !important;
-        word-break: break-word !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .map-body .map-map .map .popup{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
         width: 200px !important;
-        word-break: break-word !important;
     }
 }
 
@@ -704,8 +789,33 @@
 }
 
 .map-body .map-map .map .popup .popup-header i.fa-solid.fa-circle-exclamation{
-    font-size: 30px !important;
+    font-size: 24px;
     color: #003755;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .map-body .map-map .map .popup .popup-header i.fa-solid.fa-circle-exclamation{
+        font-size: 22px !important;
+
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .map-body .map-map .map .popup .popup-header i.fa-solid.fa-circle-exclamation{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .map-body .map-map .map .popup .popup-header i.fa-solid.fa-circle-exclamation{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .map-body .map-map .map .popup .popup-header i.fa-solid.fa-circle-exclamation{
+        font-size: 16px !important;
+    }
 }
 
 .leaflet-popup-close-button{
@@ -713,7 +823,7 @@
 }
 
 .map-body .map-map .map .popup .popup-header .popup-back{
-    font-size: 30px !important;
+    font-size: 24px !important;
     color: #003755;
     cursor: pointer;
 }
@@ -733,13 +843,70 @@
     cursor: pointer;
 }
 
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .map-body .map-map .map .popup .popup-header .popup-back{
+        font-size: 22px !important;
+
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .map-body .map-map .map .popup .popup-header .popup-back{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .map-body .map-map .map .popup .popup-header .popup-back{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .map-body .map-map .map .popup .popup-header .popup-back{
+        font-size: 16px !important;
+    }
+}
+
 .popup .popup-place{
     display: grid;
-    gap: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    gap: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     width: 100%;
     background-color: #FFFFFF;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .popup .popup-place{
+        gap: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .popup .popup-place{
+        gap: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .popup .popup-place{
+        gap: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .popup .popup-place{
+        gap: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
 }
 
 .map-body .map-map .map .popup .popup-place p{
@@ -747,44 +914,32 @@
     margin-bottom: 0px !important;
     font-family: "Montserrat";
     font-weight: 400;
-    font-size: 22px !important;
-    color: #000000;
+    font-size: 24px !important;
+    color: #003755;
     cursor: default;
 }
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .map-body .map-map .map .popup .popup-place p{
-        font-family: "Montserrat";
-        font-weight: 400;
-        font-size: 20px !important;
-        color: #000000;
+        font-size: 22px !important;
     }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .map-body .map-map .map .popup .popup-place p{
-        font-family: "Montserrat";
-        font-weight: 400;
-        font-size: 18px !important;
-        color: #000000;
+        font-size: 20px !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .map-body .map-map .map .popup .popup-place p{
-        font-family: "Montserrat";
-        font-weight: 400;
-        font-size: 16px !important;
-        color: #000000;
+        font-size: 18px !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .map-body .map-map .map .popup .popup-place p{
-        font-family: "Montserrat";
-        font-weight: 400;
-        font-size: 14px !important;
-        color: #000000;
+        font-size: 16px !important;
     }
 }
 
@@ -793,48 +948,54 @@
     margin-bottom: 0px !important;
     font-family: "Montserrat";
     font-weight: 700;
-    font-size: 22px !important;
-    color: #000000;
+    font-size: 24px !important;
+    color: #003755;
     cursor: default;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .map-body .map-map .map .popup .popup-place p a{
+        font-size: 22px !important;
+    }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .map-body .map-map .map .popup .popup-place p a{
-        font-family: "Montserrat";
-        font-weight: 700;
-        font-size: 16px !important;
-        color: #000000;
+        font-size: 20px !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .map-body .map-map .map .popup .popup-place p a{
-        font-family: "Montserrat";
-        font-weight: 700;
-        font-size: 14px !important;
-        color: #000000;
+        font-size: 18px !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .map-body .map-map .map .popup .popup-place p a{
-        font-family: "Montserrat";
-        font-weight: 700;
-        font-size: 12px !important;
-        color: #000000;
+        font-size: 16px !important;
     }
 }
 
 .map-body .map-map .map .popup .popup-statistics{
-    margin-bottom: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
     display: flex;
     align-items: flex-start;        
     flex-direction: column;
     gap: 15px;
-    border-top: 1px solid #B2BEB5;
-    border-bottom: 1px solid #B2BEB5;
+    margin-bottom: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-top: 1px solid #003755;
+    border-bottom: 1px solid #003755;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .map-body .map-map .map .popup .popup-statistics{
+        gap: 5px;
+        margin-bottom: 5px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
 }
 
 .map-body .map-map .map .popup .popup-statistics p{
@@ -842,35 +1003,32 @@
     margin-bottom: 0px !important;
     font-family: "Montserrat";
     font-weight: 400;
-    font-size: 22px !important;
-    color: #000000;
+    font-size: 20px !important;
+    color: #003755;
     cursor: default;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .map-body .map-map .map .popup .popup-statistics p{
+        font-size: 18px !important;
+    }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .map-body .map-map .map .popup .popup-statistics p{
-        font-family: "Montserrat";
-        font-weight: 400;
         font-size: 16px !important;
-        color: #000000;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .map-body .map-map .map .popup .popup-statistics p{
-        font-family: "Montserrat";
-        font-weight: 400;
         font-size: 14px !important;
-        color: #000000;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .map-body .map-map .map .popup .popup-statistics p{
-        font-family: "Montserrat";
-        font-weight: 400;
         font-size: 12px !important;
-        color: #000000;
     }
 }
 
@@ -879,54 +1037,87 @@
     margin-bottom: 0px !important;
     font-family: "Montserrat";
     font-weight: 700;
-    font-size: 22px !important;
-    color: #000000;
+    font-size: 20px !important;
+    color: #003755;
     cursor: default;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .map-body .map-map .map .popup .popup-statistics p a{
+        font-size: 18px !important;
+    }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .map-body .map-map .map .popup .popup-statistics p a{
-        font-family: "Montserrat";
-        font-weight: 700;
         font-size: 16px !important;
-        color: #000000;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .map-body .map-map .map .popup .popup-statistics p a{
-        font-family: "Montserrat";
-        font-weight: 700;
         font-size: 14px !important;
-        color: #000000;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .map-body .map-map .map .popup .popup-statistics p a{
-        font-family: "Montserrat";
-        font-weight: 700;
         font-size: 12px !important;
-        color: #000000;
     }
 }
 
 .map-body .map-map .map .popup .popup-header img{
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .map-body .map-map .map .popup .popup-header img{
+        width: 22px;
+        height: 22px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .map-body .map-map .map .popup .popup-header img{
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .map-body .map-map .map .popup .popup-header img{
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .map-body .map-map .map .popup .popup-header img{
+        width: 16px;
+        height: 16px;
+    }
 }
 
 .map-body .map-map .map .popup .popup-username{
     display: grid;
-    gap: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    gap: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     width: 100%;
     background-color: #FFFFFF;
 }
 
-.map-body .map-map .map .popup .popup-username p{
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .map-body .map-map .map .popup .popup-username{
+        gap: 5px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+.map-body .map-map .map .popup .popup-username a{
     margin-left: 10px !important;
     margin-right: 10px !important;
     margin-top: 0px !important;
@@ -935,85 +1126,54 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     font-family: "Montserrat";
-    font-weight: 400;
-    font-size: 22px !important;
-    color: #000000;
-    cursor: default;
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .map-body .map-map .map .popup .popup-username p{
-        font-family: "Montserrat";
-        font-weight: 400;
-        font-size: 16px !important;
-        color: #000000;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .map-body .map-map .map .popup .popup-username p{
-        font-family: "Montserrat";
-        font-weight: 400;
-        font-size: 14px !important;
-        color: #003755;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .map-body .map-map .map .popup .popup-username p{
-        font-family: "Montserrat";
-        font-weight: 400;
-        font-size: 12px !important;
-        color: #000000;
-    }
-}
-
-.map-body .map-map .map .popup .popup-username p a{
-    margin-top: 0px !important;
-    margin-bottom: 0px !important;
-    font-family: "Montserrat";
     font-weight: 700;
-    font-size: 22px !important;
-    color: #000000;
+    font-size: 24px !important;
+    color: #003755;
     cursor: default;
 }
 
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .map-body .map-map .map .popup .popup-username a{
+        font-size: 22px !important;
+    }
+}
+
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .map-body .map-map .map .popup .popup-username p a{
-        font-family: "Montserrat";
-        font-weight: 700;
-        font-size: 16px !important;
-        color: #000000;
+    .map-body .map-map .map .popup .popup-username a{
+        font-size: 20px !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .map-body .map-map .map .popup .popup-username p a{
-        font-family: "Montserrat";
-        font-weight: 700;
-        font-size: 14px !important;
-        color: #000000;
+    .map-body .map-map .map .popup .popup-username a{
+        font-size: 18px !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .map-body .map-map .map .popup .popup-username p a{
-        font-family: "Montserrat";
-        font-weight: 700;
-        font-size: 12px !important;
-        color: #000000;
+    .map-body .map-map .map .popup .popup-username a{
+        font-size: 16px !important;
     }
 }
 
 .map-body .map-map .map .popup .popup-post{
     position: relative;
     display: grid;
-    gap: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-top: 1px solid #B2BEB5;
-    border-bottom: 1px solid #B2BEB5;
+    gap: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-top: 1px solid #003755;
+    border-bottom: 1px solid #003755;
     background-color: #FFFFFF;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .map-body .map-map .map .popup .popup-post{
+        gap: 5px;
+        margin-bottom: 5px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
 }
 
 .map-body .map-map .map .popup .popup-post .post-gallery{
@@ -1037,45 +1197,50 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .map-body .map-map .map .popup .popup-post .post-gallery .post-context{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
 .map-body .map-map .map .popup .popup-post .post-gallery .post-context p{
     margin-top: 0px;
     margin-bottom: 0px;
     font-family: "Montserrat";
     font-weight: 400;
-    font-size: 22px !important;
+    font-size: 20px !important;
     color: #FFFFFF;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .map-body .map-map .map .popup .popup-post .post-gallery .post-context p{
+        font-size: 18px !important;
+    }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .map-body .map-map .map .popup .popup-post .post-gallery .post-context p{
-        font-family: "Montserrat";
-        font-weight: 400;
         font-size: 16px !important;
-        color: #FFFFFF;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .map-body .map-map .map .popup .popup-post .post-gallery .post-context p{
-        font-family: "Montserrat";
-        font-weight: 400;
         font-size: 14px !important;
-        color: #FFFFFF;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .map-body .map-map .map .popup .popup-post .post-gallery .post-context p{
-        font-family: "Montserrat";
-        font-weight: 400;
         font-size: 12px !important;
-        color: #FFFFFF;
     }
 }
 
@@ -1084,40 +1249,37 @@
     margin-bottom: 0px !important;
     font-family: "Montserrat";
     font-weight: 700;
-    font-size: 22px !important;
+    font-size: 20px !important;
     color: #FFFFFF;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .map-body .map-map .map .popup .popup-post .post-gallery .post-context a{
+        font-size: 18px !important;
+    }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .map-body .map-map .map .popup .popup-post .post-gallery .post-context a{
-        font-family: "Montserrat";
-        font-weight: 700;
         font-size: 16px !important;
-        color: #FFFFFF;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .map-body .map-map .map .popup .popup-post .post-gallery .post-context a{
-        font-family: "Montserrat";
-        font-weight: 700;
         font-size: 14px !important;
-        color: #FFFFFF;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .map-body .map-map .map .popup .popup-post .post-gallery .post-context a{
-        font-family: "Montserrat";
-        font-weight: 700;
         font-size: 12px !important;
-        color: #FFFFFF;
     }
 }
 
 .map-body .map-map .map .popup .button{
     margin-left: auto;
-    margin-top: 10px;
+    margin-top: 15px;
     padding-left: 10px !important;
     padding-right: 10px !important;
     padding-top: 5px !important;
@@ -1126,6 +1288,12 @@
     height: fit-content;
     border-radius: 5px;
     background-color: #003755 !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .map-body .map-map .map .popup .popup-post .post-gallery .post-context a{
+        margin-top: 5px;
+    }
 }
 
 .map-body .map-map .map .popup .button:hover{
@@ -1149,49 +1317,35 @@
 .map-body .map-map .map .popup .button a.read-post{
     font-family: "Montserrat";
     font-weight: 400;
-    font-size: 22px;
+    font-size: 20px;
     color: #FFFFFF !important;
     text-decoration: none;
 }
 
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .map-body .map-map .map .popup .button a.read-post{
+        font-size: 18px !important;
+    }
+}
+
 @media screen and (min-width: 369px) and (max-width: 445px){
     .map-body .map-map .map .popup .button a.read-post{
-        font-family: "Montserrat";
-        font-weight: 400;
         font-size: 16px !important;
-        color: #FFFFFF !important;
-        text-decoration: none;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .map-body .map-map .map .popup .button a.read-post{
-        font-family: "Montserrat";
-        font-weight: 400;
         font-size: 14px !important;
-        color: #FFFFFF !important;
-        text-decoration: none;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .map-body .map-map .map .popup .button a.read-post{
-        font-family: "Montserrat";
-        font-weight: 400;
         font-size: 12px !important;
-        color: #FFFFFF !important;
-        text-decoration: none;
     }
 }
 
-.map-body .map-map .map  .leaflet-popup-tip{
+.map-body .map-map .map .leaflet-popup-tip{
     border-radius: 5px !important;
-}
-
-.map-body > h1{
-    padding-top: 10px;
-    padding-bottom: 10px;
-    text-align: center;     
-    font-weight: 700;       
-    font-size: 22px;        
 }

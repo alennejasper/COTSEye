@@ -4,14 +4,14 @@
 {% block content %}
     {% if user %} 
         <div class = "profileupdate-body">
-            <div class = "profileupdate-section">
+            <!-- <div class = "profileupdate-section">
                 <h1>PROFILE UPDATE</h1>
-            </div>
+            </div> -->
 
             <form action = "" class = "profile-form" method = "POST" enctype = "multipart/form-data">
                 {% csrf_token %}
 
-                <div class = "profileupdate-user">
+                <div class = "profileupdate-section">
                     <img class = "profile-photo" src = "{{user.profile_photo.url}}">
 
                     <input type = "file" class = "browse-photo" name = "profile_photo" accept = "image/*">
@@ -21,32 +21,34 @@
                     <p>{{user.account.usertype}}</p>
                 </div>
 
-                <div class = "first-name">
-                    <label for = "first-name">First Name</label>
+                <div class = "profileupdate-details">
+                    <div class = "first-name">
+                        <label for = "first-name">First Name</label>
 
-                    <input type = "text" id = "first-name" value = "{{user.first_name}}" name = "first_name" required>
-                </div> 
+                        <input type = "text" id = "first-name" value = "{{user.first_name}}" name = "first_name" required>
+                    </div> 
 
-                <div class = "last-name">
-                    <label for = "last-name">Last Name</label>
+                    <div class = "last-name">
+                        <label for = "last-name">Last Name</label>
 
-                    <input type = "text" id = "last-name" value = "{{user.last_name}}" name = "last_name" required>
-                </div>
+                        <input type = "text" id = "last-name" value = "{{user.last_name}}" name = "last_name" required>
+                    </div>
 
-                <div class = "email">
-                    <label for = "email">Email</label>
+                    <div class = "email">
+                        <label for = "email">Email</label>
 
-                    <input type = "email" id = "email" value = "{{user.email}}" name = "email" required>
-                </div>
+                        <input type = "email" id = "email" value = "{{user.email}}" name = "email" required>
+                    </div>
 
-                <div class = "phone-number">
-                    <label for = "phone-number">Phone Number</label>
+                    <div class = "phone-number">
+                        <label for = "phone-number">Phone Number</label>
 
-                    <input type = "number" id = "phone-number" value = "{{user.phone_number}}" name = "phone_number" required>
-                </div>
+                        <input type = "number" id = "phone-number" value = "{{user.phone_number}}" name = "phone_number" required>
+                    </div>
 
-                <div class = "button">
-                    <a class = "save-profile" type = "submit">Save</a>
+                    <div class = "button">
+                        <a class = "save-profile" type = "submit">Save</a>
+                    </div>
                 </div>
             </form>
         </div>
@@ -54,13 +56,13 @@
 
     {% if messages %}
         {% for message in messages %}
-            {% if message.tags == "info" %}<script>Swal.fire({title: "Hey!", text: "{{message}}", icon: "warning", iconColor: "#3B5998", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#3B5998"})</script>
+            {% if message.tags == "info" %}<script>Swal.fire({title: "Hey!", text: "{{message}}", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}})</script>
             
-            {% elif message.tags == "success" %}<script>Swal.fire({title: "Yay!", text: "{{message}}", icon: "success", iconColor: "#2ECC71", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#2ECC71"})</script>
+            {% elif message.tags == "success" %}<script>Swal.fire({title: "Yay!", text: "{{message}}", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}})</script>
             
-            {% else %}<script>Swal.fire({title: "Oops!", text: "{{message}}", icon: "error", iconColor: "#E74C3C", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#E74C3C"})</script>
+            {% else %}<script>Swal.fire({title: "Oops!", text: "{{message}}", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}})</script>
             
-            {% endif %}    
+            {% endif %}
         {% endfor %}
     {% endif %}
 
@@ -84,15 +86,15 @@
 
     <script>
         document.querySelector(".save-profile").onclick = function(event){
-            if(!navigator.onLine){
-                const username = "{{request.user.username}}";
-                        
+            const username = "{{request.user.username}}";
+
+            if(!navigator.onLine){                        
                 Swal.fire({title: "Hey!", text: username + ", " + "your information input was recorded offline for COTSEye. Kindly visit the current page again if back online.", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}}).then(() => {
                     location.reload();
                 });
 
             } else{
-                document.querySelector(".profile-form").submit();
+                Swal.fire({title: "Hey!", text: username + ", " + "you sure that you want to save the profile?", icon: "warning", showCancelButton: true, confirmButtonColor: "#003755", cancelButtonColor: "#003755", confirmButtonText: "Yes", cancelButtonText: "No", customClass: {confirmButton: "info-button", cancelButton: "error-button", title: "title"}}).then((result) => {if (result.isConfirmed){document.querySelector(".profile-form").submit();}});
             };
         };
     </script>
@@ -213,6 +215,8 @@
                                 const username = "{{request.user.username}}";
 
                                 Swal.fire({title: "Yay!", text: username + ", " + "your information input recorded offline was delivered to COTSEye.", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}}).then(() => {
+                                    disableOnBeforeUnload();
+
                                     window.location.href = "{% url 'Contributor Service Home' %}";
                                 });
                             };

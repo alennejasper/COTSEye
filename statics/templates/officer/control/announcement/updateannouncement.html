@@ -11,31 +11,26 @@
                 
                 <div class="row">
                     <div class="col-md-8">
+                        <div class="mb-1"><div class="h5">Announcement Details</div></div>
                         <div class="form-group">
                             <label for="announcementTitle">Title</label>
                             {{ form.title }}
                         </div>
                         
                         <div class="form-group">
-                            <label for="announcementDate">Release Date</label>
+                            <label for="announcementDate">Event Date</label>
                             {{ form.release_date }}
                         </div>
                         
-                        <div class="form-group">
-                            <label for="announcementContext">Context</label>
-                            {{ form.context }}
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="announcementUser">User</label>
-                            {{ form.user }}
-                        </div>
+                        <hr>
+                        <div class="mb-1"><div class="h5">Location Details</div></div>
+                       
                         
                         <div class="form-group">
                             <label for="municipalityFilter" class="form-label required">Municipality:</label>
                             <select id="municipalityFilter" class="form-select form-select-sm mb-3 select2" onchange="updateBarangayOptions()">
                                 <option value="{{ announcement.location.municipality }}">{{ announcement.location.municipality }}</option>
-                                {% for location in locations %}
+                                {% for location in municipalities %}
                                     <option value="{{ location.municipality }}">{{ location.municipality }}</option>
                                 {% endfor %}
                             </select>
@@ -46,6 +41,19 @@
                             <select id="barangayFilter" class="form-select form-select-sm mb-3 select2" onchange="setBarangayValue()">
                                 <option value="{{ announcement.location.barangay }}">{{ announcement.location.barangay }}</option>
                             </select>
+                        </div>
+
+                        <hr>
+                        <div class="mb-1"><div class="h5">Other Details</div></div>
+                        <div class="mb-3">
+                            <label for="id_details" class="required form-label">Hosting Agency:</label>
+                            {{ form.hosting_agency }}
+                        </div>
+
+                       
+                        <div class="form-group">
+                            <label for="announcementContext">Context</label>
+                            {{ form.context }}
                         </div>
                         
                         <input type="hidden" id="id_municipality" name="municipality" value="{{ announcement.location.municipality }}">

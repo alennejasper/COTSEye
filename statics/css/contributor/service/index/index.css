@@ -52,154 +52,273 @@ nav.navigation-topbar{
     left: 0;          
     right: 0;
     top: 0;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
     padding-top: 15px;
     padding-bottom: 15px;
     width: 100%;
     background-color: #FFFFFF;
-    border-bottom: 1px solid #B2BEB5;
+    border-bottom: 1px solid #003755;
     z-index: 100;
 }
 
 @media screen and (min-width: 320px) and (max-width: 775px){
     nav.navigation-topbar{
-        position: fixed;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        left: 0;          
-        right: 0;
-        top: 0;
-        padding-left: 15px;
-        padding-right: 15px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        width: 100%;
-        background-color: #FFFFFF;
-        border-bottom: 1px solid #B2BEB5;
-        z-index: 100;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
     }
 }
 
 nav.navigation-topbar > a.header{
     width: fit-content;
-    height: 30px;
+    height: 24px;
     cursor: pointer; 
 }
 
-@media screen and (min-width: 320px) and (max-width: 775px){
+@media screen and (min-width: 446px) and (max-width: 775px){
     nav.navigation-topbar > a.header{
-        height: 20px;
+        height: 22px !important;
+
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    nav.navigation-topbar > a.header{
+        height: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    nav.navigation-topbar > a.header{
+        height: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    nav.navigation-topbar > a.header{
+        height: 16px !important;
     }
 }
 
 nav.navigation-topbar img.header{
+    vertical-align: unset !important;
     width: fit-content;
-    height: 30px;
+    height: 24px;
 }
 
-@media screen and (min-width: 320px) and (max-width: 775px){
+@media screen and (min-width: 446px) and (max-width: 775px){
     nav.navigation-topbar img.header{
-        height: 20px;
+        height: 22px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    nav.navigation-topbar img.header{
+        height: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    nav.navigation-topbar img.header{
+        height: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    nav.navigation-topbar img.header{
+        height: 16px !important;
     }
 }
 
 nav.navigation-topbar .menu{
     display: flex !important;
-    align-items: center;
     justify-content: space-between;
-    gap: 30px;
+    gap: 45px;
 }
 
 @media screen and (min-width: 320px) and (max-width: 775px){
     nav.navigation-topbar .menu{
-        display: flex !important;
-        align-items: center;
-        justify-content: space-between;
-        gap: 15px;
+        gap: 20px;
     }
 }
 
 .notification{
-    height: 30px;
+    height: 24px;
+    cursor: pointer; 
 }
 
-@media screen and (min-width: 320px) and (max-width: 775px){
+@media screen and (min-width: 446px) and (max-width: 775px){
     .notification{
-        height: 20px;
+        height: 22px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .notification{
+        height: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .notification{
+        height: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .notification{
+        height: 16px !important;
     }
 }
 
 .notification i{
-    font-size: 30px;
+    font-size: 24px;
     color: #003755;
 }
 
-@media screen and (min-width: 320px) and (max-width: 775px){
+.notification i:hover{
+    color: #002C44;
+}
+
+.notification i:focus{
+    color: #002C44;
+}
+
+.notification i:active{
+    color: #002C44;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
     .notification i{
-        font-size: 20px;
+        font-size: 22px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .notification i{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .notification i{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .notification i{
+        font-size: 16px !important;
     }
 }
 
 .notification .notification-count{
-    position: absolute;
+    position: fixed;
     padding-left: 5px;
     padding-right: 5px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    max-width: 30px;
+    padding-top: 2.5px;
+    padding-bottom: 2.5px;
+    max-width: 22px;
     border-radius: 50%;
     font-family: "Montserrat";
     font-weight: 400;
-    font-size: 8px;
+    font-size: 10px;
     color: #FFFFFF;
     background-color: #C90016;
     text-align: center;
 }
 
-@media screen and (min-width: 320px) and (max-width: 775px){
+@media screen and (min-width: 446px) and (max-width: 775px){
     .notification .notification-count{
         padding-left: 2.5px;
         padding-right: 2.5px;
-        padding-top: 2.5px;
-        padding-bottom: 2.5px;
+        padding-top: 1.25px;
+        padding-bottom: 1.25px;
         max-width: 20px;
-        font-weight: 400;
-        font-size: 6px;
+        font-size: 8px;
     }
 }
 
-nav.navigation-topbar > a.profile{
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .notification .notification-count{
+        padding-left: 2.5px;
+        padding-right: 2.5px;
+        padding-top: 1.25px;
+        padding-bottom: 1.25px;
+        max-width: 18px;
+        font-size: 8px;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .notification .notification-count{
+        padding-left: 2.5px;
+        padding-right: 2.5px;
+        padding-top: 1.25px;
+        padding-bottom: 1.25px;
+        max-width: 16px;
+        font-size: 8px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .notification .notification-count{
+        padding-left: 2.5px;
+        padding-right: 2.5px;
+        padding-top: 1.25px;
+        padding-bottom: 1.25px;
+        max-width: 14px;
+        font-size: 8px;
+    }
+}
+
+nav.navigation-topbar a.profile{
     margin-bottom: 0px !important;
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
     cursor: pointer; 
 }
 
-@media screen and (min-width: 320px) and (max-width: 775px){
-    nav.navigation-topbar > a.profile{
+@media screen and (min-width: 446px) and (max-width: 775px){
+    nav.navigation-topbar a.profile{
+        width: 22px;
+        height: 22px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    nav.navigation-topbar a.profile{
         width: 20px;
         height: 20px;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    nav.navigation-topbar a.profile{
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    nav.navigation-topbar a.profile{
+        width: 16px;
+        height: 16px;
     }
 }
 
 nav.navigation-topbar img.profile{
     place-items: center;
     object-fit: cover;
+    vertical-align: unset !important;
     margin-bottom: 0px !important;
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
 }
 
-@media screen and (min-width: 320px) and (max-width: 775px){
-    nav.navigation-topbar img.profile{
-        width: 20px;
-        height: 20px;
-    }
-
-}
 nav.navigation-topbar img:hover{
     filter: brightness(75%) !important;
 }
@@ -212,15 +331,43 @@ nav.navigation-topbar img:active{
     filter: brightness(75%) !important;
 }
 
+@media screen and (min-width: 446px) and (max-width: 775px){
+    nav.navigation-topbar img.profile{
+        width: 22px;
+        height: 22px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    nav.navigation-topbar img.profile{
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    nav.navigation-topbar img.profile{
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    nav.navigation-topbar img.profile{
+        width: 16px;
+        height: 16px;
+    }
+}
+
 
 .content{
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 80px;
-    padding-bottom: 80px;
     display: grid;
     grid-template-columns: 100%;
     place-items: center;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 80px;
+    padding-bottom: 80px;
     background-color: #FFFFFF;
 }
 
@@ -228,12 +375,8 @@ nav.navigation-topbar img:active{
     .content{
         padding-left: 10px;
         padding-right: 10px;
-        padding-top: 60px;
-        padding-bottom: 60px;
-        display: grid;
-        grid-template-columns: 100%;
-        place-items: center;
-        background-color: #FFFFFF;
+        padding-top: 40px;
+        padding-bottom: 40px;
     }
 }
 
@@ -246,62 +389,64 @@ nav.navigation-bottombar{
     left: 0;          
     right: 0; 
     bottom: 0;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
     padding-top: 15px;
     padding-bottom: 15px;
     width: 100%;
-    border-top: 1px solid #B2BEB5;
+    border-top: 1px solid #003755;
     background-color: #FFFFFF;
     z-index: 100;
 }
 
-@media screen and (min-width: 320px) and (max-width: 775px){
+@media screen and (min-width: 320px) and (max-width: 348px){
     nav.navigation-bottombar{
-        position: fixed;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        left: 0;          
-        right: 0; 
-        bottom: 0;
-        padding-left: 15px;
-        padding-right: 15px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        width: 100%;
-        border-top: 1px solid #B2BEB5;
-        background-color: #FFFFFF;
-        z-index: 100;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
     }
 }
 
 nav.navigation-bottombar a{
-    width: 30px;
-    height: 30px !important;
+    width: 24px;
+    height: 24px;
     color: #003755;
     text-decoration: none;
 }
 
-@media screen and (min-width: 320px) and (max-width: 775px){
+@media screen and (min-width: 446px) and (max-width: 775px){
+    nav.navigation-bottombar a{
+        width: 22px;
+        height: 22px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
     nav.navigation-bottombar a{
         width: 20px;
-        height: 20px !important;
-        color: #003755;
-        text-decoration: none;
+        height: 20px;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    nav.navigation-bottombar a{
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    nav.navigation-bottombar a{
+        width: 16px;
+        height: 16px;
     }
 }
 
 nav.navigation-bottombar img{
-    width: 30px;
-    height: 30px !important;
-}
-
-@media screen and (min-width: 320px) and (max-width: 775px){
-    nav.navigation-bottombar img{
-        width: 20px;
-        height: 20px !important;
-    }
+    vertical-align: unset !important;
+    width: 24px;
+    height: 24px;
 }
 
 nav.navigation-bottombar img:hover{
@@ -316,15 +461,50 @@ nav.navigation-bottombar img:active{
     filter: brightness(50%) !important;
 }
 
+@media screen and (min-width: 446px) and (max-width: 775px){
+    nav.navigation-bottombar img{
+        width: 22px;
+        height: 22px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    nav.navigation-bottombar img{
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    nav.navigation-bottombar img{
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    nav.navigation-bottombar img{
+        width: 16px;
+        height: 16px;
+    }
+}
+
 
 .draggable-report{
     position: fixed;
-    right: 10px;
-    bottom: 60px;
+    right: 30px;
+    bottom: 70px;
     width: 50px; 
     height: 50px;
     cursor: pointer; 
     z-index: 1000;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .draggable-report{
+        right: 10px;
+        bottom: 40px;
+    }
 }
 
 .report{
@@ -346,33 +526,35 @@ nav.navigation-bottombar img:active{
 
 
 .profile-content{
-    position: absolute;
+    position: fixed;
     display: none;
-    right: 15px;
-    top: 45px;    
-    max-width: 255px;
+    right: 30px;
+    top: 40px;    
+    max-width: 400px;
     border-radius: 5px;
     border: 1px solid #003755;     
     background-color: #FFFFFF;
     z-index: 100;
 }
 
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 775px){
     .profile-content{
-        right: 15px;
-        top: 35px;    
+        right: 10px;
+        top: 20px;    
+        max-width: 270px;
     }
 }
+
 .profile-content a.dropdown-header{
     display: block;
-    padding-left: 10px !important;
-    padding-right: 10px !important;
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     white-space: wrap;
     font-family: "Montserrat";
     font-weight: 700;
-    font-size: 22px;
+    font-size: 24px;
     background-color: #003755;
     color: #FFFFFF;
     text-align: center;
@@ -394,45 +576,43 @@ nav.navigation-bottombar img:active{
     color: #B2BEB5 !important;
 }
 
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .profile-content a.dropdown-header{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        font-size: 22px;
+    }
+}
+
 @media screen and (min-width: 369px) and (max-width: 445px){
     .profile-content a.dropdown-header{
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 10px !important;
-        padding-bottom: 10px !important;
-        font-family: "Montserrat";
-        font-weight: 700;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
         font-size: 20px;
-        background-color: #003755;
-        color: #FFFFFF;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .profile-content a.dropdown-header{
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 10px !important;
-        padding-bottom: 10px !important;
-        font-family: "Montserrat";
-        font-weight: 700;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
         font-size: 18px;
-        background-color: #003755;
-        color: #FFFFFF;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .profile-content a.dropdown-header{
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 10px !important;
-        padding-bottom: 10px !important;
-        font-family: "Montserrat";
-        font-weight: 700;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
         font-size: 16px;
-        background-color: #003755;
-        color: #FFFFFF;
     }
 }
   
@@ -440,14 +620,14 @@ nav.navigation-bottombar img:active{
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding-left: 10px !important;
-    padding-right: 10px !important;
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     white-space: wrap;
     font-family: "Montserrat";
     font-weight: 400;
-    font-size: 18px;
+    font-size: 20px;
     background-color: #FFFFFF;
     color: #003755;
     text-decoration: none !important;
@@ -468,17 +648,23 @@ nav.navigation-bottombar img:active{
     color: #002C44 !important;
 }
 
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .profile-content .dropdown-item{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        font-size: 18px;
+    }
+}
+
 @media screen and (min-width: 369px) and (max-width: 445px){
     .profile-content .dropdown-item{
         padding-left: 10px !important;
         padding-right: 10px !important;
-        padding-top: 10px !important;
-        padding-bottom: 10px !important;
-        font-family: "Montserrat";
-        font-weight: 400;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
         font-size: 16px;
-        background-color: #FFFFFF;
-        color: #003755;
     }
 }
 
@@ -486,13 +672,9 @@ nav.navigation-bottombar img:active{
     .profile-content .dropdown-item{
         padding-left: 10px !important;
         padding-right: 10px !important;
-        padding-top: 10px !important;
-        padding-bottom: 10px !important;
-        font-family: "Montserrat";
-        font-weight: 400;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
         font-size: 14px;
-        background-color: #FFFFFF;
-        color: #003755;
     }
 }
 
@@ -500,27 +682,43 @@ nav.navigation-bottombar img:active{
     .profile-content .dropdown-item{
         padding-left: 10px !important;
         padding-right: 10px !important;
-        padding-top: 10px !important;
-        padding-bottom: 10px !important;
-        font-family: "Montserrat";
-        font-weight: 400;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
         font-size: 12px;
-        background-color: #FFFFFF;
-        color: #003755;
     }
 }
 
 .profile-content .dropdown-item img{
-    width: 30px !important;
-    height: 30px !important;
+    width: 20px;
+    height: 20px;
     margin-right: 10px;
 }
 
-@media screen and (min-width: 320px) and (max-width: 775px){
+@media screen and (min-width: 446px) and (max-width: 775px){
     .profile-content .dropdown-item img{
-        width: 20px !important;
-        height: 20px !important;
-        margin-right: 10px;
+        width: 18px !important;
+        height: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .profile-content .dropdown-item img{
+        width: 16px !important;
+        height: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .profile-content .dropdown-item img{
+        width: 14px !important;
+        height: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .profile-content .dropdown-item img{
+        width: 12px !important;
+        height: 12px !important;
     }
 }
 
@@ -545,14 +743,14 @@ nav.navigation-bottombar img:active{
 
 .profile-content a.dropdown-footer{
     display: block;
-    padding-left: 10px !important;
-    padding-right: 10px !important;
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     white-space: wrap;
     font-family: "Montserrat";
     font-weight: 700;
-    font-size: 22px;
+    font-size: 24px;
     background-color: #003755;
     color: #FFFFFF;
     text-align: center;
@@ -574,17 +772,23 @@ nav.navigation-bottombar img:active{
     color: #B2BEB5 !important;
 }
 
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .profile-content a.dropdown-footer{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        font-size: 22px;
+    }
+}
+
 @media screen and (min-width: 369px) and (max-width: 445px){
     .profile-content a.dropdown-footer{
         padding-left: 10px !important;
         padding-right: 10px !important;
-        padding-top: 10px !important;
-        padding-bottom: 10px !important;
-        font-family: "Montserrat";
-        font-weight: 700;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
         font-size: 20px;
-        background-color: #003755;
-        color: #FFFFFF;
     }
 }
 
@@ -592,13 +796,9 @@ nav.navigation-bottombar img:active{
     .profile-content a.dropdown-footer{
         padding-left: 10px !important;
         padding-right: 10px !important;
-        padding-top: 10px !important;
-        padding-bottom: 10px !important;
-        font-family: "Montserrat";
-        font-weight: 700;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
         font-size: 18px;
-        background-color: #003755;
-        color: #FFFFFF;
     }
 }
 
@@ -606,13 +806,9 @@ nav.navigation-bottombar img:active{
     .profile-content a.dropdown-footer{
         padding-left: 10px !important;
         padding-right: 10px !important;
-        padding-top: 10px !important;
-        padding-bottom: 10px !important;
-        font-family: "Montserrat";
-        font-weight: 700;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
         font-size: 16px;
-        background-color: #003755;
-        color: #FFFFFF;
     }
 }
 
@@ -622,67 +818,66 @@ nav.navigation-bottombar img:active{
 }
 
 .notification-content{
-    position: absolute;
+    position: fixed;
     display: none;
-    right: 75px;
-    top: 45px;    
-    max-width: 255px;
+    right: 100px;
+    top: 40px;    
+    max-width: 400px;
     border-radius: 5px;
     border: 1px solid #003755;     
     background-color: #FFFFFF;
     z-index: 100;
 }
 
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 775px){
     .notification-content{
-        right: 50px;
-        top: 35px;    
+        right: 40px;
+        top: 20px;  
+        max-width: 270px;  
     }
 }
 
 .notification-content .dropdown-item{
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding-left: 10px !important;
-    padding-right: 10px !important;
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
+    display: inline-block;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     white-space: wrap;
-    font-family: "Montserrat";
-    font-weight: 400;
-    font-size: 18px;
     background-color: #FFFFFF;
-    color: #003755;
     text-decoration: none !important;
 }
 
-.notification-content a.dropdown-footer:hover{
-    background-color: #002C44 !important;
-    color: #B2BEB5 !important;
+.notification-content .dropdown-item:hover{
+    color: #002C44 !important;
+    background-color: #B2BEB5;
 }
 
-.notification-content a.dropdown-footer:focus{
-    background-color: #002C44 !important;
-    color: #B2BEB5 !important;
+.notification-content .dropdown-item:focus{
+    color: #002C44 !important;
+    background-color: #B2BEB5;
 }
 
-.notification-content a.dropdown-footer:active{
-    background-color: #002C44 !important;
-    color: #B2BEB5 !important;
+.notification-content .dropdown-item:active{
+    color: #002C44 !important;
+    background-color: #B2BEB5;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .notification-content .dropdown-item{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+    }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .notification-content .dropdown-item{
         padding-left: 10px !important;
         padding-right: 10px !important;
-        padding-top: 10px !important;
-        padding-bottom: 10px !important;
-        font-family: "Montserrat";
-        font-weight: 400;
-        font-size: 16px;
-        background-color: #FFFFFF;
-        color: #003755;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
     }
 }
 
@@ -690,13 +885,8 @@ nav.navigation-bottombar img:active{
     .notification-content .dropdown-item{
         padding-left: 10px !important;
         padding-right: 10px !important;
-        padding-top: 10px !important;
-        padding-bottom: 10px !important;
-        font-family: "Montserrat";
-        font-weight: 400;
-        font-size: 14px;
-        background-color: #FFFFFF;
-        color: #003755;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
     }
 }
 
@@ -704,14 +894,99 @@ nav.navigation-bottombar img:active{
     .notification-content .dropdown-item{
         padding-left: 10px !important;
         padding-right: 10px !important;
-        padding-top: 10px !important;
-        padding-bottom: 10px !important;
-        font-family: "Montserrat";
-        font-weight: 400;
-        font-size: 12px;
-        background-color: #FFFFFF;
-        color: #003755;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
     }
+}
+
+.notification-content .dropdown-item .item-header{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+}
+
+.notification-content .dropdown-item .item-header img{
+    object-fit: cover;
+    margin-right: 10px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .notification-content .dropdown-item .item-header img{
+        width: 22px;
+        height: 22px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .notification-content .dropdown-item .item-header img{
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .notification-content .dropdown-item .item-header img{
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .notification-content .dropdown-item .item-header img{
+        width: 16px;
+        height: 16px;
+    }
+}
+
+.notification-content .dropdown-item .item-context p{
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 20px;
+    color: #003755;
+    text-align: justify;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .notification-content .dropdown-item .item-context p{
+        font-size: 18px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .notification-content .dropdown-item .item-context p{
+        font-size: 16px;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .notification-content .dropdown-item .item-context p{
+        font-size: 14px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .notification-content .dropdown-item .item-context p{
+        font-size: 12px;
+    }
+}
+
+.notification-content .dropdown-item .item-context p strong{
+    font-weight: 700 !important;
+}
+
+.notification-content .dropdown-item .item-context p strong:hover{
+    color: #002C44 !important;
+}
+
+.notification-content .dropdown-item .item-context p strong:focus{
+    color: #002C44 !important;
+}
+
+.notification-content .dropdown-item .item-context p strong:active{
+    color: #002C44 !important;
 }
 
 .notification-content .dropdown-divider{
@@ -722,14 +997,14 @@ nav.navigation-bottombar img:active{
 
 .notification-content a.dropdown-footer{
     display: block;
-    padding-left: 10px !important;
-    padding-right: 10px !important;
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
     white-space: wrap;
     font-family: "Montserrat";
     font-weight: 700;
-    font-size: 22px;
+    font-size: 24px;
     background-color: #003755;
     color: #FFFFFF;
     text-align: center;
@@ -751,17 +1026,23 @@ nav.navigation-bottombar img:active{
     color: #B2BEB5 !important;
 }
 
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .notification-content a.dropdown-footer{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        font-size: 22px;
+    }
+}
+
 @media screen and (min-width: 369px) and (max-width: 445px){
     .notification-content a.dropdown-footer{
         padding-left: 10px !important;
         padding-right: 10px !important;
-        padding-top: 10px !important;
-        padding-bottom: 10px !important;
-        font-family: "Montserrat";
-        font-weight: 700;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
         font-size: 20px;
-        background-color: #003755;
-        color: #FFFFFF;
     }
 }
 
@@ -769,13 +1050,9 @@ nav.navigation-bottombar img:active{
     .notification-content a.dropdown-footer{
         padding-left: 10px !important;
         padding-right: 10px !important;
-        padding-top: 10px !important;
-        padding-bottom: 10px !important;
-        font-family: "Montserrat";
-        font-weight: 700;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
         font-size: 18px;
-        background-color: #003755;
-        color: #FFFFFF;
     }
 }
 
@@ -783,13 +1060,9 @@ nav.navigation-bottombar img:active{
     .notification-content a.dropdown-footer{
         padding-left: 10px !important;
         padding-right: 10px !important;
-        padding-top: 10px !important;
-        padding-bottom: 10px !important;
-        font-family: "Montserrat";
-        font-weight: 700;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
         font-size: 16px;
-        background-color: #003755;
-        color: #FFFFFF;
     }
 }
 
@@ -799,10 +1072,18 @@ nav.navigation-bottombar img:active{
 
 
 .swal2-container .swal2-popup{
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
     border-radius: 5px !important;
-    border: 1px solid #B2BEB5 !important; 
+    border: 1px solid #003755 !important; 
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .swal2-container .swal2-popup{
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        border-radius: 5px !important;
+    }
 }
 
 .swal2-container .swal2-popup .swal2-styled:focus{
@@ -814,27 +1095,53 @@ nav.navigation-bottombar img:active{
     margin-right: 0px !important;
     margin-top: 0px !important;
     margin-bottom: 0px !important;
-    padding-left: 10px !important;
-    padding-right: 10px !important;
+    padding-left: 30px !important;
+    padding-right: 30px !important;
     padding-top: 0px !important;
-    padding-bottom: 10px !important;
+    padding-bottom: 15px !important;
     font-family: "Montserrat" !important;
     font-weight: 400 !important;
-    font-size: 22px !important;
+    font-size: 20px !important;
     color: #003755 !important;
 }
 
-@media screen and (min-width: 320px) and (max-width: 775px){
+@media screen and (min-width: 446px) and (max-width: 775px){
     .swal2-container .swal2-html-container{
         padding-left: 10px !important;
         padding-right: 10px !important;
         padding-top: 0px !important;
-        padding-bottom: 10px !important;
-        margin: 0px !important;
-        font-family: "Montserrat" !important;
-        font-weight: 400 !important;
+        padding-bottom: 5px !important;
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .swal2-container .swal2-html-container{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 0px !important;
+        padding-bottom: 5px !important;
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .swal2-container .swal2-html-container{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 0px !important;
+        padding-bottom: 5px !important;
         font-size: 14px !important;
-        color: #003755 !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .swal2-container .swal2-html-container{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 0px !important;
+        padding-bottom: 5px !important;
+        font-size: 12px !important;
     }
 }
 
@@ -842,7 +1149,18 @@ nav.navigation-bottombar img:active{
     margin-left: auto !important;
     margin-right: auto !important;
     margin-top: 0px !important;
-    margin-bottom: 10px !important;
+    margin-bottom: 15px !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .swal2-container div:where(.swal2-icon){
+        margin-bottom: 5px !important;
+    }
+}
+
+.swal2-container div:where(.swal2-icon).swal2-warning{
+    border-color: #003755 !important;
+    color: #003755 !important;
 }
 
 .swal2-container div:where(.swal2-icon).swal2-success .swal2-success-ring{
@@ -863,27 +1181,50 @@ nav.navigation-bottombar img:active{
 }
 
 .swal2-container h2:where(.swal2-title){
-    padding-left: 10px !important;
-    padding-right: 10px !important;
+    padding-left: 30px !important;
+    padding-right: 30px !important;
     padding-top: 0px !important;
-    padding-bottom: 10px !important;
+    padding-bottom: 15px !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .swal2-container h2:where(.swal2-title){
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 0px !important;
+        padding-bottom: 5px !important;
+    }
 }
 
 .swal2-container .title{
     font-family: "Montserrat" !important;
     font-weight: 700 !important;
-    font-size: 36px !important;   
+    font-size: 24px !important;   
     color: #003755 !important;
     pointer-events: none !important;
 }
 
-@media screen and (min-width: 320px) and (max-width: 775px){
+@media screen and (min-width: 446px) and (max-width: 775px){
     .swal2-container .title{
-        font-family: "Montserrat" !important;
-        font-weight: 700 !important;
-        font-size: 18px !important;   
-        color: #003755 !important;
-        pointer-events: none !important;
+        font-size: 22px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .swal2-container .title{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .swal2-container .title{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .swal2-container .title{
+        font-size: 16px !important;
     }
 }
 
@@ -904,22 +1245,35 @@ nav.navigation-bottombar img:active{
 
 .swal2-container .info-button{
     visibility: hidden;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     font-size: 0px !important;
 }
 
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .swal2-container .info-button{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+
 .swal2-container .info-button::before{
-    padding-left: 10px !important;
-    padding-right: 10px !important;
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     content: "Ok" !important;
     visibility: visible !important;
-    border: 1px solid #B2BEB5 !important; 
+    border: 1px solid #003755 !important; 
     border-radius: 5px !important;
     outline: none !important;
     font-family: "Montserrat" !important;
     font-weight: 400 !important;
-    font-size: 22px !important;
+    font-size: 20px !important;
     background-color: #003755 !important;
     color: #FFFFFF !important;
     pointer-events: auto !important;
@@ -931,45 +1285,61 @@ nav.navigation-bottombar img:active{
     color: #B2BEB5 !important;        
 }
 
-@media screen and (min-width: 320px) and (max-width: 775px){
-    .info-button::before{
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 10px !important;
-        padding-bottom: 10px !important;
-        content: "Ok" !important;
-        visibility: visible !important;
-        border: 1px solid #B2BEB5 !important; 
-        border-radius: 5px !important;
-        outline: none !important;
-        font-family: "Montserrat" !important;
-        font-weight: 400 !important;
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .swal2-container .info-button::before{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .swal2-container .info-button::before{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .swal2-container .info-button::before{
         font-size: 14px !important;
-        background-color: #003755 !important;
-        color: #FFFFFF !important;
-        pointer-events: auto !important;
-        cursor: pointer;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .swal2-container .info-button::before{
+        font-size: 12px !important;
     }
 }
 
 .swal2-container .success-button{
     visibility: hidden;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     font-size: 0px !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .swal2-container .success-button{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
 }
 
 .swal2-container .success-button::before{
     padding-left: 10px !important;
     padding-right: 10px !important;
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
     content: "Ok" !important;
     visibility: visible !important;
-    border: 1px solid #B2BEB5 !important; 
+    border: 1px solid #003755 !important; 
     border-radius: 5px !important;
     outline: none !important;
     font-family: "Montserrat" !important;
     font-weight: 400 !important;
-    font-size: 22px !important;
+    font-size: 20px !important;
     background-color: #003755 !important;
     color: #FFFFFF !important;
     pointer-events: auto !important;
@@ -981,45 +1351,61 @@ nav.navigation-bottombar img:active{
     color: #B2BEB5 !important;        
 }
 
-@media screen and (min-width: 320px) and (max-width: 775px){
+@media screen and (min-width: 446px) and (max-width: 775px){
     .swal2-container .success-button::before{
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 10px !important;
-        padding-bottom: 10px !important;
-        content: "Ok" !important;
-        visibility: visible !important;
-        border: 1px solid #B2BEB5 !important; 
-        border-radius: 5px !important;
-        outline: none !important;
-        font-family: "Montserrat" !important;
-        font-weight: 400 !important;
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .swal2-container .success-button::before{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .swal2-container .success-button::before{
         font-size: 14px !important;
-        background-color: #003755 !important;
-        color: #FFFFFF !important;
-        pointer-events: auto !important;
-        cursor: pointer;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .swal2-container .success-button::before{
+        font-size: 12px !important;
     }
 }
 
 .swal2-container .error-button{
     visibility: hidden;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     font-size: 0px !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .swal2-container .error-button{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
 }
 
 .swal2-container .error-button::before{
     padding-left: 10px !important;
     padding-right: 10px !important;
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
     content: "Ok" !important;
     visibility: visible !important;
-    border: 1px solid #B2BEB5 !important; 
+    border: 1px solid #003755 !important; 
     border-radius: 5px !important;
     outline: none !important;
     font-family: "Montserrat" !important;
     font-weight: 400 !important;
-    font-size: 22px !important;
+    font-size: 20px !important;
     background-color: #003755 !important;
     color: #FFFFFF !important;
     pointer-events: auto !important;
@@ -1031,23 +1417,158 @@ nav.navigation-bottombar img:active{
     color: #B2BEB5 !important;        
 }
 
-@media screen and (min-width: 320px) and (max-width: 775px){
+@media screen and (min-width: 446px) and (max-width: 775px){
     .swal2-container .error-button::before{
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 10px !important;
-        padding-bottom: 10px !important;
-        content: "Ok" !important;
-        visibility: visible !important;
-        border: 1px solid #B2BEB5 !important; 
-        border-radius: 5px !important;
-        outline: none !important;
-        font-family: "Montserrat" !important;
-        font-weight: 400 !important;
         font-size: 18px !important;
-        background-color: #003755 !important;
-        color: #FFFFFF !important;
-        pointer-events: auto !important;
-        cursor: pointer;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .swal2-container .error-button::before{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .swal2-container .error-button::before{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .swal2-container .error-button::before{
+        font-size: 12px !important;
+    }
+}
+
+.swal2-container .confirm-button{
+    visibility: hidden;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 0px !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .swal2-container .confirm-button{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+.swal2-container .confirm-button::before{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    content: "Yes" !important;
+    visibility: visible !important;
+    border: 1px solid #003755 !important; 
+    border-radius: 5px !important;
+    outline: none !important;
+    font-family: "Montserrat" !important;
+    font-weight: 400 !important;
+    font-size: 20px !important;
+    background-color: #003755 !important;
+    color: #FFFFFF !important;
+    pointer-events: auto !important;
+    cursor: pointer;
+}
+
+.swal2-container .confirm-button:hover{
+    background-color: #10354C !important;
+    color: #B2BEB5 !important;        
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .swal2-container .confirm-button::before{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .swal2-container .confirm-button::before{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .swal2-container .confirm-button::before{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .swal2-container .confirm-button::before{
+        font-size: 12px !important;
+    }
+}
+
+.swal2-container .cancel-button{
+    visibility: hidden;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 0px !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .swal2-container .cancel-button{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+.swal2-container .cancel-button::before{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    content: "No" !important;
+    visibility: visible !important;
+    border: 1px solid #003755 !important; 
+    border-radius: 5px !important;
+    outline: none !important;
+    font-family: "Montserrat" !important;
+    font-weight: 400 !important;
+    font-size: 20px !important;
+    background-color: #003755 !important;
+    color: #FFFFFF !important;
+    pointer-events: auto !important;
+    cursor: pointer;
+}
+
+.swal2-container .cancel-button:hover{
+    background-color: #10354C !important;
+    color: #B2BEB5 !important;        
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .swal2-container .cancel-button::before{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .swal2-container .cancel-button::before{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .swal2-container .cancel-button::before{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .swal2-container .cancel-button::before{
+        font-size: 12px !important;
     }
 }
