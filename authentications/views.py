@@ -17,6 +17,7 @@ from django.utils import timezone
 from datetime import timedelta
 from django.core.paginator import Paginator
 from datetime import datetime, timedelta
+from django.db.models import Max
 
 import base64
 import json
@@ -679,18 +680,33 @@ def OfficerControlHome(request):
 
     year_filter = request.GET.get("year")
 
-    # Fetch distinct municipalities
+    latest_statuses = Status.objects.values("location__municipality").annotate(max_onset_date = Max("onset_date"))
+
+    latest_status_entries = Status.objects.filter(location__municipality__in = [status["location__municipality"] for status in latest_statuses], onset_date__in = [status["max_onset_date"] for status in latest_statuses]).order_by("location__municipality").distinct("location__municipality")
+
+    status_data = []
+
+    for status_entry in latest_status_entries:
+        status_data.append({"municipality": status_entry.location.municipality, "caught_amount": status_entry.caught_overall, "volunteer_amount": status_entry.volunteer_overall, "status_type": str(status_entry.statustype), "intervention_date": status_entry.onset_date.strftime("%m/%d/%Y")})
+
     municipalities = Location.objects.values("municipality").distinct()
 
     barangays = Location.objects.filter(municipality = municipality_filter).values("barangay").distinct() if municipality_filter else []
 
-    # Fetch locations with optional filters but without filtering on status
     locations_query = Location.objects.all()
 
     if municipality_filter:
         locations_query = locations_query.filter(municipality = municipality_filter)
+        
+    else:
+        municipality_filter = "Alabel"
+        locations_query = locations_query.filter(municipality = municipality_filter)
 
     if barangay_filter:
+        locations_query = locations_query.filter(barangay = barangay_filter)
+
+    else:
+        barangay_filter = "Kawas"
         locations_query = locations_query.filter(barangay = barangay_filter)
 
     locations = locations_query.distinct()
@@ -709,6 +725,13 @@ def OfficerControlHome(request):
 
             interventions_query = interventions_query.filter(intervention_date__range = [start_date, end_date])
 
+        else:
+            start_date = datetime.strptime("2024", "%Y").replace(month = 1, day = 1)
+
+            end_date = datetime.strptime("2024", "%Y").replace(month = 12, day = 31)
+
+            interventions_query = interventions_query.filter(intervention_date__range = [start_date, end_date])
+
         intervention_dates = []
 
         caught_overalls = []
@@ -722,7 +745,7 @@ def OfficerControlHome(request):
         caught_overall_sum = 0
 
         for intervention in interventions_query:
-            if intervention.statustype:  # Exclude interventions with N/A status
+            if intervention.statustype:
                 intervention_dates.append(intervention.intervention_date.strftime("%Y-%m-%d"))
 
                 caught_overalls.append(intervention.caught_amount)
@@ -737,7 +760,6 @@ def OfficerControlHome(request):
 
         total_caught_overall += caught_overall_sum
 
-        # Fill missing dates with null values
         if intervention_dates:
             min_date = datetime.strptime(intervention_dates[0], "%Y-%m-%d")
 
@@ -761,9 +783,8 @@ def OfficerControlHome(request):
                 
                     volunteer_amounts.append(None)
                 
-                current_date += timedelta(days=1)
+                current_date += timedelta(days = 1)
 
-            # Sort by date after filling missing dates
             sorted_data = sorted(zip(intervention_dates, caught_overalls, titles, status_types, volunteer_amounts))
 
             intervention_dates, caught_overalls, titles, status_types, volunteer_amounts = zip(*sorted_data)
@@ -771,7 +792,7 @@ def OfficerControlHome(request):
             for item in range(len(intervention_dates)):
                 data.append({"location": f"{location.barangay}, {location.municipality}", "municipality": location.municipality, "intervention_date": intervention_dates[item], "caught_amount": caught_overalls[item], "title": titles[item], "status_type": status_types[item], "volunteer_amount": volunteer_amounts[item]})
 
-    context = {"username": username, "user_profile": user_profile, "unread_notifications": unread_notifications, "chart_data": json.dumps(data), "locations": locations, "municipalities": municipalities, "barangays": barangays, "total_caught_overall": total_caught_overall, "selected_municipality": municipality_filter, "selected_barangay": barangay_filter, "year_filter": year_filter, "current_year": timezone.now().year}
+    context = {"username": username, "user_profile": user_profile, "unread_notifications": unread_notifications, "chart_data": json.dumps(data), "locations": locations, "municipalities": municipalities, "barangays": barangays, "total_caught_overall": total_caught_overall, "selected_municipality": municipality_filter, "selected_barangay": barangay_filter, "year_filter": year_filter, "current_year": timezone.now().year, "status_data": status_data}
 
     return render(request, "officer/control/home/home.html", context)
 
@@ -860,7 +881,7 @@ def OfficerControlStatistics(request):
     except:
         intervention_date = None
     
-    context = {"username": username, "posts": posts, "posts_count": posts_count, "post_date": post_date, "statuses": statuses, "statuses_count": statuses_count, "status_date": status_date, "interventions": interventions, "interventions_count": interventions_count, "intervention_date": intervention_date}
+    context = {"username": username, "posts": posts, "posts_count": posts_count, "post_date": post_date, "statuses": statuses, "statuses_count": statuses_count, "status_date": status_date, "interventions": interventions, "interventions_count": interventions_count, "intervention_date": intervention_date, }
 
     return render(request, "officer/control/statistics/statistics.html", context)
 

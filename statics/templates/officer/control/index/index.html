@@ -25,10 +25,6 @@
 
         <script src = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-		<script src = "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-		<script src = "https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>   
-
         <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity = "sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin = "anonymous" referrerpolicy = "no-referrer"/>
 
         <script src = "https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -57,177 +53,180 @@
     
         <link rel = "stylesheet" href = "https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@v0.74.0/dist/L.Control.Locate.min.css"/>
         
-		<script src = "https://cdn.jsdelivr.net/npm/chart.js"></script>
-
         <title>COTSEye | Home</title>
     </head>
 
+    <style>
+        .nav-link:hover {
+          background-color: rgba(0, 151, 252, 0.1); /* Light blue background on hover */
+          color: rgb(0, 151, 252) !important; /* Ensures text color stays the same */
+          border-radius: 4px; /* Optional: adds rounded corners on hover */
+          text-decoration: none; /* Ensures no underline on hover */
+        }
+        .nav-link img {
+          vertical-align: middle; /* Align image vertically with the text */
+        }
+        .nav {
+          display: flex;
+          align-items: center;
+        }
+        .notification-bell {
+          position: relative;
+          font-size: 1.2rem; /* Smaller font size for the bell */
+        }
+        .notification-bell .badge {
+          position: absolute;
+          top: 3px; /* Adjusted to touch the top right corner */
+          right: -0.5rem;
+          padding: 3px 5px; /* Smaller padding for the smaller bell */
+          border-radius: 50%;
+          background: rgb(233, 27, 27);
+          color: white;
+          font-size: 0.6rem; /* Smaller font size for the badge */
+          line-height: 1; /* Ensure the text is centered */
+        }
+      </style>
+    </head>
     <body>
-      <nav class = "navigation-topbar">
-			<div class = "link">
-				<a href = "{% url 'Officer Control Home' %}" class = "header"><img src = "{% static 'assets/icons/header.png' %}" class = "header"></a>
-            
-				<a href = "{% url 'Officer Control Sighting' %}">Sightings</a>
-
-				<a href = "{% url 'Officer Control Status' %}">Infestations</a>
-
-				<a href = "{% url 'Officer Control Intervention' %}">Activities</a>
-
-				<a href = "{% url 'Officer Control Announcement' %}">Announcements</a>
-			</div>
-
-            <div class = "menu">
-                <div class = "notification">
-                    <a class = "notification-link">
-                        <i class = "fa-solid fa-bell"></i>
+      <div style="background-color: white !important; box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);" class="bg-primary">
+        <div class="container-fluid d-flex justify-content-between align-items-center flex-wrap">
+          <nav class="nav">
+            <a class="nav-link active disabled" aria-current="page">
+              <img src="{% static 'assets/icons/header.png' %}" height="20px">
+            </a>
+            <a style="font-size: 12px; color: rgb(0, 151, 252) !important;" class="nav-link text-white" href="{% url 'Officer Control Home' %}">HOME</a>
+            <a style="font-size: 12px; color: rgb(0, 151, 252) !important;" class="nav-link text-white" href="{% url 'Officer Control Sighting' %}">SIGHTINGS</a>
+            <a style="font-size: 12px; color: rgb(0, 151, 252) !important;" class="nav-link text-white" href="{% url 'Officer Control Status' %}">INFESTATIONS</a>
+            <a style="font-size: 12px; color: rgb(0, 151, 252) !important;" class="nav-link text-white" href="{% url 'Officer Control Intervention' %}">ACTIVITIES</a>
+            <a style="font-size: 12px; color: rgb(0, 151, 252) !important;" class="nav-link text-white" href="{% url 'Officer Control Announcement' %}">ANNOUNCEMENTS</a>
+           
+          </nav>
     
-                        {% if unread_notifications %}
-                            <span class = "notification-count">{{unread_notifications | length}}</span>
-                        {% endif %}
-                    </a>
-                </div>
-                
-                <a onclick = "shownProfile()" class = "profile"><img src = "{{user_profile.profile_photo.url}}" class = "drop profile"></a>
-            </div>
-        </nav>
-        
-        <div class = "menu-content">
-            <div class = "notification-dropdown">
-                <div id = "notification-content" class = "notification-content">
-                    {% if unread_notifications %}
-                        {% for post in unread_notifications %}
-                                <a class = "dropdown-item" href = "{% url 'Officer Control Sighting Read' id=post.id %}" class = "post-link" post = "{{post.id}}">
-                                    <div class = "item-header">
-                                        <img src = "{{post.post_photos.first.post_photo.url}}">
-
-                                        <div class = "item-context"> 
-                                            <p><strong>{{post.user}}</strong> has sent a report.</p>
-
-                                            <p>{{post.creation_date | date:'m/d/Y'}}</p>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <div class = "dropdown-divider"></div>
-                        {% endfor %}
-                    {% else %}
-
-                        <a class = "dropdown-item">You have no unread notifications in the last 30 days.</a>
-                    {% endif %}
-
-                    <a href = "{% url 'Officer Control Notification' %}" class = "dropdown-footer">See More</a>
-                </div>
-            </div>
-
-            <div class = "profile-dropdown">
-                <div id = "profile-content" class = "profile-content">
-                    <a class = "dropdown-header" href = "{% url 'Officer Control Profile' %}">{{username}}</a>
-
-                    <div class = "dropdown-divider"></div>
-                    
-                    <a href = "{% url 'Officer Control Logout' %}" class = "dropdown-footer">Log out</a>
-                </div>
-            </div>
+          <div class="d-flex align-items-center login-cursor">
+            <nav class="nav">
+              <div class="dropdown" id="notification-bell">
+                <a class="nav-link text-black notification-bell position-relative" id="notificationBell">
+                  <i class="fa-solid fa-bell"></i>
+                  {% if unread_notifications %}
+                    <span class="badge rounded-pill">
+                      {{ unread_notifications|length }}
+                    </span>
+                  {% endif %}
+                </a>
+                <ul class="dropdown-menu" style="right: 10px" id="notificationDropdown">
+                  {% if unread_notifications %}
+                    {% for post in unread_notifications %}
+                      <li class="dropdown-item">
+                        <a href="{% url 'Officer Control Sighting Read' id=post.id %}" class="unread-post-link" data-post-id="{{post.id}}">
+                          {{post.user}} has sent a post
+                        </a>
+                        <small class="text-muted">- {{ post.creation_date }}</small>
+                      </li>
+                    {% endfor %}
+                  {% else %}
+                    <li class="dropdown-item">No unread posts in the last 30 days.</li>
+                  {% endif %}
+                  <a href="{% url 'Officer Control Notification' %}">See more</a>
+                </ul>
+              </div>
+              <a style="font-size: 12px;" class="nav-link text-black" href="{% url 'Officer Control Profile' %}">PROFILE</a>
+              <a style="font-size: 12px;" class="nav-link text-black" href="{% url 'Officer Control Logout' %}">LOGOUT</a>
+            </nav>
+          </div>
         </div>
-
-		<div class = "content">
-            {% block content %}
+      </div>
     
-    
-            {% endblock content %}
-        </div>
-	</body>
-
-	<script>
-        function shownProfile(){
-            document.getElementById("profile-content").classList.toggle("show");
-        };
-
-        window.onclick = function(event){
-            if (!event.target.matches("img.drop")){
-                var dropdown = document.getElementsByClassName(".profile-content");
-
-                var amount;
-
-                for (amount = 0; amount < dropdown.length; amount++){
-                    var openDropdown = dropdown[amount];
-                    
-                    if (openDropdown.classList.contains("show")){
-                        openDropdown.classList.remove("show");
-                    };
-                };
-            };
-        };
-    </script>
+      <div class="content">
+        {% block content %}
+        {% endblock %}
+      </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function (){
-            const notification = document.querySelector(".notification-link");
+        $(document).ready(function() {
+            // Initialize Select2 on the select elements
+            $('.select2').select2();
+        });
 
-            const dropdown = document.querySelector(".notification-content");
+        document.addEventListener('DOMContentLoaded', function () {
+            const unreadPostLinks = document.querySelectorAll('.unread-post-link');
 
-            notification.addEventListener("click", function (event){
-                event.stopPropagation();
-                
-                dropdown.classList.toggle("show");
-            });
-
-            document.addEventListener("click", function (event){
-                if (!dropdown.contains(event.target) && event.target !== notification){
-                    dropdown.classList.remove("show");
-                };
-            });
-
-            const postLink = document.querySelectorAll(".post-link");
-
-            postLink.forEach(link => {
-                link.addEventListener("click", function (event){
-                    event.preventDefault();
-
-                    const post = this.getAttribute("post");
-                    
-                    const url = "{% url 'mark_post_as_read' 0 %}".replace("0", post);
+            unreadPostLinks.forEach(link => {
+                link.addEventListener('click', function (event) {
+                    const postId = this.getAttribute('data-post-id');
+                    const url = `{% url 'mark_post_as_read' 0 %}`.replace('0', postId);
 
                     fetch(url, {
-                        method: "GET",
-
+                        method: 'GET',
                         headers: {
-                            "X-Requested-With": "XMLHttpRequest",
+                            'X-Requested-With': 'XMLHttpRequest',
                         },
-
-                    }).then(response => response.json()).then(data => {
-                        if (data.success){
-                            this.parentElement.remove();
-
-                            const notificationCount = document.querySelector("notification-count");
-
-                            if (notificationCount) {
-                                let count = parseInt(notificationCount.innerText);
-
-                                count--;
-
-                                if (count > 0){
-                                    notificationCount.innerText = count;
-
-                                } else{
-                                    notificationCount.remove();
-                                    const emptyMessage = document.createElement("a");
-
-                                    emptyMessage.classList.add("dropdown-item");
-
-                                    emptyMessage.innerText = "COTSEye found no unread posts in the last 30 days.";
-
-                                    dropdown.appendChild(emptyMessage);
-                                };
-                            };
-
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
                             window.location.href = this.href;
-                        };
+                        }
                     });
                 });
             });
+
+            // Toggle the dropdown menu on bell icon click
+            const notificationBell = document.getElementById('notificationBell');
+            const notificationDropdown = document.getElementById('notificationDropdown');
+
+            notificationBell.addEventListener('click', function(event) {
+                event.preventDefault();
+                notificationDropdown.classList.toggle('show');
+            });
+
+            document.addEventListener('click', function(event) {
+                if (!notificationBell.contains(event.target) && !notificationDropdown.contains(event.target)) {
+                    notificationDropdown.classList.remove('show');
+                }
+            });
         });
     </script>
+    <!-- Include SweetAlert CSS and JS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+
+    <!-- Your existing HTML content -->
+
     
-    <script type = "text/javascript">if(window.location.hash && window.location.hash === "#_=_"){ window.location.hash = ""; history.pushState("", document.title, window.location.pathname);}</script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          // Check if there are any errors passed to the context
+          {% if errors and field_labels %}
+              var errorMessages = {{ errors|safe }};
+              var fieldLabels = {{ field_labels|safe }};
+      
+              // Loop through the error messages and display them using SweetAlert
+              for (var field in errorMessages) {
+                  if (errorMessages.hasOwnProperty(field)) {
+                      var fieldErrors = errorMessages[field];
+                      var fieldLabel = fieldLabels[field];
+                      fieldErrors.forEach(function(error) {
+                          swal({
+                              title: "Error in " + fieldLabel,
+                              text: error.message,
+                              type: "error",
+                              confirmButtonText: "OK"
+                          });
+                      });
+                  }
+              }
+          {% endif %}
+
+          {% if location_error %}
+            swal({
+                title: "Error in Municipality and Barangay",
+                text: "{{ location_error }}",
+                type: "error",
+                confirmButtonText: "OK"
+            });
+        {% endif %}
+      });
+      </script>
+
+    </body>
 </html>

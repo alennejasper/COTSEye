@@ -101,7 +101,7 @@
                     </a>
                 </div>
                 
-                <a onclick = "shownDropdown()" class = "profile"><img src = "{{user_profile.profile_photo.url}}" class = "drop profile"></a>
+                <a onclick = "shownProfile()" class = "profile"><img src = "{{user_profile.profile_photo.url}}" class = "drop profile"></a>
             </div>
         </nav>
         
@@ -265,7 +265,7 @@
     </script>
 
     <script>
-        function shownDropdown(){
+        function shownProfile(){
             document.getElementById("profile-content").classList.toggle("show");
         };
 

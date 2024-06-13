@@ -1,14 +1,14 @@
-.status-low {
-    color: green;
+.status-Low {
+    color: green !important;
 }
-.status-moderate {
-    color: yellow;
+.status-Moderate {
+    color: yellow !important;
 }
-.status-high {
-    color: orange;
+.status-High {
+    color: orange !important;
 }
-.status-critical {
-    color: red;
+.status-Critical {
+    color: red !important;
 }
 .card-custom {
     border: 1px solid #ddd;
@@ -25,4 +25,8 @@
 }
 .card-custom .card-body {
     padding: 20px;
+}
+
+th, td{
+    text-align: left;
 }

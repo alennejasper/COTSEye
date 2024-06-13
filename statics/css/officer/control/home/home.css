@@ -17,26 +17,101 @@
 
 .home-body .home-section h1{
     margin-bottom: 0px !important;
+    font-weight: 700;       
+    font-size: 24px;        
+    font-family: "Montserrat";
+    color: #003755;
     text-align: center;     
+}
+
+.home-body .home-cards{
+    display: grid;
+    row-gap: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 5px;
+    background-color: rgb(250, 250, 250, 0.75)
+}
+
+.home-body .home-cards h1{
+    margin-bottom: 0px !important;
     font-weight: 700;       
     font-size: 24px;        
     font-family: "Montserrat";
     color: #003755;
 }
 
-.map-section{
-    display: flex;                   
-    align-items: center; 
-    justify-content: center;          
-    flex-direction: column;
-    width: 100%;                     
-    text-align: center;                                   
+.home-body .home-cards .cards-container{
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto;
+    column-gap: 30px;
 }
 
-.map-section h1{
-    text-align: center;     
+.home-body .home-cards .cards-container .card .card-body{
+    width: 100%;
+}
+
+.home-body .home-cards .cards-container .card .card-body{
+    display: grid;
+    gap: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 100%;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.home-body .home-cards .cards-container .card .card-body p:first-child{
+    margin-bottom: 0px !important;
+    font-weight: 400;   
+    font-size: 16px;
+    font-family: "Montserrat";
+    color: #FFFFFF;
+}
+
+.home-body .home-cards .cards-container .card .card-body h1{
+    margin-bottom: 0px !important;
+    font-weight: 700; 
+    font-size: 24px;      
+    font-family: "Montserrat";
+    color: #FFFFFF;
+    text-transform: uppercase;
+}
+
+.home-body .home-cards .cards-container .card .card-body .card-amount p:first-child{
+    margin-bottom: 0px !important;
     font-weight: 700;       
-    font-size: 22px;        
+    font-size: 16px;        
+    font-family: "Montserrat";
+    color: #FFFFFF;
+}
+
+.home-body .home-cards .cards-container .card .card-body .card-amount p:last-child{
+    margin-bottom: 0px !important;
+    font-weight: 400;       
+    font-size: 16px;        
+    font-family: "Montserrat";
+    color: #FFFFFF;
+}
+
+.home-body .home-cards .cards-container .card .card-body > p{
+    margin-bottom: 0px !important;
+    font-weight: 400;       
+    font-size: 16px;        
+    font-family: "Montserrat";
+    color: #FFFFFF;
+}
+
+.home-body .home-cards .cards-container .card .card-body > p strong{
+    margin-bottom: 0px !important;
+    font-weight: 700;       
+    font-size: 16px;        
+    font-family: "Montserrat";
+    color: #FFFFFF;
 }
 
 .home-body .home-map{ 
@@ -1373,4 +1448,328 @@
 
 .home-body .home-map .map .leaflet-popup-tip{
     border-radius: 5px !important;
+}
+
+.home-body .home-graph{
+    display: grid;
+    row-gap: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 5px;
+    background-color: rgb(250, 250, 250, 0.75)
+}
+
+.home-body .home-graph .graph-section{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.home-body .home-graph .graph-section h1{
+    margin-bottom: 0px !important;
+    font-weight: 700;       
+    font-size: 24px;        
+    font-family: "Montserrat";
+    color: #003755;
+    text-align: center;     
+}
+
+.home-body .home-graph .graph-section .section-button{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.home-body .home-graph .graph-section .section-button button{
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: none;
+    border-radius: 5px;
+    outline: none !important;
+    font-weight: 700;       
+    font-size: 20px;        
+    font-family: "Montserrat";
+    color: #FFFFFF;
+    background-color: #698F3F;
+    text-align: center;
+    cursor: pointer;
+}
+
+.home-body .home-graph .graph-section .section-button button:hover{
+    color: #B2BEB5;
+    background-color: #547232;
+}
+
+.home-body .home-graph .graph-section .section-button button:focus{
+    color: #B2BEB5;
+    background-color: #547232;
+}
+
+.home-body .home-graph .graph-section .section-button button:active{
+    color: #B2BEB5;
+    background-color: #547232;
+}
+
+.home-body .home-graph form{
+    display: grid;
+    gap: 15px;
+}
+
+.home-body .home-graph form .graph-filter{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 1px solid #003755;;
+    border-radius: 5px;
+    background-color: rgb(225, 225, 225, 0.5)
+}
+
+.home-body .home-graph form .graph-filter .filter-input{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 30px;
+}
+
+.home-body .home-graph form .graph-filter .filter-input .filter-municipality label{
+    display: block;
+    margin-bottom: 0px !important;
+    font-family: "Montserrat";
+    font-weight: 700;
+    font-size: 20px;
+    color: #003755 !important;
+}
+
+.home-body .home-graph form .graph-filter .filter-input .filter-municipality select{
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 1px solid #003755;;
+    border-radius: 5px;
+    appearance: none;
+    outline: none !important;
+    font-family: "Montserrat";
+    font-weight: 400 !important;
+    font-size: 20px !important;   
+    color: #003755 !important;
+    cursor: pointer;
+}
+
+.home-body .home-graph form .graph-filter .filter-input .filter-barangay label{
+    display: block;
+    margin-bottom: 0px !important;
+    font-family: "Montserrat";
+    font-weight: 700;
+    font-size: 20px;
+    color: #003755 !important;
+}
+
+.home-body .home-graph form .graph-filter .filter-input .filter-barangay select{
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 1px solid #003755;;
+    border-radius: 5px;
+    appearance: none;
+    outline: none !important;
+    font-family: "Montserrat";
+    font-weight: 400 !important;
+    font-size: 20px !important;   
+    color: #003755 !important;
+    cursor: pointer;
+}
+
+.home-body .home-graph form .graph-filter .filter-input .filter-year label{
+    display: block;
+    margin-bottom: 0px !important;
+    font-family: "Montserrat";
+    font-weight: 700;
+    font-size: 20px;
+    color: #003755 !important;
+}
+
+.home-body .home-graph form .graph-filter .filter-input .filter-year input{
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 100%;
+    border: 1px solid #003755;
+    border-radius: 5px;
+    outline: none;
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 20px;
+    color: #003755 !important;
+}
+
+.home-body .home-graph form .graph-filter .filter-button{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 30px;
+}
+
+.home-body .home-graph form .graph-filter .filter-button button{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    border: none !important;
+    border-radius: 5px;
+    appearance: none !important;
+    outline: none !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 20px;
+    color: #FFFFFF !important;
+    background-color: #003755 !important;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.home-body .home-graph form .graph-header h1{
+    margin-bottom: 0px !important;
+    font-weight: 700;       
+    font-size: 24px;        
+    font-family: "Montserrat";
+    color: #003755;
+    text-align: center;
+}
+
+.home-body .home-graph form .graph-header p:nth-child(2){
+    margin-bottom: 0px !important;
+    font-weight: 400;       
+    font-size: 16px;        
+    font-family: "Montserrat";
+    color: #003755;
+    text-align: center;
+}
+
+.home-body .home-graph form .graph-header p:nth-child(3){
+    margin-bottom: 0px !important;
+    font-weight: 700;       
+    font-size: 16px;        
+    font-family: "Montserrat";
+    color: #003755;
+    text-align: center;
+}
+
+.home-body .home-graph form .graph-header p:nth-child(4){
+    margin-bottom: 0px !important;
+    font-weight: 400;       
+    font-size: 16px;        
+    font-family: "Montserrat";
+    color: #003755;
+    text-align: center;
+}
+
+.home-body .home-graph form .graph-header strong{
+    margin-bottom: 0px !important;
+    font-weight: 700;       
+    font-size: 16px;        
+    font-family: "Montserrat";
+    color: #003755;
+    text-align: center;
+}
+
+.home-body .home-graph form #noDataMessage{
+    display: none;
+    margin-bottom: 0px !important;
+    font-weight: 700;       
+    font-size: 16px;        
+    font-family: "Montserrat";
+    color: #003755;
+    text-align: center;
+}
+
+.home-body .home-graph form .graph{
+    margin-left: auto;
+    margin-right: auto;
+    width: 125vh !important;
+}
+
+.home-body .home-graph form .graph-legends{
+    margin-left: auto;
+    margin-right: auto;
+    width: 800px;
+}
+
+.home-body .home-graph form .graph-legends h1{
+    margin-bottom: 0px !important;
+    font-weight: 700;       
+    font-size: 16px;        
+    font-family: "Montserrat";
+    color: #003755;
+}
+
+.home-body .home-graph form .graph-legends .legends-container{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+.home-body .home-graph form .graph-legends .legends-container .legend-item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-body .home-graph form .graph-legends .legends-container .legend-item .legend-colorbox{
+    width: 30px;
+    height: 15px;
+    margin-right: 10px;
+}
+
+.home-body .home-graph form .graph-legends .legends-container .legend-item span{
+    margin-bottom: 0px !important;
+    font-weight: 400;       
+    font-size: 12px;        
+    font-family: "Montserrat";
+    color: #003755;
+    text-align: center;
+}
+
+.home-body .home-graph form .graph-legends .legends-container .legend-item strong{
+    margin-bottom: 0px !important;
+    font-weight: 700;       
+    font-size: 12px;        
+    font-family: "Montserrat";
+    color: #003755;
+    text-align: center;
+}
+
+.home-body .home-graph form .graph-legends p{
+    margin-bottom: 0px !important;
+    font-weight: 400;       
+    font-size: 12px;        
+    font-family: "Montserrat";
+    color: #003755;
+    text-align: center;
+}
+
+.home-body .home-graph .graph-data .data-header h1{
+    margin-bottom: 0px !important;
+    font-weight: 700;       
+    font-size: 24px;        
+    font-family: "Montserrat";
+    color: #003755;
 }

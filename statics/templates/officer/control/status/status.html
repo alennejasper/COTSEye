@@ -18,235 +18,75 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <!-- Custom CSS for Status Colors and Card Styles -->
-    <style>
-        .status-low {
-            color: green;
-        }
-        .status-moderate {
-            color: yellow;
-        }
-        .status-high {
-            color: orange;
-        }
-        .status-critical {
-            color: red;
-        }
-        .card-custom {
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-        }
-        .card-custom .card-header {
-            background-color: #f8f9fa;
-            border-bottom: 1px solid #ddd;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-            padding: 10px 20px;
-        }
-        .card-custom .card-body {
-            padding: 20px;
-        }
-    </style>
+     <link rel="stylesheet" href="{% static 'css/officer/control/status/status.css' %}" >
+
 </head>
+{% block status-content %}
+<h3 style="text-transform: uppercase;">Infestation Status  </h3>
 <div class="container-fluid mt-3">
-    <form method="get" class="mb-3">
-        <label for="year">Filter by Year:</label>
-        <select name="year" id="year" class="form-control" onchange="this.form.submit()">
-            <option value="">Select Year</option>
-            {% for year in years %}
-            <option value="{{ year.year }}" {% if year.year|stringformat:"s" == year_filter %}selected{% endif %}>{{ year.year }}</option>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col"> Date</th>
+                <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Municipality</th>
+                <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Total No. of COTS COLLECTED</th>
+                <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Status</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for status in paginated_statuses %}
+            <tr data-href="{% url 'barangay_status' status.location.municipality %}">
+                
+                <td>{{ status.onset_date | format_date_mmddyy }}</td>
+                <td>{{ status.location.municipality }}</td>
+                <td>{{ status.caught_overall }}</td>
+                <td class="status-{{ status.statustype }}">{{ status.statustype }}</td>
+                
+            </tr>
             {% endfor %}
-        </select>
-        <input type="hidden" id="default_year" value="2024">
-    </form>
-    
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const yearSelect = document.getElementById('year');
-            const defaultYear = document.getElementById('default_year').value;
-            if (!yearSelect.value) {
-                yearSelect.value = defaultYear;
-                yearSelect.form.submit();
-            }
-        });
-    </script>
+        </tbody>
+    </table>
 
-    <!-- Show All and Close All Buttons -->
-    <button class="btn btn-secondary mb-3" onclick="showAll()">Show All</button>
-    <button class="btn btn-secondary mb-3" onclick="collapseAll()">Close All</button>
-
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
-        <a class="navbar-brand" href="#">Quick Access</a>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                {% for municipality, data in municipalities.items %}
-                <li class="nav-item">
-                    <a class="nav-link" href="#{{ municipality|slugify }}">{{ municipality }}</a>
+    <!-- Pagination controls -->
+    <nav>
+        <ul class="pagination justify-content-center">
+            {% if paginated_statuses.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ paginated_statuses.previous_page_number }}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
                 </li>
-                {% endfor %}
-            </ul>
-        </div>
+            {% endif %}
+
+            {% for num in paginated_statuses.paginator.page_range %}
+                {% if paginated_statuses.number == num %}
+                    <li class="page-item active"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                {% else %}
+                    <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                {% endif %}
+            {% endfor %}
+
+            {% if paginated_statuses.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ paginated_statuses.next_page_number }}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
     </nav>
-    
-    {% for municipality, data in municipalities.items %}
-    <div class="card card-custom" id="{{ municipality|slugify }}">
-        <div class="card-header">
-            <div class="row">
-                <div class="col-md-6">
-                    <h4>{{ municipality }}</h4>
-                    {% if data.latest_status %}
-                    <p>Latest Status: <span class="status-{{ data.latest_status.statustype|lower }}">{{ data.latest_status.statustype }}</span> ({{ data.latest_status.onset_date }})</p>
-                    {% endif %}
-                </div>
-                <div class="col-md-6 text-right">
-                    <p>Total Caught: {{ data.total_caught }}</p>
-                    <p>Total Volunteers: {{ data.total_volunteers }}</p>
-                </div>
-            </div>
-            <button class="btn btn-link" data-toggle="collapse" data-target="#municipality-collapse{{ municipality|slugify }}" aria-controls="municipality-collapse{{ municipality|slugify }}">
-                Toggle Details
-            </button>
-        </div>
-        <div id="municipality-collapse{{ municipality|slugify }}" class="collapse">
-            <div class="card-body">
-                {% for barangay, barangay_data in data.barangays.items %}
-                <div class="card card-custom">
-                    <div class="card-header">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h5>{{ barangay }}</h5>
-                                {% if barangay_data.latest_status %}
-                                <p>Latest Status: <span class="status-{{ barangay_data.latest_status.statustype|lower }}">{{ barangay_data.latest_status.statustype }}</span> ({{ barangay_data.latest_status.onset_date|format_date_mmddyy }})</p>
-                                {% endif %}
-                            </div>
-                            <div class="col-md-6 text-right">
-                                <p>Total Caught: {{ barangay_data.total_caught }}</p>
-                                <p>Total Volunteers: {{ barangay_data.total_volunteers }}</p>
-                            </div>
-                        </div>
-                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapse{{ barangay|slugify }}" aria-controls="collapse{{ barangay|slugify }}">
-                            Show Details
-                        </button>
-                    </div>
-                    <div id="collapse{{ barangay|slugify }}" class="collapse">
-                        <div class="card-body">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            <a href="?sort=onset_date&order={% if sort_by == 'onset_date' and sort_order == 'desc' %}asc{% else %}desc{% endif %}">
-                                                Status Date
-                                                {% if sort_by == 'onset_date' %}
-                                                    {% if sort_order == 'desc' %}
-                                                    <i class="fas fa-arrow-down"></i>
-                                                    {% else %}
-                                                    <i class="fas fa-arrow-up"></i>
-                                                    {% endif %}
-                                                {% endif %}
-                                            </a>
-                                        </th>
-                                        <th>
-                                            <a href="?sort=caught_overall&order={% if sort_by == 'caught_overall' and sort_order == 'desc' %}asc{% else %}desc{% endif %}">
-                                                Caught Overall
-                                                {% if sort_by == 'caught_overall' %}
-                                                    {% if sort_order == 'desc' %}
-                                                    <i class="fas fa-arrow-down"></i>
-                                                    {% else %}
-                                                    <i class="fas fa-arrow-up"></i>
-                                                    {% endif %}
-                                                {% endif %}
-                                            </a>
-                                        </th>
-                                        <th>
-                                            <a href="?sort=volunteer_overall&order={% if sort_by == 'volunteer_overall' and sort_order == 'desc' %}asc{% else %}desc{% endif %}">
-                                                Volunteer Overall
-                                                {% if sort_by == 'volunteer_overall' %}
-                                                    {% if sort_order == 'desc' %}
-                                                    <i class="fas fa-arrow-down"></i>
-                                                    {% else %}
-                                                    <i class="fas fa-arrow-up"></i>
-                                                    {% endif %}
-                                                {% endif %}
-                                            </a>
-                                        </th>
-                                        
-                                        <th>
-                                            <a href="?sort=statustype&order={% if sort_by == 'statustype' and sort_order == 'desc' %}asc{% else %}desc{% endif %}">
-                                                Status Type
-                                                {% if sort_by == 'statustype' %}
-                                                    {% if sort_order == 'desc' %}
-                                                    <i class="fas fa-arrow-down"></i>
-                                                    {% else %}
-                                                    <i class="fas fa-arrow-up"></i>
-                                                    {% endif %}
-                                                {% endif %}
-                                            </a>
-                                        </th>
-                                        
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for status in barangay_data.statuses %}
-                                    <tr>
-                                        <td>{{ status.onset_date|format_date_mmddyy }}</td>
-                                        <td>{{ status.caught_overall }}</td>
-                                        <td>{{ status.volunteer_overall }}</td>
-                                        <td><span class="status-{{ status.statustype|lower }}">{{ status.statustype }}</span></td>
-                                        
-                                    </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                            <nav>
-                                <ul class="pagination">
-                                    {% if paginated_statuses.has_previous %}
-                                    <li class="page-item">
-                                        <a class="page-link" href="?page={{ paginated_statuses.previous_page_number }}&sort={{ sort_by }}&order={{ sort_order }}">Previous</a>
-                                    </li>
-                                    {% endif %}
-                                    {% for num in paginated_statuses.paginator.page_range %}
-                                    <li class="page-item {% if paginated_statuses.number == num %}active{% endif %}">
-                                        <a class="page-link" href="?page={{ num }}&sort={{ sort_by }}&order={{ sort_order }}">{{ num }}</a>
-                                    </li>
-                                    {% endfor %}
-                                    {% if paginated_statuses.has_next %}
-                                    <li class="page-item">
-                                        <a class="page-link" href="?page={{ paginated_statuses.next_page_number }}&sort={{ sort_by }}&order={{ sort_order }}">Next</a>
-                                    </li>
-                                    {% endif %}
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-    {% endfor %}
 </div>
-
 <script>
-    $(document).ready(function() {
-        // Collapse all sections when the page loads
-        collapseAll();
-
-        // Function to collapse all sections
-        function collapseAll() {
-            $('.collapse').collapse('hide');
-        }
-
-        // Function to show all sections
-        function showAll() {
-            $('.collapse').collapse('show');
-        }
-
-        // Attach functions to window for button access
-        window.collapseAll = collapseAll;
-        window.showAll = showAll;
+    document.addEventListener("DOMContentLoaded", function() {
+        var rows = document.querySelectorAll("tr[data-href]");
+        rows.forEach(row => {
+            row.addEventListener("click", function() {
+                window.location.href = this.dataset.href;
+            });
+        });
     });
-</script>
-
+    </script>
+    
+{% endblock %}
 {% endblock %}

@@ -11,6 +11,7 @@ from managements.models import *
 from reports.models import Post
 from .forms import InterventionForm, StatusForm
 from .models import Intervention
+from django.db.models import Max
 from django.http import JsonResponse
 from django.db.models import Q
 from django.core.paginator import Paginator
@@ -341,84 +342,67 @@ def OfficerControlStatus(request):
     notification_life = timezone.now() - timedelta(days=30)
     unread_notifications = Post.objects.filter(read_status=False, creation_date__gte=notification_life).order_by("-creation_date")[:5]
 
-    statuses = Status.objects.all().order_by('-onset_date')
-    locations = Location.objects.all()
+    latest_status_per_municipality = Status.objects.values('location__municipality').annotate(
+        latest_onset_date=Max('onset_date')
+    ).order_by('-latest_onset_date')
 
-    # Filtering based on year
-    year_filter = request.GET.get('year')
-    if year_filter:
-        statuses = statuses.filter(onset_date__year=year_filter)
+    latest_statuses = []
+    for entry in latest_status_per_municipality:
+        status = Status.objects.filter(
+            location__municipality=entry['location__municipality'],
+            onset_date=entry['latest_onset_date']
+        ).first()
+        if status:
+            latest_statuses.append(status)
 
-    # Sorting
-    sort_by = request.GET.get('sort', 'onset_date')
-    sort_order = request.GET.get('order', 'desc')
-    if sort_by in ['statustype', 'caught_overall', 'volunteer_overall', 'onset_date']:
-        if sort_order == 'asc':
-            statuses = statuses.order_by(sort_by)
-        else:
-            statuses = statuses.order_by(f'-{sort_by}')
-
-    # Organize statuses by municipality and barangay
-    municipalities = {}
-    for status in statuses:
-        municipality = status.location.municipality
-        barangay = status.location.barangay
-
-        if municipality not in municipalities:
-            municipalities[municipality] = {
-                'latest_status': None,
-                'barangays': {}
-            }
-
-        if barangay not in municipalities[municipality]['barangays']:
-            municipalities[municipality]['barangays'][barangay] = {
-                'latest_status': None,
-                'statuses': []
-            }
-
-        municipalities[municipality]['barangays'][barangay]['statuses'].append(status)
-
-    # Get latest status for each barangay and municipality and set totals based on latest status
-    for municipality, data in municipalities.items():
-        for barangay, barangay_data in data['barangays'].items():
-            if barangay_data['statuses']:
-                latest_status = max(barangay_data['statuses'], key=lambda status: status.onset_date)
-                latest_status.onset_date = DateFormat(latest_status.onset_date).format('m/d/Y')
-                barangay_data['latest_status'] = latest_status
-                barangay_data['total_caught'] = latest_status.caught_overall or 0
-                barangay_data['total_volunteers'] = latest_status.volunteer_overall or 0
-            else:
-                barangay_data['total_caught'] = 0
-                barangay_data['total_volunteers'] = 0
-        
-        data['total_caught'] = sum(barangay_data['total_caught'] for barangay_data in data['barangays'].values())
-        data['total_volunteers'] = sum(barangay_data['total_volunteers'] for barangay_data in data['barangays'].values())
-        if data['barangays']:
-            data['latest_status'] = max(
-                (barangay_data['latest_status'] for barangay_data in data['barangays'].values() if barangay_data['latest_status']),
-                key=lambda status: status.onset_date
-            )
-
-    # Pagination
-    paginator = Paginator(statuses, 10)  # Show 10 statuses per page
+    paginator = Paginator(latest_statuses, 10)
     page_number = request.GET.get('page')
     paginated_statuses = paginator.get_page(page_number)
 
-    statuses_json = serialize_statuses(statuses)
-
     context = {
         "unread_notifications": unread_notifications,
-        "municipalities": municipalities,
-        "statuses_json": statuses_json,
-        "locations": locations,
-        "year_filter": year_filter,
+        "locations": Location.objects.all(),
         "years": Status.objects.dates('onset_date', 'year', order='DESC'),
         "paginated_statuses": paginated_statuses,
-        "sort_by": sort_by,
-        "sort_order": sort_order,
     }
 
     return render(request, "officer/control/status/status.html", context)
+
+@login_required(login_url="Officer Control Login")
+@user_passes_test(OfficerCheck, login_url="Officer Control Login")
+def BarangayStatusView(request, municipality_name):
+    # Filter locations by municipality name
+    locations = Location.objects.filter(municipality=municipality_name)
+
+    # Fetch the latest status for each barangay in the filtered locations
+    latest_statuses = []
+    for location in locations:
+        latest_status = Status.objects.filter(location=location).order_by('-onset_date').first()
+        if latest_status:
+            latest_statuses.append(latest_status)
+
+    context = {
+        'municipality_name': municipality_name,
+        'latest_statuses': latest_statuses,
+    }
+
+    return render(request, "officer/control/status/barangay_status.html", context)
+
+@login_required(login_url="Officer Control Login")
+@user_passes_test(OfficerCheck, login_url="Officer Control Login")
+def BarangayAllStatusesView(request, barangay_name):
+    # Filter locations by barangay name
+    locations = Location.objects.filter(barangay=barangay_name)
+    
+    # Fetch all statuses for the filtered locations
+    all_statuses = Status.objects.filter(location__in=locations).order_by('-onset_date')
+
+    context = {
+        'barangay_name': barangay_name,
+        'all_statuses': all_statuses,
+    }
+
+    return render(request, "officer/control/status/barangay_all_statuses.html", context)
 
 
 @login_required(login_url = "Officer Control Login")

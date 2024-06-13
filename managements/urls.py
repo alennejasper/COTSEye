@@ -29,5 +29,9 @@ urlpatterns = [
 
     path("officer/control/report/", views.OfficerControlReport, name = "Officer Control Report"),
 
+    path('municipality/<str:municipality_name>/', views.BarangayStatusView, name='barangay_status'),
+
+    path('barangay/<str:barangay_name>/', views.BarangayAllStatusesView, name='barangay_all_statuses'),
+
    
 ]
