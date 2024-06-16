@@ -40,16 +40,16 @@
 {% endblock %}
 
 {% block content %}
-    <div class = "home-map">
+    <!-- <div class = "home-map">
         <div class = "map">
         </div>
-    </div>
+    </div> -->
 
     {{block.super}}
 
     <script type = "text/javascript">if(window.location.hash && window.location.hash === "#_=_"){ window.location.hash = ""; history.pushState("", document.title, window.location.pathname);}</script>
 
-    <script>
+    <!-- <script>
         function revealMap(){    
             map_statuses = L.layerGroup();
 
@@ -256,5 +256,5 @@
         window.addEventListener("load", function (){
             revealMap();
         });
-    </script>
+    </script> -->
 {% endblock %}

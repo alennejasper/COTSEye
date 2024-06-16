@@ -1,29 +1,35 @@
-.status-Low {
-    color: green !important;
+.status-Low{
+    color: #698F3F !important;
 }
-.status-Moderate {
-    color: yellow !important;
+
+.status-Moderate{
+    color: #F4C430 !important;
 }
-.status-High {
-    color: orange !important;
+
+.status-High{
+    color: #FF7518 !important;
 }
-.status-Critical {
-    color: red !important;
+
+.status-Critical{
+    color: #C90016 !important;
 }
-.card-custom {
-    border: 1px solid #ddd;
+
+.card-custom{
+    margin-bottom: 20px;
+    border: 1px solid #DDD;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
 }
+
 .card-custom .card-header {
-    background-color: #f8f9fa;
-    border-bottom: 1px solid #ddd;
+    padding: 10px 20px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    padding: 10px 20px;
+    border-bottom: 1px solid #DDD;
+    background-color: #F8F9FA;
 }
-.card-custom .card-body {
+
+.card-custom .card-body{
     padding: 20px;
 }
 

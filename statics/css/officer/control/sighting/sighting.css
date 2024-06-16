@@ -14,35 +14,33 @@
     display: none;
 }
 
-/* FILTER BUTTONS CSS START */
-
 .button-29{
-    align-items: center;
-    appearance: none;
-    background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ff 100%);
-    border: 0;
-    border-radius: 6px;
-    box-sizing: border-box;
-    color: #fff;
-    cursor: pointer;
+    position: relative;
     display: inline-flex;
-    font-family: "Montserrat";
+    align-items: center;
     justify-content: center;
-    line-height: 1;
-    list-style: none;
-    overflow: hidden;
     padding-left: 8px;
     padding-right: 8px;
-    position: relative;
+    box-sizing: border-box;
+    border: 0;
+    border-radius: 6px;
+    will-change: box-shadow, transform;
+    transition: box-shadow .15s, transform .15s;
+    appearance: none;
+    overflow: hidden;
+    white-space: nowrap;
+    font-family: "Montserrat";
+    font-size: 13px;
+    color: #FFF;
+    background-image: radial-gradient(100% 100% at 100% 0, #5ADAFF 0, #5468FF 100%);
+    line-height: 1;
+    list-style: none;
     text-align: left;
     text-decoration: none;
-    transition: box-shadow .15s,transform .15s;
     user-select: none;
     -webkit-user-select: none;
+    cursor: pointer;
     touch-action: manipulation;
-    white-space: nowrap;
-    will-change: box-shadow,transform;
-    font-size: 13px;
 }
 
 .button-29:focus{
@@ -50,7 +48,7 @@
 }
 
 .button-29:hover {
-    box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+    box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3C4fE0 0 -3px 0 inset;
     transform: translateY(-2px);
 }
 
@@ -61,86 +59,73 @@
 
 
 .filterbutton{
-    width: 100%;
+    display: inline-flex;
+    position: relative;
     align-items: center;
+    justify-content: center;
     margin-bottom: 10px;
     margin-top: 10px;
-    appearance: none;
-    background-color: #007BFF;
-    font-family: Montserrat;
+    width: 100%;
+    height: 28px;
+    box-sizing: border-box;
     border: 0;
     border-radius: 6px;
-     box-sizing: border-box;
-    color: #ffffff;
-    font-weight: 500;
-    cursor: pointer;
-    display: inline-flex;
+    appearance: none;
+    overflow: hidden;
+    color: #FFFFFF;
     font-family: "Montserrat";
-    height: 28px;
-    justify-content: center;
+    font-family: "Montserrat";
+    font-weight: 500;
+    font-size: 13px;
+    background-color: #007BFF;
     line-height: 1;
     list-style: none;
-    overflow: hidden;
-    position: relative;
     text-align: center;
     text-decoration: none;
-    font-size: 13px;
+    cursor: pointer;
 }
   
-  .resetbutton {
-    width: 100%;
+.resetbutton{
+    position: relative;
+    display: inline-flex;
     align-items: center;
-    appearance: none;
-    background-image: radial-gradient(100% 100% at 100% 0, #5affb2 0, #54ffc6 100%);
+    justify-content: center;
+    width: 100%;
+    height: 28px;
+    box-sizing: border-box;
     border: 0;
     border-radius: 6px;
-    box-sizing: border-box;
-    color: #000000;
+    appearance: none;
+    overflow: hidden;
     font-weight: 500;
-    cursor: pointer;
-    display: inline-flex;
     font-family: "Montserrat";
-    height: 28px;
-    justify-content: center;
+    font-size: 13px;
+    color: #000000;
+    background-image: radial-gradient(100% 100% at 100% 0, #5AFFB2 0, #54FFC6 100%);
     line-height: 1;
     list-style: none;
-    overflow: hidden;
-    position: relative;
     text-align: center;
-    font-size: 13px;
-  }
-  
-  
+    cursor: pointer;
+}
 
-/*   END BUTTON */
-
-
-/* START CONTAINER CSS */
-.filtercont {
+.filtercont{
     padding: 15px;
-    transform:
-      perspective(800px)
-
-    transition: transform 1s ease 0s;
     border-radius: 4px;
-    box-shadow:
-      rgba(0, 0, 0, 0.024) 0px 0px 0px 1px,
-      rgba(0, 0, 0, 0.05) 0px 1px 0px 0px,
-      rgba(0, 0, 0, 0.03) 0px 0px 8px 0px,
-      rgba(0, 0, 0, 0.1) 0px 20px 30px 0px;
-  
-  }
+    box-shadow: rgba(0, 0, 0, 0.024) 0px 0px 0px 1px, rgba(0, 0, 0, 0.05) 0px 1px 0px 0px, rgba(0, 0, 0, 0.03) 0px 0px 8px 0px, rgba(0, 0, 0, 0.1) 0px 20px 30px 0px;
+    transform: perspective(800px);
+    transition: transform 1s ease 0s;
+}
 
 .table-container td{
     font-size: 13px;
 }
 
-.table>:not(caption)>*>* {
+.table > :not(caption) > * > *{
     padding: 4px 4px !important;
-    color: var(--bs-table-color-state, var(--bs-table-color-type, var(--bs-table-color)));
-    background-color: var(--bs-table-bg);
     border-bottom-width: var(--bs-border-width);
     box-shadow: inset 0 0 0 9999px var(--bs-table-bg-state, var(--bs-table-bg-type, var(--bs-table-accent-bg)));
+    color: var(--bs-table-color-state, var(--bs-table-color-type, var(--bs-table-color)));
+    background-color: var(--bs-table-bg);
 }
 
 .table-hover tbody tr:hover{
@@ -148,8 +133,8 @@
 }
 
 .pagination .page-link{
-    color: #007BFF;
     transition: background-color 0.3s, color 0.3s;
+    color: #007BFF;
 }
 
 .pagination .page-link:hover{
@@ -196,12 +181,12 @@
 }
 
 .btn-read:hover{
-    background-color: #0056b3;
+    background-color: #0056B3;
     cursor: pointer;
 }
 
 .btn-valid{
-    background-color: #28a745;
+    background-color: #28A745;
 }
 
 .btn-valid:hover{
@@ -210,32 +195,30 @@
 }
 
 .btn-invalid{
-    background-color: #dc3545;
+    background-color: #DC3545;
 }
 
 .btn-invalid:hover{
-    background-color: #c82333;
+    background-color: #C82333;
     cursor: pointer;
 }
 
 .status-pending{
-    color: #ffc107;
+    color: #003755;
 }
 
 .status-valid{
-    color: #28a745;
+    color: #698F3F;
 }
 
 .status-invalid{
-    color: #DC3545;
+    color: #C90016;
 }
 
-#selectAction {
+#selectAction{
     border: none;
 
 }
-
-
 
 .dropdown-content{
     position: absolute;
@@ -244,15 +227,10 @@
     top: 100%;    
     max-width: 150px;
     border-radius: 5px;
-    border: 1px solid #167aaf;     
+    border: 1px solid #167AAf;     
     background-color: #FFFFFF;
     z-index: 100;
 }
-
-
-
-
-
 
 .dropdown-content a.dropdown-header{
     display: block;
@@ -263,7 +241,7 @@
     font-family: "Montserrat";
     font-weight: 500;
     font-size: 12px;
-    background-color: #ffffff;
+    background-color: #FFFFFF;
     color: #000000;
     text-align: left;
     text-decoration: none !important;
@@ -337,7 +315,7 @@
     font-family: "Montserrat";
     font-weight: 500;
     font-size: 12px;
-    background-color: #ffffff;
+    background-color: #FFFFFF;
     color: #000000;
     text-decoration: none !important;
 }
@@ -348,7 +326,7 @@
 }
 
 .dropdown-item a:focus{
-    color: #B2BEB5 !important;
+    background-color: #B2BEB5 !important;
     color: #002C44 !important;
 }
 
@@ -506,41 +484,36 @@
     display: block;
 }
 
-
-/* Add this CSS to your stylesheet */
-.select2-container {
-    margin-bottom: 10px !important; /* Adjust the value as needed */
+.select2-container{
+    margin-bottom: 10px !important;
 }
 
 .select2-container .select2-selection {
-    font-size: 13px !important; /* Adjust the value as needed */
+    font-size: 13px !important;
 }
 
-
-/* CSS */
-.submit-button {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 6px 14px;
-  font-family: "Montserrat";
-  font-size: 15px;
-  border-radius: 6px;
-  border: none;
-  margin-top: 10px;
-  margin-left: auto;
-  margin-right: auto;
-
-  color: #fff;
-  background: linear-gradient(180deg, #4B91F7 0%, #367AF6 100%);
-   background-origin: border-box;
-  box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
+.submit-button{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    padding: 6px 14px;
+    border: none;
+    border-radius: 6px;
+    box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
+    font-family: "Montserrat";
+    font-size: 15px;
+    color: #FFFFFF;
+    background: linear-gradient(180deg, #4B91F7 0%, #367AF6 100%);
+    background-origin: border-box;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
 }
 
-.submit-button:focus {
-  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
-  outline: 0;
+.submit-button:focus{
+    box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+    outline: 0;
 }

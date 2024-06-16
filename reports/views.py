@@ -1,19 +1,19 @@
-from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.files.base import ContentFile
 from django.core.mail import EmailMultiAlternatives
 from django.db.models import Q
 from django.http import JsonResponse
+from django.shortcuts import get_object_or_404, render, redirect
 from django.template.loader import render_to_string
 from django.urls import reverse
+from django.utils import timezone
 from django.utils.html import strip_tags
 from authentications.models import Account
 from authentications.views import ContributorCheck, OfficerCheck
 from managements.models import Location
 from reports.models import *
 from reports.forms import CoordinatesForm, PostObservationForm, PostForm
-from django.utils import timezone
 from datetime import timedelta
 
 import base64
@@ -273,6 +273,16 @@ def ContributorServicePostRead(request, id):
     scheme = request.scheme
 
     host = request.META["HTTP_HOST"]
+    try:
+        post = Post.objects.get(id = id)
+
+        post.contrib_read_status = True
+
+        post.contrib_read_date = timezone.now()
+
+        post.save()
+    except Post.DoesNotExist:
+        return JsonResponse({"success": False, "error": "COTSEye cannot find the post."})
 
     try:
         valid_post = Post.objects.get(id = id, user = request.user.user, post_status = 1)
@@ -730,72 +740,74 @@ def OfficerControlSighting(request):
     return render(request, 'officer/control/sighting/sighting.html', context)
 
 
-
 @login_required(login_url = "Officer Control Login")
 @user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def add_remark(request, post_id):
-    post = get_object_or_404(Post, id=post_id)
-    if request.method == 'POST':
+    post = get_object_or_404(Post, id = post_id)
+
+    if request.method == "POST":
         data = json.loads(request.body)
-        remark = data.get('remark', '')
+        
+        remark = data.get("remark", "")
+
         post.remarks = remark
+        
         post.save()
-        return JsonResponse({'success': True, 'message': 'Remark added successfully.'})
-    return JsonResponse({'success': False, 'message': 'Invalid request method.'})
+        
+        return JsonResponse({"success": True, "message": "Remark added successfully."})
+    
+    return JsonResponse({"success": False, "message": "Invalid request method."})
 
 @login_required(login_url = "Officer Control Login")
 @user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def OfficerControlSightingUpdate(request, id):
-    post = get_object_or_404(Post, id=id)
-    data = {
-        "latitude": post.location.latitude,
-        "longitude": post.location.longitude,
-        "location": {
-            "municipality": post.location.municipality,
-            "barangay": post.location.barangay
-        }
-    }
+    post = get_object_or_404(Post, id = id)
+
+    data = {"latitude": post.location.latitude, "longitude": post.location.longitude, "location": {"municipality": post.location.municipality, "barangay": post.location.barangay}}
+    
     return JsonResponse(data)
 
 
-@login_required(login_url="Officer Control Login")
-@user_passes_test(OfficerCheck, login_url="Officer Control Login")
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def update_post(request, post_id):
     post = get_object_or_404(Post, id=post_id)
+
     data = json.loads(request.body)
 
     try:
-        # Retrieve data from the request
-        municipality = data.get('municipality')
-        barangay = data.get('barangay')
-        latitude = data.get('latitude')
-        longitude = data.get('longitude')
+        municipality = data.get("municipality")
+
+        barangay = data.get("barangay")
+
+        latitude = data.get("latitude")
+
+        longitude = data.get("longitude")
         
-        # Log received coordinates for debugging
         print(f"Received coordinates: {latitude}° N, {longitude}° E")
 
-        # Update coordinates
-        coordinates_qs = Coordinates.objects.filter(latitude=latitude, longitude=longitude)
+        coordinates_qs = Coordinates.objects.filter(latitude = latitude, longitude = longitude)
 
         if coordinates_qs.exists():
             coordinates = coordinates_qs.first()
+
         else:
-            coordinates = Coordinates.objects.create(latitude=latitude, longitude=longitude)
+            coordinates = Coordinates.objects.create(latitude = latitude, longitude = longitude)
 
         post.coordinates = coordinates
 
-        # Log the post's updated coordinates
         print(f"Updated post coordinates: {post.coordinates.latitude}° N, {post.coordinates.longitude}° E")
         
-        # Update location
-        location = get_object_or_404(Location, municipality=municipality, barangay=barangay)
+        location = get_object_or_404(Location, municipality = municipality, barangay = barangay)
+
         post.location = location
         
         post.save()
 
-        return JsonResponse({'status': 'success'}, status=200)
+        return JsonResponse({"status": "success"}, status = 200)
+    
     except Exception as e:
-        return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
+        return JsonResponse({"status": "error", "message": str(e)}, status = 400)
     
 
 @login_required(login_url = "Officer Control Login")
@@ -814,7 +826,7 @@ def mark_post_as_read(request, id):
 
     post.save()
 
-    return redirect("post_list")
+    return redirect("Officer Control Notification")
 
 
 @login_required(login_url = "Officer Control Login")
@@ -866,17 +878,21 @@ def OfficerControlSightingReadRedirect(request, object_id):
         return redirect(reverse("Officer Control Sighting Read", kwargs = {"object_id": object.id}))
     
 
-@login_required(login_url="Officer Control Login")
-@user_passes_test(OfficerCheck, login_url="Officer Control Login")
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def DeletePostPhoto(request, photo_id):
-    if request.method == 'DELETE':
+    if request.method == "DELETE":
         try:
-            photo = get_object_or_404(PostPhoto, id=photo_id)
+            photo = get_object_or_404(PostPhoto, id = photo_id)
+
             photo.delete()
-            return JsonResponse({'success': True})
+            
+            return JsonResponse({"success": True})
+        
         except:
-            return JsonResponse({'success': False}, status=400)
-    return JsonResponse({'success': False}, status=405)
+            return JsonResponse({"success": False}, status = 400)
+        
+    return JsonResponse({"success": False}, status = 405)
 
 
 @login_required(login_url="Officer Control Login")
@@ -894,41 +910,41 @@ def OfficerControlSightingValid(request):
         if request.user.usertype.id == 2:
             post.validated_by = request.user.user
 
-        post.read_date = current_time  # Update the read_date to current time
+        post.read_date = current_time
         
         post.save()
-        return JsonResponse({"success": True, "message": "Post status updated successfully. Read Date updated"})
-    
-       
 
+        return JsonResponse({"success": True, "message": "Post status updated successfully."})
+    
     return JsonResponse({"success": False, "message": "Invalid request method."}, status=400)
 
-@login_required(login_url="Officer Control Login")
-@user_passes_test(OfficerCheck, login_url="Officer Control Login")
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def OfficerControlSightingInvalid(request):
     if request.method == "POST" and request.headers.get("x-requested-with") == "XMLHttpRequest":
         id = request.POST.get("post_id")
+
         remarks = request.POST.get("remarks")
         
         post = get_object_or_404(Post, id=id)
         
         current_time = timezone.now()
        
-
         if post.read_date is None:
             post.post_status = PostStatus.objects.get(id=2)
             
             if request.user.usertype.id == 2:
                 post.validated_by = request.user.user
             
-            post.remarks = remarks  # Save the remarks
-            post.read_date = current_time  # Update the read_date to current time
+            post.remarks = remarks 
+
+            post.read_date = current_time  
             
             post.save()
+
             return JsonResponse({"success": True, "message": "Post status updated to invalid with remarks. Read Date updated."})
         
-
-    return JsonResponse({"success": False, "message": "Invalid request method."}, status=400)
+    return JsonResponse({"success": False, "message": "Invalid request method."}, status = 400)
     
 
 def PostValidReadRedirect(request, id):

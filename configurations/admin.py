@@ -1,15 +1,14 @@
 from django.contrib import admin
 from django.http import HttpResponseRedirect
 from django.urls import reverse, path
-from authentications.views import AdministratorControlLogin, AdministratorControlStatistics, AdministratorControlLogout, ControlHomeRedirect, ControlPasswordRedirect, ControlProfileRedirect
-from managements.views import AdministratorControlStatisticsIntervention, ControlStatisticsStatusReadRedirect, ControlStatisticsInterventionReadRedirect
+from authentications.views import AdministratorControlLogin, AdministratorControlLogout, ControlHomeRedirect, ControlPasswordRedirect, ControlProfileRedirect
 
 
 # Register your models here.
 class AdministratorSite(admin.AdminSite):    
-    admin.site.site_title = "Home"
+    site_title = "Home"
 
-    index_title = "COTSEye"
+    index_title = "COTSEYE"
     
     index_template = "admin/control/index/index.html"
 
@@ -30,10 +29,6 @@ class AdministratorSite(admin.AdminSite):
 
         urlpatterns = [
             path("login/", AdministratorControlLogin, name = "Administrator Control Login"),
-
-            path("statistics/", AdministratorControlStatistics, name = "Administrator Control Statistics"),
-
-            path("statistics/intervention/", AdministratorControlStatisticsIntervention, name = "Administrator Control Statistics Intervention"),
             
             path("logout/", AdministratorControlLogout, name = "Administrator Control Logout"),
 
@@ -41,13 +36,9 @@ class AdministratorSite(admin.AdminSite):
 
             path("password/redirect/", ControlPasswordRedirect, name = "Control Password Redirect"),
 
-            path("profile/redirect/", ControlProfileRedirect, name = "Control Profile Redirect"),
-
-            path("statistics/status/read/<int:object_id>/redirect/", ControlStatisticsStatusReadRedirect, name = "Control Statistics Status Read Redirect"),
-
-            path("statistics/intervention/read/<int:object_id>/redirect/", ControlStatisticsInterventionReadRedirect, name = "Control Statistics Intervention Read Redirect")
+            path("profile/redirect/", ControlProfileRedirect, name = "Control Profile Redirect")
         ]
 
         return urlpatterns + urls
 
-admin.site = AdministratorSite(name = "admin")
+admin.site = AdministratorSite(name = "admins")

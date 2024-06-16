@@ -64,75 +64,38 @@ class PostStatus(models.Model):
 
 
 class Size(models.Model):
-    is_small = models.BooleanField(default = False, help_text = "Designates that the size is small.", verbose_name = "Small")
-    is_medium = models.BooleanField(default = False, help_text = "Designates that the size is medium.", verbose_name = "Medium")
-    is_large = models.BooleanField(default = False, help_text = "Designates that the size is large.", verbose_name = "Large")
+    size = models.CharField(max_length = 65, null = True, help_text = "Designates the size.", verbose_name = "Size")
    
     class Meta:
         db_table = "reports_size"
         verbose_name = "Size"
-        verbose_name_plural = "Sizes"
+        verbose_name_plural = "Size"
     
     def __str__(self):
-        if self.is_small == True:
-            return "1 to 9 inches"
-        
-        elif self.is_medium == True:
-            return "10 to 18 inches"
-        
-        elif self.is_large == True:
-            return "19 inches and above"
+        return str(self.size)
         
 class Depth(models.Model):
-    is_shallow = models.BooleanField(default = False, help_text = "Designates that the depth is shallow.", verbose_name = "Shallow")
-    is_moderate = models.BooleanField(default = False, help_text = "Designates that the depth is moderate.", verbose_name = "Moderate")
-    is_deep = models.BooleanField(default = False, help_text = "Designates that the depth is deep.", verbose_name = "Deep")
-    is_profound = models.BooleanField(default = False, help_text = "Designates that the depth is profound.", verbose_name = "Profound")
+    depth = models.CharField(max_length = 65, null = True, help_text = "Designates the depth.", verbose_name = "Depth")
 
     class Meta:
         db_table = "reports_depth"
         verbose_name = "Depth"
-        verbose_name_plural = "Depths"
+        verbose_name_plural = "Depth"
     
     def __str__(self):
-        if self.is_profound == True:
-            return "21 feet and above"
-        
-        if self.is_deep == True:
-            return "11 to 20 feet"
-        
-        elif self.is_moderate == True:
-            return "6 to 10 feet"
-        
-        elif self.is_shallow == True:
-            return "1 to 5 feet"
+        return str(self.depth)
         
 class Weather(models.Model):
-    is_sunny = models.BooleanField(default = False, help_text = "Designates that the weather is sunny.", verbose_name = "Sunny")
-    is_cloudy = models.BooleanField(default = False, help_text = "Designates that the weather is cloudy.", verbose_name = "Cloudy")
-    is_windy = models.BooleanField(default = False, help_text = "Designates that the weather is windy.", verbose_name = "Windy")
-    is_rainy = models.BooleanField(default = False, help_text = "Designates that the weather is rainy.", verbose_name = "Rainy")
-    is_stormy = models.BooleanField(default = False, help_text = "Designates that the weather is stormy.", verbose_name = "Stormy")
+    weather = models.CharField(max_length = 65, null = True, help_text = "Designates the weather.", verbose_name = "Weather")
+
     class Meta:
         db_table = "reports_weather"
         verbose_name = "Weather"
-        verbose_name_plural = "Weathers"
+        verbose_name_plural = "Weather"
     
     def __str__(self):
-        if self.is_sunny == True:
-            return "Sunny"
-        
-        elif self.is_cloudy == True:
-            return "Cloudy"
-        
-        elif self.is_windy == True:
-            return "Windy"
-        
-        elif self.is_rainy == True:
-            return "Rainy"
-        
-        elif self.is_stormy == True:
-            return "Stormy"
+        return str(self.weather)
+
 
 class PostObservation(models.Model):
     size = models.ForeignKey(Size, on_delete = models.CASCADE, null = True, blank = True, help_text = "Designates the foreign key of the Size model.", verbose_name = "Size")
@@ -151,7 +114,7 @@ class PostObservation(models.Model):
 
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete = models.CASCADE, help_text = "Designates the foreign key of the User model.", verbose_name = "User")
-    description = models.TextField(max_length = 1500, help_text = "Designates the description of the post.", verbose_name = "Description")
+    description = models.TextField(max_length = 255, help_text = "Designates the description of the post.", verbose_name = "Description")
     capture_date = models.DateTimeField(default = datetime.datetime.now, help_text = "Designates the capture date and time of the post.", verbose_name = "Capture Date")
     post_photos = models.ManyToManyField(PostPhoto, blank = True, through = "PostGallery", help_text = "Designates the foreign key of the Post Photo model.", verbose_name = "Post Photos")
     coordinates = models.ForeignKey(Coordinates, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Coordinates model.", verbose_name = "Coordinates")
@@ -172,7 +135,7 @@ class Post(models.Model):
         verbose_name_plural = "Posts"
 
     def __str__(self):
-        return f"POST {self.id} | {self.user}"
+        return "POST "+ str(self.id) + " | " + str(self.user)
 
   
 

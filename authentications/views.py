@@ -929,46 +929,6 @@ def AdministratorCheck(account):
     
     except Account.DoesNotExist:
             return False
-    
-
-@login_required(login_url = "admin:Administrator Control Login")
-@user_passes_test(AdministratorCheck, login_url = "admin:Administrator Control Login")
-def AdministratorControlStatistics(request):
-    username = request.user.username
-
-    posts = Post.objects.all()
-
-    posts_count = Post.objects.count()
-
-    try:
-        post_date = Post.objects.latest("capture_date").capture_date
-        
-    except:
-        post_date = None
-
-    statuses = Status.objects.all()
-        
-    statuses_count = Status.objects.count()
-
-    try:
-        status_date = Status.objects.latest("onset_date").onset_date
-        
-    except:
-        status_date = None
-
-    interventions = Intervention.objects.all()
-
-    interventions_count = Intervention.objects.count()
-
-    try:
-        intervention_date = Intervention.objects.latest("intervention_date").intervention_date
-        
-    except:
-        intervention_date = None
-    
-    context = {"username": username, "posts": posts, "posts_count": posts_count, "post_date": post_date, "statuses": statuses, "statuses_count": statuses_count, "status_date": status_date, "interventions": interventions, "interventions_count": interventions_count, "intervention_date": intervention_date}
-    
-    return render(request, "admin/control/statistics/statistics.html", context)
 
 
 @login_required(login_url = "admin:Administrator Control Login")
@@ -1026,24 +986,23 @@ def ControlProfileRedirect(request):
 @login_required(login_url = "Officer Control Login")
 @user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def OfficerControlNotification(request):
-    unread_notifications_list = Post.objects.filter(read_status=False).order_by("-creation_date")
+    unread_notifications_list = Post.objects.filter(read_status = False).order_by("-creation_date")[:5]
+
     now = timezone.now()
-    read_posts_list = Post.objects.filter(read_status=True).filter(
-        read_date__gte=now - timedelta(days=30),
-        read_date__lte=now
-    ).order_by("-creation_date")
+    read_posts_list = Post.objects.filter(read_status = True).filter(read_date__gte = now - timedelta(days = 30), read_date__lte = now).order_by("-creation_date")
     
-    unread_paginator = Paginator(unread_notifications_list, 10)  # Show 10 unread posts per page
-    read_paginator = Paginator(read_posts_list, 10)  # Show 10 read posts per page
+    unread_paginator = Paginator(unread_notifications_list, 10) 
+
+    read_paginator = Paginator(read_posts_list, 10)
     
-    unread_page_number = request.GET.get('unread_page')
-    read_page_number = request.GET.get('read_page')
+    unread_page_number = request.GET.get("unread_page")
+
+    read_page_number = request.GET.get("read_page")
     
     unread_notifications = unread_paginator.get_page(unread_page_number)
+
     read_posts = read_paginator.get_page(read_page_number)
     
-    context = {
-        'unread_notifications': unread_notifications,
-        'read_posts': read_posts,
-    }
+    context = {"unread_notifications": unread_notifications, "read_posts": read_posts}
+    
     return render(request, 'officer/control/notification/notification.html', context)

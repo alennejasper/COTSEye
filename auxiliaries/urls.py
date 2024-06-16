@@ -29,13 +29,13 @@ urlpatterns = [
 
     path("officer/control/announcement/update/<int:pk>", views.officercontrolupdateannouncement, name = "Officer Control Update Announcement"),
 
-    path('officer/control/announcement/delete/<int:pk>/', views.officercontroldeleteannouncement, name='Officer Control Delete Announcement'),
+    path("officer/control/announcement/delete/<int:pk>/", views.officercontroldeleteannouncement, name = "Officer Control Delete Announcement"),
 
-    path('officer/control/announcement/<int:pk>/', views.officer_control_announcement, name='Officer Control Announcement'),
+    path("officer/control/announcement/<int:pk>/", views.officer_control_announcement, name = "Officer Control Announcement"),
 
     path("service/link/read/<int:id>/redirect/", views.ServiceLinkReadRedirect, name = "Service Link Read Redirect"),
 
     path("service/file/read/<int:id>/redirect/", views.ServiceFileReadRedirect, name = "Service File Read Redirect"),
     
-    path('get_barangays/', views.get_barangays, name='get_barangays'),
+    path("get_barangays/", views.get_barangays, name = "get_barangays")
 ]

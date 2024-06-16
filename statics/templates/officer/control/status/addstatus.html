@@ -1,31 +1,27 @@
 {% extends "officer/control/index/index.html" %}
 
 {% block content %}
-<h1>Create Status</h1>
-<form id="statusForm" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="button" class="btn btn-primary" id="submitButton">Save</button>
-</form>
+    <h1>Create Status</h1>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <form id = "statusForm" method = "post">
+        {% csrf_token %}
 
-<script>
-    document.getElementById('submitButton').addEventListener('click', function(event) {
-        event.preventDefault();
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "Do you want to submit this form?",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, submit it!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                document.getElementById('statusForm').submit();
-            }
+        {{ form.as_p }}
+        
+        <button type = "button" class = "btn btn-primary" id = "submitButton">Save</button>
+    </form>
+
+    <script src = "https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        document.getElementById("submitButton").addEventListener("click", function(event){
+            event.preventDefault();
+
+            Swal.fire({title: "Are you sure?", text: "Do you want to submit this form?", icon: "warning", showCancelButton: true, confirmButtonColor: "#3085D6", cancelButtonColor: "#D33", confirmButtonText: "Yes, submit it!"}).then((result) => {
+                if (result.isConfirmed){
+                    document.getElementById("statusForm").submit();
+                };
+            });
         });
-    });
-</script>
+    </script>
 {% endblock %}

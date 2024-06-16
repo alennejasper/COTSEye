@@ -262,7 +262,7 @@ def officer_control_announcement(request, pk):
 
     municipalities = Location.objects.values('municipality').distinct()
 
-    context = {"unread_notifications": unread_notifications, "announcement": announcement, 'municipalities': municipalities, "other_announcements": other_announcements}
+    context = {"unread_notifications": unread_notifications, "announcement": announcement, "municipalities": municipalities, "other_announcements": other_announcements, "announcements": announcements}
 
     return render(request, "officer/control/announcement/specific_announcement.html", context)
 
@@ -277,21 +277,26 @@ def officercontroladdannouncement(request):
     municipalities = Location.objects.values('municipality').distinct()
 
     errors = None
+
     field_labels = None
+    
     location_error = None
 
     if request.method == "POST":
-        form = AnnouncementForm(request.POST, request.FILES, user=request.user.user)
+        form = AnnouncementForm(request.POST, request.FILES, user = request.user.user)
 
         if form.is_valid():
             municipality = request.POST.get("municipality")
+
             barangay = request.POST.get("barangay")
 
             try:
-                location = Location.objects.get(municipality=municipality, barangay=barangay)
+                location = Location.objects.get(municipality = municipality, barangay = barangay)
 
-                announcement = form.save(commit=False)
+                announcement = form.save(commit = False)
+
                 announcement.location = location
+
                 announcement.save()
 
                 return redirect("Officer Control Announcement")
@@ -300,20 +305,13 @@ def officercontroladdannouncement(request):
                 location_error = "The selected location does not exist."
 
         errors = form.errors.as_json()
+
         field_labels = {field.name: field.label for field in form}
 
     else:
         form = AnnouncementForm()
 
-    context = {
-        "unread_notifications": unread_notifications,
-        "form": form,
-        "municipalities": municipalities,
-        "locations": locations,
-        "errors": errors,
-        "field_labels": field_labels,
-        "location_error": location_error
-    }
+    context = {"unread_notifications": unread_notifications, "form": form, "municipalities": municipalities, "locations": locations, "errors": errors, "field_labels": field_labels, "location_error": location_error}
 
     return render(request, "officer/control/announcement/addannouncement.html", context)
 
@@ -327,34 +325,41 @@ def get_barangays(request):
 
     return JsonResponse(list(barangays), safe = False)
 
+
 @login_required(login_url="Officer Control Login")
 @user_passes_test(OfficerCheck, login_url="Officer Control Login")
 def officercontrolupdateannouncement(request, pk):
-    notification_life = timezone.now() - timedelta(days=30)
+    notification_life = timezone.now() - timedelta(days = 30)
 
-    unread_notifications = Post.objects.filter(read_status=False, creation_date__gte=notification_life).order_by("-creation_date")[:5]
+    unread_notifications = Post.objects.filter(read_status = False, creation_date__gte = notification_life).order_by("-creation_date")[:5]
 
-    announcement = get_object_or_404(Announcement, pk=pk)
+    announcement = get_object_or_404(Announcement, pk = pk)
 
-    municipalities = Location.objects.values('municipality').distinct()
+    municipalities = Location.objects.values("municipality").distinct()
+    
     locations = Location.objects.all().distinct("municipality")
 
     errors = None
+
     field_labels = None
+    
     location_error = None
 
     if request.method == "POST":
-        form = AnnouncementForm(request.POST, request.FILES, instance=announcement)
+        form = AnnouncementForm(request.POST, request.FILES, instance = announcement)
 
         if form.is_valid():
             municipality = request.POST.get("municipality")
+
             barangay = request.POST.get("barangay")
 
             try:
-                location = Location.objects.get(municipality=municipality, barangay=barangay)
+                location = Location.objects.get(municipality = municipality, barangay = barangay)
 
-                updated_announcement = form.save(commit=False)
+                updated_announcement = form.save(commit = False)
+
                 updated_announcement.location = location
+
                 updated_announcement.save()
 
                 return redirect("Officer Control Announcement")
@@ -363,21 +368,13 @@ def officercontrolupdateannouncement(request, pk):
                 location_error = "The selected location does not exist."
 
         errors = form.errors.as_json()
+
         field_labels = {field.name: field.label for field in form}
 
     else:
         form = AnnouncementForm(instance=announcement)
 
-    context = {
-        "unread_notifications": unread_notifications,
-        "form": form,
-        "announcement": announcement,
-        "municipalities": municipalities,
-        "locations": locations,
-        "errors": errors,
-        "field_labels": field_labels,
-        "location_error": location_error
-    }
+    context = {"unread_notifications": unread_notifications, "form": form, "announcement": announcement, "municipalities": municipalities, "locations": locations, "errors": errors, "field_labels": field_labels, "location_error": location_error}
 
     return render(request, "officer/control/announcement/updateannouncement.html", context)
 

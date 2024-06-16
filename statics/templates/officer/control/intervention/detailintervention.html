@@ -2,105 +2,98 @@
 {% load custom_filters %}
 
 {% block content %}
+    <style>
+        p.status-low{
+            font-weight: bold;
+            color: #698F3F !important;
+        }
 
-<style>
-    p.status-low {
-        color: green !important;
-        font-weight: bold;
-    }
+        p.status-med{
+            font-weight: bold;
+            color: #F4C430 !important;
+        }
 
-    p.status-med {
-        color: yellow !important;
-        font-weight: bold;
-    }
+        p.status-high{
+            font-weight: bold;
+            color: #FF7518 !important;
+        }
 
-    p.status-high {
-        color: orange !important;
-        font-weight: bold;
-    }
+        p.status-crit{
+            font-weight: bold;
+            color: #C90016 !important;
+        }
 
-    p.status-crit {
-        color: red !important;
-        font-weight: bold;
-    }
+        p.status-default{
+            font-weight: bold;
+            color: #003755 !important;    
+        }
+    </style>
 
-    p.status-default {
-        color: black !important;    
-        font-weight: bold;
-    }
-</style>
-<div class="container-fluid mt-3">
-    <div class="row">
-        <div class="col-lg-10 offset-lg-1">
-            <div class="card mb-4 shadow-sm">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-8">
-                            <h2 class="card-title h1">{{ intervention.title }}</h2>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <h5>Activity Details</h5>
-                                        <p><strong>Activity Date:</strong> {{ intervention.intervention_date|format_date_mmddyy }}</p>
-                                        <p><strong>Hosting Agency:</strong> {{ intervention.hosting_agency }}</p>
-                                        <p><strong>COTS Collected:</strong> {{ intervention.caught_amount }}</p>
-                                        <p><strong>Volunteer Count:</strong> {{ intervention.volunteer_amount }}</p>
+    <div class = "container-fluid mt-3">
+        <div class = "row">
+            <div class = "col-lg-10 offset-lg-1">
+                <div class = "card mb-4 shadow-sm">
+                    <div class = "card-body">
+                        <div class = "row">
+                            <div class = "col-md-8">
+                                <h2 class = "card-title h1">{{intervention.title}}</h2>
+
+                                <div class = "card-body">
+                                    <div class = "row">
+                                        <div class = "col-md-6">
+                                            <h5>Activity Details</h5>
+
+                                            <p><strong>Activity Date:</strong> {{intervention.intervention_date | format_date_mmddyy}}</p>
+                                            
+                                            <p><strong>Hosting Agency:</strong> {{intervention.hosting_agency}}</p>
+                                            
+                                            <p><strong>COTS Collected:</strong> {{intervention.caught_amount}}</p>
+                                            
+                                            <p><strong>Volunteer Count:</strong> {{intervention.volunteer_amount}}</p>
+                                        </div>
+
+                                        <div class = "col-md-6">
+                                            <h5>Location Details</h5>
+
+                                            <p><strong>Municipality:</strong> {{intervention.location.municipality}}</p>
+                                           
+                                            <p><strong>Barangay:</strong> {{intervention.location.barangay}}</p>
+                                           
+                                            <p><strong>Coordinates:</strong> {{intervention.location.latitude}}, {{intervention.location.longitude}}</p>
+
+                                            <p><strong>Location Status:</strong> {{intervention.statustype}}</p>
+                                        </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <h5>Location Details</h5>
-                                        <p><strong>Municipality:</strong> {{ intervention.location.municipality }}</p>
-                                        <p><strong>Barangay:</strong> {{ intervention.location.barangay }}</p>
-                                        <p><strong>Coordinates:</strong> {{ intervention.location.latitude }}, {{ intervention.location.longitude }}</p>
-                                        <p><strong>Location Status:</strong> {{ intervention.statustype }}</p>
-                                    </div>
+
+                                    <hr>
+                                    
+                                    {% if intervention.details == '' %}
+                                        <p>No details were given.</p>
+
+                                    {% else %}
+                                        <strong>Details</strong> 
+                                    
+                                        <p>{{intervention.details}}</p>
+                                    {% endif %}
                                 </div>
-                                <hr>
-                                {% if intervention.details == '' %}
-                                <p> No details were given. </p>
+                            </div>
+
+                            <div class = "col-md-4 text-center">
+                                {% if intervention.intervention_photo %}
+                                    <img src = "{{intervention.intervention_photo.url}}" alt = "Intervention Photo" class = "img-fluid rounded mb-3" style = "align-self: center; max-width: 100%;">
+                                
                                 {% else %}
-                                <strong>Details</strong> 
-                                <p>{{ intervention.details }} </p>
+                                    <p>No photo available</p>
                                 {% endif %}
                             </div>
-                            
-                            
-                           
-                           
-
-                         
-                            <!-- <div style="display: flex; flex-direction: row; gap: 1rem;"> 
-                                <p><strong>Last Activity Date:</strong> {{ last_intervention.intervention_date|format_date_mmddyy }} </p>
-                                
-                                <p class="{{ intervention.statustype|status_class }}">
-                                    {{ last_intervention.statustype }}
-                                </p>
-                            </div>
-
-                          
-                            <div style="display: flex; flex-direction: row; gap: 1rem;">
-                                <p><strong>Cuurent Activity Date:</strong>   {{ intervention.intervention_date|format_date_mmddyy }} </p>
-                                
-                                <p class="{{ last_intervention.statustype|status_class }}">
-                                   {{ intervention.statustype }}
-                                </p>
-                            </div> -->
-                            
-                            
                         </div>
-                        <div class="col-md-4 text-center">
-                            {% if intervention.intervention_photo %}
-                                <img src="{{ intervention.intervention_photo.url }}" alt="Intervention Photo" class="img-fluid rounded mb-3" style="max-width: 100%; align-self: center;">
-                            {% else %}
-                                <p>No photo available</p>
-                            {% endif %}
+
+                        <div class = "text-end">
+                            <a href = "{% url 'Officer Control Intervention Update' pk=intervention.id %}" class = "btn btn-primary">Update</a>
                         </div>
-                    </div>
-                    <div class="text-end">
-                        <a href="{% url 'Officer Control Intervention Update' pk=intervention.id %}" class="btn btn-primary">Update</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 {% endblock %}

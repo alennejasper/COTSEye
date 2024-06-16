@@ -1,29 +1,30 @@
-.grid-container {
+.grid-container{
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
 
-} .card-header-card {
+} .card-header-card{
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    flex-direction: row;
 }
-.card-title {
-    margin: 0; /* Remove default margin */
+
+.card-title{
+    margin: 0;
 }
-.card-header button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
+
+.card-header button{
     padding: 5px 10px;
+    border: none;
+    font-size: 16px;
+    background-color: transparent;
+    cursor: pointer;
 }
 
 #announcementsTable td{
     font-size: 12px;
     font-family: sans-serif;
-
 }
 
 .btn-primary{
@@ -50,7 +51,7 @@ label.required::after{
     color: red;
 }
 
-.button-container {
+.button-container{
     position: relative;
     display: inline-block;
 }
@@ -68,16 +69,13 @@ nav .dropdown{
     box-shadow: none !important;
 }
 
-
-
-
-.notification-badge {
+.notification-badge{
     position: absolute;
-    top: -5px; /* Adjust the top position to move the badge vertically */
-    right: 0 !important; /* Adjust the right position to move the badge horizontally */
-    background-color: red;
-    color: white;
+    top: -5px;
+    right: 0 !important;
     padding: 2px 5px;
     border-radius: 50%;
-    font-size: 0.75em; /* Adjust font size if needed */
+    font-size: 0.75em;
+    color: white;
+    background-color: red;
 }

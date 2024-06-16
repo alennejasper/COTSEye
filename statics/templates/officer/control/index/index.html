@@ -57,176 +57,197 @@
     </head>
 
     <style>
-        .nav-link:hover {
-          background-color: rgba(0, 151, 252, 0.1); /* Light blue background on hover */
-          color: rgb(0, 151, 252) !important; /* Ensures text color stays the same */
-          border-radius: 4px; /* Optional: adds rounded corners on hover */
-          text-decoration: none; /* Ensures no underline on hover */
+        .nav-link:hover{
+            border-radius: 5px;
+            color: rgb(0, 151, 252) !important;
+            background-color: rgba(0, 151, 252, 0.1);
+            text-decoration: none;
         }
-        .nav-link img {
-          vertical-align: middle; /* Align image vertically with the text */
+
+        .nav-link img{
+            vertical-align: middle;
         }
-        .nav {
-          display: flex;
-          align-items: center;
+
+        .nav{
+            display: flex;
+            align-items: center;
         }
-        .notification-bell {
-          position: relative;
-          font-size: 1.2rem; /* Smaller font size for the bell */
+
+        .notification-bell{
+            position: relative;
+            font-size: 1.2rem;
         }
-        .notification-bell .badge {
-          position: absolute;
-          top: 3px; /* Adjusted to touch the top right corner */
-          right: -0.5rem;
-          padding: 3px 5px; /* Smaller padding for the smaller bell */
-          border-radius: 50%;
-          background: rgb(233, 27, 27);
-          color: white;
-          font-size: 0.6rem; /* Smaller font size for the badge */
-          line-height: 1; /* Ensure the text is centered */
+
+        .notification-bell .badge{
+            position: absolute;
+            top: 3px;
+            right: -0.5rem;
+            padding: 3px 5px;
+            border-radius: 50%;
+            font-size: 0.6rem;
+            color: white;
+            background: rgb(233, 27, 27);
+            line-height: 1;
         }
-      </style>
-    </head>
+    </style>
+
     <body>
-      <div style="background-color: white !important; box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);" class="bg-primary">
-        <div class="container-fluid d-flex justify-content-between align-items-center flex-wrap">
-          <nav class="nav">
-            <a class="nav-link active disabled" aria-current="page">
-              <img src="{% static 'assets/icons/header.png' %}" height="20px">
-            </a>
-            <a style="font-size: 12px; color: rgb(0, 151, 252) !important;" class="nav-link text-white" href="{% url 'Officer Control Home' %}">HOME</a>
-            <a style="font-size: 12px; color: rgb(0, 151, 252) !important;" class="nav-link text-white" href="{% url 'Officer Control Sighting' %}">SIGHTINGS</a>
-            <a style="font-size: 12px; color: rgb(0, 151, 252) !important;" class="nav-link text-white" href="{% url 'Officer Control Status' %}">INFESTATIONS</a>
-            <a style="font-size: 12px; color: rgb(0, 151, 252) !important;" class="nav-link text-white" href="{% url 'Officer Control Intervention' %}">ACTIVITIES</a>
-            <a style="font-size: 12px; color: rgb(0, 151, 252) !important;" class="nav-link text-white" href="{% url 'Officer Control Announcement' %}">ANNOUNCEMENTS</a>
-           
-          </nav>
-    
-          <div class="d-flex align-items-center login-cursor">
-            <nav class="nav">
-              <div class="dropdown" id="notification-bell">
-                <a class="nav-link text-black notification-bell position-relative" id="notificationBell">
-                  <i class="fa-solid fa-bell"></i>
-                  {% if unread_notifications %}
-                    <span class="badge rounded-pill">
-                      {{ unread_notifications|length }}
-                    </span>
-                  {% endif %}
-                </a>
-                <ul class="dropdown-menu" style="right: 10px" id="notificationDropdown">
-                  {% if unread_notifications %}
-                    {% for post in unread_notifications %}
-                      <li class="dropdown-item">
-                        <a href="{% url 'Officer Control Sighting Read' id=post.id %}" class="unread-post-link" data-post-id="{{post.id}}">
-                          {{post.user}} has sent a post
+        <div style = "box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1); background-color: white !important;" class = "bg-primary">
+                <div class = "container-fluid d-flex justify-content-between align-items-center flex-wrap">
+                    <nav class = "nav">
+                        <a class = "nav-link active disabled" aria-current = "page">
+                            <img src = "{% static 'assets/icons/header.png' %}" height = "20px">
                         </a>
-                        <small class="text-muted">- {{ post.creation_date }}</small>
-                      </li>
-                    {% endfor %}
-                  {% else %}
-                    <li class="dropdown-item">No unread posts in the last 30 days.</li>
-                  {% endif %}
-                  <a href="{% url 'Officer Control Notification' %}">See more</a>
-                </ul>
-              </div>
-              <a style="font-size: 12px;" class="nav-link text-black" href="{% url 'Officer Control Profile' %}">PROFILE</a>
-              <a style="font-size: 12px;" class="nav-link text-black" href="{% url 'Officer Control Logout' %}">LOGOUT</a>
-            </nav>
-          </div>
+
+                        <a style = "font-size: 12px; color: rgb(0, 151, 252) !important;" class = "nav-link text-white" href = "{% url 'Officer Control Home' %}">HOME</a>
+                        
+                        <a style = "font-size: 12px; color: rgb(0, 151, 252) !important;" class = "nav-link text-white" href = "{% url 'Officer Control Sighting' %}">SIGHTINGS</a>
+                        
+                        <a style = "font-size: 12px; color: rgb(0, 151, 252) !important;" class = "nav-link text-white" href = "{% url 'Officer Control Status' %}">INFESTATIONS</a>
+                        
+                        <a style = "font-size: 12px; color: rgb(0, 151, 252) !important;" class = "nav-link text-white" href = "{% url 'Officer Control Intervention' %}">ACTIVITIES</a>
+                        
+                        <a style = "font-size: 12px; color: rgb(0, 151, 252) !important;" class = "nav-link text-white" href = "{% url 'Officer Control Announcement' %}">ANNOUNCEMENTS</a>
+                    </nav>
+            
+                    <div class = "d-flex align-items-center login-cursor">
+                        <nav class = "nav">
+                            <div class = "dropdown" id = "notification-bell">
+                                <a class = "nav-link text-black notification-bell position-relative" id = "notificationBell">
+                                    <i class = "fa-solid fa-bell"></i>
+
+                                    {% if unread_notifications %}
+                                        <span class = "badge rounded-pill">
+                                            {{unread_notifications | length}}
+                                        </span>
+                                    {% endif %}
+                                </a>
+
+                                <ul class = "dropdown-menu" style = "right: 10px" id = "notificationDropdown">
+                                    {% if unread_notifications %}
+                                        {% for post in unread_notifications %}
+                                            <li class = "dropdown-item">
+                                                <a href = "{% url 'Officer Control Sighting Read' id=post.id %}" class = "unread-post-link" data-post-id = "{{post.id}}">
+                                                    {{post.user}} has sent a post
+                                                </a>
+
+                                                <small class = "text-muted">- {{post.creation_date}}</small>
+                                            </li>
+                                        {% endfor %}
+
+                                    {% else %}
+                                        <li class="dropdown-item">No unread posts in the last 30 days.</li>
+                                    {% endif %}
+                                        
+                                    <a href="{% url 'Officer Control Notification' %}">See more</a>
+                                </ul>
+                            </div>
+                        
+                            <a style = "font-size: 12px;" class = "nav-link text-black" href = "{% url 'Officer Control Profile' %}">PROFILE</a>
+                        
+                            <a style = "font-size: 12px;" class = "nav-link text-black" href = "{% url 'Officer Control Logout' %}">LOGOUT</a>
+                        </nav>
+                    </div>
+                </div>
         </div>
-      </div>
     
-      <div class="content">
-        {% block content %}
-        {% endblock %}
-      </div>
+        <div class = "content">
+            {% block content %}
 
-    <script>
-        $(document).ready(function() {
-            // Initialize Select2 on the select elements
-            $('.select2').select2();
-        });
+            {% endblock %}
+        </div>
 
-        document.addEventListener('DOMContentLoaded', function () {
-            const unreadPostLinks = document.querySelectorAll('.unread-post-link');
+        <script>
+            $(document).ready(function(){
+                $(".select2").select2();
+            });
 
-            unreadPostLinks.forEach(link => {
-                link.addEventListener('click', function (event) {
-                    const postId = this.getAttribute('data-post-id');
-                    const url = `{% url 'mark_post_as_read' 0 %}`.replace('0', postId);
+            document.addEventListener("DOMContentLoaded", function (){
+                const unreadPostLinks = document.querySelectorAll(".unread-post-link");
 
-                    fetch(url, {
-                        method: 'GET',
-                        headers: {
-                            'X-Requested-With': 'XMLHttpRequest',
-                        },
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            window.location.href = this.href;
-                        }
+                unreadPostLinks.forEach(link => {
+                    link.addEventListener("click", function (event){
+                        const postId = this.getAttribute("data-post-id");
+
+                        const url = "{% url 'mark_post_as_read' 0 %}".replace("0", postId);
+
+                        fetch(url, {
+                            method: 'GET',
+                            
+                            headers: {
+                                "X-Requested-With": "XMLHttpRequest",
+                            },
+
+                        }).then(response => response.json()).then(data => {
+                            if (data.success) {
+                                window.location.href = this.href;
+                            };
+                        });
                     });
                 });
+
+                const notificationBell = document.getElementById("notificationBell");
+
+                const notificationDropdown = document.getElementById('notificationDropdown');
+
+                notificationBell.addEventListener("click", function(event){
+                    event.preventDefault();
+
+                    notificationDropdown.classList.toggle("show");
+                });
+
+                document.addEventListener("click", function(event){
+                    if (!notificationBell.contains(event.target) && !notificationDropdown.contains(event.target)){
+                        notificationDropdown.classList.remove("show");
+                    };
+                });
             });
+        </script>
 
-            // Toggle the dropdown menu on bell icon click
-            const notificationBell = document.getElementById('notificationBell');
-            const notificationDropdown = document.getElementById('notificationDropdown');
-
-            notificationBell.addEventListener('click', function(event) {
-                event.preventDefault();
-                notificationDropdown.classList.toggle('show');
-            });
-
-            document.addEventListener('click', function(event) {
-                if (!notificationBell.contains(event.target) && !notificationDropdown.contains(event.target)) {
-                    notificationDropdown.classList.remove('show');
-                }
-            });
-        });
-    </script>
-    <!-- Include SweetAlert CSS and JS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-
-    <!-- Your existing HTML content -->
-
+        <link rel = "stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
     
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-          // Check if there are any errors passed to the context
-          {% if errors and field_labels %}
-              var errorMessages = {{ errors|safe }};
-              var fieldLabels = {{ field_labels|safe }};
-      
-              // Loop through the error messages and display them using SweetAlert
-              for (var field in errorMessages) {
-                  if (errorMessages.hasOwnProperty(field)) {
-                      var fieldErrors = errorMessages[field];
-                      var fieldLabel = fieldLabels[field];
-                      fieldErrors.forEach(function(error) {
-                          swal({
-                              title: "Error in " + fieldLabel,
-                              text: error.message,
-                              type: "error",
-                              confirmButtonText: "OK"
-                          });
-                      });
-                  }
-              }
-          {% endif %}
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    
+        <script>
+            document.addEventListener("DOMContentLoaded", function(){
+                {% if errors and field_labels %}
+                    var errorMessages = {{errors | safe}};
 
-          {% if location_error %}
-            swal({
-                title: "Error in Municipality and Barangay",
-                text: "{{ location_error }}",
-                type: "error",
-                confirmButtonText: "OK"
+                    var fieldLabels = {{field_labels | safe}};
+            
+                    for (var field in errorMessages) {
+                        if (errorMessages.hasOwnProperty(field)){
+                            var fieldErrors = errorMessages[field];
+
+                            var fieldLabel = fieldLabels[field];
+                            
+                            fieldErrors.forEach(function(error){
+                                swal({
+                                    title: "Error in " + fieldLabel,
+                                    
+                                    text: error.message,
+                                    
+                                    type: "error",
+                                    
+                                    confirmButtonText: "Ok"
+                                });
+                            });
+                        };
+                    };
+                {% endif %}
+
+                {% if location_error %}
+                    swal({
+                        title: "Error in Municipality and Barangay",
+                        
+                        text: "{{location_error}}",
+                        
+                        type: "error",
+                        
+                        confirmButtonText: "Ok"
+                    });
+                {% endif %}
             });
-        {% endif %}
-      });
-      </script>
-
+        </script>
     </body>
 </html>

@@ -63,10 +63,10 @@ class Account(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length = 150, unique = True, help_text = "Designates the name of the user.", verbose_name = "Username")
     password = models.CharField(max_length = 150, help_text = "Designates the password of the user.", verbose_name = "Password")
     usertype = models.ForeignKey(UserType, on_delete = models.SET_NULL, null = True, help_text = "Designates the foreign key of the User Type model.", verbose_name = "User Type")
-    is_active = models.BooleanField(default = True, help_text = "Designates whether the user should be considered active or not.", verbose_name = "Active Status")
+    is_active = models.BooleanField(default = False, help_text = "Designates whether the user should be considered active or not.", verbose_name = "Active Status")
     last_login = models.DateTimeField(default = datetime.datetime.now, help_text = "Designates the last login date and time of the user.", verbose_name = "Last Signin")
-    groups = models.ManyToManyField(Group, null = True, help_text = "Designates the foreign key of the Group model.", verbose_name = "Groups")
-    user_permissions = models.ManyToManyField(Permission, null = True, help_text = "Designates the foreign key of the Permission model.", verbose_name = "User Permissions")
+    groups = models.ManyToManyField(Group, null = True, blank = True, help_text = "Designates the foreign key of the Group model.", verbose_name = "Groups")
+    user_permissions = models.ManyToManyField(Permission, null = True, blank = True, help_text = "Designates the foreign key of the Permission model.", verbose_name = "User Permissions")
 
     objects = AccountManager()
     USERNAME_FIELD = "username"
@@ -74,7 +74,7 @@ class Account(AbstractBaseUser, PermissionsMixin):
     class Meta:
         db_table = "auth_account"
         verbose_name = "Account"
-        verbose_name_plural = "Accounts"
+        verbose_name_plural = "Account"
     
     @property
     def is_staff(self):
@@ -103,12 +103,13 @@ class User(models.Model):
     email = models.EmailField(max_length = 65, null = True, help_text = "Designates the email of the user.", verbose_name = "Email")
     phone_number = models.IntegerField(validators = [MinValueValidator(0)], null = True, blank = True, help_text = "Designates the phone number of the user.", verbose_name = "Phone Number")
     profile_photo = models.ImageField(default = "profiles/default.png", null = True, upload_to = "profiles", help_text = "Designates the profile photo of the user.", verbose_name = "Profile Photo")
+    card_photo = models.ImageField(default = "profiles/default.png", null = True, upload_to = "cards", help_text = "Designates the valid ID of the user.", verbose_name = "Valid ID")
     joined_date = models.DateTimeField(default = datetime.datetime.now(), help_text = "Designates the joined date and time of the user.", verbose_name = "Joined Date")
     
     class Meta:
         db_table = "localaccount_user"
         verbose_name = "User"
-        verbose_name_plural = "Users"
+        verbose_name_plural = "User"
 
     def gallery_photo(self):
         if self.profile_photo != "":
@@ -125,8 +126,8 @@ class Site2(Site):
     Site._meta.get_field("domain").verbose_name = "Domain Name"
     Site._meta.get_field("name").help_text = "Designates the display name of the site."
     Site._meta.get_field("name").verbose_name = "Display Name"
-    Site._meta.verbose_name = "Site"
-    Site._meta.verbose_name_plural = "Sites"
+    Site._meta.verbose_name = "Site URL"
+    Site._meta.verbose_name_plural = "Site URL"
 
     class Meta:
         app_label = "sites"

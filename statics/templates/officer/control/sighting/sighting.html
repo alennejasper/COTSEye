@@ -1,650 +1,698 @@
 {% extends "officer/control/index/index.html" %}
 {% load static %}
 {% load custom_filters %}
+
 {% block content %}
+    <script src = "https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-<!-- Tippy.js CSS -->
-<link rel="stylesheet" href="https://unpkg.com/tippy.js@6/dist/tippy.css">
+    <link rel = "stylesheet" href = "https://unpkg.com/tippy.js@6/dist/tippy.css">
 
-<!-- Tippy.js JS -->
-<script src="https://unpkg.com/@popperjs/core@2"></script>
-<script src="https://unpkg.com/tippy.js@6"></script>
+    <script src = "https://unpkg.com/@popperjs/core@2"></script>
 
-<style>
-    .status-invalid {
-        font-weight: 600;
-        color: red !important;
-    }
-    .status-valid {
-        font-weight: 600;
-        color: rgb(0, 182, 0) !important;
-    }
-    .status-pending {
-        font-weight: 600;
-        color: rgb(0, 204, 255) !important;
-    }
+    <script src = "https://unpkg.com/tippy.js@6"></script>
 
-    .table>:not(caption)>*>*{
-        padding: 9px !important;
-    }
-    
-    
-</style>
+    <style>
+        .status-invalid{
+            font-weight: 700;
+            color: #C90016 !important;
+        }
 
-<div class="container-fluid mt-3">
-    <div class="row">
-        <div class="col-12 col-md-3">
-            <div class="filtercont">
-                <p style="font-size: 17px !important; font-weight: 500; color: rgb(28, 179, 234); margin-bottom: 0px !important;" class="fs-3 mb-3">FILTER</p>
-                
-                <select id="municipalityFilter" class="form-select form-select-sm mb-3 select2" onchange="updateBarangayOptions()">
-                    <option value="">Municipality</option>
+        .status-valid{
+            font-weight: 700;
+            color: #698F3F !important;
+        }
 
-                    {% for municipality in municipalities %}
-                        <option value="{{ municipality.municipality }}" {% if selected_municipality == municipality.municipality %}selected{% endif %}>{{ municipality.municipality }}</option>
-                    {% endfor %}
-                </select>
+        .status-pending{
+            font-weight: 700;
+            color: #003755 !important;
+        }
 
-                <select id="barangayFilter" class="form-select form-select-sm mb-3 select2">
-                    <option value="">Barangay</option>
-                </select>
+        .table > :not(caption) > * > *{
+            padding: 9px !important;
+        }
+    </style>
 
-                <p style="font-size: 15px; color: rgb(28, 186, 234); margin-top: 10px !important; margin-bottom: 0px !important;" scope="col" class="mb-1">Date</p>
-                
-                <div class="mb-3">
-                    <label for="dateFrom" class="form-label" style="font-size: 13px; margin-bottom: 0px !important;">From:</label>
-                    <input type="date" id="dateFrom" name="dateFrom" class="form-control form-control-sm">
-                </div>
-                
-                <div class="mb-3">
-                    <label for="dateTo" class="form-label" style="font-size: 13px; margin-bottom: 0px !important;">To:</label>
-                    <input type="date" id="dateTo" name="dateTo" class="form-control form-control-sm">
-                </div>
+    <div class = "container-fluid mt-3">
+        <div class = "row">
+            <div class = "col-12 col-md-3">
+                <div class = "filtercont">
+                    <p style = "margin-bottom: 0px !important; font-weight: 500; font-size: 17px !important; color: rgb(28, 179, 234);" class = "fs-3 mb-3">FILTER</p>
+                    
+                    <select id = "municipalityFilter" class = "form-select form-select-sm mb-3 select2" onchange = "updateBarangayOptions()">
+                        <option value = "">Municipality</option>
 
-                <p style="font-size: 15px; color: rgb(28, 172, 234); margin-top: 10px !important; margin-bottom: 0px !important;" scope="col" class="mb-1">Status</p>
-                
-                <div class="form-check mb-2">
-                    <input class="form-check-input" type="radio" name="status" id="statusPending" value="Pending">
-                    <label class="form-check-label" for="statusPending">Pending</label>
-                </div>
-
-                <div class="form-check mb-2">
-                    <input class="form-check-input" type="radio" name="status" id="statusValid" value="Valid">
-                    <label class="form-check-label" for="statusValid">Valid</label>
-                </div>
-
-                <div class="form-check mb-2">
-                    <input class="form-check-input" type="radio" name="status" id="statusInvalid" value="Invalid">
-                    <label class="form-check-label" for="statusInvalid">Invalid</label>
-                </div>
-
-                <button type="button" class="filterbutton" onclick="applyFilter()">Apply Filter</button>
-                <button type="button" class="resetbutton" onclick="resetFilter()">Reset Filter</button>
-            </div>
-        </div>
-
-        <div class="col-12 col-md-9">
-            <div class="table-container mb-3">
-                <h2 style="font-size: 19px; color: rgb(52, 144, 242); border-bottom: 1px solid rgba(229, 229, 229);">ALL SIGHTINGS</h2>
-
-                <!-- <div class="d-flex justify-content-between mb-2">
-                    <div>
-                        <input type="checkbox" id="selectAll" onclick="toggleSelectAll()"> Select All
-                    </div>
-                    <div>
-                        <button class="btn btn-success btn-sm" onclick="bulkChangeStatus('Valid')">Mark as Valid</button>
-                        <button class="btn btn-danger btn-sm" onclick="bulkChangeStatus('Invalid')">Mark as Invalid</button>
-                    </div>
-                </div> -->
-
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <!-- <th><input type="checkbox" id="selectAllHeader" onclick="toggleSelectAll()"></th> -->
-                            <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Date Created</th>
-                            <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Contributor</th>
-                            <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Municipality</th>
-                            <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Barangay</th>
-                            <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Status</th>
-                            <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Remarks</th>
-                            <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col"></th>
-                        </tr>
-                    </thead>
-
-                    <tbody class="table-group-divider" id="sightingsTable">
-                        {% for post in posts %}
-                            <tr data-id="{{ post.id }}">
-                                <td><input type="checkbox" class="selectRow"></td>
-                                <td>{{ post.creation_date | date:'F j, Y, g:i a' }}</td>
-                                <td>{{ post.user }}</td>
-                                <td>{{ post.user.phone_number }}</td>
-                                <td>{{ post.location.barangay }}</td>
-                                <td>{{ post.location.municipality }}</td>
-                                <td>{{ post.remarks }}</td>
-                                <td class="{% if post.post_status == 'Valid' %} valid-status {% elif post.post_status == 'Invalid' %} invalid-status {% elif post.post_status == 'Pending' %} pending-status {% endif %}">{{ post.post_status }}</td>
-                                <td>
-                                    <div class="button-container">
-                                        <a onclick="shownDropdown(event)"><img height="15px" style="margin-right: 13px" src = "{% static 'assets/3dots.png' %}" class = "drop"></a>
-                                        <div class="dropdown">
-                                            <div class="dropdown-content">
-                                                <a class="dropdown-header" onclick="changeStatus(${item.id}, 'Valid')">Approve</a>
-                                                <a class="dropdown-item" onclick="invalidStatus(${item.id})">Disapprove</a>
-                                               
-            
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
+                        {% for municipality in municipalities %}
+                            <option value = "{{municipality.municipality}}" {% if selected_municipality == municipality.municipality %} selected {% endif %}>{{municipality.municipality}}</option>
                         {% endfor %}
-                    </tbody>
-                </table>
+                    </select>
 
-                <nav>
-                    <ul class="pagination justify-content-center" id="pagination">
-                        <li class="page-item" id="previousPage">
-                            <a class="page-link" href="#" onclick="changePage('prev')">Previous</a>
-                        </li>
-                        <li class="page-item" id="nextPage">
-                            <a class="page-link" href="#" onclick="changePage('next')">Next</a>
-                        </li>
-                    </ul>
-                </nav>
+                    <select id = "barangayFilter" class = "form-select form-select-sm mb-3 select2">
+                        <option value = "">Barangay</option>
+                    </select>
+
+                    <p style = "margin-top: 10px !important; margin-bottom: 0px !important; font-size: 15px; color: rgb(28, 186, 234);" scope = "col" class = "mb-1">Date</p>
+                    
+                    <div class = "mb-3">
+                        <label for = "dateFrom" class = "form-label" style = "margin-bottom: 0px !important; font-size: 13px;">From:</label>
+                        
+                        <input type = "date" id = "dateFrom" name = "dateFrom" class = "form-control form-control-sm">
+                    </div>
+                    
+                    <div class = "mb-3">
+                        <label for = "dateTo" class = "form-label" style = "margin-bottom: 0px !important; font-size: 13px;">To:</label>
+                        
+                        <input type = "date" id = "dateTo" name = "dateTo" class = "form-control form-control-sm">
+                    </div>
+
+                    <p style = "margin-top: 10px !important; margin-bottom: 0px !important; font-size: 15px; color: rgb(28, 172, 234);" scope = "col" class = "mb-1">Status</p>
+                    
+                    <div class = "form-check mb-2">
+                        <input class = "form-check-input" type = "radio" name = "status" id = "statusPending" value = "Pending">
+
+                        <label class = "form-check-label" for = "statusPending">Pending</label>
+                    </div>
+
+                    <div class = "form-check mb-2">
+                        <input class = "form-check-input" type = "radio" name = "status" id = "statusValid" value = "Valid">
+
+                        <label class = "form-check-label" for = "statusValid">Valid</label>
+                    </div>
+
+                    <div class = "form-check mb-2">
+                        <input class = "form-check-input" type = "radio" name = "status" id = "statusInvalid" value = "Invalid">
+                        
+                        <label class = "form-check-label" for = "statusInvalid">Invalid</label>
+                    </div>
+
+                    <button type = "button" class = "filterbutton" onclick = "applyFilter()">Apply Filter</button>
+
+                    <button type = "button" class = "resetbutton" onclick = "resetFilter()">Reset Filter</button>
+                </div>
+            </div>
+
+            <div class = "col-12 col-md-9">
+                <div class = "table-container mb-3">
+                    <h2 style = "border-bottom: 1px solid rgba(229, 229, 229); font-size: 19px; color: rgb(52, 144, 242);">ALL SIGHTINGS</h2>
+
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th style = "font-size: 15px; color: rgb(28, 169, 234);" scope = "col">Date Created</th>
+
+                                <th style = "font-size: 15px; color: rgb(28, 169, 234);" scope = "col">Contributor</th>
+                                
+                                <th style = "font-size: 15px; color: rgb(28, 169, 234);" scope = "col">Municipality</th>
+                                
+                                <th style = "font-size: 15px; color: rgb(28, 169, 234);" scope = "col">Barangay</th>
+                                
+                                <th style = "font-size: 15px; color: rgb(28, 169, 234);" scope = "col">Status</th>
+                                
+                                <th style = "font-size: 15px; color: rgb(28, 169, 234);" scope = "col">Remarks</th>
+                                
+                                <th style = "font-size: 15px; color: rgb(28, 169, 234);" scope = "col"></th>
+                            </tr>
+                        </thead>
+
+                        <tbody class = "table-group-divider" id = "sightingsTable">
+                        </tbody>
+                    </table>
+
+                    <nav>
+                        <ul class = "pagination justify-content-center" id = "pagination">
+                            <li class = "page-item" id = "previousPage">
+                                <a class = "page-link" href = "#" onclick = "changePage('prev')">Previous</a>
+                            </li>
+
+                            <li class = "page-item" id = "nextPage">
+                                <a class = "page-link" href = "#" onclick = "changePage('next')">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <script src = "https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<script>
-    function shownDropdown(event){
-        event.stopPropagation();
-        const dropdown = event.currentTarget.closest('.button-container').querySelector('.dropdown-content');
-        dropdown.classList.toggle("show");
-    };
+    <script src  ="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
-    function showDropdown(event) {
-        event.stopPropagation();
-        const dropdown = event.currentTarget.nextElementSibling;
-        dropdown.classList.toggle("show");
-    }
+    <script>
+        function shownDropdown(event){
+            event.stopPropagation();
 
-    document.addEventListener('click', function(event) {
-        const dropdowns = document.querySelectorAll('.dropdown.show');
-        dropdowns.forEach(dropdown => dropdown.classList.remove('show'));
-    });
+            const dropdown = event.currentTarget.closest(".button-container").querySelector(".dropdown-content");
+            
+            dropdown.classList.toggle("show");
+        };
 
-    function updateBarangayOptions() {
-        const municipalityFilter = document.getElementById("municipalityFilter").value;
-        const barangayFilter = document.getElementById("barangayFilter");
+        function showDropdown(event){
+            event.stopPropagation();
 
-        if (municipalityFilter) {
-            $.ajax({
-                url: "{% url 'get_barangays' %}",
-                data: {
-                    "municipality": municipalityFilter
-                },
-                success: function(data) {
-                    barangayFilter.innerHTML = "";
-                    data.forEach(function(barangay) {
-                        const option = document.createElement("option");
-                        option.value = barangay;
-                        option.textContent = barangay;
-                        barangayFilter.appendChild(option);
-                    });
-                    $('#barangayFilter').select2();
-                }
-            });
-        }
-       
-    }
+            const dropdown = event.currentTarget.nextElementSibling;
+            
+            dropdown.classList.toggle("show");
+        };
 
-    const barangayCoordinates = {
-        {% for location in locations %}
-            "{{location.barangay}}": [{{location.latitude}}, {{location.longitude}}],
-        {% endfor %}
-    };
+        document.addEventListener("click", function(event) {
+            const dropdowns = document.querySelectorAll(".dropdown.show");
 
+            dropdowns.forEach(dropdown => dropdown.classList.remove("show"));
+        });
 
+        function updateBarangayOptions(){
+            const municipalityFilter = document.getElementById("municipalityFilter").value;
 
-    function setMunicipalityByBarangay(barangayId) {
-        
-        const locations = [
+            const barangayFilter = document.getElementById("barangayFilter");
+
+            if (municipalityFilter){
+                $.ajax({
+                    url: "{% url 'get_barangays' %}",
+
+                    data: {
+                        "municipality": municipalityFilter
+                    },
+                    
+                    success: function(data){
+                        barangayFilter.innerHTML = "";
+
+                        data.forEach(function(barangay){
+                            const option = document.createElement("option");
+
+                            option.value = barangay;
+                            
+                            option.textContent = barangay;
+                            
+                            barangayFilter.appendChild(option);
+                        });
+
+                        $('#barangayFilter').select2();
+                    }
+                });
+            };
+        };
+
+        const barangayCoordinates = {
             {% for location in locations %}
-                {id: "{{location.id}}", barangay: "{{location.barangay}}", municipality: "{{location.municipality}}"},
+                "{{location.barangay}}": [{{location.latitude}}, {{location.longitude}}],
+            {% endfor %}
+        };
+
+        function setMunicipalityByBarangay(barangayId){
+            const locations = [
+                {% for location in locations %}
+                    {id: "{{location.id}}", barangay: "{{location.barangay}}", municipality: "{{location.municipality}}"},
+                {% endfor %}
+            ];
+
+            const location = locations.find(loc => loc.id == barangayId);
+            if (location){
+                const municipalitySelect = document.getElementById("popupMunicipality");
+
+                municipalitySelect.value = location.municipality;
+            }
+
+            updateBarangayOptions();
+        };
+        
+        function submitPopup(postId){
+            const municipality = document.getElementById("popupMunicipality").value;
+
+            const barangay = document.getElementById("popupBarangay").value;
+
+            const latitude = document.getElementById("latitude").value;
+
+            const longitude = document.getElementById("longitude").value;
+
+            const data = {
+                municipality: municipality,
+
+                barangay: barangay,
+                
+                latitude: parseFloat(latitude),
+                
+                longitude: parseFloat(longitude)
+            };
+
+            fetch(`/api/posts/update/${postId}/`, {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json",
+
+                    "X-CSRFToken": "{{csrf_token}}"
+                },
+                
+                body: JSON.stringify(data)
+            
+            }).then(response => response.json()).then(result => {
+                if (result.status === "success"){
+                    Swal.fire({title: "Submitted!", text: "The form has been submitted.", icon: "success", confirmButtonText: "Close"});
+
+                } else {
+                    Swal.fire({title: "Error!", text: result.message, icon: "error", confirmButtonText: "Close"});
+                };
+            
+            }).catch(error => {
+                Swal.fire({title: "Error!", text: "An error occurred while submitting the form.", icon: "error", confirmButtonText: "Close"});
+            });
+        };
+
+        $(document).ready(function(){
+            $(".select2").select2();
+
+            {% for post in posts %}
+                if (["Valid", "Invalid"].includes("{{post.post_status}}")){
+                    $("#status-select-{{post.id}}").prop("disabled", true);
+                };
+            {% endfor %}
+        });
+
+        const sightingsData = [
+            {% for post in posts %}
+                {id: {{post.id}}, date: "{{post.creation_date | format_date_mmddyy}}", user: "{{post.user}}", phone_number: "{{post.user.phone_number}}", barangay: "{{post.location.barangay}}", municipality: "{{post.location.municipality}}", status: "{{post.post_status}}", remarks: "{{post.remarks}}"},
             {% endfor %}
         ];
 
-        const location = locations.find(loc => loc.id == barangayId);
-        if (location) {
-            const municipalitySelect = document.getElementById("popupMunicipality");
-            municipalitySelect.value = location.municipality;
-        }
-        updateBarangayOptions();
-       
-    }
-    
-    function submitPopup(postId) {
-        const municipality = document.getElementById('popupMunicipality').value;
-        const barangay = document.getElementById('popupBarangay').value;
-        const latitude = document.getElementById('latitude').value;
-        const longitude = document.getElementById('longitude').value;
+        let currentPage = 1;
 
-        const data = {
-            municipality: municipality,
-            barangay: barangay,
-            latitude: parseFloat(latitude),
-            longitude: parseFloat(longitude)
-        };
+        const rowsPerPage = 10;
+        
+        let filteredData = sightingsData;
 
-        fetch(`/api/posts/update/${postId}/`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': '{{csrf_token}}' 
-            },
-            body: JSON.stringify(data)
-        })
-        .then(response => response.json())
-        .then(result => {
-            if (result.status === 'success') {
-                Swal.fire({
-                    title: 'Submitted!',
-                    text: 'The form has been submitted.',
-                    icon: 'success',
-                    confirmButtonText: 'Close'
-                });
-            } else {
-                Swal.fire({
-                    title: 'Error!',
-                    text: result.message,
-                    icon: 'error',
-                    confirmButtonText: 'Close'
-                });
-            }
-        })
-        .catch(error => {
-            Swal.fire({
-                title: 'Error!',
-                text: 'An error occurred while submitting the form.',
-                icon: 'error',
-                confirmButtonText: 'Close'
-            });
-        });
-    }
+        function displayTableData(page) {
+            const tableBody = document.getElementById("sightingsTable");
+            
+            tableBody.innerHTML = "";
 
-    $(document).ready(function() {
-        $('.select2').select2();
+            const start = (page - 1) * rowsPerPage;
 
-        {% for post in posts %}
-            if (['Valid', 'Invalid'].includes('{{ post.post_status }}')) {
-                $('#status-select-{{ post.id }}').prop('disabled', true);
-            }
-        {% endfor %}
-    });
+            const end = start + rowsPerPage;
+            
+            const pageData = filteredData.slice(start, end);
 
-    const sightingsData = [
-        {% for post in posts %}
-            {id: {{ post.id }}, date: "{{ post.creation_date | format_date_mmddyy }}", user: "{{ post.user }}", phone_number: "{{ post.user.phone_number }}", barangay: "{{ post.location.barangay }}", municipality: "{{ post.location.municipality }}", status: "{{ post.post_status }}", remarks: "{{post.remarks}}"},
-        {% endfor %}
-    ];
+            pageData.forEach(item => {
+                const statusClass = getStatusClass(item.status);
+            
+                const baseUrl = "{% url 'Officer Control Sighting Read' id=0 %}".replace("0", item.id);
+            
+                const remarksOrStatus = item.remarks ? item.remarks : item.status;
 
-    let currentPage = 1;
-    const rowsPerPage = 10;
-    let filteredData = sightingsData;
+                let remarkLink = "";
+            
+                if (item.status === "Pending"){
+                    remarkLink = `<a class = "dropdown-footer" onclick = "addRemarks(${item.id})">Remark</a>`;
+                }
 
-    function displayTableData(page) {
-        const tableBody = document.getElementById("sightingsTable");
-        tableBody.innerHTML = "";
+                const approveDisabled = item.status !== "Pending";
 
-        const start = (page - 1) * rowsPerPage;
-        const end = start + rowsPerPage;
-        const pageData = filteredData.slice(start, end);
+                const disapproveDisabled = item.status !== "Pending";
+                
+                const tooltipText = "Action not allowed in current status";
 
-        pageData.forEach(item => {
-            const statusClass = getStatusClass(item.status);
-            const baseUrl = "{% url 'Officer Control Sighting Read' id=0 %}".replace("0", item.id);
-            const remarksOrStatus = item.remarks ? item.remarks : item.status;
+                const row = 
+                    `<tr data-id = "${item.id}">
+                        <td onclick = "window.location.href = '${baseUrl}'">${item.date}</td>
 
-            let remarkLink = "";
-            if (item.status === "Pending") {
-                remarkLink = `<a class="dropdown-footer" onclick="addRemarks(${item.id})">Remark</a>`;
-            }
+                        <td onclick = "window.location.href = '${baseUrl}'">${item.user}</td>
+                        
+                        <td onclick = "window.location.href = '${baseUrl}'">${item.municipality}</td>
 
-            const approveDisabled = item.status !== "Pending";
-            const disapproveDisabled = item.status !== "Pending";
-            const tooltipText = "Action not allowed in current status";
+                        <td onclick = "window.location.href = '${baseUrl}'">${item.barangay}</td>
 
-            const row = `
-                <tr data-id="${item.id}">
-                    <td onclick="window.location.href='${baseUrl}'">${item.date}</td>
-                    <td onclick="window.location.href='${baseUrl}'">${item.user}</td>
-                    <td onclick="window.location.href='${baseUrl}'">${item.municipality}</td>
-                    <td onclick="window.location.href='${baseUrl}'">${item.barangay}</td>
-                    <td class="${statusClass}" onclick="window.location.href='${baseUrl}'">${item.status}</td>
-                    <td onclick="window.location.href='${baseUrl}'">${remarksOrStatus}</td>
-                    <td>
-                        <div class="button-container" ${approveDisabled ? `data-tippy-content="${tooltipText}"` : ""}>
-                            <a onclick="shownDropdown(event)"><img height="15px" style="margin-right: 13px" src="{% static 'assets/3dots.png' %}" class="drop"></a>
-                            <div class="dropdown">
-                                <div class="dropdown-content">
-                                    <a class="dropdown-item ${approveDisabled ? 'disabled' : ''}" onclick="changeStatus(${item.id}, 'Valid')">Approve</a>
-                                    <a class="dropdown-item ${disapproveDisabled ? 'disabled' : ''}" onclick="invalidStatus(${item.id})">Disapprove</a>
+                        <td class = "${statusClass}" onclick = "window.location.href = '${baseUrl}'">${item.status}</td>
+
+                        <td onclick = "window.location.href = '${baseUrl}'">${remarksOrStatus}</td>
+
+                        <td>
+                            <div class = "button-container" ${approveDisabled ? `data-tippy-content = "${tooltipText}"` : ""}>
+                                <a onclick = "shownDropdown(event)"><img height = "15px" style = "margin-right: 13px" src = "{% static 'assets/3dots.png' %}" class = "drop"></a>
+                                
+                                <div class = "dropdown">
+                                    <div class = "dropdown-content">
+                                        <a class = "dropdown-item ${approveDisabled ? 'disabled' : ''}" onclick = "changeStatus(${item.id}, 'Valid')">Approve</a>
+                                        
+                                        <a class = "dropdown-item ${disapproveDisabled ? 'disabled' : ''}" onclick = "invalidStatus(${item.id})">Disapprove</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </td>
-                </tr>`;
-            tableBody.innerHTML += row;
-        });
+                        </td>
+                    </tr>`;
+                tableBody.innerHTML += row;
+            });
 
-        document.getElementById("previousPage").classList.toggle("disabled", page === 1);
-        document.getElementById("nextPage").classList.toggle("disabled", end >= filteredData.length);
+            document.getElementById("previousPage").classList.toggle("disabled", page === 1);
 
-        // Initialize Tippy.js tooltips
-        tippy('[data-tippy-content]');
-    }
+            document.getElementById("nextPage").classList.toggle("disabled", end >= filteredData.length);
 
-   function changePage(direction) {
-        if (direction === 'prev' && currentPage > 1) {
-            currentPage--;
-        } else if (direction === 'next' && (currentPage * rowsPerPage) < filteredData.length) {
-            currentPage++;
-        }
-        displayTableData(currentPage);
-        updatePagination();
-    }
+            tippy("[data-tippy-content]");
+        };
 
-    function updatePagination() {
-        const pagination = document.getElementById("pagination");
-        const totalPages = Math.ceil(filteredData.length / rowsPerPage);
-        pagination.innerHTML = `
-            <li class="page-item" id="previousPage">
-                <a class="page-link" href="#" onclick="changePage('prev')">Previous</a>
-            </li>
-            <li class="page-item" id="nextPage">
-                <a class="page-link" href="#" onclick="changePage('next')">Next</a>
-            </li>
-        `;
-        for (let i = 1; i <= totalPages; i++) {
-            const pageItem = document.createElement("li");
-            pageItem.className = "page-item" + (i === currentPage ? " active" : "");
-            pageItem.innerHTML = `<a class="page-link" href="#" onclick="goToPage(${i})">${i}</a>`;
-            pagination.insertBefore(pageItem, document.getElementById('nextPage'));
-        }
-    }
+    function changePage(direction){
+            if (direction === "prev" && currentPage > 1){
+                currentPage--;
 
-    function goToPage(page) {
-        currentPage = page;
-        displayTableData(currentPage);
-        updatePagination();
-    }
+            } else if (direction === 'next' && (currentPage * rowsPerPage) < filteredData.length){
+                currentPage++;
+            };
 
-    function parseDate(dateString) {
-        try {
-            const dateRegex = /(\d{2})\/(\d{2})\/(\d{4})/;
-            const match = dateRegex.exec(dateString);
-            if (!match) {
-                throw new Error("Date format is invalid.");
-            }
-            const [_, month, day, year] = match;
-            if (!month || !day || !year) {
-                throw new Error("Date format is invalid.");
-            }
-            return new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
-        } catch (error) {
-            console.error("Failed to parse date:", error);
-            return null;
-        }
-    }
+            displayTableData(currentPage);
+            
+            updatePagination();
+        };
+
+        function updatePagination(){
+            const pagination = document.getElementById("pagination");
+
+            const totalPages = Math.ceil(filteredData.length / rowsPerPage);
+            
+            pagination.innerHTML = 
+                `<li class = "page-item" id = "previousPage">
+                    <a class = "page-link" href = "#" onclick = "changePage('prev')">Previous</a>
+                </li>
+
+                <li class = "page-item" id = "nextPage">
+                    <a class = "page-link" href = "#" onclick = "changePage('next')">Next</a>
+                </li>`;
+
+            for (let i = 1; i <= totalPages; i++){
+                const pageItem = document.createElement("li");
+
+                pageItem.className = "page-item" + (i === currentPage ? " active" : "");
+
+                pageItem.innerHTML = `<a class = "page-link" href = "#" onclick = "goToPage(${i})">${i}</a>`;
+
+                pagination.insertBefore(pageItem, document.getElementById("nextPage"));
+            };
+        };
+
+        function goToPage(page){
+            currentPage = page;
+
+            displayTableData(currentPage);
+            
+            updatePagination();
+        };
+
+        function parseDate(dateString){
+            try{
+                const dateRegex = /(\d{2})\/(\d{2})\/(\d{4})/;
+
+                const match = dateRegex.exec(dateString);
+                
+                if (!match){
+                    throw new Error("Date format is invalid.");
+                }
+
+                const [_, month, day, year] = match;
+
+                if (!month || !day || !year){
+                    throw new Error("Date format is invalid.");
+                };
+
+                return new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+
+            } catch (error){
+                console.error("Failed to parse date:", error);
+
+                return null;
+            };
+        };
 
 
-    function applyFilter() {
-        const municipality = document.getElementById("municipalityFilter").value;
-        const barangay = document.getElementById("barangayFilter").value;
-        const dateFrom = document.getElementById("dateFrom").value;
-        const dateTo = document.getElementById("dateTo").value;
-        const status = document.querySelector("input[name='status']:checked")?.value;
-        const dateFromObj = dateFrom ? new Date(dateFrom) : null;
-        const dateToObj = dateTo ? new Date(dateTo) : null;
-        filteredData = sightingsData.filter(item => {
-            const itemDateObj = parseDate(item.date);
-            const municipalityMatch = !municipality || item.municipality === municipality;
-            const barangayMatch = !barangay || item.barangay === barangay;
-            const dateFromMatch = !dateFrom || itemDateObj >= dateFromObj;
-            const dateToMatch = !dateTo || itemDateObj <= dateToObj;
-            const statusMatch = !status || item.status === status;
-            return municipalityMatch && barangayMatch && dateFromMatch && dateToMatch && statusMatch;
-        });
-        currentPage = 1;
-        displayTableData(currentPage);
-        updatePagination();
-    }
+        function applyFilter(){
+            const municipality = document.getElementById("municipalityFilter").value;
 
-    function resetFilter() {
-        window.location.reload();
-        filteredData = sightingsData;
-        currentPage = 1;
-        displayTableData(currentPage);
-        updatePagination();
-    }
+            const barangay = document.getElementById("barangayFilter").value;
+            
+            const dateFrom = document.getElementById("dateFrom").value;
+            
+            const dateTo = document.getElementById("dateTo").value;
+            
+            const status = document.querySelector("input[name='status']:checked")?.value;
+            
+            const dateFromObj = dateFrom ? new Date(dateFrom) : null;
+            
+            const dateToObj = dateTo ? new Date(dateTo) : null;
+            
+            filteredData = sightingsData.filter(item => {
+                const itemDateObj = parseDate(item.date);
 
-    function changeStatus(postId, status) {
-        if (!status) return;
-        Swal.fire({
-            title: 'Are you sure?',
-            text: `You are about to change the status to "${status}".`,
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Yes, change it!',
-            cancelButtonText: 'No, keep it'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $.ajax({
-                    type: 'POST',
-                    url: status === 'Valid' ? '{% url "Officer Control Sighting Valid" %}' : '{% url "Officer Control Sighting Invalid" %}',
-                    data: {
-                        'post_id': postId,
-                        'csrfmiddlewaretoken': '{{ csrf_token }}'
-                    },
-                    success: function(response) {
-                        if (response.success) {
-                            location.reload();
-                            Swal.fire(
-                                'Changed!',
-                                `The status has been changed to "${status}".`,
-                                'success'
-                            );
-                        } else {
-                            Swal.fire(
-                                'Failed!',
-                                'Failed to change the status.',
-                                'error'
-                            );
+                const municipalityMatch = !municipality || item.municipality === municipality;
+
+                const barangayMatch = !barangay || item.barangay === barangay;
+                
+                const dateFromMatch = !dateFrom || itemDateObj >= dateFromObj;
+                
+                const dateToMatch = !dateTo || itemDateObj <= dateToObj;
+                
+                const statusMatch = !status || item.status === status;
+                
+                return municipalityMatch && barangayMatch && dateFromMatch && dateToMatch && statusMatch;
+            });
+
+            currentPage = 1;
+            
+            displayTableData(currentPage);
+            
+            updatePagination();
+        };
+
+        function resetFilter(){
+            window.location.reload();
+
+            filteredData = sightingsData;
+            
+            currentPage = 1;
+            
+            displayTableData(currentPage);
+            
+            updatePagination();
+        };
+
+        function changeStatus(postId, status){
+            if (!status) return;
+
+            Swal.fire({
+                title: "Are you sure?",
+
+                text: `You are about to change the status to "${status}".`,
+
+                icon: "warning",
+
+                showCancelButton: true,
+                
+                confirmButtonText: "Yes, change it!",
+
+                cancelButtonText: "No, keep it"
+
+            }).then((result) => {
+                if (result.isConfirmed){
+                    $.ajax({
+                        type: "POST",
+
+                        url: status === "Valid" ? "{% url 'Officer Control Sighting Valid' %}" : "{% url 'Officer Control Sighting Invalid' %}",
+                        
+                        data: {
+                            "post_id": postId,
+
+                            "csrfmiddlewaretoken": "{{csrf_token}}"
+                        },
+
+                        success: function(response){
+                            if (response.success){
+                                location.reload();
+
+                                Swal.fire("Changed!", `The status has been changed to "${status}".`, "success");
+
+                            } else {
+                                Swal.fire("Failed!", "Failed to change the status.", "error");
+                            };
                         }
-                    }
-                });
-            }
-        });
-    }
+                    });
+                }
+            });
+        };
 
-    function getStatusClass(status) {
-        switch (status) {
-            case 'Pending': return 'status-pending';
-            case 'Valid': return 'status-valid';
-            case 'Invalid': return 'status-invalid';
-            default: return '';
-        }
-    }
-    window.addRemarks = function(postId) {
-        Swal.fire({
-            title: 'Add Remark',
-            input: 'textarea',
-            inputLabel: 'Your Remark',
-            inputPlaceholder: 'Enter your remark here...',
-            showCancelButton: true,
-            confirmButtonText: 'Submit',
-            preConfirm: (remark) => {
-                return fetch("{% url 'add_remark' 0 %}".replace('0', postId), {
-                    method: 'POST',
-                    headers: {
-                        'X-CSRFToken': '{{ csrf_token }}',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({remark: remark})
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(response.statusText)
-                    }
-                    return response.json()
-                })
-                .then(data => {
-                    if (!data.success) {
-                        throw new Error(data.message || 'Failed to add remark')
-                    }
-                    return data
-                })
-                .catch(error => {
-                    Swal.showValidationMessage(`Request failed: ${error}`)
-                })
-            },
-            allowOutsideClick: () => !Swal.isLoading()
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire({
-                    title: 'Success!',
-                    text: 'Remark added successfully.',
-                    icon: 'success'
-                }).then(() => {
-                    window.location.reload();
-                });
-            }
-        });
-    };
+        function getStatusClass(status){
+            switch (status){
+                case "Pending": return "status-pending";
 
-    function invalidStatus(postId) {
-        Swal.fire({
-            title: 'Add Remarks',
-            input: 'textarea',
-            inputPlaceholder: 'Enter your remarks here...',
-            showCancelButton: true,
-            confirmButtonText: 'Submit',
-            cancelButtonText: 'Cancel',
-            preConfirm: (remarks) => {
-                return new Promise((resolve) => {
-                    resolve(remarks);
-                });
-            }
-        }).then((result) => {
-            if (result.isConfirmed) {
-                const remarks = result.value;
+                case "Valid": return "status-valid";
 
-                $.ajax({
-                    type: 'POST',
-                    url: '{% url "Officer Control Sighting Invalid" %}',
-                    data: {
-                        'post_id': postId,
-                        'remarks': remarks,
-                        'csrfmiddlewaretoken': '{{ csrf_token }}'
-                    },
-                    success: function(response) {
-                        if (response.success) {
-                            Swal.fire({
-                                title: 'Success',
-                                text: response.message,
-                                icon: 'success',
-                                confirmButtonText: 'OK'
-                            }).then(() => {
-                                location.reload();  // Reload the page after successful operation
-                            });
-                        } else {
-                            Swal.fire({
-                                title: 'Error',
-                                text: response.message,
-                                icon: 'error',
-                                confirmButtonText: 'OK'
-                            });
+                case "Invalid": return "status-invalid";
+
+                default: return "";
+            };
+        };
+
+        window.addRemarks = function(postId){
+            Swal.fire({
+                title: "Add Remark",
+
+                input: "textarea",
+
+                inputLabel: "Your Remark",
+
+                inputPlaceholder: "Enter your remark here...",
+
+                showCancelButton: true,
+                
+                confirmButtonText: "Submit",
+
+                preConfirm: (remark) => {
+                    return fetch("{% url 'add_remark' 0 %}".replace("0", postId), {
+                        method: "POST",
+
+                        headers: {
+                            "X-CSRFToken": "{{csrf_token}}",
+
+                            "Content-Type": "application/json"
+                        },
+
+                        body: JSON.stringify({remark: remark})
+
+                    }).then(response => {
+                        if (!response.ok){
+                            throw new Error(response.statusText)
+                        };
+
+                        return response.json()
+                    
+                    }).then(data => {
+                        if (!data.success){
+                            throw new Error(data.message || "Failed to add remark")
+                        };
+
+                        return data
+                    
+                    }).catch(error => {
+                        Swal.showValidationMessage(`Request failed: ${error}`)
+                    })
+                },
+
+                allowOutsideClick: () => !Swal.isLoading()
+
+            }).then((result) => {
+                if (result.isConfirmed){
+                    Swal.fire({
+                        title: "Success!",
+
+                        text: "Remark added successfully.",
+
+                        icon: "success"
+
+                    }).then(() => {
+                        window.location.reload();
+                    });
+                };
+            });
+        };
+
+        function invalidStatus(postId){
+            Swal.fire({
+                title: "Add Remarks",
+
+                input: "textarea",
+
+                inputPlaceholder: "Enter your remarks here...",
+
+                showCancelButton: true,
+                
+                confirmButtonText: "Submit",
+
+                cancelButtonText: "Cancel",
+
+                preConfirm: (remarks) => {
+                    return new Promise((resolve) => {
+                        resolve(remarks);
+                    });
+                };
+
+            }).then((result) => {
+                if (result.isConfirmed){
+                    const remarks = result.value;
+
+                    $.ajax({
+                        type: "POST",
+                        
+                        url: "{% url 'Officer Control Sighting Invalid' %}",
+
+                        data: {
+                            "post_id": postId,
+
+                            "remarks": remarks,
+                            
+                            "csrfmiddlewaretoken": "{{csrf_token}}"
+                        },
+
+                        success: function(response){
+                            if (response.success){
+                                Swal.fire({title: "Success", text: response.message, icon: "success", confirmButtonText: "Ok"}).then(() => {
+                                    location.reload();  // Reload the page after successful operation
+                                });
+
+                            } else {
+                                Swal.fire({title: "Error", text: response.message, icon: "error", confirmButtonText: "Ok"});
+                            };
+                        },
+
+                        error: function(){
+                            Swal.fire({title: "Error", text: "An unexpected error occurred.", icon: "error", confirmButtonText: "Ok"});
                         }
-                    },
-                    error: function() {
-                        Swal.fire({
-                            title: 'Error',
-                            text: 'An unexpected error occurred.',
-                            icon: 'error',
-                            confirmButtonText: 'OK'
-                        });
-                    }
-                });
-            }
-        });
-    }
+                    });
+                };
+            });
+        };
 
-    function toggleSelectAll() {
-        const selectAllCheckbox = document.getElementById("selectAll");
-        const checkboxes = document.querySelectorAll(".selectRow");
-        checkboxes.forEach(checkbox => checkbox.checked = selectAllCheckbox.checked);
-    }
+        function bulkChangeStatus(status){
+            const selectedIds = Array.from(document.querySelectorAll(".selectRow:checked")).map(checkbox => checkbox.closest("tr").dataset.id);
 
-    function bulkChangeStatus(status) {
-        const selectedIds = Array.from(document.querySelectorAll(".selectRow:checked")).map(checkbox => checkbox.closest("tr").dataset.id);
-        if (selectedIds.length === 0) {
-            Swal.fire('No Selection', 'Please select at least one sighting.', 'warning');
-            return;
-        }
+            if (selectedIds.length === 0){
+                Swal.fire("No Selection", "Please select at least one sighting.", "warning");
+                
+                return;
+            };
 
-        Swal.fire({
-            title: 'Are you sure?',
-            text: `You are about to change the status of ${selectedIds.length} sightings to "${status}".`,
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Yes, change it!',
-            cancelButtonText: 'No, keep it'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $.ajax({
-                    type: 'POST',
-                    url: status === 'Valid' ? '{% url "Officer Control Sighting Valid" %}' : '{% url "Officer Control Sighting Invalid" %}',
-                    data: {
-                        'post_ids': selectedIds,
-                        'csrfmiddlewaretoken': '{{ csrf_token }}'
-                    },
-                    traditional: true, // This is important to send array of data correctly
-                    success: function(response) {
-                        if (response.success) {
-                            location.reload();
-                            Swal.fire(
-                                'Changed!',
-                                `The status has been changed to "${status}".`,
-                                'success'
-                            );
-                        } else {
-                            Swal.fire(
-                                'Failed!',
-                                'Failed to change the status.',
-                                'error'
-                            );
+            Swal.fire({
+                title: "Are you sure?", text: `You are about to change the status of ${selectedIds.length} sightings to "${status}".`, icon: "warning", showCancelButton: true, confirmButtonText: "Yes, change it!", cancelButtonText: "No, keep it"}).then((result) => {
+                if (result.isConfirmed){
+                    $.ajax({
+                        type: "POST",
+
+                        url: status === "Valid" ? "{% url 'Officer Control Sighting Valid' %}" : "{% url 'Officer Control Sighting Invalid' %}",
+
+                        data: {
+                            "post_ids": selectedIds,
+
+                            "csrfmiddlewaretoken": "{{csrf_token}}"
+                        },
+
+                        traditional: true,
+
+                        success: function(response){
+                            if (response.success){
+                                location.reload();
+
+                                Swal.fire("Changed!", `The status has been changed to "${status}".`, "success");
+
+                            } else{
+                                Swal.fire("Failed!", "Failed to change the status.", "error");
+                            };
                         }
-                    }
-                });
-            }
+                    });
+                };
+            });
+        };
+
+        document.addEventListener("DOMContentLoaded", () => {
+            displayTableData(currentPage);
+
+            updatePagination();
         });
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        displayTableData(currentPage);
-        updatePagination();
-    });
-
-   
-    
-</script>
-
+    </script>
 {% endblock %}

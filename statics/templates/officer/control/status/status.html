@@ -3,90 +3,99 @@
 {% load custom_filters %}
 
 {% block content %}
-<head>
-    <!-- Other head elements -->
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
-    <!-- Include SweetAlert2 from CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <!-- Include Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
-    <!-- Custom CSS for Status Colors and Card Styles -->
-     <link rel="stylesheet" href="{% static 'css/officer/control/status/status.css' %}" >
-
-</head>
-{% block status-content %}
-<h3 style="text-transform: uppercase;">Infestation Status  </h3>
-<div class="container-fluid mt-3">
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col"> Date</th>
-                <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Municipality</th>
-                <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Total No. of COTS COLLECTED</th>
-                <th style="font-size: 15px; color: rgb(28, 169, 234);" scope="col">Status</th>
-                
-            </tr>
-        </thead>
-        <tbody>
-            {% for status in paginated_statuses %}
-            <tr data-href="{% url 'barangay_status' status.location.municipality %}">
-                
-                <td>{{ status.onset_date | format_date_mmddyy }}</td>
-                <td>{{ status.location.municipality }}</td>
-                <td>{{ status.caught_overall }}</td>
-                <td class="status-{{ status.statustype }}">{{ status.statustype }}</td>
-                
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
-    <!-- Pagination controls -->
-    <nav>
-        <ul class="pagination justify-content-center">
-            {% if paginated_statuses.has_previous %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ paginated_statuses.previous_page_number }}" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-            {% endif %}
-
-            {% for num in paginated_statuses.paginator.page_range %}
-                {% if paginated_statuses.number == num %}
-                    <li class="page-item active"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
-                {% else %}
-                    <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
-                {% endif %}
-            {% endfor %}
-
-            {% if paginated_statuses.has_next %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ paginated_statuses.next_page_number }}" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-            {% endif %}
-        </ul>
-    </nav>
-</div>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        var rows = document.querySelectorAll("tr[data-href]");
-        rows.forEach(row => {
-            row.addEventListener("click", function() {
-                window.location.href = this.dataset.href;
-            });
-        });
-    });
-    </script>
+    <link href = "https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     
-{% endblock %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <script src = "https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script src = "https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <link rel = "stylesheet" href = "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <script src = "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <link rel = "stylesheet" href = "{% static 'css/officer/control/status/status.css' %}" >
+
+    {% block status-content %}
+        <h3 style = "text-transform: uppercase;">Infestation Status</h3>
+    
+        <div class = "container-fluid mt-3">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th style = "font-size: 15px; color: rgb(28, 169, 234);" scope = "col">Date</th>
+                        
+                        <th style = "font-size: 15px; color: rgb(28, 169, 234);" scope = "col">Municipality</th>
+                        
+                        <th style = "font-size: 15px; color: rgb(28, 169, 234);" scope = "col">Total No. of COTS Collected</th>
+                        
+                        <th style = "font-size: 15px; color: rgb(28, 169, 234);" scope = "col">Status</th>
+                        
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    {% for status in paginated_statuses %}
+                        <tr data-href = "{% url 'barangay_status' status.location.municipality %}">
+                            <td>{{status.onset_date | format_date_mmddyy}}</td>
+
+                            <td>{{status.location.municipality}}</td>
+                            
+                            <td>{{status.caught_overall}}</td>
+
+                            <td class = "status-{{status.statustype}}">{{status.statustype}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <nav>
+                <ul class = "pagination justify-content-center">
+                    {% if paginated_statuses.has_previous %}
+                        <li class = "page-item">
+                            <a class = "page-link" href = "?page = {{paginated_statuses.previous_page_number}}" aria-label = "Previous">
+                                <span aria-hidden = "true">&laquo;</span>
+                            </a>
+                        </li>
+                    {% endif %}
+
+                    {% for num in paginated_statuses.paginator.page_range %}
+                        {% if paginated_statuses.number == num %}
+                            <li class = "page-item active">
+                                <a class = "page-link" href = "?page = {{num}}">{{num}}</a>
+                            </li>
+                        
+                        {% else %}
+                            <li class = "page-item">
+                                <a class = "page-link" href = "?page = {{num}}">{{num}}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if paginated_statuses.has_next %}
+                        <li class = "page-item">
+                            <a class = "page-link" href = "?page = {{paginated_statuses.next_page_number}}" aria-label = "Next">
+                                <span aria-hidden = "true">&raquo;</span>
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div> 
+    
+        <script>
+            document.addEventListener("DOMContentLoaded", function(){
+                var rows = document.querySelectorAll("tr[data-href]");
+
+                rows.forEach(row => {
+                    row.addEventListener("click", function(){
+                        window.location.href = this.dataset.href;
+                    });
+                });
+            });
+        </script>
+    {% endblock %}
 {% endblock %}

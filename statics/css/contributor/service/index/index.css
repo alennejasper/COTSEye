@@ -638,12 +638,12 @@ nav.navigation-bottombar img:active{
     color: #002C44 !important;
 }
 
-.profile-content .dropdown-item a:focus{
+.profile-content .dropdown-item:focus{
     color: #B2BEB5 !important;
     color: #002C44 !important;
 }
 
-.profile-content .dropdown-item a:active{
+.profile-content .dropdown-item:active{
     background-color: #B2BEB5 !important;
     color: #002C44 !important;
 }
@@ -846,6 +846,12 @@ nav.navigation-bottombar img:active{
     white-space: wrap;
     background-color: #FFFFFF;
     text-decoration: none !important;
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 20px;
+    background-color: #FFFFFF;
+    color: #003755;
+    text-decoration: none !important;
 }
 
 .notification-content .dropdown-item:hover{
@@ -869,6 +875,7 @@ nav.navigation-bottombar img:active{
         padding-right: 10px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
+        font-size: 18px;
     }
 }
 
@@ -878,6 +885,7 @@ nav.navigation-bottombar img:active{
         padding-right: 10px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
+        font-size: 16px;
     }
 }
 
@@ -887,6 +895,7 @@ nav.navigation-bottombar img:active{
         padding-right: 10px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
+        font-size: 14px;
     }
 }
 
@@ -896,6 +905,7 @@ nav.navigation-bottombar img:active{
         padding-right: 10px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
+        font-size: 12px;
     }
 }
 

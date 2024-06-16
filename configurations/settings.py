@@ -282,7 +282,7 @@ JAZZMIN_SETTINGS = {
 
     "show_sidebar": True,
 
-    "site_brand": "COTSEye",
+    "site_brand": "COTSEYE",
     
-    "site_logo": "assets/icons/logo.png",
+    "site_logo": "assets/logo.jpg",
 }

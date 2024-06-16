@@ -85,7 +85,24 @@
     </script>
 
     <script>
+        window.onbeforeunload = function(event){
+            event.preventDefault(); 
+            
+            event.returnValue = ""; 
+
+        };
+
+        function disableOnBeforeUnload(){
+            window.onbeforeunload = null;
+        };
+    </script>
+
+    <script>
         document.querySelector(".save-profile").onclick = function(event){
+            event.preventDefault();
+
+            disableOnBeforeUnload();
+
             const username = "{{request.user.username}}";
 
             if(!navigator.onLine){                        
@@ -94,17 +111,8 @@
                 });
 
             } else{
-                Swal.fire({title: "Hey!", text: username + ", " + "you sure that you want to save the profile?", icon: "warning", showCancelButton: true, confirmButtonColor: "#003755", cancelButtonColor: "#003755", confirmButtonText: "Yes", cancelButtonText: "No", customClass: {confirmButton: "info-button", cancelButton: "error-button", title: "title"}}).then((result) => {if (result.isConfirmed){document.querySelector(".profile-form").submit();}});
+                Swal.fire({title: "Hey!", text: username + ", " + "you sure that you want to save the profile?", icon: "warning", showCancelButton: true, confirmButtonColor: "#003755", cancelButtonColor: "#003755", confirmButtonText: "Yes", cancelButtonText: "No", customClass: {confirmButton: "info-button", cancelButton: "cancel-button", title: "title"}}).then((result) => {if (result.isConfirmed){document.querySelector(".profile-form").submit();}});
             };
-        };
-    </script>
-
-    <script>
-        window.onbeforeunload = function(event){
-            event.preventDefault(); 
-            
-            event.returnValue = ""; 
-
         };
     </script>
 

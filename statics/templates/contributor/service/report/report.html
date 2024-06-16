@@ -42,8 +42,6 @@
                         <input type = "datetime-local" id = "capture-date" value = "{{draft_post.capture_date | date:'Y-m-d\TH:i'}}" name = "capture_date" required>
                     </div>            
 
-                    <!-- <h1>MAP</h1> -->
-
                     <div class = "map">
                         <div class=  "report-map">
                         </div>
@@ -82,7 +80,7 @@
                     </div>
 
                     <div class = "buttons">
-                        <div class = "save-report first-draft">
+                        <div class = "save-report draft">
                             <button type = "submit" value = "save as draft" onclick = "setActionValue(this.value); disableOnBeforeUnload();">Save as Draft</a>
                         </div>
 
@@ -172,7 +170,7 @@
                     <div class = "buttons">
                         <!-- <button type = "button" class = "back-report" onclick = "openTab('first-tab')">Back</button> -->
 
-                        <div class = "save-report second-draft">
+                        <div class = "save-report draft">
                             <button type = "submit" value = "save as draft" onclick = "setActionValue(this.value); disableOnBeforeUnload();">Save as Draft</a>
                         </div>
 
@@ -236,8 +234,6 @@
                         <input type = "datetime-local" id = "capture-date" name = "capture_date" required>
                     </div>            
 
-                    <!-- <h1>MAP</h1> -->
-
                     <div class = "map">
                         <div class=  "report-map">
                         </div>
@@ -270,7 +266,7 @@
                     </div>
 
                     <div class = "buttons">
-                        <!-- <div class = "save-report first-draft">
+                        <!-- <div class = "save-report draft">
                             <button type = "submit" value = "save as draft" onclick = "setActionValue(this.value); disableOnBeforeUnload();">Save as draft</a>
                         </div> -->
 
@@ -360,7 +356,7 @@
                     <div class = "buttons">
                         <!-- <button type="button" class = "back-report" onclick = "openTab('first-tab')">Back</button> -->
 
-                        <div class = "save-report second-draft">
+                        <div class = "save-report draft">
                             <button type = "submit" value = "save as draft" onclick = "setActionValue(this.value); disableOnBeforeUnload();">Save as Draft</button>
                         </div>
             
@@ -973,12 +969,12 @@
     </script>
 
     <script>
-        /* document.querySelector(".save-report.first-draft").addEventListener("click", function(event){
-            document.querySelector(".save-report.first-draft button").click();
+        /* document.querySelector(".save-report.draft").addEventListener("click", function(event){
+            document.querySelector(".save-report.draft button").click();
         }); */
 
-        document.querySelector(".save-report.second-draft").addEventListener("click", function(event){
-            document.querySelector(".save-report.second-draft button").click();
+        document.querySelector(".save-report.draft").addEventListener("click", function(event){
+            document.querySelector(".save-report.draft button").click();
         });
 
         document.querySelector(".save-report.submit").addEventListener("click", function(event){
@@ -1009,8 +1005,9 @@
                     const username = "{{request.user.username}}";
 
                     if (!navigator.onLine){
-                        Swal.fire({
-                            title: "Hey!", text: username + ", " + "your information input was recorded offline for COTSEye. Kindly visit the current page again if back online.", background: "#FFFFFF", icon: "warning", iconColor: "#003755", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#003755", customClass: {confirmButton: "info-button", title: "title"}}).then(() => {location.reload();});
+                        Swal.fire({title: "Hey!", text: username + ", " + "your information input was recorded offline for COTSEye. Kindly visit the current page again if back online.", background: "#FFFFFF", icon: "warning", iconColor: "#003755", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#003755", customClass: {confirmButton: "info-button", title: "title"}}).then(() => {
+                            location.reload();
+                        });
 
                     } else {
                         Swal.fire({title: "Hey!", text: username + ", " + "you sure that you want to save the report?", icon: "warning", showCancelButton: true, confirmButtonColor: "#003755", cancelButtonColor: "#003755", confirmButtonText: "Yes", cancelButtonText: "No", customClass: {confirmButton: "confirm-button", cancelButton: "cancel-button", title: "title"}}).then((result) => {if (result.isConfirmed){document.querySelector(".report-form").submit();}});
@@ -1120,7 +1117,7 @@
                     cotseye_schema.add(post);
                 }); 
 
-                document.querySelector(".save-report.first-draft").addEventListener("click", (event) => {
+                document.querySelector(".save-report.draft").addEventListener("click", (event) => {
                     const information = new FormData(form);
 
                     const action = information.get("action");

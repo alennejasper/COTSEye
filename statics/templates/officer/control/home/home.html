@@ -279,7 +279,7 @@
 
                 var management = L.control.layers(bases, overlays).addTo(map);
 
-                management.setPosition("bottomleft");
+                management.setPosition("topleft");
 
                 var legend = L.control({position: "topright"});
 
@@ -330,16 +330,16 @@
             });
         </script>
     
-        <div class = "home-graph">
-            <div class = "graph-section">
-                <h1>COTS COLLECTION BY BARANGAY</h1>
-                
-                <div class = "section-button">
-                    <button onclick = "window.location.href = '{% url 'Officer Control Report' %}'">GENERATE REPORT</button>
-                </div>
-            </div>  
-
+        <div class = "home-graph">  
             <form method = "GET" action = "{% url 'Officer Control Home' %}">
+                <div class = "graph-section">
+                    <h1>COTS COLLECTION BY BARANGAY</h1>
+                    
+                    <div class = "section-button">
+                        <button onclick = "window.location.href = '{% url 'Officer Control Report' %}'">GENERATE REPORT</button>
+                    </div>
+                </div>
+
                 <div class = "graph-filter">
                     <div class = "filter-input">
                         <div class = "filter-municipality">

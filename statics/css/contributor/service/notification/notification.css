@@ -106,6 +106,7 @@
 
 .notification-body .notification .notification-unread .notification-item{
     display: inline-block;
+    padding-bottom: 15px;
     width: 100%;
     border-bottom: 1px solid #003755;
     white-space: wrap;
@@ -126,6 +127,17 @@
 .notification-body .notification .notification-unread .notification-item:active{
     color: #002C44 !important;
     background-color: #B2BEB5;
+}
+
+.notification-body .notification .notification-unread .notification-item:last-child{
+    padding-bottom: 0px;
+    border-bottom: unset;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .notification-body .notification .notification-unread .notification-item{
+        padding-bottom: 5px;
+    }
 }
 
 .notification-body .notification .notification-unread .notification-item .item-header{
@@ -322,6 +334,7 @@
 
 .notification-body .notification .notification-read .notification-item{
     display: inline-block;
+    padding-bottom: 15px;
     width: 100%;
     border-bottom: 1px solid #003755;
     white-space: wrap;
@@ -342,6 +355,17 @@
 .notification-body .notification .notification-read .notification-item:active{
     color: #002C44 !important;
     background-color: #B2BEB5;
+}
+
+.notification-body .notification .notification-read .notification-item:last-child{
+    padding-bottom: 0px;
+    border-bottom: unset;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .notification-body .notification .notification-read .notification-item{
+        padding-bottom: 5px;
+    }
 }
 
 .notification-body .notification .notification-read .notification-item .item-header{

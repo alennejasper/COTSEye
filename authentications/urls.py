@@ -47,5 +47,5 @@ urlpatterns = [
 
     path("officer/control/logout/", views.OfficerControlLogout, name = "Officer Control Logout"),      
 
-    path('officer/control/notification/', views.OfficerControlNotification, name='Officer Control Notification'),
+    path("officer/control/notification/", views.OfficerControlNotification, name = "Officer Control Notification")
 ]

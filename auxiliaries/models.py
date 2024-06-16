@@ -16,6 +16,7 @@ class Announcement(models.Model):
     location = models.ForeignKey(Location, null = True, blank = True, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Location model.", verbose_name = "Location")
     release_date = models.DateTimeField(default = datetime.datetime.now, help_text = "Designates the release date and time of the announcement.", verbose_name = "Release Date")
     announcement_photo = models.ImageField(default = "announcements/default.png", null = True, upload_to = "announcements", help_text = "Designates the photo of the announcement.", verbose_name = "Announcement Photo")
+    creation_date = models.DateTimeField(default = datetime.datetime.now, help_text = "Designates the creation date and time of the announcement.", verbose_name = "Creation Date")
 
     class Meta:
         db_table = "auxiliaries_announcement"
@@ -46,8 +47,8 @@ class File(models.Model):
 
     class Meta:
             db_table = "auxiliaries_file"
-            verbose_name = "File"
-            verbose_name_plural = "Files"
+            verbose_name = "Resource File"
+            verbose_name_plural = "Resource File"
     
     def __str__(self):
         return "FILE " + str(self.id)
@@ -59,8 +60,8 @@ class Inquiry(models.Model):
 
     class Meta:
             db_table = "auxiliaries_inquiry"
-            verbose_name = "Inquiry"
-            verbose_name_plural = "Inquiries"
+            verbose_name = "FAQ"
+            verbose_name_plural = "FAQ"
     
     def __str__(self):
         return str(self.question)
@@ -74,8 +75,8 @@ class Link(models.Model):
 
     class Meta:
             db_table = "auxiliaries_link"
-            verbose_name = "Link"
-            verbose_name_plural = "Links"
+            verbose_name = "Resource Link"
+            verbose_name_plural = "Resource Link"
     
     def __str__(self):
         return "LINK " + str(self.id)

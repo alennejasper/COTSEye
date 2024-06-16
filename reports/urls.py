@@ -49,12 +49,11 @@ urlpatterns = [
     
     path("service/post/valid/read/<int:id>/redirect/", views.PostValidReadRedirect, name = "Post Valid Read Redirect"),
 
-    path('mark_post_as_read/<int:id>/', views.mark_post_as_read, name='mark_post_as_read'),
+    path("mark_post_as_read/<int:id>/", views.mark_post_as_read, name = "mark_post_as_read"),
 
-    path('api/posts/update/<int:post_id>/', views.update_post, name='update_post'),   
+    path("api/posts/update/<int:post_id>/", views.update_post, name = "update_post"),   
     
-    path('officer/control/sighting/delete_photo/<int:photo_id>/', views.DeletePostPhoto, name='delete_photo'),
+    path("officer/control/sighting/delete_photo/<int:photo_id>/", views.DeletePostPhoto, name = "delete_photo"),
 
-    path('post/<int:post_id>/add-remark/', views.add_remark, name='add_remark'),
-
+    path("post/<int:post_id>/add-remark/", views.add_remark, name = "add_remark")
 ]
