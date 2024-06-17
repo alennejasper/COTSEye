@@ -53,9 +53,9 @@ deactivate (){
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV='C:\Users\ACER\Desktop\College Files - Archive\Capstone I\Team Rocket [Web Project]\cotseye\environment\locale'
+VIRTUAL_ENV="C:\Users\ACER\Desktop\College Files - Archive\Capstone I\Team Rocket [Web Project]\cotseye\environment\locale"
 
-if ([ "$OSTYPE" = "cygwin" ] || [ "$OSTYPE" = "msys" ]) && $(command -v cygpath &> /dev/null) ; then
+if (["$OSTYPE" = "cygwin"] || ["$OSTYPE" = "msys"]) && $(command -v cygpath &> /dev/null); then
     VIRTUAL_ENV=$(cygpath -u "$VIRTUAL_ENV")
 fi
 
@@ -94,7 +94,7 @@ fi
 # Make sure to unalias pydoc if it's already there
 alias pydoc 2>/dev/null >/dev/null && unalias pydoc || true
 
-pydoc () {
+pydoc (){
     python -m pydoc "$@"
 }
 

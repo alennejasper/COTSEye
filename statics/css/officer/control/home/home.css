@@ -1,0 +1,1771 @@
+.home-body{
+    position: relative;
+    display: grid;
+    width: 100%;
+    height: 100%;
+}
+
+.home-body .home-section{
+    display: flex;                   
+    align-items: center; 
+    justify-content: center;          
+    flex-direction: column;
+    width: 100%;                     
+    text-align: center;                                   
+}
+
+.home-body .home-section h1{
+    margin-bottom: 0px !important;
+    font-weight: 700;       
+    font-size: 24px;        
+    font-family: "Montserrat";
+    color: #003755;
+    text-align: center;     
+}
+
+.home-body .home-cards{
+    display: grid;
+    row-gap: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 5px;
+    background-color: rgb(250, 250, 250, 0.75)
+}
+
+.home-body .home-cards h1{
+    margin-bottom: 0px !important;
+    font-weight: 700;       
+    font-size: 24px;        
+    font-family: "Montserrat";
+    color: #003755;
+}
+
+.home-body .home-cards .cards-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    column-gap: 5px;
+}
+
+.home-body .home-cards .cards-container .card .card-body{
+    width: 100%;
+}
+
+.home-body .home-cards .cards-container .card .card-body{
+    display: grid;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 100%;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.home-body .home-cards .cards-container .card .card-body p:first-child{
+    margin-bottom: 0px !important;
+    font-weight: 400;   
+    font-size: 16px;
+    font-family: "Montserrat";
+    color: #FFFFFF;
+}
+
+.home-body .home-cards .cards-container .card .card-body h1{
+    margin-bottom: 0px !important;
+    font-weight: 700; 
+    font-size: 20px;      
+    font-family: "Montserrat";
+    color: #FFFFFF;
+    text-transform: uppercase;
+}
+
+.home-body .home-cards .cards-container .card .card-body .card-amount p:first-child{
+    margin-bottom: 0px !important;
+    font-weight: 700;       
+    font-size: 16px;        
+    font-family: "Montserrat";
+    color: #FFFFFF;
+}
+
+.home-body .home-cards .cards-container .card .card-body .card-amount p:last-child{
+    margin-bottom: 0px !important;
+    font-weight: 400;       
+    font-size: 10px;        
+    font-family: "Montserrat";
+    color: #FFFFFF;
+}
+
+.home-body .home-cards .cards-container .card .card-body > p{
+    margin-bottom: 0px !important;
+    font-weight: 400;       
+    font-size: 10px;        
+    font-family: "Montserrat";
+    color: #FFFFFF;
+}
+
+.home-body .home-cards .cards-container .card .card-body > p strong{
+    margin-left: 5px;
+    margin-bottom: 0px !important;
+    font-weight: 700;       
+    font-size: 14px;        
+    font-family: "Montserrat";
+    color: #FFFFFF;
+}
+
+.home-body .home-map{ 
+    width: 100%;
+    height: 100vh;
+}
+
+@media screen and (min-width: 320px) and (max-width: 935px){
+    .home-body .home-map{ 
+        height: 375px;
+    }
+}
+
+.home-body .home-map .map{
+    width: 100%;
+    height: 100vh;
+    border-radius: 5px; 
+    z-index: 1;
+}
+
+@media screen and (min-width: 320px) and (max-width: 935px){
+    .home-body .home-map .map{
+        height: 375px;
+    }
+}
+
+.home-body .home-map .map .pin{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid #003755;
+}
+
+.home-body .home-map .map .leaflet-left{
+    margin-left: 30px !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .home-body .home-map .map .leaflet-left{
+        margin-left: 10px !important;
+    }
+}
+
+.home-body .home-map .map .leaflet-right{
+    margin-right: 30px !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .home-body .home-map .map .leaflet-right{
+        margin-right: 10px !important;
+    }
+}
+
+.home-body .home-map .map .leaflet-top{
+    margin-top: 15px !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .home-body .home-map .map .leaflet-top{
+        margin-top: 5px !important;
+    }
+}
+
+.home-body .home-map .map .leaflet-bottom{
+    margin-bottom: 15px !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .home-body .home-map .map .leaflet-bottom{
+        margin-bottom: 5px !important;
+    }
+}
+
+.home-body .home-map .map .leaflet-bar{
+    border: none !important;
+}
+
+.home-body .home-map .map .leaflet-bar a{
+    border: none !important;
+}
+
+.home-body .home-map .map .leaflet-control{
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.home-body .home-map .map .leaflet-control-zoom{
+    border-radius: 5px !important;
+}
+
+.home-body .home-map .map .leaflet-control-zoom a.leaflet-control-zoom-in{
+    -webkit-user-select: none;
+    -ms-user-select: none; 
+    user-select: none;
+    background-color: #FFFFFF !important;
+    color: #003755 !important;
+    text-decoration: none !important;
+}
+
+.home-body .home-map .map .leaflet-control-zoom a.leaflet-control-zoom-in:hover{
+    background-color: #B2BEB5 !important;
+    color: #002C44 !important;
+}
+
+.home-body .home-map .map .leaflet-control-zoom a.leaflet-control-zoom-in:focus{
+    background-color: #B2BEB5 !important;
+    color: #002C44 !important;
+}
+
+.home-body .home-map .map .leaflet-control-zoom a.leaflet-control-zoom-in:active{
+    background-color: #B2BEB5 !important;
+    color: #002C44 !important;
+}
+
+.home-body .home-map .map .leaflet-control-zoom a.leaflet-control-zoom-in.leaflet-disabled{
+    background-color: #B2BEB5 !important;
+    color: #002C44 !important;
+    cursor: default !important;
+}
+
+.home-body .home-map .map .leaflet-control-zoom a.leaflet-control-zoom-in.leaflet-disabled span{
+    color: #002C44 !important;
+}
+
+.home-body .home-map .map .leaflet-control-zoom a.leaflet-control-zoom-out{
+    -webkit-user-select: none;
+    -ms-user-select: none; 
+    user-select: none; 
+    background-color: #003755 !important;
+    color: #FFFFFF !important;
+    text-decoration: none !important;
+}
+
+.home-body .home-map .map .leaflet-control-zoom a.leaflet-control-zoom-out:hover{
+    background-color: #002C44 !important;
+    color: #B2BEB5 !important;
+}
+
+.home-body .home-map .map .leaflet-control-zoom a.leaflet-control-zoom-out:focus{
+    background-color: #002C44 !important;
+    color: #B2BEB5 !important;
+}
+
+.home-body .home-map .map .leaflet-control-zoom a.leaflet-control-zoom-out:active{
+    background-color: #002C44 !important;
+    color: #B2BEB5 !important;
+}
+
+.home-body .home-map .map .leaflet-control-zoom a.leaflet-control-zoom-out.leaflet-disabled{
+    background-color: #002C44 !important;
+    color: #B2BEB5 !important;
+    cursor: default !important;
+}
+
+.home-body .home-map .map .leaflet-control-zoom a.leaflet-control-zoom-out.leaflet-disabled span{
+    color: #B2BEB5 !important;
+}
+
+.home-body .home-map .map .legend{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .home-body .home-map .map .legend{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+.home-body .home-map .map .legend .popup-header{
+    text-align: center !important;
+    cursor: default;
+}
+
+.home-body .home-map .map .legend .popup-header a{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    font-family: "Montserrat";
+    font-weight: 700;
+    font-size: 16px !important;
+    color: #003755;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home-body .home-map .map .legend .popup-header a{
+        font-size: 22px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-body .home-map .map .legend .popup-header a{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-body .home-map .map .legend .popup-header a{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-body .home-map .map .legend .popup-header a{
+        font-size: 16px !important;
+    }
+}
+
+.home-body .home-map .map .legend .popup-statistics{
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 15px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .home-body .home-map .map .legend .popup-statistics{
+        margin-bottom: 5px;
+    }
+}
+
+.home-body .home-map .map .legend .popup-statistics:last-child{
+    margin-bottom: 0px;
+}
+
+.home-body .home-map .map .legend .popup-statistics i{
+    margin-right: 10px;
+    width: 16px; 
+    height: 16px;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home-body .home-map .map .legend .popup-statistics i{
+        width: 18px; 
+        height: 18px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-body .home-map .map .legend .popup-statistics i{
+        width: 16px; 
+        height: 16px;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-body .home-map .map .legend .popup-statistics i{
+        width: 14px; 
+        height: 14px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-body .home-map .map .legend .popup-statistics i{
+        width: 12px; 
+        height: 12px;
+    }
+}
+
+.home-body .home-map .map .legend .popup-statistics a{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    font-family: "Montserrat";
+    font-weight: 700;
+    font-size: 16px !important;
+    color: #003755;
+    cursor: default;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home-body .home-map .map .legend .popup-statistics a{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-body .home-map .map .legend .popup-statistics a{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-body .home-map .map .legend .popup-statistics a{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-body .home-map .map .legend .popup-statistics a{
+        font-size: 12px !important;
+    }
+}
+
+.home-body .home-map .map .legend .popup-statistics p{
+    display: inline-block !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 16px !important;
+    color: #003755;
+    cursor: default;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home-body .home-map .map .legend .popup-statistics p{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-body .home-map .map .legend .popup-statistics p{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-body .home-map .map .legend .popup-statistics p{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-body .home-map .map .legend .popup-statistics p{
+        font-size: 12px !important;
+    }
+}
+
+.home-body .home-map .map .legend .popup-alert p{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 16px !important;
+    color: #003755;
+    text-align: right;
+    cursor: default;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home-body .home-map .map .legend .popup-alert p{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-body .home-map .map .legend .popup-alert p{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-body .home-map .map .legend .popup-alert p{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-body .home-map .map .legend .popup-alert p{
+        font-size: 12px !important;
+    }
+}
+
+.home-body .home-map .map .leaflet-control-attribution{
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 100%;
+    border-radius: 5px;
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 24px !important;
+    background: #FFFFFF !important;
+    color: #003755;
+    cursor: default;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home-body .home-map .map .leaflet-control-attribution{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        font-size: 22px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-body .home-map .map .leaflet-control-attribution{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-body .home-map .map .leaflet-control-attribution{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-body .home-map .map .leaflet-control-attribution{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        font-size: 16px !important;
+    }
+}
+
+.home-body .home-map .map .leaflet-control-attribution a{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    font-family: "Montserrat";
+    font-weight: 700;
+    font-size: 24px !important;
+    color: #003755;
+    text-decoration: none !important;
+    cursor: default;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-body .home-map .map .leaflet-control-attribution a{
+        font-size: 22px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-body .home-map .map .leaflet-control-attribution a{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-body .home-map .map .leaflet-control-attribution a{
+        font-size: 18px !important;
+    }
+}
+
+.home-body .home-map .map .leaflet-control-attribution a svg{
+    display: none !important;
+}
+
+.home-body .home-map .map .leaflet-control-attribution span{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 24px !important;
+    color: #003755;
+    cursor: default;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home-body .home-map .map .leaflet-control-attribution span{
+        font-size: 22px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-body .home-map .map .leaflet-control-attribution span{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-body .home-map .map .leaflet-control-attribution span{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-body .home-map .map .leaflet-control-attribution span{
+        font-size: 16px !important;
+    }
+}
+
+.home-body .home-map .map .leaflet-control-layers{
+    margin-top: 15px;
+    border: none !important;
+    background: #003755 !important;
+}
+
+.home-body .home-map .map .leaflet-control-layers label{
+    margin-bottom: 0px !important;
+}
+
+.home-body .home-map .map .leaflet-control-layers span{
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-start;
+    font-family: "Montserrat" !important;
+    font-weight: 400 !important;
+    font-size: 16px !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home-body .home-map .map .leaflet-control-layers span{
+        font-size: 22px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-body .home-map .map .leaflet-control-layers span{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-body .home-map .map .leaflet-control-layers span{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-body .home-map .map .leaflet-control-layers span{
+        font-size: 16px !important;
+    }
+}
+
+.home-body .home-map .map a.leaflet-control-layers-toggle{
+    display: none !important;
+    width: 0px !important;
+    height: 0px !important;
+    border-radius: 5px !important;
+    background-color: #003755 !important;
+}
+
+.home-body .home-map .map .leaflet-control-layers-expanded{
+    display: block !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    border-radius: 5px !important;
+    background-color: #003755 !important;
+}
+
+.home-body .home-map .map .leaflet-control-layers-list{
+    display: block !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    font-family: "Montserrat" !important;
+    font-weight: 400 !important;
+    font-size: 24px !important;
+    color: #FFFFFF !important;
+    text-align: justify;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home-body .home-map .map .leaflet-control-layers-list{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        font-size: 22px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-body .home-map .map .leaflet-control-layers-list{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-body .home-map .map .leaflet-control-layers-list{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-body .home-map .map .leaflet-control-layers-list{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        font-size: 16px !important;
+    }
+}
+
+.home-body .home-map .map input[type = "checkbox"]{
+    display: grid;
+    place-content: center;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    outline: none !important;
+    border-radius: 5px;
+    border: 1px solid #003755;
+    background-color: #FFFFFF;
+    cursor: pointer !important;
+}
+
+.home-body .home-map .map input[type = "checkbox"]::before{
+    content: "";
+    border-radius: 5px;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    background-color: #003755;
+}
+
+.home-body .home-map .map input[type = "checkbox"]:checked::before{
+    transform: scale(1);
+}
+
+.home-body .home-map .map .leaflet-control-layers-list input[type = "checkbox"]{
+    margin-right: 10px !important;
+    margin-top: 0px !important;
+    width: 16px;
+    height: 16px;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home-body .home-map .map .leaflet-control-layers-list input[type = "checkbox"]{
+        width: 22px;
+        height: 22px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-body .home-map .map .leaflet-control-layers-list input[type = "checkbox"]{
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-body .home-map .map .leaflet-control-layers-list input[type = "checkbox"]{
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-body .home-map .map .leaflet-control-layers-list input[type = "checkbox"]{
+        width: 16px;
+        height: 16px;
+    }
+}
+
+.home-body .home-map .map .leaflet-control-layers-list input[type = "checkbox"]::before{
+    width: 8px;
+    height: 8px;
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-body .home-map .map .leaflet-control-layers-list input[type = "checkbox"]::before{
+        width: 8px;
+        height: 8px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-body .home-map .map .leaflet-control-layers-list input[type = "checkbox"]::before{
+        width: 6px;
+        height: 6px;
+    }
+}
+
+.home-body .home-map .map .leaflet-popup-content-wrapper{
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    border-radius: 5px !important;
+    box-shadow: none !important;
+    background: none !important;
+}
+
+.home-body .home-map .map .leaflet-popup-content{
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    display: grid !important;
+    grid-column: 1 !important;
+    width: 326px !important;
+    word-break: break-word !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-body .home-map .map .leaflet-popup-content{
+        width: 249px !important;
+        word-break: break-word !important; 
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-body .home-map .map .leaflet-popup-content{
+        width: 229px !important;
+        word-break: break-word !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-body .home-map .map .leaflet-popup-content{
+        width: 200px !important;
+        word-break: break-word !important;
+    }
+}
+
+.home-body .home-map .map .popup{
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 326px;
+    border-radius: 5px !important;
+    background-color: #FFFFFF;
+    word-break: break-word !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-body .home-map .map .popup{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        width: 249px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-body .home-map .map .popup{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        width: 229px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-body .home-map .map .popup{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        width: 200px !important;
+    }
+}
+
+.home-body .home-map .map .popup .popup-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.home-body .home-map .map .popup .popup-header i.fa-solid.fa-circle-exclamation{
+    font-size: 24px;
+    color: #003755;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home-body .home-map .map .popup .popup-header i.fa-solid.fa-circle-exclamation{
+        font-size: 22px !important;
+
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-body .home-map .map .popup .popup-header i.fa-solid.fa-circle-exclamation{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-body .home-map .map .popup .popup-header i.fa-solid.fa-circle-exclamation{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-body .home-map .map .popup .popup-header i.fa-solid.fa-circle-exclamation{
+        font-size: 16px !important;
+    }
+}
+
+.leaflet-popup-close-button{
+    display: none !important;
+}
+
+.home-body .home-map .map .popup .popup-header .popup-back{
+    font-size: 24px !important;
+    color: #003755;
+    cursor: pointer;
+}
+
+.home-body .home-map .map .popup .popup-header .popup-back:hover{
+    color: #002C44;
+    cursor: pointer;
+}
+
+.home-body .home-map .map .popup .popup-header .popup-back:focus{
+    color: #002C44;
+    cursor: pointer;
+}
+
+.home-body .home-map .map .popup .popup-header .popup-back:active{
+    color: #002C44;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home-body .home-map .map .popup .popup-header .popup-back{
+        font-size: 22px !important;
+
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-body .home-map .map .popup .popup-header .popup-back{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-body .home-map .map .popup .popup-header .popup-back{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-body .home-map .map .popup .popup-header .popup-back{
+        font-size: 16px !important;
+    }
+}
+
+.popup .popup-place{
+    display: grid;
+    gap: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 100%;
+    background-color: #FFFFFF;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .popup .popup-place{
+        gap: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .popup .popup-place{
+        gap: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .popup .popup-place{
+        gap: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .popup .popup-place{
+        gap: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+.home-body .home-map .map .popup .popup-place p{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 24px !important;
+    color: #003755;
+    cursor: default;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home-body .home-map .map .popup .popup-place p{
+        font-size: 22px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-body .home-map .map .popup .popup-place p{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-body .home-map .map .popup .popup-place p{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-body .home-map .map .popup .popup-place p{
+        font-size: 16px !important;
+    }
+}
+
+.home-body .home-map .map .popup .popup-place p a{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    font-family: "Montserrat";
+    font-weight: 700;
+    font-size: 24px !important;
+    color: #003755;
+    cursor: default;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home-body .home-map .map .popup .popup-place p a{
+        font-size: 22px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-body .home-map .map .popup .popup-place p a{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-body .home-map .map .popup .popup-place p a{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-body .home-map .map .popup .popup-place p a{
+        font-size: 16px !important;
+    }
+}
+
+.home-body .home-map .map .popup .popup-statistics{
+    display: flex;
+    align-items: flex-start;        
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-top: 1px solid #003755;
+    border-bottom: 1px solid #003755;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .home-body .home-map .map .popup .popup-statistics{
+        gap: 5px;
+        margin-bottom: 5px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+.home-body .home-map .map .popup .popup-statistics p{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #003755;
+    cursor: default;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home-body .home-map .map .popup .popup-statistics p{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-body .home-map .map .popup .popup-statistics p{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-body .home-map .map .popup .popup-statistics p{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-body .home-map .map .popup .popup-statistics p{
+        font-size: 12px !important;
+    }
+}
+
+.home-body .home-map .map .popup .popup-statistics p a{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    font-family: "Montserrat";
+    font-weight: 700;
+    font-size: 20px !important;
+    color: #003755;
+    cursor: default;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home-body .home-map .map .popup .popup-statistics p a{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-body .home-map .map .popup .popup-statistics p a{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-body .home-map .map .popup .popup-statistics p a{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-body .home-map .map .popup .popup-statistics p a{
+        font-size: 12px !important;
+    }
+}
+
+.home-body .home-map .map .popup .popup-header img{
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home-body .home-map .map .popup .popup-header img{
+        width: 22px;
+        height: 22px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-body .home-map .map .popup .popup-header img{
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-body .home-map .map .popup .popup-header img{
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-body .home-map .map .popup .popup-header img{
+        width: 16px;
+        height: 16px;
+    }
+}
+
+.home-body .home-map .map .popup .popup-username{
+    display: grid;
+    gap: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 100%;
+    background-color: #FFFFFF;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .home-body .home-map .map .popup .popup-username{
+        gap: 5px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+.home-body .home-map .map .popup .popup-username a{
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: "Montserrat";
+    font-weight: 700;
+    font-size: 24px !important;
+    color: #003755;
+    cursor: default;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home-body .home-map .map .popup .popup-username a{
+        font-size: 22px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-body .home-map .map .popup .popup-username a{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-body .home-map .map .popup .popup-username a{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-body .home-map .map .popup .popup-username a{
+        font-size: 16px !important;
+    }
+}
+
+.home-body .home-map .map .popup .popup-post{
+    position: relative;
+    display: grid;
+    gap: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-top: 1px solid #003755;
+    border-bottom: 1px solid #003755;
+    background-color: #FFFFFF;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .home-body .home-map .map .popup .popup-post{
+        gap: 5px;
+        margin-bottom: 5px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+.home-body .home-map .map .popup .popup-post .post-gallery{
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden !important;
+    cursor: pointer;
+}
+
+.home-body .home-map .map .popup .popup-post .post-gallery img{
+    width: 100%;
+    height: 25vh;
+    filter: brightness(50%);
+}
+
+.home-body .home-map .map .popup .popup-post .post-gallery img:hover{
+    transform: scale(1.25);
+}
+
+.home-body .home-map .map .popup .popup-post .post-gallery .post-context{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .home-body .home-map .map .popup .popup-post .post-gallery .post-context{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+.home-body .home-map .map .popup .popup-post .post-gallery .post-context p{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #FFFFFF;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home-body .home-map .map .popup .popup-post .post-gallery .post-context p{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-body .home-map .map .popup .popup-post .post-gallery .post-context p{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-body .home-map .map .popup .popup-post .post-gallery .post-context p{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-body .home-map .map .popup .popup-post .post-gallery .post-context p{
+        font-size: 12px !important;
+    }
+}
+
+.home-body .home-map .map .popup .popup-post .post-gallery .post-context a{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    font-family: "Montserrat";
+    font-weight: 700;
+    font-size: 20px !important;
+    color: #FFFFFF;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home-body .home-map .map .popup .popup-post .post-gallery .post-context a{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-body .home-map .map .popup .popup-post .post-gallery .post-context a{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-body .home-map .map .popup .popup-post .post-gallery .post-context a{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-body .home-map .map .popup .popup-post .post-gallery .post-context a{
+        font-size: 12px !important;
+    }
+}
+
+.home-body .home-map .map .popup .button{
+    margin-left: auto;
+    margin-top: 15px;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: fit-content;
+    height: fit-content;
+    border-radius: 5px;
+    background-color: #003755 !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .home-body .home-map .map .popup .popup-post .post-gallery .post-context a{
+        margin-top: 5px;
+    }
+}
+
+.home-body .home-map .map .popup .button:hover{
+    background-color: #002C44 !important;
+    color: #B2BEB5 !important;
+    cursor: pointer;
+}
+
+.home-body .home-map .map .popup .button:focus{
+    background-color: #002C44 !important;
+    color: #B2BEB5 !important;
+    cursor: pointer;
+}
+
+.home-body .home-map .map .popup .button:active{
+    background-color: #002C44 !important;
+    color: #B2BEB5 !important;
+    cursor: pointer;
+}
+
+.home-body .home-map .map .popup .button a.read-post{
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 20px;
+    color: #FFFFFF !important;
+    text-decoration: none;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .home-body .home-map .map .popup .button a.read-post{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-body .home-map .map .popup .button a.read-post{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-body .home-map .map .popup .button a.read-post{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-body .home-map .map .popup .button a.read-post{
+        font-size: 12px !important;
+    }
+}
+
+.home-body .home-map .map .leaflet-popup-tip{
+    border-radius: 5px !important;
+}
+
+.home-body .home-graph{
+    display: grid;
+    row-gap: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 5px;
+    background-color: rgb(250, 250, 250, 0.75)
+}
+
+.home-body .home-graph .graph-section{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.home-body .home-graph .graph-section h1{
+    margin-bottom: 0px !important;
+    font-weight: 700;       
+    font-size: 24px;        
+    font-family: "Montserrat";
+    color: #003755;
+    text-align: center;     
+}
+
+.home-body .home-graph .graph-section .section-button{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.home-body .home-graph .graph-section .section-button button{
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: none;
+    border-radius: 5px;
+    outline: none !important;
+    font-weight: 700;       
+    font-size: 20px;        
+    font-family: "Montserrat";
+    color: #FFFFFF;
+    background-color: #698F3F;
+    text-align: center;
+    cursor: pointer;
+}
+
+.home-body .home-graph .graph-section .section-button button:hover{
+    color: #B2BEB5;
+    background-color: #547232;
+}
+
+.home-body .home-graph .graph-section .section-button button:focus{
+    color: #B2BEB5;
+    background-color: #547232;
+}
+
+.home-body .home-graph .graph-section .section-button button:active{
+    color: #B2BEB5;
+    background-color: #547232;
+}
+
+.home-body .home-graph form{
+    display: grid;
+    gap: 15px;
+}
+
+.home-body .home-graph form .graph-filter{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    border-radius: 5px;
+}
+
+.home-body .home-graph form .graph-filter .filter-input{
+    display: flex;
+    align-items: end;
+    justify-content: flex-start;
+    gap: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.home-body .home-graph form .graph-filter .filter-input .filter-municipality label{
+    display: block;
+    margin-bottom: 0px !important;
+    font-family: "Montserrat";
+    font-weight: 700;
+    font-size: 13px;
+    color: #003755 !important;
+}
+
+.home-body .home-graph form .graph-filter .filter-input .filter-municipality select{
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 1px solid #003755;;
+    border-radius: 5px;
+    appearance: none;
+    outline: none !important;
+    font-family: "Montserrat";
+    font-weight: 400 !important;
+    font-size: 13px !important;   
+    color: #003755 !important;
+    cursor: pointer;
+}
+
+.home-body .home-graph form .graph-filter .filter-input .filter-barangay label{
+    display: block;
+    margin-bottom: 0px !important;
+    font-family: "Montserrat";
+    font-weight: 700;
+    font-size: 13px;
+    color: #003755 !important;
+}
+
+.home-body .home-graph form .graph-filter .filter-input .filter-barangay select{
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 1px solid #003755;;
+    border-radius: 5px;
+    appearance: none;
+    outline: none !important;
+    font-family: "Montserrat";
+    font-weight: 400 !important;
+    font-size: 13px !important;   
+    color: #003755 !important;
+    cursor: pointer;
+}
+
+.home-body .home-graph form .graph-filter .filter-input .filter-year label{
+    display: block;
+    margin-bottom: 0px !important;
+    font-family: "Montserrat";
+    font-weight: 700;
+    font-size: 13px;
+    color: #003755 !important;
+}
+
+.home-body .home-graph form .graph-filter .filter-input .filter-year input{
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 100%;
+    border: 1px solid #003755;
+    border-radius: 5px;
+    outline: none;
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 13px;
+    color: #003755 !important;
+}
+
+.home-body .home-graph form .graph-filter button{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 30px;
+}
+
+.home-body .home-graph form .graph-filter button{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    border: none !important;
+    border-radius: 5px;
+    appearance: none !important;
+    outline: none !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 12px;
+    color: #FFFFFF !important;
+    background-color: #003755 !important;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.home-body .home-graph form .graph-header h1{
+    margin-bottom: 0px !important;
+    font-weight: 700;       
+    font-size: 24px;        
+    font-family: "Montserrat";
+    color: #003755;
+    text-align: center;
+}
+
+.home-body .home-graph form .graph-header p:nth-child(2){
+    margin-bottom: 0px !important;
+    font-weight: 400;       
+    font-size: 16px;        
+    font-family: "Montserrat";
+    color: #003755;
+    text-align: center;
+}
+
+.home-body .home-graph form .graph-header p:nth-child(3){
+    margin-bottom: 0px !important;
+    font-weight: 700;       
+    font-size: 16px;        
+    font-family: "Montserrat";
+    color: #003755;
+    text-align: center;
+}
+
+.home-body .home-graph form .graph-header p:nth-child(4){
+    margin-bottom: 0px !important;
+    font-weight: 400;       
+    font-size: 16px;        
+    font-family: "Montserrat";
+    color: #003755;
+    text-align: center;
+}
+
+.home-body .home-graph form .graph-header strong{
+    margin-bottom: 0px !important;
+    font-weight: 700;       
+    font-size: 16px;        
+    font-family: "Montserrat";
+    color: #003755;
+    text-align: center;
+}
+
+.home-body .home-graph form #noDataMessage{
+    display: none;
+    margin-bottom: 0px !important;
+    font-weight: 700;       
+    font-size: 16px;        
+    font-family: "Montserrat";
+    color: #003755;
+    text-align: center;
+}
+
+.home-body .home-graph form .graph{
+    margin-left: auto;
+    margin-right: auto;
+    width: 125vh !important;
+}
+
+.home-body .home-graph form .graph-legends{
+    margin-left: auto;
+    margin-right: auto;
+    width: 800px;
+}
+
+.home-body .home-graph form .graph-legends h1{
+    margin-bottom: 0px !important;
+    font-weight: 700;       
+    font-size: 16px;        
+    font-family: "Montserrat";
+    color: #003755;
+}
+
+.home-body .home-graph form .graph-legends .legends-container{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+.home-body .home-graph form .graph-legends .legends-container .legend-item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-body .home-graph form .graph-legends .legends-container .legend-item .legend-colorbox{
+    width: 30px;
+    height: 15px;
+    margin-right: 10px;
+}
+
+.home-body .home-graph form .graph-legends .legends-container .legend-item span{
+    margin-bottom: 0px !important;
+    font-weight: 400;       
+    font-size: 12px;        
+    font-family: "Montserrat";
+    color: #003755;
+    text-align: center;
+}
+
+.home-body .home-graph form .graph-legends .legends-container .legend-item strong{
+    margin-bottom: 0px !important;
+    font-weight: 700;       
+    font-size: 12px;        
+    font-family: "Montserrat";
+    color: #003755;
+    text-align: center;
+}
+
+.home-body .home-graph form .graph-legends p{
+    margin-bottom: 0px !important;
+    font-weight: 400;       
+    font-size: 12px;        
+    font-family: "Montserrat";
+    color: #003755;
+    text-align: center;
+}
+
+.home-body .home-graph .graph-data .data-header h1{
+    margin-bottom: 0px !important;
+    font-weight: 700;       
+    font-size: 24px;        
+    font-family: "Montserrat";
+    color: #003755;
+}

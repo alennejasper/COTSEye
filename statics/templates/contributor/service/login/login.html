@@ -12,11 +12,13 @@
 
         <link rel = "manifest" href = "{% static 'templates/webwares/manifest.json' %}">
 
-        <meta name = "theme-color" content = "#154360">
+        <script src = "{% static 'templates/webwares/application.js' %}"></script>
+
+        <meta name = "theme-color" content = "#003755">
 
         <link rel = "apple-touch-icon" href = "{% static 'assets/icons/logo (180 x 180).png' %}">
 
-        <meta name = "apple-mobile-web-app-status-bar" content = "#154360">
+        <meta name = "apple-mobile-web-app-status-bar" content = "#003755">
 
         <link rel = "icon" type = "image/x-icon" href = "{% static 'assets/icons/logo.png' %}">
                         
@@ -47,7 +49,7 @@
                                 <label for = "username">Username</label>
 
                                 <div class = "username">
-                                    <input type = "text" id = "username" name = "username" data-initial-value = "cotseye/" oninput = "retainValue(this);" required>
+                                    <input type = "text" id = "username" name = "username" required>
                                 
                                     <i class = "fa-solid fa-user"></i>
                                 </div>
@@ -80,24 +82,24 @@
                     {% endif %}
                     
                     <div class = "register">
-                        <span>Do not have an account? <a href = "{% url 'Contributor Service Register' %}">Register</a></span>
+                        <span>Do not have an account?</span>
+
+                        <a href = "{% url 'Contributor Service Register' %}">Register</a>
                     </div>
 
                     <div class = "line"></div>
 
-                    <div class = "socials">
-                        <button class = "facebook">
-                            <a href = "{% provider_login_url 'facebook' %}?next=/contributor/service/login/facebook/">
-                                <i class = "fa-brands fa-facebook-f"></i> 
-                            
+                    <div class="socials">
+                        <button class="facebook">
+                            <a href="{% provider_login_url 'facebook' %}?next=/contributor/service/login/facebook/">
+                                <i class="fa-brands fa-facebook-f"></i> 
                                 <span>Connect with Facebook</span>
                             </a>
                         </button>
-
-                        <button class = "google">
-                            <a href = "{% provider_login_url 'google' %}?next=/contributor/service/login/google/">
-                                <i class = "fa-brands fa-google"></i> 
-                            
+                    
+                        <button class="google">
+                            <a href="{% provider_login_url 'google' %}?next=/contributor/service/login/google/">
+                                <i class="fa-brands fa-google"></i> 
                                 <span>Connect with Google</span>
                             </a>
                         </button>
@@ -114,11 +116,12 @@
 			var $recaptcha = document.querySelector("#g-recaptcha-response");
             
             document.querySelector("form").addEventListener("submit", (event) => {
-
-                if($recaptcha && $recaptcha.getResponse().length !== 0){
+                if($recaptcha && !$recaptcha.value){
+                    event.preventDefault();
+                    
                     $recaptcha.setAttribute("required", "required");
                 
-                    Swal.fire({title: "Oops!", text: "reCAPTCHA is not valid. Kindly check the reCAPTCHA and try again.", icon: "error", iconColor: "#C90016", confirmButtonColor: "#C90016"});
+                    Swal.fire({title: "Oops!", text: "reCAPTCHA is not valid. Kindly check the reCAPTCHA and try again.", icon: "error", iconColor: "#C90016", confirmButtonColor: "#C90016"}).then(() => {$recaptcha.removeAttribute("required")});
                 };
             });
 		};
@@ -145,24 +148,4 @@
             this.classList.toggle("fa-eye-slash");
         });
 	</script>
-
-    <script>
-        function retainValue(input){
-            if(input.value.length <= "cotseye/".length){
-                input.value = "cotseye/";
-
-                input.selectionStart = "cotseye/".length;
-            };
-        };
-    </script>
-
-    <script>
-        document.getElementById("username").addEventListener("click", function(){
-            this.style.color = "#154360";
-
-            this.value = this.dataset.initialValue;
-
-            this.focus();
-        });
-    </script>
 </html>

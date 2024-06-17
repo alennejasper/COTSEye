@@ -1,36 +1,79 @@
 {% extends "public/service/index/index.html" %}
 {% load static %}
 
+
 {% block content %}
-    {% for announcement in announcement %}
-        <div class = "announcement">
-            <div class = "card-body">
-                <header>{{announcement.title | default:'None available'}}</header>
+<div class = "announcementread-body">
+    <!-- <div class = "announcementread-section">
+        <h1>ANNOUNCEMENT DETAILS</h1>
+    </div> -->
 
-                <p><i class = "fa-solid fa-feather"></i>{{announcement.user | default:'None available'}}</p>
+    {% if announcement %}
+        <div class = "announcementread">
+            <div class = "announcementread-header">
+                <div class = "header-context">
+                    <img src = "{{announcement.user.profile_photo.url}}">
 
-                <p><i class = "fa-solid fa-calendar-check"></i>{{announcement.release_date | date:'M. j, Y, g:i a' | default:'None available'}}</p>
+                    <div class = "context-caption">
+                        <p>{{announcement.user | default:'None available'}}</p>
 
-                <p><i class = "fa-solid fa-location-dot"></i>{{announcement.place | default:'None available'}}</p>
+                        <p>{{announcement.location | default:'None available'}}</p>
+                    </div>
+                </div>
 
+                <p>{{announcement.release_date | date:'m/d/Y' | default:'None available'}}</p>
+            </div>
+
+            <h1>{{announcement.title | default:'None available'}}</h1>
+
+            <div class = "announcementread-gallery">
                 <img src = "{{announcement.announcement_photo.url}}">
+            </div>
 
-                <p>{{announcement.context | default:'None available'}}</p>
+            <div class = "announcementread-origin">
+                <h1>Major Details</h1>
 
-                <div class = "buttons">
-                    <a class = "share-announcement" target = "blank">Share</a>
+                <div class = "origin-context">
+                    <p>Event Date:</p>
+
+                    <p>{{announcement.event_date | default:'None available'}}</p>
+                </div>
+
+                <div class = "origin-context">
+                    <p>Place:</p>
+
+                    <p>{{announcement.place | default:'None available'}}</p>
+                </div>
+
+                <div class = "origin-context">
+                    <p>Hosting Agency:</p>
+
+                    <p>{{announcement.hosting_agency | default:'None available'}}</p>
                 </div>
             </div>
+
+            <div class = "announcementread-description">
+                <h1>Announcement Description</h1>
+
+                <div class = "description-context">
+                    <p>{{announcement.context | default:'None available'}}</p>
+                </div>
+            </div>
+
+            <div class = "button">
+                <a class = "share-announcement" target = "blank">Share</a>
+            </div>
         </div>
-    {% endfor %}
+    {% endif %}
 
     <script>
         {% if announcement %}
             const link = encodeURI("{{scheme}}://{{host}}{% url 'Public Service Announcement Read' announcement.id %}");
-        
+
             const facebook = document.querySelector(".share-announcement");
 
             facebook.href = "https://www.facebook.com/share.php?u=" + link;
         {% endif %}
     </script>
+</div>
 {% endblock content %}

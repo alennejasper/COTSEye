@@ -1,70 +1,8 @@
-from configurations.admin import officer, admin
+from configurations.admin import admin
 from auxiliaries.models import *
 
 # Register your models here.
-class AnnouncementAdmin(admin.ModelAdmin):
-    class Media:   
-        css = {
-            "all": ["css/officer/control/index/index.css"]
-        }
-
-    def has_module_permission(self, request):
-        return request.user.usertype_id == 1 or request.user.usertype_id == 2
-    
-    readonly_fields = ["gallery_photo"]
-
-officer.register(Announcement, AnnouncementAdmin)
-
-
-class ResourceAdmin(admin.ModelAdmin):
-    class Media:   
-        css = {
-            "all": ["css/officer/control/index/index.css"]
-        }
-
-    def has_module_permission(self, request):
-        return request.user.usertype_id == 1 or request.user.usertype_id == 2
-
-officer.register(Resource, ResourceAdmin)
-
-
-class ResourceFileAdmin(admin.ModelAdmin):
-    class Media:   
-        css = {
-            "all": ["css/officer/control/index/index.css"]
-        }
-
-    def has_module_permission(self, request):
-        return request.user.usertype_id == 1 or request.user.usertype_id == 2
-
-officer.register(ResourceFile, ResourceFileAdmin)
-
-
-class ResourceFileAdmin(admin.ModelAdmin):
-    class Media:   
-        css = {
-            "all": ["css/officer/control/index/index.css"]
-        }
-        
-    def has_module_permission(self, request):
-        return request.user.usertype_id == 1 or request.user.usertype_id == 2
-
-admin.site.register(ResourceFile, ResourceFileAdmin)
-
-
-class ResourceLinkAdmin(admin.ModelAdmin):
-    class Media:   
-        css = {
-            "all": ["css/officer/control/index/index.css"]
-        }
-
-    def has_module_permission(self, request):
-        return request.user.usertype_id == 1 or request.user.usertype_id == 2
-
-officer.register(ResourceLink, ResourceLinkAdmin)
-
-
-class AnnouncementAdmin(admin.ModelAdmin):
+""" class AnnouncementAdmin(admin.ModelAdmin):
     class Media:   
         css = {
             "all": ["css/admin/control/index/index.css"]
@@ -75,10 +13,11 @@ class AnnouncementAdmin(admin.ModelAdmin):
     
     readonly_fields = ["gallery_photo"]
 
-admin.site.register(Announcement, AnnouncementAdmin)
+admin.site.register(Announcement, AnnouncementAdmin) """
 
 
-class ResourceAdmin(admin.ModelAdmin):
+
+class LinkAdmin(admin.ModelAdmin):
     class Media:   
         css = {
             "all": ["css/admin/control/index/index.css"]
@@ -86,11 +25,20 @@ class ResourceAdmin(admin.ModelAdmin):
         
     def has_module_permission(self, request):
         return request.user.usertype_id == 1 or request.user.usertype_id == 2
+    
+    def render_change_form(self, request, context, add=False, change=False, form_url='', obj=None):
+        context.update({
+            'show_save': True,
+            'show_save_and_continue': False,
+            'show_save_and_add_another': False,
+            'show_delete': True
+        })
+        return super().render_change_form(request, context, add, change, form_url, obj)
 
-admin.site.register(Resource, ResourceAdmin)
+admin.site.register(Link, LinkAdmin)
 
 
-class ResourceLinkAdmin(admin.ModelAdmin):
+class FileAdmin(admin.ModelAdmin):
     class Media:   
         css = {
             "all": ["css/admin/control/index/index.css"]
@@ -98,8 +46,17 @@ class ResourceLinkAdmin(admin.ModelAdmin):
         
     def has_module_permission(self, request):
         return request.user.usertype_id == 1 or request.user.usertype_id == 2
+    
+    def render_change_form(self, request, context, add=False, change=False, form_url='', obj=None):
+        context.update({
+            'show_save': True,
+            'show_save_and_continue': False,
+            'show_save_and_add_another': False,
+            'show_delete': True
+        })
+        return super().render_change_form(request, context, add, change, form_url, obj)
 
-admin.site.register(ResourceLink, ResourceLinkAdmin)
+admin.site.register(File, FileAdmin)
 
 
 class InquiryAdmin(admin.ModelAdmin):
@@ -107,20 +64,17 @@ class InquiryAdmin(admin.ModelAdmin):
         css = {
             "all": ["css/admin/control/index/index.css"]
         }
-
-    def has_module_permission(self, request):
-        return request.user.usertype_id == 1 or request.user.usertype_id == 2
-
-officer.register(Inquiry, InquiryAdmin)
-
-
-class InquiryAdmin(admin.ModelAdmin):
-    class Media:   
-        css = {
-            "all": ["css/admin/control/index/index.css"]
-        }
         
     def has_module_permission(self, request):
         return request.user.usertype_id == 1 or request.user.usertype_id == 2
+    
+    def render_change_form(self, request, context, add=False, change=False, form_url='', obj=None):
+        context.update({
+            'show_save': True,
+            'show_save_and_continue': False,
+            'show_save_and_add_another': False,
+            'show_delete': True
+        })
+        return super().render_change_form(request, context, add, change, form_url, obj)
 
 admin.site.register(Inquiry, InquiryAdmin)

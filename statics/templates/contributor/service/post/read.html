@@ -1,225 +1,346 @@
 {% extends "contributor/service/index/index.html" %}
 {% load static %}
 
+
 {% block content %}
-    {% if valid_post %}
-        <div class = "post">
-            <div class = "card-body">
-                <p><i class = "fa-solid fa-flag"></i>Valid</p>
+    <div class = "postandfeedread-body">
+        <!-- <div class = "postandfeedread-section">
+            <h1>POST DETAILS</h1>
+        </div> -->
 
-                <p><i class = "fa-solid fa-user"></i>{{valid_post.user}}</p>
+        {% if valid_post %}
+            <div class = "postandfeedread">
+                <div class = "postandfeedread-header">
+                    <div class = "header-context">
+                        <img src = "{{valid_post.user.profile_photo.url}}">
 
-                <p><i class = "fa-solid fa-calendar-check"></i>{{valid_post.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}</p>
+                        <div class = "context-caption">
+                            <p>{{valid_post.user}}</p>
 
-                <p><i class = "fa-solid fa-location-dot"></i>{{valid_post.coordinates.latitude | default:'0'}}° N, {{valid_post.coordinates.longitude | default:'0'}}° E</p>
+                            <p>{{valid_post.location | default:'None available'}}</p>
+                        </div>
+                    </div>
 
-                <div class = "post-gallery">
-                    {% for post_photo in valid_post.post_photos.all %}
-                        <img class = "gallery-photo" src = "{{post_photo.post_photo.url}}">
-                    {% endfor %}      
+                    <p>{{valid_post.creation_date | date:'m/d/Y' | default:'None available'}}</p>
                 </div>
 
-                <p>{{valid_post.description | default:'None available'}}</p>
+                <div class = "postandfeedread-gallery">
+                    {% for post_photo in valid_post.post_photos.all %}
+                        <img src = "{{post_photo.post_photo.url}}">
+                    {% endfor %}
+                </div>
 
-                <table>
-                    <caption>Post observation</caption>
+                <div class = "postandfeedread-origin">
+                    <h1>Major Details</h1>
 
-                    <tr>
-                        <td>Size</td>
+                    <div class = "origin-context">
+                        <p>Capture Date:</p>
 
-                        <td>{{valid_post.post_observation.size | default:'0'}}</td>
-                    </tr>
+                        <p>{{valid_post.capture_date | date:'m/d/Y' | default:'None available'}}</p>
+                    </div>
 
-                    <tr>
-                    <td>Depth</td>
+                    <div class = "origin-context">
+                        <p>Post Status:</p>
 
-                    <td>{{valid_post.post_observation.depth | default:'0'}}</td>
-                    </tr>
+                        <p>{{valid_post.post_status | default:'None available'}}</p>
+                    </div>
+                </div>
 
-                    <tr>
-                        <td>Density</td>
-        
-                        <td>{{valid_post.post_observation.density | default:'0'}}</td>
-                    </tr>
+                <div class = "postandfeedread-observation">
+                    <h1>Observations</h1>
 
-                    <tr>
-                        <td>Weather</td>
-        
-                        <td>{{valid_post.post_observation.weather | default:'None available'}}</td>
-                    </tr>
-                </table>
+                    <div class = "observation-context">
+                        <p>Size (How big were the COTS):</p>
+
+                        <p>{{valid_post.post_observation.size | default:'0'}}</p>
+                    </div>
+
+                    <div class = "observation-context">
+                        <p>Depth (Where the COTS was sighted):</p>
+
+                        <p>{{valid_post.post_observation.depth | default:'0'}}</p>
+                    </div>
+
+                    <div class = "observation-context">
+                        <p>Density (COTS per m²):</p>
+
+                        <p>{{valid_post.post_observation.density | default:'0'}}</p>
+                    </div>
+
+                    <div class = "observation-context">
+                        <p>Weather (Weather during sighting):</p>
+
+                        <p>{{valid_post.post_observation.weather | default:'None available'}}</p>
+                    </div>
+                </div>
+
+                <div class = "postandfeedread-description">
+                    <h1>Sighting Description</h1>
+
+                    <div class = "description-context">
+                        <p>{{valid_post.description | default:'None available'}}</p>
+                    </div>
+                </div>
 
                 <div class = "button">
                     <a class = "share-post" target = "blank">Share</a>
                 </div>
             </div>
-        </div>
-    {% endif %}
+        {% endif %}
 
-    {% if invalid_post %}
-        <div class = "post">
-            <div class = "card-body">
-                <p><i class = "fa-solid fa-flag"></i>Invalid</p>
+        {% if invalid_post %}
+            <div class = "postandfeedread">
+                <div class = "postandfeedread-header">
+                    <div class = "header-context">
+                        <img src = "{{invalid_post.user.profile_photo.url}}">
 
-                <p><i class = "fa-solid fa-user"></i>{{invalid_post.user}}</p>
+                        <div class = "context-caption">
+                            <p>{{invalid_post.user}}</p>
 
-                <p><i class = "fa-solid fa-calendar-check"></i>{{invalid_post.capture_date | default:'None available'}}</p>
+                            <p>{{invalid_post.location | default:'None available'}}</p>
+                        </div>
+                    </div>
 
-                <p><i class = "fa-solid fa-location-dot"></i>{{invalid_post.coordinates.latitude | default:'0'}}° N, {{invalid_post.coordinates.longitude | default:'0'}}° E</p>
-
-                <div class = "post-gallery">
-                    {% for post_photo in invalid_post.post_photos.all %}
-                        <img class = "gallery-photo" src = "{{post_photo.post_photo.url}}">
-                    {% endfor %}       
+                    <p>{{invalid_post.creation_date | date:'m/d/Y' | default:'None available'}}</p>
                 </div>
 
-                <p>{{invalid_post.description | default:'None available'}}</p>
+                <div class = "postandfeedread-gallery">
+                    {% for post_photo in invalid_post.post_photos.all %}
+                        <img src = "{{post_photo.post_photo.url}}">
+                    {% endfor %}
+                </div>
 
-                <table>
-                    <caption>Post observation</caption>
+                <div class = "postandfeedread-remarks">
+                    <div class = "remarks-context">
+                        <h1>Remarks</h1>
 
-                    <tr>
-                        <td>Size / Centimeter</td>
+                        <p>{{invalid_post.remarks | default:'None available'}}</p>
+                    </div>
+                </div>
 
-                        <td>{{invalid_post.post_observation.size | default:'0'}}</td>
-                    </tr>
+                <div class = "postandfeedread-origin">
+                    <h1>Major Details</h1>
 
-                    <tr>
-                        <td>Depth</td>
+                    <div class = "origin-context">
+                        <p>Capture Date:</p>
 
-                        <td>{{invalid_post.post_observation.depth | default:'0'}}</td>
-                    </tr>
+                        <p>{{invalid_post.capture_date | date:'m/d/Y' | default:'None available'}}</p>
+                    </div>
 
-                    <tr>
-                        <td>Density / Square Meter</td>
-        
-                        <td>{{invalid_post.post_observation.density | default:'0'}}</td>
-                    </tr>
+                    <div class = "origin-context">
+                        <p>Post Status:</p>
 
-                    <tr>
-                        <td>Weather</td>
-        
-                        <td>{{invalid_post.post_observation.weather | default:'None available'}}</td>
-                    </tr>
-                </table>
+                        <p>{{invalid_post.post_status | default:'None available'}}</p>
+                    </div>
+                </div>
+
+                <div class = "postandfeedread-observation">
+                    <h1>Observations</h1>
+
+                    <div class = "observation-context">
+                        <p>Size (How big were the COTS):</p>
+
+                        <p>{{invalid_post.post_observation.size | default:'0'}}</p>
+                    </div>
+
+                    <div class = "observation-context">
+                        <p>Depth (Where the COTS was sighted):</p>
+
+                        <p>{{invalid_post.post_observation.depth | default:'0'}}</p>
+                    </div>
+
+                    <div class = "observation-context">
+                        <p>Density (COTS per m²):</p>
+
+                        <p>{{invalid_post.post_observation.density | default:'0'}}</p>
+                    </div>
+
+                    <div class = "observation-context">
+                        <p>Weather (Weather during sighting):</p>
+
+                        <p>{{invalid_post.post_observation.weather | default:'None available'}}</p>
+                    </div>
+                </div>
+
+                <div class = "postandfeedread-description">
+                    <h1>Sighting Description</h1>
+
+                    <div class = "description-context">
+                        <p>{{invalid_post.description | default:'None available'}}</p>
+                    </div>
+                </div>
 
                 <div class = "button">
                     <a class = "delete-post" href = "{% url 'Contributor Service Post Invalid Delete' invalid_post.id %}">Delete</a>
                 </div>
             </div>
-        </div>
-    {% endif %}
+        {% endif %}
 
-    {% if uncertain_post %}
-        <div class = "post">
-            <div class = "card-body">
-                <p><i class = "fa-solid fa-flag"></i>Uncertain</p>
+        {% if pending_post %}
+            <div class = "postandfeedread">
+                <div class = "postandfeedread-header">
+                    <div class = "header-context">
+                        <img src = "{{pending_post.user.profile_photo.url}}">
 
-                <p><i class = "fa-solid fa-user"></i>{{uncertain_post.user}}</p>
+                        <div class = "context-caption">
+                            <p>{{pending_post.user}}</p>
 
-                <p><i class = "fa-solid fa-calendar-check"></i>{{uncertain_post.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}</p>
+                            <p>{{pending_post.location | default:'None available'}}</p>
+                        </div>
+                    </div>
 
-                <p><i class = "fa-solid fa-location-dot"></i>{{uncertain_post.coordinates.latitude | default:'0'}}° N, {{uncertain_post.coordinates.longitude | default:'0'}}° E</p>
+                    <p>{{pending_post.creation_date | date:'m/d/Y' | default:'None available'}}</p>
+                </div>
 
-                <div class = "post-gallery">
-                    {% for post_photo in uncertain_post.post_photos.all %}
-                        <img class = "gallery-photo" src = "{{post_photo.post_photo.url}}">
+                <div class = "postandfeedread-gallery">
+                    {% for post_photo in pending_post.post_photos.all %}
+                        <img src = "{{post_photo.post_photo.url}}">
                     {% endfor %}
                 </div>
 
-                <p>{{uncertain_post.description | default:'None available'}}</p>
+                <div class = "postandfeedread-origin">
+                    <h1>Major Details</h1>
 
-                <table>
-                    <caption>Post observation</caption>
+                    <div class = "origin-context">
+                        <p>Capture Date:</p>
 
-                    <tr>
-                        <td>Size</td>
+                        <p>{{pending_post.capture_date | date:'m/d/Y' | default:'None available'}}</p>
+                    </div>
 
-                        <td>{{uncertain_post.post_observation.size | default:'0'}}</td>
-                    </tr>
+                    <div class = "origin-context">
+                        <p>Post Status:</p>
 
-                    <tr>
-                    <td>Depth</td>
+                        <p>{{pending_post.post_status | default:'None available'}}</p>
+                    </div>
+                </div>
 
-                    <td>{{uncertain_post.post_observation.depth | default:'0'}}</td>
-                    </tr>
+                <div class = "postandfeedread-observation">
+                    <h1>Observations</h1>
 
-                    <tr>
-                        <td>Density</td>
-        
-                        <td>{{uncertain_post.post_observation.density | default:'0'}}</td>
-                    </tr>
+                    <div class = "observation-context">
+                        <p>Size (How big were the COTS):</p>
 
-                    <tr>
-                        <td>Weather</td>
-        
-                        <td>{{uncertain_post.post_observation.weather | default:'None available'}}</td>
-                    </tr>
-                </table>
+                        <p>{{pending_post.post_observation.size | default:'0'}}</p>
+                    </div>
+
+                    <div class = "observation-context">
+                        <p>Depth (Where the COTS was sighted):</p>
+
+                        <p>{{pending_post.post_observation.depth | default:'0'}}</p>
+                    </div>
+
+                    <div class = "observation-context">
+                        <p>Density (COTS per m²):</p>
+
+                        <p>{{pending_post.post_observation.density | default:'0'}}</p>
+                    </div>
+
+                    <div class = "observation-context">
+                        <p>Weather (Weather during sighting):</p>
+
+                        <p>{{pending_post.post_observation.weather | default:'None available'}}</p>
+                    </div>
+                </div>
+
+                <div class = "postandfeedread-description">
+                    <h1>Sighting Description</h1>
+
+                    <div class = "description-context">
+                        <p>{{pending_post.description | default:'None available'}}</p>
+                    </div>
+                </div>
             </div>
-        </div>
-    {% endif %}
+        {% endif %}
 
-    {% if draft_post %}
-        <div class = "post">
-            <div class = "card-body">
-                <p><i class = "fa-solid fa-flag"></i>Draft</p>
+        {% if draft_post %}
+            <div class = "postandfeedread">
+                <div class = "postandfeedread-header">
+                    <div class = "header-context">
+                        <img src = "{{draft_post.user.profile_photo.url}}">
 
-                <p><i class = "fa-solid fa-user"></i>{{draft_post.user}}</p>
+                        <div class = "context-caption">
+                            <p>{{draft_post.user}}</p>
 
-                <p><i class = "fa-solid fa-calendar-check"></i>{{draft_post.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}</p>
+                            <p>{{draft_post.location | default:'None available'}}</p>
+                        </div>
+                    </div>
 
-                <p><i class = "fa-solid fa-location-dot"></i>{{draft_post.coordinates.latitude | default:'0'}}° N, {{draft_post.coordinates.longitude | default:'0'}}° E</p>
+                    <p>{{draft_post.creation_date | date:'m/d/Y' | default:'None available'}}</p>
+                </div>
 
-                <div class = "post-gallery">
+                <div class = "postandfeedread-gallery">
                     {% for post_photo in draft_post.post_photos.all %}
-                        <img class = "gallery-photo" src = "{{post_photo.post_photo.url}}">
+                        <img src = "{{post_photo.post_photo.url}}">
                     {% endfor %}
                 </div>
 
-                <p>{{draft_post.description | default:'None available'}}</p>
+                <div class = "postandfeedread-origin">
+                    <h1>Major Details</h1>
 
-                <table>
-                    <caption>Post observation</caption>
+                    <div class = "origin-context">
+                        <p>Capture Date:</p>
 
-                    <tr>
-                        <td>Size</td>
+                        <p>{{draft_post.capture_date | date:'m/d/Y' | default:'None available'}}</p>
+                    </div>
 
-                        <td>{{draft_post.post_observation.size | default:'0'}}</td>
-                    </tr>
+                    <div class = "origin-context">
+                        <p>Post Status:</p>
 
-                    <tr>
-                    <td>Depth</td>
+                        <p>{{draft_post.post_status | default:'None available'}}</p>
+                    </div>
+                </div>
 
-                    <td>{{draft_post.post_observation.depth | default:'0'}}</td>
-                    </tr>
+                <div class = "postandfeedread-observation">
+                    <h1>Observations</h1>
 
-                    <tr>
-                        <td>Density</td>
-        
-                        <td>{{draft_post.post_observation.density | default:'0'}}</td>
-                    </tr>
+                    <div class = "observation-context">
+                        <p>Size (How big were the COTS):</p>
 
-                    <tr>
-                        <td>Weather</td>
-        
-                        <td>{{draft_post.post_observation.weather | default:'None available'}}</td>
-                    </tr>
-                </table>
+                        <p>{{draft_post.post_observation.size | default:'0'}}</p>
+                    </div>
+
+                    <div class = "observation-context">
+                        <p>Depth (Where the COTS was sighted):</p>
+
+                        <p>{{draft_post.post_observation.depth | default:'0'}}</p>
+                    </div>
+
+                    <div class = "observation-context">
+                        <p>Density (COTS per m²):</p>
+
+                        <p>{{draft_post.post_observation.density | default:'0'}}</p>
+                    </div>
+
+                    <div class = "observation-context">
+                        <p>Weather (Weather during sighting):</p>
+
+                        <p>{{draft_post.post_observation.weather | default:'None available'}}</p>
+                    </div>
+                </div>
+
+                <div class = "postandfeedread-description">
+                    <h1>Sighting Description</h1>
+
+                    <div class = "description-context">
+                        <p>{{draft_post.description | default:'None available'}}</p>
+                    </div>
+                </div>
 
                 <div class = "button">
-                    <a class = "send-post" href = "{% url 'Contributor Service Post Draft Send' draft_post.id %}">Send</a><!--
-                        
-                    --><a class = "update-post" href = "{% url 'Contributor Service Report Update' draft_post.id %}">Update</a>
+                    <a class = "delete-post" href = "{% url 'Contributor Service Post Draft Delete' draft_post.id %}">Delete</a>
+
+                    <a class = "update-post" href = "{% url 'Contributor Service Post Draft Update' draft_post.id %}">Update</a>
+                    
+                    <a class = "send-post" href = "{% url 'Contributor Service Post Draft Send' draft_post.id %}">Send</a>
                 </div>
             </div>
-        </div>
-    {% endif %}
+        {% endif %}
+    </div>
 
     <script>
         {% if valid_post %}
-            const link = encodeURI("{{scheme}}://{{host}}{% url 'Contributor Service Post Valid Read' valid_post.id %}");
-        
+            const link = encodeURI("{{scheme}}://{{host}}{% url 'Contributor Service Post Read' valid_post.id %}");
+
             const facebook = document.querySelector(".share-post");
 
             facebook.href = "https://www.facebook.com/share.php?u=" + link;
@@ -227,50 +348,48 @@
     </script>
 
     <script>
-        document.querySelector(".delete-post").onclick = function(event){
+        document.querySelector(".delete-post").onclick = function (event){
             event.preventDefault();
 
-            if(!navigator.onLine){
+            if (!navigator.onLine){
                 const username = "{{request.user.username}}";
-                        
-                Swal.fire({title: "Hey!", text: username + ", " + "your information input was vanished offline from COTSEye. Kindly visit the current page again if back online.", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}}).then(() => {
+
+                Swal.fire({ title: "Hey!", text: username + ", " + "your information input was vanished offline from COTSEye. Kindly visit the current page again if back online.", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: { confirmButton: "info-button", title: "title" } }).then(() => {
                     location.reload();
                 });
 
             } else{
-                window.location.href = "{% if invalid_post %}{% url 'Contributor Service Post Invalid Delete' invalid_post.id %}{% endif %}";
+                window.location.href = "{% if invalid_post %}{% url 'Contributor Service Post Invalid Delete' invalid_post.id %}{% elif draft_post.id %}{% url 'Contributor Service Post Draft Delete' draft_post.id %}{% endif %}";
             };
         };
     </script>
 
     <script>
-        document.querySelector(".send-post").onclick = function(event){
+        document.querySelector(".send-post").onclick = function (event){
             event.preventDefault();
 
-            if(!navigator.onLine){
+            if (!navigator.onLine){
                 const username = "{{request.user.username}}";
-                        
-                Swal.fire({title: "Hey!", text: username + ", " + "your information input was sent offline to COTSEye. Kindly visit the current page again if back online.", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}}).then(() => {
+
+                Swal.fire({ title: "Hey!", text: username + ", " + "your information input was sent offline to COTSEye. Kindly visit the current page again if back online.", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: { confirmButton: "info-button", title: "title" } }).then(() => {
                     location.reload();
                 });
 
             } else{
-                Swal.fire({title: "Yay!", text: username + ", " + "your information input was sent offline to COTSEye. Kindly visit the current page again if back online.", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "success-button", title: "title"}}).then(() => {
-                    window.location.href = "{% if draft_post %}{% url 'Contributor Service Post Draft Send' draft_post.id %}{% endif %}";
-                });
+                window.location.href = "{% if draft_post %}{% url 'Contributor Service Post Draft Send' draft_post.id %}{% endif %}";
             };
         };
     </script>
 
     <script>
         const indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB || window.shimIndexedDB;
-        
+
         const request = indexedDB.open("cotseye", 1);
 
         request.onupgradeneeded = (event) => {
             const cotseye = event.target.result;
-        
-            const cotseye_schema = cotseye.createObjectStore("cotseye_schema", {keyPath: "id", autoIncrement: true});
+
+            const cotseye_schema = cotseye.createObjectStore("cotseye_schema", { keyPath: "id", autoIncrement: true });
         };
 
         request.onsuccess = (event) => {
@@ -278,7 +397,7 @@
 
             {% if invalid_post %}
                 document.querySelector(".delete-post").addEventListener("click", (event) => {
-                    if (!navigator.onLine){
+                    if (!navigator.onLine) {
                         event.preventDefault();
 
                         const id = "{{invalid_post.id}}";
@@ -295,13 +414,13 @@
                             user: parseInt(user)
                         };
 
-                        cotseye_schema.add(post);                    
+                        cotseye_schema.add(post);
                     };
                 });
-        
+
             {% else %}
-                document.querySelector(".send-post").addEventListener("click", (event) => {
-                    if (!navigator.onLine){
+                document.querySelector(".delete-post").addEventListener("click", (event) => {
+                    if (!navigator.onLine) {
                         event.preventDefault();
 
                         const id = "{{draft_post.id}}";
@@ -318,12 +437,34 @@
                             user: parseInt(user)
                         };
 
-                        cotseye_schema.add(post);                    
+                        cotseye_schema.add(post);
+                    };
+                });
+
+                document.querySelector(".send-post").addEventListener("click", (event) => {
+                    if (!navigator.onLine) {
+                        event.preventDefault();
+
+                        const id = "{{draft_post.id}}";
+
+                        const user = "{{request.user.id}}";
+
+                        const transaction = cotseye.transaction("cotseye_schema", "readwrite");
+
+                        const cotseye_schema = transaction.objectStore("cotseye_schema");
+
+                        const post = {
+                            id: parseInt(id),
+
+                            user: parseInt(user)
+                        };
+
+                        cotseye_schema.add(post);
                     };
                 });
             {% endif %}
-                
-            if(navigator.onLine){
+
+            if (navigator.onLine){
                 const transaction = cotseye.transaction("cotseye_schema", "readonly");
 
                 const cotseye_schema = transaction.objectStore("cotseye_schema");
@@ -333,7 +474,7 @@
                 post.onsuccess = (event) => {
                     const information = event.target.result;
 
-                    if(information && information.length > 0){
+                    if (information && information.length > 0){
                         const json = JSON.stringify(information);
 
                         const token = "{{csrf_token}}"
@@ -342,7 +483,7 @@
                             fetch("{% url 'Contributor Service Post Invalid Delete Fetch' %}", {
                                 method: "POST",
 
-                                headers: {"Content-Type": "application/json", "X-CSRFToken": token},
+                                headers: { "Content-Type": "application/json", "X-CSRFToken": token },
 
                                 body: json
 
@@ -351,26 +492,26 @@
 
                                 request.onsuccess = (event) => {
                                     const cotseye = event.target.result;
-                                    
+
                                     const transaction = cotseye.transaction("cotseye_schema", "readwrite");
-                                    
+
                                     const cotseye_schema = transaction.objectStore("cotseye_schema");
-                                    
+
                                     cotseye_schema.clear();
 
                                     const username = "{{request.user.username}}";
 
-                                    Swal.fire({title: "Yay!", text: username + ", " + "your information input recorded offline was delivered to COTSEye.", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}}).then(() => {
+                                    Swal.fire({ title: "Yay!", text: username + ", " + "your information input deleted offline was delivered to COTSEye.", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: { confirmButton: "success-button", title: "title" } }).then(() => {
                                         window.location.href = "{% url 'Contributor Service Home' %}";
                                     });
                                 };
                             });
-                        
+
                         {% else %}
-                            fetch("{% url 'Contributor Service Post Draft Send Fetch' %}", {
+                            fetch("{% url 'Contributor Service Post Draft Delete Fetch' %}", {
                                 method: "POST",
 
-                                headers: {"Content-Type": "application/json", "X-CSRFToken": token},
+                                headers: { "Content-Type": "application/json", "X-CSRFToken": token },
 
                                 body: json
 
@@ -379,16 +520,43 @@
 
                                 request.onsuccess = (event) => {
                                     const cotseye = event.target.result;
-                                    
+
                                     const transaction = cotseye.transaction("cotseye_schema", "readwrite");
-                                    
+
                                     const cotseye_schema = transaction.objectStore("cotseye_schema");
-                                    
+
                                     cotseye_schema.clear();
 
                                     const username = "{{request.user.username}}";
 
-                                    Swal.fire({title: "Yay!", text: username + ", " + "your information input recorded offline was delivered to COTSEye.", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}}).then(() => {
+                                    Swal.fire({ title: "Yay!", text: username + ", " + "your information input deleted offline was delivered to COTSEye.", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: { confirmButton: "success-button", title: "title" } }).then(() => {
+                                        window.location.href = "{% url 'Contributor Service Home' %}";
+                                    });
+                                };
+                            });
+
+                            fetch("{% url 'Contributor Service Post Draft Send Fetch' %}", {
+                                method: "POST",
+
+                                headers: { "Content-Type": "application/json", "X-CSRFToken": token },
+
+                                body: json
+
+                            }).then((event) => {
+                                const request = indexedDB.open("cotseye", 1);
+
+                                request.onsuccess = (event) => {
+                                    const cotseye = event.target.result;
+
+                                    const transaction = cotseye.transaction("cotseye_schema", "readwrite");
+
+                                    const cotseye_schema = transaction.objectStore("cotseye_schema");
+
+                                    cotseye_schema.clear();
+
+                                    const username = "{{request.user.username}}";
+
+                                    Swal.fire({ title: "Yay!", text: username + ", " + "your information input recorded offline was delivered to COTSEye.", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: { confirmButton: "success-button", title: "title" } }).then(() => {
                                         window.location.href = "{% url 'Contributor Service Home' %}";
                                     });
                                 };

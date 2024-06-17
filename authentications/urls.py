@@ -17,6 +17,10 @@ urlpatterns = [
     
     path("contributor/service/home/", views.ContributorServiceHome, name = "Contributor Service Home"),
     
+    path("contributor/service/notification/", views.ContributorServiceNotification, name = "Contributor Service Notification"),
+
+    path("contributor/service/notification/mark/<int:id>/", views.ContributorServiceNotificationMark, name = "Contributor Service Notification Mark"),
+
     path("contributor/service/profile/", views.ContributorServiceProfile, name = "Contributor Service Profile"),
     
     path("contributor/service/profile/update/", views.ContributorServiceProfileUpdate, name = "Contributor Service Profile Update"),
@@ -25,5 +29,23 @@ urlpatterns = [
 
     path("contributor/service/fallback/", views.ContributorServiceFallback, name = "Contributor Service Fallback"),
     
-    path("contributor/service/logout/", views.ContributorServiceLogout, name = "Contributor Service Logout"),                    
+    path("contributor/service/logout/", views.ContributorServiceLogout, name = "Contributor Service Logout"),       
+
+    path("officer/control/register/", views.OfficerControlRegister, name = "Officer Control Register"),
+
+    path("officer/control/login/", views.OfficerControlLogin, name = "Officer Control Login"),
+
+    path("officer/control/login/facebook/", views.OfficerControlLoginFacebook, name = "Officer Control Login Facebook"),
+
+    path("officer/control/login/google/", views.OfficerControlLoginGoogle, name = "Officer Control Login Google"),
+
+    path("officer/control/home/", views.OfficerControlHome, name = "Officer Control Home"),
+
+    path("officer/control/profile/", views.OfficerControlProfile, name = "Officer Control Profile"),
+    
+    path("officer/control/profile/update/", views.OfficerControlProfileUpdate, name = "Officer Control Profile Update"),
+
+    path("officer/control/logout/", views.OfficerControlLogout, name = "Officer Control Logout"),      
+
+    path("officer/control/notification/", views.OfficerControlNotification, name = "Officer Control Notification")
 ]

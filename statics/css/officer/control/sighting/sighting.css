@@ -1,0 +1,519 @@
+.filter-container{
+    padding: 1rem;
+    border-radius: 0.25rem;
+    background-color: #F8F9FA;
+}
+
+.table-container{
+    padding: 1rem;
+    border-radius: 0.25rem;
+    background-color: #FFFFFF;
+}
+
+#selectAction:disabled{
+    display: none;
+}
+
+.button-29{
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 8px;
+    padding-right: 8px;
+    box-sizing: border-box;
+    border: 0;
+    border-radius: 6px;
+    will-change: box-shadow, transform;
+    transition: box-shadow .15s, transform .15s;
+    appearance: none;
+    overflow: hidden;
+    white-space: nowrap;
+    font-family: "Montserrat";
+    font-size: 13px;
+    color: #FFF;
+    background-image: radial-gradient(100% 100% at 100% 0, #5ADAFF 0, #5468FF 100%);
+    line-height: 1;
+    list-style: none;
+    text-align: left;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    cursor: pointer;
+    touch-action: manipulation;
+}
+
+.button-29:focus{
+    box-shadow: #3C4fE0 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3C4FE0 0 -3px 0 inset;
+}
+
+.button-29:hover {
+    box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3C4fE0 0 -3px 0 inset;
+    transform: translateY(-2px);
+}
+
+.button-29:active{
+    box-shadow: #3c4fe0 0 3px 7px inset;
+    transform: translateY(2px);
+}
+
+
+.filterbutton{
+    display: inline-flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    width: 100%;
+    height: 28px;
+    box-sizing: border-box;
+    border: 0;
+    border-radius: 6px;
+    appearance: none;
+    overflow: hidden;
+    color: #FFFFFF;
+    font-family: "Montserrat";
+    font-family: "Montserrat";
+    font-weight: 500;
+    font-size: 13px;
+    background-color: #007BFF;
+    line-height: 1;
+    list-style: none;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+  
+.resetbutton{
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 28px;
+    box-sizing: border-box;
+    border: 0;
+    border-radius: 6px;
+    appearance: none;
+    overflow: hidden;
+    font-weight: 500;
+    font-family: "Montserrat";
+    font-size: 13px;
+    color: #000000;
+    background-image: radial-gradient(100% 100% at 100% 0, #5AFFB2 0, #54FFC6 100%);
+    line-height: 1;
+    list-style: none;
+    text-align: center;
+    cursor: pointer;
+}
+
+.filtercont{
+    padding: 15px;
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.024) 0px 0px 0px 1px, rgba(0, 0, 0, 0.05) 0px 1px 0px 0px, rgba(0, 0, 0, 0.03) 0px 0px 8px 0px, rgba(0, 0, 0, 0.1) 0px 20px 30px 0px;
+    transform: perspective(800px);
+    transition: transform 1s ease 0s;
+}
+
+.table-container td{
+    font-size: 13px;
+}
+
+.table > :not(caption) > * > *{
+    padding: 4px 4px !important;
+    border-bottom-width: var(--bs-border-width);
+    box-shadow: inset 0 0 0 9999px var(--bs-table-bg-state, var(--bs-table-bg-type, var(--bs-table-accent-bg)));
+    color: var(--bs-table-color-state, var(--bs-table-color-type, var(--bs-table-color)));
+    background-color: var(--bs-table-bg);
+}
+
+.table-hover tbody tr:hover{
+    background-color: #F1F1F1;
+}
+
+.pagination .page-link{
+    transition: background-color 0.3s, color 0.3s;
+    color: #007BFF;
+}
+
+.pagination .page-link:hover{
+    color: #FFFFFF;
+    background-color: #0056B3;
+}
+
+.pagination .active .page-link{
+    border-color: #007BFF;
+    color: #FFFFFF;
+    background-color: #2A67A8;
+}
+
+.form-check{
+    margin-bottom: 0px !important;
+}
+
+.form-check-input:hover{
+    cursor: pointer;
+}
+
+.button-container{
+    display: grid;
+    grid-template-columns: 100%;
+    gap: 5px;
+}
+
+.btn-primary:hover{
+    border-color: #0056B3;
+    background-color: #0056B3;
+}
+
+.btn-read, .btn-valid, .btn-invalid, .btn-read{
+    color: #FFFFFF;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    margin-right: 5px;
+}
+
+.btn-read{
+    background-color: #007BFF;
+}
+
+.btn-read:hover{
+    background-color: #0056B3;
+    cursor: pointer;
+}
+
+.btn-valid{
+    background-color: #28A745;
+}
+
+.btn-valid:hover{
+    background-color: #218838;
+    cursor: pointer;
+}
+
+.btn-invalid{
+    background-color: #DC3545;
+}
+
+.btn-invalid:hover{
+    background-color: #C82333;
+    cursor: pointer;
+}
+
+.status-pending{
+    color: #003755;
+}
+
+.status-valid{
+    color: #698F3F;
+}
+
+.status-invalid{
+    color: #C90016;
+}
+
+#selectAction{
+    border: none;
+
+}
+
+.dropdown-content{
+    position: absolute;
+    display: none;
+    right: 15px;
+    top: 100%;    
+    max-width: 150px;
+    border-radius: 5px;
+    border: 1px solid #167AAf;     
+    background-color: #FFFFFF;
+    z-index: 100;
+}
+
+.dropdown-content a.dropdown-header{
+    display: block;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    font-family: "Montserrat";
+    font-weight: 500;
+    font-size: 12px;
+    background-color: #FFFFFF;
+    color: #000000;
+    text-align: left;
+    text-decoration: none !important;
+}
+
+.dropdown-content a.dropdown-header:hover{
+    background-color: #002C44 !important;
+    color: #B2BEB5 !important;
+}
+
+.dropdown-content a.dropdown-header:focus{
+    background-color: #002C44 !important;
+    color: #B2BEB5 !important;
+}
+
+.dropdown-content a.dropdown-header:active{
+    background-color: #002C44 !important;
+    color: #B2BEB5 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .dropdown-content a.dropdown-header{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+        font-family: "Montserrat";
+        font-weight: 700;
+        font-size: 20px;
+        background-color: #003755;
+        color: #FFFFFF;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .dropdown-content a.dropdown-header{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+        font-family: "Montserrat";
+        font-weight: 700;
+        font-size: 18px;
+        background-color: #003755;
+        color: #FFFFFF;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .dropdown-content a.dropdown-header{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+        font-family: "Montserrat";
+        font-weight: 700;
+        font-size: 16px;
+        background-color: #003755;
+        color: #FFFFFF;
+    }
+}
+  
+.dropdown-item{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    font-family: "Montserrat";
+    font-weight: 500;
+    font-size: 12px;
+    background-color: #FFFFFF;
+    color: #000000;
+    text-decoration: none !important;
+}
+  
+.dropdown-item:hover{
+    background-color: #B2BEB5 !important;
+    color: #002C44 !important;
+}
+
+.dropdown-item a:focus{
+    background-color: #B2BEB5 !important;
+    color: #002C44 !important;
+}
+
+.dropdown-item a:active{
+    background-color: #B2BEB5 !important;
+    color: #002C44 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .dropdown-item{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+        font-family: "Montserrat";
+        font-weight: 400;
+        font-size: 16px;
+        background-color: #FFFFFF;
+        color: #003755;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .dropdown-item{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+        font-family: "Montserrat";
+        font-weight: 400;
+        font-size: 14px;
+        background-color: #FFFFFF;
+        color: #003755;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .dropdown-item{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+        font-family: "Montserrat";
+        font-weight: 400;
+        font-size: 12px;
+        background-color: #FFFFFF;
+        color: #003755;
+    }
+}
+
+.dropdown-item img{
+    width: 30px !important;
+    height: 30px !important;
+    margin-right: 10px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .dropdown-item img{
+        width: 20px !important;
+        height: 20px !important;
+        margin-right: 10px;
+    }
+}
+
+.dropdown-item img:hover{
+    filter: brightness(50%);
+}
+
+.dropdown-item img:focus{
+    filter: brightness(50%);
+
+}
+
+.dropdown-item img:active{
+    filter: brightness(50%);
+}
+
+.dropdown-divider{
+    border-bottom: 1px solid #003755; 
+}
+
+.dropdown-content a.dropdown-footer{
+    display: block;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    font-family: "Montserrat";
+    font-weight: 500;
+    font-size: 12px;
+    background-color: #ffffff;
+    color: #008cff;
+    text-align: left;
+    text-decoration: none !important;
+}
+
+.dropdown-content a.dropdown-footer:hover{
+    background-color: #002C44 !important;
+    color: #B2BEB5 !important;
+}
+
+.dropdown-content a.dropdown-footer:focus{
+    background-color: #002C44 !important;
+    color: #B2BEB5 !important;
+}
+
+.dropdown-content a.dropdown-footer:active{
+    background-color: #002C44 !important;
+    color: #B2BEB5 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .dropdown-content a.dropdown-footer{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+        font-family: "Montserrat";
+        font-weight: 700;
+        font-size: 20px;
+        background-color: #003755;
+        color: #FFFFFF;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .dropdown-content a.dropdown-footer{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+        font-family: "Montserrat";
+        font-weight: 700;
+        font-size: 18px;
+        background-color: #003755;
+        color: #FFFFFF;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .dropdown-content a.dropdown-footer{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+        font-family: "Montserrat";
+        font-weight: 700;
+        font-size: 16px;
+        background-color: #003755;
+        color: #FFFFFF;
+    }
+}
+
+.show{
+    display: block;
+}
+
+.select2-container{
+    margin-bottom: 10px !important;
+}
+
+.select2-container .select2-selection {
+    font-size: 13px !important;
+}
+
+.submit-button{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    padding: 6px 14px;
+    border: none;
+    border-radius: 6px;
+    box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
+    font-family: "Montserrat";
+    font-size: 15px;
+    color: #FFFFFF;
+    background: linear-gradient(180deg, #4B91F7 0%, #367AF6 100%);
+    background-origin: border-box;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.submit-button:focus{
+    box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+    outline: 0;
+}

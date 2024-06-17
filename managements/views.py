@@ -1,208 +1,62 @@
+from collections import Counter
+from datetime import timedelta
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.shortcuts import render, redirect
+from django.core.paginator import Paginator
+from django.core.serializers.json import DjangoJSONEncoder
+from django.db.models import Max, Q
+from django.http import JsonResponse
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
+from django.utils import timezone
+from django.utils.dateformat import DateFormat
+from django.utils.dateparse import parse_date
+from .forms import InterventionForm, StatusForm
+from .models import Intervention
 from authentications.views import ContributorCheck, OfficerCheck, AdministratorCheck
-from collections import Counter
+from authentications.models import User
 from managements.models import *
+from reports.models import Post
 
 import datetime
+import json
+
 
 # Create your views here.
-def PublicServiceStatus(request):
-    username = "public/everyone"
-
-    scheme = request.scheme
-
-    host = request.META["HTTP_HOST"]
-
-    options = Status.objects.all()
-
-    records = Status.objects.all()
-
-    results = None
-
-    if request.method == "GET":
-        from_date = request.GET.get("from_date")
-
-        from_date = datetime.datetime.strptime(from_date, "%Y-%m-%d") if from_date else None
-        
-        to_date = request.GET.get("to_date")
-
-        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
-
-        location = request.GET.get("location")
-
-        statustype = request.GET.get("statustype")
-
-        if from_date and to_date:
-            results = Status.objects.filter(onset_date__range = [from_date, to_date])
-        
-        elif from_date and to_date and to_date < from_date:
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "date range is not valid.")
-
-        elif not from_date and not to_date:
-            username = "public/everyone"
-            
-            messages.error(request, username + ", " + "date range is not valid.")
-        
-        elif not from_date or not to_date:
-            username = "public/everyone"
-
-            messages.error(request, "date range is not valid.")
-            
-        if location and not location == "each_location":
-            results = Status.objects.filter(location = location)
-
-        elif not location and location == "each_location":
-            results = Status.objects.filter(location = location)
-        
-        elif not location and not location == "each_location":
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "location is not valid.")
-            
-        elif not location or not location == "each_location":
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "location is not valid.")
-        
-        if statustype and not statustype == "each_statustype":
-            results = Status.objects.filter(statustype = statustype)
-            
-        elif not statustype and statustype == "each_statustype":
-            results = Status.objects.all()
-        
-        elif not statustype and not statustype == "each_statustype":
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "location is not valid.")
-        
-        elif not statustype or not statustype == "each_statustype":
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "location is not valid.")
-
-        if not from_date and not to_date and not location and not statustype:
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "information filter is empty within COTSEye.")
-        
-        elif not from_date or not to_date or not location or not statustype:
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "information filter is incomplete within COTSEye.")
-        
-        if results is None:
-            username = "public/everyone"
-
-            messages.info(request, username + ", " + "kindly filter statuses within COTSEye to check for updates today.")
-
-        elif not results:
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "information input is impossible within COTSEye.")
-
-    context = {"username": username, "scheme": scheme, "host": host, "options": options, "records": records, "results": results}
-
-    return render(request, "public/service/status/status.html", context)
-
-
 def PublicServiceIntervention(request):
     username = "public/everyone"
 
-    options = Intervention.objects.all()
+    locations = Location.objects.all()
 
-    records = Intervention.objects.all()
+    municipalities = Location.objects.values("municipality").distinct()
 
-    results = None
+    municipality = request.GET.get("municipality")
+
+    barangay = request.GET.get("barangay")
+
+    from_date = request.GET.get("from_date")
+
+    to_date = request.GET.get("to_date")
+
+    interventions = Intervention.objects.all().order_by("-intervention_date")
+
+    if municipality:
+        interventions = interventions.filter(location__municipality = municipality)
+
+    if barangay:
+        interventions = interventions.filter(location__barangay = barangay)
+
+    if from_date:
+        from_date = datetime.datetime.strptime(from_date, '%Y-%m-%d')
+
+        interventions = interventions.filter(intervention_date__gte = from_date)
     
-    if request.method == "GET":
-        from_date = request.GET.get("from_date")
+    if to_date:
+        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d")
 
-        from_date = datetime.datetime.strptime(from_date, "%Y-%m-%d") if from_date else None
-        
-        to_date = request.GET.get("to_date")
+        interventions = interventions.filter(intervention_date__lte = to_date)
 
-        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
-
-        location = request.GET.get("location")
-
-        hosting_agency = request.GET.get("hosting_agency")
-
-        if from_date and to_date:
-            results = Intervention.objects.filter(intervention_date__range = [from_date, to_date])
-            
-        elif from_date and to_date and to_date < from_date:
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "date range is not valid.")
-
-        elif not from_date and not to_date:
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "date range is not valid.")
-        
-        elif not from_date or not to_date:
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "date range is not valid.")
-
-        if location and not location == "each_location":
-            results = Intervention.objects.filter(location = location)
-
-        elif not location and location == "each_location":
-            results = Intervention.objects.all()
-        
-        elif not location and not location == "each_location":
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "location is not valid.")
-        
-        elif not location or not location == "each_location":
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "location is not valid.")
-
-        if hosting_agency and not hosting_agency == "each_hostingagency":
-            results = Intervention.objects.filter(hosting_agency = hosting_agency)
-    
-        elif not hosting_agency and hosting_agency == "each_hostingagency":
-            results = Intervention.objects.all()
-
-        elif not hosting_agency and not hosting_agency == "each_hostingagency":
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "hosting agency is not valid.")
-        
-        elif not hosting_agency or not hosting_agency == "each_hostingagency":
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "hosting agency is not valid.")   
-
-        if not from_date and not to_date and not location and not hosting_agency:
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "information filter is empty within COTSEye.")
-            
-        elif not from_date or not to_date or not location or not hosting_agency:
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "information filter is incomplete within COTSEye.")
-        
-        if results is None:
-            username = "public/everyone"
-
-            messages.info(request, username + ", " + "kindly filter interventions within COTSEye to check for updates today.")
-
-        elif not results:
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "information input is impossible within COTSEye.")
-
-    context = {"username": username, "options": options, "records": records, "results": results}
+    context = {"username": username, "locations": locations, "municipalities": municipalities, "interventions": interventions}
 
     return render(request, "public/service/intervention/intervention.html", context)
 
@@ -214,7 +68,7 @@ def PublicServiceInterventionRead(request, id):
 
     host = request.META["HTTP_HOST"]
     
-    intervention = Intervention.objects.filter(id = id)
+    intervention = Intervention.objects.get(id = id)
 
     context = {"username": username, "scheme": scheme, "host": host, "intervention": intervention}
 
@@ -223,202 +77,44 @@ def PublicServiceInterventionRead(request, id):
 
 @login_required(login_url = "Contributor Service Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
-def ContributorServiceStatus(request):
-    username = request.user.username
-
-    scheme = request.scheme
-
-    host = request.META["HTTP_HOST"]
-
-    options = Status.objects.all()
-
-    records = Status.objects.all()
-
-    results = None
-
-    if request.method == "GET":
-        from_date = request.GET.get("from_date")
-
-        from_date = datetime.datetime.strptime(from_date, "%Y-%m-%d") if from_date else None
-        
-        to_date = request.GET.get("to_date")
-
-        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
-
-        location = request.GET.get("location")
-
-        statustype = request.GET.get("statustype")
-
-        if from_date and to_date:
-            results = Status.objects.filter(onset_date__range = [from_date, to_date])
-        
-        elif from_date and to_date and to_date < from_date:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "date range is not valid.")
-
-        elif not from_date and not to_date:
-            username = request.user.username
-            
-            messages.error(request, username + ", " + "date range is not valid.")
-        
-        elif not from_date or not to_date:
-            username = request.user.username
-
-            messages.error(request, "date range is not valid.")
-            
-        if location and not location == "each_location":
-            results = Status.objects.filter(location = location)
-
-        elif not location and location == "each_location":
-            results = Status.objects.filter(location = location)
-        
-        elif not location and not location == "each_location":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "location is not valid.")
-            
-        elif not location or not location == "each_location":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "location is not valid.")
-        
-        if statustype and not statustype == "each_statustype":
-            results = Status.objects.filter(statustype = statustype)
-            
-        elif not statustype and statustype == "each_statustype":
-            results = Status.objects.all()
-        
-        elif not statustype and not statustype == "each_statustype":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "location is not valid.")
-        
-        elif not statustype or not statustype == "each_statustype":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "location is not valid.")
-
-        if not from_date and not to_date and not location and not statustype:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information filter is empty within COTSEye.")
-        
-        elif not from_date or not to_date or not location or not statustype:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information filter is incomplete within COTSEye.")
-        
-        if results is None:
-            username = request.user.username
-
-            messages.info(request, username + ", " + "kindly filter statuses within COTSEye to check for updates today.")
-
-        elif not results:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information input is impossible within COTSEye.")
-
-    context = {"username": username, "scheme": scheme, "host": host, "options": options, "records": records, "results": results}
-
-    return render(request, "contributor/service/status/status.html", context)
-
-
-@login_required(login_url = "Contributor Service Login")
-@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
 def ContributorServiceIntervention(request):
     username = request.user.username
 
-    options = Intervention.objects.all()
+    user_profile = User.objects.get(account = request.user)
 
-    records = Intervention.objects.all()
+    unread_notifications = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:3]
 
-    results = None
+    locations = Location.objects.all()
+
+    municipalities = Location.objects.values("municipality").distinct()
+
+    municipality = request.GET.get("municipality")
+
+    barangay = request.GET.get("barangay")
+
+    from_date = request.GET.get("from_date")
+
+    to_date = request.GET.get("to_date")
+
+    interventions = Intervention.objects.all().order_by("-intervention_date")
+
+    if municipality:
+        interventions = interventions.filter(location__municipality = municipality)
+
+    if barangay:
+        interventions = interventions.filter(location__barangay = barangay)
+
+    if from_date:
+        from_date = datetime.datetime.strptime(from_date, '%Y-%m-%d')
+
+        interventions = interventions.filter(intervention_date__gte = from_date)
     
-    if request.method == "GET":
-        from_date = request.GET.get("from_date")
+    if to_date:
+        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d")
 
-        from_date = datetime.datetime.strptime(from_date, "%Y-%m-%d") if from_date else None
-        
-        to_date = request.GET.get("to_date")
+        interventions = interventions.filter(intervention_date__lte = to_date)
 
-        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
-
-        location = request.GET.get("location")
-
-        hosting_agency = request.GET.get("hosting_agency")
-
-        if from_date and to_date:
-            results = Intervention.objects.filter(intervention_date__range = [from_date, to_date])
-        
-        elif from_date and to_date and to_date < from_date:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "date range is not valid.")
-
-        elif not from_date and not to_date:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "date range is not valid.")
-        
-        elif not from_date or not to_date:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "date range is not valid.")
-
-        if location and not location == "each_location":
-            results = Intervention.objects.filter(location = location)[:50]
-
-        elif not location and location == "each_location":
-            results = Intervention.objects.all()[:50]
-        
-        elif not location and not location == "each_location":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "location is not valid.")
-        
-        elif not location or not location == "each_location":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "location is not valid.")
-
-        if hosting_agency and not hosting_agency == "each_hostingagency":
-            results = Intervention.objects.filter(hosting_agency = hosting_agency)
-    
-        elif not hosting_agency and hosting_agency == "each_hostingagency":
-            results = Intervention.objects.all()
-
-        elif not hosting_agency and not hosting_agency == "each_hostingagency":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "hosting agency is not valid.")
-        
-        elif not hosting_agency or not hosting_agency == "each_hostingagency":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "hosting agency is not valid.")   
-
-        if not from_date and not to_date and not location and not hosting_agency:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information filter is empty within COTSEye.")
-        
-        elif not from_date or not to_date or not location or not hosting_agency:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information filter is incomplete within COTSEye.")
-        
-        if results is None:
-            username = request.user.username
-
-            messages.info(request, username + ", " + "kindly filter interventions within COTSEye to check for updates today.")
-
-        elif not results:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information input is impossible within COTSEye.")
-
-    context = {"username": username, "options": options, "records": records, "results": results}
+    context = {"username": username, "user_profile": user_profile, "unread_notifications": unread_notifications, "locations": locations, "municipalities": municipalities, "interventions": interventions}
 
     return render(request, "contributor/service/intervention/intervention.html", context)
 
@@ -428,1247 +124,350 @@ def ContributorServiceIntervention(request):
 def ContributorServiceInterventionRead(request, id):
     username = request.user.username
 
+    user_profile = User.objects.get(account = request.user)
+
+    unread_notifications = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:3]
+
     scheme = request.scheme
 
     host = request.META["HTTP_HOST"]
 
-    intervention = Intervention.objects.filter(id = id)
+    intervention = Intervention.objects.get(id = id)
 
-    context = {"username": username, "scheme": scheme, "host": host, "intervention": intervention}
+    context = {"username": username, "user_profile": user_profile, "unread_notifications": unread_notifications, "scheme": scheme, "host": host, "intervention": intervention}
 
     return render(request, "contributor/service/intervention/read.html", context)
 
 
-@login_required(login_url = "officer:Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "officer:Officer Control Login")
-def OfficerControlStatisticsIntervention(request):
-    username = request.user.username
+def serialize_interventions(interventions):
+    interventions_list = []
 
-    options = Intervention.objects.all()
-
-    records = Intervention.objects.all()
-
-    results = None
-
-    try:
-        interventions_count = records.count()
-
-        interventions_label = "Interventions" + " Count"
+    for intervention in interventions:
+        interventions_list.append({"id": intervention.id, "title": intervention.title, "intervention_date": intervention.intervention_date, "municipality": intervention.location.municipality, "barangay": intervention.location.barangay, "details": intervention.details, "hosting_agency": intervention.hosting_agency, "caught_amount": intervention.caught_amount, "volunteer_amount": intervention.volunteer_amount, "status": str(intervention.statustype)})
     
-    except:
-        interventions_count = ""
+    return json.dumps(interventions_list, cls=DjangoJSONEncoder)
 
-        interventions_label = ""
+
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
+def OfficerControlIntervention(request):
+    notification_life = timezone.now() - timedelta(days = 30) 
+
+    unread_notifications = Post.objects.filter(read_status = False, creation_date__gte = notification_life).order_by("-creation_date")[:5]
+
+    locations = Location.objects.all()
+
+    interventions = Intervention.objects.all().order_by('-intervention_date')
+
+    municipalities = Location.objects.values('municipality').distinct()
     
-    try:
-        locations_count = records.count()
+    interventions_json = serialize_interventions(interventions)
 
-        locations_label = "Locations" + " Count"
+    hosting_agencies = interventions.values("hosting_agency").distinct()
+
+    context = {"unread_notifications": unread_notifications, "interventions": interventions, 'municipalities': municipalities, "interventions_json": interventions_json, "locations": locations, "hosting_agencies": hosting_agencies}
     
-    except:
-        locations_count = ""
-
-        locations_label = ""
-    
-    try:
-        caughtamount_distribution = [str(caught_amount.caught_amount) for caught_amount in records]
-
-        caughtamount_tally = Counter(caughtamount_distribution)
-
-        caughtamount_frequency = caughtamount_tally.most_common(1)[0][0]
-
-    except:
-        caughtamount_frequency = ""
-    
-    try:
-        caughtamount_firstfrequency = caughtamount_tally.most_common(1)[0][1]
-
-        caughtamount_firstlabel = caughtamount_tally.most_common(1)[0][0] + " / Sqauare Meter Mode"
-
-    except:
-        caughtamount_firstfrequency = ""
-    
-        caughtamount_firstlabel = ""
-    
-    try:
-        caughtamount_secondfrequency = caughtamount_tally.most_common(2)[1][1]
-
-        caughtamount_secondlabel = caughtamount_tally.most_common(2)[1][0] + " / Sqauare Meter Mode"
-    
-    except:
-        caughtamount_secondfrequency = ""
-    
-        caughtamount_secondlabel = ""
-    
-    try:
-        caughtamount_thirdfrequency = caughtamount_tally.most_common(3)[2][1] 
-
-        caughtamount_thirdlabel = caughtamount_tally.most_common(3)[2][0] + " Mode"
-    
-    except:
-        caughtamount_thirdfrequency = ""
-    
-        caughtamount_thirdlabel = ""
-
-    try:
-        hostingagency_distribution = [str(hosting_agency.hosting_agency) for hosting_agency in records]
-
-        hostingagency_tally = Counter(hostingagency_distribution)
-
-        hostingagency_frequency = hostingagency_tally.most_common(1)[0][0]
-
-    except:
-        hostingagency_frequency = ""
-    
-    try:
-        hostingagency_firstfrequency = hostingagency_tally.most_common(1)[0][1]
-
-        hostingagency_firstlabel = hostingagency_tally.most_common(1)[0][0] + " Mode"
-
-    except:
-        hostingagency_firstfrequency = ""
-    
-        hostingagency_firstlabel = ""
-    
-    try:
-        hostingagency_secondfrequency = hostingagency_tally.most_common(2)[1][1]
-
-        hostingagency_secondlabel = hostingagency_tally.most_common(2)[1][0] + " Mode"
-    
-    except:
-        hostingagency_secondfrequency = ""
-    
-        hostingagency_secondlabel = ""
-    
-    try:
-        hostingagency_thirdfrequency = hostingagency_tally.most_common(3)[2][1] 
-
-        hostingagency_thirdlabel = hostingagency_tally.most_common(3)[2][0] + " Mode"
-    
-    except:
-        hostingagency_thirdfrequency = ""
-    
-        hostingagency_thirdlabel = ""
-    
-    if request.method == "GET":
-        from_date = request.GET.get("from_date")
-
-        from_date = datetime.datetime.strptime(from_date, "%Y-%m-%d") if from_date else None
-        
-        to_date = request.GET.get("to_date")
-
-        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
-
-        location = request.GET.get("location")
-
-        hosting_agency = request.GET.get("hosting_agency")
-
-        if from_date and to_date:
-            results = Intervention.objects.filter(intervention_date__range = [from_date, to_date])
-        
-        elif from_date and to_date and to_date < from_date:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "date range is not valid.")
-
-        elif not from_date and not to_date:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "date range is not valid.") 
-        
-        elif not from_date or not to_date:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "date range is not valid.") 
-
-        if location and not location == "each_location":
-            results = Intervention.objects.filter(location = location)
-
-        elif not location and location == "each_location":
-            results = Intervention.objects.all()
-        
-        elif not location and not location == "each_location":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "location is not valid.")
-        
-        elif not location or not location == "each_location":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "location is not valid.") 
-
-        if hosting_agency and not hosting_agency == "each_hostingagency":
-            results = Intervention.objects.filter(hosting_agency = hosting_agency)
-    
-        elif not hosting_agency and hosting_agency == "each_hostingagency":
-            results = Intervention.objects.all()
-
-        elif not hosting_agency and not hosting_agency == "each_hostingagency":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "hosting agency is not valid.")
-        
-        elif not hosting_agency or not hosting_agency == "each_hostingagency":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "hosting agency is not valid.") 
-
-        if not from_date and not to_date and not location and not hosting_agency:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information filter is empty within COTSEye.")
-        
-        elif not from_date or not to_date or not location or not hosting_agency:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information filter is incomplete within COTSEye.")
-        
-        if results is None:
-            username = request.user.username
-
-            messages.info(request, username + ", " + "kindly filter interventions within COTSEye to generate for reports today.")
-
-        elif results is not None:
-            try:
-                interventions_count = results.count()
-
-                interventions_label = "Interventions" + " Count"
-            
-            except:
-                interventions_count = ""
-
-                interventions_label = ""
-
-            try:
-                locations_count = results.count()
-
-                locations_label = "Locations" + " Count"
-            
-            except:
-                locations_count = ""
-
-                locations_label = ""
-            
-            try:
-                caughtamount_distribution = [str(caught_amount.caught_amount) for caught_amount in results]
-
-                caughtamount_tally = Counter(caughtamount_distribution)
-
-                caughtamount_frequency = caughtamount_tally.most_common(1)[0][0]
-
-            except:
-                caughtamount_frequency = ""
-            
-            try:
-                caughtamount_firstfrequency = caughtamount_tally.most_common(1)[0][1]
-
-                caughtamount_firstlabel = caughtamount_tally.most_common(1)[0][0] + " / Sqauare Meter Mode"
-
-            except:
-                caughtamount_firstfrequency = ""
-            
-                caughtamount_firstlabel = ""
-            
-            try:
-                caughtamount_secondfrequency = caughtamount_tally.most_common(2)[1][1]
-
-                caughtamount_secondlabel = caughtamount_tally.most_common(2)[1][0] + " / Sqauare Meter Mode"
-            
-            except:
-                caughtamount_secondfrequency = ""
-            
-                caughtamount_secondlabel = ""
-            
-            try:
-                caughtamount_thirdfrequency = caughtamount_tally.most_common(3)[2][1] 
-
-                caughtamount_thirdlabel = caughtamount_tally.most_common(3)[2][0] + " / Sqauare Meter Mode"
-            
-            except:
-                caughtamount_thirdfrequency = ""
-            
-                caughtamount_thirdlabel = ""
-            
-            try:
-                hostingagency_distribution = [str(hosting_agency.hosting_agency) for hosting_agency in results]
-
-                hostingagency_tally = Counter(hostingagency_distribution)
-
-                hostingagency_frequency = hostingagency_tally.most_common(1)[0][0]
-
-            except:
-                hostingagency_frequency = ""
-            
-            try:
-                hostingagency_firstfrequency = hostingagency_tally.most_common(1)[0][1]
-
-                hostingagency_firstlabel = hostingagency_tally.most_common(1)[0][0] + " Mode"
-
-            except:
-                hostingagency_firstfrequency = ""
-            
-                hostingagency_firstlabel = ""
-            
-            try:
-                hostingagency_secondfrequency = hostingagency_tally.most_common(2)[1][1]
-
-                hostingagency_secondlabel = hostingagency_tally.most_common(2)[1][0] + " Mode"
-            
-            except:
-                hostingagency_secondfrequency = ""
-            
-                hostingagency_secondlabel = ""
-            
-            try:
-                hostingagency_thirdfrequency = hostingagency_tally.most_common(3)[2][1] 
-
-                hostingagency_thirdlabel = hostingagency_tally.most_common(3)[2][0] + " Mode"
-            
-            except:
-                hostingagency_thirdfrequency = ""
-            
-                hostingagency_thirdlabel = ""
-                    
-        elif not results:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information input is impossible within COTSEye.")
-
-
-    context = {"username": username, "options": options, "records": records, "results": results, "interventions_count": interventions_count, "interventions_label": interventions_label, "locations_count": locations_count, "locations_label": locations_label, "caughtamount_frequency": caughtamount_frequency, "caughtamount_firstfrequency": caughtamount_firstfrequency, "caughtamount_firstlabel": caughtamount_firstlabel, "caughtamount_secondfrequency": caughtamount_secondfrequency, "caughtamount_secondlabel": caughtamount_secondlabel, "caughtamount_thirdfrequency": caughtamount_thirdfrequency, "caughtamount_thirdlabel": caughtamount_thirdlabel, "hostingagency_frequency": hostingagency_frequency, "hostingagency_firstfrequency": hostingagency_firstfrequency, "hostingagency_firstlabel": hostingagency_firstlabel, "hostingagency_secondfrequency": hostingagency_secondfrequency, "hostingagency_secondlabel": hostingagency_secondlabel, "hostingagency_thirdfrequency": hostingagency_thirdfrequency, "hostingagency_thirdlabel": hostingagency_thirdlabel}
-
     return render(request, "officer/control/intervention/intervention.html", context)
 
 
-@login_required(login_url = "officer:Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "officer:Officer Control Login")
-def OfficerControlStatisticsStatus(request):
-    username = request.user.username
+@login_required(login_url="Officer Control Login")
+@user_passes_test(OfficerCheck, login_url="Officer Control Login")
+def OfficerControlInterventionAdd(request):
+    notification_life = timezone.now() - timedelta(days=30)
 
-    options = Status.objects.all()
+    unread_notifications = Post.objects.filter(read_status=False, creation_date__gte=notification_life).order_by("-creation_date")[:5]
 
-    records = Status.objects.all()
+    municipalities = Location.objects.values('municipality').distinct()
 
-    results = None
+    locations = Location.objects.all().distinct("municipality")
 
-    try:
-        statuses_count = records.count()
+    errors = None
 
-        statuses_label = "Statuses" + " Count"
-    
-    except:
-        statuses_count = ""
+    field_labels = None
 
-        statuses_label = ""
-    
-    try:
-        caughtoverall_count = sum(caught_overall.caught_overall for caught_overall in records)
+    location_error = None
 
-        caughtoverall_label = "Caught Overall" + " Count"
-    
-    except:
-        caughtoverall_count = ""
+    if request.method == "POST":
 
-        caughtoverall_label = ""
-    
-    try:
-        location_distribution = [str(location.location) for location in records]
+        form = InterventionForm(request.POST, request.FILES)
 
-        location_tally = Counter(location_distribution)
+        if form.is_valid():
 
-        location_frequency = location_tally.most_common(1)[0][0]
+            municipality = request.POST.get("municipality")
 
-    except:
-        location_frequency = ""
-
-    try:
-        location_firstfrequency = location_tally.most_common(1)[0][1]
-
-        location_firstlabel = location_tally.most_common(1)[0][0] + " Frequency"
-
-    except:
-        location_firstfrequency = ""
-    
-        location_firstlabel = ""
-
-    try:
-        location_secondfrequency = location_tally.most_common(2)[1][1]
-
-        location_secondlabel = location_tally.most_common(2)[1][0] + " Frequency"
-    
-    except:
-        location_secondfrequency = ""
-    
-        location_secondlabel = ""
-
-    try:
-        location_thirdfrequency = location_tally.most_common(3)[2][1] 
-
-        location_thirdlabel = location_tally.most_common(3)[2][0] + " Frequency"
-    
-    except:
-        location_thirdfrequency = ""
-    
-        location_thirdlabel = ""
-    
-    try:
-        statustype_distribution = [str(statustype.statustype) for statustype in records]
-
-        statustype_tally = Counter(statustype_distribution)
-
-        statustype_frequency = statustype_tally.most_common(1)[0][0]
-
-    except:
-        statustype_frequency = ""
-
-    try:
-        statustype_firstfrequency = statustype_tally.most_common(1)[0][1]
-
-        statustype_firstlabel = statustype_tally.most_common(1)[0][0] + " Frequency"
-
-    except:
-        statustype_firstfrequency = ""
-    
-        statustype_firstlabel = ""
-
-    try:
-        statustype_secondfrequency = statustype_tally.most_common(2)[1][1]
-
-        statustype_secondlabel = statustype_tally.most_common(2)[1][0] + " Frequency"
-    
-    except:
-        statustype_secondfrequency = ""
-    
-        statustype_secondlabel = ""
-
-    try:
-        statustype_thirdfrequency = statustype_tally.most_common(3)[2][1] 
-
-        statustype_thirdlabel = statustype_tally.most_common(3)[2][0] + " Frequency"
-    
-    except:
-        statustype_thirdfrequency = ""
-    
-        statustype_thirdlabel = ""
-
-    if request.method == "GET":
-        from_date = request.GET.get("from_date")
-
-        from_date = datetime.datetime.strptime(from_date, "%Y-%m-%d") if from_date else None
-        
-        to_date = request.GET.get("to_date")
-
-        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
-
-        location = request.GET.get("location")
-
-        statustype = request.GET.get("statustype")
-
-        if from_date and to_date:
-            results = Status.objects.filter(onset_date__range = [from_date, to_date])
-
-        elif from_date and to_date and to_date < from_date:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "date range is not valid.")
-
-        elif not from_date and not to_date:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "date range is not valid.")
-        
-        elif not from_date or not to_date:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "date range is not valid.")
-
-        if location and not location == "each_location":
-            results = Status.objects.filter(location = location)
-
-        elif not location and location == "each_location":
-            results = Status.objects.filter(location = location)
-        
-        elif not location and not location == "each_location":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "location is not valid.")
-        
-        elif not location or not location == "each_location":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "location is not valid.")
-        
-        if statustype and not statustype == "each_statustype":
-            results = Status.objects.filter(statustype = statustype)
-        
-        elif not statustype and statustype == "each_statustype":
-            results = Status.objects.all()
-        
-        elif not statustype and not statustype == "each_statustype":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "location is not valid.")
-        
-        elif not statustype or not statustype == "each_statustype":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "location is not valid.")
-
-        if not from_date and not to_date and not location and not statustype:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information filter is empty within COTSEye.")
-        
-        elif not from_date or not to_date or not location or not statustype:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information filter is incomplete within COTSEye.")
-        
-        if results is None:
-            username = request.user.username
-
-            messages.info(request, username + ", " + "kindly filter statuses within COTSEye to generate for reports today.")
-
-        elif results is not None:
-            try:
-                statuses_count = results.count()
-
-                statuses_label = "Statuses" + " Count"
-            
-            except:
-                statuses_count = ""
-
-                statuses_label = ""
-            
-            try:
-                caughtoverall_count = sum(caught_overall.caught_overall for caught_overall in results)
-
-                caughtoverall_label = "Caught Overall" + " Count"
-            
-            except:
-                caughtoverall_count = ""
-
-                caughtoverall_label = ""
-            
-            try:
-                location_distribution = [str(location.location) for location in results]
-
-                location_tally = Counter(location_distribution)
-
-                location_frequency = location_tally.most_common(1)[0][0]
-
-            except:
-                location_frequency = ""
+            barangay = request.POST.get("barangay")
 
             try:
-                location_firstfrequency = location_tally.most_common(1)[0][1]
+                location = Location.objects.get(municipality=municipality, barangay=barangay)
 
-                location_firstlabel = location_tally.most_common(1)[0][0] + " Frequency"
+                intervention = form.save(commit=False)
+                
+                intervention.location = location
 
-            except:
-                location_firstfrequency = ""
+                intervention.save()
+
+                return redirect("Officer Control Intervention")
             
-                location_firstlabel = ""
+            except Location.DoesNotExist:
 
-            try:
-                location_secondfrequency = location_tally.most_common(2)[1][1]
+                location_error = "The selected location does not exist."
 
-                location_secondlabel = location_tally.most_common(2)[1][0] + " Frequency"
-            
-            except:
-                location_secondfrequency = ""
-            
-                location_secondlabel = ""
+        errors = form.errors.as_json()
 
-            try:
-                location_thirdfrequency = location_tally.most_common(3)[2][1] 
+        field_labels = {field.name: field.label for field in form}
 
-                location_thirdlabel = location_tally.most_common(3)[2][0] + " Frequency"
-            
-            except:
-                location_thirdfrequency = ""
-            
-                location_thirdlabel = ""
-            
-            try:
-                statustype_distribution = [str(statustype.statustype) for statustype in results]
+    else:
+        form = InterventionForm()
 
-                statustype_tally = Counter(statustype_distribution)
+    context = {"unread_notifications": unread_notifications, "form": form, 'municipalities': municipalities, "locations": locations, "errors": errors, "field_labels": field_labels, "location_error": location_error}
 
-                statustype_frequency = statustype_tally.most_common(1)[0][0]
+    return render(request, "officer/control/intervention/addintervention.html", context)
 
-            except:
-                statustype_frequency = ""
 
-            try:
-                statustype_firstfrequency = statustype_tally.most_common(1)[0][1]
+@login_required(login_url="Officer Control Login")
+@user_passes_test(OfficerCheck, login_url="Officer Control Login")
+def OfficerControlInterventionUpdate(request, pk):
+    notification_life = timezone.now() - timedelta(days=30)
 
-                statustype_firstlabel = statustype_tally.most_common(1)[0][0] + " Frequency"
+    unread_notifications = Post.objects.filter(read_status=False, creation_date__gte=notification_life).order_by("-creation_date")[:5]
 
-            except:
-                statustype_firstfrequency = ""
-            
-                statustype_firstlabel = ""
+    intervention = get_object_or_404(Intervention, pk=pk)
 
-            try:
-                statustype_secondfrequency = statustype_tally.most_common(2)[1][1]
+    locations = Location.objects.all().distinct("municipality")
 
-                statustype_secondlabel = statustype_tally.most_common(2)[1][0] + " Frequency"
-            
-            except:
-                statustype_secondfrequency = ""
-            
-                statustype_secondlabel = ""
+    municipalities = Location.objects.values('municipality').distinct()
 
-            try:
-                statustype_thirdfrequency = statustype_tally.most_common(3)[2][1] 
+    errors = None
 
-                statustype_thirdlabel = statustype_tally.most_common(3)[2][0] + " Frequency"
-            
-            except:
-                statustype_thirdfrequency = ""
-            
-                statustype_thirdlabel = ""
+    field_labels = None
     
-        elif not results:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information input is impossible within COTSEye.")
+    location_error = None
     
+    if request.method == "POST":
+        form = InterventionForm(request.POST, request.FILES, instance = intervention)
 
-    context = {"username": username, "options": options, "records": records, "results": results, "statuses_count": statuses_count, "statuses_label": statuses_label, "caughtoverall_count": caughtoverall_count, "caughtoverall_label": caughtoverall_label, "location_frequency": location_frequency, "location_firstfrequency": location_firstfrequency, "location_firstlabel": location_firstlabel, "location_secondfrequency": location_secondfrequency, "location_secondlabel": location_secondlabel, "location_thirdfrequency": location_thirdfrequency, "location_thirdlabel": location_thirdlabel, "statustype_frequency": statustype_frequency, "statustype_firstfrequency": statustype_firstfrequency, "statustype_firstlabel": statustype_firstlabel, "statustype_secondfrequency": statustype_secondfrequency, "statustype_secondlabel": statustype_secondlabel, "statustype_thirdfrequency": statustype_thirdfrequency, "statustype_thirdlabel": statustype_thirdlabel}
+        if form.is_valid():
+            municipality = request.POST.get("municipality")
+
+            barangay = request.POST.get("barangay")
+
+            try:
+                location = Location.objects.get(municipality = municipality, barangay = barangay)
+
+                intervention.location = location
+
+                form.save()
+
+                return redirect("Officer Control Intervention")
+
+            except Location.DoesNotExist:
+                location_error = "The selected location does not exist."
+
+        errors = form.errors.as_json()
+
+        field_labels = {field.name: field.label for field in form}
+
+    else:
+        form = InterventionForm(instance= intervention)
+
+    context = {"unread_notifications": unread_notifications, "form": form, "update": True, "intervention": intervention, "municipalities": municipalities, "locations": locations, "errors": errors, "field_labels": field_labels, "location_error": location_error}
+
+    return render(request, "officer/control/intervention/updateintervention.html", context)
+
+
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
+def OfficerControlInterventionDelete(request, pk):
+    intervention = get_object_or_404(Intervention, id = pk)
+
+    intervention.delete()
+
+    return JsonResponse({"success": True})
+
+
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
+def OfficerControlInterventionDetail(request, pk):
+    notification_life = timezone.now() - timedelta(days = 30)
+
+    unread_notifications = Post.objects.filter(read_status = False, creation_date__gte = notification_life).order_by("-creation_date")[:5]
+
+    intervention = get_object_or_404(Intervention, id = pk)
+
+    other_interventions = Intervention.objects.exclude(pk = pk)[:5]
+
+    last_intervention = (Intervention.objects.filter(location = intervention.location).exclude(pk = pk).order_by("-intervention_date").first())
+
+    context = {"unread_notifications": unread_notifications, "intervention": intervention, "other_interventions": other_interventions, "last_intervention": last_intervention }
+
+    return render(request, "officer/control/intervention/detailintervention.html", context)
+
+
+def serialize_statuses(statuses):
+    statuses_list = []
+
+    for status in statuses:
+        statuses_list.append({"id": status.id, "statustype": str(status.statustype), "location": status.location.barangay + ", " + status.location.municipality, "caught_overall": status.caught_overall, "volunteer_overall": status.volunteer_overall, "onset_date": status.onset_date})
+    
+    return json.dumps(statuses_list, cls = DjangoJSONEncoder)
+
+
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
+def OfficerControlStatus(request):
+    notification_life = timezone.now() - timedelta(days = 30)
+
+    unread_notifications = Post.objects.filter(read_status = False, creation_date__gte = notification_life).order_by("-creation_date")[:5]
+
+    latest_status_per_municipality = Status.objects.values("location__municipality").annotate(latest_onset_date = Max("onset_date")).order_by("-latest_onset_date")
+
+    latest_statuses = []
+
+    for entry in latest_status_per_municipality:
+        status = Status.objects.filter(location__municipality = entry["location__municipality"], onset_date = entry["latest_onset_date"]).first()
+        
+        if status:
+            latest_statuses.append(status)
+
+    paginator = Paginator(latest_statuses, 10)
+
+    page_number = request.GET.get("page")
+
+    paginated_statuses = paginator.get_page(page_number)
+
+    context = {"unread_notifications": unread_notifications, "locations": Location.objects.all(), "years": Status.objects.dates("onset_date", "year", order = "DESC"), "paginated_statuses": paginated_statuses,}
 
     return render(request, "officer/control/status/status.html", context)
 
 
-@login_required(login_url = "admin:Administrator Control Login")
-@user_passes_test(AdministratorCheck, login_url = "admin:Administrator Control Login")
-def AdministratorControlStatisticsIntervention(request):
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
+def BarangayStatusView(request, municipality_name):
+    locations = Location.objects.filter(municipality = municipality_name)
+
+    latest_statuses = []
+
+    for location in locations:
+        latest_status = Status.objects.filter(location = location).order_by("-onset_date").first()
+
+        if latest_status:
+            latest_statuses.append(latest_status)
+
+    context = {"municipality_name": municipality_name, "latest_statuses": latest_statuses}
+
+    return render(request, "officer/control/status/barangay_status.html", context)
+
+
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
+def BarangayAllStatusesView(request, barangay_name):
+    locations = Location.objects.filter(barangay = barangay_name)
+    
+    all_statuses = Status.objects.filter(location__in = locations).order_by("-onset_date")
+
+    context = {"barangay_name": barangay_name, "all_statuses": all_statuses}
+
+    return render(request, "officer/control/status/barangay_all_statuses.html", context)
+
+
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
+def OfficerControlDeleteStatus(request, status_id):
+    if request.method == "POST":
+        status = get_object_or_404(Status, id = status_id)
+
+        status.delete()
+
+        return JsonResponse({"success": True})
+    
+    return JsonResponse({"success": False}, status = 400)
+
+
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
+def OfficerControlStatusAdd(request):
+    notification_life = timezone.now() - timedelta(days = 30) 
+
+    unread_notifications = Post.objects.filter(read_status=False, creation_date__gte=notification_life).order_by("-creation_date")[:5]
+
+    if request.method == "POST":
+        form = StatusForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+
+            return redirect("Officer Control Status")
+    else:
+        form = StatusForm()
+
+    context = {"unread_notifications": unread_notifications, "form": form}
+
+    return render(request, "officer/control/status/addstatus.html", context) 
+
+
+@login_required(login_url="Officer Control Login")
+@user_passes_test(OfficerCheck, login_url="Officer Control Login")
+def OfficerControlReport(request):
     username = request.user.username
 
-    options = Intervention.objects.all()
-
-    records = Intervention.objects.all()
-
-    results = None
-
-    try:
-        interventions_count = records.count()
-
-        interventions_label = "Interventions" + " Count"
+    notification_life = timezone.now() - timedelta(days = 30)
     
-    except:
-        interventions_count = ""
+    unread_notifications = Post.objects.filter(read_status=False, creation_date__gte=notification_life).order_by("-creation_date")[:5]
 
-        interventions_label = ""
-    
-    try:
-        locations_count = records.count()
+    from_date = request.GET.get("from_date")
 
-        locations_label = "Locations" + " Count"
-    
-    except:
-        locations_count = ""
+    to_date = request.GET.get("to_date")
 
-        locations_label = ""
-    
-    try:
-        caughtamount_distribution = [str(caught_amount.caught_amount) for caught_amount in records]
+    selected_status = request.GET.get("status")
 
-        caughtamount_tally = Counter(caughtamount_distribution)
+    selected_municipality = request.GET.get("municipalityFilter")
 
-        caughtamount_frequency = caughtamount_tally.most_common(1)[0][0]
+    selected_barangay = request.GET.get("barangayFilter")
 
-    except:
-        caughtamount_frequency = ""
-    
-    try:
-        caughtamount_firstfrequency = caughtamount_tally.most_common(1)[0][1]
+    if from_date:
+        from_date = parse_date(from_date)
 
-        caughtamount_firstlabel = caughtamount_tally.most_common(1)[0][0] + " / Sqauare Meter Mode"
+    if to_date:
+        to_date = parse_date(to_date)
 
-    except:
-        caughtamount_firstfrequency = ""
-    
-        caughtamount_firstlabel = ""
-    
-    try:
-        caughtamount_secondfrequency = caughtamount_tally.most_common(2)[1][1]
+    status_options = StatusType.objects.all()
 
-        caughtamount_secondlabel = caughtamount_tally.most_common(2)[1][0] + " / Sqauare Meter Mode"
-    
-    except:
-        caughtamount_secondfrequency = ""
-    
-        caughtamount_secondlabel = ""
-    
-    try:
-        caughtamount_thirdfrequency = caughtamount_tally.most_common(3)[2][1] 
+    location_options = Location.objects.all()
 
-        caughtamount_thirdlabel = caughtamount_tally.most_common(3)[2][0] + " Mode"
-    
-    except:
-        caughtamount_thirdfrequency = ""
-    
-        caughtamount_thirdlabel = ""
+    status_query = Q()
 
-    try:
-        hostingagency_distribution = [str(hosting_agency.hosting_agency) for hosting_agency in records]
+    if from_date:
+        status_query &= Q(onset_date__gte = from_date)
 
-        hostingagency_tally = Counter(hostingagency_distribution)
+    if to_date:
+        status_query &= Q(onset_date__lte = to_date)
 
-        hostingagency_frequency = hostingagency_tally.most_common(1)[0][0]
+    if selected_status:
+        status_query &= Q(statustype = selected_status)
 
-    except:
-        hostingagency_frequency = ""
-    
-    try:
-        hostingagency_firstfrequency = hostingagency_tally.most_common(1)[0][1]
+    if selected_municipality:
+        status_query &= Q(location__municipality = selected_municipality)
 
-        hostingagency_firstlabel = hostingagency_tally.most_common(1)[0][0] + " Mode"
+    if selected_barangay:
+        status_query &= Q(location__barangay = selected_barangay)
 
-    except:
-        hostingagency_firstfrequency = ""
-    
-        hostingagency_firstlabel = ""
-    
-    try:
-        hostingagency_secondfrequency = hostingagency_tally.most_common(2)[1][1]
+    statuses = Status.objects.filter(status_query).order_by("-onset_date")
 
-        hostingagency_secondlabel = hostingagency_tally.most_common(2)[1][0] + " Mode"
-    
-    except:
-        hostingagency_secondfrequency = ""
-    
-        hostingagency_secondlabel = ""
-    
-    try:
-        hostingagency_thirdfrequency = hostingagency_tally.most_common(3)[2][1] 
+    municipalities = Location.objects.values("municipality").distinct()
 
-        hostingagency_thirdlabel = hostingagency_tally.most_common(3)[2][0] + " Mode"
-    
-    except:
-        hostingagency_thirdfrequency = ""
-    
-        hostingagency_thirdlabel = ""
-    
-    if request.method == "GET":
-        from_date = request.GET.get("from_date")
+    barangays = Location.objects.filter(municipality=selected_municipality).values("barangay").distinct() if selected_municipality else []
 
-        from_date = datetime.datetime.strptime(from_date, "%Y-%m-%d") if from_date else None
+    data = {}
+    
+    results = statuses
+
+    for location in location_options:
+        location_str = f"{location.barangay}, {location.municipality}"
         
-        to_date = request.GET.get("to_date")
-
-        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
-
-        location = request.GET.get("location")
-
-        hosting_agency = request.GET.get("hosting_agency")
-
-        if from_date and to_date:
-            results = Intervention.objects.filter(intervention_date__range = [from_date, to_date])
+        location_statuses = statuses.filter(location=location).order_by("onset_date")
         
-        elif from_date and to_date and to_date < from_date:
-            username = request.user.username
+        data[location_str] = {"onset_dates": [status.onset_date.strftime("%Y-%m-%d") for status in location_statuses], "caught_overalls": [status.caught_overall for status in location_statuses]}
 
-            messages.error(request, username + ", " + "date range is not valid.")
+    context = {"username": username, "unread_notifications": unread_notifications, "chart_data": json.dumps(data), "status_options": status_options, "location_options": location_options, "results": results, "from_date": from_date, "to_date": to_date, "selected_status": selected_status, "selected_municipality": selected_municipality, "selected_barangay": selected_barangay, "municipalities": municipalities, "barangays": barangays}
 
-        elif not from_date and not to_date:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "date range is not valid.") 
-        
-        elif not from_date or not to_date:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "date range is not valid.") 
-
-        if location and not location == "each_location":
-            results = Intervention.objects.filter(location = location)
-
-        elif not location and location == "each_location":
-            results = Intervention.objects.all()
-        
-        elif not location and not location == "each_location":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "location is not valid.")
-        
-        elif not location or not location == "each_location":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "location is not valid.") 
-
-        if hosting_agency and not hosting_agency == "each_hostingagency":
-            results = Intervention.objects.filter(hosting_agency = hosting_agency)
-    
-        elif not hosting_agency and hosting_agency == "each_hostingagency":
-            results = Intervention.objects.all()
-
-        elif not hosting_agency and not hosting_agency == "each_hostingagency":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "hosting agency is not valid.")
-        
-        elif not hosting_agency or not hosting_agency == "each_hostingagency":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "hosting agency is not valid.") 
-
-        if not from_date and not to_date and not location and not hosting_agency:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information filter is empty within COTSEye.")
-        
-        elif not from_date or not to_date or not location or not hosting_agency:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information filter is incomplete within COTSEye.")
-        
-        if results is None:
-            username = request.user.username
-
-            messages.info(request, username + ", " + "kindly filter interventions within COTSEye to generate for reports today.")
-
-        elif results is not None:
-            try:
-                interventions_count = results.count()
-
-                interventions_label = "Interventions" + " Count"
-            
-            except:
-                interventions_count = ""
-
-                interventions_label = ""
-
-            try:
-                locations_count = results.count()
-
-                locations_label = "Locations" + " Count"
-            
-            except:
-                locations_count = ""
-
-                locations_label = ""
-            
-            try:
-                caughtamount_distribution = [str(caught_amount.caught_amount) for caught_amount in results]
-
-                caughtamount_tally = Counter(caughtamount_distribution)
-
-                caughtamount_frequency = caughtamount_tally.most_common(1)[0][0]
-
-            except:
-                caughtamount_frequency = ""
-            
-            try:
-                caughtamount_firstfrequency = caughtamount_tally.most_common(1)[0][1]
-
-                caughtamount_firstlabel = caughtamount_tally.most_common(1)[0][0] + " / Sqauare Meter Mode"
-
-            except:
-                caughtamount_firstfrequency = ""
-            
-                caughtamount_firstlabel = ""
-            
-            try:
-                caughtamount_secondfrequency = caughtamount_tally.most_common(2)[1][1]
-
-                caughtamount_secondlabel = caughtamount_tally.most_common(2)[1][0] + " / Sqauare Meter Mode"
-            
-            except:
-                caughtamount_secondfrequency = ""
-            
-                caughtamount_secondlabel = ""
-            
-            try:
-                caughtamount_thirdfrequency = caughtamount_tally.most_common(3)[2][1] 
-
-                caughtamount_thirdlabel = caughtamount_tally.most_common(3)[2][0] + " / Sqauare Meter Mode"
-            
-            except:
-                caughtamount_thirdfrequency = ""
-            
-                caughtamount_thirdlabel = ""
-            
-            try:
-                hostingagency_distribution = [str(hosting_agency.hosting_agency) for hosting_agency in results]
-
-                hostingagency_tally = Counter(hostingagency_distribution)
-
-                hostingagency_frequency = hostingagency_tally.most_common(1)[0][0]
-
-            except:
-                hostingagency_frequency = ""
-            
-            try:
-                hostingagency_firstfrequency = hostingagency_tally.most_common(1)[0][1]
-
-                hostingagency_firstlabel = hostingagency_tally.most_common(1)[0][0] + " Mode"
-
-            except:
-                hostingagency_firstfrequency = ""
-            
-                hostingagency_firstlabel = ""
-            
-            try:
-                hostingagency_secondfrequency = hostingagency_tally.most_common(2)[1][1]
-
-                hostingagency_secondlabel = hostingagency_tally.most_common(2)[1][0] + " Mode"
-            
-            except:
-                hostingagency_secondfrequency = ""
-            
-                hostingagency_secondlabel = ""
-            
-            try:
-                hostingagency_thirdfrequency = hostingagency_tally.most_common(3)[2][1] 
-
-                hostingagency_thirdlabel = hostingagency_tally.most_common(3)[2][0] + " Mode"
-            
-            except:
-                hostingagency_thirdfrequency = ""
-            
-                hostingagency_thirdlabel = ""
-                    
-        elif not results:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information input is impossible within COTSEye.")
-
-
-    context = {"username": username, "options": options, "records": records, "results": results, "interventions_count": interventions_count, "interventions_label": interventions_label, "locations_count": locations_count, "locations_label": locations_label, "caughtamount_frequency": caughtamount_frequency, "caughtamount_firstfrequency": caughtamount_firstfrequency, "caughtamount_firstlabel": caughtamount_firstlabel, "caughtamount_secondfrequency": caughtamount_secondfrequency, "caughtamount_secondlabel": caughtamount_secondlabel, "caughtamount_thirdfrequency": caughtamount_thirdfrequency, "caughtamount_thirdlabel": caughtamount_thirdlabel, "hostingagency_frequency": hostingagency_frequency, "hostingagency_firstfrequency": hostingagency_firstfrequency, "hostingagency_firstlabel": hostingagency_firstlabel, "hostingagency_secondfrequency": hostingagency_secondfrequency, "hostingagency_secondlabel": hostingagency_secondlabel, "hostingagency_thirdfrequency": hostingagency_thirdfrequency, "hostingagency_thirdlabel": hostingagency_thirdlabel}
-
-    return render(request, "admin/control/intervention/intervention.html", context)
-
-
-@login_required(login_url = "admin:Administrator Control Login")
-@user_passes_test(AdministratorCheck, login_url = "admin:Administrator Control Login")
-def AdministratorControlStatisticsStatus(request):
-    username = request.user.username
-
-    options = Status.objects.all()
-
-    records = Status.objects.all()
-
-    results = None
-
-    try:
-        statuses_count = records.count()
-
-        statuses_label = "Statuses" + " Count"
-    
-    except:
-        statuses_count = ""
-
-        statuses_label = ""
-    
-    try:
-        caughtoverall_count = sum(caught_overall.caught_overall for caught_overall in records)
-
-        caughtoverall_label = "Caught Overall" + " Count"
-    
-    except:
-        caughtoverall_count = ""
-
-        caughtoverall_label = ""
-    
-    try:
-        location_distribution = [str(location.location) for location in records]
-
-        location_tally = Counter(location_distribution)
-
-        location_frequency = location_tally.most_common(1)[0][0]
-
-    except:
-        location_frequency = ""
-
-    try:
-        location_firstfrequency = location_tally.most_common(1)[0][1]
-
-        location_firstlabel = location_tally.most_common(1)[0][0] + " Frequency"
-
-    except:
-        location_firstfrequency = ""
-    
-        location_firstlabel = ""
-
-    try:
-        location_secondfrequency = location_tally.most_common(2)[1][1]
-
-        location_secondlabel = location_tally.most_common(2)[1][0] + " Frequency"
-    
-    except:
-        location_secondfrequency = ""
-    
-        location_secondlabel = ""
-
-    try:
-        location_thirdfrequency = location_tally.most_common(3)[2][1] 
-
-        location_thirdlabel = location_tally.most_common(3)[2][0] + " Frequency"
-    
-    except:
-        location_thirdfrequency = ""
-    
-        location_thirdlabel = ""
-    
-    try:
-        statustype_distribution = [str(statustype.statustype) for statustype in records]
-
-        statustype_tally = Counter(statustype_distribution)
-
-        statustype_frequency = statustype_tally.most_common(1)[0][0]
-
-    except:
-        statustype_frequency = ""
-
-    try:
-        statustype_firstfrequency = statustype_tally.most_common(1)[0][1]
-
-        statustype_firstlabel = statustype_tally.most_common(1)[0][0] + " Frequency"
-
-    except:
-        statustype_firstfrequency = ""
-    
-        statustype_firstlabel = ""
-
-    try:
-        statustype_secondfrequency = statustype_tally.most_common(2)[1][1]
-
-        statustype_secondlabel = statustype_tally.most_common(2)[1][0] + " Frequency"
-    
-    except:
-        statustype_secondfrequency = ""
-    
-        statustype_secondlabel = ""
-
-    try:
-        statustype_thirdfrequency = statustype_tally.most_common(3)[2][1] 
-
-        statustype_thirdlabel = statustype_tally.most_common(3)[2][0] + " Frequency"
-    
-    except:
-        statustype_thirdfrequency = ""
-    
-        statustype_thirdlabel = ""
-
-    if request.method == "GET":
-        from_date = request.GET.get("from_date")
-
-        from_date = datetime.datetime.strptime(from_date, "%Y-%m-%d") if from_date else None
-        
-        to_date = request.GET.get("to_date")
-
-        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
-
-        location = request.GET.get("location")
-
-        statustype = request.GET.get("statustype")
-
-        if from_date and to_date:
-            results = Status.objects.filter(onset_date__range = [from_date, to_date])
-
-        elif from_date and to_date and to_date < from_date:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "date range is not valid.")
-
-        elif not from_date and not to_date:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "date range is not valid.")
-        
-        elif not from_date or not to_date:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "date range is not valid.")
-
-        if location and not location == "each_location":
-            results = Status.objects.filter(location = location)
-
-        elif not location and location == "each_location":
-            results = Status.objects.filter(location = location)
-        
-        elif not location and not location == "each_location":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "location is not valid.")
-        
-        elif not location or not location == "each_location":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "location is not valid.")
-        
-        if statustype and not statustype == "each_statustype":
-            results = Status.objects.filter(statustype = statustype)
-        
-        elif not statustype and statustype == "each_statustype":
-            results = Status.objects.all()
-        
-        elif not statustype and not statustype == "each_statustype":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "location is not valid.")
-        
-        elif not statustype or not statustype == "each_statustype":
-            username = request.user.username
-
-            messages.error(request, username + ", " + "location is not valid.")
-
-        if not from_date and not to_date and not location and not statustype:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information filter is empty within COTSEye.")
-        
-        elif not from_date or not to_date or not location or not statustype:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information filter is incomplete within COTSEye.")
-        
-        if results is None:
-            username = request.user.username
-
-            messages.info(request, username + ", " + "kindly filter statuses within COTSEye to generate for reports today.")
-
-        elif results is not None:
-            try:
-                statuses_count = results.count()
-
-                statuses_label = "Statuses" + " Count"
-            
-            except:
-                statuses_count = ""
-
-                statuses_label = ""
-            
-            try:
-                caughtoverall_count = sum(caught_overall.caught_overall for caught_overall in results)
-
-                caughtoverall_label = "Caught Overall" + " Count"
-            
-            except:
-                caughtoverall_count = ""
-
-                caughtoverall_label = ""
-            
-            try:
-                location_distribution = [str(location.location) for location in results]
-
-                location_tally = Counter(location_distribution)
-
-                location_frequency = location_tally.most_common(1)[0][0]
-
-            except:
-                location_frequency = ""
-
-            try:
-                location_firstfrequency = location_tally.most_common(1)[0][1]
-
-                location_firstlabel = location_tally.most_common(1)[0][0] + " Frequency"
-
-            except:
-                location_firstfrequency = ""
-            
-                location_firstlabel = ""
-
-            try:
-                location_secondfrequency = location_tally.most_common(2)[1][1]
-
-                location_secondlabel = location_tally.most_common(2)[1][0] + " Frequency"
-            
-            except:
-                location_secondfrequency = ""
-            
-                location_secondlabel = ""
-
-            try:
-                location_thirdfrequency = location_tally.most_common(3)[2][1] 
-
-                location_thirdlabel = location_tally.most_common(3)[2][0] + " Frequency"
-            
-            except:
-                location_thirdfrequency = ""
-            
-                location_thirdlabel = ""
-            
-            try:
-                statustype_distribution = [str(statustype.statustype) for statustype in results]
-
-                statustype_tally = Counter(statustype_distribution)
-
-                statustype_frequency = statustype_tally.most_common(1)[0][0]
-
-            except:
-                statustype_frequency = ""
-
-            try:
-                statustype_firstfrequency = statustype_tally.most_common(1)[0][1]
-
-                statustype_firstlabel = statustype_tally.most_common(1)[0][0] + " Frequency"
-
-            except:
-                statustype_firstfrequency = ""
-            
-                statustype_firstlabel = ""
-
-            try:
-                statustype_secondfrequency = statustype_tally.most_common(2)[1][1]
-
-                statustype_secondlabel = statustype_tally.most_common(2)[1][0] + " Frequency"
-            
-            except:
-                statustype_secondfrequency = ""
-            
-                statustype_secondlabel = ""
-
-            try:
-                statustype_thirdfrequency = statustype_tally.most_common(3)[2][1] 
-
-                statustype_thirdlabel = statustype_tally.most_common(3)[2][0] + " Frequency"
-            
-            except:
-                statustype_thirdfrequency = ""
-            
-                statustype_thirdlabel = ""
-    
-        elif not results:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information input is impossible within COTSEye.")
-    
-
-    context = {"username": username, "options": options, "records": records, "results": results, "statuses_count": statuses_count, "statuses_label": statuses_label, "caughtoverall_count": caughtoverall_count, "caughtoverall_label": caughtoverall_label, "location_frequency": location_frequency, "location_firstfrequency": location_firstfrequency, "location_firstlabel": location_firstlabel, "location_secondfrequency": location_secondfrequency, "location_secondlabel": location_secondlabel, "location_thirdfrequency": location_thirdfrequency, "location_thirdlabel": location_thirdlabel, "statustype_frequency": statustype_frequency, "statustype_firstfrequency": statustype_firstfrequency, "statustype_firstlabel": statustype_firstlabel, "statustype_secondfrequency": statustype_secondfrequency, "statustype_secondlabel": statustype_secondlabel, "statustype_thirdfrequency": statustype_thirdfrequency, "statustype_thirdlabel": statustype_thirdlabel}
-
-    return render(request, "admin/control/status/status.html", context)
-
-def ControlStatisticsStatusReadRedirect(request, object_id):
-    object = Status.objects.get(id = object_id)
-    
-    if request.user.is_authenticated:
-        usertype = request.user.usertype_id
-
-        if usertype == 2:
-            return redirect(reverse("officer:managements_status_change", kwargs = {"object_id": object.id}))
-
-        elif usertype == 1:
-            return redirect(reverse("admin:managements_status_change", kwargs = {"object_id": object.id}))
-    
-    else:
-        return redirect(reverse("officer:managements_status_change", kwargs = {"object_id": object.id}))
-    
-
-def ControlStatisticsInterventionReadRedirect(request, object_id):
-    usertype = request.user.usertype_id
-
-    object = Intervention.objects.get(id = object_id)
-
-    if request.user.is_authenticated:
-        if usertype == 2:
-            return redirect(reverse("officer:managements_intervention_change", kwargs = {"object_id": object.id}))
-
-        elif usertype == 1:
-            return redirect(reverse("admin:managements_intervention_change", kwargs = {"object_id": object.id}))
-    
-    else:
-        return redirect(reverse("officer:managements_status_change", kwargs = {"object_id": object.id}))
+    return render(request, "officer/control/report/report.html", context)

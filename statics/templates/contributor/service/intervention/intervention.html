@@ -2,175 +2,150 @@
 {% load static %}
 
 {% block content %}
-    <form action = "" class = "intervention-form" method = "GET">
-        {% csrf_token %}
+    <div class = "intervention-body">
+        <!-- <div class = "intervention-section">
+            <h1>ACTIVITIES</h1>
+        </div> -->
 
-        <div class = "intervention" id = "intervention-filter">
-            <div class = "card-header">
-                <header>Filter interventions</header>
-            </div>
+        <div class = "intervention-filter">
+            <button onclick = "showDropdownOptions()" class = "filter-button">
+                <span><i class = "fa-solid fa-sliders"></i></span>
+            </button>
 
-            <div class = "card-body">
-                <div class = "field">
-                    <div class = "column">
-                        <label for = "from-date">From</label> 
-                            
-                        <div class = "from-date">
-                            <input type = "date" value = "" id = "from-date" name = "from_date" required>                            
-                        </div>
+            <div class = "options" id = "options" class = "hidden">
+                <form class = "intervention-form" method = "GET">
+                    <h1>Location</h1>
 
-                        <label for = "location">Location</label> 
+                    <select id = "municipality" class = "select2" name = "municipality" onchange = "updateBarangayOptions()">
+                        <option value="">Select Municipality</option>
+    
+                        {% for location in municipalities %}
+                            <option value = "{{location.municipality}}" {% if request.GET.municipality == location.municipality %} selected {% endif %}>{{location.municipality}}</option>
+                        {% endfor %}
+                    </select>
+    
+                    <select id = "barangay" class = "select2" name = "barangay">
+                        <option value = "">Select Barangay</option>
 
-                        <select name = "location" id = "location">
-                            <option disabled selected value>Choose location</option>
+                        {% for location in locations %}
+                            {% if location.municipality == request.GET.municipality %}
+                                <option value = "{{location.barangay}}" {% if request.GET.barangay == location.barangay %} selected {% endif %}>{{location.barangay}}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                    
+                    <h1>Date</h1>
 
-                            <option value = "each_location">Each location</option>
-
-                            {% for option in options %}
-                                <option value = "{{option.location.id}}">{{option.location}}</option>
-                            {% endfor %}
-                        </select>
+                    <div class = "from-date">
+                        <label for = "from-date">From:</label>
+                        
+                        <input type="date" id = "from-date" name = "from_date" value = "{{request.GET.from_date}}">
                     </div>
-
-                    <div class = "column">
-                        <label for = "to-date">To</label> 
-
-                        <div class = "to-date">
-                            <input type = "date" value = "" id = "to-date" name = "to_date" required>                            
-                        </div>  
-
-                        <label for = "hosting-agency">Hosting Agency</label> 
-
-                        <select name = "hosting_agency" id = "hosting-agency">
-                            <option disabled selected value>Choose hosting agency</option>
-
-                            <option value = "each_hostingagency">Each hosting agency</option>
-
-                            {% for option in options %}
-                                <option value = "{{option.hosting_agency.id}}">{{option.hosting_agency}}</option>
-                            {% endfor %}
-                        </select>
+                    
+                    <div class = "to-date">
+                        <label for = "to-date">To:</label>
+    
+                        <input type = "date" id = "to-date" name = "to_date" value = "{{request.GET.to_date}}">
                     </div>
-                </div>
+    
+                    <div class = "button">
+                        <a class = "filter-intervention intervention-form" onclick = "filterIntervention()">Filter</a>
 
-                <div class = "button">
-                    <a class = "filter-interventions" type = "submit">Filter</a>
-                </div>    
+                        <a class = "reset-intervention intervention-form" onclick = "resetIntervention()">Reset</a>
+                    </div>
+                </form>
             </div>
         </div>
-    </form>
+    
+        {% for intervention in interventions %}
+            <div class = "intervention">
+                <div class = "intervention-header">
+                    <div class = "header-context">
+                        <i class = "fas fa-user"></i>
 
-    {% if messages %}
-        {% for message in messages %}
-            {% if message.tags == "info" %}<script>Swal.fire({title: "Hey!", text: "{{message}}", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}})</script>
-            
-            {% elif message.tags == "success" %}<script>Swal.fire({title: "Yay!", text: "{{message}}", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}})</script>
-            
-            {% else %}<script>Swal.fire({title: "Oops!", text: "{{message}}", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}})</script>
-            
-            {% endif %}    
+                        <div class = "context-caption">
+                            <p>{{intervention.hosting_agency | default:'None available'}}</p>                    
+
+                            <p>{{intervention.location | default:'None available'}}</p>                    
+                        </div>
+                    </div>
+
+                    <p>{{intervention.intervention_date | date:'m/d/Y' | default:'None available'}}</p>
+
+                    <!-- <p>{{intervention.volunteer_amount | default:'0'}}</p> -->
+                </div>
+
+                <h1>{{intervention.title | default:'None available'}}</h1>
+                
+                <a href = "{% url 'Contributor Service Intervention Read' intervention.id %}">
+                    <img class = "intervention-image" src = "{{intervention.intervention_photo.url | default:'None available'}}">
+                </a>
+
+                <!-- <div class = "intervention-context">
+                    <div class = "button">
+                        <a href = "{% url 'Contributor Service Intervention Read' intervention.id %}">VIEW</a>
+                    </div>
+                </div> -->
+            </div>
         {% endfor %}
-    {% endif %}
+    </div>
 
     <script>
-        document.querySelector(".filter-interventions").onclick = function() {
+        function showDropdownOptions(){
+            document.querySelector(".options").classList.toggle("hidden");
+        }
+    </script>
+
+    <script>
+        function updateBarangayOptions(){
+            var municipality = document.getElementById("municipality").value;
+
+            var barangay = document.getElementById("barangay");
+
+            barangay.innerHTML = "<option value = ''>Select Barangay</option>";
+
+            const locations = [
+                {% for location in locations %}
+                    { id: "{{location.id}}", barangay: "{{location.barangay}}", municipality: "{{location.municipality}}"},
+                {% endfor %}
+            ];
+
+            locations.forEach(function(location){
+                if (location.municipality === municipality){
+                    var option = document.createElement("option");
+
+                    option.value = location.barangay;
+                    
+                    option.text = location.barangay;
+                    
+                    barangay.add(option);
+                }
+            });
+
+            if (municipality){
+                barangay.style.display = "block";
+
+            } else {
+                barangay.style.display = "none";
+            }
+        };
+    </script>
+
+    <script>
+        function filterIntervention(){
             document.querySelector(".intervention-form").submit();
         }
     </script>
 
-    {% if results %}
-        <div class = "line" id = "results"></div>
-
-        {% for intervention in results %}
-            <div class = "intervention">
-                <div class = "card-header" onclick = "toggleBody(this)">
-                    <header>{{intervention.title | default:'None available'}}</header>
-                </div>
-
-                <div class = "card-body">
-                    <div class = "field">
-                        <div class = "column">
-                            <label for = "intervention-date">Intervention Date</label> 
-                                
-                            <div class = "intervention-date">
-                                <input type = "text" value = "{{intervention.intervention_date | date:'M. j, Y' | default:'None available'}}" id = "intervention-date" name = "intervention_date" readonly>
-                                    
-                                <i class = "fa-solid fa-calendar-check"></i>
-                            </div>
-                        </div>
-
-                        <div class = "column">
-                            <label for = "location">Location</label> 
-
-                            <div class = "location">
-                                <input type = "text" value = "{{intervention.location | default:'None available'}}" id = "location" name = "location" readonly>
-
-                                <i class = "fa-solid fa-location-dot"></i>      
-                            </div>  
-                        </div>
-                    </div>
-
-                    <div class = "button">
-                        <a class = "read-intervention" href = "{% url 'Contributor Service Intervention Read' intervention.id %}">Read</a>
-                    </div>    
-                </div>
-            </div>
-        {% endfor %}
-
-    {% else %}
-        <div class = "line" id = "records"></div>
-
-        {% for intervention in records %}
-            <div class = "intervention">
-                <div class = "card-header" onclick = "toggleBody(this)">
-                    <header>{{intervention.title | default:'None available'}}</header>
-                </div>
-
-                <div class = "card-body">
-                    <div class = "field">
-                        <div class = "column">
-                            <label for = "intervention-date">Intervention Date</label> 
-                                
-                            <div class = "intervention-date">
-                                <input type = "text" value = "{{intervention.intervention_date | date:'M. j, Y' | default:'None available'}}" id = "intervention-date" name = "intervention_date" readonly>
-                                    
-                                <i class = "fa-solid fa-calendar-check"></i>
-                            </div>
-                        </div>
-
-                        <div class = "column">
-                            <label for = "location">Location</label> 
-
-                            <div class = "location">
-                                <input type = "text" value = "{{intervention.location | default:'None available'}}" id = "location" name = "location" readonly>
-
-                                <i class = "fa-solid fa-location-dot"></i>      
-                            </div>  
-                        </div>
-                    </div>
-
-                    <div class = "button">
-                        <a class = "read-intervention" href = "{% url 'Contributor Service Intervention Read' intervention.id %}">Read</a>
-                    </div>    
-                </div>
-            </div>
-        {% endfor %}
-    {% endif %}
-
     <script>
-        function toggleBody(element){
-            var body = element.nextElementSibling;
-            
-            if(body.style.display === "none" || body.style.display === ""){
-                body.style.borderBottomLeftRadius = "5px";
+        function resetIntervention(){
+            document.getElementById("municipality").value = "";
 
-                body.style.borderBottomTopRadius = "5px";
-                
-                body.style.display = "grid";
+            document.getElementById("barangay").value = "";
             
-            } else{
-                body.style.display = "none";
-            };
-        };
+            document.getElementById("from-date").value = "";
+            
+            document.getElementById("to-date").value = "";            
+        }
     </script>
 {% endblock content %}

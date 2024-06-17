@@ -1,60 +1,55 @@
-from django.contrib import messages
+from datetime import timedelta
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import FileResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.utils import timezone
 from django.utils.encoding import smart_str
 from auxiliaries.models import *
-from authentications.views import ContributorCheck
+from authentications.views import OfficerCheck, ContributorCheck
 from managements.models import Status
 from reports.models import Post
+from auxiliaries.forms import AnnouncementForm
+from django.http import JsonResponse
 
+
+import datetime
+import json
 
 # Create your views here.
 def PublicServiceAnnouncement(request):
     username = "public/everyone"
 
-    records = Announcement.objects.all()
+    locations = Location.objects.all()
 
-    results = None
+    municipalities = Location.objects.values("municipality").distinct()
 
-    if request.method == "GET":
-        from_date = request.GET.get("from_date")
+    municipality = request.GET.get("municipality")
 
-        from_date = datetime.datetime.strptime(from_date, "%Y-%m-%d") if from_date else None
-        
-        to_date = request.GET.get("to_date")
+    barangay = request.GET.get("barangay")
 
-        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
+    from_date = request.GET.get("from_date")
 
-        if from_date and to_date:
-            results = Announcement.objects.filter(release_date__range = [from_date, to_date])
-        
-        elif not from_date or not to_date:
-            username = "public/everyone"
+    to_date = request.GET.get("to_date")
 
-            messages.error(request, username + ", " + "date range is not valid.") 
-        
-        elif from_date and to_date and to_date < from_date:
-            username = "public/everyone"
+    announcements = Announcement.objects.all().order_by("-release_date")
 
-            messages.error(request, username + ", " + "date range is not valid.")
+    if municipality:
+        announcements = announcements.filter(location__municipality = municipality)
 
-        elif not from_date and not to_date:
-            username = "public/everyone"
+    if barangay:
+        announcements = announcements.filter(location__barangay = barangay)
 
-            messages.error(request, username + ", " + "information filter is empty within COTSEye.")
+    if from_date:
+        from_date = datetime.datetime.strptime(from_date, '%Y-%m-%d')
 
-        if results is None:
-            username = "public/everyone"
+        announcements = announcements.filter(release_date__gte = from_date)
+    
+    if to_date:
+        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d")
 
-            messages.info(request, username + ", " + "kindly filter announcements within COTSEye to check for updates today.")
+        announcements = announcements.filter(release_date__lte = to_date)
 
-        elif not results:
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "information input is impossible within COTSEye.")
-
-    context = {"username": username, "records": records, "results": results}
+    context = {"username": username, "locations": locations, "municipalities": municipalities, "announcements": announcements}
 
     return render(request, "public/service/announcement/announcement.html", context)
 
@@ -66,8 +61,7 @@ def PublicServiceAnnouncementRead(request, id):
 
     host = request.META["HTTP_HOST"]
 
-
-    announcement = Announcement.objects.filter(id = id)
+    announcement = Announcement.objects.get(id = id)
 
     context = {"username": username, "scheme": scheme, "host": host, "announcement": announcement}
 
@@ -77,32 +71,9 @@ def PublicServiceAnnouncementRead(request, id):
 def PublicServiceInquiry(request):
     username = "public/everyone"
 
-    records = Inquiry.objects.all()
+    inquiries = Inquiry.objects.all()
 
-    results = None
-
-    if request.method == "GET":
-        keyword = request.GET.get("keyword")
-
-        if keyword:
-            results = Inquiry.objects.filter(question__icontains = keyword)
-
-        elif not keyword:
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "keyword is not valid.")
-
-        if results is None:
-            username = "public/everyone"
-
-            messages.info(request, username + ", " + "kindly search inquiries within COTSEye to read for guide today.")
-
-        elif not results:
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "information input is impossible within COTSEye.")
-
-    context = {"username": username, "records": records, "results": results}
+    context = {"username": username, "inquiries": inquiries}
 
     return render(request, "public/service/inquiry/inquiry.html", context)
 
@@ -111,16 +82,16 @@ def PublicServiceMap(request):
     username = "public/everyone"
 
     try:
-        posts = Post.objects.filter(post_status = 1)
+        map_posts = Post.objects.filter(post_status = 1)
 
-        statuses = Status.objects.all()
+        map_statuses = Status.objects.all()
 
     except:
-        posts = None
+        map_posts = None
 
-        statuses = None
+        map_statuses = None
 
-    context = {"username": username, "posts": posts, "statuses": statuses}
+    context = {"username": username, "map_posts": map_posts, "map_statuses": map_statuses}
     
     return render(request, "public/service/map/map.html", context)
 
@@ -128,127 +99,13 @@ def PublicServiceMap(request):
 def PublicServiceResource(request):
     username = "public/everyone"
 
-    resource_links = ResourceLink.objects.all()
+    resource_links = Link.objects.all()
 
-    try:
-        links_date = ResourceLink.objects.all().latest("resource__release_date")
-
-        links_date = links_date.resource.release_date
-
-    except:
-        links_date = ""
-
-    resource_files = ResourceFile.objects.all()
-
-    try:
-        files_date = ResourceFile.objects.all().latest("resource__release_date")
-
-        files_date = files_date.resource.release_date
-        
-    except:
-        files_date = ""
+    resource_files = File.objects.all()
     
-    context = {"username": username, "resource_links": resource_links, "links_date": links_date, "resource_files": resource_files, "files_date": files_date}
+    context = {"username": username, "resource_links": resource_links, "resource_files": resource_files}
     
     return render(request, "public/service/resource/resource.html", context)
-
-
-def PublicServiceResourceLink(request):
-    username = "public/everyone"
-
-    records = ResourceLink.objects.all()
-
-    results = None
-
-    if request.method == "GET":
-        from_date = request.GET.get("from_date")
-
-        from_date = datetime.datetime.strptime(from_date, "%Y-%m-%d") if from_date else None
-        
-        to_date = request.GET.get("to_date")
-
-        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
-
-        if from_date and to_date:
-            results = ResourceLink.objects.filter(resource__release_date__range = [from_date, to_date])
-        
-        elif not from_date or not to_date:
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "date range is not valid.") 
-        
-        elif from_date and to_date and to_date < from_date:
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "date range is not valid.")
-
-        elif not from_date and not to_date:
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "information filter is empty within COTSEye.")
-
-        if results is None:
-            username = "public/everyone"
-
-            messages.info(request, username + ", " + "kindly filter resources within COTSEye to read for knowledge today.")
-
-        elif not results:
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "information input is impossible within COTSEye.")
-
-    context = {"username": username, "records": records, "results": results}
-    
-    return render(request, "public/service/resource/link.html", context)
-
-
-def PublicServiceResourceFile(request):
-    username = "public/everyone"
-
-    records = ResourceFile.objects.all()
-
-    if request.method == "GET":
-        from_date = request.GET.get("from_date")
-
-        from_date = datetime.datetime.strptime(from_date, "%Y-%m-%d") if from_date else None
-        
-        to_date = request.GET.get("to_date")
-
-        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
-
-        results = None
-
-        if from_date and to_date:
-            results = ResourceFile.objects.filter(resource__release_date__range = [from_date, to_date])
-        
-        elif not from_date or not to_date:
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "date range is not valid.") 
-        
-        elif from_date and to_date and to_date < from_date:
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "date range is not valid.")
-
-        elif not from_date and not to_date:
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "information filter is empty within COTSEye.")
-
-        if results is None:
-            username = "public/everyone"
-
-            messages.info(request, username + ", " + "kindly filter resources within COTSEye to read for knowledge today.")
-
-        elif not results:
-            username = "public/everyone"
-
-            messages.error(request, username + ", " + "information input is impossible within COTSEye.")
-
-    context = {"username": username, "records": records, "results": results}
-    
-    return render(request, "public/service/resource/file.html", context)
 
 
 @login_required(login_url = "Contributor Service Login")
@@ -256,48 +113,41 @@ def PublicServiceResourceFile(request):
 def ContributorServiceAnnouncement(request):
     username = request.user.username
 
-    records = Announcement.objects.all()
+    user_profile = User.objects.get(account = request.user)
 
-    results = None
+    unread_notifications = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:3]
 
-    if request.method == "GET":
-        from_date = request.GET.get("from_date")
+    locations = Location.objects.all()
 
-        from_date = datetime.datetime.strptime(from_date, "%Y-%m-%d") if from_date else None
-        
-        to_date = request.GET.get("to_date")
+    municipalities = Location.objects.values("municipality").distinct()
 
-        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
+    municipality = request.GET.get("municipality")
 
-        if from_date and to_date:
-            results = Announcement.objects.filter(release_date__range = [from_date, to_date])
+    barangay = request.GET.get("barangay")
 
-        elif from_date and to_date and to_date < from_date:
-            username = request.user.username
+    from_date = request.GET.get("from_date")
 
-            messages.error(request, username + ", " + "date range is not valid.")
+    to_date = request.GET.get("to_date")
 
-        elif not from_date or not to_date:
-            username = request.user.username
+    announcements = Announcement.objects.all().order_by("-release_date")
 
-            messages.error(request, username + ", " + "date range is not valid.") 
+    if municipality:
+        announcements = announcements.filter(location__municipality = municipality)
 
-        elif not from_date and not to_date:
-            username = request.user.username
+    if barangay:
+        announcements = announcements.filter(location__barangay = barangay)
 
-            messages.error(request, username + ", " + "date range is not valid.")
-        
-        if results is None:
-            username = request.user.username
+    if from_date:
+        from_date = datetime.datetime.strptime(from_date, '%Y-%m-%d')
 
-            messages.info(request, username + ", " + "kindly filter announcements within COTSEye to check for updates today.")
+        announcements = announcements.filter(release_date__gte = from_date)
+    
+    if to_date:
+        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d")
 
-        elif not results:
-            username = request.user.username
+        announcements = announcements.filter(release_date__lte = to_date)
 
-            messages.error(request, username + ", " + "information input is impossible within COTSEye.")
-
-    context = {"username": username, "records": records, "results": results}
+    context = {"username": username, "user_profile": user_profile, "unread_notifications": unread_notifications, "locations": locations, "municipalities": municipalities, "announcements": announcements}
 
     return render(request, "contributor/service/announcement/announcement.html", context)
 
@@ -307,13 +157,17 @@ def ContributorServiceAnnouncement(request):
 def ContributorServiceAnnouncementRead(request, id): 
     username = request.user.username
 
+    user_profile = User.objects.get(account = request.user)
+
+    unread_notifications = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:3]
+
     scheme = request.scheme
 
     host = request.META["HTTP_HOST"]
 
-    announcement = Announcement.objects.filter(id = id)
+    announcement = Announcement.objects.get(id = id)
 
-    context = {"username": username, "scheme": scheme, "host": host, "announcement": announcement}
+    context = {"username": username, "user_profile": user_profile, "unread_notifications": unread_notifications, "scheme": scheme, "host": host, "announcement": announcement}
 
     return render(request, "contributor/service/announcement/read.html", context)
 
@@ -323,32 +177,13 @@ def ContributorServiceAnnouncementRead(request, id):
 def ContributorServiceInquiry(request):
     username = request.user.username
 
-    records = Inquiry.objects.all()
+    user_profile = User.objects.get(account = request.user)
 
-    results = None
+    unread_notifications = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:3]
 
-    if request.method == "GET":
-        keyword = request.GET.get("keyword")
+    inquiries = Inquiry.objects.all()
 
-        if keyword:
-            results = Inquiry.objects.filter(question__icontains = keyword)
-
-        elif not keyword:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "keyword is not valid.")
-
-        if results is None:
-            username = request.user.username
-
-            messages.info(request, username + ", " + "kindly search inquiries within COTSEye to read for guide today.")
-
-        elif not results:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information input is impossible within COTSEye.")
-
-    context = {"username": username, "records": records, "results": results}
+    context = {"username": username, "user_profile": user_profile, "unread_notifications": unread_notifications, "inquiries": inquiries}
 
     return render(request, "contributor/service/inquiry/inquiry.html", context)
 
@@ -358,154 +193,212 @@ def ContributorServiceInquiry(request):
 def ContributorServiceMap(request):
     username = request.user.username
 
-    try:
-        posts = Post.objects.filter(post_status = 1)
+    user_profile = User.objects.get(account = request.user)
 
-        statuses = Status.objects.all()
+    unread_notifications = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:3]
+
+    try:
+        map_posts = Post.objects.filter(post_status = 1)
+
+        map_statuses = Status.objects.all()
 
     except:
-        posts = None
+        map_posts = None
 
-        statuses = None
+        map_statuses = None
 
-    context = {"posts": posts, "statuses": statuses, "username": username}
+    context = {"username": username, "user_profile": user_profile, "unread_notifications": unread_notifications, "map_posts": map_posts, "map_statuses": map_statuses}
 
     return render(request, "contributor/service/map/map.html", context)
 
-
+@login_required(login_url = "Contributor Service Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
 def ContributorServiceResource(request):
     username = request.user.username
 
-    resource_links = ResourceLink.objects.all()
+    user_profile = User.objects.get(account = request.user)
 
-    try:
-        links_date = ResourceLink.objects.latest("resource__release_date")
-        
-    except:
-        links_date = ""
+    unread_notifications = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:3]
 
-    resource_files = ResourceFile.objects.all()
+    resource_links = Link.objects.all()
 
-    try:
-        files_date = ResourceFile.objects.latest("resource__release_date")
-        
-    except:
-        files_date = ""
+    resource_files = File.objects.all()
     
-    context = {"username": username, "resource_links": resource_links, "links_date": links_date, "resource_files": resource_files, "files_date": files_date}
+    context = {"username": username, "user_profile": user_profile, "unread_notifications": unread_notifications, "resource_links": resource_links, "resource_files": resource_files}
     
     return render(request, "contributor/service/resource/resource.html", context)
 
 
-@login_required(login_url = "Contributor Service Login")
-@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
-def ContributorServiceResourceLink(request):
-    username = request.user.username
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
+def OfficerControlAnnouncement(request):
+    notification_life = timezone.now() - timedelta(days = 30) 
 
-    records = ResourceLink.objects.all()
+    unread_notifications = Post.objects.filter(read_status = False, creation_date__gte = notification_life).order_by("-creation_date")[:5]
 
-    results = None
+    announcements = Announcement.objects.all().order_by('-release_date')
 
-    if request.method == "GET":
-        from_date = request.GET.get("from_date")
+    municipalities = Location.objects.values('municipality').distinct()
 
-        from_date = datetime.datetime.strptime(from_date, "%Y-%m-%d") if from_date else None
-        
-        to_date = request.GET.get("to_date")
+    locations = Location.objects.all()
 
-        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
+    context = {"unread_notifications": unread_notifications, "announcements": announcements, 'municipalities': municipalities, "locations": locations}
 
-        if from_date and to_date:
-            results = ResourceLink.objects.filter(resource__release_date__range = [from_date, to_date])
-        
-        elif not from_date or not to_date:
-            username = request.user.username
+    return render(request, "officer/control/announcement/announcement.html", context)
 
-            messages.error(request, username + ", " + "date range is not valid.") 
-        
-        elif from_date and to_date and to_date < from_date:
-            username = request.user.username
 
-            messages.error(request, username + ", " + "date range is not valid.")
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
+def officer_control_announcement(request, pk):
+    notification_life = timezone.now() - timedelta(days = 30)
 
-        elif not from_date and not to_date:
-            username = request.user.username
+    unread_notifications = Post.objects.filter(read_status = False, creation_date__gte = notification_life).order_by("-creation_date")[:5]
 
-            messages.error(request, username + ", " + "information filter is empty within COTSEye.")
+    announcement = get_object_or_404(Announcement, pk = pk)
 
-        if results is None:
-            username = request.user.username
+    other_announcements = Announcement.objects.exclude(pk = pk)
 
-            messages.info(request, username + ", " + "kindly filter resources within COTSEye to read for knowledge today.")
+    announcements = Announcement.objects.all().order_by('-release_date')
 
-        elif not results:
-            username = request.user.username
+    municipalities = Location.objects.values('municipality').distinct()
 
-            messages.error(request, username + ", " + "information input is impossible within COTSEye.")
+    context = {"unread_notifications": unread_notifications, "announcement": announcement, "municipalities": municipalities, "other_announcements": other_announcements, "announcements": announcements}
 
-    context = {"username": username, "records": records, "results": results}
+    return render(request, "officer/control/announcement/specific_announcement.html", context)
+
+@login_required(login_url="Officer Control Login")
+@user_passes_test(OfficerCheck, login_url="Officer Control Login")
+def officercontroladdannouncement(request):
+    notification_life = timezone.now() - timedelta(days=30)
+
+    unread_notifications = Post.objects.filter(read_status=False, creation_date__gte=notification_life).order_by("-creation_date")[:5]
+
+    locations = Location.objects.all().distinct("municipality")
+    municipalities = Location.objects.values('municipality').distinct()
+
+    errors = None
+
+    field_labels = None
     
-    return render(request, "contributor/service/resource/link.html", context)
+    location_error = None
+
+    if request.method == "POST":
+        form = AnnouncementForm(request.POST, request.FILES, user = request.user.user)
+
+        if form.is_valid():
+            municipality = request.POST.get("municipality")
+
+            barangay = request.POST.get("barangay")
+
+            try:
+                location = Location.objects.get(municipality = municipality, barangay = barangay)
+
+                announcement = form.save(commit = False)
+
+                announcement.location = location
+
+                announcement.save()
+
+                return redirect("Officer Control Announcement")
+
+            except Location.DoesNotExist:
+                location_error = "The selected location does not exist."
+
+        errors = form.errors.as_json()
+
+        field_labels = {field.name: field.label for field in form}
+
+    else:
+        form = AnnouncementForm()
+
+    context = {"unread_notifications": unread_notifications, "form": form, "municipalities": municipalities, "locations": locations, "errors": errors, "field_labels": field_labels, "location_error": location_error}
+
+    return render(request, "officer/control/announcement/addannouncement.html", context)
 
 
-@login_required(login_url = "Contributor Service Login")
-@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
-def ContributorServiceResourceFile(request):
-    username = request.user.username
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
+def get_barangays(request):
+    municipality = request.GET.get("municipality")
 
-    records = ResourceFile.objects.all()
+    barangays = Location.objects.filter(municipality = municipality).values_list("barangay", flat = True).distinct()
 
-    results = None
+    return JsonResponse(list(barangays), safe = False)
 
-    if request.method == "GET":
-        from_date = request.GET.get("from_date")
 
-        from_date = datetime.datetime.strptime(from_date, "%Y-%m-%d") if from_date else None
-        
-        to_date = request.GET.get("to_date")
+@login_required(login_url="Officer Control Login")
+@user_passes_test(OfficerCheck, login_url="Officer Control Login")
+def officercontrolupdateannouncement(request, pk):
+    notification_life = timezone.now() - timedelta(days = 30)
 
-        to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d") if to_date else None
+    unread_notifications = Post.objects.filter(read_status = False, creation_date__gte = notification_life).order_by("-creation_date")[:5]
 
-        if from_date and to_date:
-            results = ResourceFile.objects.filter(resource__release_date__range = [from_date, to_date])
-        
-        elif not from_date or not to_date:
-            username = request.user.username
+    announcement = get_object_or_404(Announcement, pk = pk)
 
-            messages.error(request, username + ", " + "date range is not valid.") 
-        
-        elif from_date and to_date and to_date < from_date:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "date range is not valid.")
-
-        elif not from_date and not to_date:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information filter is empty within COTSEye.")
-
-        if results is None:
-            username = request.user.username
-
-            messages.info(request, username + ", " + "kindly filter resources within COTSEye to read for knowledge today.")
-
-        elif not results:
-            username = request.user.username
-
-            messages.error(request, username + ", " + "information input is impossible within COTSEye.")
-
-    context = {"username": username, "records": records, "results": results}
+    municipalities = Location.objects.values("municipality").distinct()
     
-    return render(request, "contributor/service/resource/file.html", context)
+    locations = Location.objects.all().distinct("municipality")
+
+    errors = None
+
+    field_labels = None
+    
+    location_error = None
+
+    if request.method == "POST":
+        form = AnnouncementForm(request.POST, request.FILES, instance = announcement)
+
+        if form.is_valid():
+            municipality = request.POST.get("municipality")
+
+            barangay = request.POST.get("barangay")
+
+            try:
+                location = Location.objects.get(municipality = municipality, barangay = barangay)
+
+                updated_announcement = form.save(commit = False)
+
+                updated_announcement.location = location
+
+                updated_announcement.save()
+
+                return redirect("Officer Control Announcement")
+
+            except Location.DoesNotExist:
+                location_error = "The selected location does not exist."
+
+        errors = form.errors.as_json()
+
+        field_labels = {field.name: field.label for field in form}
+
+    else:
+        form = AnnouncementForm(instance=announcement)
+
+    context = {"unread_notifications": unread_notifications, "form": form, "announcement": announcement, "municipalities": municipalities, "locations": locations, "errors": errors, "field_labels": field_labels, "location_error": location_error}
+
+    return render(request, "officer/control/announcement/updateannouncement.html", context)
 
 
-def ServiceResourceLinkReadRedirect(request, id):
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
+def officercontroldeleteannouncement(request, pk):
+    announcement = get_object_or_404(Announcement, pk = pk)
+
+    if request.method == "DELETE":
+        announcement.delete()
+
+        return JsonResponse({"success": True})
+    
+    return JsonResponse({"success": False})
+
+
+def ServiceLinkReadRedirect(request, id):
     if request.user.is_authenticated:
         usertype = request.user.usertype_id
 
         if usertype == 3:
             try:
-                resource_link = ResourceLink.objects.get(id = id).resource_link
+                resource_link = Link.objects.get(id = id).resource_link
             
             except:
                 resource_link = ""
@@ -514,7 +407,7 @@ def ServiceResourceLinkReadRedirect(request, id):
     
     else:
         try:
-            resource_link = ResourceLink.objects.get(id = id).resource_link
+            resource_link = Link.objects.get(id = id).resource_link
             
         except:
             resource_link = ""
@@ -522,13 +415,13 @@ def ServiceResourceLinkReadRedirect(request, id):
         return redirect(resource_link)
     
 
-def ServiceResourceFileReadRedirect(request, id):
+def ServiceFileReadRedirect(request, id):
     if request.user.is_authenticated:
         usertype = request.user.usertype_id
 
         if usertype == 3:
             try:
-                resource_file = ResourceFile.objects.get(id = id).resource_file
+                resource_file = File.objects.get(id = id).resource_file
             
             except:
                 resource_file = ""
@@ -539,7 +432,7 @@ def ServiceResourceFileReadRedirect(request, id):
         
     else:
         try:
-            resource_file = ResourceFile.objects.get(id = id).resource_file
+            resource_file = File.objects.get(id = id).resource_file
             
         except:
             resource_file = ""

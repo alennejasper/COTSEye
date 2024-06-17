@@ -1,0 +1,44 @@
+{% extends "officer/control/status/status.html" %}
+{% load static %}
+{% load custom_filters %}
+
+{% block status-content %}
+    <div class= "container-fluid mt-3">
+        <h2 style = "text-align: center; text-transform: uppercase;">Infestation status of {{barangay_name}}</h2>
+
+        <table class = "table table-hover">
+            <thead>
+                <tr>
+                    <th style = "font-size: 15px; color: rgb(28, 169, 234);" scope = "col">Date</th>
+                    
+                    <th style = "font-size: 15px; color: rgb(28, 169, 234);" scope ="col">Total No. of COTS Collected</th>
+                    
+                    <th style = "font-size: 15px; color: rgb(28, 169, 234);" scope = "col">Status</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                {% for status in all_statuses %}
+                    <tr>
+                        <td>{{status.onset_date | format_date_mmddyy}}</td>
+                        <td>{{status.caught_overall}}</td>
+                        
+                        <td class = "status-{{status.statustype}}">{{status.statustype}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            var rows = document.querySelectorAll("tr[data-href]");
+
+            rows.forEach(row => {
+                row.addEventListener("click", function(){
+                    window.location.href = this.dataset.href;
+                });
+            });
+        });
+    </script>
+{% endblock %}

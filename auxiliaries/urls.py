@@ -9,10 +9,6 @@ urlpatterns = [
 
     path("public/service/resource/", views.PublicServiceResource, name = "Public Service Resource"),
 
-    path("public/service/resource/link/", views.PublicServiceResourceLink, name = "Public Service Resource Link"),
-
-    path("public/service/resource/file/", views.PublicServiceResourceFile, name = "Public Service Resource File"),
-
     path("public/service/inquiry/", views.PublicServiceInquiry, name = "Public Service Inquiry"),
 
     path("public/service/map/", views.PublicServiceMap, name = "Public Service Map"),
@@ -23,15 +19,23 @@ urlpatterns = [
 
     path("contributor/service/resource/", views.ContributorServiceResource, name = "Contributor Service Resource"),
 
-    path("contributor/service/resource/link/", views.ContributorServiceResourceLink, name = "Contributor Service Resource Link"),
-
-    path("contributor/service/resource/file/", views.ContributorServiceResourceFile, name = "Contributor Service Resource File"),
-
     path("contributor/service/inquiry/", views.ContributorServiceInquiry, name = "Contributor Service Inquiry"),
 
     path("contributor/service/map/", views.ContributorServiceMap, name = "Contributor Service Map"),
 
-    path("service/resource/link/read/<int:id>/redirect/", views.ServiceResourceLinkReadRedirect, name = "Service Resource Link Read Redirect"),
+    path("officer/control/announcement", views.OfficerControlAnnouncement, name = "Officer Control Announcement"),
 
-    path("service/resource/file/read/<int:id>/redirect/", views.ServiceResourceFileReadRedirect, name = "Service Resource File Read Redirect")
+    path("officer/control/announcement/add", views.officercontroladdannouncement, name = "Officer Control Add Announcement"),
+
+    path("officer/control/announcement/update/<int:pk>", views.officercontrolupdateannouncement, name = "Officer Control Update Announcement"),
+
+    path("officer/control/announcement/delete/<int:pk>/", views.officercontroldeleteannouncement, name = "Officer Control Delete Announcement"),
+
+    path("officer/control/announcement/<int:pk>/", views.officer_control_announcement, name = "Officer Control Announcement"),
+
+    path("service/link/read/<int:id>/redirect/", views.ServiceLinkReadRedirect, name = "Service Link Read Redirect"),
+
+    path("service/file/read/<int:id>/redirect/", views.ServiceFileReadRedirect, name = "Service File Read Redirect"),
+    
+    path("get_barangays/", views.get_barangays, name = "get_barangays")
 ]

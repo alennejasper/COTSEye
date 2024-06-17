@@ -2,6 +2,7 @@ from django.conf import settings
 from django.utils.html import mark_safe
 from django.db import models
 from authentications.models import User
+from managements.models import Location
 
 import datetime
 
@@ -9,11 +10,13 @@ import datetime
 # Create your models here.
 class Announcement(models.Model):
     user = models.ForeignKey(User, on_delete = models.CASCADE, help_text = "Designates the foreign key of the User model.", verbose_name = "User")
+    hosting_agency = models.CharField(null=True, blank=True, max_length = 150, help_text = "Designates the name of the hosting agency.", verbose_name = "Hosting Agency")
     title = models.CharField(max_length = 150, help_text = "Designates the title of the announcement.", verbose_name = "Title")
     context = models.TextField(max_length = 5000, help_text = "Designates the context of the announcement.", verbose_name = "Context")
-    place = models.CharField(max_length = 150, help_text = "Designates the place of the announcement.", verbose_name = "Place")
+    location = models.ForeignKey(Location, null = True, blank = True, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Location model.", verbose_name = "Location")
     release_date = models.DateTimeField(default = datetime.datetime.now, help_text = "Designates the release date and time of the announcement.", verbose_name = "Release Date")
     announcement_photo = models.ImageField(default = "announcements/default.png", null = True, upload_to = "announcements", help_text = "Designates the photo of the announcement.", verbose_name = "Announcement Photo")
+    creation_date = models.DateTimeField(default = datetime.datetime.now, help_text = "Designates the creation date and time of the announcement.", verbose_name = "Creation Date")
 
     class Meta:
         db_table = "auxiliaries_announcement"
@@ -26,47 +29,29 @@ class Announcement(models.Model):
     
     gallery_photo.short_description = "Gallery Photo"
     
+    def get_photo_url(self):
+        if self.announcement_photo and hasattr(self.announcement_photo, 'url'):
+            return self.announcement_photo.url
+        else:
+            return settings.MEDIA_URL + "announcements/default.png"
+        
     def __str__(self):
-        return str(self.title) + " | " + str(self.user)
+        return str(self.title) + " | " + str(self.user) + str(self.announcement_photo.url)
 
-
-class Resource(models.Model):
-    author = models.CharField(max_length = 150, help_text = "Designates the name of the author.", verbose_name = "Author")
-    title = models.CharField(max_length = 150, help_text = "Designates the title of the resource.", verbose_name = "Title")
-    release_date = models.DateTimeField(default = datetime.datetime.now, help_text = "Designates the release date and time of the resource.", verbose_name = "Release Date")
-
-    class Meta:
-            db_table = "auxiliaries_resource"
-            verbose_name = "Resource"
-            verbose_name_plural = "Resources"
     
-    def __str__(self):
-        return str(self.title) + " | " + str(self.author)
-    
-    
-class ResourceFile(models.Model):
-    resource = models.ForeignKey(Resource, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Resource model.", verbose_name = "Resource")
+class File(models.Model):
+    title = models.CharField(max_length = 150, help_text = "Designates the title of the resource file.", verbose_name = "Title")
+    author = models.CharField(null=True, max_length = 150, help_text = "Designates the name of the author.", verbose_name = "Author")
     resource_file = models.FileField(upload_to = "resources", help_text = "Designates the file of the resource.", verbose_name = "Resource File")
+    release_date = models.DateTimeField(default = datetime.datetime.now, help_text = "Designates the release date and time of the resource file.", verbose_name = "Release Date")
 
     class Meta:
-            db_table = "auxiliaries_resource_file"
+            db_table = "auxiliaries_file"
             verbose_name = "Resource File"
-            verbose_name_plural = "Resource Files"
+            verbose_name_plural = "Resource File"
     
     def __str__(self):
         return "FILE " + str(self.id)
-
-class ResourceLink(models.Model):
-    resource = models.ForeignKey(Resource, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Resource model.", verbose_name = "Resource")
-    resource_link = models.CharField(max_length = 2050, help_text = "Designates the link of the resource.", verbose_name = "Resource Link")
-
-    class Meta:
-            db_table = "auxiliaries_resource_link"
-            verbose_name = "Resource Link"
-            verbose_name_plural = "Resource Links"
-    
-    def __str__(self):
-        return "LINK " + str(self.id)
 
 
 class Inquiry(models.Model):
@@ -75,8 +60,23 @@ class Inquiry(models.Model):
 
     class Meta:
             db_table = "auxiliaries_inquiry"
-            verbose_name = "Inquiry"
-            verbose_name_plural = "Inquiries"
+            verbose_name = "FAQ"
+            verbose_name_plural = "FAQ"
     
     def __str__(self):
         return str(self.question)
+    
+    
+class Link(models.Model):
+    title = models.CharField(max_length = 150, help_text = "Designates the title of the resource link.", verbose_name = "Title")
+    author = models.CharField(null=True, max_length = 150, help_text = "Designates the name of the author.", verbose_name = "Author")
+    resource_link = models.CharField(max_length = 2050, help_text = "Designates the link of the resource.", verbose_name = "Resource Link")
+    release_date = models.DateTimeField(default = datetime.datetime.now, help_text = "Designates the release date and time of the resource link.", verbose_name = "Release Date")
+
+    class Meta:
+            db_table = "auxiliaries_link"
+            verbose_name = "Resource Link"
+            verbose_name_plural = "Resource Link"
+    
+    def __str__(self):
+        return "LINK " + str(self.id)

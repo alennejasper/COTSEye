@@ -2,151 +2,144 @@
 {% load static %}
 
 {% block content %}
-    <div class = "announcement" id = "announcement-filter">
-        <form action = "" class = "announcement-form" method = "GET">
-            {% csrf_token %}
+    <div class = "announcement-body">
+        <div class = "announcement-filter">
+            <button onclick = "showDropdownOptions()" class = "filter-button">
+                <span><i class = "fa-solid fa-sliders"></i></span>
+            </button>
 
-            <div class = "card-header">
-                <header>Filter announcements</header>
+            <div class = "options" id = "options" class = "hidden">
+                <form class = "announcement-form" method = "GET">
+                    <h1>Location</h1>
+
+                    <select id = "municipality" class = "select2" name = "municipality" onchange = "updateBarangayOptions()">
+                        <option value="">Select Municipality</option>
+    
+                        {% for location in municipalities %}
+                            <option value = "{{location.municipality}}" {% if request.GET.municipality == location.municipality %} selected {% endif %}>{{location.municipality}}</option>
+                        {% endfor %}
+                    </select>
+    
+                    <select id = "barangay" class = "select2" name = "barangay">
+                        <option value = "">Select Barangay</option>
+
+                        {% for location in locations %}
+                            {% if location.municipality == request.GET.municipality %}
+                                <option value = "{{location.barangay}}" {% if request.GET.barangay == location.barangay %} selected {% endif %}>{{location.barangay}}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+
+                    <h1>Date</h1>
+                    
+                    <div class = "from-date">
+                        <label for = "from-date">From:</label>
+                        
+                        <input type = "date" id = "from-date" name = "from_date" value = "{{request.GET.from_date}}">
+                    </div>
+                    
+                    <div class = "to-date">
+                        <label for = "to-date">To:</label>
+    
+                        <input type = "date" id = "to-date" name = "to_date" value = "{{request.GET.to_date}}">
+                    </div>
+    
+                    <div class = "button">
+                        <a class = "filter-announcement announcement-form" onclick = "filterAnnouncement()">Filter</a>
+
+                        <a class = "reset-announcement announcement-form" onclick = "resetAnnouncement()">Reset</a>
+                    </div>
+                </form>
             </div>
+        </div>
 
-            <div class = "card-body">
-                <div class = "field">
-                    <div class = "column">
-                        <label for = "from-date">From</label> 
-                            
-                        <div class = "from-date">
-                            <input type = "date" value = "" id = "from-date" name = "from_date" required>                            
+        {% for announcement in announcements %}
+            <div class = "announcement">
+                <div class = "announcement-header">
+                    <div class = "header-context">
+                        <img src = "{{announcement.user.profile_photo.url}}">
+
+                        <div class = "context-caption">
+                            <p>{{announcement.user | default:'None available'}}</p>
+
+                            <p>{{announcement.location | default:'None available'}}</p>
                         </div>
                     </div>
 
-                    <div class = "column">
-                        <label for = "to-date">To</label> 
-
-                        <div class = "to-date">
-                            <input type = "date" value = "" id = "to-date" name = "to_date" required>                            
-                        </div>  
-                    </div>
+                    <p>{{announcement.release_date | date:'m/d/Y' | default:'None available'}}</p>
                 </div>
 
-                <div class = "button">
-                    <a class = "filter-announcements" type = "submit">Filter</a>
-                </div>    
+                <h1>{{announcement.title | default:'None available'}}</h1>
+
+                <a href = "{% url 'Contributor Service Announcement Read' announcement.id %}">
+                    <img class = "announcement-image" src = "{{announcement.announcement_photo.url | default:'None available'}}">
+                </a>
+
+                <!-- <div class = "announcement-context">
+                    <div class = "button">
+                        <a href = "{% url 'Contributor Service Announcement Read' announcement.id %}">VIEW</a>
+                    </div>
+                </div> -->
             </div>
-        </form>
+        {% endfor %}
     </div>
 
-    {% if messages %}
-        {% for message in messages %}
-            {% if message.tags == "info" %}<script>Swal.fire({title: "Hey!", text: "{{message}}", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}})</script>
-            
-            {% elif message.tags == "success" %}<script>Swal.fire({title: "Yay!", text: "{{message}}", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}})</script>
-            
-            {% else %}<script>Swal.fire({title: "Oops!", text: "{{message}}", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}})</script>
-            
-            {% endif %}    
-        {% endfor %}
-    {% endif %}
+    <script>
+        function showDropdownOptions(){
+            document.querySelector(".options").classList.toggle("hidden");
+        }
+    </script>
 
     <script>
-        document.querySelector(".filter-announcements").onclick = function() {
+        function updateBarangayOptions(){
+            var municipality = document.getElementById("municipality").value;
+
+            var barangay = document.getElementById("barangay");
+
+            barangay.innerHTML = "";
+
+            const locations = [
+                {% for location in locations %}
+                    { id: "{{location.id}}", barangay: "{{location.barangay}}", municipality: "{{location.municipality}}"},
+                {% endfor %}
+            ];
+
+            locations.forEach(function(location){
+                if (location.municipality === municipality){
+                    var option = document.createElement("option");
+
+                    option.value = location.barangay;
+                    
+                    option.text = location.barangay;
+                    
+                    barangay.add(option);
+                }
+            });
+
+            if (municipality){
+                barangay.style.display = "block";
+
+            } else {
+                barangay.style.display = "none";
+            }
+        };
+    </script>
+
+    <script>
+        function filterAnnouncement(){
             document.querySelector(".announcement-form").submit();
         }
     </script>
 
-    {% if results %}
-        <div class = "line" id = "results"></div>
-
-        {% for announcement in results %}
-            <div class = "announcement">
-                <div class = "card-header" onclick = "toggleBody(this)">
-                    <header>{{announcement.title | default:'None available'}}</header>
-                </div>
-
-                <div class = "card-body">
-                    <div class = "field">
-                        <div class = "column">
-                            <label for = "release-date">Release Date</label> 
-                                
-                            <div class = "release-date">
-                                <input type = "text" value = "{{announcement.release_date | date:'M. j, Y, g:i a' | default:'None available'}}" id = "release-date" name = "release_date" readonly>
-                                    
-                                <i class = "fa-solid fa-calendar-check"></i>
-                            </div>
-                        </div>
-
-                        <div class = "column">
-                            <label for = "place">Place</label> 
-
-                            <div class = "place">
-                                <input type = "text" value = "{{announcement.place | default:'None available'}}" id = "place" name = "place" readonly>
-
-                                <i class = "fa-solid fa-location-dot"></i>      
-                            </div>  
-                        </div>
-                    </div>
-
-                    <div class = "button">
-                        <a class = "read-announcement" href = "{% url 'Public Service Announcement Read' announcement.id %}">Read</a>
-                    </div>    
-                </div>
-            </div>
-        {% endfor %}
-
-    {% else %}
-        <div class = "line" id = "records"></div>
-
-        {% for announcement in records %}
-            <div class = "announcement">
-                <div class = "card-header" onclick = "toggleBody(this)">
-                    <header>{{announcement.title | default:'None available'}}</header>
-                </div>
-
-                <div class = "card-body">
-                    <div class = "field">
-                        <div class = "column">
-                            <label for = "release-date">Release Date</label> 
-                                
-                            <div class = "release-date">
-                                <input type = "text" value = "{{announcement.release_date | date:'M. j, Y, g:i a' | default:'None available'}}" id = "release-date" name = "release_date" readonly>
-                                    
-                                <i class = "fa-solid fa-calendar-check"></i>
-                            </div>
-                        </div>
-
-                        <div class = "column">
-                            <label for = "place">Place</label> 
-
-                            <div class = "place">
-                                <input type = "text" value = "{{announcement.place | default:'None available'}}" id = "place" name = "place" readonly>
-
-                                <i class = "fa-solid fa-location-dot"></i>      
-                            </div>  
-                        </div>
-                    </div>
-
-                    <div class = "button">
-                        <a class = "read-announcement" href = "{% url 'Public Service Announcement Read' announcement.id %}">Read</a>
-                    </div>    
-                </div>
-            </div>
-        {% endfor %}
-    {% endif %}
-
     <script>
-        function toggleBody(element){
-            var body = element.nextElementSibling;
-            
-            if(body.style.display === "none" || body.style.display === ""){
-                body.style.borderBottomLeftRadius = "5px";
+        function resetAnnouncement(){
+            document.getElementById("municipality").value = "";
 
-                body.style.borderBottomTopRadius = "5px";
-                
-                body.style.display = "grid";
+            document.getElementById("barangay").value = "";
             
-            } else{
-                body.style.display = "none";
-            };
-        };
+            document.getElementById("from-date").value = "";
+            
+            document.getElementById("to-date").value = "";            
+        }
     </script>
 {% endblock content %}

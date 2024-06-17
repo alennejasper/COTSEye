@@ -1,0 +1,583 @@
+.notification-body{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    color: #003755;
+}
+
+/* .notification-body .notification-section{
+    display: flex;                   
+    align-items: center; 
+    justify-content: center;          
+    width: 100%;     
+    text-align: center;                     
+}
+
+.notification-body .notification-section h1{
+    padding-bottom: 15px;
+    font-family: "Montserrat"; 
+    font-weight: 700;       
+    font-size: 24px;
+    color: #003755;     
+}
+
+@media screen and (min-width: 445px) and (max-width: 775px){
+    .notification-body .notification-section h1{
+        padding-bottom: 5px;
+        font-size: 22px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .notification-body .notification-section h1{
+        padding-bottom: 5px;
+        font-size: 20px;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .notification-body .notification-section h1{
+        padding-bottom: 5px;
+        font-size: 18px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .notification-body .notification-section h1{
+        padding-bottom: 5px;
+        font-size: 16px;
+    }
+} */
+
+.notification-body .notification{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100% !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .notification-body .notification{
+        grid-template-columns: 100%;
+    }
+}
+
+.notification-body .notification .notification-unread{
+    display: grid;
+    gap: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 100%;
+    height: fit-content;
+    overflow-y: auto;
+}
+
+.notification-body .notification .notification-unread h1{
+    font-family: "Montserrat"; 
+    font-weight: 700;       
+    font-size: 24px;
+    color: #003755;  
+}
+
+@media screen and (min-width: 445px) and (max-width: 775px){
+    .notification-body .notification .notification-unread h1{
+        font-size: 22px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .notification-body .notification .notification-unread h1{
+        font-size: 20px;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .notification-body .notification .notification-unread h1{
+        font-size: 18px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .notification-body .notification .notification-unread h1{
+        font-size: 16px;
+    }
+}
+
+.notification-body .notification .notification-unread .notification-item{
+    display: inline-block;
+    padding-bottom: 15px;
+    width: 100%;
+    border-bottom: 1px solid #003755;
+    white-space: wrap;
+    background-color: #FFFFFF;
+    text-decoration: none !important;
+}
+
+.notification-body .notification .notification-unread .notification-item:hover{
+    color: #002C44 !important;
+    background-color: #B2BEB5;
+}
+
+.notification-body .notification .notification-unread .notification-item:focus{
+    color: #002C44 !important;
+    background-color: #B2BEB5;
+}
+
+.notification-body .notification .notification-unread .notification-item:active{
+    color: #002C44 !important;
+    background-color: #B2BEB5;
+}
+
+.notification-body .notification .notification-unread .notification-item:last-child{
+    padding-bottom: 0px;
+    border-bottom: unset;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .notification-body .notification .notification-unread .notification-item{
+        padding-bottom: 5px;
+    }
+}
+
+.notification-body .notification .notification-unread .notification-item .item-header{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+}
+
+.notification-body .notification .notification-unread .notification-item .item-header img{
+    object-fit: cover;
+    margin-right: 10px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .notification-body .notification .notification-unread .notification-item .item-header img{
+        width: 22px;
+        height: 22px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .notification-body .notification .notification-unread .notification-item .item-header img{
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .notification-body .notification .notification-unread .notification-item .item-header img{
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .notification-body .notification .notification-unread .notification-item .item-header img{
+        width: 16px;
+        height: 16px;
+    }
+}
+
+.notification-body .notification .notification-unread .notification-item .item-context p{
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 20px;
+    color: #003755;
+    text-align: justify;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .notification-body .notification .notification-unread .notification-item .item-context p{
+        font-size: 18px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .notification-body .notification .notification-unread .notification-item .item-context p{
+        font-size: 16px;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .notification-body .notification .notification-unread .notification-item .item-context p{
+        font-size: 14px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .notification-body .notification .notification-unread .notification-item .item-context p{
+        font-size: 12px;
+    }
+}
+
+.notification-body .notification .notification-unread .notification-item .item-context p strong{
+    font-weight: 700 !important;
+}
+
+.notification-body .notification .notification-unread .notification-item .item-context p strong:hover{
+    color: #002C44 !important;
+}
+
+.notification-body .notification .notification-unread .notification-item .item-context p strong:focus{
+    color: #002C44 !important;
+}
+
+.notification-body .notification .notification-unread .notification-item .item-context p strong:active{
+    color: #002C44 !important;
+}
+.notification-body .notification .notification-unread .notification-item .button{
+    margin-left: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: fit-content;
+    height: fit-content;
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .notification-body .notification .notification-unread .notification-item .button{
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+}
+
+.notification-body .notification .notification-unread .notification-item .button a{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    border-radius: 5px;
+    outline: none !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 20px;
+    color: #FFFFFF !important;
+    background-color: #003755 !important;
+    text-decoration: none;
+    cursor: pointer;  
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .notification-body .notification .notification-unread .notification-item .button a{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .notification-body .notification .notification-unread .notification-item .button a{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .notification-body .notification .notification-unread .notification-item .button a{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .notification-body .notification .notification-unread .notification-item .button a{
+        font-size: 12px !important;
+    }
+}
+
+.notification-body .notification .notification-unread p{
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 20px;
+    color: #003755;
+    text-align: justify;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .notification-body .notification .notification-unread p{
+        font-size: 18px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .notification-body .notification .notification-unread p{
+        font-size: 16px;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .notification-body .notification .notification-unread p{
+        font-size: 14px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .notification-body .notification .notification-unread p{
+        font-size: 12px;
+    }
+}
+
+.notification-body .notification .notification-read{
+    display: grid;
+    gap: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 100%;
+    height: fit-content;
+    overflow-y: auto;
+}
+
+.notification-body .notification .notification-read h1{
+    font-family: "Montserrat"; 
+    font-weight: 700;       
+    font-size: 24px;
+    color: #003755;  
+}
+
+@media screen and (min-width: 445px) and (max-width: 775px){
+    .notification-body .notification .notification-read h1{
+        font-size: 22px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .notification-body .notification .notification-read h1{
+        font-size: 20px;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .notification-body .notification .notification-read h1{
+        font-size: 18px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .notification-body .notification .notification-read h1{
+        font-size: 16px;
+    }
+}
+
+.notification-body .notification .notification-read .notification-item{
+    display: inline-block;
+    padding-bottom: 15px;
+    width: 100%;
+    border-bottom: 1px solid #003755;
+    white-space: wrap;
+    background-color: #FFFFFF;
+    text-decoration: none !important;
+}
+
+.notification-body .notification .notification-read .notification-item:hover{
+    color: #002C44 !important;
+    background-color: #B2BEB5;
+}
+
+.notification-body .notification .notification-read .notification-item:focus{
+    color: #002C44 !important;
+    background-color: #B2BEB5;
+}
+
+.notification-body .notification .notification-read .notification-item:active{
+    color: #002C44 !important;
+    background-color: #B2BEB5;
+}
+
+.notification-body .notification .notification-read .notification-item:last-child{
+    padding-bottom: 0px;
+    border-bottom: unset;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .notification-body .notification .notification-read .notification-item{
+        padding-bottom: 5px;
+    }
+}
+
+.notification-body .notification .notification-read .notification-item .item-header{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+}
+
+.notification-body .notification .notification-read .notification-item .item-header img{
+    object-fit: cover;
+    margin-right: 10px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .notification-body .notification .notification-read .notification-item .item-header img{
+        width: 22px;
+        height: 22px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .notification-body .notification .notification-read .notification-item .item-header img{
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .notification-body .notification .notification-read .notification-item .item-header img{
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .notification-body .notification .notification-read .notification-item .item-header img{
+        width: 16px;
+        height: 16px;
+    }
+}
+
+.notification-body .notification .notification-read .notification-item .item-context p{
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 20px;
+    color: #003755;
+    text-align: justify;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .notification-body .notification .notification-read .notification-item .item-context p{
+        font-size: 18px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .notification-body .notification .notification-read .notification-item .item-context p{
+        font-size: 16px;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .notification-body .notification .notification-read .notification-item .item-context p{
+        font-size: 14px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .notification-body .notification .notification-read .notification-item .item-context p{
+        font-size: 12px;
+    }
+}
+
+.notification-body .notification .notification-read .notification-item .item-context p strong{
+    font-weight: 700 !important;
+}
+
+.notification-body .notification .notification-read .notification-item .item-context p strong:hover{
+    color: #002C44 !important;
+}
+
+.notification-body .notification .notification-read .notification-item .item-context p strong:focus{
+    color: #002C44 !important;
+}
+
+.notification-body .notification .notification-read .notification-item .item-context p strong:active{
+    color: #002C44 !important;
+}
+
+.notification-body .notification .notification-read .notification-item .button{
+    margin-left: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: fit-content;
+    height: fit-content;
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .notification-body .notification .notification-read .notification-item .button{
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+}
+
+.notification-body .notification .notification-read .notification-item .button a{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    border-radius: 5px;
+    outline: none !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 20px;
+    color: #FFFFFF !important;
+    background-color: #003755 !important;
+    text-decoration: none;
+    cursor: pointer;  
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .notification-body .notification .notification-read .notification-item .button a{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .notification-body .notification .notification-read .notification-item .button a{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .notification-body .notification .notification-read .notification-item .button a{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .notification-body .notification .notification-read .notification-item .button a{
+        font-size: 12px !important;
+    }
+}
+
+.notification-body .notification .notification-read p{
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 20px;
+    color: #003755;
+    text-align: justify;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .notification-body .notification .notification-read p{
+        font-size: 18px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .notification-body .notification .notification-read p{
+        font-size: 16px;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .notification-body .notification .notification-read p{
+        font-size: 14px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .notification-body .notification .notification-read p{
+        font-size: 12px;
+    }
+}

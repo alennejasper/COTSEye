@@ -11,11 +11,13 @@
 
         <link rel = "manifest" href = "{% static 'templates/webwares/manifest.json' %}">
 
-        <meta name = "theme-color" content = "#154360">
+        <script src = "{% static 'templates/webwares/application.js' %}"></script>
+
+        <meta name = "theme-color" content = "#003755">
 
         <link rel = "apple-touch-icon" href = "{% static 'assets/icons/logo (180 x 180).png' %}">
 
-        <meta name = "apple-mobile-web-app-status-bar" content = "#154360">
+        <meta name = "apple-mobile-web-app-status-bar" content = "#003755">
 
         <link rel = "icon" type = "image/x-icon" href = "{% static 'assets/icons/logo.png' %}">
                         
@@ -46,7 +48,7 @@
                                 <label for = "username">Username</label>
 
                                 <div class = "username">
-                                    <input type = "text" id = "username" name = "username" data-initial-value = "cotseye/" oninput = "retainValue(this);" required>
+                                    <input type = "text" id = "username" name = "username" required>
                                 
                                     <i class = "fa-solid fa-user"></i>
                                 </div>
@@ -180,27 +182,6 @@
 
         checkboxes.click(function(){
             submit.attr("required", !checkboxes.is(":checked"));
-        });
-    </script>
-
-    <script>
-        function retainValue(input){
-            if (input.value.length <= "cotseye/".length){
-
-                input.value = "cotseye/";
-
-                input.selectionStart = "cotseye/".length;
-            }
-        }
-    </script>
-
-    <script>
-        document.getElementById("username").addEventListener("click", function(){
-            this.style.color = "#154360";
-
-            this.value = this.dataset.initialValue;
-
-            this.focus();
         });
     </script>
 </html>

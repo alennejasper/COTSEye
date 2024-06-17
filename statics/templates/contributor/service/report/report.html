@@ -2,62 +2,1263 @@
 {% load static %}
 
 {% block content %}
-    {% if draft_post %}
-        <div class = "report">
-            <div class = "card-header">
-                <header>Report</header>
-            </div>
+    {% if draft_post %} 
+        <div class = "report-body">
+            <form action = "" class = "report-form" method = "POST" enctype = "multipart/form-data">
+                {% csrf_token %}
 
-            <div class = "card-body">
-                <div class = "methods">
-                    <button class = "capture">
-                        <a href = "{% url 'Contributor Service Report Capture Update' draft_post.id %}">
-                            <i class = "fa-solid fa-image"></i> 
+                <div id = "first-tab" class = "tab-content">    
+                    <div class = "report-section">
+                        <h1>UPDATE REPORT</h1>
+                    </div>
+
+                    <div class = "controls-wrapper">
+                        <div class = "control-section capture">
+                            <i class = "fa-solid fa-camera"></i>
+
+                            <label for = "post-photo-capture" class = "capture-photo">
+                                Capture with Camera
+                            </label>
+
+                            <input type = "file" class = "invisible-input-capture post-photo-capture" id = "post-photo-capture" name = "post_photos_capture" accept = "image/*" capture = "environment" required>
+                        </div>
+                
+                        <div class = "control-section choose">
+                            <i class = "fa-solid fa-image"></i>
+
+                            <label for = "post-photo-choose" class = "browse-photo">
+                                Choose an Image
+                            </label>
+
+                            <input type = "file" class = "invisible-input-choose post-photo-choose" id = "post-photo-choose" name = "post_photos_choose" accept = "image/*" multiple required>
+                        </div>
+                    </div>
+                    
+                    <div class = "report-gallery"></div>
+                
+                    <div class = "capture-date">
+                        <label for = "capture-date" class = "required">Capture Date</label>
+
+                        <input type = "datetime-local" id = "capture-date" value = "{{draft_post.capture_date | date:'Y-m-d\TH:i'}}" name = "capture_date" required>
+                    </div>            
+
+                    <div class = "map">
+                        <div class=  "report-map">
+                        </div>
+                    </div>
+
+                    <div class = "coordinates">
+                        <input type = "hidden" id = "latitude" name = "latitude" required>
+
+                        <input type = "hidden" id = "longitude" name = "longitude" required>
+                    </div>
+
+                    <div class = "municipality">
+                        <label for = "municipality">Municipality</label>
+        
+                        <select name = "municipality" id = "municipality" required>
+                            <option value = "{{draft_post.location.municipality}}" selected>{{draft_post.location.municipality}}</option>
+                            
+                            {% for location in municipalities %}
+                                {% if location.municipality != draft_post.location.municipality %}
+                                    <option value = "{{location.municipality}}">{{location.municipality}}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                    
+                    <div class = "barangay">
+                        <label for = "barangay" class = "required">Barangay</label>
                         
-                            <span>Capture with camera</span>
-                        </a>
-                    </button>
+                        <select name = "barangay" id = "barangay" required>
+                            <option value = "{{draft_post.location.barangay}}" >{{draft_post.location.barangay}}</option>
 
-                    <div class = "line"></div>
+                            {% for location in locations %}
+                                <option value = "{{location.barangay}}" >{{location.barangay}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
 
-                    <button class = "choose">
-                        <a href = "{% url 'Contributor Service Report Choose Update' draft_post.id %}">
-                            <i class = "fa-solid fa-camera-retro"></i> 
-                        
-                            <span>Choose a file</span>
-                        </a>
-                    </button>
+                    <div class = "buttons">
+                        <div class = "save-report draft">
+                            <button type = "submit" value = "save as draft" onclick = "setActionValue(this.value); disableOnBeforeUnload();">Save as Draft</a>
+                        </div>
+
+                        <button type = "button" class = "next-report" onclick = "nextTab('first-tab')">Next</button>
+                    </div>
                 </div>
-            </div>
+
+                <div id = "second-tab" class = "tab-content" style = "display: none;">
+                    <img class = "back-report" src = "{% static 'assets/backbutton.png' %}" onclick = "openTab('first-tab')">
+
+                    <div class = "report-section">
+                        <h1>UPDATE REPORT</h1>
+                    </div>
+                    
+                    <div class = "description">
+                        <label for = "description" class = "required">Sighting Description</label>
+
+                        <textarea type = "text" id = "description" name = "description" maxlength = "255" required>{{draft_post.description}}</textarea>
+                        
+                        <p id = "description-characters">0/255</p>
+                       
+                        <script>
+                            var textarea = document.getElementById("description");
+
+                            var charCount = document.getElementById("description-characters");
+                    
+                            textarea.addEventListener("input", function(){
+                                const currentLength = textarea.value.length;
+
+                                charCount.textContent = `${currentLength}/255`;
+
+                                if (currentLength > 255){
+                                    textarea.value = textarea.value.slice(0, 255);
+
+                                    charCount.textContent = "255/255";
+                                }
+                            });
+                        </script>
+                    </div>
+
+                    <div class = "size">
+                        <label for = "size">Size (How big were the COTS)</label>
+                        
+                        <select name = "size" id = "size">
+                            <option disabled selected value>Select one</option>
+
+                            {% for size in sizes %}
+                                <option value = "{{size.id}}" {% if size.id == draft_post.post_observation.size.id %} selected {% endif %}>{{size}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class = "density">
+                        <label for = "density">Density (COTS per m²)</label>
+                        
+                        <input placeholder = "Est. COTS per m²" type = "number" value = "{{draft_post.post_observation.density}}" id = "density" name = "density">
+                    </div>
+
+                    <div class = "depth">
+                        <label for = "depth">Depth (Where the COTS was sighted)</label>
+                        
+                        <select name = "depth" id = "depth">
+                            <option disabled selected value = "{{draft_post.post_observation.depth}}">Select one</option>
+
+                            {% for depth in depths %}
+                                <option value = "{{depth.id}}" {% if depth.id == draft_post.post_observation.depth.id %} selected {% endif %}>{{depth}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class = "weather">
+                        <label for = "weather">Weather (During the sighting)</label>
+                        
+                        <select name = "weather" id = "weather">
+                            <option disabled hidden selected value = "{{draft_post.post_observation.weather}}">Select one</option>
+
+                            {% for weather in weathers %}
+                                <option value = "{{weather.id}}" {% if weather.id == draft_post.post_observation.weather.id %} selected {% endif %}>{{weather}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <input type = "hidden" name = "action" id = "action">
+
+                    <!-- <div id = "action-value-display" style = "margin-top: 20px; font-weight: bold;"></div> -->
+
+                    <div class = "buttons">
+                        <!-- <button type = "button" class = "back-report" onclick = "openTab('first-tab')">Back</button> -->
+
+                        <div class = "save-report draft">
+                            <button type = "submit" value = "save as draft" onclick = "setActionValue(this.value); disableOnBeforeUnload();">Save as Draft</a>
+                        </div>
+
+                        <div class = "save-report submit">
+                            <button type = "submit" value = "save and submit" onclick = "setActionValue(this.value); disableOnBeforeUnload();">Submit Report</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            {% if messages %}
+                {% for message in messages %}
+                    {% if message.tags == "info" %}<script>Swal.fire({title: "Hey!", text: "{{message}}", background: "#FFFFFF", icon: "warning", iconColor: "#003755", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#003755", customClass: {confirmButton: "info-button", title: "title"}})</script>
+                    
+                    {% elif message.tags == "success" %}<script>Swal.fire({title: "Yay!", text: "{{message}}", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}})</script>
+                    
+                    {% else %}<script>Swal.fire({title: "Oops!", text: "{{message}}", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}})</script>
+                    
+                    {% endif %}    
+                {% endfor %}
+            {% endif %}
         </div>
 
     {% else %}
-        <div class = "report">
-            <div class = "card-header">
-                <header>Report</header>
-            </div>
+        <div class = "report-body">
+            <form action = "" class = "report-form" method = "POST" enctype = "multipart/form-data">
+                {% csrf_token %}
 
-            <div class = "card-body">
-                <div class = "methods">
-                    <button class = "capture">
-                        <a href = "{% url 'Contributor Service Report Capture' %}">
-                            <i class = "fa-solid fa-camera-retro"></i> 
+                <div id = "first-tab" class = "tab-content">  
+                    <div class = "report-section">
+                        <h1>CREATE REPORT</h1>
+                    </div>
+
+                    <div class = "controls-wrapper">
+                        <div class = "control-section capture">
+                            <i class = "fa-solid fa-camera"></i>
+
+                            <label for = "post-photo-capture" class = "capture-photo">
+                                Capture with camera
+                            </label>
+
+                            <input type = "file" class = "invisible-input-capture post-photo-capture" id = "post-photo-capture" name = "post_photos_capture" accept = "image/*" capture = "environment" required>
+                        </div>
+                
+                        <div class = "control-section choose">
+                            <i class = "fa-solid fa-image"></i>
+
+                            <label for = "post-photo-choose" class = "browse-photo">
+                                Choose an image
+                            </label>
+
+                            <input type = "file" class = "invisible-input-choose post-photo-choose" id = "post-photo-choose" name = "post_photos_choose" accept = "image/*" multiple required>
+                        </div>
+                    </div>
+                    
+                    <div class = "report-gallery"></div>
+                
+                    <div class = "capture-date">
+                        <label for = "capture-date" class = "required">Capture Date</label>
+
+                        <input type = "datetime-local" id = "capture-date" name = "capture_date" required>
+                    </div>            
+
+                    <div class = "map">
+                        <div class=  "report-map">
+                        </div>
+                    </div>
+
+                    <div class = "coordinates">
+                        <input type = "hidden" id = "latitude" name = "latitude" required>
+
+                        <input type = "hidden" id = "longitude" name = "longitude" required>
+                    </div>
+
+                    <div class = "municipality">
+                        <label for = "municipality" class = "required">Municipality</label>
                         
-                            <span>Capture with camera</span>
-                        </a>
-                    </button>
+                        <select name = "municipality" id = "municipality" onchange = "updateBarangay()" required>
+                            <option hidden selected value>Select one or drag the pin.</option>
 
-                    <div class = "line"></div>
-
-                    <button class = "choose">
-                        <a href = "{% url 'Contributor Service Report Choose' %}">
-                            <i class = "fa-solid fa-image"></i> 
+                            {% for municipality in municipalities %}
+                                <option value = "{{municipality.municipality}}">{{municipality.municipality}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    
+                    <div class = "barangay">
+                        <label for = "barangay" class = "required">Barangay</label>
                         
-                            <span>Choose an image</span>
-                        </a>
-                    </button>
+                        <select name = "barangay" id = "barangay" required>
+                            <option hidden selected value>Select one or drag the pin.</option>
+                        </select>
+                    </div>
+
+                    <div class = "buttons">
+                        <!-- <div class = "save-report draft">
+                            <button type = "submit" value = "save as draft" onclick = "setActionValue(this.value); disableOnBeforeUnload();">Save as draft</a>
+                        </div> -->
+
+                        <button type = "button" class = "next-report" onclick = "nextTab('first-tab')">Next</button>
+                    </div>
                 </div>
-            </div>
+
+                <div id = "second-tab" class = "tab-content" style = "display: none;">
+                    <img class = "back-report" src = "{% static 'assets/backbutton.png' %}" onclick = "openTab('first-tab')">
+
+                    <div class = "report-section">
+                        <h1>CREATE REPORT</h1>
+                    </div>
+                    
+                    <div class = "description">
+                        <label for = "description" class = "required">Sighting Description</label>
+                        
+                        <textarea placeholder = "Describe your sighting of COTS here." type = "text" id = "description" name = "description" maxlength = "255" required></textarea>
+                        
+                        <p id = "description-characters">0/255</p>
+                       
+                        <script>
+                            var textarea = document.getElementById("description");
+
+                            var charCount = document.getElementById("description-characters");
+                    
+                            textarea.addEventListener("input", function(){
+                                const currentLength = textarea.value.length;
+
+                                charCount.textContent = `${currentLength}/255`;
+
+                                if (currentLength > 255){
+                                    textarea.value = textarea.value.slice(0, 255);
+
+                                    charCount.textContent = "255/255";
+                                }
+                            });
+                        </script>
+                    </div>
+
+                    <div class = "size">
+                        <label for = "size">Size (How big were the COTS)</label>
+                        
+                        <select name = "size" id = "size">
+                            <option disabled selected value>Select one</option>
+
+                            {% for size in sizes %}
+                                <option value = "{{size.id}}">{{size}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class = "density">
+                        <label for = "density">Density (COTS per m²)</label>
+                        
+                        <input placeholder = "Est. COTS per m²" type = "number" id = "density" name = "density">
+                    </div>
+
+                    <div class = "depth">
+                        <label for = "depth">Depth (Where the COTS was sighted)</label>
+                        
+                        <select name = "depth" id = "depth">
+                            <option disabled selected value>Select one</option>
+
+                            {% for depth in depths %}
+                                <option value = "{{depth.id}}">{{depth}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class = "weather">
+                        <label for = "weather">Weather (During the sighting)</label>
+                        
+                        <select name = "weather" id = "weather">
+                            <option disabled hidden selected value>Select one</option>
+
+                            {% for weather in weathers %}
+                                <option value = "{{weather.id}}">{{weather}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <input type = "hidden" name = "action" id = "action">
+
+                    <!-- <div id = "action-value-display" style = "margin-top: 20px; font-weight: bold;"></div> -->
+
+                    <div class = "buttons">
+                        <!-- <button type="button" class = "back-report" onclick = "openTab('first-tab')">Back</button> -->
+
+                        <div class = "save-report draft">
+                            <button type = "submit" value = "save as draft" onclick = "setActionValue(this.value); disableOnBeforeUnload();">Save as Draft</button>
+                        </div>
+            
+                        <div class = "save-report submit">
+                            <button type = "submit" value = "save and submit" onclick = "setActionValue(this.value); disableOnBeforeUnload();">Submit Report</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            {% if messages %}
+                {% for message in messages %}
+                    {% if message.tags == "info" %}<script>Swal.fire({title: "Hey!", text: "{{message}}", background: "#FFFFFF", icon: "warning", iconColor: "#003755", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#003755", customClass: {confirmButton: "info-button", title: "title"}})</script>
+                    
+                    {% elif message.tags == "success" %}<script>Swal.fire({title: "Yay!", text: "{{message}}", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}})</script>
+                    
+                    {% else %}<script>Swal.fire({title: "Oops!", text: "{{message}}", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}})</script>
+                    
+                    {% endif %}    
+                {% endfor %}
+            {% endif %}
         </div>
-    {% endif %}
+    {% endif %} 
+
+    <script>
+        function openTab(tabName){
+            var i, tabcontent;
+
+            tabcontent = document.getElementsByClassName("tab-content");
+
+            for (i = 0; i < tabcontent.length; i++){
+                tabcontent[i].style.display = "none";
+            }
+
+            document.getElementById(tabName).style.display = "grid";
+
+            event.currentTarget.classList.add("active");
+        }
+
+        function nextTab(currentTabId){
+            var currentTab = document.getElementById(currentTabId);
+
+            var nextTab = currentTab.nextElementSibling;
+
+            openTab(nextTab.id);
+        }
+
+        openTab("first-tab");
+    </script>
+
+    <script>
+        document.querySelector(".control-section.choose").addEventListener("click", function(event){
+            event.stopPropagation();
+            
+            var chooseInput = document.querySelector(".post-photo-choose");
+
+            if (event.target !== chooseInput){
+                chooseInput.click();
+
+                document.querySelector(".post-photo-capture").removeAttribute("required");
+
+                document.querySelector("label[for='post-photo-capture']").classList.remove("required");
+            }
+        });
+    </script>
+
+    <script>
+        const existingPhotos = [
+            {% for photo in draft_post.post_photos.all %}
+                "{{ photo.post_photo.url }}",
+            {% endfor %}
+        ];
+
+        const browsePhoto = document.querySelector(".post-photo-choose");
+
+        const capturePhoto = document.querySelector(".post-photo-capture");
+        
+        var reportGallery = document.querySelector(".report-gallery");
+        
+        let photoWrapper = null;
+
+        function updateGalleryVisibility(){
+            if (photoWrapper && photoWrapper.children.length === 0){
+                reportGallery.style.display = "none";
+
+                reportGallery.style.paddingTop = "0px";
+                
+                reportGallery.style.paddingBottom = "0px";
+            
+            } else{
+                reportGallery.style.display = "block";
+            
+                reportGallery.style.paddingTop = "10px";
+            
+                reportGallery.style.paddingBottom = "10px";
+            };
+        };
+
+        function updateLastPhotoContainerMargin(){
+            const photoContainers = photoWrapper.querySelectorAll("div");
+
+            photoContainers.forEach(container => {
+                container.style.marginRight = "10px";
+            });
+
+            if (photoContainers.length > 0){
+                photoContainers[photoContainers.length - 1].style.marginRight = "0px";
+            };
+
+            updateGalleryVisibility();
+        }
+
+        function addImageToGallery(url, fileInput){
+            if (!photoWrapper){
+                photoWrapper = document.createElement("div");
+
+                photoWrapper.classList.add("gallery-photo");
+                
+                photoWrapper.style.position = "relative";
+                
+                photoWrapper.style.padding = "10px";
+                
+                photoWrapper.style.height = "250px";
+                
+                photoWrapper.style.borderRadius = "5px";
+                
+                photoWrapper.style.backgroundColor = "#FFFFFF";
+                
+                photoWrapper.style.overflowX = "auto";
+                
+                photoWrapper.style.overflowY = "hidden";
+                
+                photoWrapper.style.whiteSpace = "nowrap";
+                
+                reportGallery.appendChild(photoWrapper);
+            }
+
+            const photoContainer = document.createElement("div");
+            
+            photoContainer.style.position = "relative";
+            
+            photoContainer.style.display = "inline-block";
+            
+            photoContainer.style.marginRight = "10px";
+            
+            photoContainer.style.width = "100%";
+            
+            photoContainer.style.height = "100%";
+
+            const photoElement = document.createElement("img");
+            
+            photoElement.src = url;
+            
+            photoElement.style.placeItems = "center";
+            
+            photoElement.style.objectFit = "cover";
+            
+            photoElement.style.width = "100%";
+            
+            photoElement.style.height = "100%";
+            
+            photoElement.style.borderRadius = "5px";
+            
+            photoElement.style.overflow = "hidden";
+
+            const deleteButton = document.createElement("i");
+            
+            deleteButton.classList.add("fas", "fa-trash");
+            
+            deleteButton.style.position = "absolute";
+            
+            deleteButton.style.top = "10px";
+            
+            deleteButton.style.right = "10px";
+            
+            deleteButton.style.fontSize = "20px";
+            
+            deleteButton.style.color = "#FFFFFF";
+            
+            deleteButton.style.cursor = "pointer";
+            
+            deleteButton.onclick = function (){
+                photoWrapper.removeChild(photoElement.parentNode);
+                updateLastPhotoContainerMargin();
+
+                if (fileInput){
+                    resetFileInput(fileInput); 
+                }
+            };
+
+            photoContainer.appendChild(photoElement);
+
+            photoContainer.appendChild(deleteButton);
+
+            photoWrapper.appendChild(photoContainer);
+
+            updateLastPhotoContainerMargin();
+        }
+
+        function resetFileInput(fileInput) {
+            fileInput.value = ""; 
+        }
+
+        browsePhoto.addEventListener("change", (event) => {
+            handleFiles(event.target.files, browsePhoto);
+        });
+
+        capturePhoto.addEventListener("change", (event) => {
+            handleFiles(event.target.files, capturePhoto);
+        });
+
+        function handleFiles(files, fileInput){
+            photoWrapper = null;
+
+            reportGallery.innerHTML = "";
+
+            Array.from(files).forEach(file => addImageToGallery(URL.createObjectURL(file), fileInput));
+        };
+
+        document.addEventListener("DOMContentLoaded", function (){
+            existingPhotos.forEach(url => addImageToGallery(url, null));
+        });
+    </script>
+
+    <script>
+        document.querySelector(".post-photo-choose").addEventListener("change", function(event){
+            event.stopPropagation
+
+            for (var i = 0; i < this.files.length; i++){
+                var reportFile = this.files[i];
+
+                var modifiedDate = reportFile.lastModifiedDate;
+
+                var formattedDate = modifiedDate.toISOString().slice(0, 16);
+
+                document.getElementById("capture-date").value = formattedDate;
+            }
+        });
+
+        document.querySelector(".post-photo-capture").addEventListener("change", function(event){
+            event.stopPropagation
+
+            for (var i = 0; i < this.files.length; i++){
+                var reportFile = this.files[i];
+
+                var modifiedDate = reportFile.lastModifiedDate;
+
+                var formattedDate = modifiedDate.toISOString().slice(0, 16);
+
+                document.getElementById("capture-date").value = formattedDate;
+            }
+        });
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            const barangaySelect = document.getElementById("barangay");
+
+            const municipalitySelect = document.getElementById("municipality");
+
+            barangaySelect.addEventListener("change", function(){
+                const selectedId = barangaySelect.value;
+
+                for (let i = 0; i < municipalitySelect.options.length; i++){
+                    if (municipalitySelect.options[i].value === selectedId){
+                        municipalitySelect.selectedIndex = i;
+
+                        break;
+                    };
+                };
+            });
+        });
+    </script>
+    
+    <script>
+        var map;
+
+        var report;
+        
+        var isDragging = false;
+    
+        function updateCoordinates(latitude, longitude){
+            var latitudeInput = document.getElementById("latitude");
+            
+            var longitudeInput = document.getElementById("longitude");
+    
+            latitudeInput.value = latitude.toFixed(6);
+            
+            longitudeInput.value = longitude.toFixed(6);
+        }
+    
+        function swapCoordinates(coordinates) {
+            return coordinates.map(function (ring) {
+                return ring.map(function (point) {
+                    return [point[1], point[0]];
+                });
+            });
+        }
+    
+        function setMunicipalityByBarangay(barangayId){
+            const locations = [
+                {% for location in locations %}
+                    { id: "{{location.id}}", barangay: "{{location.barangay}}", municipality: "{{location.municipality}}"},
+                {% endfor %}
+            ];
+    
+            const location = locations.find(loc => loc.id == barangayId);
+
+            if (location){
+                const municipalitySelect = document.getElementById("municipality");
+
+                municipalitySelect.value = location.municipality;
+            }
+
+            updateBarangay();
+        }
+    
+        function updateBarangay(){
+            const locations = [
+                {% for location in locations %}
+                    { id: "{{location.id}}", barangay: "{{location.barangay}}", municipality: "{{location.municipality}}"},
+                {% endfor %}
+            ];
+    
+            const municipality = document.getElementById("municipality").value;
+
+            const barangaySelect = document.querySelector(".barangay");
+
+            const barangay = document.getElementById("barangay");
+    
+            barangay.innerHTML = "";
+    
+            const filteredLocations = locations.filter(location => location.municipality === municipality);
+    
+            filteredLocations.forEach(location => {
+                const option = document.createElement("option");
+    
+                option.value = location.id;
+
+                option.textContent = location.barangay;
+    
+                barangay.appendChild(option);
+            });
+    
+            if (filteredLocations.length > 0){
+                barangaySelect.style.display = "block";
+
+                updateMarker(filteredLocations[0].id);
+            } else{
+                barangaySelect.style.display = "none";
+            };
+        };
+    
+        function updateMarker(barangayId){
+            var barangayCoordinates = {
+                {% for location in locations %}
+                    "{{location.id}}": [{{location.latitude}}, {{location.longitude}}],
+                {% endfor %}
+            };
+    
+            if (barangayCoordinates[barangayId]){
+                var coordinates = barangayCoordinates[barangayId];
+    
+                if (!isDragging){
+                    map.setView(coordinates, 15);
+
+                    report.setLatLng(coordinates);
+
+                    updateCoordinates(coordinates[0], coordinates[1]);
+                };
+            };
+        };
+    
+        function revealMap(){
+            if (map){
+                return;
+            };
+    
+            var starfish = L.icon({ iconUrl: "{% static 'assets/pin.png' %}", iconSize: [30, 30], iconAnchor: [15, 15]});
+    
+            report = L.marker([5.9656, 125.1929], {draggable: true, icon: starfish});
+    
+            var reportMap = document.getElementsByClassName("report-map")[0];
+    
+            var background = L.tileLayer("http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}", {minZoom: 12, maxZoom: 20, subdomains: ["mt0", "mt1", "mt2", "mt3"], attribution: "Google"});
+    
+            map = L.map(reportMap, {zoomControl: true, scrollWheelZoom: false, dragging: true, maxBounds: [[5.3, 124.3], [6.3, 126.3]], layers: [background, report]}).setView([5.9656, 125.1929], 12);
+    
+            map.attributionControl.remove();
+    
+            {% for location in locations %}
+                var originalCoordinates = {{location.perimeters | safe}};
+                
+                var swappedCoordinates = swapCoordinates(originalCoordinates);
+                
+                var polygon = L.polygon(swappedCoordinates, {color: "transparent", fillColor: "transparent", fillOpacity: 0}).addTo(map);
+    
+                polygon.locationId = {{location.id}};
+                
+                polygon.locationName = "{{location}}";
+            {% endfor %}
+    
+            report.on("dragstart", function (){
+                isDragging = true;
+            });
+
+            report.on("drag", function (event){
+                var position = event.target.getLatLng();
+
+                updateCoordinates(position.lat, position.lng);
+            });
+    
+            report.on("dragend", function (event){
+                var position = event.target.getLatLng();
+
+                updateCoordinates(position.lat, position.lng);
+    
+                var selectElement = document.getElementById("barangay");
+                
+                selectElement.value = "";
+    
+                var selectElement2 = document.getElementById("municipality");
+                
+                selectElement2.value = "";
+    
+                map.eachLayer(function (layer){
+                    if (layer instanceof L.Polygon){
+                        if (layer.getBounds().contains(position) && layer.locationId){
+                            selectElement.value = layer.locationId;
+
+                            setMunicipalityByBarangay(layer.locationId);
+                            return;
+                        };
+                    };
+                });
+
+                isDragging = false;
+            });
+    
+            document.getElementById("barangay").addEventListener("change", function (){
+                var barangayId = this.value;
+
+                updateMarker(barangayId);
+            });
+    
+            document.getElementById("municipality").addEventListener("change", function (){
+                updateBarangay();
+            });
+    
+            var defaultLatitude = report.getLatLng().lat;
+
+            var defaultLongitude = report.getLatLng().lng;
+    
+            updateCoordinates(defaultLatitude, defaultLongitude);
+
+            fetchLocation(defaultLatitude, defaultLongitude);
+    
+            {% if draft_post %}
+                updateBarangay();
+            {% endif %}
+        }
+    
+        window.addEventListener("load", function (){
+            revealMap();
+        });
+    </script>
+    
+    <script>
+        function refreshMap(){
+            map.setView([5.9656, 125.1929], 11);
+        };
+
+        document.querySelector(".refresh-map").addEventListener("click", refreshMap);
+    </script>
+
+    <script>
+        function fetchLocation(){
+            if (navigator.geolocation){
+                navigator.geolocation.getCurrentPosition(checkPosition);
+                
+            } else{
+                Swal.fire({title: "Oops!", text: "The location is not supported and cannot be given to COTSEye.", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}});                
+            };
+        };
+
+        function checkPosition(position){
+            const maximumLatitude = 6.3;
+
+            const minimumLatitude = 5.3;
+            
+            const maximumLongitude = 126.3;
+            
+            const minimumLongitude = 124.3;
+            
+            const latitude = position.coords.latitude;
+            
+            const longitude = position.coords.longitude;
+
+            if (latitude < minimumLatitude || latitude > maximumLatitude || longitude < minimumLongitude || longitude > maximumLongitude){
+                document.querySelector(".post-photo-capture").addEventListener("click", function(event){
+                    event.preventDefault()
+
+                    event.stopPropagation();
+                    
+                    Swal.fire({title: "Oops!", text: "The location given to COTSEye incorporated coordinates out of bounds.", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}});
+                });
+
+            } else{
+                document.querySelector(".control-section.capture").addEventListener("click", function(event){
+                    event.stopPropagation();
+                    
+                    var captureInput = document.querySelector(".post-photo-capture");
+                    
+                    if (!captureInput.value){
+                        captureInput.click();
+
+                        document.querySelector(".post-photo-choose").removeAttribute("required");
+
+                        document.querySelector("label[for='post-photo-choose']").classList.remove("required");
+                    };
+                });
+
+                report.setLatLng([latitude, longitude]);
+
+                map.setView([latitude, longitude], 11);
+            };
+        };
+
+        document.addEventListener("DOMContentLoaded", function (){
+            revealMap();
+
+            const captureButton = document.querySelector(".post-photo-capture");
+
+            if (captureButton){
+                captureButton.addEventListener("click", function (event){
+                    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+                        Swal.fire({title: "Oops!", text: "The camera is not supported and cannot be given to COTSEye.", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}});
+                    };
+                });
+            };
+        });
+    </script>
+
+    <script>
+        let reportPhoto;
+
+        document.querySelector(".post-photo-choose").addEventListener("change", function(e){
+            const reportFile = e.target.files[0];
+
+            const photo = new Image();
+
+            photo.src = URL.createObjectURL(reportFile);
+
+            photo.onload = function(){
+                EXIF.getData(photo, function(){
+                    const latitude = EXIF.getTag(this, "GPSLatitude");
+
+                    const longitude = EXIF.getTag(this, "GPSLongitude");
+
+                    if (latitude && longitude){
+                        const roundLatitude = parseFloat(latitude).toFixed(6);
+
+                        const roundLongitude = parseFloat(longitude).toFixed(6);
+                        
+                        if (checkCoordinates(roundLatitude, roundLongitude)){
+                            document.getElementById("latitude").value = roundLatitude;
+
+                            document.getElementById("longitude").value = roundLongitude;
+                            
+                            reportPhoto = photo;
+
+                        } else{
+                            Swal.fire({title: "Oops!", text: "The photo given to COTSEye incorporated coordinates out of bounds.", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}});
+                            
+                            resetCaptureDate();
+
+                            photoWrapper.remove();
+                        };
+
+                    } else{
+                        Swal.fire({title: "Hey!", text: "The photo given to COTSEye did not incorporate any coordinates.", background: "#FFFFFF", icon: "warning", iconColor: "#003755", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#003755", customClass: {confirmButton: "info-button", title: "title"}});
+                    };
+                });
+            };
+        });
+
+        function checkCoordinates(latitude, longitude){
+            const maximumLatitude = 6.3;
+
+            const minimumLatitude = 5.3;
+            
+            const maximumLongitude = 126.3;
+            
+            const minimumLongitude = 124.3;
+
+            return(
+                latitude >= minimumLatitude &&
+            
+                latitude <= maximumLatitude &&
+            
+                longitude >= minimumLongitude &&
+            
+                longitude <= maximumLongitude
+            );
+        };
+
+        function resetCaptureDate(){
+            document.getElementById("capture-date").value = "";
+        };
+    </script>
+
+    <script>
+        /* document.querySelector(".save-report.draft").addEventListener("click", function(event){
+            document.querySelector(".save-report.draft button").click();
+        }); */
+
+        document.querySelector(".save-report.draft").addEventListener("click", function(event){
+            document.querySelector(".save-report.draft button").click();
+        });
+
+        document.querySelector(".save-report.submit").addEventListener("click", function(event){
+            document.querySelector(".save-report.submit button").click();
+        });
+    </script>
+
+    <script>
+        window.onbeforeunload = function(event){
+            event.preventDefault();
+
+            event.returnValue = "";
+        };
+
+        function disableOnBeforeUnload(){
+            window.onbeforeunload = null;
+        };
+
+        function setActionValue(actionName){
+            document.getElementById("action").value = actionName;
+            
+            disableOnBeforeUnload();
+
+            document.querySelectorAll(".save-report").forEach(item => {
+                item.addEventListener("click", function(event){
+                    event.preventDefault();
+
+                    const username = "{{request.user.username}}";
+
+                    if (!navigator.onLine){
+                        Swal.fire({title: "Hey!", text: username + ", " + "your information input was recorded offline for COTSEye. Kindly visit the current page again if back online.", background: "#FFFFFF", icon: "warning", iconColor: "#003755", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#003755", customClass: {confirmButton: "info-button", title: "title"}}).then(() => {
+                            location.reload();
+                        });
+
+                    } else {
+                        Swal.fire({title: "Hey!", text: username + ", " + "you sure that you want to save the report?", icon: "warning", showCancelButton: true, confirmButtonColor: "#003755", cancelButtonColor: "#003755", confirmButtonText: "Yes", cancelButtonText: "No", customClass: {confirmButton: "confirm-button", cancelButton: "cancel-button", title: "title"}}).then((result) => {if (result.isConfirmed){document.querySelector(".report-form").submit();}});
+                    }
+                });
+            });
+
+        };
+    </script>
+
+    <script>
+        const indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB || window.shimIndexedDB;
+        
+        const request = indexedDB.open("cotseye", 1);
+
+        request.onupgradeneeded = (event) => {
+            const cotseye = event.target.result;
+        
+            const cotseye_schema = cotseye.createObjectStore("cotseye_schema", {autoIncrement: true});
+        };
+
+        request.onsuccess = (event) => {
+            const cotseye = event.target.result;
+
+            const form = document.querySelector(".report-form");
+
+            {% if draft_post %}
+                const id = "{{draft_post.id}}";
+            {% endif %}
+
+            const user = "{{request.user.id}}";
+
+            if (!navigator.onLine){
+                document.querySelector(".post-photo-choose").addEventListener("change", () => {
+                    const files = document.querySelector(".post-photo-choose").files;
+
+                    for (let i = 0; i < files.length; i++){
+                        const reader = new FileReader();
+                        
+                        reader.addEventListener("load", (event) => {
+                            postPhotos.push(event.target.result);
+                        });
+                        
+                        reader.readAsDataURL(files[i]);
+                    };
+                });
+
+                const postPhotos = [];
+
+                document.querySelector(".save-report.submit").addEventListener("click", (event) => {
+                    const information = new FormData(form);
+
+                    const action = information.get("action");
+
+                    const captureDate = information.get("capture_date");
+
+                    const description = information.get("description");
+
+                    const latitude = information.get("latitude");
+
+                    const longitude = information.get("longitude");
+
+                    const location = information.get("barangay");
+
+                    const size = information.get("size");
+
+                    const depth = information.get("depth");
+
+                    const density = information.get("density");
+
+                    const weather = information.get("weather");
+
+                    const transaction = cotseye.transaction("cotseye_schema", "readwrite");
+
+                    const cotseye_schema = transaction.objectStore("cotseye_schema");
+
+                    const post = {            
+                        {% if draft_post %}
+                            id: parseInt(id),
+                        {% endif %}        
+
+                        user: parseInt(user),
+
+                        action: action,
+
+                        capture_date: new Date(captureDate),
+                        
+                        description: description,
+
+                        post_photos: postPhotos,
+
+                        latitude: parseFloat(latitude),
+
+                        longitude: parseFloat(longitude),
+
+                        location: location,
+
+                        size: parseInt(size),
+
+                        depth: parseInt(depth),
+
+                        density: parseInt(density),
+
+                        weather: parseInt(weather)
+                    };
+
+                    cotseye_schema.add(post);
+                }); 
+
+                document.querySelector(".save-report.draft").addEventListener("click", (event) => {
+                    const information = new FormData(form);
+
+                    const action = information.get("action");
+
+                    const captureDate = information.get("capture_date");
+
+                    const description = information.get("description");
+
+                    const latitude = information.get("latitude");
+
+                    const longitude = information.get("longitude");
+
+                    const location = information.get("barangay");
+
+                    const size = information.get("size");
+
+                    const depth = information.get("depth");
+
+                    const density = information.get("density");
+
+                    const weather = information.get("weather");
+
+                    const transaction = cotseye.transaction("cotseye_schema", "readwrite");
+
+                    const cotseye_schema = transaction.objectStore("cotseye_schema");
+
+                    const post = {            
+                        {% if draft_post %}
+                            id: parseInt(id),
+                        {% endif %}        
+
+                        user: parseInt(user),
+
+                        action: action,
+
+                        capture_date: new Date(captureDate),
+                        
+                        description: description,
+
+                        post_photos: postPhotos,
+
+                        latitude: parseFloat(latitude),
+
+                        longitude: parseFloat(longitude),
+
+                        location: location,
+
+                        size: parseInt(size),
+
+                        depth: parseInt(depth),
+
+                        density: parseInt(density),
+
+                        weather: parseInt(weather)
+                    };
+
+                    cotseye_schema.add(post);
+                }); 
+            };
+
+            if (navigator.onLine){
+                const transaction = cotseye.transaction("cotseye_schema", "readonly");
+
+                const cotseye_schema = transaction.objectStore("cotseye_schema");
+
+                const post = cotseye_schema.getAll();
+
+                post.onsuccess = (event) => {
+                    const information = event.target.result;
+
+                    if (information && information.length > 0){
+                        const json = JSON.stringify(information);
+
+                        const token = "{{csrf_token}}"
+
+                        {% if draft_post %}
+                            fetch("{% url 'Contributor Service Post Draft Update Fetch' %}", {
+                                method: "POST",
+
+                                headers: {"Content-Type": "application/json", "X-CSRFToken": token},
+
+                                body: json
+
+                            }).then(() => {
+                                const request = indexedDB.open("cotseye", 1);
+
+                                request.onsuccess = (event) => {
+                                    const cotseye = event.target.result;
+                                    
+                                    const transaction = cotseye.transaction("cotseye_schema", "readwrite");
+                                    
+                                    const cotseye_schema = transaction.objectStore("cotseye_schema");
+                                    
+                                    cotseye_schema.clear();
+
+                                    const username = "{{request.user.username}}";
+
+                                    Swal.fire({title: "Yay!", text: username + ", " + "your information input recorded offline was delivered to COTSEye.", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}}).then(() => {
+                                        disableOnBeforeUnload();
+
+                                        window.location.href = "{% url 'Contributor Service Post' %}";
+                                    });
+                                };
+                            });
+
+                        {% else %}
+                            fetch("{% url 'Contributor Service Report Fetch' %}", {
+                                method: "POST",
+
+                                headers: {"Content-Type": "application/json", "X-CSRFToken": token},
+
+                                body: json
+
+                            }).then(() => {
+                                const request = indexedDB.open("cotseye", 1);
+
+                                request.onsuccess = (event) => {
+                                    const cotseye = event.target.result;
+                                    
+                                    const transaction = cotseye.transaction("cotseye_schema", "readwrite");
+                                    
+                                    const cotseye_schema = transaction.objectStore("cotseye_schema");
+                                    
+                                    cotseye_schema.clear();
+
+                                    const username = "{{request.user.username}}";
+
+                                    Swal.fire({title: "Yay!", text: username + ", " + "your information input recorded offline was delivered to COTSEye.", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}}).then(() => {
+                                        disableOnBeforeUnload();
+
+                                        window.location.href = "{% url 'Contributor Service Post' %}";
+                                    });
+                                };
+                            });
+                        {% endif %}
+                    };
+                };
+            };
+        };
+    </script>   
 {% endblock content %}
+
+{% block draggable_report %}
+{% endblock draggable_report %}

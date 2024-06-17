@@ -1,0 +1,81 @@
+.grid-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+
+} .card-header-card{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-title{
+    margin: 0;
+}
+
+.card-header button{
+    padding: 5px 10px;
+    border: none;
+    font-size: 16px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+#announcementsTable td{
+    font-size: 12px;
+    font-family: sans-serif;
+}
+
+.btn-primary{
+    font-size: 12px;
+}
+
+.btn-danger{
+    font-size: 12px;
+}
+
+.btn-sm{
+    font-size: 12px;
+}
+
+.manage-announcement{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+label.required::after{
+    margin-left: 10px !important;
+    content: "*" !important;
+    color: red;
+}
+
+.button-container{
+    position: relative;
+    display: inline-block;
+}
+
+#notification-bell{
+    position: relative !important;
+    display: block;
+}
+
+nav .dropdown{
+    max-width: 150px !important;
+    min-width: unset !important;
+    right: 1rem !important;
+    background-color: none !important;
+    box-shadow: none !important;
+}
+
+.notification-badge{
+    position: absolute;
+    top: -5px;
+    right: 0 !important;
+    padding: 2px 5px;
+    border-radius: 50%;
+    font-size: 0.75em;
+    color: white;
+    background-color: red;
+}

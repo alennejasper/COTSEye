@@ -19,5 +19,5 @@ class PostForm(ModelForm):
     class Meta:
         model = Post
         fields = "__all__"
-        exclude = ["user", "coordinates", "post_status", "post_observation"]
+        exclude = ["user", "coordinates", "location", "post_status", "post_observation", "creation_date"]
         widgets = {"post_photo": FileInput()}

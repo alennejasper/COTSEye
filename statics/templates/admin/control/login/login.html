@@ -47,7 +47,7 @@
                                 <label for = "username">Username</label>
 
                                 <div class = "username">
-                                    <input type = "text" id = "username" name = "username" data-initial-value = "cotseye/" oninput = "retainValue(this);" required>
+                                    <input type = "text" id = "username" name = "username" required>
                                 
                                     <i class = "fa-solid fa-user"></i>
                                 </div>
@@ -95,7 +95,7 @@
                     
                     $recaptcha.setAttribute("required", "required");
                 
-                    Swal.fire({title: "Oops!", text: "reCAPTCHA is not valid. Kindly check the reCAPTCHA and try again.", icon: "error", iconColor: "#C90016", confirmButtonColor: "#C90016"});
+                    Swal.fire({title: "Oops!", text: "reCAPTCHA is not valid. Kindly check the reCAPTCHA and try again.", icon: "error", iconColor: "#C90016", confirmButtonColor: "#C90016"}).then(() => {$recaptcha.removeAttribute("required")});
                 };
             });
 		};
@@ -123,24 +123,4 @@
             this.classList.toggle("fa-eye-slash");
         });
 	</script>
-
-    <script>
-        function retainValue(input){
-            if (input.value.length <= "cotseye/".length){
-                input.value = "cotseye/";
-                
-                input.selectionStart = "cotseye/".length;
-            }
-        }
-    </script>
-
-    <script>
-        document.getElementById("username").addEventListener("click", function(){
-            this.style.color = "#154360";
-
-            this.value = this.dataset.initialValue;
-
-            this.focus();
-        });
-    </script>
 </html>

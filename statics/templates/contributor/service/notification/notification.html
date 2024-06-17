@@ -1,0 +1,62 @@
+{% extends 'contributor/service/index/index.html' %}
+{% load static %}
+
+{% block content %}
+    <div class = "notification-body">
+        <!-- <div class = "notification-section">
+            <h1>Notifications</h1>
+        </div> -->
+
+        <div class = "notification">
+            <div class = "notification-unread">
+                <h1>Unread</h1>
+
+                {% if unread_items %}
+                    {% for post in unread_items %}
+                        <a href = "{% url 'Contributor Service Post Read' post.id %}">
+                            <div class = "notification-item">
+                                <div class = "item-header">
+                                    <img src = "{{post.post_photos.first.post_photo.url}}">
+
+                                    <div class = "item-context">
+                                        <p>The report you sent before was marked as <strong>{{post.post_status}}</strong>.</p>
+
+                                        <p>{{post.creation_date | date:'m/d/Y'}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    {% endfor %}
+
+                {% else %}
+                    <p>You have no unread notifications in the last 30 days.</p>
+                {% endif %}
+            </div>
+
+            <div class = "notification-read">
+                <h1>Read</h1>
+
+                {% if read_items %}
+                    {% for post in read_items %}
+                        <a class = "view-post" href = "{% url 'Contributor Service Post Read' post.id %}">                     
+                            <div class = "notification-item">
+                                <div class = "item-header">
+                                    <img src = "{{post.post_photos.first.post_photo.url}}">
+
+                                    <div class = "item-context">
+                                        <p>The report you sent before was marked as <strong>{{post.post_status}}</strong>.</p>
+
+                                        <p>{{post.creation_date | date:'m/d/Y'}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    {% endfor %}
+                
+                {% else %}
+                    <p>You have no read notifications in the last 30 days.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

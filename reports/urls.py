@@ -9,49 +9,51 @@ urlpatterns = [
 
     path("contributor/service/report/", views.ContributorServiceReport, name = "Contributor Service Report"),
 
-    path("contributor/service/report/capture/", views.ContributorServiceReportCapture, name = "Contributor Service Report Capture"),
-
-    path("contributor/service/report/choose/", views.ContributorServiceReportChoose, name = "Contributor Service Report Choose"),
-
     path("contributor/service/report/fetch/", views.ContributorServiceReportFetch, name = "Contributor Service Report Fetch"),
 
-    path("contributor/service/report/update/<int:id>", views.ContributorServiceReportUpdate, name = "Contributor Service Report Update"),
-
-    path("contributor/service/report/capture/update/<int:id>/", views.ContributorServiceReportCaptureUpdate, name = "Contributor Service Report Capture Update"),
-
-    path("contributor/service/report/choose/update/<int:id>/", views.ContributorServiceReportChooseUpdate, name = "Contributor Service Report Choose Update"),
-
-    path("contributor/service/report/update/fetch/", views.ContributorServiceReportUpdateFetch, name = "Contributor Service Report Update Fetch"),
-
     path("contributor/service/post/", views.ContributorServicePost, name = "Contributor Service Post"),
+
+    path("contributor/service/post/read/<int:id>/", views.ContributorServicePostRead, name = "Contributor Service Post Read"),
 
     path("contributor/service/post/feed/", views.ContributorServicePostFeed, name = "Contributor Service Post Feed"),
 
     path("contributor/service/post/feed/read/<int:id>/", views.ContributorServicePostFeedRead, name = "Contributor Service Post Feed Read"),
-
-    path("contributor/service/post/valid/", views.ContributorServicePostValid, name = "Contributor Service Post Valid"),
-    
-    path("contributor/service/post/valid/read/<int:id>/", views.ContributorServicePostValidRead, name = "Contributor Service Post Valid Read"),
-    
-    path("contributor/service/post/invalid/", views.ContributorServicePostInvalid, name = "Contributor Service Post Invalid"),
-    
-    path("contributor/service/post/invalid/read/<int:id>/", views.ContributorServicePostInvalidRead, name = "Contributor Service Post Invalid Read"),
-    
+                
     path("contributor/service/post/invalid/delete/<int:id>/", views.ContributorServicePostInvalidDelete, name = "Contributor Service Post Invalid Delete"),
 
     path("contributor/service/post/invalid/delete/fetch/", views.ContributorServicePostInvalidDeleteFetch, name = "Contributor Service Post Invalid Delete Fetch"),
 
-    path("contributor/service/post/uncertain/", views.ContributorServicePostUncertain, name = "Contributor Service Post Uncertain"),
+    path("contributor/service/post/draft/delete/<int:id>", views.ContributorServicePostDraftDelete, name = "Contributor Service Post Draft Delete"),
+
+    path("contributor/service/post/draft/delete/fetch/", views.ContributorServicePostDraftDeleteFetch, name = "Contributor Service Post Draft Delete Fetch"),
+
+    path("contributor/service/post/draft/update/<int:id>", views.ContributorServicePostDraftUpdate, name = "Contributor Service Post Draft Update"),
+
+    path("contributor/service/post/draft/update/fetch/", views.ContributorServicePostDraftUpdateFetch, name = "Contributor Service Post Draft Update Fetch"),
     
-    path("contributor/service/post/uncertain/read/<int:id>/", views.ContributorServicePostUncertainRead, name = "Contributor Service Post Uncertain Read"),
-
-    path("contributor/service/post/draft/", views.ContributorServicePostDraft, name = "Contributor Service Post Draft"),
-
     path("contributor/service/post/draft/send/<int:id>/", views.ContributorServicePostDraftSend, name = "Contributor Service Post Draft Send"),
 
     path("contributor/service/post/draft/send/fetch/", views.ContributorServicePostDraftSendFetch, name = "Contributor Service Post Draft Send Fetch"),
 
-    path("contributor/service/post/draft/read/<int:id>/", views.ContributorServicePostDraftRead, name = "Contributor Service Post Draft Read"),
+    path("officer/control/sighting/", views.OfficerControlSighting, name = "Officer Control Sighting"),
+    
+    path('officer/control/sighting/update/<int:id>/', views.OfficerControlSightingUpdate, name='officer_control_sighting_update'),
 
-    path("service/post/valid/read/redirect/", views.PostValidReadRedirect, name = "Post Valid Read Redirect"),
+    path("officer/control/sighting/read/<int:id>/", views.OfficerControlSightingRead, name = "Officer Control Sighting Read"),
+
+    path("officer/control/sighting/read/<int:object_id>/redirect/", views.OfficerControlSightingReadRedirect, name = "Officer Control Sighting Read Redirect"),
+
+    path("sightings/control/sighting/valid/", views.OfficerControlSightingValid, name = "Officer Control Sighting Valid"),
+
+    path("sightings/control/sighting/invalid", views.OfficerControlSightingInvalid, name = "Officer Control Sighting Invalid"),
+    
+    path("service/post/valid/read/<int:id>/redirect/", views.PostValidReadRedirect, name = "Post Valid Read Redirect"),
+
+    path("mark_post_as_read/<int:id>/", views.mark_post_as_read, name = "mark_post_as_read"),
+
+    path("api/posts/update/<int:post_id>/", views.update_post, name = "update_post"),   
+    
+    path("officer/control/sighting/delete_photo/<int:photo_id>/", views.DeletePostPhoto, name = "delete_photo"),
+
+    path("post/<int:post_id>/add-remark/", views.add_remark, name = "add_remark")
 ]

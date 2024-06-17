@@ -9,7 +9,6 @@ django-jazzmin = "*"
 django-allauth = "*"
 psycopg2 = "*"
 pillow = "*"
-xhtml2pdf = "*"
 
 [dev-packages]
 

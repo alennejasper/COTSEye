@@ -1,0 +1,867 @@
+{% extends 'officer/control/index/index.html' %}
+{% load static %}
+
+{% block content %}
+    <div class = "home-body">
+        <div class = "home-section">
+            <h1>COTSEYE DASHBOARD</h1>
+        </div>
+
+        <div class = "home-cards">
+            <h1>COTS COLLECTION BY MUNICIPALITY</h1>
+            
+            <div class = "cards-container">
+                
+            </div>
+        </div>
+
+        <script src = "https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function(){
+                const cardsContainer = document.querySelector(".cards-container");
+    
+                function shownStatus(status){
+                    switch (status){
+                        case "Low":
+                            return "#698F3F";
+
+                        case "Moderate":
+                            return "#F4C430";
+
+                        case "High":
+                            return "#FF7518";
+
+                        case "Critical":
+                            return "#C90016";
+                    };
+                };
+    
+                function createCard(entry){
+                    const card = document.createElement("div");
+
+                    card.className = "card";
+    
+                    const cardBody = document.createElement("div");
+
+                    cardBody.className = "card-body";
+                    
+                    cardBody.style.backgroundColor = shownStatus(entry.status_type);
+    
+                    const cardLocation = document.createElement("p");
+
+                    cardLocation.innerText = entry.municipality;
+                    
+                    cardBody.appendChild(cardLocation);
+    
+                    const cardStatus = document.createElement("h1");
+
+                    cardStatus.innerText = `${entry.status_type}`;
+                    
+                    cardBody.appendChild(cardStatus);
+    
+                    const cardAmount = document.createElement("div");
+
+                    cardAmount.className = "card-amount";
+                    
+                    cardBody.appendChild(cardAmount);
+    
+                    const cardAmountNumber = document.createElement("p");
+
+                    cardAmountNumber.innerText = entry.caught_amount;
+                    
+                    cardAmount.appendChild(cardAmountNumber);
+    
+                    const cardAmountContext = document.createElement("p");
+
+                    cardAmountContext.innerText = "COTS Collected";
+                    
+                    cardAmount.appendChild(cardAmountContext);
+    
+                    const cardDate = document.createElement("p");
+
+                    const formattedDate = entry.intervention_date;
+                    
+                    cardDate.innerHTML = `As of <strong>${formattedDate}</strong>`;
+                    
+                    cardBody.appendChild(cardDate);
+    
+                    card.appendChild(cardBody);
+    
+                    return card;
+                };
+    
+                function displayCards(data){
+                    cardsContainer.innerHTML = "";
+    
+                    data.forEach((entry) => {
+                        const card = createCard(entry);
+
+                        cardsContainer.appendChild(card);
+                    });
+                };
+    
+                const statusData = {{status_data | safe}};
+
+                displayCards(statusData);
+            });
+        </script>
+
+        <div class = "home-map">
+            <div class = "map">
+            </div>
+        </div>
+
+        <script>
+            function revealMap(){    
+                map_statuses = L.layerGroup();
+
+                function highlightBarangay(click){
+                    var layer = click.target;
+
+                    layer.setStyle({
+                        color: "#003755", 
+
+                        weight: 5, 
+                        
+                        fillOpacity: 0.75
+                    });
+
+                    layer.bringToFront();
+                };
+
+                function resetBarangay(click){
+                    status.resetStyle(click.target);
+                };
+
+                function zoomBarangay(click){
+                    var feature = click.target.feature;
+        
+                    var properties = feature.properties;
+
+                    map.fitBounds(click.target.getBounds());
+
+                    var center = click.target.getCenter();
+
+                    var status = feature.properties.statustype;
+
+                    if (status === "Critical"){
+                        fillings = "#C90016";
+                    
+                    } else if (status === "High"){
+                        fillings = "#FF7518";
+
+                    } else if (status === "Moderate"){
+                        fillings = "#F4C430";
+
+                    } else if (status === "Low"){
+                        fillings = "#698F3F";
+                    
+                    } else{
+                        fillings = "#003755";
+                    };
+                    
+                    var popup = L.popup({closeOnClick: false, autoClose: false}).setLatLng(center).setContent("<div class = 'popup'>" + "<div class = 'popup-header'>" + "<i class = 'fa-solid fa-circle-exclamation'>" + "</i>" + "<i class = 'fa-solid fa-square-xmark popup-back'>" + "</i>" + "</div>" + "<div class='popup-place'>" + "<p>" + "<a>" + properties.barangay + "</a>" + ", " + properties.municipality + "</p>" + "</div>" + "<div class = 'popup-statistics'>" + "<p>" + "As of " + "<a>" + properties.onset_date + "</a>" + ":" + "</p>" + "<p>" + "<a style = 'color: " + fillings + ";'>" + properties.statustype + "</a>" + " status" + "," + "</p>" + "<p>" + "<a>" + properties.caught_overall + "</a>" + " COTS caught" + "." + "</p>" + "</div>").openOn(map);
+                    
+                    var popupBack = popup._contentNode.querySelector(".popup-back");
+                    
+                    popupBack.addEventListener("click", function(){
+                        map.closePopup(popup);
+                    });
+                };
+
+                var status = L.geoJSON([{
+                    "type": "FeatureCollection", 
+                                
+                    "features": [
+                        {% for status in map_statuses %}
+                            {"type": "Feature", "properties": {"barangay": "{{status.location.barangay}}", "municipality": "{{status.location.municipality}}", "caught_overall": "{{status.caught_overall}}", "statustype": "{{status.statustype}}", "onset_date": "{{status.onset_date | date:'m/d/Y'}}"}, "geometry": {"type": "Polygon", "coordinates": {{status.location.perimeters}}}}, 
+                        {% endfor %}
+                    ]
+
+                }], {
+                    style: function(feature){
+                        var status = feature.properties.statustype;
+
+                        var fillings = "";
+
+                        if (status === "Critical"){
+                            fillings = "#C90016";
+                    
+                        } else if (status === "High"){
+                            fillings = "#FF7518";
+
+                        } else if (status === "Moderate"){
+                            fillings = "#F4C430";
+
+                        } else if (status === "Low"){
+                            fillings = "#698F3F";
+                        
+                        } else{
+                            fillings = "#003755";
+                        };
+
+                        return{
+                            color: "#002C44", 
+                            
+                            weight: 1, 
+
+                            fillColor: fillings, 
+
+                            fillOpacity: 0.75
+                        };
+                    }, 
+
+                    onEachFeature: function (feature, layer){
+                        layer.on({
+                            mouseover: highlightBarangay, 
+
+                            mouseout: resetBarangay, 
+
+                            click: zoomBarangay
+                        });
+                    }
+                });
+
+                status.addTo(map_statuses);
+
+                var map_posts = L.markerClusterGroup({iconCreateFunction: function(cluster){return starfish}, removeOutsideVisibleBounds: false});
+                
+                {% for post in map_posts %}
+                    var starfish = L.icon({iconUrl: "{{post.post_photos.first.post_photo.url | default:'/statics/assets/pin.png'}}",  iconSize: [30, 30], iconAnchor: [15, 15], className: "pin"});
+
+                    var postMarker = L.marker([{{post.coordinates.latitude}}, {{post.coordinates.longitude}}], {icon: starfish});
+                    
+                    postMarker.bindPopup("<div class = 'popup'>" + "<div class = 'popup-header'>" +  "<img src = '{{post.user.profile_photo.url | default:'/statics/assets/pin.png'}}'>" +  "<div class = 'popup-username'>" +  "<a>{{post.user | default:'None available'}}</a>" + "</div>" + "<i class = 'fa-solid fa-square-xmark popup-back'></i>" + "</div>" + "<div class = 'popup-post'>" + "<div class = 'post-gallery'>" + "<img src = '{{post.post_photos.all.first.post_photo.url | default:'/statics/assets/pin.png'}}'>" + "<div class = 'post-context'>" + "<p>{{post.capture_date | date:'m/d/Y' | default:'None available'}}</p>" + "<a>{{post.location | default:'None available'}}</a>" + "</div>" + "</div>" + "</div>" + "<div class = 'button'><a class = 'read-post' href = '{% url 'Post Valid Read Redirect' post.id %}'>Read</a></div>", {closeOnClick: false, autoClose: false});
+
+                    postMarker.on("popupopen", function(e){
+                        var popup = e.popup;
+                        
+                        var popupBack = popup.getElement().querySelector(".popup-back");
+                        
+                        popupBack.onclick = function(){
+                            popup.close();
+                        };
+                    });
+
+                    postMarker.on("click", function(event){                    
+                        if (!this.isPopupOpen()){
+                            this.openPopup();
+                        }
+                    });
+
+                    map_posts.addLayer(postMarker);
+                {% endfor %}
+
+                var map = document.getElementsByClassName("map")[0];
+
+                var background = L.tileLayer("http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}", {minZoom: 12, maxZoom: 20, subdomains:["mt0", "mt1", "mt2", "mt3"]});
+
+                var map = L.map(map, {zoomControl: true, scrollWheelZoom: false, dragging: true, maxBounds: [[5.266008, 124.277344], [6.489983, 126.035156]], layers: [background, map_posts]}).setView([5.9656, 125.1929], 12);
+                
+                map.on("popupopen", function(event){
+                    var popup = map.project(event.target._popup._latlng);
+                    
+                    popup.y -= event.target._popup._container.clientHeight / 2;
+                    
+                    map.panTo(map.unproject(popup), {animate: true});
+                });
+
+                map.attributionControl.remove();
+
+                var bases = {};
+                
+                var overlays = {
+                    "Sightings View": map_posts, 
+
+                    "COTS Infestation View": map_statuses
+                };
+
+                var management = L.control.layers(bases, overlays).addTo(map);
+
+                management.setPosition("topleft");
+
+                var legend = L.control({position: "topright"});
+
+                legend.onAdd = function(map){
+                    this._div = L.DomUtil.create("div", "legend");
+
+                    this.update();
+                    
+                    return this._div;
+                };
+
+                legend.update = function(property){
+                    if (map.hasLayer(map_statuses)){
+                        this._div.style.display = "grid";
+                        
+                        this._div.innerHTML = "<div class = 'popup-header'>" + "<a>" + "Legend:" + "</a>" + "</div>";
+                        
+                        var ranges = ["25 and up", "19 to 24", "13 to 18", "6 to 12"];
+                        
+                        var labels = ["Critical", "High", "Moderate", "Low"];
+                        
+                        var colors = ["#C90016", "#FF7518", "#F4C430", "#698F3F"];
+
+                        let popupStatistics = "";
+
+                        for (let i = 0; i < labels.length; i++) {
+                            popupStatistics += "<div class = 'popup-statistics'>" +  "<i style = 'background:" + colors[i] + "'>" + "</i>" + "<a>" + labels[i] + " " + "<p>" + "(" + ranges[i] + ")" + "</p>" + "</a>" + "</div>";
+                        }
+
+                        this._div.innerHTML += popupStatistics + "<div class = 'popup-alert'>" + "<p>" + "*Based on COTS collected." + "</p>" + "</div>";
+
+                    } else{
+                        this._div.style.display = "none";
+                    };
+                };
+
+                legend.addTo(map);
+
+                map.on("overlayadd overlayremove", function(event){
+                    if (event.name === "COTS Infestation View"){
+                        legend.update();
+                    }
+                });
+            };
+
+            window.addEventListener("load", function (){
+                revealMap();
+            });
+        </script>
+    
+        <div class = "home-graph">  
+            <form method = "GET" action = "{% url 'Officer Control Home' %}">
+                <div class = "graph-section">
+                    <h1>COTS COLLECTION BY BARANGAY</h1>
+                    
+                    <div class = "section-button">
+                        <button onclick = "window.location.href = '{% url 'Officer Control Report' %}'">GENERATE REPORT</button>
+                    </div>
+                </div>
+
+                <div class = "graph-filter">
+                    <div class = "filter-input">
+                        <div class = "filter-municipality">
+                            <label for = "municipalityFilter">Municipality:</label>
+                            
+                            <select id = "municipalityFilter" name = "municipality" onchange = "updateBarangayOptions()">
+                                {% for municipality in municipalities %}
+                                    <option value = "{{municipality.municipality}}" {% if selected_municipality == municipality.municipality %} selected {% endif %}>{{municipality.municipality}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+    
+                        <div class = "filter-barangay">
+                            <label for = "barangayFilter">Barangay:</label>
+                            
+                            <select id = "barangayFilter" onchange = "setBarangayValue()">
+                                {% if selected_barangay == '' %}
+                                    <option value = "">Select Barangay</option>
+                                {% else %}
+                                    <option value = {{selected_barangay}}>{{selected_barangay}}</option>
+                                {% endif %}
+    
+                                {% for barangay in barangays %}
+                                    <option value = "{{barangay.barangay}}" {% if selected_barangay == barangay.barangay %} selected {% endif %}>{{barangay.barangay}}</option>
+                                {% endfor %}    
+                            </select>
+                        </div>
+                
+                        <div class = "filter-year">
+                            <label for = "yearFilter">Year:</label>
+                            
+                            <input type = "number" id = "yearFilter" name = "year" value = "{{year_filter | default_if_none:current_year}}" min = "1900" max = "{{current_year}}">
+                        </div>
+                    
+                        <button type = "submit">Apply Filter</button>
+
+                        <button type = "submit" onclick = "resetFilter()">Reset Filter</button>
+                    </div>
+                    
+                    <input type = "hidden" id = "municipalityID" name = "municipality">
+
+                    <input type = "hidden" id = "barangayID" name = "barangay">
+                </div>
+
+                <script>
+                    window.updateBarangayOptions = function(){
+                        const municipalityFilter = document.getElementById("municipalityFilter").value;
+
+                        const barangayFilter = document.getElementById("barangayFilter");
+                        
+                        const municipalityInput = document.getElementById("municipalityID");
+                        
+                        municipalityInput.value = municipalityFilter;
+        
+                        barangayFilter.innerHTML = '<option value = "">Select Barangay</option>';
+        
+                        if (municipalityFilter){
+                            $.ajax({
+                                url: "{% url 'get_barangays' %}",
+
+                                data: {
+                                    "municipality": municipalityFilter
+                                },
+
+                                success: function(data){
+                                    data.forEach(function(barangay){
+                                        const option = document.createElement("option");
+
+                                        option.value = barangay;
+                                        
+                                        option.textContent = barangay;
+                                        
+                                        barangayFilter.appendChild(option);
+                                    });
+                                }
+                            });
+                        };
+                    };
+        
+                    window.setBarangayValue = function(){
+                        const barangayFilter = document.getElementById("barangayFilter");
+
+                        const barangayInput = document.getElementById("barangayID");
+                        
+                        barangayInput.value = barangayFilter.value;
+                    };
+                </script>
+
+                <div class = "graph-header">
+                    <h1>COTS INFESTATION GRAPH</h1>
+
+                    <p id = "barangay"></p>
+                    
+                    <p id = "status"></p>
+                    
+                    <p id = "asOfDate"></p>
+                </div>
+                
+                <div id = "noDataMessage">No data available for the selected year.</div>
+                
+                <div class = "graph">
+                    <canvas id = "activityGraph"></canvas>
+                </div>
+
+                <div class = "graph-legends" id = "graphLegends">
+                    <h1>Legend:</h1>
+
+                    <div class = "legends-container"></div>
+
+                    <p>Based on COTS collected.</p>
+                </div>            
+            </form>     
+
+            <div class = "graph-data">
+                <div class = "data-header">
+                    <h1>GRAPH DATA</h1>
+
+                    <!-- <button class="btn btn-link" data-toggle="collapse" data-target="#dataTable" aria-expanded="true" aria-controls="dataTable">
+                        Toggle Table
+                    </button> -->
+                </div>
+
+                <div id = "dataTable" class = "data-table collapse show">
+                    <table class = "table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Title</th>
+                                <th>Location</th>
+                                <th>COTS Collected</th>
+                                <th>Volunteer Count</th>
+                                <th>Location Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id = "dataTableBody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <script src = "https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+        
+        <script src = "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        <script src = "https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <script src = "https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0"></script>
+
+        <!-- <script>
+            $(document).ready(function(){
+                $("#toggleButton").click();
+            });
+        </script> -->
+
+        <script>
+            function shownStatusColor(statusType){
+                switch (statusType){
+                    case "Low":
+                        return "#698F3F";
+
+                    case "Moderate":
+                        return "#F4C430";
+
+                    case "High":
+                        return "#FF7518";
+
+                    case "Critical":
+                        return "#C90016";
+
+                    default:
+                        return null;
+                };
+            };
+
+            function shownStatusType(caughtAmount){
+                if (caughtAmount >= 0 && caughtAmount <= 12){
+                    return "Low";
+
+                } else if (caughtAmount >= 13 && caughtAmount <= 18){
+                    return "Moderate";
+
+                } else if (caughtAmount >= 19 && caughtAmount <= 24){
+                    return "High";
+
+                } else {
+                    return "Critical";
+                };
+            };
+
+            const graphData = JSON.parse("{{chart_data | escapejs}}");
+
+            const statusOrder = ["Low", "Moderate", "High", "Critical"];
+
+            graphData.sort((a, b) => new Date(a.intervention_date) - new Date(b.intervention_date));
+
+            if (graphData.length === 0){
+                document.getElementById("activityGraph").style.display = "none";
+
+                document.getElementById("noDataMessage").style.display = "block";
+
+                document.getElementById("graphLegends").style.display = "none";
+
+            } else {
+                document.getElementById("activityGraph").style.display = "block";
+
+                document.getElementById("noDataMessage").style.display = "none";
+
+                document.getElementById("graphLegends").style.display = "block";
+
+                const uniqueLocations = [...new Set(graphData.map(entry => entry.location))];
+
+                const barangay = uniqueLocations.length > 1 ? "All" : (uniqueLocations[0] || "All");
+
+                const latestEntry = graphData[graphData.length - 1];
+
+                const status = latestEntry.status_type.toUpperCase();
+
+                const asOfDate = `${new Date(latestEntry.intervention_date).toLocaleDateString("en-US", {month: "2-digit", day: "2-digit", year: "numeric"})}`;
+
+                document.getElementById("barangay").innerText = `Barangay ${barangay}`;
+
+                document.getElementById("status").innerText = `${status}`;
+
+                document.getElementById("asOfDate").innerHTML = `As of <strong>${asOfDate}</strong>`;
+
+                const interventionYears = graphData.map(entry => new Date(entry.intervention_date).getFullYear());
+
+                const minYear = Math.min(...interventionYears);
+
+                const maxYear = Math.max(...interventionYears);
+                
+                const data = {
+                    datasets: [{
+                        label: "Number of COTS Collected",
+
+                        data: graphData.map(entry => ({
+                            x: entry.intervention_date,
+
+                            y: entry.caught_amount,
+
+                            location: entry.location,
+                            
+                            title: entry.title,
+                            
+                            statusType: shownStatusType(entry.caught_amount),
+                            
+                            volunteerAmount: entry.volunteer_amount
+                        })),
+
+                        borderColor: "#003755",
+                        
+                        borderWidth: 1,
+
+                        spanGaps: true,
+
+                        pointRadius: 5,
+
+                        pointHoverRadius: 10,
+
+                        pointBackgroundColor: graphData.map(entry => shownStatusColor(shownStatusType(entry.caught_amount))),                                        
+                    }]
+                };
+
+                const graphConfiguration = {
+                    data: data,
+                    
+                    options: {
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+
+                            tooltip: {
+                                borderColor: "#003755",
+
+                                borderWidth: 1,
+
+                                backgroundColor: graphData.map(entry => shownStatusColor(shownStatusType(entry.caught_amount))),
+
+                                bodyAlign: "center",
+
+                                bodyFont: {
+                                    family: "Montserrat",
+
+                                    size: 12,
+
+                                    weight: "400"
+                                },
+
+                                callbacks: {
+                                    title: function(tooltipItems){
+                                        return tooltipItems[0].raw.location;
+                                    },
+
+                                    label: function(context){
+                                        const dataPoint = context.raw;
+                                        
+                                        const date = new Date(dataPoint.x).toLocaleDateString("en-US", {month: "2-digit", day: "2-digit", year: "numeric"});
+
+                                        return [`${dataPoint.title}`, `${date}`];
+                                    }
+                                },
+
+                                displayColors: false,
+
+                                footerAlign: "center",
+
+                                footerFont: {
+                                    family: "Montserrat",
+
+                                    size: 12,
+
+                                    weight: "400"
+                                },
+
+                                titleAlign: "center",
+
+                                titleFont: {
+                                    family: "Montserrat",
+
+                                    size: 16,
+
+                                    weight: "700"
+                                },
+
+                                titleMarginBottom: 0
+                            }
+                        },
+
+                        scales: {
+                            x: {
+                                grid: {
+                                    color: "#c9c9c9"
+                                },
+
+                                min: `${minYear}-01-01`,
+                                
+                                max: `${maxYear}-12-31`,
+                                
+                                type: "time",
+
+                                time: {
+                                    unit: "month",
+                                    
+                                    tooltipFormat: "MM/dd/yyyy",
+                                    
+                                    displayFormats: {
+                                        month: "MMM."
+                                    }
+                                },
+
+                                title: {
+                                    color: "#003755",
+
+                                    display: true,
+
+                                    font: {
+                                        family: "Montserrat",
+
+                                        size: 16,
+
+                                        weight: "700"
+                                    },
+
+                                    text: "Activity Date"
+                                },
+
+                                ticks: {
+                                    color: "#003755",
+
+                                    font: {
+                                        color: "#003755",
+
+                                        family: "Montserrat",
+
+                                        size: 12,
+
+                                        weight: "400"
+                                        
+                                    }
+                                } 
+                            },
+
+                            y: {
+                                beginAtZero: true,
+
+                                grid: {
+                                    color: "#c9c9c9"
+                                },
+
+                                title: {
+                                    color: "#003755",
+
+                                    display: true,
+
+                                    font: {
+                                        family: "Montserrat",
+
+                                        size: 16,
+
+                                        weight: "700"
+                                    },
+
+                                    fontStyle: "bold",
+
+                                    text: "Number of COTS Collected"
+                                },
+
+                                ticks: {
+                                    color: "#003755",
+
+                                    font: {
+                                        family: "Montserrat",
+
+                                        size: 12,
+
+                                        weight: "400"
+                                    }
+                                } 
+                            }
+                        }
+                    },
+
+                    type: "line",
+                };
+
+                const activityGraph = new Chart(
+                    document.getElementById("activityGraph"),
+
+                    graphConfiguration
+                );
+
+                function shownStatusRange(statusType){
+                    switch (statusType){
+                        case "Low":
+                            return "0-12";
+
+                        case "Moderate":
+                            return "13-18";
+
+                        case "High":
+                            return "19-24";
+
+                        case "Critical":
+                            return "25 and above";
+                    };
+                };
+
+                const legendsContainer = document.querySelector(".legends-container");
+
+                statusOrder.forEach(statusType => {
+                    const legendItem = document.createElement("div");
+
+                    legendItem.className = "legend-item";
+
+                    const legendColorbox = document.createElement("span");
+                    
+                    legendColorbox.className = "legend-colorbox";
+                    
+                    legendColorbox.style.backgroundColor = shownStatusColor(statusType);
+
+                    const legendText = document.createElement("span");
+                    
+                    legendText.innerHTML = `${statusType.toUpperCase()} <strong>(${shownStatusRange(statusType)})</strong>`;
+
+                    legendItem.appendChild(legendColorbox);
+                    
+                    legendItem.appendChild(legendText);
+                    
+                    legendsContainer.appendChild(legendItem);
+                });
+
+                const dataTableBody = document.getElementById("dataTableBody");
+
+                graphData.forEach(entry => {
+                    if (entry.title !== "N/A"){
+                        const row = document.createElement("tr");
+
+                        const dateCell = document.createElement('td');
+                        
+                        dateCell.innerText = new Date(entry.intervention_date).toLocaleDateString("en-US", {month: "2-digit", day: "2-digit", year: "numeric"});
+                        
+                        row.appendChild(dateCell);
+
+                        const titleCell = document.createElement("td");
+
+                        titleCell.innerText = entry.title;
+                        
+                        row.appendChild(titleCell);
+
+                        const locationCell = document.createElement("td");
+
+                        locationCell.innerText = entry.location;
+                        
+                        row.appendChild(locationCell);
+
+                        const caughtAmountCell = document.createElement("td");
+
+                        caughtAmountCell.innerText = entry.caught_amount;
+                        
+                        row.appendChild(caughtAmountCell);
+
+                        const volunteerAmountCell = document.createElement("td");
+
+                        volunteerAmountCell.innerText = entry.volunteer_amount;
+                        
+                        row.appendChild(volunteerAmountCell);
+
+                        const statusCell = document.createElement("td");
+
+                        statusCell.innerText = shownStatusType(entry.caught_amount);
+                        
+                        row.appendChild(statusCell);
+
+                        dataTableBody.appendChild(row);
+                    };
+                });
+            };
+        </script>   
+    </div>
+{% endblock %}

@@ -1,7 +1,292 @@
 {% extends "contributor/service/index/index.html" %}
 {% load static %}
 
+
 {% block content %}
+    <div class = "home-body">
+        <div class = "home-section">
+            <h1>COTSEYE</h1>
+            
+            <p>Empowering coral reef preservation, one captured crown-of-thorns starfish at a time.</p>
+        </div>
+
+        <div class = "home-map">
+            <div class = "map">
+            </div>
+        </div>
+
+        <script>
+            function revealMap(){    
+                map_statuses = L.layerGroup();
+
+                function highlightBarangay(click){
+                    var layer = click.target;
+
+                    layer.setStyle({
+                        color: "#003755", 
+
+                        weight: 5, 
+                        
+                        fillOpacity: 0.75
+                    });
+
+                    layer.bringToFront();
+                };
+
+                function resetBarangay(click){
+                    status.resetStyle(click.target);
+                };
+
+                function zoomBarangay(click){
+                    var feature = click.target.feature;
+        
+                    var properties = feature.properties;
+
+                    map.fitBounds(click.target.getBounds());
+
+                    var center = click.target.getCenter();
+
+                    var status = feature.properties.statustype;
+
+                    if (status === "Critical"){
+                        fillings = "#C90016";
+                    
+                    } else if (status === "High"){
+                        fillings = "#FF7518";
+
+                    } else if (status === "Moderate"){
+                        fillings = "#F4C430";
+
+                    } else if (status === "Low"){
+                        fillings = "#698F3F";
+                    
+                    } else{
+                        fillings = "#003755";
+                    };
+                    
+                    var popup = L.popup({closeOnClick: false, autoClose: false}).setLatLng(center).setContent("<div class = 'popup'>" + "<div class = 'popup-header'>" + "<i class = 'fa-solid fa-circle-exclamation'>" + "</i>" + "<i class = 'fa-solid fa-square-xmark popup-back'>" + "</i>" + "</div>" + "<div class='popup-place'>" + "<p>" + "<a>" + properties.barangay + "</a>" + ", " + properties.municipality + "</p>" + "</div>" + "<div class = 'popup-statistics'>" + "<p>" + "As of " + "<a>" + properties.onset_date + "</a>" + ":" + "</p>" + "<p>" + "<a style = 'color: " + fillings + ";'>" + properties.statustype + "</a>" + " status" + "," + "</p>" + "<p>" + "<a>" + properties.caught_overall + "</a>" + " COTS caught" + "." + "</p>" + "</div>").openOn(map);
+                    
+                    var popupBack = popup._contentNode.querySelector(".popup-back");
+                    
+                    popupBack.addEventListener("click", function(){
+                        map.closePopup(popup);
+                    });
+                };
+
+                var status = L.geoJSON([{
+                    "type": "FeatureCollection", 
+                                
+                    "features": [
+                        {% for status in map_statuses %}
+                            {"type": "Feature", "properties": {"barangay": "{{status.location.barangay}}", "municipality": "{{status.location.municipality}}", "caught_overall": "{{status.caught_overall}}", "statustype": "{{status.statustype}}", "onset_date": "{{status.onset_date | date:'m/d/Y'}}"}, "geometry": {"type": "Polygon", "coordinates": {{status.location.perimeters}}}}, 
+                        {% endfor %}
+                    ]
+
+                }], {
+                    style: function(feature){
+                        var status = feature.properties.statustype;
+
+                        var fillings = "";
+
+                        if (status === "Critical"){
+                            fillings = "#C90016";
+                    
+                        } else if (status === "High"){
+                            fillings = "#FF7518";
+
+                        } else if (status === "Moderate"){
+                            fillings = "#F4C430";
+
+                        } else if (status === "Low"){
+                            fillings = "#698F3F";
+                        
+                        } else{
+                            fillings = "#003755";
+                        };
+
+                        return{
+                            color: "#002C44", 
+                            
+                            weight: 1, 
+
+                            fillColor: fillings, 
+
+                            fillOpacity: 0.75
+                        };
+                    }, 
+
+                    onEachFeature: function (feature, layer){
+                        layer.on({
+                            mouseover: highlightBarangay, 
+
+                            mouseout: resetBarangay, 
+
+                            click: zoomBarangay
+                        });
+                    }
+                });
+
+                status.addTo(map_statuses);
+
+                var map_posts = L.markerClusterGroup({iconCreateFunction: function(cluster){return starfish}, removeOutsideVisibleBounds: false});
+                
+                {% for post in map_posts %}
+                    var starfish = L.icon({iconUrl: "{{post.post_photos.first.post_photo.url | default:'/statics/assets/pin.png'}}",  iconSize: [30, 30], iconAnchor: [15, 15], className: "pin"});
+
+                    var postMarker = L.marker([{{post.coordinates.latitude}}, {{post.coordinates.longitude}}], {icon: starfish});
+                    
+                    postMarker.bindPopup("<div class = 'popup'>" + "<div class = 'popup-header'>" +  "<img src = '{{post.user.profile_photo.url | default:'/statics/assets/pin.png'}}'>" +  "<div class = 'popup-username'>" +  "<a>{{post.user | default:'None available'}}</a>" + "</div>" + "<i class = 'fa-solid fa-square-xmark popup-back'></i>" + "</div>" + "<div class = 'popup-post'>" + "<div class = 'post-gallery'>" + "<img src = '{{post.post_photos.all.first.post_photo.url | default:'/statics/assets/pin.png'}}'>" + "<div class = 'post-context'>" + "<p>{{post.capture_date | date:'m/d/Y' | default:'None available'}}</p>" + "<a>{{post.location | default:'None available'}}</a>" + "</div>" + "</div>" + "</div>" + "<div class = 'button'><a class = 'read-post' href = '{% url 'Post Valid Read Redirect' post.id %}'>Read</a></div>", {closeOnClick: false, autoClose: false});
+
+                    postMarker.on("popupopen", function(e){
+                        var popup = e.popup;
+                        
+                        var popupBack = popup.getElement().querySelector(".popup-back");
+                        
+                        popupBack.onclick = function(){
+                            popup.close();
+                        };
+                    });
+
+                    postMarker.on("click", function(event){                    
+                        if (!this.isPopupOpen()){
+                            this.openPopup();
+                        }
+                    });
+
+                    map_posts.addLayer(postMarker);
+                {% endfor %}
+
+
+                var map = document.getElementsByClassName("map")[0];
+
+                var background = L.tileLayer("http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}", {minZoom: 12, maxZoom: 20, subdomains:["mt0", "mt1", "mt2", "mt3"]});
+
+                var map = L.map(map, {zoomControl: true, scrollWheelZoom: false, dragging: true, maxBounds: [[5.266008, 124.277344], [6.489983, 126.035156]], layers: [background, map_posts]}).setView([5.9656, 125.1929], 12);
+                
+                map.on("popupopen", function(event){
+                    var popup = map.project(event.target._popup._latlng);
+                    
+                    popup.y -= event.target._popup._container.clientHeight / 2;
+                    
+                    map.panTo(map.unproject(popup), {animate: true});
+                });
+
+                map.attributionControl.remove();
+
+                var bases = {};
+                
+                var overlays = {
+                    "Posts": map_posts, 
+
+                    "COTS Status": map_statuses
+                };
+
+                var management = L.control.layers(bases, overlays).addTo(map);
+
+                management.setPosition("bottomright");
+
+                var legend = L.control({position: "topright"});
+
+                legend.onAdd = function(map){
+                    this._div = L.DomUtil.create("div", "legend");
+
+                    this.update();
+                    
+                    return this._div;
+                };
+
+                legend.update = function(property){
+                    if (map.hasLayer(map_statuses)){
+                        this._div.style.display = "grid";
+                        
+                        this._div.innerHTML = "<div class = 'popup-header'>" + "<a>" + "Legend:" + "</a>" + "</div>";
+                        
+                        var ranges = ["25 and up", "19 to 24", "13 to 18", "6 to 12"];
+                        
+                        var labels = ["Critical", "High", "Moderate", "Low"];
+                        
+                        var colors = ["#C90016", "#FF7518", "#F4C430", "#698F3F"];
+
+                        let popupStatistics = "";
+
+                        for (let i = 0; i < labels.length; i++) {
+                            popupStatistics += "<div class = 'popup-statistics'>" +  "<i style = 'background:" + colors[i] + "'>" + "</i>" + "<a>" + labels[i] + " " + "<p>" + "(" + ranges[i] + ")" + "</p>" + "</a>" + "</div>";
+                        }
+
+                        this._div.innerHTML += popupStatistics + "<div class = 'popup-alert'>" + "<p>" + "*Based on COTS collected." + "</p>" + "</div>";
+
+                    } else{
+                        this._div.style.display = "none";
+                    };
+                };
+
+                legend.addTo(map);
+
+                map.on("overlayadd overlayremove", function(event){
+                    if (event.name === "COTS Status"){
+                        legend.update();
+                    }
+                });
+            };
+
+            window.addEventListener("load", function (){
+                revealMap();
+            });
+        </script>
+
+        <div class = "home-cots">
+            <a href = "https://www.barrierreef.org/news/explainers/what-are-crown-of-thorns-starfish">
+                <img src = "{% static 'assets/cotpic1.jpeg' %}">
+            
+                <div class = "cots-context">
+                    <p><i class = "fa-solid fa-bars"></i> READ</p>
+                    
+                    <h1>Crown-of-Thorns Starfish (COTS)</h1>
+                </div>
+            </a>
+        </div>
+
+        <div class = "home-post">
+            <h1>LATEST POSTS</h1>
+
+            <div class = "post">
+                {% for post in valid_posts %}
+                    <div class = "post-gallery">
+                        <a href="{% url 'Contributor Service Post Feed Read' post.id %}">
+                            <img src = "{{post.post_photos.first.post_photo.url}}">
+                        </a>
+                
+                        <div class = "post-context">
+                            <p>{{post.location | default:'None available'}}</p>
+
+                            <h1>{{post.user | default:'None available'}}</h1>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class = "home-announcement">
+            <h1>ANNOUNCEMENTS</h1>
+            
+            <div class = "announcement">
+                {% for announcement in latest_announcements %}
+                    <div class = "announcement-gallery">
+                        <a href = "{% url 'Contributor Service Announcement Read' announcement.id %}">
+                            <img src = "{{announcement.announcement_photo.url}}">
+                        </a>
+
+                        <!-- <div class = "announcement-context">
+                            <h1>{{announcement.title | default:'None available'}}</h1>
+                            
+                            <p>{{announcement.context | default:'None available'}}</p>
+                        </div> -->
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
     {% if messages %}
         {% for message in messages %}
             {% if message.tags == "info" %}<script>Swal.fire({title: "Hey!", text: "{{message}}", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}})</script>
@@ -10,9 +295,9 @@
             
             {% else %}<script>Swal.fire({title: "Oops!", text: "{{message}}", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}})</script>
             
-            {% endif %}    
+            {% endif %}
         {% endfor %}
     {% endif %}
 
-    <script type = "text/javascript">if(window.location.hash && window.location.hash === "#_=_"){ window.location.hash = ""; history.pushState("", document.title, window.location.pathname);}</script>
+    <script type = "text/javascript">if (window.location.hash && window.location.hash === "#_=_"){window.location.hash = ""; history.pushState("", document.title, window.location.pathname);}</script>
 {% endblock content %}

@@ -13,193 +13,265 @@
 
         <script src = "{% static 'templates/webwares/application.js' %}"></script>
 
-        <meta name = "theme-color" content = "#154360">
+        <meta name = "theme-color" content = "#003755">
 
         <link rel = "apple-touch-icon" href = "{% static 'assets/icons/logo (180 x 180).png' %}">
 
-        <meta name = "apple-mobile-web-app-status-bar" content = "#154360">
+        <meta name = "apple-mobile-web-app-status-bar" content = "#003755">
 
         <link rel = "icon" type = "image/x-icon" href = "{% static 'assets/icons/logo.png' %}">
 
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/index/index.css' %}">
 
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/fallback/fallback.css' %}">
+
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/home/home.css' %}">
-
-        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/announcement/announcement.css' %}">
-            
-        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/announcement/read.css' %}">
-
-        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/profile/profile.css' %}">
-
-        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/profile/update.css' %}">
-
-        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/report/report.css' %}">
-
-        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/report/capture.css' %}">
-
-        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/report/choose.css' %}">
-
-        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/post/post.css' %}">
 
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/post/feed.css' %}">
 
-        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/post/valid.css' %}">
-
-        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/post/invalid.css' %}">
-
-        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/post/uncertain.css' %}">
-
-        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/post/draft.css' %}">
-
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/post/read.css' %}">
 
-        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/status/status.css' %}">
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/map/map.css' %}">
+
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/announcement/announcement.css' %}">
+
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/announcement/read.css' %}">
 
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/intervention/intervention.css' %}">
 
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/intervention/read.css' %}">
 
-        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/inquiry/inquiry.css' %}">
-
-        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/map/map.css' %}">
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/post/post.css' %}">
 
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/resource/resource.css' %}">
 
-        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/resource/link.css' %}">
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/inquiry/inquiry.css' %}">
 
-        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/resource/file.css' %}">
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/report/report.css' %}">
 
-        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/fallback/fallback.css' %}">
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/notification/notification.css' %}">
 
-        <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">          
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/profile/profile.css' %}">
 
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/profile/update.css' %}">
+
+        <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity = "sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin = "anonymous" referrerpolicy = "no-referrer"/>
+
+        <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">   
+               
         <script src = "https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         
         <link rel = "stylesheet" href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity = "sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin = ""/>    
 
         <script src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity = "sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin = ""></script>
-
+        
         <script src = "https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
         <script src = "https://cdnjs.cloudflare.com/ajax/libs/exif-js/2.3.0/exif.js"></script>
+
+        <link rel = "stylesheet" href = "https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+    
+        <link rel = "stylesheet" href = "https://unpkg.com/leaflet-geosearch/dist/geosearch.css"/>
+
+        <script src = "https://cdn.jsdelivr.net/npm/leaflet-geosearch/dist/geosearch.min.js"></script>
+    
+        <link rel = "stylesheet" href = "https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css"/>
+    
+        <script src = "https://cdn.jsdelivr.net/npm/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+        <link rel = "stylesheet" href = "https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@v0.74.0/dist/L.Control.Locate.min.css"/>
+
+        <script src = "https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@v0.74.0/dist/L.Control.Locate.min.js" charset="utf-8"></script>
 
         <title>COTSEye | Home</title>
     </head>
 
     <body>
-        <nav>
-            <div class = "navigation-bar">
-                <i class = "fa-solid fa-bars opened-side"></i>
-
-                <span class = "navigation-logo"><a href = "{% url 'Contributor Service Home' %}"><img src = "{% static 'assets/icons/logo.png' %}" alt = "navigation-logo"></a></span>
-
-                <div class = "menu">
-                    <div class = "toggle">
-                        <span class = "navigation-logo"><a href = "{% url 'Contributor Service Home' %}"><img src = "{% static 'assets/icons/logo.png' %}" alt = "navigation-logo"></a></span>
-                        
-                        <i class = "fa-solid fa-bars closed-side"></i>
-                    </div>
-
-                    <ul class = "navigation-sidelinks">
-                        <li><a href = "{% url 'Contributor Service Report' %}"><i class = "fa-solid fa-pen-to-square"></i>Create post</a></li>
-
-                        <li><a href = "{% url 'Contributor Service Map' %}"><i class = "fa-solid fa-map"></i>Map</a></li>
-
-                        <li><a href = "{% url 'Contributor Service Post' %}"><i class = "fa-solid fa-images"></i>My posts</a></li>
-
-                        <li><a href = "{% url 'Contributor Service Status' %}"><i class = "fa-solid fa-square-poll-vertical"></i>Statuses</a></li>
-
-                        <li><a href = "{% url 'Contributor Service Intervention' %}"><i class = "fa-solid fa-calendar-day"></i>Intervention programs</a></li>
-
-                        <li><a href = "{% url 'Contributor Service Resource' %}"><i class = "fa-solid fa-box-archive"></i>Resources</a></li>
-
-                        <li><a href = "{% url 'Contributor Service Post Feed' %}">Posts feed</a></li>
-                    </ul>
-
-
-                    <ul class = "navigation-links">
-                        <li><a href = "{% url 'Contributor Service Map' %}"></i>Map</a></li>
-
-                        <li><a href = "{% url 'Contributor Service Post' %}">My posts</a></li>
-
-                        <li><a href = "{% url 'Contributor Service Status' %}">Statuses</a></li>
-
-                        <li><a href = "{% url 'Contributor Service Intervention' %}">Intervention programs</a></li>
-
-                        <li><a href = "{% url 'Contributor Service Resource' %}">Resources</a></li>
-
-                        <li><a href = "{% url 'Contributor Service Post Feed' %}">Posts feed</a></li>
-                    </ul>
+        <nav class = "navigation-topbar">
+            <a href = "{% url 'Contributor Service Home' %}" class = "header"><img src = "{% static 'assets/icons/header.png' %}" class = "header"></a>
+            
+            <div class = "menu">
+                <div class = "notification">
+                    <a class = "notification-link">
+                        <i class = "fa-solid fa-bell"></i>
+    
+                        {% if unread_notifications %}
+                            <span class = "notification-count">{{unread_notifications | length}}</span>
+                        {% endif %}
+                    </a>
                 </div>
-
-                <div class = "others">
-                    <div class = "create-icon">
-                        <a href = "{% url 'Contributor Service Report' %}"><i class = "fa-solid fa-pen-to-square"></i></a>
-                    </div>
-
-                    <div class = "dropdown">
-                        <button onclick = "shownDropdown()"><i class = "fa-regular fa-user"></i></button>
-
-                        <div id = "dropdown-content" class = "dropdown-content">
-                            <a href = "{% url 'Contributor Service Profile' %}" class = "dropdown-header">{{username}}</a>
-
-                            <div class = "dropdown-divider"></div>
-                            
-                            <a href = "{% url 'Contributor Service Announcement' %}" class = "dropdown-item"><i class = "fa-solid fa-bell"></i>See announcements</a>
-                            
-                            <div class = "dropdown-divider"></div>
-                            
-                            <a href = "{% url 'Contributor Service Logout' %}" class = "dropdown-item"><i class = "fa-solid fa-users"></i>Log out</a>
-                            
-                            <div class = "dropdown-divider"></div>
-
-                            <a href = "{% url 'Contributor Service Inquiry' %}" class = "dropdown-footer">See inquiries</a>                            
-                        </div>
-                    </div>
-                </div>
+                
+                <a onclick = "shownProfile()" class = "profile"><img src = "{{user_profile.profile_photo.url}}" class = "drop profile"></a>
             </div>
         </nav>
-    
+        
+        <div class = "menu-content">
+            <div class = "notification-dropdown">
+                <div id = "notification-content" class = "notification-content">
+                    {% if unread_notifications %}
+                        {% for post in unread_notifications %}
+                                <a class = "dropdown-item" href = "{% url 'Contributor Service Post Read' id=post.id %}" class = "post-link" post = "{{post.id}}">
+                                    <div class = "item-header">
+                                        <img src = "{{post.post_photos.first.post_photo.url}}">
+
+                                        <div class = "item-context"> 
+                                            <p>The report you sent before was marked as <strong>{{post.post_status}}</strong>.</p>
+
+                                            <p>{{post.creation_date | date:'m/d/Y'}}</p>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <div class = "dropdown-divider"></div>
+                        {% endfor %}
+                    {% else %}
+
+                        <a class = "dropdown-item">You have no unread notifications in the last 30 days.</a>
+                    {% endif %}
+
+                    <a href = "{% url 'Contributor Service Notification' %}" class = "dropdown-footer">See More</a>
+                </div>
+            </div>
+
+            <div class = "profile-dropdown">
+                <div id = "profile-content" class = "profile-content">
+                    <a class = "dropdown-header" href = "{% url 'Contributor Service Profile' %}">{{username}}</a>
+
+                    <a href = "{% url 'Contributor Service Post' %}" class = "dropdown-item"><img src = "{% static 'assets/mypost.png' %}">My posts</a>
+
+                    <div class = "dropdown-divider"></div>
+
+                    <a href = "{% url 'Contributor Service Resource' %}" class = "dropdown-item"><img src = "{% static 'assets/resource.png' %}">See resources</a>
+                                    
+                    <div class = "dropdown-divider"></div>
+                    
+                    <a href = "{% url 'Contributor Service Inquiry' %}" class = "dropdown-item"><img src = "{% static 'assets/faqs.png' %}">See faqs</a>
+                    
+                    <div class = "dropdown-divider"></div>
+                    
+                    <a href = "{% url 'Contributor Service Logout' %}" class = "dropdown-footer">Log out</a>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function(){
+                const element = document.querySelector(".draggable-report");
+
+                let positionX = 0, positionY = 0, offsetX = 0, offsetY = 0;
+
+                let isDragging = false;
+
+                element.onmousedown = function(event){
+                    startDrag(event.clientX, event.clientY);
+                    
+                    document.onmousemove = onMouseMove;
+                    
+                    document.onmouseup = stopDrag;
+                };
+
+                element.ontouchstart = function(event){
+                    var touch = event.touches[0];
+
+                    startDrag(touch.clientX, touch.clientY);
+
+                    document.ontouchmove = onTouchMove;
+
+                    document.ontouchend = stopDrag;
+                };
+
+                function startDrag(x, y){
+                    offsetX = x - element.getBoundingClientRect().left;
+
+                    offsetY = y - element.getBoundingClientRect().top;
+
+                    isDragging = true;
+                };
+
+                function onMouseMove(event){
+                    if (isDragging) {
+                        moveElement(event.clientX, event.clientY);
+                    }
+                };
+
+                function onTouchMove(event){
+                    if (isDragging) {
+                        var touch = event.touches[0];
+                        moveElement(touch.clientX, touch.clientY);
+                    }
+                };
+
+                function moveElement(x, y){
+                    positionX = x - offsetX;
+
+                    positionY = y - offsetY;
+
+                    element.style.left = positionX + "px";
+
+                    element.style.top = positionY + "px";
+                };
+
+                function stopDrag(){
+                    isDragging = false;
+                    document.onmousemove = document.onmouseup = document.ontouchmove = document.ontouchend = null;
+                };
+            });
+        </script>
 
         <div class = "content">
             {% block content %}
     
     
             {% endblock content %}
+
+            {% block draggable_report %}
+                <a href = "{% url 'Contributor Service Report' %}" class = "draggable-report"><img src = "{% static 'assets/report.png' %}" class = "report"></a>
+            {% endblock draggable_report %}
         </div>
+
+        <nav class = "navigation-bottombar">
+            <a href = "{% url 'Contributor Service Home' %}">
+                <img src = "{% static 'assets/home.png' %}">
+            </a>
+
+            <a href = "{% url 'Contributor Service Post Feed' %}">
+                <img src = "{% static 'assets/cotseye.png' %}">
+            </a>
+
+            <a href = "{% url 'Contributor Service Map' %}">
+                <img src = "{% static 'assets/map.png' %}">
+            </a>
+
+            <a href = "{% url 'Contributor Service Announcement' %}">
+                <img src = "{% static 'assets/announcement.png' %}">
+            </a>
+            
+            <a href = "{% url 'Contributor Service Intervention' %}">
+                <img src = "{% static 'assets/intervention.png' %}">
+            </a>
+        </nav>
     </body>
 
-    <script type = "text/javascript">if(window.location.hash && window.location.hash === "#_=_"){ window.location.hash = ""; history.pushState("", document.title, window.location.pathname);}</script>
-
     <script>
-        const body = document.querySelector("body"),
-            nav = document.querySelector("nav"),
-
-            openedSide = document.querySelector(".opened-side"),
-            
-            closedSide = document.querySelector(".closed-side");
+        const toggleButton = document.getElementById("toggleButton");
         
-        openedSide.addEventListener("click", () =>{
-            nav.classList.add("active");
-        });
-    
-        body.addEventListener("click", e =>{
-            let clickedElement = e.target;
-    
-            if (!clickedElement.classList.contains("opened-side") && !clickedElement.classList.contains("menu")){
-                nav.classList.remove("active");
-            }
+        const sideLinks = document.querySelector(".sidelinks");
+
+        toggleButton.addEventListener("click", function(){
+            sideLinks.classList.toggle("show");
+
+            toggleButton.classList.add("hidden");
         });
     </script>
 
     <script>
-        function shownDropdown(){
-            document.getElementById("dropdown-content").classList.toggle("show");
+        function shownProfile(){
+            document.getElementById("profile-content").classList.toggle("show");
         };
 
         window.onclick = function(event){
-            if (!event.target.matches("i.fa-regular.fa-user")){
-                var dropdown = document.getElementsByClassName("dropdown-content");
+            if (!event.target.matches("img.drop")){
+                var dropdown = document.getElementsByClassName(".profile-content");
 
                 var amount;
 
@@ -213,4 +285,75 @@
             };
         };
     </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function (){
+            const notification = document.querySelector(".notification-link");
+
+            const dropdown = document.querySelector(".notification-content");
+
+            notification.addEventListener("click", function (event){
+                event.stopPropagation();
+                
+                dropdown.classList.toggle("show");
+            });
+
+            document.addEventListener("click", function (event){
+                if (!dropdown.contains(event.target) && event.target !== notification){
+                    dropdown.classList.remove("show");
+                };
+            });
+
+            const postLink = document.querySelectorAll(".post-link");
+
+            postLink.forEach(link => {
+                link.addEventListener("click", function (event){
+                    event.preventDefault();
+
+                    const post = this.getAttribute("post");
+                    
+                    const url = "{% url 'Contributor Service Notification Mark' 0 %}".replace("0", post);
+
+                    fetch(url, {
+                        method: "GET",
+
+                        headers: {
+                            "X-Requested-With": "XMLHttpRequest",
+                        },
+
+                    }).then(response => response.json()).then(data => {
+                        if (data.success){
+                            this.parentElement.remove();
+
+                            const notificationCount = document.querySelector("notification-count");
+
+                            if (notificationCount) {
+                                let count = parseInt(notificationCount.innerText);
+
+                                count--;
+
+                                if (count > 0){
+                                    notificationCount.innerText = count;
+
+                                } else{
+                                    notificationCount.remove();
+                                    const emptyMessage = document.createElement("a");
+
+                                    emptyMessage.classList.add("dropdown-item");
+
+                                    emptyMessage.innerText = "COTSEye found no unread posts in the last 30 days.";
+
+                                    dropdown.appendChild(emptyMessage);
+                                };
+                            };
+
+                            window.location.href = this.href;
+                        };
+                    });
+                });
+            });
+        });
+    </script>
+    
+    <script type = "text/javascript">if(window.location.hash && window.location.hash === "#_=_"){ window.location.hash = ""; history.pushState("", document.title, window.location.pathname);}</script>
 </html>

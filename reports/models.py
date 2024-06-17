@@ -3,6 +3,7 @@ from django.core.validators import MinValueValidator
 from django.db import models
 from django.utils.html import mark_safe
 from authentications.models import User
+from managements.models import Location
 
 import datetime
 
@@ -40,7 +41,7 @@ class Coordinates(models.Model):
 class PostStatus(models.Model):
     is_valid = models.BooleanField(default = False, help_text = "Designates that the post can be pinned into the contributors site.", verbose_name = "Valid")
     is_invalid = models.BooleanField(default = False, help_text = "Designates that the post cannot be pinned into the contributors site.", verbose_name = "Invalid")
-    is_uncertain = models.BooleanField(default = False, help_text = "Designates that the post is under review to be pinned into the contributors site.", verbose_name = "Uncertain")
+    is_pending = models.BooleanField(default = False, help_text = "Designates that the post is under review to be pinned into the contributors site.", verbose_name = "Pending")
     is_draft = models.BooleanField(default = False, help_text = "Designates that the post is under draft to be reviewed for the contributors site.", verbose_name = "Draft")
    
     class Meta:
@@ -55,62 +56,49 @@ class PostStatus(models.Model):
         elif self.is_invalid == True:
             return "Invalid"
         
-        elif self.is_uncertain == True:
-            return "Uncertain"
+        elif self.is_pending == True:
+            return "Pending"
         
         elif self.is_draft == True:
             return "Draft"
 
 
-class Depth(models.Model):
-    is_deep = models.BooleanField(default = False, help_text = "Designates that the depth is deep.", verbose_name = "Deep")
-    is_moderate = models.BooleanField(default = False, help_text = "Designates that the depth is moderate.", verbose_name = "Moderate")
-    is_shallow = models.BooleanField(default = False, help_text = "Designates that the depth is shallow.", verbose_name = "Shallow")
+class Size(models.Model):
+    size = models.CharField(max_length = 65, null = True, help_text = "Designates the size.", verbose_name = "Size")
    
+    class Meta:
+        db_table = "reports_size"
+        verbose_name = "Size"
+        verbose_name_plural = "Size"
+    
+    def __str__(self):
+        return str(self.size)
+        
+class Depth(models.Model):
+    depth = models.CharField(max_length = 65, null = True, help_text = "Designates the depth.", verbose_name = "Depth")
+
     class Meta:
         db_table = "reports_depth"
         verbose_name = "Depth"
-        verbose_name_plural = "Depths"
+        verbose_name_plural = "Depth"
     
     def __str__(self):
-        if self.is_deep == True:
-            return "Deep"
-        
-        elif self.is_moderate == True:
-            return "Moderate"
-        
-        elif self.is_shallow == True:
-            return "Shallow"
+        return str(self.depth)
         
 class Weather(models.Model):
-    is_sunny = models.BooleanField(default = False, help_text = "Designates that the weather is sunny.", verbose_name = "Sunny")
-    is_cloudy = models.BooleanField(default = False, help_text = "Designates that the weather is cloudy.", verbose_name = "Cloudy")
-    is_windy = models.BooleanField(default = False, help_text = "Designates that the weather is windy.", verbose_name = "Windy")
-    is_rainy = models.BooleanField(default = False, help_text = "Designates that the weather is rainy.", verbose_name = "Rainy")
-    is_stormy = models.BooleanField(default = False, help_text = "Designates that the weather is stormy.", verbose_name = "Stormy")
+    weather = models.CharField(max_length = 65, null = True, help_text = "Designates the weather.", verbose_name = "Weather")
+
     class Meta:
         db_table = "reports_weather"
         verbose_name = "Weather"
-        verbose_name_plural = "Weathers"
+        verbose_name_plural = "Weather"
     
     def __str__(self):
-        if self.is_sunny == True:
-            return "Sunny"
-        
-        elif self.is_cloudy == True:
-            return "Cloudy"
-        
-        elif self.is_windy == True:
-            return "Windy"
-        
-        elif self.is_rainy == True:
-            return "Rainy"
-        
-        elif self.is_stormy == True:
-            return "Stormy"
+        return str(self.weather)
+
 
 class PostObservation(models.Model):
-    size = models.IntegerField(validators = [MinValueValidator(0)], null = True, blank = True, help_text = "Designates the size of the Crown-of-Thorns Starfish at the moment the post taken.", verbose_name = "Size / Centimeter")
+    size = models.ForeignKey(Size, on_delete = models.CASCADE, null = True, blank = True, help_text = "Designates the foreign key of the Size model.", verbose_name = "Size")
     depth = models.ForeignKey(Depth, on_delete = models.CASCADE, null = True, blank = True, help_text = "Designates the foreign key of the Depth model.", verbose_name = "Depth")
     density = models.IntegerField(validators = [MinValueValidator(0)], null = True, blank = True, help_text = "Designates the density of the Crown-of-Thorns Starfish at the moment the post taken.", verbose_name = "Density / Square Meter")
     weather = models.ForeignKey(Weather, on_delete = models.CASCADE, null = True, blank = True, help_text = "Designates the foreign key of the Weather model.", verbose_name = "Weather")
@@ -123,14 +111,23 @@ class PostObservation(models.Model):
     def __str__(self):
         return "OBSERVATION " + str(self.id)
     
+
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete = models.CASCADE, help_text = "Designates the foreign key of the User model.", verbose_name = "User")
-    description = models.TextField(max_length = 1500, help_text = "Designates the description of the post.", verbose_name = "Description")
-    capture_date = models.DateTimeField(default = datetime.datetime.now(), help_text = "Designates the capture date and time of the post.", verbose_name = "Capture Date")
+    description = models.TextField(max_length = 255, help_text = "Designates the description of the post.", verbose_name = "Description")
+    capture_date = models.DateTimeField(default = datetime.datetime.now, help_text = "Designates the capture date and time of the post.", verbose_name = "Capture Date")
     post_photos = models.ManyToManyField(PostPhoto, blank = True, through = "PostGallery", help_text = "Designates the foreign key of the Post Photo model.", verbose_name = "Post Photos")
     coordinates = models.ForeignKey(Coordinates, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Coordinates model.", verbose_name = "Coordinates")
+    location = models.ForeignKey(Location, null = True, blank = True, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Location model.", verbose_name = "Location")
     post_status = models.ForeignKey(PostStatus, on_delete = models.CASCADE, default = 4, help_text = "Designates the foreign key of the Post Status model.", verbose_name = "Post Status")
     post_observation = models.ForeignKey(PostObservation, null = True, blank = True, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Post Observation model.", verbose_name = "Post Observation")
+    remarks = models.CharField(null = True, blank = True, max_length = 255, help_text = "Additional remarks for the post.", verbose_name = "Remarks")
+    validated_by = models.ForeignKey(User, null = True, blank = True, on_delete = models.SET_NULL, related_name = "validated_posts", help_text = "Designates the user who validated the post.", verbose_name = "Validated By")
+    read_status = models.BooleanField(default = False, help_text = "Indicates whether the post has been read.", verbose_name = "Read Status")
+    read_date = models.DateTimeField(null = True, blank = True, help_text = "Designates the date and time when the post was read.", verbose_name = "Read Date")
+    contrib_read_status = models.BooleanField(default = False, help_text = "Indicates whether the post has been read by a contributor.", verbose_name = "Contributor Read Status")
+    contrib_read_date = models.DateTimeField(null = True, blank = True, help_text = "Designates the date and time when the post was read by a contributor.", verbose_name = "Contributor Read Date")
+    creation_date = models.DateTimeField(default = datetime.datetime.now, help_text = "Designates the creation date and time of the post.", verbose_name = "Creation Date")
 
     class Meta:
         db_table = "reports_post"
@@ -138,8 +135,9 @@ class Post(models.Model):
         verbose_name_plural = "Posts"
 
     def __str__(self):
-        return "POST " + str(self.id) + " | " + str(self.user)
+        return "POST "+ str(self.id) + " | " + str(self.user)
 
+  
 
 class PostGallery(models.Model):
     post_photos = models.ForeignKey(PostPhoto, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Post Photos model.", verbose_name = "Post Photo")

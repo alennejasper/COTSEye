@@ -1,125 +1,9 @@
-from configurations.admin import officer, admin
+from configurations.admin import admin
 from reports.models import *
 
+
 # Register your models here.
-class PostPhotoAdmin(admin.ModelAdmin):
-    class Media:   
-        css = {
-            "all": ["css/officer/control/index/index.css"]
-        }
-
-    def change_view(self, request, object_id, form_url = "", extra_context = None):
-        object = self.get_object(request, object_id)
-        
-        if object is not None:
-            extra_context = extra_context or {}
-
-            extra_context["edition"] = True
-
-        return super().change_view(request, object_id, form_url, extra_context)
-    
-    def has_module_permission(self, request):
-        return request.user.usertype_id == 1 or request.user.usertype_id == 2
-    
-    readonly_fields = ["gallery_photo"]
-    
-officer.register(PostPhoto, PostPhotoAdmin)
-
-
-class PostGalleryInline(admin.TabularInline):
-    model = PostGallery
-    extra = 0
-    
-
-class CoordinatesAdmin(admin.ModelAdmin):
-    class Media:   
-        css = {
-            "all": ["css/officer/control/index/index.css", "css/officer/control/form/coordinates.css"]
-        }
-
-    def has_module_permission(self, request):
-        return request.user.usertype_id == 1 or request.user.usertype_id == 2
-    
-    change_form_template = "officer/control/form/coordinates.html"
-
-officer.register(Coordinates, CoordinatesAdmin)
-
-
-class PostStatusAdmin(admin.ModelAdmin):
-    class Media:   
-        css = {
-            "all": ["css/officer/control/index/index.css"]
-        }
-
-    def has_module_permission(self, request):
-        return request.user.usertype_id == 1 or request.user.usertype_id == 2
-
-officer.register(PostStatus, PostStatusAdmin)
-
-
-class DepthAdmin(admin.ModelAdmin):
-    class Media:   
-        css = {
-            "all": ["css/officer/control/index/index.css"]
-        }
-
-    def has_module_permission(self, request):
-        return request.user.usertype_id == 1 or request.user.usertype_id == 2
-
-officer.register(Depth, DepthAdmin)
-
-
-class WeatherAdmin(admin.ModelAdmin):
-    class Media:   
-        css = {
-            "all": ["css/officer/control/index/index.css"]
-        }
-
-    def has_module_permission(self, request):
-        return request.user.usertype_id == 1 or request.user.usertype_id == 2
-
-officer.register(Weather, WeatherAdmin)
-
-
-class PostObservationAdmin(admin.ModelAdmin):
-    class Media:   
-        css = {
-            "all": ["css/officer/control/index/index.css"]
-        }
-
-    def has_module_permission(self, request):
-        return request.user.usertype_id == 1 or request.user.usertype_id == 2
-
-officer.register(PostObservation, PostObservationAdmin)
-
-
-class PostAdmin(admin.ModelAdmin):
-    class Media:   
-        css = {
-            "all": ["css/officer/control/index/index.css", "css/admin/control/form/post.css"]
-        }
-
-    def change_view(self, request, object_id, form_url = "", extra_context = None):
-        object = self.get_object(request, object_id)
-        
-        if object is not None:
-            extra_context = extra_context or {}
-
-            extra_context["edition"] = True
-
-        return super().change_view(request, object_id, form_url, extra_context)
-    
-    def has_module_permission(self, request):
-        return request.user.usertype_id == 1 or request.user.usertype_id == 2
-
-    inlines = [PostGalleryInline]
-
-    change_form_template = "officer/control/form/post.html"
-
-officer.register(Post, PostAdmin)
-
-
-class PostPhotoAdmin(admin.ModelAdmin):
+""" class PostPhotoAdmin(admin.ModelAdmin):
     class Media:   
         css = {
             "all": ["css/admin/control/index/index.css"]
@@ -130,15 +14,15 @@ class PostPhotoAdmin(admin.ModelAdmin):
     
     readonly_fields = ["gallery_photo"]
 
-admin.site.register(PostPhoto, PostPhotoAdmin)
+admin.site.register(PostPhoto, PostPhotoAdmin) """
 
 
-class PostGalleryInline(admin.TabularInline):
+""" class PostGalleryInline(admin.TabularInline):
     model = PostGallery
-    extra = 0
+    extra = 0 """
 
 
-class CoordinatesAdmin(admin.ModelAdmin):
+""" class CoordinatesAdmin(admin.ModelAdmin):
     class Media:   
         css = {
             "all": ["css/admin/control/index/index.css", "css/admin/control/form/coordinates.css"]
@@ -149,10 +33,10 @@ class CoordinatesAdmin(admin.ModelAdmin):
     
     change_form_template = "admin/control/form/coordinates.html"
 
-admin.site.register(Coordinates, CoordinatesAdmin)
+admin.site.register(Coordinates, CoordinatesAdmin) """
 
 
-class PostStatusAdmin(admin.ModelAdmin):
+""" class PostStatusAdmin(admin.ModelAdmin):
     class Media:   
         css = {
             "all": ["css/admin/control/index/index.css"]
@@ -161,7 +45,24 @@ class PostStatusAdmin(admin.ModelAdmin):
     def has_module_permission(self, request):
         return request.user.usertype_id == 1 or request.user.usertype_id == 2
 
-admin.site.register(PostStatus, PostStatusAdmin)
+admin.site.register(PostStatus, PostStatusAdmin) """
+
+
+class SizeAdmin(admin.ModelAdmin):
+    class Media:   
+        css = {
+            "all": ["css/admin/control/index/index.css"]
+        }
+
+    def has_module_permission(self, request):
+        return request.user.usertype_id == 1 or request.user.usertype_id == 2
+    
+    def render_change_form(self, request, context, add = False, change = False, form_url = "", obj = None):
+        context.update({"show_save": True, "show_save_and_continue": False, "show_save_and_add_another": False, "show_delete": True})
+
+        return super().render_change_form(request, context, add, change, form_url, obj)
+
+admin.site.register(Size, SizeAdmin)
 
 
 class DepthAdmin(admin.ModelAdmin):
@@ -172,6 +73,11 @@ class DepthAdmin(admin.ModelAdmin):
 
     def has_module_permission(self, request):
         return request.user.usertype_id == 1 or request.user.usertype_id == 2
+    
+    def render_change_form(self, request, context, add = False, change = False, form_url = "", obj = None):
+        context.update({"show_save": True, "show_save_and_continue": False, "show_save_and_add_another": False, "show_delete": True})
+
+        return super().render_change_form(request, context, add, change, form_url, obj)
 
 admin.site.register(Depth, DepthAdmin)
 
@@ -184,11 +90,16 @@ class WeatherAdmin(admin.ModelAdmin):
 
     def has_module_permission(self, request):
         return request.user.usertype_id == 1 or request.user.usertype_id == 2
+    
+    def render_change_form(self, request, context, add = False, change = False, form_url = "", obj = None):
+        context.update({"show_save": True, "show_save_and_continue": False, "show_save_and_add_another": False, "show_delete": True})
+
+        return super().render_change_form(request, context, add, change, form_url, obj)
 
 admin.site.register(Weather, WeatherAdmin)
 
 
-class PostObservationAdmin(admin.ModelAdmin):
+""" class PostObservationAdmin(admin.ModelAdmin):
     class Media:   
         css = {
             "all": ["css/admin/control/index/index.css"]
@@ -197,10 +108,10 @@ class PostObservationAdmin(admin.ModelAdmin):
     def has_module_permission(self, request):
         return request.user.usertype_id == 1 or request.user.usertype_id == 2
     
-admin.site.register(PostObservation, PostObservationAdmin)
+admin.site.register(PostObservation, PostObservationAdmin) """
 
 
-class PostAdmin(admin.ModelAdmin):
+""" class PostAdmin(admin.ModelAdmin):
     class Media:   
         css = {
             "all": ["css/admin/control/index/index.css", "css/admin/control/form/post.css"]
@@ -223,4 +134,4 @@ class PostAdmin(admin.ModelAdmin):
 
     change_form_template = "admin/control/form/post.html"
 
-admin.site.register(Post, PostAdmin)
+admin.site.register(Post, PostAdmin) """

@@ -1,176 +1,46 @@
-{% extends "Contributor/service/index/index.html" %}
+{% extends "contributor/service/index/index.html" %}
 {% load static %}
 
 {% block content %}
-    <div class = "post" id = "valid-filter">
-        <form action = "" class = "post-form" method = "GET">
-            {% csrf_token %}
+    <div class = "feed-body">
+        <!-- <div class = "feed-section">
+            <h1>POSTS FEED</h1>
+        </div> -->
+    
+        {% for post in valid_posts %}
+            <div class = "feed">
+                <div class = "feed-header">                    
+                    <div class = "header-context">
+                        <img src = "{{post.user.profile_photo.url}}">
 
-            <div class = "card-header">
-                <header>Filter valid posts</header>
-            </div>
+                        <div class = "context-caption">
+                            <p>{{post.user | default:'None available'}}</p>
 
-            <div class = "card-body">
-                <div class = "field">
-                    <div class = "column">
-                        <label for = "from-date">From</label> 
-                            
-                        <div class = "from-date">
-                            <input type = "date" value = "" id = "from-date" name = "from_date" required>                            
-                        </div>
-
-                        <label for = "depth">Depth</label> 
-
-                        <select name = "depth" id = "depth">
-                            <option disabled selected value>Choose depth</option>
-
-                            <option value = "each_depth">Each depth</option>
-
-                            {% for option in options %}
-                                <option value = "{{option.post_observation.depth.id}}">{{option.post_observation.depth}}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-
-                    <div class = "column">
-                        <label for = "to-date">To</label> 
-
-                        <div class = "to-date">
-                            <input type = "date" value = "" id = "to-date" name = "to_date" required>                            
-                        </div>  
-
-                        <label for = "weather">Weather</label> 
-
-                        <select name = "weather" id = "weather">
-                            <option disabled selected value>Choose weather</option>
-
-                            <option value = "each_weather">Each weather</option>
-
-                            {% for option in options %}
-                                <option value = "{{option.post_observation.weather.id}}">{{option.post_observation.weather}}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                </div>
-
-                <div class = "button">
-                    <a class = "filter-posts" type = "submit">Filter</a>
-                </div>    
-            </div>
-        </form>
-    </div>
-
-    {% if messages %}
-        {% for message in messages %}
-            {% if message.tags == "info" %}<script>Swal.fire({title: "Hey!", text: "{{message}}", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}})</script>
-            
-            {% elif message.tags == "success" %}<script>Swal.fire({title: "Yay!", text: "{{message}}", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}})</script>
-            
-            {% else %}<script>Swal.fire({title: "Oops!", text: "{{message}}", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}})</script>
-            
-            {% endif %}    
-        {% endfor %}
-    {% endif %}
-
-    <script>
-        document.querySelector(".filter-posts").onclick = function() {
-            document.querySelector(".post-form").submit();
-        }
-    </script>
-
-    {% if results %}
-        <div class = "line" id = "results"></div>
-
-        {% for post in results %}
-            <div class = "post" id = "valid-results">
-                <div class = "card-header" onclick = "toggleBody(this)">
-                    <header class = "preview">{{post.description}}</header>
-                </div>
-
-                <div class = "card-body">
-                    <div class = "field">
-                        <div class = "column">
-                            <label for = "capture-date">Capture Date</label> 
-
-                            <div class = "capture-date">
-                                <input type = "text" value = "{{post.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}" id = "capture-date" name = "capture-date" readonly>
-
-                                <i class = "fa-solid fa-calendar-day"></i>
-                            </div>  
-                        </div>
-
-                        <div class = "column">
-                            <label for = "coordinates">Coordinates</label> 
-                                
-                            <div class = "coordinates">
-                                <input type = "text" value = "{{post.coordinates.latitude | default:'0'}}° N, {{post.coordinates.longitude | default:'0'}}° E" id = "coordinates" name = "coordinates" readonly>
-                                    
-                                <i class = "fa-solid fa-location-dot"></i>
-                            </div>
+                            <p>{{post.location | default:'None available'}}</p>
                         </div>
                     </div>
 
-                    <div class = "button">
-                        <a class = "read-post" href = "{% url 'Contributor Service Post Feed Read' post.id %}">Read</a>
-                    </div>    
-                </div>
-            </div>
-        {% endfor %}
+                    <div class = "header-context">
+                        <p>{{post.creation_date | date:'m/d/Y' | default:'None available'}}</p>
 
-    {% else %}
-        <div class = "line" id = "records"></div>
-
-        {% for post in records %}
-            <div class = "post" id = "valid-records">
-                <div class = "card-header" onclick = "toggleBody(this)">
-                    <header class = "preview">{{post.description}}</header>
-                </div>
-
-                <div class = "card-body">
-                    <div class = "field">
-                        <div class = "column">
-                            <label for = "capture-date">Capture Date</label> 
-
-                            <div class = "capture-date">
-                                <input type = "text" value = "{{post.capture_date | date:'M. j, Y, g:i a' | default:'None available'}}" id = "capture-date" name = "capture-date" readonly>
-
-                                <i class = "fa-solid fa-calendar-day"></i>
-                            </div>  
-                        </div>
-
-                        <div class = "column">
-                            <label for = "coordinates">Coordinates</label> 
-                                
-                            <div class = "coordinates">
-                                <input type = "text" value = "{{post.coordinates.latitude | default:'0'}}° N, {{post.coordinates.longitude | default:'0'}}° E" id = "coordinates" name = "coordinates" readonly>
-                                    
-                                <i class = "fa-solid fa-location-dot"></i>
-                            </div>
-                        </div>
+                        <p>{{post.post_status | default:'None available'}}</p>
                     </div>
-
-                    <div class = "button">
-                        <a class = "read-post" href = "{% url 'Contributor Service Post Feed Read' post.id %}">Read</a>
-                    </div>    
                 </div>
-            </div>
-        {% endfor %}
-    {% endif %}
 
-    <script>
-        function toggleBody(element){
-            var body = element.nextElementSibling;
-            
-            if(body.style.display === "none" || body.style.display === ""){
-                body.style.borderBottomLeftRadius = "5px";
-
-                body.style.borderBottomTopRadius = "5px";
+                <h1>{{post.description | default:'None available'}}</h1>
                 
-                body.style.display = "grid";
-            
-            } else{
-                body.style.display = "none";
-            };
-        };
-    </script>
+                <a href = "{% url 'Contributor Service Post Feed Read' post.id %}">
+                    <img class = "feed-image" src = "{{post.post_photos.first.post_photo.url | default:'None available'}}">
+                </a>
+
+                <!-- <div class = "feed-context">
+                    <h1><i class="fa-solid fa-location-dot"></i>{{post.location | default:'None available'}}</h1>
+                    
+                    <div class = "button">
+                        <a href = "{% url 'Contributor Service Post Feed Read' post.id %}">See more</a>
+                    </div>
+                </div> -->
+            </div>
+        {% endfor %}
+    </div>
 {% endblock content %}

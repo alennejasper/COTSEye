@@ -1,60 +1,64 @@
-@import url("https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Overlock:wght@400;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap");
 
 
 *{
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    scrollbar-width: thin !important;
-    scrollbar-color: #698F3F #154360 !important;
     transition: all 0.25s ease;
 }
 
 
 ::-webkit-scrollbar{
-    width: 5px !important;
-    height: 5px !important;
+    width: 2.5px !important;
+    height: 2.5px !important;
 }
 
 ::-webkit-scrollbar-track{
-    border-radius: 5px;
-    border: 1px solid #B2BEB5; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
-    background: #154360 !important; 
+    background-color: #FFFFFF !important; 
+}
+
+::-webkit-scrollbar-button{
+    display: none !important;
+    width: 0px !important;
 }
 
 ::-webkit-scrollbar-thumb{
-    border-radius: 5px;
-    border: 1px solid #B2BEB5; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
-    background: #698F3F !important;
+    border-radius: 5px !important;
+    background-color: #003755 !important;
 }
 
 ::-webkit-scrollbar-thumb:hover{
-    background: #557433 !important;
+    background: #002C44 !important;
 }
 
 
 .content{
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    min-height: 100vh;
     display: grid;
     grid-template-columns: 100%;
     place-items: center;
-
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    min-height: 100vh;
 }
 
+/* @media screen and (min-width: 320px) and (max-width: 775px){
+    .content{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+} */
+
 .login{
-    width: 400px;
+    width: 386px;
     display: grid;
     grid-column: 1;
-    border: 1px solid #B2BEB5;
+    border: 1px solid #003755;
     border-radius: 5px !important;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
@@ -76,70 +80,79 @@
 }
 
 .login .card-header{
+    display: grid;
+    place-items: center;
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 15px;
     padding-bottom: 15px;
     border-top-left-radius: 5px !important;
     border-top-right-radius: 5px !important;
-    background-color: #154360;
-    display: grid;
-    place-items: center;
+    background-color: #003755;
 }
 
+/* @media screen and (min-width: 320px) and (max-width: 775px){
+    .login .card-header{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+} */
+
 .login .card-header header{
-    font-family: "Philosopher";
+    font-family: "Montserrat";
     font-weight: 700;
-    font-size: 22px !important;
+    font-size: 24px !important;
     color: #FFFFFF;
     white-space: nowrap !important; 
     overflow: auto !important;
 }
 
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .login .card-header header{
+        font-size: 22px !important;
+    }
+}
+
 @media screen and (min-width: 369px) and (max-width: 445px){
     .login .card-header header{
-        font-family: "Philosopher";
-        font-weight: 700;
         font-size: 20px !important;
-        color: #FFFFFF;
-        white-space: nowrap !important; 
-        overflow: auto !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .login .card-header header{
-        font-family: "Philosopher";
-        font-weight: 700;
         font-size: 18px !important;
-        color: #FFFFFF;
-        white-space: nowrap !important; 
-        overflow: auto !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .login .card-header header{
-        font-family: "Philosopher";
-        font-weight: 700;
         font-size: 16px !important;
-        color: #FFFFFF;
-        white-space: nowrap !important; 
-        overflow: auto !important;
     }
 }
 
 .login .card-body{
+    display: grid;
+    place-items: center;
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 15px;
     padding-bottom: 15px;
     border-bottom-left-radius: 5px !important;
     border-bottom-right-radius: 5px !important;
-    display: grid;
-    place-items: center;
     background-color: #FFFFFF;
 }
+
+/* @media screen and (min-width: 320px) and (max-width: 775px){
+    .login .card-body{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+} */
 
 .login .card-body form{
     width: 100%;
@@ -148,42 +161,33 @@
 .login .card-body form .field .column label[for = "username"]{
     margin-top: 0px;
     display: inline-block;
-    font-family: "Overlock";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 20px !important;
-    color: #154360 !important;
+    color: #003755 !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .login .card-body form .field .column label[for = "username"]{
+        font-size: 18px !important;
+    }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .login .card-body form .field .column label[for = "username"]{
-        margin-top: 0px;
-        display: inline-block;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 18px !important;
-        color: #154360 !important;
+        font-size: 16px !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .login .card-body form .field .column label[for = "username"]{
-        margin-top: 0px;
-        display: inline-block;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 16px !important;
-        color: #154360 !important;
+        font-size: 14px !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .login .card-body form .field .column label[for = "username"]{
-        margin-top: 0px;
-        display: inline-block;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 14px !important;
-        color: #154360 !important;
+        font-size: 12px !important;
     }
 }
 
@@ -197,163 +201,112 @@
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
-    border: 1px solid #B2BEB5;
+    border: 1px solid #003755;
     border-radius: 5px; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
-    font-family: "Philosopher";
+    font-family: "Montserrat";
     font-weight: 700 !important;
     font-size: 20px !important;   
-    color: #154360 !important;
+    color: #003755 !important;
 }
 
 .login .card-body form .field .column .username input:focus{
     border-bottom-width: 2.5px !important;
 }
 
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .login .card-body form .field .column .username input{
+        padding-right: 38px !important;
+        font-size: 18px !important;
+    }
+}
+
 @media screen and (min-width: 369px) and (max-width: 445px){
     .login .card-body form .field .column .username input{
-        padding-left: 10px !important;
-        padding-right: 38px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Philosopher";
-        font-weight: 700 !important;
-        font-size: 18px !important;   
-        color: #154360 !important;
+        padding-right: 36px !important;
+        font-size: 16px !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .login .card-body form .field .column .username input{
-        padding-left: 10px !important;
-        padding-right: 36px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Philosopher";
-        font-weight: 700 !important;
-        font-size: 16px !important;   
-        color: #154360 !important;
+        padding-right: 34px !important;
+        font-size: 14px !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .login .card-body form .field .column .username input{
-        padding-left: 10px !important;
-        padding-right: 34px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Philosopher";
-        font-weight: 700 !important;
-        font-size: 14px !important;   
-        color: #154360 !important;
+        padding-right: 32px !important;
+        font-size: 12px !important;
     }
 }
 
 .login .card-body form .field .column .username i{
-    right: 10px;
-    top: 50%;
     position: absolute;
     display: grid;
     place-items: center;
+    right: 10px;
+    top: 50%;
     font-size: 20px;
-    color: #154360;
+    color: #003755;
     transform: translateY(-50%);
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .login .card-body form .field .column .username i{
+        font-size: 18px;
+    }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .login .card-body form .field .column .username i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 18px;
-        color: #154360;
-        transform: translateY(-50%);
+        font-size: 16px;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .login .card-body form .field .column .username i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 16px;
-        color: #154360;
-        transform: translateY(-50%);
+        font-size: 14px;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .login .card-body form .field .column .username i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 14px;
-        color: #154360;
-        transform: translateY(-50%);
+        font-size: 12px;
     }
 }
 
 .login .card-body form .field .column label[for = "password1"]{
     margin-top: 15px;
     display: inline-block;
-    font-family: "Overlock";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 20px !important;
-    color: #154360 !important;
+    color: #003755 !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .login .card-body form .field .column label[for = "password1"]{
+        font-size: 18px !important;
+    }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .login .card-body form .field .column label[for = "password1"]{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 18px !important;
-        color: #154360 !important;
+        font-size: 16px !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .login .card-body form .field .column label[for = "password1"]{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 16px !important;
-        color: #154360 !important;
+        font-size: 14px !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .login .card-body form .field .column label[for = "password1"]{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 14px !important;
-        color: #154360 !important;
+        font-size: 12px !important;
     }
 }
 
@@ -367,129 +320,84 @@
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100%;
-    border: 1px solid #B2BEB5;
+    border: 1px solid #003755;
     border-radius: 5px; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
-    font-family: "Philosopher";
+    font-family: "Montserrat";
     font-weight: 700 !important;
     font-size: 20px !important;   
-    color: #154360 !important;
+    color: #003755 !important;
 }
 
 .login .card-body form .field .column .password1 input:focus{
     border-bottom-width: 2.5px !important;
 }
 
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .login .card-body form .field .column .password1 input{
+        padding-right: 38px !important;
+        font-size: 18px !important;
+    }
+}
+
 @media screen and (min-width: 369px) and (max-width: 445px){
     .login .card-body form .field .column .password1 input{
-        padding-left: 10px !important;
-        padding-right: 38px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Philosopher";
-        font-weight: 700 !important;
-        font-size: 18px !important;   
-        color: #154360 !important;
+        padding-right: 36px !important;
+        font-size: 16px !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .login .card-body form .field .column .password1 input{
-        padding-left: 10px !important;
-        padding-right: 36px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Philosopher";
-        font-weight: 700 !important;
-        font-size: 16px !important;   
-        color: #154360 !important;
+        padding-right: 34px !important;
+        font-size: 14px !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .login .card-body form .field .column .password1 input{
-        padding-left: 10px !important;
-        padding-right: 34px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        border: 1px solid #B2BEB5;
-        border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Philosopher";
-        font-weight: 700 !important;
-        font-size: 14px !important;   
-        color: #154360 !important;
+        padding-right: 32px !important;
+        font-size: 12px !important;
     }
 }
 
 .login .card-body form .field .column .password1 i{
-    right: 10px;
-    top: 50%;
     position: absolute;
     display: grid;
     place-items: center;
+    right: 10px;
+    top: 50%;
     font-size: 20px;
-    color: #154360;
+    color: #003755;
     transform: translateY(-50%);
     cursor: pointer;
 }
 
 .login .card-body form .field .column .password1 i:hover{
-    color: #10354C !important;
+    color: #002C44 !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .login .card-body form .field .column .password1 i{
+        font-size: 18px !important;
+    }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .login .card-body form .field .column .password1 i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 18px;
-        color: #154360;
-        transform: translateY(-50%);
-        cursor: pointer;
+        font-size: 16px !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .login .card-body form .field .column .password1 i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 16px;
-        color: #154360;
-        transform: translateY(-50%);
-        cursor: pointer;
+        font-size: 14px !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .login .card-body form .field .column .password1 i{
-        right: 10px;
-        top: 50%;
-        position: absolute;
-        display: grid;
-        place-items: center;
-        font-size: 14px;
-        color: #154360;
-        transform: translateY(-50%);
-        cursor: pointer;
+        font-size: 12px !important;
     }
 }
 
@@ -500,25 +408,13 @@
     position: relative !important;
 }
 
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .login .card-body form .g-recaptcha > div{
-        width: 100% !important;
-        white-space: nowrap !important;
-        overflow-x: auto !important;
-        overflow-y: hidden;
+/* @media screen and (min-width: 320px) and (max-width: 775px){
+    .login .card-body form .g-recaptcha{
+        margin-top: 5px !important;
     }
-}
+} */
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .login .card-body form .g-recaptcha > div{
-        width: 100% !important;
-        white-space: nowrap !important;
-        overflow-x: auto !important;
-        overflow-y: hidden;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 775px){
     .login .card-body form .g-recaptcha > div{
         width: 100% !important;
         white-space: nowrap !important;
@@ -535,228 +431,165 @@
     padding-bottom: 5px !important;
     width: 100%;
     height: 100% !important;
-    border: 1px solid #B2BEB5; 
+    border: 1px solid #003755; 
     border-radius: 5px;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
-    font-family: "Overlock";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 20px !important;
-    background-color: #698F3F !important;
+    background-color: #003755 !important;
     color: #FFFFFF !important;
     cursor: pointer;
 }
 
 .login .card-body form button:hover{
-    background-color: #557433 !important;
+    background-color: #002C44 !important;
     color: #B2BEB5 !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .login .card-body form button{
+        font-size: 18px !important;
+    }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .login .card-body form button{
-        margin-top: 15px;
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        height: 100% !important;
-        border: 1px solid #B2BEB5; 
-        border-radius: 5px;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 18px !important;
-        background-color: #698F3F !important;
-        color: #FFFFFF !important;
-        cursor: pointer;
+        font-size: 16px !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .login .card-body form button{
-        margin-top: 15px;
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        height: 100% !important;
-        border: 1px solid #B2BEB5; 
-        border-radius: 5px;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 16px !important;
-        background-color: #698F3F !important;
-        color: #FFFFFF !important;
-        cursor: pointer;
+        margin-top: 5px;
+        font-size: 14px !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .login .card-body form button{
-        margin-top: 15px;
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        width: 100%;
-        height: 100% !important;
-        border: 1px solid #B2BEB5; 
-        border-radius: 5px;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 14px !important;
-        background-color: #698F3F !important;
-        color: #FFFFFF !important;
-        cursor: pointer;
+        font-size: 12px !important;
     }
 }
 
 .login .card-body .register{
     margin-top: 15px;
     display: inline-block;
-    font-family: "Overlock";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 20px;
-    color: #154659;
+    color: #003755;
+    text-align: center;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .login .card-body .register{
+        font-size: 18px !important;
+    }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .login .card-body .register{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 18px;
-        color: #154659;
+        font-size: 16px !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .login .card-body .register{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 16px;
-        color: #154659;
+    .login .card-body .register{        
+        font-size: 14px !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .login .card-body .register{
-        margin-top: 15px;
-        display: inline-block;
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 14px;
-        color: #154659;
+        font-size: 12px !important;
     }
 }
 
 .login .card-body .register a{
     font-size: 20px;
-    color: #698F3F;
+    color: #325E76;
     text-decoration: none;
 }
 
 .login .card-body .register a:hover{
-    color: #557433;
+    color: #284B5E;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .login .card-body .register a{
+        font-size: 18px !important;
+    }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .login .card-body .register a{
-        font-size: 18px;
-        color: #698F3F;
-        text-decoration: none;
+        font-size: 16px !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .login .card-body .register a{
-        font-size: 16px;
-        color: #698F3F;
-        text-decoration: none;
+        font-size: 14px !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .login .card-body .register a{
-        font-size: 14px;
-        color: #698F3F;
-        text-decoration: none;
+        font-size: 12px !important;
     }
 }
 
 .login .card-body .line{
-    margin-top: 15.5px;
+    margin-top: 20.5px;
+    margin-bottom: 20.5px;
     position: relative;
     width: 100%;
-    border: 1px solid #B2BEB5;
-    background-color: #B2BEB5;
+    border: 1px solid #003755;
+    background-color: #003755;
 }
+
+/* @media screen and (min-width: 320px) and (max-width: 775px){
+    .login .card-body .line{
+        margin-top: 10.5px;
+        margin-bottom: 10.5px;
+    }
+} */
 
 .login .card-body .line::before{
     top: 50%;
     left: 50%;
     position: absolute;
     content: "OR";
-    font-family: "Overlock";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 20px;
     background-color: #FFFFFF;
-    color: #154659;
+    color: #003755;
     transform: translate(-50%, -50%);
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .login .card-body .line::before{
+        font-size: 18px !important;
+    }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .login .card-body .line::before{
-        top: 50%;
-        left: 50%;
-        position: absolute;
-        content: "OR";
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 18px;
-        background-color: #FFFFFF;
-        color: #154659;
-        transform: translate(-50%, -50%);
+        font-size: 16px !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .login .card-body .line::before{
-        top: 50%;
-        left: 50%;
-        position: absolute;
-        content: "OR";
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 16px;
-        background-color: #FFFFFF;
-        color: #154659;
-        transform: translate(-50%, -50%);
+        font-size: 14px !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .login .card-body .line::before{
-        top: 50%;
-        left: 50%;
-        position: absolute;
-        content: "OR";
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 14px;
-        background-color: #FFFFFF;
-        color: #154659;
-        transform: translate(-50%, -50%);
+        font-size: 12px !important;
     }
 }
 
@@ -765,7 +598,6 @@
 }
 
 .login .card-body .socials .facebook{
-    margin-top: 15px;
     width: 100%;
     height: 100% !important;
     position: relative;
@@ -776,11 +608,10 @@
     padding-right: 10px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
-    border: 1px solid #B2BEB5;
+    border: 1px solid #003755;
     border-radius: 5px;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
-    background-color: #154360;
+    background-color: #003755;
     cursor: pointer;
 }
 
@@ -789,8 +620,8 @@
 }
 
 .login .card-body .socials button.facebook:hover, .login .card-body .socials button.facebook span:hover{
-    background-color: #10354C;
-    color: #B2BEB5 !important;
+    background-color: #002C44;
+    color: #B2BEB5;
 }
 
 .login .card-body .socials button.facebook i{
@@ -802,70 +633,58 @@
     color: #FFFFFF !important;
 }
 
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .login .card-body .socials button.facebook i{
+        font-size: 18px !important;
+    }
+}
+
 @media screen and (min-width: 369px) and (max-width: 445px){
     .login .card-body .socials button.facebook i{
-        left: 10px;
-        top: 50%;
-        position: absolute;
-        transform: translateY(-50%);
-        font-size: 18px;
-        color: #FFFFFF !important;
+        font-size: 16px !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .login .card-body .socials button.facebook i{
-        left: 10px;
-        top: 50%;
-        position: absolute;
-        transform: translateY(-50%);
-        font-size: 16px;
-        color: #FFFFFF !important;
+        font-size: 14px !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .login .card-body .socials button.facebook i{
-        left: 10px;
-        top: 50%;
-        position: absolute;
-        transform: translateY(-50%);
-        font-size: 14px;
-        color: #FFFFFF !important;
+        font-size: 12px !important;
     }
 }
 
 .login .card-body .socials button.facebook span{
-    font-family: "Overlock";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 20px;
     color: #FFFFFF !important;
 }
 
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .login .card-body .socials button.facebook span{
+        font-size: 18px !important;
+    }
+}
+
 @media screen and (min-width: 369px) and (max-width: 445px){
     .login .card-body .socials button.facebook span{
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 18px !important;
-        color: #FFFFFF !important;
+        font-size: 16px !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .login .card-body .socials button.facebook span{
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 16px !important;
-        color: #FFFFFF !important;
+        font-size: 14px !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .login .card-body .socials button.facebook span{
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 14px !important;
-        color: #FFFFFF !important;
+        font-size: 12px !important;
     }
 }
 
@@ -876,14 +695,19 @@
     position: relative;
 }
 
+/* @media screen and (min-width: 320px) and (max-width: 348px){
+    .login .card-body .socials .google{
+        margin-top: 5px;
+    }
+} */
+
 .login .card-body .socials button.google{
     padding-left: 10px !important;
     padding-right: 10px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
-    border: 1px solid #B2BEB5;
+    border: 1px solid #003755;
     border-radius: 5px;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
     background-color: #FFFFFF;
     cursor: pointer;
@@ -895,7 +719,7 @@
 
 .login .card-body .socials button.google:hover, .login .card-body .socials button.google a:hover{
     background-color: #B2BEB5;
-    color: #10354C;
+    color: #002C44;
 }
 
 .login .card-body .socials button.google i{
@@ -904,78 +728,66 @@
     position: absolute;
     transform: translateY(-50%);
     font-size: 20px;
-    color: #154360 !important;
+    color: #003755 !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .login .card-body .socials button.google i{
+        font-size: 18px !important;
+    }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .login .card-body .socials button.google i{
-        left: 10px;
-        top: 50%;
-        position: absolute;
-        transform: translateY(-50%);
-        font-size: 18px;
-        color: #154360 !important;
+        font-size: 16px !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .login .card-body .socials button.google i{
-        left: 10px;
-        top: 50%;
-        position: absolute;
-        transform: translateY(-50%);
-        font-size: 16px;
-        color: #154360 !important;
+        font-size: 14px !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .login .card-body .socials button.google i{
-        left: 10px;
-        top: 50%;
-        position: absolute;
-        transform: translateY(-50%);
-        font-size: 14px;
-        color: #154360 !important;
+        font-size: 12px !important;
     }
 }
 
 .login .card-body .socials button.google span{
-    font-family: "Overlock";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 20px;
-    color: #154360 !important;
+    color: #003755 !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .login .card-body .socials button.google span{
+        font-size: 18px !important;
+    }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .login .card-body .socials button.google span{
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 18px !important;
-        color: #154360 !important;
+        font-size: 16px !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .login .card-body .socials button.google span{
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 16px !important;
-        color: #154360 !important;
+        font-size: 14px !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .login .card-body .socials button.google span{
-        font-family: "Overlock";
-        font-weight: 400;
-        font-size: 14px !important;
-        color: #154360 !important;
+        font-size: 12px !important;
     }
 }
 
 input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus input:-webkit-autofill, textarea:-webkit-autofill, textarea:-webkit-autofill:hover textarea:-webkit-autofill:focus, select:-webkit-autofill, select:-webkit-autofill:hover, select:-webkit-autofill:focus{
-    -webkit-text-fill-color: #154360;
+    -webkit-text-fill-color: #003755;
     -webkit-box-shadow: 0 0 0px 1000px #FFFFFF inset;
     transition: background-color 5000s ease-in-out 0s;
 }
@@ -985,411 +797,372 @@ input:autofill{
 }
 
 
-.swal2-popup{
+.swal2-container .swal2-popup{
+    padding-top: 15px !important;
     padding-bottom: 15px !important;
     border-radius: 5px !important;
-    border: 1px solid #B2BEB5 !important; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    border: 1px solid #003755 !important; 
 }
 
-.swal2-popup .swal2-styled:focus{
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .swal2-container .swal2-popup{
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        border-radius: 5px !important;
+    }
+}
+
+.swal2-container .swal2-popup .swal2-styled:focus{
     box-shadow: none !important;
 }
 
-div:where(.swal2-container) .swal2-html-container{
-    padding: 10px 30px 0em 30px !important;
-    margin: 0px !important;
-    font-family: "Overlock" !important;
+.swal2-container .swal2-html-container{
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+    padding-top: 0px !important;
+    padding-bottom: 15px !important;
+    font-family: "Montserrat" !important;
     font-weight: 400 !important;
     font-size: 20px !important;
-    color: #154360 !important;
+    color: #003755 !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .swal2-container .swal2-html-container{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 0px !important;
+        padding-bottom: 5px !important;
+        font-size: 18px !important;
+    }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    div:where(.swal2-container) .swal2-html-container{
-        padding: 10px 30px 0em 30px !important;
-        margin: 0px !important;
-        font-family: "Overlock" !important;
-        font-weight: 400 !important;
-        font-size: 18px !important;
-        color: #154360 !important;
+    .swal2-container .swal2-html-container{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 0px !important;
+        padding-bottom: 5px !important;
+        font-size: 16px !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    div:where(.swal2-container) .swal2-html-container{
-        padding: 10px 30px 0em 30px !important;
-        margin: 0px !important;
-        font-family: "Overlock" !important;
-        font-weight: 400 !important;
-        font-size: 16px !important;
-        color: #154360 !important;
+    .swal2-container .swal2-html-container{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 0px !important;
+        padding-bottom: 5px !important;
+        font-size: 14px !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    div:where(.swal2-container) .swal2-html-container{
-        padding: 10px 30px 0em 30px !important;
-        margin: 0px !important;
-        font-family: "Overlock" !important;
-        font-weight: 400 !important;
-        font-size: 14px !important;
-        color: #154360 !important;
+    .swal2-container .swal2-html-container{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 0px !important;
+        padding-bottom: 5px !important;
+        font-size: 12px !important;
     }
 }
 
-div:where(.swal2-icon){
-    margin: 15px auto 0em auto !important;
+.swal2-container div:where(.swal2-icon){
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 0px !important;
+    margin-bottom: 15px !important;
 }
 
-div:where(.swal2-icon).swal2-success .swal2-success-ring{
-    border: 0.25em solid #698F3F !important;
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .swal2-container div:where(.swal2-icon){
+        margin-bottom: 5px !important;
+    }
 }
 
-div:where(.swal2-icon).swal2-success [class ^= swal2-success-line]{
-    background-color: #698F3F !important;
+.swal2-container div:where(.swal2-icon).swal2-warning{
+    border-color: #003755 !important;
+    color: #003755 !important;
 }
 
-div:where(.swal2-icon).swal2-error [class ^= swal2-x-mark-line]{
-    background-color: #C90016 !important;
+.swal2-container div:where(.swal2-icon).swal2-success .swal2-success-ring{
+    border: 1px solid #003755 !important;
 }
 
-div:where(.swal2-container) h2:where(.swal2-title){
-    padding: 15px 30px 0em 30px !important;
+.swal2-container div:where(.swal2-icon).swal2-success [class ^= swal2-success-line]{
+    background-color: #003755 !important;
 }
 
-.title{
-    font-family: "Philosopher" !important;
+.swal2-container div:where(.swal2-icon).swal2-error{
+    border-color: #003755 !important;
+    color: #003755 !important;
+}
+
+.swal2-container div:where(.swal2-icon).swal2-error [class ^= swal2-x-mark-line]{
+    background-color: #003755 !important;
+}
+
+.swal2-container h2:where(.swal2-title){
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+    padding-top: 0px !important;
+    padding-bottom: 15px !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .swal2-container h2:where(.swal2-title){
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 0px !important;
+        padding-bottom: 5px !important;
+    }
+}
+
+.swal2-container .title{
+    font-family: "Montserrat" !important;
     font-weight: 700 !important;
-    font-size: 22px !important;   
-    color: #154360 !important;
+    font-size: 24px !important;   
+    color: #003755 !important;
     pointer-events: none !important;
 }
 
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .swal2-container .title{
+        font-size: 22px !important;
+    }
+}
+
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .title{
-        font-family: "Philosopher" !important;
-        font-weight: 700 !important;
-        font-size: 20px !important;   
-        color: #154360 !important;
-        pointer-events: none !important;
+    .swal2-container .title{
+        font-size: 20px !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .title{
-        font-family: "Philosopher" !important;
-        font-weight: 700 !important;
-        font-size: 18px !important;   
-        color: #154360 !important;
-        pointer-events: none !important;
+    .swal2-container .title{
+        font-size: 18px !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .title{
-        font-family: "Philosopher" !important;
-        font-weight: 700 !important;
-        font-size: 16px !important;   
-        color: #154360 !important;
-        pointer-events: none !important;
+    .swal2-container .title{
+        font-size: 16px !important;
     }
 }
 
-div:where(.swal2-container) div:where(.swal2-actions){
-    margin: 15px auto 0 !important;
+.swal2-container div:where(.swal2-actions){
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
 }
 
-.swal2-actions{
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
+.swal2-container .swal2-actions{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
     height: fit-content !important;
 }
 
-.info-button{
+.swal2-container .swal2-actions button{
+    background-color: #003755 !important;
+}
+
+.swal2-container .info-button{
     visibility: hidden;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     font-size: 0px !important;
 }
 
-.info-button::before{
-    padding-left: 10px !important;
-    padding-right: 10px !important;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .swal2-container .info-button{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+.swal2-container .info-button::before{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     content: "Ok" !important;
     visibility: visible !important;
-    border: 1px solid #B2BEB5 !important; 
+    border: 1px solid #003755 !important; 
     border-radius: 5px !important;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
-    font-family: "Overlock" !important;
+    font-family: "Montserrat" !important;
     font-weight: 400 !important;
     font-size: 20px !important;
-    background-color: #154360 !important;
+    background-color: #003755 !important;
     color: #FFFFFF !important;
     pointer-events: auto !important;
     cursor: pointer;
 }
 
-.info-button:hover{
+.swal2-container .info-button:hover{
     background-color: #10354C !important;
     color: #B2BEB5 !important;        
 }
 
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .info-button::before{
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        content: "Ok" !important;
-        visibility: visible !important;
-        border: 1px solid #B2BEB5 !important; 
-        border-radius: 5px !important;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Overlock" !important;
-        font-weight: 400 !important;
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .swal2-container .info-button::before{
         font-size: 18px !important;
-        background-color: #154360 !important;
-        color: #FFFFFF !important;
-        pointer-events: auto !important;
-        cursor: pointer;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .swal2-container .info-button::before{
+        font-size: 16px !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .info-button::before{
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        content: "Ok" !important;
-        visibility: visible !important;
-        border: 1px solid #B2BEB5 !important; 
-        border-radius: 5px !important;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Overlock" !important;
-        font-weight: 400 !important;
-        font-size: 16px !important;
-        background-color: #154360 !important;
-        color: #FFFFFF !important;
-        pointer-events: auto !important;
-        cursor: pointer;
+    .swal2-container .info-button::before{
+        font-size: 14px !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .info-button::before{
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        content: "Ok" !important;
-        visibility: visible !important;
-        border: 1px solid #B2BEB5 !important; 
-        border-radius: 5px !important;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Overlock" !important;
-        font-weight: 400 !important;
-        font-size: 14px !important;
-        background-color: #154360 !important;
-        color: #FFFFFF !important;
-        pointer-events: auto !important;
-        cursor: pointer;
+    .swal2-container .info-button::before{
+        font-size: 12px !important;
     }
 }
 
-.success-button{
+.swal2-container .success-button{
     visibility: hidden;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     font-size: 0px !important;
 }
 
-.success-button::before{
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .swal2-container .success-button{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+.swal2-container .success-button::before{
     padding-left: 10px !important;
     padding-right: 10px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     content: "Ok" !important;
     visibility: visible !important;
-    border: 1px solid #B2BEB5 !important; 
+    border: 1px solid #003755 !important; 
     border-radius: 5px !important;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
-    font-family: "Overlock" !important;
+    font-family: "Montserrat" !important;
     font-weight: 400 !important;
     font-size: 20px !important;
-    background-color: #698F3F !important;
+    background-color: #003755 !important;
     color: #FFFFFF !important;
     pointer-events: auto !important;
     cursor: pointer;
 }
 
-.success-button:hover{
-    background-color: #557433 !important;
+.swal2-container .success-button:hover{
+    background-color: #002C44 !important;
     color: #B2BEB5 !important;        
 }
 
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .success-button::before{
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        content: "Ok" !important;
-        visibility: visible !important;
-        border: 1px solid #B2BEB5 !important; 
-        border-radius: 5px !important;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Overlock" !important;
-        font-weight: 400 !important;
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .swal2-container .success-button::before{
         font-size: 18px !important;
-        background-color: #698F3F !important;
-        color: #FFFFFF !important;
-        pointer-events: auto !important;
-        cursor: pointer;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .swal2-container .success-button::before{
+        font-size: 16px !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .success-button::before{
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        content: "Ok" !important;
-        visibility: visible !important;
-        border: 1px solid #B2BEB5 !important; 
-        border-radius: 5px !important;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Overlock" !important;
-        font-weight: 400 !important;
-        font-size: 16px !important;
-        background-color: #698F3F !important;
-        color: #FFFFFF !important;
-        pointer-events: auto !important;
-        cursor: pointer;
+    .swal2-container .success-button::before{
+        font-size: 14px !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .success-button::before{
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        content: "Ok" !important;
-        visibility: visible !important;
-        border: 1px solid #B2BEB5 !important; 
-        border-radius: 5px !important;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Overlock" !important;
-        font-weight: 400 !important;
-        font-size: 14px !important;
-        background-color: #698F3F !important;
-        color: #FFFFFF !important;
-        pointer-events: auto !important;
-        cursor: pointer;
+    .swal2-container .success-button::before{
+        font-size: 12px !important;
     }
 }
 
-.error-button{
+.swal2-container .error-button{
     visibility: hidden;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     font-size: 0px !important;
 }
 
-.error-button::before{
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .swal2-container .error-button{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+.swal2-container .error-button::before{
     padding-left: 10px !important;
     padding-right: 10px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     content: "Ok" !important;
     visibility: visible !important;
-    border: 1px solid #B2BEB5 !important; 
+    border: 1px solid #003755 !important; 
     border-radius: 5px !important;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
-    font-family: "Overlock" !important;
+    font-family: "Montserrat" !important;
     font-weight: 400 !important;
     font-size: 20px !important;
-    background-color: #C90016 !important;
+    background-color: #003755 !important;
     color: #FFFFFF !important;
     pointer-events: auto !important;
     cursor: pointer;
 }
 
-.error-button:hover{
-    background-color: #A00011 !important;
+.swal2-container .error-button:hover{
+    background-color: #002C44 !important;
     color: #B2BEB5 !important;        
 }
 
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .error-button::before{
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        content: "Ok" !important;
-        visibility: visible !important;
-        border: 1px solid #B2BEB5 !important; 
-        border-radius: 5px !important;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Overlock" !important;
-        font-weight: 400 !important;
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .swal2-container .error-button::before{
         font-size: 18px !important;
-        background-color: #C90016 !important;
-        color: #FFFFFF !important;
-        pointer-events: auto !important;
-        cursor: pointer;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .swal2-container .error-button::before{
+        font-size: 16px !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .error-button::before{
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        content: "Ok" !important;
-        visibility: visible !important;
-        border: 1px solid #B2BEB5 !important; 
-        border-radius: 5px !important;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Overlock" !important;
-        font-weight: 400 !important;
-        font-size: 16px !important;
-        background-color: #C90016 !important;
-        color: #FFFFFF !important;
-        pointer-events: auto !important;
-        cursor: pointer;
+    .swal2-container .error-button::before{
+        font-size: 14px !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .error-button::before{
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        content: "Ok" !important;
-        visibility: visible !important;
-        border: 1px solid #B2BEB5 !important; 
-        border-radius: 5px !important;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
-        outline: none !important;
-        font-family: "Overlock" !important;
-        font-weight: 400 !important;
-        font-size: 14px !important;
-        background-color: #C90016 !important;
-        color: #FFFFFF !important;
-        pointer-events: auto !important;
-        cursor: pointer;
+    .swal2-container .error-button::before{
+        font-size: 12px !important;
     }
 }
