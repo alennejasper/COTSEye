@@ -289,6 +289,38 @@
     }
 }
 
+.notification-body .notification .notification-unread p{
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 20px;
+    color: #003755;
+    text-align: justify;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .notification-body .notification .notification-unread p{
+        font-size: 18px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .notification-body .notification .notification-unread p{
+        font-size: 16px;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .notification-body .notification .notification-unread p{
+        font-size: 14px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .notification-body .notification .notification-unread p{
+        font-size: 12px;
+    }
+}
+
 .notification-body .notification .notification-read{
     display: grid;
     gap: 15px;
@@ -515,5 +547,37 @@
 @media screen and (min-width: 320px) and (max-width: 348px){
     .notification-body .notification .notification-read .notification-item .button a{
         font-size: 12px !important;
+    }
+}
+
+.notification-body .notification .notification-read p{
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 20px;
+    color: #003755;
+    text-align: justify;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .notification-body .notification .notification-read p{
+        font-size: 18px;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .notification-body .notification .notification-read p{
+        font-size: 16px;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .notification-body .notification .notification-read p{
+        font-size: 14px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .notification-body .notification .notification-read p{
+        font-size: 12px;
     }
 }
