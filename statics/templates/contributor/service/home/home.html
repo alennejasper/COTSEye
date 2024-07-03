@@ -78,7 +78,7 @@
                                 
                     "features": [
                         {% for status in map_statuses %}
-                            {"type": "Feature", "properties": {"barangay": "{{status.location.barangay}}", "municipality": "{{status.location.municipality}}", "caught_overall": "{{status.caught_overall}}", "statustype": "{{status.statustype}}", "onset_date": "{{status.onset_date | date:'m/d/Y'}}"}, "geometry": {"type": "Polygon", "coordinates": {{status.location.perimeters}}}}, 
+                            {"type": "Feature", "properties": {"barangay": "{{status.location.barangay}}", "municipality": "{{status.location.municipality}}", "caught_overall": "{{status.caught_overall}}", "statustype": "{{status.statustype.statustype}}", "onset_date": "{{status.onset_date | date:'m/d/Y'}}"}, "geometry": {"type": "Polygon", "coordinates": {{status.location.perimeters}}}}, 
                         {% endfor %}
                     ]
 
