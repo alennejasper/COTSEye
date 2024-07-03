@@ -4,7 +4,7 @@ from allauth.socialaccount.models import SocialAccount, SocialToken, SocialApp
 from authentications.models import *
 
 
-Register your models here.
+# Register your models here.
 class UserTypeAdmin(admin.ModelAdmin):
     class Media:   
         css = {
