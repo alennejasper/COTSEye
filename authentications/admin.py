@@ -97,7 +97,7 @@ class SocialAccountAdmin(admin.ModelAdmin):
 
     list_display = ("user",)
     
-admin.site.unregister(SocialAccount, SocialAccountAdmin)
+admin.site.unregister(SocialAccount)
 
 
 class SocialTokenAdmin(admin.ModelAdmin):
@@ -116,7 +116,7 @@ class SocialTokenAdmin(admin.ModelAdmin):
 
     list_display = ("token",)
 
-admin.site.unregister(SocialToken, SocialTokenAdmin)
+admin.site.unregister(SocialToken)
 
 
 class SocialAppAdmin(admin.ModelAdmin):
@@ -135,4 +135,4 @@ class SocialAppAdmin(admin.ModelAdmin):
 
     list_display = ("provider",)
 
-admin.site.unregister(SocialApp, SocialAppAdmin)
+admin.site.unregister(SocialApp)
