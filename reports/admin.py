@@ -77,7 +77,7 @@ class SizeAdmin(admin.ModelAdmin):
 
         return super().render_change_form(request, context, add, change, form_url, obj)
 
-    list_display = ["size"]
+    list_display = ["size", "description"]
 
     search_fields = ["size"]
 
@@ -98,7 +98,7 @@ class DepthAdmin(admin.ModelAdmin):
 
         return super().render_change_form(request, context, add, change, form_url, obj)
 
-    list_display = ["depth"]
+    list_display = ["depth", "description"]
 
     search_fields = ["depth"]
 

@@ -64,7 +64,7 @@ class StatusTypeAdmin(admin.ModelAdmin):
 
         return super().render_change_form(request, context, add, change, form_url, obj)
     
-    list_display = ["statustype"]
+    list_display = ["statustype", "description"]
 
     search_fields = ["statustype"]
 
