@@ -268,8 +268,9 @@ def UpdateUserLog(sender, instance, **kwargs):
                 
             if changes:
                 message = ", ".join(changes)
-
-                LogEntry.objects.create(content_type = ContentType.objects.get_for_model(instance), object_id = instance.id, object_repr = str(instance), action_flag = CHANGE, change_message = message, user = Account.objects.get(username = request.user.username), action_time = timezone.now())
+                
+                if request:
+                    LogEntry.objects.create(content_type = ContentType.objects.get_for_model(instance), object_id = instance.id, object_repr = str(instance), action_flag = CHANGE, change_message = message, user = Account.objects.get(username = request.user.username), action_time = timezone.now())
 
 
 @receiver(post_delete, sender = User)
