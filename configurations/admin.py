@@ -30,7 +30,7 @@ class AdministratorSite(admin.AdminSite):
         urls = super().get_urls()
 
         urlpatterns = [
-            path("/fallback/", AdministratorControlFallback, name = "Administrator Control Fallback"),
+            path("fallback/", AdministratorControlFallback, name = "Administrator Control Fallback"),
 
             path("login/", AdministratorControlLogin, name = "Administrator Control Login"),
             
