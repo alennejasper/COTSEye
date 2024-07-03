@@ -127,7 +127,7 @@
                                     <option value = "{{intervention.location.municipality.municipality_name}}" selected>{{intervention.location.municipality.municipality_name}}</option>
                                     
                                     {% for location in municipalities %}
-                                        <option value = "{{location.municipality_name}}" {% if location.municipality.municipality_name == intervention.location.municipality_name %} selected {% endif %}>{{location.municipality_name}}</option>
+                                        <option value = "{{location.municipality_name}}" {% if location.municipality_name == intervention.location.municipality_name %} selected {% endif %}>{{location.municipality_name}}</option>
                                     {% endfor %}
                                 </select>
                             </div>
