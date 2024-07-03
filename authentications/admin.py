@@ -14,7 +14,7 @@ class UserTypeAdmin(admin.ModelAdmin):
     def has_module_permission(self, request):
         return request.user.usertype_id == 1
 
-admin.site.register(UserType, UserTypeAdmin)
+administrator.register(UserType, UserTypeAdmin)
 
 
 class AccountAdmin(admin.ModelAdmin):
@@ -97,7 +97,7 @@ class SocialAccountAdmin(admin.ModelAdmin):
 
     list_display = ("user",)
     
-admin.site.register(SocialAccount, SocialAccountAdmin)
+administrator.register(SocialAccount, SocialAccountAdmin)
 
 
 class SocialTokenAdmin(admin.ModelAdmin):
@@ -116,7 +116,7 @@ class SocialTokenAdmin(admin.ModelAdmin):
 
     list_display = ("token",)
 
-admin.site.register(SocialToken, SocialTokenAdmin)
+administrator.register(SocialToken, SocialTokenAdmin)
 
 
 class SocialAppAdmin(admin.ModelAdmin):
@@ -135,4 +135,4 @@ class SocialAppAdmin(admin.ModelAdmin):
 
     list_display = ("provider",)
 
-admin.site.register(SocialApp, SocialAppAdmin)
+administrator.register(SocialApp, SocialAppAdmin)
