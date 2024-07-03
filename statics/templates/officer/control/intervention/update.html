@@ -124,7 +124,7 @@
                                 <label for = "municipalityFilter" class = "form-label required" style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Municipality:</label>
 
                                 <select id = "municipalityFilter" class = "form-select form-select-sm mb-3 select2" onchange = "updateBarangayOptions()">
-                                    <option value = "">Select Municipality</option>
+                                    <option value = "{{intervention.location.municipality.municipality_name}}" selected>{{intervention.location.municipality.municipality_name}}</option>
                                     
                                     {% for location in municipalities %}
                                         <option value = "{{location.municipality_name}}" {% if location.municipality.municipality_name == intervention.location.municipality_name %} selected {% endif %}>{{location.municipality_name}}</option>
@@ -136,7 +136,7 @@
                                 <label for = "barangayFilter" class = "form-label required" style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Barangay:</label>
 
                                 <select id = "barangayFilter" class = "form-select form-select-sm mb-3 select2" onchange = "setBarangayValue()">
-                                    <option value = "">Select Barangay</option>
+                                    <option value = "{{intervention.location.barangay}}">{{intervention.location.barangay}}</option>
                                     
                                     {% for location in locations %}
                                         {% if location.municipality == intervention.location.municipality %}

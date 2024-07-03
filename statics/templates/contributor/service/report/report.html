@@ -71,10 +71,10 @@
                         <label for = "barangay" class = "required">Barangay</label>
                         
                         <select name = "barangay" id = "barangay" required>
-                            <option value = "{{draft_post.location.barangay}}" >{{draft_post.location.barangay}}</option>
+                            <option value = "{{draft_post.location.barangay}}">{{draft_post.location.barangay}}</option>
 
                             {% for location in locations %}
-                                <option value = "{{location.barangay}}" >{{location.barangay}}</option>
+                                <option value = "{{location.barangay}}">{{location.barangay}}</option>
                             {% endfor %}
                         </select>
                     </div>
