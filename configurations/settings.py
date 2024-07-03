@@ -73,6 +73,8 @@ SITE_ID = 1
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     
     "django.contrib.sessions.middleware.SessionMiddleware",
     
@@ -213,6 +215,8 @@ STATIC_URL = "statics/"
 # ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, "statics")
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 MEDIA_URL = "assets/"
 
