@@ -208,11 +208,13 @@ DATETIME_FORMAT = "%b. %j, %Y %I:%M %P"
 #https://docs.djangoproject.com/en/4.2/howto/static-files/
 STATIC_URL = "statics/"
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "statics")
-]
+if DEBUG:
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, "statics")
+    ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, "statics")
+else:
+    STATIC_ROOT = os.path.join(BASE_DIR, "statics")
 
 MEDIA_URL = "assets/"
 
