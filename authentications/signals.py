@@ -27,7 +27,8 @@ def AddUserTypeLog(sender, instance, created, **kwargs):
             else:
                 request = None
 
-        LogEntry.objects.create(content_type = ContentType.objects.get_for_model(instance), object_id = instance.id, object_repr = str(instance), action_flag = ADDITION, change_message = "Added.", user = Account.objects.get(username = request.user.username), action_time = timezone.now())
+        if request:
+            LogEntry.objects.create(content_type = ContentType.objects.get_for_model(instance), object_id = instance.id, object_repr = str(instance), action_flag = ADDITION, change_message = "Added.", user = Account.objects.get(username = request.user.username), action_time = timezone.now())
 
 
 @receiver(pre_save, sender = UserType)
