@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang = "en">
+    <head>
+        <meta charset = "UTF-8">
+            
+        <meta http-equiv = "X-UA-Compatible" content = "IE=edge">
+            
+        <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+
+        <link rel = "manifest" href = "{% static 'templates/webwares/manifest.json' %}">
+
+        <script src = "{% static 'templates/webwares/application.js' %}"></script>
+
+        <meta name = "theme-color" content = "#003755">
+
+        <link rel = "apple-touch-icon" href = "{% static 'assets/icons/logo (180 x 180).png' %}">
+
+        <meta name = "apple-mobile-web-app-status-bar" content = "#003755">
+
+        <link rel = "icon" type = "image/x-icon" href = "{% static 'assets/icons/logo.png' %}">
+                        
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'templates/webwares/forgery.css' %}">
+                    
+        <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">          
+        
+        <title>COTSEye | Forgery</title>
+    </head>
+
+    <body>
+        <div class = "content">
+            <div class = "forgery">
+                <div class = "card-header">
+                    <header>Oops! Dear {{user}},</header>
+                </div>
+        
+                <div class = "card-body">
+                    <p><i class = "fa-solid fa-quote-left"></i>{{forgery}}<i class = "fa-solid fa-quote-right"></i></p>
+                    
+                    <div class = "button">
+                        {% if user.is_authenticated %}
+                            <a class = "return-home" href = "{% url 'Contributor Service Home' %}">Return</a>
+                        
+                        {% else %}
+                            <a class = "return-home" href = "{% url 'Public Service Home' %}">Return</a>
+                        {% endif %}
+                    </div>   
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

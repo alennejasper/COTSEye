@@ -64,30 +64,31 @@ class PostStatus(models.Model):
 
 
 class Size(models.Model):
-    size = models.CharField(max_length = 65, null = True, help_text = "Designates the size.", verbose_name = "Size")
-   
+    size = models.CharField(max_length = 65, unique = True, error_messages = {"unique": "This size already exist."}, null = True, verbose_name = "Size")
+    description = models.TextField(max_length = 255, default = "Default Description", verbose_name = "Description")
     class Meta:
         db_table = "reports_size"
         verbose_name = "Size"
         verbose_name_plural = "Size"
     
     def __str__(self):
-        return str(self.size)
+        return str(self.size) + " (" + str(self.description) + ") " 
+        
         
 class Depth(models.Model):
-    depth = models.CharField(max_length = 65, null = True, help_text = "Designates the depth.", verbose_name = "Depth")
-
+    depth = models.CharField(max_length = 65, unique = True, error_messages = {"unique": "This depth already exist."}, null = True, verbose_name = "Depth")
+    description = models.TextField(max_length = 255, default = "Default Description", verbose_name = "Description")
     class Meta:
         db_table = "reports_depth"
         verbose_name = "Depth"
         verbose_name_plural = "Depth"
     
     def __str__(self):
-        return str(self.depth)
+        return str(self.depth)  + " (" + str(self.description) + ") " 
         
 class Weather(models.Model):
-    weather = models.CharField(max_length = 65, null = True, help_text = "Designates the weather.", verbose_name = "Weather")
-
+    weather = models.CharField(max_length = 65, unique = True, error_messages = {"unique": "This weather already exist."}, null = True, verbose_name = "Weather")
+    
     class Meta:
         db_table = "reports_weather"
         verbose_name = "Weather"
@@ -114,19 +115,15 @@ class PostObservation(models.Model):
 
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete = models.CASCADE, help_text = "Designates the foreign key of the User model.", verbose_name = "User")
+    validator = models.ForeignKey(User, null = True, blank = True, on_delete = models.SET_NULL, help_text = "Designates the validator the post.", related_name = "validator", verbose_name = "Validator")
     description = models.TextField(max_length = 255, help_text = "Designates the description of the post.", verbose_name = "Description")
-    capture_date = models.DateTimeField(default = datetime.datetime.now, help_text = "Designates the capture date and time of the post.", verbose_name = "Capture Date")
-    post_photos = models.ManyToManyField(PostPhoto, blank = True, through = "PostGallery", help_text = "Designates the foreign key of the Post Photo model.", verbose_name = "Post Photos")
     coordinates = models.ForeignKey(Coordinates, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Coordinates model.", verbose_name = "Coordinates")
     location = models.ForeignKey(Location, null = True, blank = True, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Location model.", verbose_name = "Location")
     post_status = models.ForeignKey(PostStatus, on_delete = models.CASCADE, default = 4, help_text = "Designates the foreign key of the Post Status model.", verbose_name = "Post Status")
     post_observation = models.ForeignKey(PostObservation, null = True, blank = True, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Post Observation model.", verbose_name = "Post Observation")
     remarks = models.CharField(null = True, blank = True, max_length = 255, help_text = "Additional remarks for the post.", verbose_name = "Remarks")
-    validated_by = models.ForeignKey(User, null = True, blank = True, on_delete = models.SET_NULL, related_name = "validated_posts", help_text = "Designates the user who validated the post.", verbose_name = "Validated By")
-    read_status = models.BooleanField(default = False, help_text = "Indicates whether the post has been read.", verbose_name = "Read Status")
-    read_date = models.DateTimeField(null = True, blank = True, help_text = "Designates the date and time when the post was read.", verbose_name = "Read Date")
-    contrib_read_status = models.BooleanField(default = False, help_text = "Indicates whether the post has been read by a contributor.", verbose_name = "Contributor Read Status")
-    contrib_read_date = models.DateTimeField(null = True, blank = True, help_text = "Designates the date and time when the post was read by a contributor.", verbose_name = "Contributor Read Date")
+    post_photos = models.ManyToManyField(PostPhoto, blank = True, through = "PostGallery", help_text = "Designates the foreign key of the Post Photo model.", verbose_name = "Post Photos")
+    capture_date = models.DateTimeField(default = datetime.datetime.now, help_text = "Designates the capture date and time of the post.", verbose_name = "Capture Date")
     creation_date = models.DateTimeField(default = datetime.datetime.now, help_text = "Designates the creation date and time of the post.", verbose_name = "Creation Date")
 
     class Meta:
@@ -135,9 +132,11 @@ class Post(models.Model):
         verbose_name_plural = "Posts"
 
     def __str__(self):
-        return "POST "+ str(self.id) + " | " + str(self.user)
+        return "POST " + str(self.id) + " | " + str(self.user)
 
-  
+    @property
+    def is_validated(self):
+        return self.validator is not None
 
 class PostGallery(models.Model):
     post_photos = models.ForeignKey(PostPhoto, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Post Photos model.", verbose_name = "Post Photo")

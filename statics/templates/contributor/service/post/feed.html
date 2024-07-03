@@ -27,7 +27,7 @@
                     </div>
                 </div>
 
-                <h1>{{post.description | default:'None available'}}</h1>
+                <!-- <h1>{{post.description | default:'None available'}}</h1> -->
                 
                 <a href = "{% url 'Contributor Service Post Feed Read' post.id %}">
                     <img class = "feed-image" src = "{{post.post_photos.first.post_photo.url | default:'None available'}}">

@@ -1,23 +1,23 @@
+from datetime import datetime, timedelta
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.files.base import ContentFile
+from django.core.mail import EmailMultiAlternatives
+from django.core.paginator import Paginator
+from django.db.models import Max
 from django.dispatch import receiver
 from django.http import JsonResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.template.loader import render_to_string
 from django.urls import reverse
-from allauth.socialaccount.signals import social_account_updated
+from django.utils import timezone
+from django.utils.html import strip_tags
+from allauth.socialaccount.signals import pre_social_login
 from authentications.forms import AccountForm, UserForm, ProfileForm
 from authentications.models import *
-from auxiliaries.models import Announcement
-from managements.models import Status, Intervention, Location
+from managements.models import Status, Announcement, Intervention, Location, Municipality, Barangay
 from reports.models import Post
-from django.utils import timezone
-from django.utils import timezone
-from datetime import timedelta
-from django.core.paginator import Paginator
-from datetime import datetime, timedelta
-from django.db.models import Max
 
 import base64
 import json
@@ -35,13 +35,31 @@ def PublicServiceHome(request):
 
     if user.is_authenticated:
         if user.usertype_id == 3:
-            return redirect("Contributor Service Home")
+            logout(request)
+
+            username = user.username
+        
+            messages.success(request, username + ", " + "you have successfully logged out. Have a great day ahead!")
+
+            return redirect("Public Service Home")
         
         elif user.usertype_id == 2:
-            return redirect("Officer Control Home")
+            logout(request)
+        
+            username = user.username
+
+            messages.success(request, username + ", " + "you have successfully logged out. Have a great day ahead!")
+
+            return redirect("Public Service Home")
         
         elif user.usertype_id == 1:
-            return redirect("admin:index")
+            logout(request)
+
+            username = user.username
+
+            messages.success(request, username + ", " + "you have successfully logged out. Have a great day ahead!")
+
+            return redirect("Public Service Home")
 
     else:
         try:
@@ -54,9 +72,6 @@ def PublicServiceHome(request):
 
             map_statuses = None
 
-    if not any(message.level in [messages.INFO, messages.SUCCESS, messages.ERROR] for message in messages.get_messages(request)):
-        messages.info(request, username + ", " + "kindly see announcements within COTSEye to check for updates today.")
-
     context = {"username": username, "map_posts": map_posts, "map_statuses": map_statuses, "latest_announcements": latest_announcements, "valid_posts": valid_posts}
     
     return render(request, "public/service/home/home.html", context)
@@ -65,7 +80,7 @@ def PublicServiceHome(request):
 def PublicServiceFallback(request):
     public = "public/everyone"
 
-    fallback = "The COTSEye cannot keep in touch to the requested page today, as such is not found within the cache storage."
+    fallback = "You are currently offline and the requested page is not available. Kindly check your connection and try again."
 
     context = {"public": public, "fallback": fallback}
     
@@ -73,6 +88,8 @@ def PublicServiceFallback(request):
 
 
 def ContributorServiceRegister(request):
+    username = "public/everyone"
+
     account_form = AccountForm()
 
     user_form = UserForm()
@@ -89,38 +106,51 @@ def ContributorServiceRegister(request):
 
             usertype = UserType.objects.get(id = 3)
 
-            account = Account.objects.create(username = account.username, password = account.password, usertype = usertype)
+            active = True
+
+            account = Account.objects.create(username = account.username, password = account.password, usertype = usertype, is_active = active)
             
-            if Account.objects.filter(username = account.username, password = account.password, usertype = usertype).exists():
+            if Account.objects.filter(username = account.username, password = account.password, usertype = usertype, is_active = active).exists():
                 User.objects.create(account = account, first_name = user.first_name, last_name = user.last_name, email = user.email, phone_number = user.phone_number)
                 
                 username = account.username
                 
-                messages.success(request, username + ", " + "your information input was recorded online for COTSEye.")
+                messages.success(request, username + ", " + "your account has been successfully registered. Kindly proceed to log in with your credentials.")
                 
                 return redirect("Contributor Service Login")
         
-        else:
-            messages.error(request, "Username exists or is not valid, or passwords are short, entirely numeric, or do not match.")
-            
-            messages.error(request, account_form.errors, user_form.errors) 
+        else:            
+            for field, errors in account_form.errors.items():
+                messages.error(request, "There is an issue in the" + " " + field + " field." + " " + ", ".join(errors))
+
+            for field, errors in user_form.errors.items():
+                messages.error(request, "There is an issue in the" + " " + field + " field." + " " + ", ".join(errors))
 
     else:
         account_form = AccountForm()
         
         user_form = UserForm()
 
-    context = {"account_form": account_form, "user_form": user_form}
+    context = {"username": username, "account_form": account_form, "user_form": user_form}
     
     return render(request, "contributor/service/register/register.html", context)
 
 
 def ContributorServiceLogin(request):
-    @receiver(social_account_updated)
+    @receiver(pre_social_login)
     def UpdateUser(sender, request, sociallogin, **kwargs):
         if sociallogin.account.provider == "google":
             if sociallogin.user.usertype_id == 1 or sociallogin.user.usertype_id == 2:
-                messages.error(request, "Username or password is not valid.")
+                messages.error(request, "Account not found. Kindly create a new one and try again.")
+                
+                sociallogin.state["process"] = "disconnect"
+                
+                sociallogin.state["save"] = False
+                
+                return redirect("Contributor Service Login")
+
+            elif sociallogin.user.is_active == False:
+                messages.error(request, "Account is not active. Kindly contact support for assistance.")
                 
                 sociallogin.state["process"] = "disconnect"
                 
@@ -129,33 +159,51 @@ def ContributorServiceLogin(request):
                 return redirect("Contributor Service Login")
             
             else:
-                if sociallogin.account.provider == "google":
+                if sociallogin.account.provider == "google":     
                     user = sociallogin.user
-                    
+
                     user.usertype_id = 3
 
-                    if "email" in sociallogin.account.extra_data:
-                        email = sociallogin.account.extra_data["email"]
-                        
-                        username = email.split("@")[0]
-                        
-                        sociallogin.account.user.username = username
-                        
-                        instance, created = User.objects.get_or_create(account = user, email = email)
+                    user.is_active = True
+                    
+                    email = sociallogin.account.extra_data["email"]
 
-                        instance.first_name = sociallogin.account.extra_data.get("given_name", None)
-                        
-                        instance.last_name = sociallogin.account.extra_data.get("family_name", None)
+                    username = email.split("@")[0]
 
-                        instance.save()
-                        
-                        sociallogin.account.user.save()
-
+                    user.username = username
+                    
                     user.save()
+
+                    sociallogin.account.user = user
+
+                    sociallogin.account.save()
+
+                    instance, created = User.objects.get_or_create(account = user)
+
+                    if created:
+                        instance.email = email
+
+                        instance.first_name = sociallogin.account.extra_data.get("given_name", "")
+
+                        instance.last_name = sociallogin.account.extra_data.get("family_name", "")
+                        
+                        instance.save()
+
+                    else:
+                        pass
         
         elif sociallogin.account.provider == "facebook":
             if sociallogin.user.usertype_id == 1 or sociallogin.user.usertype_id == 2:
-                messages.error(request, "Username or password is not valid.")
+                messages.error(request, "Account not found. Kindly create a new one and try again.")
+                
+                sociallogin.state["process"] = "disconnect"
+                
+                sociallogin.state["save"] = False
+                
+                return redirect("Contributor Service Login")
+            
+            elif sociallogin.user.is_active == False:
+                messages.error(request, "Account is not active. Kindly contact support for assistance.")
                 
                 sociallogin.state["process"] = "disconnect"
                 
@@ -164,31 +212,42 @@ def ContributorServiceLogin(request):
                 return redirect("Contributor Service Login")
             
             else:
-                if sociallogin.account.provider == "facebook":
+                if sociallogin.account.provider == "facebook": 
                     user = sociallogin.user
-                    
+                   
                     user.usertype_id = 3
 
-                    if "email" in sociallogin.account.extra_data:
-                        email = sociallogin.account.extra_data["email"]
-                       
-                        username = email.split("@")[0]
-                        
-                        sociallogin.account.user.username = username
-                       
-                        instance, created = User.objects.get_or_create(account = user, email = email)
+                    user.is_active = True
+                    
+                    email = sociallogin.account.extra_data["email"]
 
-                        instance.first_name = sociallogin.account.extra_data.get("first_name", None)
-                        
-                        instance.last_name = sociallogin.account.extra_data.get("last_name", None)
+                    username = email.split("@")[0]
+
+                    user.username = username
+                    
+                    user.save()
+
+                    user = sociallogin.account.user
+
+                    sociallogin.account.save()
+
+                    sociallogin.account.user = user
+
+                    instance, created = User.objects.get_or_create(account = user)
+
+                    if created:
+                        instance.email = email
+
+                        instance.first_name = sociallogin.account.extra_data.get("given_name", "")
+
+                        instance.last_name = sociallogin.account.extra_data.get("family_name", "")
 
                         instance.save()
-                        
-                        sociallogin.account.user.save()
 
-                    user.save()
-    
-    social_account_updated.connect(UpdateUser, sender = None)
+                    else:
+                        pass
+                        
+    pre_social_login.connect(UpdateUser, sender = None)
      
     if request.method == "POST":
         username = request.POST.get("username")
@@ -203,73 +262,13 @@ def ContributorServiceLogin(request):
                 
                 return redirect("Contributor Service Home")
             
-            else:
-                messages.error(request, "Username or password is not valid.")
-        
-        else:
-            messages.error(request, "Username or password is not valid.")
+        if Account.DoesNotExist:
+            messages.error(request, "Account not found. Kindly create a new one and try again.")
+
 
     context = {}
 
     return render(request, "contributor/service/login/login.html", context)
-
-
-def ContributorServiceLoginFacebook(request):
-    username = request.user.username
-
-    messages.info(request, username + ", " + "kindly login again in order to be validated by COTSEye today.")
-
-    if request.method == "POST":
-        username = request.POST.get("username")
-
-        password = request.POST.get("password1")
-        
-        account = authenticate(request, username = username, password = password)
-
-        if account:
-            if account.usertype_id == 3:
-                login(request, account)
-
-                return redirect("Contributor Service Home")
-            
-            else:
-                messages.error(request, "Username or password is not valid.")
-        
-        else:
-            messages.error(request, "Username or password is not valid.")
-
-    context = {}
-
-    return render(request, "contributor/service/login/facebook.html", context)
-
-
-def ContributorServiceLoginGoogle(request):
-    username = request.user.username
-
-    messages.info(request, username + ", " + "kindly login again in order to be validated by COTSEye today.")
-
-    if request.method == "POST":
-        username = request.POST.get("username")
-
-        password = request.POST.get("password1")
-        
-        account = authenticate(request, username = username, password = password)
-
-        if account:
-            if account.usertype_id == 3:
-                login(request, account)
-
-                return redirect("Contributor Service Home")
-            
-            else:
-                messages.error(request, "Username or password is not valid.")
-        
-        else:
-            messages.error(request, "Username or password is not valid.")
-
-    context = {}
-
-    return render(request, "contributor/service/login/google.html", context)
 
 
 def ContributorCheck(account):
@@ -286,8 +285,12 @@ def ContributorServiceHome(request):
     username = request.user.username
 
     user_profile = User.objects.get(account = request.user)
-    
-    unread_notifications = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:3]
+
+    notification_life = timezone.now() - timedelta(days = 30)
+
+    user = User.objects.get(account = request.user)
+
+    unread_notifications = Notification.objects.filter(user = user, is_read = False, creation_date__gte = notification_life).order_by("-creation_date")
 
     latest_announcements = Announcement.objects.all().order_by("-release_date")[:3]
 
@@ -315,13 +318,15 @@ def ContributorServiceNotification(request):
 
     user_profile = User.objects.get(account = request.user)
 
-    unread_notifications = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:3]
+    user = User.objects.get(account = request.user)
 
-    unread_items = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")
+    notification_life = timezone.now() - timedelta(days = 30)
 
-    read_items = Post.objects.filter(contrib_read_status = True).filter(contrib_read_date__gte = timezone.now() - timedelta(days = 30), contrib_read_date__lte = timezone.now()).order_by("-creation_date")
+    unread_notifications = Notification.objects.filter(user = user, is_read = False, creation_date__gte = notification_life).order_by("-creation_date")
+   
+    notification_items = Notification.objects.filter(user = user, creation_date__gte = notification_life).order_by("-creation_date")
             
-    context = {"username": username, "user_profile": user_profile, "unread_notifications": unread_notifications, "unread_items": unread_items, "read_items": read_items}
+    context = {"username": username, "user_profile": user_profile, "unread_notifications": unread_notifications, "notification_items": notification_items}
     
     return render(request, "contributor/service/notification/notification.html", context)
 
@@ -339,7 +344,33 @@ def ContributorServiceNotificationMark(request, id):
         return redirect("Contributor Service Notification") 
     
     except Post.DoesNotExist:
-        return JsonResponse({"success": False, "error": "COTSEye cannot find the post."})
+        return JsonResponse({"success": False, "error": "The post could not be found. Kindly try again later."})
+    
+
+def ContributorServiceMarkNotificationAsRead(request, id):
+    if request.user.is_authenticated:
+        user = User.objects.get(account = request.user)
+
+        notification = get_object_or_404(Notification, id = id, user = user)
+
+        notification.is_read = True
+
+        notification.save()
+
+        if notification.contenttype.model == "post":
+            return redirect("Contributor Service Post Read", id = notification.key)
+        
+        elif notification.contenttype.model == "announcement":
+            return redirect("Contributor Service Announcement Read", id = notification.key)
+        
+        elif notification.contenttype.model == "intervention":
+            return redirect("Contributor Service Intervention Read", id = notification.key)
+        
+        else:
+            return redirect("Contributor Service Notification")
+        
+    else:
+        return redirect("Contributor Service Login")
     
 
 @login_required(login_url = "Contributor Service Login")
@@ -351,7 +382,11 @@ def ContributorServiceProfile(request):
 
     user_profile = User.objects.get(account = request.user)
 
-    unread_notifications = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:3]
+    notification_life = timezone.now() - timedelta(days = 30)
+
+    user = User.objects.get(account = request.user)
+
+    unread_notifications = Notification.objects.filter(user = user, is_read = False, creation_date__gte = notification_life).order_by("-creation_date")
 
     context = {"user": user, "username": username, "user_profile": user_profile, "unread_notifications": unread_notifications}
 
@@ -367,7 +402,11 @@ def ContributorServiceProfileUpdate(request):
 
     user_profile = User.objects.get(account = request.user)
 
-    unread_notifications = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:3]
+    notification_life = timezone.now() - timedelta(days = 30)
+
+    user = User.objects.get(account = request.user)
+
+    unread_notifications = Notification.objects.filter(user = user, is_read = False, creation_date__gte = notification_life).order_by("-creation_date")
 
     if request.method == "POST":
         profile_form = ProfileForm(request.POST, request.FILES, instance = request.user.user)
@@ -377,9 +416,13 @@ def ContributorServiceProfileUpdate(request):
 
             username = request.user.username
 
-            messages.success(request, username + ", " + "your information input was recorded online for COTSEye.")
+            messages.success(request, username + ", " + "your profile has been successfully updated.")
             
-            return redirect("Contributor Service Home")
+            return redirect("Contributor Service Profile")
+        
+        else:
+            for field, errors in profile_form.errors.items():
+                messages.error(request, "Error in" + " " + field + " field." + " " + ", ".join(errors))
             
     else:
         profile_form = ProfileForm(request.user.user)
@@ -429,16 +472,115 @@ def ContributorServiceProfileUpdateFetch(request):
         user.phone_number = phone_number
                 
 
+@login_required(login_url = "Contributor Control Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Control Login")
+def ContributorServiceProfileDelete(request, id):
+    account = Account.objects.get(id = id)
+
+    account.is_active = False
+
+    account.save()
+
+    user = User.objects.get(account = id)
+
+    administrators = User.objects.filter(account__usertype_id = 1)
+
+    for administrator in administrators:
+        subject = "COTSEye has delivered an alert message!"
+
+        scheme = request.scheme
+
+        host = request.META["HTTP_HOST"]
+
+        template = render_to_string("contributor/service/profile/email.html", {"administrator": administrator.account.username, "contributor": user.account.username, "account": account, "scheme": scheme, "host": host})
+
+        body = strip_tags(template)
+
+        source = "COTSEye <settings.EMAIL_HOST_USER>"
+
+        recipient = [administrator.email]
+
+        email = EmailMultiAlternatives(
+            subject,
+            
+            body,
+            
+            source,
+            
+            recipient,
+        )
+
+        email.attach_alternative(template, "text/html")
+
+        email.fail_silently = False
+
+        email.send()
+
+    username = request.user.username
+
+    messages.success(request, username + ", " + "your account has been deactivated successfully.")
+
+    return redirect("Public Service Home")
+
+@login_required(login_url = "Contributor Service Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
+def ContributorServiceProfileDeleteFetch(request):
+    if request.method == "POST":
+        information = json.loads(request.body)
+
+    for information in information:
+        account = information.get("account")
+
+        account = Account.objects.get(id = account)
+
+        account.is_active = False
+
+        account.save()
+    
+        user = User.objects.get(account = account)
+
+        administrators = User.objects.filter(account__usertype_id = 1)
+
+        for administrator in administrators:
+            subject = "COTSEye has delivered an alert message!"
+
+            scheme = request.scheme
+
+            host = request.META["HTTP_HOST"]
+
+            template = render_to_string("contributor/service/profile/email.html", {"administrator": administrator.account.username, "contributor": user.account.username, "account": account, "scheme": scheme, "host": host})
+
+            body = strip_tags(template)
+
+            source = "COTSEye <settings.EMAIL_HOST_USER>"
+
+            recipient = [administrator.email]
+
+            email = EmailMultiAlternatives(
+                subject,
+                
+                body,
+                
+                source,
+                
+                recipient,
+            )
+
+            email.attach_alternative(template, "text/html")
+
+            email.fail_silently = False
+
+            email.send()
+
+
 @login_required(login_url = "Contributor Service Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
 def ContributorServiceFallback(request):
     contributor = request.user.username
 
-    contributor_profile = User.objects.get(account = request.user)
+    fallback = "You are currently offline and the requested page is not available. Kindly check your connection and try again."
 
-    fallback = "The COTSEye cannot keep in touch to the requested page today, as such is not found within the cache storage."
-
-    context = {"contributor": contributor, "contributor_profile": contributor_profile, "fallback": fallback}
+    context = {"contributor": contributor, "fallback": fallback}
     
     return render(request, "contributor/service/fallback/fallback.html", context)
 
@@ -450,12 +592,24 @@ def ContributorServiceLogout(request):
 
     logout(request)
     
-    messages.success(request, username + ", " + "your account used just now was signed out of COTSEye.")
+    messages.success(request, username + ", " + "you have successfully logged out. Have a great day ahead!")
     
     return redirect("Public Service Home")
 
 
+def OfficerControlFallback(request):
+    officer = "officer/everyone"
+
+    fallback = "Your device screen is too small to view this page. Please try again on a device with a screen width of 1080px or higher."
+
+    context = {"officer": officer, "fallback": fallback}
+    
+    return render(request, "officer/control/fallback/fallback.html", context)
+
+
 def OfficerControlRegister(request):
+    username = "public/everyone"
+
     account_form = AccountForm()
 
     user_form = UserForm()
@@ -472,38 +626,84 @@ def OfficerControlRegister(request):
 
             usertype = UserType.objects.get(id = 2)
 
-            account = Account.objects.create(username = account.username, password = account.password, usertype = usertype)
+            inactive = False
+
+            account = Account.objects.create(username = account.username, password = account.password, usertype = usertype, is_active = inactive)
             
-            if Account.objects.filter(username = account.username, password = account.password, usertype = usertype).exists():
-                User.objects.create(account = account, first_name = user.first_name, last_name = user.last_name, email = user.email, phone_number = user.phone_number)
+            if Account.objects.filter(username = account.username, password = account.password, usertype = usertype, is_active = inactive).exists():
+                officer = User.objects.create(account = account, first_name = user.first_name, last_name = user.last_name, email = user.email, phone_number = user.phone_number)
                 
+                administrators = User.objects.filter(account__usertype_id = 1)
+
+                for administrator in administrators:
+                    subject = "COTSEye has delivered an alert message!"
+
+                    scheme = request.scheme
+
+                    host = request.META["HTTP_HOST"]
+
+                    template = render_to_string("officer/control/register/email.html", {"administrator": administrator.account.username, "officer": officer.account.username, "account": account, "scheme": scheme, "host": host})
+
+                    body = strip_tags(template)
+
+                    source = "COTSEye <settings.EMAIL_HOST_USER>"
+
+                    recipient = [administrator.email]
+
+                    email = EmailMultiAlternatives(
+                        subject,
+                        
+                        body,
+                        
+                        source,
+                        
+                        recipient,
+                    )
+
+                    email.attach_alternative(template, "text/html")
+
+                    email.fail_silently = False
+
+                    email.send()
+
                 username = account.username
                 
-                messages.success(request, username + ", " + "your information input was recorded online for COTSEye.")
+                messages.success(request, username + ", " + "your account has been successfully registered. Kindly wait for an email approval from the administrator.")
                 
                 return redirect("Officer Control Login")
         
         else:
-            messages.error(request, "Username exists or is not valid, or passwords are short, entirely numeric, or do not match.")
-            
-            messages.error(request, account_form.errors, user_form.errors)  
+            for field, errors in account_form.errors.items():
+                messages.error(request, "There is an issue in the" + " " + field + " field." + " " + ", ".join(errors))
+
+            for field, errors in user_form.errors.items():
+                messages.error(request, "There is an issue in the" + " " + field + " field." + " " + ", ".join(errors))  
 
     else:
         account_form = AccountForm()
         
         user_form = UserForm()
 
-    context = {"account_form": account_form, "user_form": user_form}
+    context = {"username": username, "account_form": account_form, "user_form": user_form}
     
     return render(request, "officer/control/register/register.html", context)
 
 
 def OfficerControlLogin(request):
-    @receiver(social_account_updated)
+    @receiver(pre_social_login)
     def UpdateUser(sender, request, sociallogin, **kwargs):
         if sociallogin.account.provider == "google":
             if sociallogin.user.usertype_id == 1 or sociallogin.user.usertype_id == 3:
-                messages.error(request, "Username or password is not valid.")
+                messages.error(request, "Account not found. Kindly create a new one and try again.")
+                
+                sociallogin.state["process"] = "disconnect"
+                
+                sociallogin.state["save"] = False
+                
+                return redirect("Officer Control Login")
+
+            elif sociallogin.user.is_active == False:
+                messages.error(request, "Account is not active. Kindly contact support for assistance.")
                 
                 sociallogin.state["process"] = "disconnect"
                 
@@ -514,31 +714,49 @@ def OfficerControlLogin(request):
             else:
                 if sociallogin.account.provider == "google":
                     user = sociallogin.user
-                    
+                   
                     user.usertype_id = 2
 
-                    if "email" in sociallogin.account.extra_data:
-                        email = sociallogin.account.extra_data["email"]
-                        
-                        username = email.split("@")[0]
-                        
-                        sociallogin.account.user.username = username
-                        
-                        instance, created = User.objects.get_or_create(account = user, email = email)
+                    user.is_active = False
+                    
+                    email = sociallogin.account.extra_data["email"]
 
-                        instance.first_name = sociallogin.account.extra_data.get("given_name", None)
-                        
-                        instance.last_name = sociallogin.account.extra_data.get("family_name", None)
+                    username = email.split("@")[0]
 
-                        instance.save()
-                        
-                        sociallogin.account.user.save()
-
+                    user.username = username
+                    
                     user.save()
+
+                    sociallogin.account.user = user
+
+                    sociallogin.account.save()
+
+                    instance, created = User.objects.get_or_create(account = user)
+
+                    if created:
+                        instance.email = email
+
+                        instance.first_name = sociallogin.account.extra_data.get("given_name", "")
+
+                        instance.last_name = sociallogin.account.extra_data.get("family_name", "")
+                        
+                        instance.save()
+
+                    else:
+                        pass
         
         elif sociallogin.account.provider == "facebook":
             if sociallogin.user.usertype_id == 1 or sociallogin.user.usertype_id == 3:
-                messages.error(request, "Username or password is not valid.")
+                messages.error(request, "Account not found. Kindly create a new one and try again.")
+                
+                sociallogin.state["process"] = "disconnect"
+                
+                sociallogin.state["save"] = False
+                
+                return redirect("Officer Control Login")
+            
+            elif sociallogin.user.is_active == False:
+                messages.error(request, "Account is not active. Kindly contact support for assistance.")
                 
                 sociallogin.state["process"] = "disconnect"
                 
@@ -547,31 +765,40 @@ def OfficerControlLogin(request):
                 return redirect("Officer Control Login")
             
             else:
-                if sociallogin.account.provider == "facebook":
+                if sociallogin.account.provider == "facebook":                  
                     user = sociallogin.user
-                    
+                   
                     user.usertype_id = 2
 
-                    if "email" in sociallogin.account.extra_data:
-                        email = sociallogin.account.extra_data["email"]
-                        
-                        username = email.split("@")[0]
-                        
-                        sociallogin.account.user.username = username
-                        
-                        instance, created = User.objects.get_or_create(account = user, email = email)
+                    user.is_active = False
+                    
+                    email = sociallogin.account.extra_data["email"]
 
-                        instance.first_name = sociallogin.account.extra_data.get("first_name", None)
-                        
-                        instance.last_name = sociallogin.account.extra_data.get("last_name", None)
+                    username = email.split("@")[0]
 
-                        instance.save()
-                        
-                        sociallogin.account.user.save()
-
+                    user.username = username
+                    
                     user.save()
+
+                    sociallogin.account.user = user
+
+                    sociallogin.account.save()
+
+                    instance, created = User.objects.get_or_create(account = user)
+
+                    if created:
+                        instance.email = email
+
+                        instance.first_name = sociallogin.account.extra_data.get("given_name", "")
+
+                        instance.last_name = sociallogin.account.extra_data.get("family_name", "")
+                        
+                        instance.save()
+
+                    else:
+                        pass
     
-    social_account_updated.connect(UpdateUser, sender = None)
+    pre_social_login.connect(UpdateUser, sender = None)
 
     if request.method == "POST":
         username = request.POST.get("username")
@@ -585,74 +812,13 @@ def OfficerControlLogin(request):
                 login(request, account)
                 
                 return redirect("Officer Control Home")
-            
-            else:
-                messages.error(request, "Username or password is not valid.")
 
-        else:
-            messages.error(request, "Username or password is not valid.")
+        if Account.DoesNotExist:
+            messages.error(request, "Account not found. Kindly create a new one and try again.")
 
     context = {}
 
     return render(request, "officer/control/login/login.html", context)
-
-
-def OfficerControlLoginFacebook(request):
-    username = request.user.username
-
-    messages.info(request, username + ", " + "kindly login again in order to be validated by COTSEye today.")
-
-    if request.method == "POST":
-        username = request.POST.get("username")
-        
-        password = request.POST.get("password1")
-        
-        account = authenticate(request, username = username, password = password)
-
-        if account:
-            if account.usertype_id == 2:
-                login(request, account)
-                
-                return redirect("Officer Control Home")
-            
-            else:
-                messages.error(request, "Username or password is not valid.")
-        
-        else:
-            messages.error(request, "Username or password is not valid.")
-
-    context = {}
-    
-    return render(request, "officer/control/login/facebook.html", context)
-
-
-def OfficerControlLoginGoogle(request):
-    username = request.user.username
-
-    messages.info(request, username + ", " + "kindly login again in order to be validated by COTSEye today.")
-    
-    if request.method == "POST":
-        username = request.POST.get("username")
-        
-        password = request.POST.get("password1")
-        
-        account = authenticate(request, username = username, password = password)
-
-        if account:
-            if account.usertype_id == 2:
-                login(request, account)
-                
-                return redirect("Officer Control Home")
-            
-            else:
-                messages.error(request, "Username or password is not valid.")
-        
-        else:
-            messages.error(request, "Username or password is not valid.")
-
-    context = {}
-    
-    return render(request, "officer/control/login/google.html", context)
 
 
 def OfficerCheck(account):
@@ -670,9 +836,11 @@ def OfficerControlHome(request):
 
     user_profile = User.objects.get(account = request.user)
 
+    user = User.objects.get(account = request.user)
+
     notification_life = timezone.now() - timedelta(days = 30)
 
-    unread_notifications = Post.objects.filter(read_status = False, creation_date__gte = notification_life).order_by("-creation_date")[:3]
+    unread_notifications = Notification.objects.filter(user = user, is_read = False, creation_date__gte = notification_life).order_by("-creation_date")[:3]
 
     municipality_filter = request.GET.get("municipality")
 
@@ -680,34 +848,39 @@ def OfficerControlHome(request):
 
     year_filter = request.GET.get("year")
 
-    latest_statuses = Status.objects.values("location__municipality").annotate(max_onset_date = Max("onset_date"))
+    latest_statuses = Status.objects.values("location__municipality").annotate(max_date = Max("onset_date"))
 
-    latest_status_entries = Status.objects.filter(location__municipality__in = [status["location__municipality"] for status in latest_statuses], onset_date__in = [status["max_onset_date"] for status in latest_statuses]).order_by("location__municipality").distinct("location__municipality")
-
+    latest_status_entries = Status.objects.filter(location__municipality__in = [status["location__municipality"] for status in latest_statuses], onset_date__in = [status["max_date"] for status in latest_statuses]).order_by("location__municipality").distinct("location__municipality")
+   
     status_data = []
 
     for status_entry in latest_status_entries:
-        status_data.append({"municipality": status_entry.location.municipality, "caught_amount": status_entry.caught_overall, "volunteer_amount": status_entry.volunteer_overall, "status_type": str(status_entry.statustype), "intervention_date": status_entry.onset_date.strftime("%m/%d/%Y")})
+        status_data.append({"municipality": status_entry.location.municipality.municipality_name, "caught_amount": status_entry.caught_overall, "volunteer_amount": status_entry.volunteer_overall, "status_type": str(status_entry.statustype.statustype), "event_date": status_entry.onset_date.strftime("%m/%d/%Y")})
 
-    municipalities = Location.objects.values("municipality").distinct()
+    municipalities = Municipality.objects.values("municipality_name").distinct()
 
-    barangays = Location.objects.filter(municipality = municipality_filter).values("barangay").distinct() if municipality_filter else []
+    barangays = Barangay.objects.values("barangay_name").distinct()
+
+    if municipality_filter:
+        barangays = Barangay.objects.filter(municipality__municipality_name=municipality_filter).values("barangay_name").distinct()
 
     locations_query = Location.objects.all()
 
     if municipality_filter:
-        locations_query = locations_query.filter(municipality = municipality_filter)
-        
+        locations_query = locations_query.filter(municipality__municipality_name = municipality_filter)
+
     else:
         municipality_filter = "Alabel"
-        locations_query = locations_query.filter(municipality = municipality_filter)
+
+        locations_query = locations_query.filter(municipality__municipality_name = municipality_filter)
 
     if barangay_filter:
-        locations_query = locations_query.filter(barangay = barangay_filter)
+        locations_query = locations_query.filter(barangay__barangay_name = barangay_filter)
 
     else:
         barangay_filter = "Kawas"
-        locations_query = locations_query.filter(barangay = barangay_filter)
+
+        locations_query = locations_query.filter(barangay__barangay_name = barangay_filter)
 
     locations = locations_query.distinct()
 
@@ -716,23 +889,23 @@ def OfficerControlHome(request):
     total_caught_overall = 0
 
     for location in locations:
-        interventions_query = Intervention.objects.filter(location = location).order_by("intervention_date")
-
+        interventions_query = Intervention.objects.filter(location = location).order_by("event_date")
+        
         if year_filter:
-            start_date = datetime.strptime(year_filter, "%Y").replace(month = 1, day = 1)
+            start_date = datetime.datetime.strptime(year_filter, "%Y").replace(month = 1, day = 1)
 
-            end_date = datetime.strptime(year_filter, "%Y").replace(month = 12, day = 31)
+            end_date = datetime.datetime.strptime(year_filter, "%Y").replace(month = 12, day = 31)
 
-            interventions_query = interventions_query.filter(intervention_date__range = [start_date, end_date])
+            interventions_query = interventions_query.filter(event_date__range = [start_date, end_date])
 
         else:
-            start_date = datetime.strptime("2024", "%Y").replace(month = 1, day = 1)
+            start_date = datetime.datetime.strptime("2024", "%Y").replace(month = 1, day = 1)
 
-            end_date = datetime.strptime("2024", "%Y").replace(month = 12, day = 31)
+            end_date = datetime.datetime.strptime("2024", "%Y").replace(month = 12, day = 31)
 
-            interventions_query = interventions_query.filter(intervention_date__range = [start_date, end_date])
+            interventions_query = interventions_query.filter(event_date__range = [start_date, end_date])
 
-        intervention_dates = []
+        event_dates = []
 
         caught_overalls = []
         
@@ -746,7 +919,7 @@ def OfficerControlHome(request):
 
         for intervention in interventions_query:
             if intervention.statustype:
-                intervention_dates.append(intervention.intervention_date.strftime("%Y-%m-%d"))
+                event_dates.append(intervention.event_date.strftime("%Y-%m-%d"))
 
                 caught_overalls.append(intervention.caught_amount)
                 
@@ -760,20 +933,20 @@ def OfficerControlHome(request):
 
         total_caught_overall += caught_overall_sum
 
-        if intervention_dates:
-            min_date = datetime.strptime(intervention_dates[0], "%Y-%m-%d")
+        if event_dates:
+            min_date = datetime.datetime.strptime(event_dates[0], "%Y-%m-%d")
 
-            max_date = datetime.strptime(intervention_dates[-1], "%Y-%m-%d")
+            max_date = datetime.datetime.strptime(event_dates[-1], "%Y-%m-%d")
             
             current_date = min_date
             
-            date_set = set(intervention_dates)
+            date_set = set(event_dates)
 
             while current_date <= max_date:
                 date_string = current_date.strftime("%Y-%m-%d")
 
                 if date_string not in date_set:
-                    intervention_dates.append(date_string)
+                    event_dates.append(date_string)
                 
                     caught_overalls.append(None)
                 
@@ -785,12 +958,12 @@ def OfficerControlHome(request):
                 
                 current_date += timedelta(days = 1)
 
-            sorted_data = sorted(zip(intervention_dates, caught_overalls, titles, status_types, volunteer_amounts))
+            sorted_data = sorted(zip(event_dates, caught_overalls, titles, status_types, volunteer_amounts))
 
-            intervention_dates, caught_overalls, titles, status_types, volunteer_amounts = zip(*sorted_data)
+            event_dates, caught_overalls, titles, status_types, volunteer_amounts = zip(*sorted_data)
 
-            for item in range(len(intervention_dates)):
-                data.append({"location": f"{location.barangay}, {location.municipality}", "municipality": location.municipality, "intervention_date": intervention_dates[item], "caught_amount": caught_overalls[item], "title": titles[item], "status_type": status_types[item], "volunteer_amount": volunteer_amounts[item]})
+            for item in range(len(event_dates)):
+                data.append({"location": f"{location.barangay.barangay_name}, {location.municipality.municipality_name}", "municipality": location.municipality.municipality_name, "event_date": event_dates[item], "caught_amount": caught_overalls[item], "title": titles[item], "status_type": status_types[item], "volunteer_amount": volunteer_amounts[item]})
 
     context = {"username": username, "user_profile": user_profile, "unread_notifications": unread_notifications, "chart_data": json.dumps(data), "locations": locations, "municipalities": municipalities, "barangays": barangays, "total_caught_overall": total_caught_overall, "selected_municipality": municipality_filter, "selected_barangay": barangay_filter, "year_filter": year_filter, "current_year": timezone.now().year, "status_data": status_data}
 
@@ -799,17 +972,89 @@ def OfficerControlHome(request):
 
 @login_required(login_url = "Officer Control Login")
 @user_passes_test(OfficerCheck, login_url = "Officer Control Login")
+def OfficerControlNotification(request):
+    user = User.objects.get(account = request.user)
+
+    notification_life = timezone.now() - timedelta(days = 30)
+
+    unread_notifications = Notification.objects.filter(user = user, is_read = False, creation_date__gte = notification_life).order_by("-creation_date")[:3]
+
+    unread_notifications_list = Notification.objects.filter(notificationtype = "post", user = user, is_read = False).order_by("-creation_date")
+
+    read_posts_list  = Notification.objects.filter(notificationtype = "post", user = user, is_read = True).order_by("-creation_date")
+    
+    unread_paginator = Paginator(unread_notifications_list, 10) 
+
+    read_paginator = Paginator(read_posts_list, 10)
+    
+    unread_page_number = request.GET.get("unread_page")
+
+    read_page_number = request.GET.get("read_page")
+    
+    unread_notifications = unread_paginator.get_page(unread_page_number)
+
+    read_posts = read_paginator.get_page(read_page_number)
+    
+    context = {"unread_notifications": unread_notifications, "read_posts": read_posts}
+    
+    return render(request, "officer/control/notification/notification.html", context)
+
+
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
+def OfficerControlNotificationMark(request, id):
+    post = Post.objects.get(id = id)
+
+    post.read_status = True
+
+    post.read_date = timezone.now()
+
+    if request.user.usertype.id == 2:
+        post.validator = request.user.user
+        
+    post.save()
+
+    return redirect("Officer Control Notification")
+
+
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
+def OfficerControlMarkNotificationAsRead(request, id):
+    if request.user.is_authenticated:
+        user = User.objects.get(account = request.user)
+
+        notification = get_object_or_404(Notification, id = id, user = user)
+
+        notification.is_read = True
+
+        notification.save()
+
+        if notification.contenttype.model == "post":
+            return redirect("Officer Control Sighting Read", id = notification.key)
+        
+        else:
+            return redirect("Officer Control Notification")
+        
+    else:
+        return redirect("Officer Control Login")
+    
+    
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def OfficerControlProfile(request):
+    account = Account.objects.get(id = request.user.id)
+
     user = User.objects.get(account = request.user)
 
     username = request.user.username
 
     user_profile = User.objects.get(account = request.user)
 
-    notification_life = timezone.now() - timedelta(days=30)
-    unread_notifications = Post.objects.filter(read_status=False, creation_date__gte=notification_life).order_by('-creation_date')[:5]
+    notification_life = timezone.now() - timedelta(days = 30)
 
-    context = {"user": user, "username": username, "user_profile": user_profile, "unread_notifications": unread_notifications}
+    unread_notifications = Notification.objects.filter(user = user, is_read = False, creation_date__gte = notification_life).order_by("-creation_date")[:3]
+
+    context = {"account": account, "user": user, "username": username, "user_profile": user_profile, "unread_notifications": unread_notifications}
 
     return render(request, "officer/control/profile/profile.html", context)
 
@@ -823,10 +1068,9 @@ def OfficerControlProfileUpdate(request):
 
     user_profile = User.objects.get(account = request.user)
 
-
-    notification_life = timezone.now() - timedelta(days=30)
+    notification_life = timezone.now() - timedelta(days = 30)
     
-    unread_notifications = Post.objects.filter(read_status=False, creation_date__gte=notification_life).order_by('-creation_date')[:5]
+    unread_notifications = Notification.objects.filter(user = user, is_read = False, creation_date__gte = notification_life).order_by("-creation_date")[:3]
     
     if request.method == "POST":
         profile_form = ProfileForm(request.POST, request.FILES, instance = request.user.user)
@@ -837,6 +1081,12 @@ def OfficerControlProfileUpdate(request):
             username = request.user.username
 
             messages.success(request, username + ", " + "your information input was recorded online for COTSEye.")
+
+            return redirect("Officer Control Profile")
+        
+        else:
+            for field, errors in profile_form.errors.items():
+                messages.error(request, "Error in" + " " + field + " field." + " " + ", ".join(errors))
             
     else:
         profile_form = ProfileForm(request.user.user)
@@ -848,42 +1098,53 @@ def OfficerControlProfileUpdate(request):
 
 @login_required(login_url = "Officer Control Login")
 @user_passes_test(OfficerCheck, login_url = "Officer Control Login")
-def OfficerControlStatistics(request):
+def OfficerControlProfileDelete(request, id):
+    account = Account.objects.get(id = id)
+
+    account.is_active = False
+
+    account.save()
+
+    user = User.objects.get(account = id)
+
+    administrators = User.objects.filter(account__usertype_id = 1)
+
+    for administrator in administrators:
+        subject = "COTSEye has delivered an alert message!"
+
+        scheme = request.scheme
+
+        host = request.META["HTTP_HOST"]
+
+        template = render_to_string("officer/control/profile/email.html", {"administrator": administrator.account.username, "officer": user.account.username, "account": account, "scheme": scheme, "host": host})
+
+        body = strip_tags(template)
+
+        source = "COTSEye <settings.EMAIL_HOST_USER>"
+
+        recipient = [administrator.email]
+
+        email = EmailMultiAlternatives(
+            subject,
+            
+            body,
+            
+            source,
+            
+            recipient,
+        )
+
+        email.attach_alternative(template, "text/html")
+
+        email.fail_silently = False
+
+        email.send()
+
     username = request.user.username
 
-    posts = Post.objects.all()
+    messages.success(request, username + ", " + "your account was deactivated online from COTSEye.")
 
-    posts_count = Post.objects.count()
-
-    try:
-        post_date = Post.objects.latest("capture_date").capture_date
-        
-    except:
-        post_date = None
-
-    statuses = Status.objects.all()
-        
-    statuses_count = Status.objects.count()
-
-    try:
-        status_date = Status.objects.latest("onset_date").onset_date
-        
-    except:
-        status_date = None
-
-    interventions = Intervention.objects.all()
-
-    interventions_count = Intervention.objects.count()
-
-    try:
-        intervention_date = Intervention.objects.latest("intervention_date").intervention_date
-        
-    except:
-        intervention_date = None
-    
-    context = {"username": username, "posts": posts, "posts_count": posts_count, "post_date": post_date, "statuses": statuses, "statuses_count": statuses_count, "status_date": status_date, "interventions": interventions, "interventions_count": interventions_count, "intervention_date": intervention_date, }
-
-    return render(request, "officer/control/statistics/statistics.html", context)
+    return redirect("Officer Control Login")
 
 
 @login_required(login_url = "Officer Control Login")
@@ -893,9 +1154,19 @@ def OfficerControlLogout(request):
 
     logout(request)
     
-    messages.success(request, username + ", " + "your account used just now was signed out of COTSEye.")
+    messages.success(request, username + ", " + "you have successfully logged out. Have a great day ahead!")
     
     return redirect("Officer Control Login")
+
+
+def AdministratorControlFallback(request):
+    administrator = "administrator"
+
+    fallback = "Your device screen is too small to view this page. Please try again on a device with a screen width of 1080px or higher."
+
+    context = {"administrator": administrator, "fallback": fallback}
+    
+    return render(request, "admin/control/fallback/fallback.html", context)
 
 
 def AdministratorControlLogin(request):
@@ -912,12 +1183,9 @@ def AdministratorControlLogin(request):
                 
                 return redirect("admin:index")
             
-            else:
-                messages.error(request, "Username or password is not valid.")
+        if Account.DoesNotExist:
+            messages.error(request, "Account not found. Kindly create a new one and try again.")
         
-        else:
-            messages.error(request, "Username or password is not valid.")
-
     context = {}
 
     return render(request, "admin/control/login/login.html", context)
@@ -938,71 +1206,36 @@ def AdministratorControlLogout(request):
 
     logout(request)
         
-    messages.success(request, username + ", " + "your account used just now was signed out of COTSEye.")
+    messages.success(request, username + ", " + "you have successfully logged out. Have a great day ahead!")
         
     return redirect("admin:Administrator Control Login")
 
 
-def ControlHomeRedirect(request):
-    usertype = request.user.usertype_id
-
-    if usertype == 2:
-        return redirect(reverse("index"))
+def ControlProfileRedirect(request, id):
+    object = Account.objects.get(id = id)
     
-    elif usertype == 1:
-        return redirect(reverse("admin:index"))
-
-
-def ControlPasswordRedirect(request):
     if request.user.is_authenticated:
         usertype = request.user.usertype_id
 
         if usertype == 2:
-            return redirect(reverse("password_change"))
-        
-        elif usertype == 1:
-            return redirect(reverse("admin:password_change"))
-    
-    else:
-        return redirect(reverse("password_change"))
-
-
-def ControlProfileRedirect(request):
-    object = Account.objects.get(id = request.user.id)
-
-    if request.user.is_authenticated:
-        usertype = request.user.usertype_id
-
-        if usertype == 2:
-            return redirect(reverse("authentications_account_change", kwargs = {"object_id": object.id}))
+            return redirect(reverse("admin:authentications_account_change", kwargs = {"object_id": object.id}))
 
         elif usertype == 1:
             return redirect(reverse("admin:authentications_account_change", kwargs = {"object_id": object.id}))
     
     else:
-        return redirect(reverse("authentications_account_change", kwargs = {"object_id": object.id}))
-    
+        return redirect(reverse("admin:authentications_account_change", kwargs = {"object_id": object.id}))
 
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
-def OfficerControlNotification(request):
-    unread_notifications_list = Post.objects.filter(read_status = False).order_by("-creation_date")[:5]
 
-    now = timezone.now()
-    read_posts_list = Post.objects.filter(read_status = True).filter(read_date__gte = now - timedelta(days = 30), read_date__lte = now).order_by("-creation_date")
-    
-    unread_paginator = Paginator(unread_notifications_list, 10) 
+def ForgeryReadRedirect(request, reason = ""):
+    if request.user.is_authenticated:
+        user = "public/everyone"
 
-    read_paginator = Paginator(read_posts_list, 10)
-    
-    unread_page_number = request.GET.get("unread_page")
+    else:
+        user = request.user.username
 
-    read_page_number = request.GET.get("read_page")
-    
-    unread_notifications = unread_paginator.get_page(unread_page_number)
+    forgery = "Your browser has invalid CSRF token. Kindly refresh the page and try again."
 
-    read_posts = read_paginator.get_page(read_page_number)
-    
-    context = {"unread_notifications": unread_notifications, "read_posts": read_posts}
-    
-    return render(request, 'officer/control/notification/notification.html', context)
+    context = {"reason": reason, "user": user, "forgery": forgery}
+
+    return render(request, "webwares/forgery.html", context)

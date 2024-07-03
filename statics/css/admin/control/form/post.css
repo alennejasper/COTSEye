@@ -14,9 +14,8 @@
 
 .post-map{
     height: 750px;
-    border: 1px solid #B2BEB5;
+    border: 1px solid #003755;
     border-radius: 5px; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
     z-index: 1;
 }
 
@@ -27,14 +26,12 @@
 }
 
 .leaflet-control-zoom{
-    border: 1px solid #B2BEB5 !important;
+    border: 1px solid #003755 !important;
     border-radius: 5px;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
 }
 
 .leaflet-control-zoom a.leaflet-control-zoom-in{
-    border-bottom: 1px solid #B2BEB5 !important;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    border-bottom: 1px solid #003755 !important;
     -webkit-user-select: none;
     -ms-user-select: none; 
     user-select: none; 
@@ -44,8 +41,7 @@
 }
 
 .leaflet-control-zoom a.leaflet-control-zoom-in:hover{
-    border-bottom: 1px solid #B2BEB5 !important;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    border-bottom: 1px solid #003755 !important;
     -webkit-user-select: none;
     -ms-user-select: none; 
     user-select: none; 
@@ -55,8 +51,7 @@
 }
 
 .leaflet-control-zoom a.leaflet-control-zoom-in.leaflet-disabled{
-    border-bottom: 1px solid #B2BEB5 !important;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    border-bottom: 1px solid #003755 !important;
     background-color: #557433 !important;
     color: #B2BEB5 !important;
     cursor: default !important;
@@ -64,7 +59,6 @@
 
 .leaflet-control-zoom a.leaflet-control-zoom-out{
     border-top: none !important;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
     -webkit-user-select: none;
     -ms-user-select: none; 
     user-select: none; 
@@ -75,7 +69,6 @@
 
 .leaflet-control-zoom a.leaflet-control-zoom-out:hover{
     border-top: none !important;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
     -webkit-user-select: none;
     -ms-user-select: none; 
     user-select: none; 
@@ -86,7 +79,6 @@
 
 .leaflet-control-zoom a.leaflet-control-zoom-out.leaflet-disabled{
     border-top: none !important;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
     background-color: #A00011 !important;
     color: #B2BEB5 !important;
     cursor: default !important;
@@ -97,7 +89,7 @@
 }
 
 .leaflet-control-attribution a{
-    font-family: "Philosopher";
+    font-family: "Montserrat";
     font-weight: 700;
     font-size: 18px !important;
     background-color: #698F3F !important;
@@ -107,7 +99,7 @@
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .leaflet-control-attribution a{
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 16px !important;
         background-color: #698F3F !important;
@@ -118,7 +110,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .leaflet-control-attribution a{
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 14px !important;
         background-color: #698F3F !important;
@@ -157,7 +149,7 @@
     padding-right: 10px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
-    font-family: "Overlook";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 16px !important;
     background-color: #698F3F !important;
@@ -167,7 +159,7 @@
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .leaflet-control-attribution{
-        font-family: "Overlook";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 14px !important;
         background-color: #698F3F !important;
@@ -178,7 +170,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .leaflet-control-attribution{
-        font-family: "Overlook";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 12px !important;
         background-color: #698F3F !important;

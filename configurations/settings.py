@@ -10,8 +10,8 @@ For the full list of settings and their values, see https://docs.djangoproject.c
 
 
 from pathlib import Path
-from django.urls import reverse_lazy
 
+# import dj_database_url
 import os
 
 
@@ -134,18 +134,41 @@ DATABASES = {
             "options": "-c search_path=cotseye_schema"
         },
 
-        "NAME": "cotseye",
+        "NAME": "cotseye_yekg",
         
-        "USER": "postgres",
+        "USER": "cotseye_yekg_user",
         
-        "PASSWORD": "lucyheaven",
+        "PASSWORD": "IXNRnNoWxcHGXCfbZzi7aUbraeOIkulw",
         
-        "HOST": "localhost",
+        "HOST": "dpg-cq2ffbrv2p9s73erneog-a.singapore-postgres.render.com",
         
         "PORT": "5432",
     }
 }
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql_psycopg2",
+        
+#         "OPTIONS": {
+#             "options": "-c search_path=cotseye_schema"
+#         },
+
+#         "NAME": "cotseye",
+        
+#         "USER": "postgres",
+        
+#         "PASSWORD": "lucyheaven",
+        
+#         "HOST": "localhost",
+        
+#         "PORT": "5432",
+#     }
+# }
+
+# postgresql://cotseye_yekg_user:IXNRnNoWxcHGXCfbZzi7aUbraeOIkulw@dpg-cq2ffbrv2p9s73erneog-a.singapore-postgres.render.com/cotseye_yekg
+
+# DATABASES["default"] = dj_database_url.parse("postgres://cotseye_9y7b_user:nveiDlWwh3jjBcHXHQmohACFWX2jWRf1@dpg-cpo4h788fa8c73bb5u50-a.singapore-postgres.render.com/cotseye_9y7b")
 
 #Password validation
 #https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -206,25 +229,17 @@ AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
 ]
 
-SOCIALACCOUNT_LOGIN_ON_GET = True
+SOCIALACCOUNT_ADAPTER = "authentications.adapters.SocialAccountAdapter"
 
 SOCIALACCOUNT_AUTO_SIGNUP = True
 
-SOCIALACCOUNT_EMAIL_VERIFICATION = "none"
-
 SOCIALACCOUNT_EMAIL_REQUIRED = False
 
+SOCIALACCOUNT_LOGIN_ON_GET = True
+
+SOCIALACCOUNT_EMAIL_VERIFICATION = "none"
+
 SOCIALACCOUNT_QUERY_EMAIL = False
-
-ACCOUNT_USER_MODEL_EMAIL_FIELD = None
-
-ACCOUNT_EMAIL_REQUIRED = False
-
-ACCOUNT_UNIQUE_EMAIL = False
-
-ACCOUNT_EMAIL_VERIFICATION = "none"
-
-ACCOUNT_AUTHENTICATION_METHOD = "username"
 
 SOCIALACCOUNT_PROVIDERS = {
     "google": {
@@ -252,37 +267,52 @@ SOCIALACCOUNT_PROVIDERS = {
     },
 }
 
+ACCOUNT_AUTHENTICATION_METHOD = "username"
+
+ACCOUNT_EMAIL_REQUIRED = False
+
+ACCOUNT_EMAIL_VERIFICATION = "none"
+
+ACCOUNT_UNIQUE_EMAIL = False
+
+ACCOUNT_USER_MODEL_EMAIL_FIELD = None
+
+
+CSRF_FAILURE_VIEW = "authentications.views.ForgeryReadRedirect"
+
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
 EMAIL_HOST = "smtp.gmail.com"
 
-EMAIL_PORT = 587
-
-EMAIL_USE_TLS = True
-
 EMAIL_HOST_USER = "cotseye.information@gmail.com"
 
 EMAIL_HOST_PASSWORD = "vqmurhtaaynudqku"
 
+EMAIL_PORT = 587
 
-RECAPTCHA_PUBLIC_KEY = "6LfYwRMnAAAAAG8B0ZyMeD-NNV1pnVFlXS_A0-yV"
+EMAIL_USE_TLS = True
 
-RECAPTCHA_PRIVATE_KEY = "6LfYwRMnAAAAAIHt-ewPrUDtpE3Uxwr5Xa6-tqL-"
+
+RECAPTCHA_PUBLIC_KEY = "6LeLKv0pAAAAAK9mrndyaPeMfKa7zrY6avR_2rlc"
+
+RECAPTCHA_PRIVATE_KEY = "6LeLKv0pAAAAAGD_uAO92iSAh5VVkwMeNHPdG3ag"
 
 
 JAZZMIN_SETTINGS = {
     "changeform_format": "horizontal_tabs",
         
-    "custom_css": "css/admin/control/index/index.css", 
-
     "copyright": "Team Rocket",
 
-    "navigation_expanded": True,
+    "custom_css": "css/admin/control/index/index.css", 
 
-    "show_sidebar": True,
+    "navigation_expanded": False,
+
+    "show_sidebar": False,
 
     "site_brand": "COTSEYE",
     
-    "site_logo": "assets/logo.jpg",
+    "site_logo": "assets/icons/logo.jpg",
+
+    "site_title": "Home",
 }

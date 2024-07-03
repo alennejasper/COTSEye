@@ -57,11 +57,11 @@
                         <label for = "municipality">Municipality</label>
         
                         <select name = "municipality" id = "municipality" required>
-                            <option value = "{{draft_post.location.municipality}}" selected>{{draft_post.location.municipality}}</option>
+                            <option value = "{{draft_post.location.municipality.municipality_name}}" selected>{{draft_post.location.municipality.municipality_name}}</option>
                             
-                            {% for location in municipalities %}
-                                {% if location.municipality != draft_post.location.municipality %}
-                                    <option value = "{{location.municipality}}">{{location.municipality}}</option>
+                            {% for municipality in municipalities %}
+                                {% if draft_post.location.municipality.municpality_name != municipality.municipality_name %}
+                                    <option value = "{{municipality.municipality_name}}">{{municipality.municipality_name}}</option>
                                 {% endif %}
                             {% endfor %}
                         </select>
@@ -89,7 +89,7 @@
                 </div>
 
                 <div id = "second-tab" class = "tab-content" style = "display: none;">
-                    <img class = "back-report" src = "{% static 'assets/backbutton.png' %}" onclick = "openTab('first-tab')">
+                    <img class = "back-report" src = "{% static 'assets/icons/return.png' %}" onclick = "openTab('first-tab')">
 
                     <div class = "report-section">
                         <h1>UPDATE REPORT</h1>
@@ -165,8 +165,6 @@
 
                     <input type = "hidden" name = "action" id = "action">
 
-                    <!-- <div id = "action-value-display" style = "margin-top: 20px; font-weight: bold;"></div> -->
-
                     <div class = "buttons">
                         <!-- <button type = "button" class = "back-report" onclick = "openTab('first-tab')">Back</button> -->
 
@@ -183,11 +181,11 @@
 
             {% if messages %}
                 {% for message in messages %}
-                    {% if message.tags == "info" %}<script>Swal.fire({title: "Hey!", text: "{{message}}", background: "#FFFFFF", icon: "warning", iconColor: "#003755", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#003755", customClass: {confirmButton: "info-button", title: "title"}})</script>
+                    {% if message.tags == "info" %}<script>Swal.fire({title: "Info!", text: "{{message}}", background: "#FFFFFF", icon: "warning", iconColor: "#003755", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#003755", customClass: {confirmButton: "info-button", title: "title"}})</script>
                     
-                    {% elif message.tags == "success" %}<script>Swal.fire({title: "Yay!", text: "{{message}}", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}})</script>
+                    {% elif message.tags == "success" %}<script>Swal.fire({title: "Success!", text: "{{message}}", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}})</script>
                     
-                    {% else %}<script>Swal.fire({title: "Oops!", text: "{{message}}", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}})</script>
+                    {% else %}<script>Swal.fire({title: "Error!", text: "{{message}}", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}})</script>
                     
                     {% endif %}    
                 {% endfor %}
@@ -252,7 +250,7 @@
                             <option hidden selected value>Select one or drag the pin.</option>
 
                             {% for municipality in municipalities %}
-                                <option value = "{{municipality.municipality}}">{{municipality.municipality}}</option>
+                                <option value = "{{municipality.municipality_name}}">{{municipality.municipality_name}}</option>
                             {% endfor %}
                         </select>
                     </div>
@@ -275,7 +273,7 @@
                 </div>
 
                 <div id = "second-tab" class = "tab-content" style = "display: none;">
-                    <img class = "back-report" src = "{% static 'assets/backbutton.png' %}" onclick = "openTab('first-tab')">
+                    <img class = "back-report" src = "{% static 'assets/icons/return.png' %}" onclick = "openTab('first-tab')">
 
                     <div class = "report-section">
                         <h1>CREATE REPORT</h1>
@@ -351,8 +349,6 @@
 
                     <input type = "hidden" name = "action" id = "action">
 
-                    <!-- <div id = "action-value-display" style = "margin-top: 20px; font-weight: bold;"></div> -->
-
                     <div class = "buttons">
                         <!-- <button type="button" class = "back-report" onclick = "openTab('first-tab')">Back</button> -->
 
@@ -369,11 +365,11 @@
 
             {% if messages %}
                 {% for message in messages %}
-                    {% if message.tags == "info" %}<script>Swal.fire({title: "Hey!", text: "{{message}}", background: "#FFFFFF", icon: "warning", iconColor: "#003755", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#003755", customClass: {confirmButton: "info-button", title: "title"}})</script>
+                    {% if message.tags == "info" %}<script>Swal.fire({title: "Info!", text: "{{message}}", background: "#FFFFFF", icon: "warning", iconColor: "#003755", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#003755", customClass: {confirmButton: "info-button", title: "title"}})</script>
                     
-                    {% elif message.tags == "success" %}<script>Swal.fire({title: "Yay!", text: "{{message}}", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}})</script>
+                    {% elif message.tags == "success" %}<script>Swal.fire({title: "Success!", text: "{{message}}", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}})</script>
                     
-                    {% else %}<script>Swal.fire({title: "Oops!", text: "{{message}}", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}})</script>
+                    {% else %}<script>Swal.fire({title: "Error!", text: "{{message}}", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}})</script>
                     
                     {% endif %}    
                 {% endfor %}
@@ -663,15 +659,42 @@
                 {% endfor %}
             ];
     
-            const location = locations.find(loc => loc.id == barangayId);
+            const location = locations.find(location => location.id == barangayId);
 
             if (location){
                 const municipalitySelect = document.getElementById("municipality");
 
                 municipalitySelect.value = location.municipality;
+
+                const barangaySelect = document.getElementById("barangay");
+
+                barangaySelect.innerHTML = "";
+
+                const option = document.createElement("option");
+
+                option.value = location.barangay;
+
+                option.textContent = location.barangay;
+
+                barangaySelect.appendChild(option);
+
+                const barangaysInMunicipality = locations.filter(loc => loc.municipality == location.municipality);
+
+                barangaysInMunicipality.forEach(loc => {
+                    const option = document.createElement("option");
+
+                    option.value = loc.id;
+
+                    option.textContent = loc.barangay;
+
+                    barangaySelect.appendChild(option);
+                });
+
+                const barangayContainer = document.querySelector(".barangay");
+
+                barangayContainer.style.display = "block";
             }
 
-            updateBarangay();
         }
     
         function updateBarangay(){
@@ -705,6 +728,7 @@
                 barangaySelect.style.display = "block";
 
                 updateMarker(filteredLocations[0].id);
+
             } else{
                 barangaySelect.style.display = "none";
             };
@@ -735,7 +759,7 @@
                 return;
             };
     
-            var starfish = L.icon({ iconUrl: "{% static 'assets/pin.png' %}", iconSize: [30, 30], iconAnchor: [15, 15]});
+            var starfish = L.icon({ iconUrl: "{% static 'assets/icons/pin.png' %}", iconSize: [30, 30], iconAnchor: [15, 15]});
     
             report = L.marker([5.9656, 125.1929], {draggable: true, icon: starfish});
     
@@ -743,9 +767,13 @@
     
             var background = L.tileLayer("http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}", {minZoom: 12, maxZoom: 20, subdomains: ["mt0", "mt1", "mt2", "mt3"], attribution: "Google"});
     
-            map = L.map(reportMap, {zoomControl: true, scrollWheelZoom: false, dragging: true, maxBounds: [[5.3, 124.3], [6.3, 126.3]], layers: [background, report]}).setView([5.9656, 125.1929], 12);
+            map = L.map(reportMap, {zoomControl: false, scrollWheelZoom: false, dragging: true, maxBounds: [[5.3, 124.3], [6.3, 126.3]], layers: [background, report]}).setView([5.9656, 125.1929], 12);
     
             map.attributionControl.remove();
+
+            zoom = L.control.zoom({position: "bottomright"});
+
+            zoom.addTo(map);
     
             {% for location in locations %}
                 var originalCoordinates = {{location.perimeters | safe}};
@@ -788,6 +816,7 @@
                             selectElement.value = layer.locationId;
 
                             setMunicipalityByBarangay(layer.locationId);
+                            
                             return;
                         };
                     };
@@ -893,7 +922,7 @@
             if (captureButton){
                 captureButton.addEventListener("click", function (event){
                     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
-                        Swal.fire({title: "Oops!", text: "The camera is not supported and cannot be given to COTSEye.", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}});
+                        Swal.fire({title: "Error!", text: "The camera is not supported. Kindly try again with a supported camera.", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}});
                     };
                 });
             };
@@ -929,7 +958,7 @@
                             reportPhoto = photo;
 
                         } else{
-                            Swal.fire({title: "Oops!", text: "The photo given to COTSEye incorporated coordinates out of bounds.", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}});
+                            Swal.fire({title: "Error!", text: "The photo submitted contains coordinates out of bounds. Kindly submit a photo with valid coordinates.", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}});
                             
                             resetCaptureDate();
 
@@ -937,7 +966,7 @@
                         };
 
                     } else{
-                        Swal.fire({title: "Hey!", text: "The photo given to COTSEye did not incorporate any coordinates.", background: "#FFFFFF", icon: "warning", iconColor: "#003755", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#003755", customClass: {confirmButton: "info-button", title: "title"}});
+                        Swal.fire({title: "Info!", text: "The photo submitted does not contain coordinates.", background: "#FFFFFF", icon: "warning", iconColor: "#003755", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#003755", customClass: {confirmButton: "info-button", title: "title"}});
                     };
                 });
             };
@@ -1005,12 +1034,17 @@
                     const username = "{{request.user.username}}";
 
                     if (!navigator.onLine){
-                        Swal.fire({title: "Hey!", text: username + ", " + "your information input was recorded offline for COTSEye. Kindly visit the current page again if back online.", background: "#FFFFFF", icon: "warning", iconColor: "#003755", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#003755", customClass: {confirmButton: "info-button", title: "title"}}).then(() => {
+                        Swal.fire({title: "Info!", text: username + ", " + "your report has been successfully saved offline. Kindly visit the current page when back online.", background: "#FFFFFF", icon: "warning", iconColor: "#003755", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#003755", customClass: {confirmButton: "info-button", title: "title"}}).then(() => {
                             location.reload();
                         });
 
                     } else {
-                        Swal.fire({title: "Hey!", text: username + ", " + "you sure that you want to save the report?", icon: "warning", showCancelButton: true, confirmButtonColor: "#003755", cancelButtonColor: "#003755", confirmButtonText: "Yes", cancelButtonText: "No", customClass: {confirmButton: "confirm-button", cancelButton: "cancel-button", title: "title"}}).then((result) => {if (result.isConfirmed){document.querySelector(".report-form").submit();}});
+                        if (item.classList.contains("draft")){
+                            Swal.fire({title: "Alert!", text: username + ", " + "are you sure that you want to save the report?", icon: "warning", showCancelButton: true, confirmButtonColor: "#003755", cancelButtonColor: "#003755", confirmButtonText: "Yes", cancelButtonText: "No", customClass: {confirmButton: "confirm-button", cancelButton: "cancel-button", title: "title"}}).then((result) => {if (result.isConfirmed){document.querySelector(".report-form").submit();}});
+
+                        } else if (item.classList.contains("submit")){
+                            Swal.fire({title: "Alert!", text: username + ", " + "are you sure that you want to send the report?", icon: "warning", showCancelButton: true, confirmButtonColor: "#003755", cancelButtonColor: "#003755", confirmButtonText: "Yes", cancelButtonText: "No", customClass: {confirmButton: "confirm-button", cancelButton: "cancel-button", title: "title"}}).then((result) => {if (result.isConfirmed){document.querySelector(".report-form").submit();}});
+                        };
                     }
                 });
             });
@@ -1215,7 +1249,7 @@
 
                                     const username = "{{request.user.username}}";
 
-                                    Swal.fire({title: "Yay!", text: username + ", " + "your information input recorded offline was delivered to COTSEye.", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}}).then(() => {
+                                    Swal.fire({title: "Success!", text: username + ", " + "Your report has been successfully saved. Kindly proceed to drafts to see changes.", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}}).then(() => {
                                         disableOnBeforeUnload();
 
                                         window.location.href = "{% url 'Contributor Service Post' %}";
@@ -1245,7 +1279,7 @@
 
                                     const username = "{{request.user.username}}";
 
-                                    Swal.fire({title: "Yay!", text: username + ", " + "your information input recorded offline was delivered to COTSEye.", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}}).then(() => {
+                                    Swal.fire({title: "Yay!", text: username + ", " + "Your report has been successfully saved.", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}}).then(() => {
                                         disableOnBeforeUnload();
 
                                         window.location.href = "{% url 'Contributor Service Post' %}";

@@ -1,0 +1,49 @@
+{% extends "officer/control/status/status.html" %}
+{% load static %}
+{% load custom_filters %}
+
+{% block status-content %}
+    <div class= "container-fluid mt-3">
+        <div class = "report-button" style = "float: right; margin-top: 7px; margin-bottom: 0px;">
+            <button onclick = "window.location.href = '{% url 'Officer Control Report' %}'">GENERATE REPORT</button>
+        </div>
+        
+        <h2 style = "border-bottom: 1px solid rgba(229, 229, 229); font-family: 'Montserrat'; font-weight: 700; font-size: 20px; color: rgb(52, 144, 242); text-align: left; text-transform: uppercase;">Infestation Status of {{barangay_name}}</h2>
+
+        <table class = "table table-hover">
+            <thead>
+                <tr>
+                    <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">Activity Date</th>
+                    
+                    <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope ="col">Total No. of COTS Collected</th>
+                    
+                    <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">Infestation Level</th>
+                </tr>
+            </thead>
+            
+            <tbody style = "cursor: pointer;">
+                {% for status in all_statuses %}
+                    <tr>
+                        <td style = "display: table-cell !important; max-width: 0px; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">{{status.onset_date | format_date_mmddyy}}</td>
+                        
+                        <td style = "display: table-cell !important; max-width: 0px; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">{{status.caught_overall}}</td>
+                        
+                        <td style = "display: table-cell !important; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 12px;" class = "status-{{status.statustype}}">{{status.statustype}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            var rows = document.querySelectorAll("tr[data-href]");
+
+            rows.forEach(row => {
+                row.addEventListener("click", function(){
+                    window.location.href = this.dataset.href;
+                });
+            });
+        });
+    </script>
+{% endblock %}

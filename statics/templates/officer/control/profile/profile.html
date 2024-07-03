@@ -3,6 +3,8 @@
 
 {% block content %}
 <div class = "profile-body">
+    <h1>MY PROFILE</h1>
+
     <div class = "profile">
         <div class = "profile-section">
             <img src = "{{user.profile_photo.url}}">
@@ -38,9 +40,21 @@
             </div>
     
             <div class = "button">
-                <a href = "{% url 'Officer Control Profile Update' %}">Update</a>
+                <a class = "update-profile" href = "{% url 'Officer Control Profile Update' %}">Update</a>
+
+                <a class = "delete-account" href = "{% url 'Officer Control Profile Delete' account.id %}">Deactivate</a>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    document.querySelector(".delete-account").onclick = function(event){
+        event.preventDefault();
+
+        const username = "{{request.user.username}}";
+
+        Swal.fire({title: "Alert!", text: username + ", " + "are you sure that you want to deactivate your account?", icon: "warning", showCancelButton: true, confirmButtonColor: "#003755", cancelButtonColor: "#003755", confirmButtonText: "Yes", cancelButtonText: "No", customClass: {confirmButton: "confirm-button", cancelButton: "cancel-button", title: "title"}}).then((result) => {if (result.isConfirmed){window.location.href = this.href;}});
+    };
+</script>
 {% endblock content %}

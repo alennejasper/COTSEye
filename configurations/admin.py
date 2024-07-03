@@ -1,11 +1,13 @@
 from django.contrib import admin
 from django.http import HttpResponseRedirect
 from django.urls import reverse, path
-from authentications.views import AdministratorControlLogin, AdministratorControlLogout, ControlHomeRedirect, ControlPasswordRedirect, ControlProfileRedirect
+from authentications.views import AdministratorControlFallback, AdministratorControlLogin, AdministratorControlLogout, ControlProfileRedirect
 
 
 # Register your models here.
 class AdministratorSite(admin.AdminSite):    
+    site_header = "Home"
+
     site_title = "Home"
 
     index_title = "COTSEYE"
@@ -28,17 +30,15 @@ class AdministratorSite(admin.AdminSite):
         urls = super().get_urls()
 
         urlpatterns = [
+            path("/fallback/", AdministratorControlFallback, name = "Administrator Control Fallback"),
+
             path("login/", AdministratorControlLogin, name = "Administrator Control Login"),
             
             path("logout/", AdministratorControlLogout, name = "Administrator Control Logout"),
 
-            path("home/redirect/", ControlHomeRedirect, name = "Control Home Redirect"),
-
-            path("password/redirect/", ControlPasswordRedirect, name = "Control Password Redirect"),
-
-            path("profile/redirect/", ControlProfileRedirect, name = "Control Profile Redirect")
+            path("profile/<int:id>/redirect/", ControlProfileRedirect, name = "Control Profile Redirect")
         ]
 
         return urlpatterns + urls
 
-admin.site = AdministratorSite(name = "admins")
+administrator = AdministratorSite()

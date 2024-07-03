@@ -77,5 +77,508 @@ body{
 }
 
 .content{
-    min-height: 100vh
+    min-height: 100vh;
+}
+
+
+.swal2-container .swal2-popup{
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+    border-radius: 5px !important;
+    border: 1px solid #003755 !important; 
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .swal2-container .swal2-popup{
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        border-radius: 5px !important;
+    }
+}
+
+.swal2-container .swal2-popup .swal2-styled:focus{
+    box-shadow: none !important;
+}
+
+.swal2-container .swal2-html-container{
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+    padding-top: 0px !important;
+    padding-bottom: 15px !important;
+    font-family: "Montserrat" !important;
+    font-weight: 400 !important;
+    font-size: 20px !important;
+    color: #003755 !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .swal2-container .swal2-html-container{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 0px !important;
+        padding-bottom: 5px !important;
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .swal2-container .swal2-html-container{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 0px !important;
+        padding-bottom: 5px !important;
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .swal2-container .swal2-html-container{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 0px !important;
+        padding-bottom: 5px !important;
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .swal2-container .swal2-html-container{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 0px !important;
+        padding-bottom: 5px !important;
+        font-size: 12px !important;
+    }
+}
+
+.swal2-container div:where(.swal2-icon){
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 0px !important;
+    margin-bottom: 15px !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .swal2-container div:where(.swal2-icon){
+        margin-bottom: 5px !important;
+    }
+}
+
+.swal2-container div:where(.swal2-icon).swal2-warning{
+    border-color: #003755 !important;
+    color: #003755 !important;
+}
+
+.swal2-container div:where(.swal2-icon).swal2-success .swal2-success-ring{
+    border: 1px solid #003755 !important;
+}
+
+.swal2-container div:where(.swal2-icon).swal2-success [class ^= swal2-success-line]{
+    background-color: #003755 !important;
+}
+
+.swal2-container div:where(.swal2-icon).swal2-error{
+    border-color: #003755 !important;
+    color: #003755 !important;
+}
+
+.swal2-container div:where(.swal2-icon).swal2-error [class ^= swal2-x-mark-line]{
+    background-color: #003755 !important;
+}
+
+.swal2-container h2:where(.swal2-title){
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+    padding-top: 0px !important;
+    padding-bottom: 15px !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .swal2-container h2:where(.swal2-title){
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 0px !important;
+        padding-bottom: 5px !important;
+    }
+}
+
+.swal2-container .title{
+    font-family: "Montserrat" !important;
+    font-weight: 700 !important;
+    font-size: 24px !important;   
+    color: #003755 !important;
+    pointer-events: none !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .swal2-container .title{
+        font-size: 22px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .swal2-container .title{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .swal2-container .title{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .swal2-container .title{
+        font-size: 16px !important;
+    }
+}
+
+.swal2-container div:where(.swal2-actions){
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+}
+
+.swal2-container .swal2-actions{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    height: fit-content !important;
+}
+
+.swal2-container .swal2-actions button{
+    background-color: #003755 !important;
+}
+
+.swal2-container .info-button{
+    visibility: hidden;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 0px !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .swal2-container .info-button{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+.swal2-container .info-button::before{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    content: "Ok" !important;
+    visibility: visible !important;
+    border: 1px solid #003755 !important; 
+    border-radius: 5px !important;
+    outline: none !important;
+    font-family: "Montserrat" !important;
+    font-weight: 400 !important;
+    font-size: 20px !important;
+    background-color: #003755 !important;
+    color: #FFFFFF !important;
+    pointer-events: auto !important;
+    cursor: pointer;
+}
+
+.swal2-container .info-button:hover{
+    background-color: #10354C !important;
+    color: #B2BEB5 !important;        
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .swal2-container .info-button::before{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .swal2-container .info-button::before{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .swal2-container .info-button::before{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .swal2-container .info-button::before{
+        font-size: 12px !important;
+    }
+}
+
+.swal2-container .success-button{
+    visibility: hidden;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 0px !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .swal2-container .success-button{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+.swal2-container .success-button::before{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    content: "Ok" !important;
+    visibility: visible !important;
+    border: 1px solid #003755 !important; 
+    border-radius: 5px !important;
+    outline: none !important;
+    font-family: "Montserrat" !important;
+    font-weight: 400 !important;
+    font-size: 20px !important;
+    background-color: #003755 !important;
+    color: #FFFFFF !important;
+    pointer-events: auto !important;
+    cursor: pointer;
+}
+
+.swal2-container .success-button:hover{
+    background-color: #002C44 !important;
+    color: #B2BEB5 !important;        
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .swal2-container .success-button::before{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .swal2-container .success-button::before{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .swal2-container .success-button::before{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .swal2-container .success-button::before{
+        font-size: 12px !important;
+    }
+}
+
+.swal2-container .error-button{
+    visibility: hidden;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 0px !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .swal2-container .error-button{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+.swal2-container .error-button::before{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    content: "Ok" !important;
+    visibility: visible !important;
+    border: 1px solid #003755 !important; 
+    border-radius: 5px !important;
+    outline: none !important;
+    font-family: "Montserrat" !important;
+    font-weight: 400 !important;
+    font-size: 20px !important;
+    background-color: #003755 !important;
+    color: #FFFFFF !important;
+    pointer-events: auto !important;
+    cursor: pointer;
+}
+
+.swal2-container .error-button:hover{
+    background-color: #002C44 !important;
+    color: #B2BEB5 !important;        
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .swal2-container .error-button::before{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .swal2-container .error-button::before{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .swal2-container .error-button::before{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .swal2-container .error-button::before{
+        font-size: 12px !important;
+    }
+}
+
+.swal2-container .confirm-button{
+    visibility: hidden;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 0px !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .swal2-container .confirm-button{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+.swal2-container .confirm-button::before{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    content: "Yes" !important;
+    visibility: visible !important;
+    border: 1px solid #003755 !important; 
+    border-radius: 5px !important;
+    outline: none !important;
+    font-family: "Montserrat" !important;
+    font-weight: 400 !important;
+    font-size: 20px !important;
+    background-color: #003755 !important;
+    color: #FFFFFF !important;
+    pointer-events: auto !important;
+    cursor: pointer;
+}
+
+.swal2-container .confirm-button:hover{
+    background-color: #10354C !important;
+    color: #B2BEB5 !important;        
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .swal2-container .confirm-button::before{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .swal2-container .confirm-button::before{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .swal2-container .confirm-button::before{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .swal2-container .confirm-button::before{
+        font-size: 12px !important;
+    }
+}
+
+.swal2-container .cancel-button{
+    visibility: hidden;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 0px !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .swal2-container .cancel-button{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+.swal2-container .cancel-button::before{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    content: "No" !important;
+    visibility: visible !important;
+    border: 1px solid #003755 !important; 
+    border-radius: 5px !important;
+    outline: none !important;
+    font-family: "Montserrat" !important;
+    font-weight: 400 !important;
+    font-size: 20px !important;
+    background-color: #003755 !important;
+    color: #FFFFFF !important;
+    pointer-events: auto !important;
+    cursor: pointer;
+}
+
+.swal2-container .cancel-button:hover{
+    background-color: #10354C !important;
+    color: #B2BEB5 !important;        
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .swal2-container .cancel-button::before{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .swal2-container .cancel-button::before{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .swal2-container .cancel-button::before{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .swal2-container .cancel-button::before{
+        font-size: 12px !important;
+    }
 }

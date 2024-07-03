@@ -32,7 +32,27 @@
         }
 
         .table > :not(caption) > * > *{
-            padding: 9px !important;
+            padding: 15px 30px !important;
+        }
+
+        .select2-container:has(span[title = "Barangay"]){
+            display: none;
+        }
+
+        .select2-container .select2-selection{
+            font-family: "Montserrat";
+            font-weight: 400;
+            font-size: 12px !important;
+        }
+
+        .select2-results__option{
+            padding-left: 10px !important;
+            padding-right: 10px !important;
+            padding-top: 5px !important;
+            padding-bottom: 5px !important;
+            font-family: "Montserrat";
+            font-weight: 400;
+            font-size: 12px !important;
         }
     </style>
 
@@ -40,55 +60,75 @@
         <div class = "row">
             <div class = "col-12 col-md-3">
                 <div class = "filtercont">
-                    <p style = "margin-bottom: 0px !important; font-weight: 500; font-size: 17px !important; color: rgb(28, 179, 234);" class = "fs-3 mb-3">FILTER</p>
+                    <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 20px !important; color: rgb(52, 144, 242);" class = "fs-3 mb-3">FILTER</p>
                     
-                    <select id = "municipalityFilter" class = "form-select form-select-sm mb-3 select2" onchange = "updateBarangayOptions()">
-                        <option value = "">Municipality</option>
+                    <p style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: rgb(28, 186, 234);">Location</p>
 
-                        {% for municipality in municipalities %}
-                            <option value = "{{municipality.municipality}}" {% if selected_municipality == municipality.municipality %} selected {% endif %}>{{municipality.municipality}}</option>
-                        {% endfor %}
-                    </select>
+                    <div>
+                        <label for = "municipalityFilter" class = "form-label" style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">Municipality:</label>
 
-                    <select id = "barangayFilter" class = "form-select form-select-sm mb-3 select2">
-                        <option value = "">Barangay</option>
-                    </select>
+                        <select id = "municipalityFilter" class = "form-select mb-3 select2" onchange = "updateBarangayOptions()">
+                            <option value = "" disabled = "disabled" selected = "selected" style = "display: none; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">Municipality</option>
 
-                    <p style = "margin-top: 10px !important; margin-bottom: 0px !important; font-size: 15px; color: rgb(28, 186, 234);" scope = "col" class = "mb-1">Date</p>
-                    
-                    <div class = "mb-3">
-                        <label for = "dateFrom" class = "form-label" style = "margin-bottom: 0px !important; font-size: 13px;">From:</label>
-                        
-                        <input type = "date" id = "dateFrom" name = "dateFrom" class = "form-control form-control-sm">
-                    </div>
-                    
-                    <div class = "mb-3">
-                        <label for = "dateTo" class = "form-label" style = "margin-bottom: 0px !important; font-size: 13px;">To:</label>
-                        
-                        <input type = "date" id = "dateTo" name = "dateTo" class = "form-control form-control-sm">
+                            {% for municipality in municipalities %}
+                                <option style = "display: none; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;" value = "{{municipality.municipality_name}}" {% if request.GET.municipality == municipality.municipality_name %} selected {% endif %}>{{municipality.municipality_name}}</option>
+                            {% endfor %}
+                        </select>
                     </div>
 
-                    <p style = "margin-top: 10px !important; margin-bottom: 0px !important; font-size: 15px; color: rgb(28, 172, 234);" scope = "col" class = "mb-1">Status</p>
+                    <div>
+                        <label id = "barangayLabel" for = "barangayFilter" class = "form-label" style = "display: none; margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">Barangay:</label>
+
+                        <select id = "barangayFilter" class = "form-select mb-3 select2">
+                            <option value = "" disabled = "disabled" selected = "selected" style = "display: none;">Barangay</option>
+                        </select>
+                    </div>
+
+                    <p style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: rgb(28, 186, 234);">Date</p>
                     
-                    <div class = "form-check mb-2">
+                    <div>
+                        <label for = "dateFrom" class = "form-label" style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">From:</label>
+                        
+                        <input style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;" type = "date" id = "dateFrom" name = "dateFrom" class = "form-control form-control-sm">
+                    </div>
+                    
+                    <div>
+                        <label for = "dateTo" class = "form-label" style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">To:</label>
+                        
+                        <input style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;" type = "date" id = "dateTo" name = "dateTo" class = "form-control form-control-sm">
+                    </div>
+
+                    <p style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: rgb(28, 186, 234);">Status</p>
+                    
+                    <div class = "form-check">
                         <input class = "form-check-input" type = "radio" name = "status" id = "statusPending" value = "Pending">
 
-                        <label class = "form-check-label" for = "statusPending">Pending</label>
+                        <label style = "font-family: 'Montserrat'; font-weight: 400; font-size: 12px;" class = "form-check-label" for = "statusPending">Pending</label>
                     </div>
 
-                    <div class = "form-check mb-2">
+                    <div class = "form-check">
                         <input class = "form-check-input" type = "radio" name = "status" id = "statusValid" value = "Valid">
 
-                        <label class = "form-check-label" for = "statusValid">Valid</label>
+                        <label style = "font-family: 'Montserrat'; font-weight: 400; font-size: 12px;" class = "form-check-label" for = "statusValid">Valid</label>
                     </div>
 
-                    <div class = "form-check mb-2">
+                    <div class = "form-check">
                         <input class = "form-check-input" type = "radio" name = "status" id = "statusInvalid" value = "Invalid">
                         
-                        <label class = "form-check-label" for = "statusInvalid">Invalid</label>
+                        <label style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;" class = "form-check-label" for = "statusInvalid">Invalid</label>
                     </div>
 
-                    <button type = "button" class = "filterbutton" onclick = "applyFilter()">Apply Filter</button>
+                    <p style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: rgb(28, 186, 234);">Order by</p>
+
+                    <div>                            
+                        <select id = "orderBy" class = "form-select form-select-sm select2">
+                            <option value = "latest">Latest</option>
+
+                            <option value = "oldest">Oldest</option>
+                        </select>
+                    </div>
+
+                    <button style = "margin-top: 0px !important;" type = "button" class = "filterbutton" onclick = "applyFilter()">Apply Filter</button>
 
                     <button type = "button" class = "resetbutton" onclick = "resetFilter()">Reset Filter</button>
                 </div>
@@ -96,24 +136,24 @@
 
             <div class = "col-12 col-md-9">
                 <div class = "table-container mb-3">
-                    <h2 style = "border-bottom: 1px solid rgba(229, 229, 229); font-size: 19px; color: rgb(52, 144, 242);">ALL SIGHTINGS</h2>
+                    <h2 style = "border-bottom: 1px solid rgba(229, 229, 229); font-family: 'Montserrat'; font-weight: 700; font-size: 20px; color: rgb(52, 144, 242);">ALL SIGHTINGS</h2>
 
-                    <table class="table table-hover">
+                    <table class = "table table-hover" style = "display: table; margin-bottom: 15px !important; width: 100%;">
                         <thead>
                             <tr>
-                                <th style = "font-size: 15px; color: rgb(28, 169, 234);" scope = "col">Date Created</th>
+                                <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">Creation Date</th>
 
-                                <th style = "font-size: 15px; color: rgb(28, 169, 234);" scope = "col">Contributor</th>
+                                <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">Contributor</th>
                                 
-                                <th style = "font-size: 15px; color: rgb(28, 169, 234);" scope = "col">Municipality</th>
+                                <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">Municipality</th>
                                 
-                                <th style = "font-size: 15px; color: rgb(28, 169, 234);" scope = "col">Barangay</th>
+                                <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">Barangay</th>
                                 
-                                <th style = "font-size: 15px; color: rgb(28, 169, 234);" scope = "col">Status</th>
+                                <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">Status</th>
                                 
-                                <th style = "font-size: 15px; color: rgb(28, 169, 234);" scope = "col">Remarks</th>
+                                <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">Remarks</th>
                                 
-                                <th style = "font-size: 15px; color: rgb(28, 169, 234);" scope = "col"></th>
+                                <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234); text-align: center;" scope = "col">Action</th>
                             </tr>
                         </thead>
 
@@ -167,11 +207,15 @@
         function updateBarangayOptions(){
             const municipalityFilter = document.getElementById("municipalityFilter").value;
 
+            console.log(municipalityFilter)
+            
+            const barangayLabel = document.getElementById("barangayLabel");
+
             const barangayFilter = document.getElementById("barangayFilter");
 
             if (municipalityFilter){
                 $.ajax({
-                    url: "{% url 'get_barangays' %}",
+                    url: "{% url 'Officer Control Barangay Read' %}",
 
                     data: {
                         "municipality": municipalityFilter
@@ -190,26 +234,31 @@
                             barangayFilter.appendChild(option);
                         });
 
-                        $('#barangayFilter').select2();
+                        $("#barangayFilter").select2();
                     }
                 });
+
+                barangayLabel.style.display = "block";
+
+                barangayFilter.style.display = "block";
             };
         };
 
         const barangayCoordinates = {
             {% for location in locations %}
-                "{{location.barangay}}": [{{location.latitude}}, {{location.longitude}}],
+                "{{location.barangay.barangay_name}}": [{{location.latitude}}, {{location.longitude}}],
             {% endfor %}
         };
 
         function setMunicipalityByBarangay(barangayId){
             const locations = [
                 {% for location in locations %}
-                    {id: "{{location.id}}", barangay: "{{location.barangay}}", municipality: "{{location.municipality}}"},
+                    {id: "{{location.id}}", barangay: "{{location.barangay.barangay_name}}", municipality: "{{location.municipality.municipality_name}}"},
                 {% endfor %}
             ];
 
-            const location = locations.find(loc => loc.id == barangayId);
+            const location = locations.find(loc => loc.barangay == barangayId);
+            
             if (location){
                 const municipalitySelect = document.getElementById("popupMunicipality");
 
@@ -251,14 +300,14 @@
             
             }).then(response => response.json()).then(result => {
                 if (result.status === "success"){
-                    Swal.fire({title: "Submitted!", text: "The form has been submitted.", icon: "success", confirmButtonText: "Close"});
+                    Swal.fire({title: "Success!", text: "The municipality and barangay has been updated successfully.", icon: "success", confirmButtonText: "Close"});
 
                 } else {
                     Swal.fire({title: "Error!", text: result.message, icon: "error", confirmButtonText: "Close"});
                 };
             
             }).catch(error => {
-                Swal.fire({title: "Error!", text: "An error occurred while submitting the form.", icon: "error", confirmButtonText: "Close"});
+                Swal.fire({title: "Error!", text: "The municipality and barangay could not be updated. Kindly try again later.", icon: "error", confirmButtonText: "Close"});
             });
         };
 
@@ -316,29 +365,33 @@
 
                 const row = 
                     `<tr data-id = "${item.id}">
-                        <td onclick = "window.location.href = '${baseUrl}'">${item.date}</td>
+                        <td style = "display: table-cell !important; max-width: 0px; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;" onclick = "window.location.href = '${baseUrl}'">${item.date}</td>
 
-                        <td onclick = "window.location.href = '${baseUrl}'">${item.user}</td>
+                        <td style = "display: table-cell !important; max-width: 0px; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;" onclick = "window.location.href = '${baseUrl}'">${item.user}</td>
                         
-                        <td onclick = "window.location.href = '${baseUrl}'">${item.municipality}</td>
+                        <td style = "display: table-cell !important; max-width: 0px; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;" onclick = "window.location.href = '${baseUrl}'">${item.municipality}</td>
 
-                        <td onclick = "window.location.href = '${baseUrl}'">${item.barangay}</td>
+                        <td style = "display: table-cell !important; max-width: 0px; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;" onclick = "window.location.href = '${baseUrl}'">${item.barangay}</td>
 
-                        <td class = "${statusClass}" onclick = "window.location.href = '${baseUrl}'">${item.status}</td>
+                        <td style = "display: table-cell !important; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 12px;" class = "${statusClass}" onclick = "window.location.href = '${baseUrl}'">${item.status}</td>
 
-                        <td onclick = "window.location.href = '${baseUrl}'">${remarksOrStatus}</td>
+                        <td style = "display: table-cell !important; max-width: 0px; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;" onclick = "window.location.href = '${baseUrl}'">${remarksOrStatus}</td>
 
-                        <td>
+                        <td style = "display: table-cell !important; max-width: 0px; font-family: 'Montserrat'; font-weight: 400; font-size: 12px; text-align: center; vertical-align: middle;">
                             <div class = "button-container" ${approveDisabled ? `data-tippy-content = "${tooltipText}"` : ""}>
-                                <a onclick = "shownDropdown(event)"><img height = "15px" style = "margin-right: 13px" src = "{% static 'assets/3dots.png' %}" class = "drop"></a>
+                                <a onclick = "shownDropdown(event)"><img height = "15px" src = "{% static 'assets/icons/options.png' %}" class = "drop"></a>
                                 
-                                <div class = "dropdown">
-                                    <div class = "dropdown-content">
-                                        <a class = "dropdown-item ${approveDisabled ? 'disabled' : ''}" onclick = "changeStatus(${item.id}, 'Valid')">Approve</a>
-                                        
-                                        <a class = "dropdown-item ${disapproveDisabled ? 'disabled' : ''}" onclick = "invalidStatus(${item.id})">Disapprove</a>
+                                ${!approveDisabled ? `
+                                    <div class = "dropdown">
+                                        <div class = "dropdown-content">
+                                            <a class = "dropdown-header ${approveDisabled ? 'disabled' : ''}" onclick = "changeStatus(${item.id}, 'Valid')">Approve</a>
+                                            
+                                            <div class = "dropdown-divider"></div>
+
+                                            <a class = "dropdown-footer ${disapproveDisabled ? 'disabled' : ''}" onclick = "invalidStatus(${item.id})">Disapprove</a>
+                                        </div>
                                     </div>
-                                </div>
+                                ` : ''}
                             </div>
                         </td>
                     </tr>`;
@@ -352,7 +405,7 @@
             tippy("[data-tippy-content]");
         };
 
-    function changePage(direction){
+        function changePage(direction){
             if (direction === "prev" && currentPage > 1){
                 currentPage--;
 
@@ -371,11 +424,11 @@
             const totalPages = Math.ceil(filteredData.length / rowsPerPage);
             
             pagination.innerHTML = 
-                `<li class = "page-item" id = "previousPage">
+                `<li class = "page-item ${currentPage === 1 ? 'disabled' : ''}" id = "previousPage">
                     <a class = "page-link" href = "#" onclick = "changePage('prev')">Previous</a>
                 </li>
 
-                <li class = "page-item" id = "nextPage">
+                <li class = "page-item ${currentPage === 1 ? 'disabled' : ''}" id = "nextPage">
                     <a class = "page-link" href = "#" onclick = "changePage('next')">Next</a>
                 </li>`;
 
@@ -439,6 +492,8 @@
             
             const dateToObj = dateTo ? new Date(dateTo) : null;
             
+            const orderBy = document.getElementById("orderBy").value;
+
             filteredData = sightingsData.filter(item => {
                 const itemDateObj = parseDate(item.date);
 
@@ -451,9 +506,20 @@
                 const dateToMatch = !dateTo || itemDateObj <= dateToObj;
                 
                 const statusMatch = !status || item.status === status;
+
+                const matchesDateFrom = dateFrom ? new Date(item.date) >= new Date(dateFrom) : true;
+                    
+                const matchesDateTo = dateTo ? new Date(item.date) <= new Date(dateTo) : true;
                 
-                return municipalityMatch && barangayMatch && dateFromMatch && dateToMatch && statusMatch;
+                return municipalityMatch && barangayMatch && dateFromMatch && dateToMatch && statusMatch && matchesDateFrom && matchesDateTo;
             });
+
+            if (orderBy === "latest"){
+                filteredData.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            } else{
+                filteredData.sort((a, b) => new Date(a.date) - new Date(b.date));
+            }
 
             currentPage = 1;
             
@@ -478,17 +544,17 @@
             if (!status) return;
 
             Swal.fire({
-                title: "Are you sure?",
+                title: "Alert?",
 
-                text: `You are about to change the status to "${status}".`,
+                text: `are you sure that you want to update the post status to ${status}?`,
 
                 icon: "warning",
 
                 showCancelButton: true,
                 
-                confirmButtonText: "Yes, change it!",
+                confirmButtonText: "Yes",
 
-                cancelButtonText: "No, keep it"
+                cancelButtonText: "No"
 
             }).then((result) => {
                 if (result.isConfirmed){
@@ -505,12 +571,12 @@
 
                         success: function(response){
                             if (response.success){
-                                location.reload();
-
-                                Swal.fire("Changed!", `The status has been changed to "${status}".`, "success");
+                                Swal.fire("Success!", `The post status has been successfully changed to ${status}.`, "success").then(() => {
+                                    location.reload();
+                                })
 
                             } else {
-                                Swal.fire("Failed!", "Failed to change the status.", "error");
+                                Swal.fire("Error!", "The post status could not be updated. Kindly try again later.", "error");
                             };
                         }
                     });
@@ -532,20 +598,20 @@
 
         window.addRemarks = function(postId){
             Swal.fire({
-                title: "Add Remark",
+                title: "Add Remarks",
 
                 input: "textarea",
 
-                inputLabel: "Your Remark",
+                inputLabel: "Remarks",
 
-                inputPlaceholder: "Enter your remark here...",
+                inputPlaceholder: "Enter your remarks here...",
 
                 showCancelButton: true,
                 
                 confirmButtonText: "Submit",
 
                 preConfirm: (remark) => {
-                    return fetch("{% url 'add_remark' 0 %}".replace("0", postId), {
+                    return fetch("{% url 'Officer Control Sighting Add' 0 %}".replace("0", postId), {
                         method: "POST",
 
                         headers: {
@@ -565,13 +631,13 @@
                     
                     }).then(data => {
                         if (!data.success){
-                            throw new Error(data.message || "Failed to add remark")
+                            throw new Error(data.message || "The remarks could not be saved. Kindly try again later.")
                         };
 
                         return data
                     
                     }).catch(error => {
-                        Swal.showValidationMessage(`Request failed: ${error}`)
+                        Swal.showValidationMessage(`${error}`)
                     })
                 },
 
@@ -582,7 +648,7 @@
                     Swal.fire({
                         title: "Success!",
 
-                        text: "Remark added successfully.",
+                        text: "The remarks has been successfully saved.",
 
                         icon: "success"
 
@@ -599,6 +665,8 @@
 
                 input: "textarea",
 
+                inputLabel: "Remarks",
+
                 inputPlaceholder: "Enter your remarks here...",
 
                 showCancelButton: true,
@@ -611,7 +679,7 @@
                     return new Promise((resolve) => {
                         resolve(remarks);
                     });
-                };
+                }
 
             }).then((result) => {
                 if (result.isConfirmed){
@@ -632,57 +700,17 @@
 
                         success: function(response){
                             if (response.success){
-                                Swal.fire({title: "Success", text: response.message, icon: "success", confirmButtonText: "Ok"}).then(() => {
-                                    location.reload();  // Reload the page after successful operation
+                                Swal.fire({title: "Success!", text: response.message, icon: "success", confirmButtonText: "Ok"}).then(() => {
+                                    location.reload();
                                 });
 
                             } else {
-                                Swal.fire({title: "Error", text: response.message, icon: "error", confirmButtonText: "Ok"});
+                                Swal.fire({title: "Error!", text: response.message, icon: "error", confirmButtonText: "Ok"});
                             };
                         },
 
                         error: function(){
-                            Swal.fire({title: "Error", text: "An unexpected error occurred.", icon: "error", confirmButtonText: "Ok"});
-                        }
-                    });
-                };
-            });
-        };
-
-        function bulkChangeStatus(status){
-            const selectedIds = Array.from(document.querySelectorAll(".selectRow:checked")).map(checkbox => checkbox.closest("tr").dataset.id);
-
-            if (selectedIds.length === 0){
-                Swal.fire("No Selection", "Please select at least one sighting.", "warning");
-                
-                return;
-            };
-
-            Swal.fire({
-                title: "Are you sure?", text: `You are about to change the status of ${selectedIds.length} sightings to "${status}".`, icon: "warning", showCancelButton: true, confirmButtonText: "Yes, change it!", cancelButtonText: "No, keep it"}).then((result) => {
-                if (result.isConfirmed){
-                    $.ajax({
-                        type: "POST",
-
-                        url: status === "Valid" ? "{% url 'Officer Control Sighting Valid' %}" : "{% url 'Officer Control Sighting Invalid' %}",
-
-                        data: {
-                            "post_ids": selectedIds,
-
-                            "csrfmiddlewaretoken": "{{csrf_token}}"
-                        },
-
-                        traditional: true,
-
-                        success: function(response){
-                            if (response.success){
-                                location.reload();
-
-                                Swal.fire("Changed!", `The status has been changed to "${status}".`, "success");
-
-                            } else{
-                                Swal.fire("Failed!", "Failed to change the status.", "error");
-                            };
+                            Swal.fire({title: "Error!", text: "The remarks could not be saved. Kindly try again later.", icon: "error", confirmButtonText: "Ok"});
                         }
                     });
                 };

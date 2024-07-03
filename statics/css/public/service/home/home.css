@@ -23,10 +23,10 @@
 
 .home-body .home-section h1{
     margin-bottom: 0px !important;
-    text-align: center;     
+    text-align: center;    
+    font-family: "Montserrat"; 
     font-weight: 700;       
     font-size: 24px;        
-    font-family: "Montserrat";
 }
 
 @media screen and (min-width: 446px) and (max-width: 775px){
@@ -594,30 +594,30 @@
     justify-content: flex-start;
     font-family: "Montserrat" !important;
     font-weight: 400 !important;
-    font-size: 24px !important;
+    font-size: 20px !important;
 }
 
 @media screen and (min-width: 446px) and (max-width: 775px){
-    .home-body .home-map .map .leaflet-control-layers span{
-        font-size: 22px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .home-body .home-map .map .leaflet-control-layers span{
-        font-size: 20px !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
     .home-body .home-map .map .leaflet-control-layers span{
         font-size: 18px !important;
     }
 }
 
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 369px) and (max-width: 445px){
     .home-body .home-map .map .leaflet-control-layers span{
         font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-body .home-map .map .leaflet-control-layers span{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-body .home-map .map .leaflet-control-layers span{
+        font-size: 12px !important;
     }
 }
 

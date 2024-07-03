@@ -124,11 +124,11 @@
                 var map_posts = L.markerClusterGroup({iconCreateFunction: function(cluster){return starfish}, removeOutsideVisibleBounds: false});
                 
                 {% for post in map_posts %}
-                    var starfish = L.icon({iconUrl: "{{post.post_photos.first.post_photo.url | default:'/statics/assets/pin.png'}}",  iconSize: [30, 30], iconAnchor: [15, 15], className: "pin"});
+                    var starfish = L.icon({iconUrl: "{{post.post_photos.first.post_photo.url | default:'/statics/assets/posts/default.png'}}",  iconSize: [30, 30], iconAnchor: [15, 15], className: "pin"});
 
                     var postMarker = L.marker([{{post.coordinates.latitude}}, {{post.coordinates.longitude}}], {icon: starfish});
                     
-                    postMarker.bindPopup("<div class = 'popup'>" + "<div class = 'popup-header'>" +  "<img src = '{{post.user.profile_photo.url | default:'/statics/assets/pin.png'}}'>" +  "<div class = 'popup-username'>" +  "<a>{{post.user | default:'None available'}}</a>" + "</div>" + "<i class = 'fa-solid fa-square-xmark popup-back'></i>" + "</div>" + "<div class = 'popup-post'>" + "<div class = 'post-gallery'>" + "<img src = '{{post.post_photos.all.first.post_photo.url | default:'/statics/assets/pin.png'}}'>" + "<div class = 'post-context'>" + "<p>{{post.capture_date | date:'m/d/Y' | default:'None available'}}</p>" + "<a>{{post.location | default:'None available'}}</a>" + "</div>" + "</div>" + "</div>" + "<div class = 'button'><a class = 'read-post' href = '{% url 'Post Valid Read Redirect' post.id %}'>Read</a></div>", {closeOnClick: false, autoClose: false});
+                    postMarker.bindPopup("<div class = 'popup'>" + "<div class = 'popup-header'>" +  "<img src = '{{post.user.profile_photo.url | default:'/statics/assets/profiles/default.png'}}'>" +  "<div class = 'popup-username'>" +  "<a>{{post.user | default:'None available'}}</a>" + "</div>" + "<i class = 'fa-solid fa-square-xmark popup-back'></i>" + "</div>" + "<div class = 'popup-post'>" + "<div class = 'post-gallery'>" + "<img src = '{{post.post_photos.all.first.post_photo.url | default:'/statics/assets/posts/default.png'}}'>" + "<div class = 'post-context'>" + "<p>{{post.capture_date | date:'m/d/Y' | default:'None available'}}</p>" + "<a>{{post.location | default:'None available'}}</a>" + "</div>" + "</div>" + "</div>" + "<div class = 'button'><a class = 'read-post' href = '{% url 'Post Valid Read Redirect' post.id %}'>Read</a></div>", {closeOnClick: false, autoClose: false});
 
                     postMarker.on("popupopen", function(e){
                         var popup = e.popup;
@@ -149,12 +149,11 @@
                     map_posts.addLayer(postMarker);
                 {% endfor %}
 
-
                 var map = document.getElementsByClassName("map")[0];
 
-                var background = L.tileLayer("http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}", {minZoom: 12, maxZoom: 20, subdomains:["mt0", "mt1", "mt2", "mt3"]});
+                var background = L.tileLayer("http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}", {minZoom: 10, maxZoom: 20, subdomains:["mt0", "mt1", "mt2", "mt3"]});
 
-                var map = L.map(map, {zoomControl: true, scrollWheelZoom: false, dragging: true, maxBounds: [[5.266008, 124.277344], [6.489983, 126.035156]], layers: [background, map_posts]}).setView([5.9656, 125.1929], 12);
+                var map = L.map(map, {zoomControl: false, scrollWheelZoom: false, dragging: true, maxBounds: [[5.266008, 124.277344], [6.489983, 126.035156]], layers: [background, map_posts]}).setView([5.9656, 125.1929], 10);
                 
                 map.on("popupopen", function(event){
                     var popup = map.project(event.target._popup._latlng);
@@ -169,14 +168,14 @@
                 var bases = {};
                 
                 var overlays = {
-                    "Posts": map_posts, 
+                    "Posts View": map_posts, 
 
-                    "COTS Status": map_statuses
+                    "Infestations View": map_statuses
                 };
 
                 var management = L.control.layers(bases, overlays).addTo(map);
 
-                management.setPosition("bottomright");
+                management.setPosition("topleft");
 
                 var legend = L.control({position: "topright"});
 
@@ -194,11 +193,11 @@
                         
                         this._div.innerHTML = "<div class = 'popup-header'>" + "<a>" + "Legend:" + "</a>" + "</div>";
                         
-                        var ranges = ["25 and up", "19 to 24", "13 to 18", "6 to 12"];
+                        var ranges = ["25 and up", "19 to 24", "13 to 18", "6 to 12", "0 to 5"];
                         
-                        var labels = ["Critical", "High", "Moderate", "Low"];
+                        var labels = ["Critical", "High", "Moderate", "Low", "None"];
                         
-                        var colors = ["#C90016", "#FF7518", "#F4C430", "#698F3F"];
+                        var colors = ["#C90016", "#FF7518", "#F4C430", "#698F3F", "#003755"];
 
                         let popupStatistics = "";
 
@@ -215,8 +214,12 @@
 
                 legend.addTo(map);
 
+                zoom = L.control.zoom({position: "bottomright"});
+
+                zoom.addTo(map);
+
                 map.on("overlayadd overlayremove", function(event){
-                    if (event.name === "COTS Status"){
+                    if (event.name === "Infestations View"){
                         legend.update();
                     }
                 });
@@ -226,134 +229,5 @@
                 revealMap();
             });
         </script>
-
-        <!-- <h1>COTS STATUS GRAPH</h1>
-        
-        <div class = "map-graph"></div>
-        
-        <script>
-            var categories = [];
-
-            var data = [];
-        
-            {% for map_status in map_graphs %}
-                categories.push("{{map_status.location}}");
-
-                data.push({
-                    x: "{{map_status.location}}",
-
-                    y: {{map_status.caught_overall}}, fillColor: {{map_status.caught_overall}} < 25 ? "#698F3F" : {{map_status.caught_overall}} < 75 ? "#F4C430" : "#C90016"
-                });
-            {% endfor %}
-        
-            var configurations = {
-                series: [{
-                    name: "Caught Overall",
-
-                    data: data
-                }],
-
-                chart: {
-                    fontFamily: "Montserrat",
-
-                    height: 500,
-                    
-                    type: "bar",
-
-                    toolbar: {
-                        show: false
-                    },
-
-                    zoom: {
-                        enabled: false
-                    },
-                },
-
-                legend: {
-                    show: false  
-                },
-
-                plotOptions: {
-                    bar: {
-                        distributed: true,
-
-                        colors: {
-                            ranges: [{
-                                from: 0,
-
-                                to: 24,
-
-                                color: "#698F3F"
-
-                            }, {
-                                from: 25,
-
-                                to: 74,
-
-                                color: "#F4C430"
-
-                            }, {
-                                from: 75,
-
-                                to: undefined,
-
-                                color: "#C90016"
-                            }]
-                        }
-                    }
-                },
-
-                tooltip: {
-                    style: {
-                        fontSize: '14px',
-                    }
-                },
-
-                xaxis: {
-                    categories: categories,
-
-                    title: {
-                        text: "Coastal Barangays",
-
-                        style: {
-                            fontSize: "14px",
-
-                            fontWeight: "700",
-                        }
-                    },
-
-                    labels: {
-                        style: {
-                            fontSize: "14px", 
-
-                            fontWeight: "400"
-                        }
-                    }
-                },
-
-                yaxis: {
-                    title: {
-                        text: "COTS Caught",
-
-                        style: {
-                            fontSize: "14px",
-
-                            fontWeight: "700",
-                        }
-                    },
-
-                    labels: {
-                        style: {
-                            fontSize: "14px", 
-
-                            fontWeight: "400"
-                        }
-                    }
-                },
-            };
-        
-            var graph = new ApexCharts(document.querySelector(".map-graph"), configurations);
-            
-            graph.render();
-        </script> -->
+    </div>
 {% endblock content %}

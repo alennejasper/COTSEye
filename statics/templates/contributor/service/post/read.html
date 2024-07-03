@@ -31,7 +31,7 @@
                 </div>
 
                 <div class = "postandfeedread-origin">
-                    <h1>Major Details</h1>
+                    <h1>Sighting Details</h1>
 
                     <div class = "origin-context">
                         <p>Capture Date:</p>
@@ -47,7 +47,7 @@
                 </div>
 
                 <div class = "postandfeedread-observation">
-                    <h1>Observations</h1>
+                    <h1>Observation Details</h1>
 
                     <div class = "observation-context">
                         <p>Size (How big were the COTS):</p>
@@ -354,7 +354,7 @@
             if (!navigator.onLine){
                 const username = "{{request.user.username}}";
 
-                Swal.fire({ title: "Hey!", text: username + ", " + "your information input was vanished offline from COTSEye. Kindly visit the current page again if back online.", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: { confirmButton: "info-button", title: "title" } }).then(() => {
+                Swal.fire({title: "Info!", text: username + ", " + "your post has been successfully deleted offline. Kindly visit the current page when back online.", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}}).then(() => {
                     location.reload();
                 });
 
@@ -371,7 +371,7 @@
             if (!navigator.onLine){
                 const username = "{{request.user.username}}";
 
-                Swal.fire({ title: "Hey!", text: username + ", " + "your information input was sent offline to COTSEye. Kindly visit the current page again if back online.", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: { confirmButton: "info-button", title: "title" } }).then(() => {
+                Swal.fire({title: "Info!", text: username + ", " + "Your post has been successfully sent offline. Kindly visit the current page when back online.", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}}).then(() => {
                     location.reload();
                 });
 
@@ -389,7 +389,7 @@
         request.onupgradeneeded = (event) => {
             const cotseye = event.target.result;
 
-            const cotseye_schema = cotseye.createObjectStore("cotseye_schema", { keyPath: "id", autoIncrement: true });
+            const cotseye_schema = cotseye.createObjectStore("cotseye_schema", {keyPath: "id", autoIncrement: true});
         };
 
         request.onsuccess = (event) => {
@@ -501,7 +501,7 @@
 
                                     const username = "{{request.user.username}}";
 
-                                    Swal.fire({ title: "Yay!", text: username + ", " + "your information input deleted offline was delivered to COTSEye.", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: { confirmButton: "success-button", title: "title" } }).then(() => {
+                                    Swal.fire({title: "Success!", text: username + ", " + "your post input has been successfully deleted.", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}}).then(() => {
                                         window.location.href = "{% url 'Contributor Service Home' %}";
                                     });
                                 };
@@ -529,8 +529,8 @@
 
                                     const username = "{{request.user.username}}";
 
-                                    Swal.fire({ title: "Yay!", text: username + ", " + "your information input deleted offline was delivered to COTSEye.", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: { confirmButton: "success-button", title: "title" } }).then(() => {
-                                        window.location.href = "{% url 'Contributor Service Home' %}";
+                                    Swal.fire({title: "Success!", text: username + ", " + "your post input has been successfully deleted.", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}}).then(() => {
+                                        window.location.href = "{% url 'Contributor Service Post' %}";
                                     });
                                 };
                             });
@@ -556,8 +556,8 @@
 
                                     const username = "{{request.user.username}}";
 
-                                    Swal.fire({ title: "Yay!", text: username + ", " + "your information input recorded offline was delivered to COTSEye.", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: { confirmButton: "success-button", title: "title" } }).then(() => {
-                                        window.location.href = "{% url 'Contributor Service Home' %}";
+                                    Swal.fire({ title: "Success!", text: username + ", " + "Your post has been successfully sent. Kindly wait for an approval email in the next 3 to 5 business days.", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}}).then(() => {
+                                        window.location.href = "{% url 'Contributor Service Post' %}";
                                     });
                                 };
                             });

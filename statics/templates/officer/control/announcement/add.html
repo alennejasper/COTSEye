@@ -1,0 +1,267 @@
+{% extends "officer/control/index/index.html" %}
+
+{% block content %}
+    <style>
+        #announcementTitle{
+            margin-bottom: 0px !important; 
+            font-family: 'Montserrat'; 
+            font-weight: 400; 
+            font-size: 16px;
+        }
+
+        #announcementDate{
+            margin-bottom: 0px !important; 
+            font-family: 'Montserrat'; 
+            font-weight: 400; 
+            font-size: 16px;
+        }
+
+        #announcementDescription{
+            margin-bottom: 0px !important; 
+            font-family: 'Montserrat'; 
+            font-weight: 400; 
+            font-size: 16px;
+        }
+
+        #hostingAgency{
+            margin-bottom: 0px !important; 
+            font-family: 'Montserrat'; 
+            font-weight: 400; 
+            font-size: 16px;
+        }
+
+        .select2-selection__rendered{
+            line-height: 35px !important;
+        }
+
+        .select2-container .select2-selection--single{
+            height: 35px !important;
+        }
+
+        .select2-selection__arrow{
+            height: 35px !important;
+        }
+
+        .select2-container .select2-selection{
+            font-family: "Montserrat";
+            font-weight: 400;
+            font-size: 16px !important;
+        }
+
+        .select2-results__option{
+            padding-left: 10px !important;
+            padding-right: 10px !important;
+            padding-top: 5px !important;
+            padding-bottom: 5px !important;
+            font-family: "Montserrat";
+            font-weight: 400;
+            font-size: 16px !important;
+        }
+
+        .select2-container[data-select2-id = "3"]{
+            margin-bottom: 0px !important;
+        }
+    </style>
+
+    <div class = "container" style = "padding: 0px !important;">
+        <h1 style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 24px; color: rgb(52, 144, 242); text-align: center; text-transform: uppercase;" class = "required">Add New Announcement</h1>
+        
+        <div class = "card">
+            <div class = "card-body">
+                <form id = "announcementForm" method = "post" enctype = "multipart/form-data">
+                    {% csrf_token %}
+
+                    <div class = "row">
+                        <div class = "col-md-6">
+                            <div>
+                                <div class = "h5" style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 20px; color: rgb(52, 144, 242); text-align: left;">Announcement Details</div>
+                            </div>
+
+                            <div style = "margin-bottom: 15px !important;">
+                                <label for = "id_title" class = "required form-label" style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Title:</label>
+                                
+                                {{form.title}}
+                            </div>
+
+                            <div style = "margin-bottom: 15px !important;">
+                                <label for = "id_release_date" class = "required form-label" style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Event Date:</label>
+                                
+                                {{form.release_date}}
+                            </div>
+                        
+                            <hr>
+
+                            <div>
+                                <div class = "h5" style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 20px; color: rgb(52, 144, 242); text-align: left;">Location Details</div>
+                            </div>
+                            
+                            <div>
+                                <label for = "municipalityFilter" class = "required form-label" style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Municipality:</label>
+                                
+                                <select id = "municipalityFilter" class = "form-select form-select-sm mb-3 select2" onchange = "updateBarangayOptions()">
+                                    <option value = "">Municipality</option>
+
+                                    {% for location in municipalities %}
+                                        <option value = "{{location.municipality_name}}">{{location.municipality_name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for = "barangayFilter" class = "required form-label" style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Barangay:</label>
+
+                                <select id = "barangayFilter" class = "form-select form-select-sm mb-3 select2" onchange = "setBarangayValue()">
+                                    <option value = "">Select Barangay</option>
+                                </select>
+                            </div>
+
+                            <hr>
+                            
+                            <div>
+                                <div class = "h5" style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 20px; color: rgb(52, 144, 242); text-align: left;">Other Details</div>
+                            </div>
+                            
+                            <div style = "margin-bottom: 15px !important;">
+                                <label for = "id_details" class = "required form-label" style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Hosting Agency:</label>
+                                
+                                {{form.hosting_agency}}
+                            </div>
+                            
+                            <div style = "margin-bottom: 15px !important;">
+                                <label for = "id_details" class = "form-label" style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Context:</label>
+                                
+                                {{form.context}}
+                            </div>
+
+                            <input type = "hidden" id = "id_municipality" name = "municipality">
+
+                            <input type = "hidden" id = "id_barangay" name = "barangay">
+                        </div>
+
+                        <div class = "col-md-6">
+                            <div style = "margin-bottom: 15px !important;">
+                                <label for = "announcementPhoto" class = "required form-label" style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Announcement Photo:</label>
+                                
+                                <input type = "file" id = "announcementPhoto" name = "announcement_photo" class = "form-control">
+                            </div>
+
+                            <img id = "photoPreview" style = "display: block; margin-bottom: 15px; width: 100%; height: auto; border-radius: 5px;">
+
+                            <button type = "submit" style = "padding-left: 10px !important; padding-right: 10px !important; padding-top: 5px !important; padding-bottom: 5px !important; width: 100%; font-family: 'Montserrat'; font-weight: 400; font-size: 16px; background-color: rgb(52, 144, 242);" class = "btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </form>
+                
+                <script type = "text/javascript">
+                    window.updateBarangayOptions = function(){
+                        const municipalityFilter = document.getElementById("municipalityFilter").value;
+                        
+                        const barangayFilter = document.getElementById("barangayFilter");
+                        
+                        const municipalityInput = document.getElementById("id_municipality");
+                
+                        municipalityInput.value = municipalityFilter;
+                        
+                        barangayFilter.innerHTML = "<option value = ''>Select Barangay</option>";
+                
+                        if (municipalityFilter){
+                            $.ajax({
+                                url: "{% url 'Officer Control Barangay Read' %}",
+                                
+                                data: {"municipality": municipalityFilter},
+                                
+                                success: function(data){
+                                    data.forEach(function(barangay){
+                                        const option = document.createElement("option");
+                                        
+                                        option.value = barangay;
+                                        
+                                        option.textContent = barangay;
+                                        
+                                        barangayFilter.appendChild(option);
+                                    });
+                                }
+                            });
+                        };
+                    };
+                
+                    window.setBarangayValue = function(){
+                        const barangayFilter = document.getElementById("barangayFilter");
+                        
+                        const barangayInput = document.getElementById("id_barangay");
+                        
+                        barangayInput.value = barangayFilter.value;
+                    };
+                </script>
+            </div>
+        </div>
+    </div>
+
+    <link rel = "stylesheet" href = "https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    
+    <script src = "https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        document.getElementById("announcementForm").addEventListener("submit", function(event){
+            event.preventDefault();
+            
+            Swal.fire({title: "Alert!", text: "Officer, are you sure that you want to save the announcement?", icon: "warning", showCancelButton: true, confirmButtonColor: "#3085D6", cancelButtonColor: "#D33", confirmButtonText: "Yes"}).then((result) => {
+                if (result.isConfirmed){
+                    event.target.submit();
+                };
+            });
+        });
+
+        document.getElementById("announcementPhoto").addEventListener("change", function(event){
+            const photoPreview = document.getElementById("photoPreview");
+
+            const file = event.target.files[0];
+            
+            if (file){
+                const reader = new FileReader();
+                
+                reader.onload = function(e){
+                    photoPreview.src = e.target.result;
+                    photoPreview.style.display = "block";
+                }
+                
+                reader.readAsDataURL(file);
+
+            } else{
+                photoPreview.src = "#";
+
+                photoPreview.style.display = "none";
+            };
+        });
+    </script>
+
+     <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+     
+     <script src = "https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script> 
+     
+     <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            {% if errors and field_labels %}
+                var errorMessages = {{errors | safe}};
+
+                var fieldLabels = {{field_labels | safe}};
+       
+                for (var field in errorMessages){
+                   if (errorMessages.hasOwnProperty(field)){
+                       var fieldErrors = errorMessages[field];
+
+                       var fieldLabel = fieldLabels[field];
+                       
+                       fieldErrors.forEach(function(error){
+                           swal({title: "Error!", text: "There is an issue in the " + fieldLabel + " field. " + error.message, type: "error", confirmButtonText: "Ok"});
+                       });
+                   };
+               };
+            {% endif %}
+ 
+            {% if location_error %}
+                swal({title: "Error!", text: "{{location_error}}", type: "error", confirmButtonText: "Ok"});
+            {% endif %}
+        });
+    </script>
+{% endblock %}

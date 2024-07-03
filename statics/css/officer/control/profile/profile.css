@@ -5,6 +5,15 @@
     color: #003755;
 }
 
+.profile-body h1{
+    margin-bottom: 0px !important;
+    text-align: center;     
+    font-weight: 700;       
+    font-size: 24px;        
+    font-family: "Montserrat";
+    color: #003755;
+}
+
 .profile-body .profile{
     display: grid;
     place-items: center;
@@ -219,6 +228,7 @@
 .profile-body .button{
     display: flex;
     justify-content: center;
+    gap: 30px;
     width: 100%;
 }
 

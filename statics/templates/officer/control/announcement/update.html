@@ -1,0 +1,249 @@
+{% extends "officer/control/index/index.html" %}
+{% load static %}
+
+{% block content %}
+    <style>
+        #announcementTitle{
+            margin-bottom: 0px !important; 
+            font-family: 'Montserrat'; 
+            font-weight: 400; 
+            font-size: 16px;
+        }
+
+        #announcementDate{
+            margin-bottom: 0px !important; 
+            font-family: 'Montserrat'; 
+            font-weight: 400; 
+            font-size: 16px;
+        }
+
+        #announcementDescription{
+            margin-bottom: 0px !important; 
+            font-family: 'Montserrat'; 
+            font-weight: 400; 
+            font-size: 16px;
+        }
+
+        #hostingAgency{
+            margin-bottom: 0px !important; 
+            font-family: 'Montserrat'; 
+            font-weight: 400; 
+            font-size: 16px;
+        }
+
+        #announcementPhoto{
+            margin-bottom: 15px !important; 
+        }
+
+        .select2-selection__rendered{
+            line-height: 35px !important;
+        }
+
+        .select2-container .select2-selection--single{
+            height: 35px !important;
+        }
+
+        .select2-selection__arrow{
+            height: 35px !important;
+        }
+
+        .select2-container .select2-selection{
+            font-family: "Montserrat";
+            font-weight: 400;
+            font-size: 16px !important;
+        }
+
+        .select2-results__option{
+            padding-left: 10px !important;
+            padding-right: 10px !important;
+            padding-top: 5px !important;
+            padding-bottom: 5px !important;
+            font-family: "Montserrat";
+            font-weight: 400;
+            font-size: 16px !important;
+        }
+
+        .select2-container[data-select2-id = "3"]{
+            margin-bottom: 0px !important;
+        }
+    </style>
+
+    <div class = "container" style = "padding: 0px !important;">
+        <h1 style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 24px; color: rgb(52, 144, 242); text-align: center; text-transform: uppercase;" class = "required">Update Announcement</h1>
+
+        <div class = "card">
+            <div class = "card-body">
+                <form id = "announcementForm" method = "post" enctype = "multipart/form-data">
+                    {% csrf_token %}
+                    
+                    <div class = "row">
+                        <div class = "col-md-6">
+                            <div>
+                                <div class = "h5" style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 20px; color: rgb(52, 144, 242); text-align: left;">Announcement Details</div>
+                            </div>
+                            
+                            <div style = "margin-bottom: 15px !important;">
+                                <label for = "announcementTitle" class = "form-label required" style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Title</label>
+                                
+                                {{form.title}}
+                            </div>
+                            
+                            <div style = "margin-bottom: 15px !important;">
+                                <label for = "announcementDate" class = "form-label required" style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Event Date</label>
+                            
+                                {{form.release_date}}
+                            </div>
+                            
+                            <hr>
+
+                            <div>
+                                <div class = "h5" style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 20px; color: rgb(52, 144, 242); text-align: left;">Location Details</div>
+                            </div>
+                        
+                            <div>
+                                <label for = "municipalityFilter" class = "form-label required" style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Municipality:</label>
+
+                                <select id = "municipalityFilter" class = "form-select form-select-sm mb-3 select2" onchange = "updateBarangayOptions()">
+                                    <option value = "{{announcement.location.municipality.municipality_name}}">{{announcement.location.municipality.municipality_name}}</option>
+                                    
+                                    {% for location in municipalities %}
+                                        <option value = "{{location.municipality_name}}">{{location.municipality_name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        
+                            <div>
+                                <label for = "barangayFilter" class = "form-label required" style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Barangay:</label>
+
+                                <select id = "barangayFilter" class = "form-select form-select-sm mb-3 select2" onchange = "setBarangayValue()">
+                                    <option value = "{{announcement.location.barangay}}">{{announcement.location.barangay}}</option>
+                                </select>
+                            </div>
+
+                            <hr>
+
+                            <div>
+                                <div class = "h5" style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 20px; color: rgb(52, 144, 242); text-align: left;">Other Details</div>
+                            </div>
+                            
+                            <div style = "margin-bottom: 15px !important;">
+                                <label for = "id_details" class = "required form-label" style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Hosting Agency:</label>
+
+                                {{form.hosting_agency}}
+                            </div>
+
+                        
+                            <div cstyle = "margin-bottom: 15px !important;">
+                                <label for = "announcementContext" style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Context</label>
+                                
+                                {{form.context}}
+                            </div>
+                            
+                            <input type = "hidden" id = "id_municipality" name = "municipality" value = "{{announcement.location.municipality}}">
+                            
+                            <input type = "hidden" id = "id_barangay" name = "barangay" value = "{{announcement.location.barangay}}">
+                        </div>
+                        
+                        <div class = "col-md-6">
+                            <div style = "margin-bottom: 15px !important;">
+                                <label for = "{{form.announcement_photo.id_for_label}}" class = "form-label required" style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Announcement Photo:</label>
+
+                                {{form.announcement_photo}}
+
+                                <img id = "photoPreview" src = "{{announcement.get_photo_url}}" style = "display: block; margin-bottom: 15px; width: 100%; height: auto; border-radius: 5px;">
+                            </div>
+
+                            <button type = "submit" style = "padding-left: 10px !important; padding-right: 10px !important; padding-top: 5px !important; padding-bottom: 5px !important; width: 100%; font-family: 'Montserrat'; font-weight: 400; font-size: 16px; background-color: rgb(52, 144, 242);" class = "btn btn-primary">Update</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script type = "text/javascript">
+        window.updateBarangayOptions = function(){
+            const municipalityFilter = document.getElementById("municipalityFilter").value;
+
+            const barangayFilter = document.getElementById("barangayFilter");
+
+            const municipalityInput = document.getElementById("id_municipality");
+
+            municipalityInput.value = municipalityFilter;
+
+            barangayFilter.innerHTML = "<option value = ''>Select Barangay</option>";
+
+            if (municipalityFilter){
+                $.ajax({
+                    url: "{% url 'Officer Control Barangay Read' %}",
+
+                    data: {
+                        "municipality": municipalityFilter
+                    },
+
+                    success: function(data){
+                        data.forEach(function(barangay){
+                            const option = document.createElement("option");
+
+                            option.value = barangay;
+
+                            option.textContent = barangay;
+
+                            barangayFilter.appendChild(option);
+                        });
+                    }
+                });
+            };
+        };
+
+        window.setBarangayValue = function(){
+            const barangayFilter = document.getElementById("barangayFilter");
+
+            const barangayInput = document.getElementById("id_barangay");
+            
+            barangayInput.value = barangayFilter.value;
+        };
+    </script>
+
+    <link rel = "stylesheet" href = "https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    
+    <script src = "https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        document.getElementById("announcementForm").addEventListener("submit", function(event){
+            event.preventDefault();
+            
+            Swal.fire({
+                title: "Alert!", text: "Officer, are you sure that you want to update the announcement?", icon: "warning", showCancelButton: true, confirmButtonColor: "#3085D6", cancelButtonColor: "#D33", confirmButtonText: "Yes"
+            
+            }).then((result) => {
+                if (result.isConfirmed){
+                    event.target.submit();
+                };
+            });
+        });
+
+        document.getElementById("announcementPhoto").addEventListener("change", function(event){
+            const photoPreview = document.getElementById("photoPreview");
+
+            const file = event.target.files[0];
+            
+            if (file) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e){
+                    photoPreview.src = e.target.result;
+
+                    photoPreview.style.display = "block";
+                };
+                
+                reader.readAsDataURL(file);
+
+            } else {
+                photoPreview.src = "#";
+                
+                photoPreview.style.display = "none";
+            }
+        });
+    </script>
+{% endblock %}

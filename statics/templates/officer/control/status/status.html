@@ -20,33 +20,37 @@
     <link rel = "stylesheet" href = "{% static 'css/officer/control/status/status.css' %}" >
 
     {% block status-content %}
-        <h3 style = "text-transform: uppercase;">Infestation Status</h3>
+        <div class = "report-button" style = "float: right; margin-top: 7px; margin-bottom: 0px;">
+            <button onclick = "window.location.href = '{% url 'Officer Control Report' %}'">GENERATE REPORT</button>
+        </div>
+
+        <h2 style = "border-bottom: 1px solid rgba(229, 229, 229); font-family: 'Montserrat'; font-weight: 700; font-size: 20px; color: rgb(52, 144, 242); text-align: left; text-transform: uppercase;">Infestation Status</h3>
     
-        <div class = "container-fluid mt-3">
-            <table class="table table-hover">
+        <div class = "container-fluid mt-3" style = "display: table; margin-bottom: 15px !important; padding-left: 0px !important; padding-right: 0px !important; width: 100%;">
+            <table class = "table table-hover">
                 <thead>
                     <tr>
-                        <th style = "font-size: 15px; color: rgb(28, 169, 234);" scope = "col">Date</th>
+                        <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">Activity Date</th>
                         
-                        <th style = "font-size: 15px; color: rgb(28, 169, 234);" scope = "col">Municipality</th>
+                        <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">Municipality</th>
                         
-                        <th style = "font-size: 15px; color: rgb(28, 169, 234);" scope = "col">Total No. of COTS Collected</th>
+                        <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">Total No. of COTS Collected</th>
                         
-                        <th style = "font-size: 15px; color: rgb(28, 169, 234);" scope = "col">Status</th>
+                        <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">Infestation Level</th>
                         
                     </tr>
                 </thead>
                 
-                <tbody>
+                <tbody class = "table-group-divider" style = "cursor: pointer;">
                     {% for status in paginated_statuses %}
-                        <tr data-href = "{% url 'barangay_status' status.location.municipality %}">
-                            <td>{{status.onset_date | format_date_mmddyy}}</td>
+                        <tr data-href = "{% url 'Officer Control Status Municipality Read' status.location.municipality %}">
+                            <td style = "display: table-cell !important; max-width: 0px; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">{{status.onset_date | format_date_mmddyy}}</td>
 
-                            <td>{{status.location.municipality}}</td>
+                            <td style = "display: table-cell !important; max-width: 0px; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">{{status.location.municipality}}</td>
                             
-                            <td>{{status.caught_overall}}</td>
+                            <td style = "display: table-cell !important; max-width: 0px; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">{{status.caught_overall}}</td>
 
-                            <td class = "status-{{status.statustype}}">{{status.statustype}}</td>
+                            <td style = "display: table-cell !important; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 12px;" class = "status-{{status.statustype}}">{{status.statustype}}</td>
                         </tr>
                     {% endfor %}
                 </tbody>

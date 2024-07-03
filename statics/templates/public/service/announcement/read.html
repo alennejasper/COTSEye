@@ -24,14 +24,14 @@
                 <p>{{announcement.release_date | date:'m/d/Y' | default:'None available'}}</p>
             </div>
 
-            <h1>{{announcement.title | default:'None available'}}</h1>
+            <!-- <h1>{{announcement.title | default:'None available'}}</h1> -->
 
             <div class = "announcementread-gallery">
                 <img src = "{{announcement.announcement_photo.url}}">
             </div>
 
             <div class = "announcementread-origin">
-                <h1>Major Details</h1>
+                <h1>Announcement Details</h1>
 
                 <div class = "origin-context">
                     <p>Event Date:</p>
@@ -39,11 +39,11 @@
                     <p>{{announcement.event_date | default:'None available'}}</p>
                 </div>
 
-                <div class = "origin-context">
+                <!-- <div class = "origin-context">
                     <p>Place:</p>
 
                     <p>{{announcement.place | default:'None available'}}</p>
-                </div>
+                </div> -->
 
                 <div class = "origin-context">
                     <p>Hosting Agency:</p>

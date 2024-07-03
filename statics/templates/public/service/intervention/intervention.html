@@ -70,12 +70,12 @@
                         </div>
                     </div>
 
-                    <p>{{intervention.intervention_date | date:'m/d/Y' | default:'None available'}}</p>
+                    <p>{{intervention.event_date | date:'m/d/Y' | default:'None available'}}</p>
 
                     <!-- <p>{{intervention.volunteer_amount | default:'0'}}</p> -->
                 </div>
 
-                <h1>{{intervention.title | default:'None available'}}</h1>
+                <!-- <h1>{{intervention.title | default:'None available'}}</h1> -->
                 
                 <a href = "{% url 'Public Service Intervention Read' intervention.id %}">
                     <img class = "intervention-image" src = "{{intervention.intervention_photo.url | default:'None available'}}">

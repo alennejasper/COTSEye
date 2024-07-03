@@ -9,15 +9,14 @@ from django.template.loader import render_to_string
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.html import strip_tags
-from authentications.models import Account
+from authentications.models import Account, Notification
 from authentications.views import ContributorCheck, OfficerCheck
-from managements.models import Location
+from managements.models import Location, Municipality
 from reports.models import *
 from reports.forms import CoordinatesForm, PostObservationForm, PostForm
 from datetime import timedelta
 
 import base64
-import datetime
 import json
 
 
@@ -53,11 +52,15 @@ def ContributorServiceReport(request):
 
     user_profile = User.objects.get(account = request.user)
 
-    unread_notifications = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:3]
+    notification_life = timezone.now() - timedelta(days = 30)
+
+    user = User.objects.get(account = request.user)
+
+    unread_notifications = Notification.objects.filter(user = user, is_read = False, creation_date__gte = notification_life).order_by("-creation_date")
 
     locations = Location.objects.all()
 
-    municipalities = Location.objects.values("municipality").distinct()
+    municipalities = Municipality.objects.values("municipality_name").distinct()
 
     coordinates_form = CoordinatesForm()
 
@@ -78,7 +81,7 @@ def ContributorServiceReport(request):
 
         post_form =  PostForm(request.POST, request.FILES)
 
-        if coordinates_form.is_valid() and post_form.is_valid() and postobservation_form.is_valid():
+        if coordinates_form.is_valid() and postobservation_form.is_valid() and post_form.is_valid():
             coordinates = coordinates_form.save(commit = False)
 
             post_observation = postobservation_form.save(commit = False)
@@ -147,17 +150,23 @@ def ContributorServiceReport(request):
 
                 username = request.user.username
                 
-                messages.success(request, f"{username}, For verification and will be approved by the administrator. You will be notified in 3 to 5 business days.")
+                if post_status.id == 3:
+                    messages.success(request, username + "," + "Your report has been successfully sent. Kindly wait for an approval email in the next 3 to 5 business days.")
                 
+                elif post_status.id == 4:
+                    messages.success(request, username + "," + "Your report has been successfully saved. Kindly proceed to drafts to see changes.")
+
                 return redirect("Contributor Service Post")
 
-            else:
-                messages.error(request, "Information input is not valid.")
-        
         else:
-            messages.error(request, "Information input is not valid.")
-            
-            messages.error(request, coordinates_form.errors, postobservation_form.errors, post_form.errors)
+            for field, errors in coordinates_form.errors.items():
+                messages.error(request, "There is an issue in the" + " " + field + " field." + " " + ", ".join(errors))
+
+            for field, errors in postobservation_form.errors.items():
+                messages.error(request, "There is an issue in the" + " " + field + " field." + " " + ", ".join(errors))
+
+            for field, errors in post_form.errors.items():
+                messages.error(request, "There is an issue in the" + " " + field + " field." + " " + ", ".join(errors))
 
     else:
         coordinates_form = CoordinatesForm()
@@ -241,7 +250,11 @@ def ContributorServicePost(request):
 
     user_profile = User.objects.get(account = request.user)
 
-    unread_notifications = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:3]
+    notification_life = timezone.now() - timedelta(days = 30)
+
+    user = User.objects.get(account = request.user)
+
+    unread_notifications = Notification.objects.filter(user = user, is_read = False, creation_date__gte = notification_life).order_by("-creation_date")
 
     records = None
 
@@ -268,21 +281,15 @@ def ContributorServicePostRead(request, id):
 
     user_profile = User.objects.get(account = request.user)
 
-    unread_notifications = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:3]
+    notification_life = timezone.now() - timedelta(days=30)
+
+    user = User.objects.get(account = request.user)
+
+    unread_notifications = Notification.objects.filter(user=user, is_read = False, creation_date__gte = notification_life).order_by("-creation_date")
 
     scheme = request.scheme
 
     host = request.META["HTTP_HOST"]
-    try:
-        post = Post.objects.get(id = id)
-
-        post.contrib_read_status = True
-
-        post.contrib_read_date = timezone.now()
-
-        post.save()
-    except Post.DoesNotExist:
-        return JsonResponse({"success": False, "error": "COTSEye cannot find the post."})
 
     try:
         valid_post = Post.objects.get(id = id, user = request.user.user, post_status = 1)
@@ -320,7 +327,11 @@ def ContributorServicePostFeed(request):
 
     user_profile = User.objects.get(account = request.user)
 
-    unread_notifications = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:3]
+    notification_life = timezone.now() - timedelta(days=30)
+
+    user = User.objects.get(account = request.user)
+
+    unread_notifications = Notification.objects.filter(user = user, is_read = False, creation_date__gte = notification_life).order_by("-creation_date")
 
     valid_posts = Post.objects.filter(post_status = 1).order_by("-creation_date")
 
@@ -336,7 +347,10 @@ def ContributorServicePostFeedRead(request, id):
 
     user_profile = User.objects.get(account = request.user)
 
-    unread_notifications = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:3]
+    notification_life = timezone.now() - timedelta(days=30)
+
+    user = User.objects.get(account=request.user)
+    unread_notifications = Notification.objects.filter(user=user, is_read = False, creation_date__gte = notification_life).order_by("-creation_date")
 
     scheme = request.scheme
 
@@ -406,13 +420,20 @@ def ContributorServicePostDraftUpdate(request, id):
 
     user_profile = get_object_or_404(User, account = request.user)
 
-    unread_notifications = Post.objects.filter(contrib_read_status = False, user = request.user.user).order_by("-creation_date")[:3]
+    notification_life = timezone.now() - timedelta(days=30)
+
+    user = User.objects.get(account = request.user)
+
+    unread_notifications = Notification.objects.filter(user = user, is_read = False, creation_date__gte = notification_life).order_by("-creation_date")
 
     draft_post = get_object_or_404(Post, id = id, post_status = 4)
 
     locations = Location.objects.all()
 
-    municipalities = Location.objects.values("municipality").distinct()
+    municipalities = Municipality.objects.values("municipality_name").distinct()
+
+    if draft_post.location and draft_post.location.municipality:
+        municipalities = municipalities.exclude(municipality_name=draft_post.location.municipality.municipality_name)
 
     sizes = Size.objects.all()
 
@@ -468,7 +489,7 @@ def ContributorServicePostDraftUpdate(request, id):
 
                     draft_post.post_photos.add(photo)
 
-            messages.success(request, username + ", " + "your information input was updated for COTSEye.")
+            messages.success(request, username + ", " + "Your post has been successfully saved. Kindly proceed to drafts to see changes.")
 
             return redirect("Contributor Service Post")
         else:
@@ -594,7 +615,7 @@ def ContributorServicePostDraftSend(request, id):
 
         host = request.META["HTTP_HOST"]
 
-        template = render_to_string("webwares/email.html", {"officer": officer.account.username, "contributor": post.user.account.username, "post": post, "scheme": scheme, "host": host})
+        template = render_to_string("contributor/service/post/email.html", {"officer": officer.account.username, "contributor": post.user.account.username, "post": post, "scheme": scheme, "host": host})
 
         body = strip_tags(template)
 
@@ -620,7 +641,7 @@ def ContributorServicePostDraftSend(request, id):
 
     username = request.user.username
         
-    messages.success(request, username + ", " + "your information input was sent to COTSEye.")
+    messages.success(request, username + ", " + "Your post has been successfully sent. Kindly wait for an approval email in the next 3 to 5 business days.")
     
     return redirect("Contributor Service Post")
 
@@ -641,7 +662,7 @@ def ContributorServicePostDraftSendFetch(request):
 
             host = request.META["HTTP_HOST"]
 
-            template = render_to_string("webwares/email.html", {"officer": officer.account.username, "contributor": post.user.account.username, "post": post, "scheme": scheme, "host": host})
+            template = render_to_string("contributor/service/post/email.html", {"officer": officer.account.username, "contributor": post.user.account.username, "post": post, "scheme": scheme, "host": host})
 
             body = strip_tags(template)
 
@@ -667,7 +688,7 @@ def ContributorServicePostDraftSendFetch(request):
 
         username = request.user.username
 
-        messages.success(request, username + ", " + "your information input was sent to COTSEye.")
+        messages.success(request, username + ", " + "Your post has been successfully sent. Kindly wait for an approval email in the next 3 to 5 business days.")
     
         return redirect("Contributor Service Post")
 
@@ -693,7 +714,7 @@ def ContributorServicePostDraftDelete(request, id):
 
         username = request.user.username
         
-        messages.success(request, username + ", " + "your information input was vanished from COTSEye.")
+        messages.success(request, username + ", " + "your post input has been successfully deleted.")
             
         return redirect("Contributor Service Post")
 
@@ -727,23 +748,75 @@ def ContributorServicePostDraftDeleteFetch(request):
 def OfficerControlSighting(request):
     notification_life = timezone.now() - timedelta(days = 30) 
 
-    unread_notifications = Post.objects.filter(read_status = False, creation_date__gte=notification_life).order_by("-creation_date")[:5]
+    user = User.objects.get(account = request.user)
 
-    posts = Post.objects.exclude(post_status = 4).order_by('-creation_date')
+    unread_notifications = Notification.objects.filter(user = user, is_read = False, creation_date__gte = notification_life).order_by("-creation_date")[:3]
+
+    posts = Post.objects.exclude(post_status = 4).order_by("-creation_date")
 
     locations = Location.objects.all()
 
-    municipalities = Location.objects.values('municipality').distinct()
+    municipalities = Municipality.objects.values('municipality_name').distinct()
     
-    context = {"unread_notifications": unread_notifications, "posts": posts, "locations": locations, 'municipalities': municipalities,}  
+    context = {"unread_notifications": unread_notifications, "posts": posts, "locations": locations, 'municipalities': municipalities}  
     
     return render(request, 'officer/control/sighting/sighting.html', context)
 
 
 @login_required(login_url = "Officer Control Login")
 @user_passes_test(OfficerCheck, login_url = "Officer Control Login")
-def add_remark(request, post_id):
-    post = get_object_or_404(Post, id = post_id)
+def OfficerControlSightingRead(request, id):
+    notification_life = timezone.now() - timedelta(days = 30) 
+
+    user = User.objects.get(account = request.user)
+
+    unread_notifications = Notification.objects.filter(user = user, is_read = False, creation_date__gte = notification_life).order_by("-creation_date")[:3]
+    
+    post = get_object_or_404(Post, id = id)
+
+    other_posts = Post.objects.exclude(id = id).exclude(post_status = 4).order_by("-capture_date")[:5]
+
+    post_photos = post.post_photos.all()
+
+    other_photos = []
+
+    locations = Location.objects.all()
+
+    municipalities = Municipality.objects.all()
+
+    for other_post in other_posts:
+        first_photo = other_post.post_photos.first()
+
+        other_photos.append({"post": other_post, "first_photo": first_photo})
+    
+    context = {"unread_notifications": unread_notifications, "post": post, "other_posts_with_photos": other_photos, 'municipalities': municipalities, "post_photos": post_photos, "locations": locations}
+    
+    return render(request, "officer/control/sighting/read.html", context)
+
+
+def OfficerControlSightingReadRedirect(request, id):
+    object = Post.objects.get(id = id)
+
+    if request.user.is_authenticated:
+        usertype = request.user.usertype_id
+
+        if usertype == 3:
+            return redirect(reverse("Officer Control Sighting Read", kwargs = {"object_id": object.id}))
+        
+        elif usertype == 2:
+            return redirect(reverse("Officer Control Sighting Read", kwargs = {"object_id": object.id}))
+
+        elif usertype == 1:
+            return redirect(reverse("admin:reports_post_change", kwargs = {"object_id": object.id}))
+
+    else:
+        return redirect(reverse("Officer Control Sighting Read", kwargs = {"object_id": object.id}))
+    
+
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
+def OfficerControlSightingAdd(request, id):
+    post = get_object_or_404(Post, id = id)
 
     if request.method == "POST":
         data = json.loads(request.body)
@@ -754,24 +827,118 @@ def add_remark(request, post_id):
         
         post.save()
         
-        return JsonResponse({"success": True, "message": "Remark added successfully."})
+        return JsonResponse({"success": True, "message": "The remark has been successfully added."})
     
-    return JsonResponse({"success": False, "message": "Invalid request method."})
+    return JsonResponse({"success": False, "message": "The remark could not be added. Kindly try again later."})
+
 
 @login_required(login_url = "Officer Control Login")
 @user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def OfficerControlSightingUpdate(request, id):
     post = get_object_or_404(Post, id = id)
 
-    data = {"latitude": post.location.latitude, "longitude": post.location.longitude, "location": {"municipality": post.location.municipality, "barangay": post.location.barangay}}
+    data = {"latitude": post.location.latitude, "longitude": post.location.longitude, "location": {"municipality": post.location.municipality.municipality_name, "barangay": post.location.barangay.barangay_name}}
     
     return JsonResponse(data)
 
 
 @login_required(login_url = "Officer Control Login")
 @user_passes_test(OfficerCheck, login_url = "Officer Control Login")
+def OfficerControlSightingValid(request):
+    if request.method == "POST" and request.headers.get("x-requested-with") == "XMLHttpRequest":
+        id = request.POST.get("post_id")
+
+        post = get_object_or_404(Post, id = id)
+        
+        current_time = timezone.now()
+       
+        post.post_status = PostStatus.objects.get(id = 1)
+        
+        if request.user.usertype.id == 2:
+            post.validator = request.user.user
+
+        post.read_date = current_time
+        
+        post.save()
+
+        return JsonResponse({"success": True, "message": "The post status has been successfully updated."})
+    
+    return JsonResponse({"success": False, "message": "The post status could not be updated. Kindly try again later."}, status=400)
+
+
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
+def OfficerControlSightingInvalid(request):
+    if request.method == "POST" and request.headers.get("x-requested-with") == "XMLHttpRequest":
+        id = request.POST.get("post_id")
+
+        remarks = request.POST.get("remarks")
+        
+        post = get_object_or_404(Post, id=id)
+        
+        current_time = timezone.now()
+       
+       
+        post.post_status = PostStatus.objects.get(id=2)
+        
+        if request.user.usertype.id == 2:
+            post.validator = request.user.user
+        
+        post.remarks = remarks 
+        
+        post.save()
+
+        return JsonResponse({"success": True, "message": "The post status has been successfully updated."})
+        
+    return JsonResponse({"success": False, "message": "The post status could not be updated. Kindly try again later."}, status = 400)
+    
+
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
+def OfficerControlSightingDelete(request, id):
+    if request.method == "DELETE":
+        try:
+            photo = get_object_or_404(PostPhoto, id = id)
+
+            photo.delete()
+            
+            return JsonResponse({"success": True})
+        
+        except:
+            return JsonResponse({"success": False}, status = 400)
+        
+    return JsonResponse({"success": False}, status = 405)
+
+
+def PostValidReadRedirect(request, id):
+    if request.user.is_authenticated:
+        usertype = request.user.usertype_id
+
+        if usertype == 3:
+            object = Post.objects.get(id = id)
+
+            return redirect(reverse("Contributor Service Post Feed Read", kwargs = {"id": object.id}))
+
+        elif usertype == 2:
+            object = Account.objects.get(id = request.user.id)
+
+            return redirect(reverse("Officer Control Sighting Read", kwargs = {"id": object.id}))
+
+        elif usertype == 1:
+            object = Account.objects.get(id = request.user.id)
+
+            return redirect(reverse("admin:reports_post_change", kwargs = {"object_id": object.id}))
+    
+    else:
+        object = Post.objects.get(id = id)
+
+        return redirect(reverse("Public Service Post Feed Read", kwargs = {"id": object.id}))
+    
+
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def update_post(request, post_id):
-    post = get_object_or_404(Post, id=post_id)
+    post = get_object_or_404(Post, id = post_id)
 
     data = json.loads(request.body)
 
@@ -798,7 +965,7 @@ def update_post(request, post_id):
 
         print(f"Updated post coordinates: {post.coordinates.latitude}° N, {post.coordinates.longitude}° E")
         
-        location = get_object_or_404(Location, municipality = municipality, barangay = barangay)
+        location = get_object_or_404(Location, municipality__municipality_name = municipality, barangay__barangay_name = barangay)
 
         post.location = location
         
@@ -808,165 +975,3 @@ def update_post(request, post_id):
     
     except Exception as e:
         return JsonResponse({"status": "error", "message": str(e)}, status = 400)
-    
-
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
-def mark_post_as_read(request, id):
-    post = Post.objects.get(id = id)
-
-    post.read_status = True
-
-    post.read_date = timezone.now()
-
-    if request.user.usertype.id == 2:
-        post.validated_by = request.user.user
-        
-    print(post.read_status, post.read_date, post.validated_by)
-
-    post.save()
-
-    return redirect("Officer Control Notification")
-
-
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
-def OfficerControlSightingRead(request, id):
-    notification_life = timezone.now() - timedelta(days = 30) 
-
-    unread_notifications = Post.objects.filter(read_status=False, creation_date__gte=notification_life).order_by("-creation_date")[:5]
-
-    post = get_object_or_404(Post, id = id)
-
-    other_posts = Post.objects.exclude(id = id).exclude(post_status = 4).order_by("-capture_date")[:5]
-
-    post_photos = post.post_photos.all()
-
-    other_photos = []
-
-    locations = Location.objects.all()
-
-    municipalities = Location.objects.values('municipality').distinct()
-
-
-    for other_post in other_posts:
-        first_photo = other_post.post_photos.first()
-
-        other_photos.append({"post": other_post, "first_photo": first_photo})
-    
-    context = {"unread_notifications": unread_notifications, "post": post, "other_posts_with_photos": other_photos, 'municipalities': municipalities, "post_photos": post_photos, "locations": locations}
-    
-    return render(request, "officer/control/sighting/read.html", context)
-
-
-def OfficerControlSightingReadRedirect(request, object_id):
-    object = Post.objects.get(id = object_id)
-
-    if request.user.is_authenticated:
-        usertype = request.user.usertype_id
-
-        if usertype == 3:
-            return redirect(reverse("Officer Control Sighting Read", kwargs = {"object_id": object.id}))
-        
-        elif usertype == 2:
-            return redirect(reverse("Officer Control Sighting Read", kwargs = {"object_id": object.id}))
-
-        elif usertype == 1:
-            return redirect(reverse("admin:reports_post_change", kwargs = {"object_id": object.id}))
-
-    else:
-        return redirect(reverse("Officer Control Sighting Read", kwargs = {"object_id": object.id}))
-    
-
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
-def DeletePostPhoto(request, photo_id):
-    if request.method == "DELETE":
-        try:
-            photo = get_object_or_404(PostPhoto, id = photo_id)
-
-            photo.delete()
-            
-            return JsonResponse({"success": True})
-        
-        except:
-            return JsonResponse({"success": False}, status = 400)
-        
-    return JsonResponse({"success": False}, status = 405)
-
-
-@login_required(login_url="Officer Control Login")
-@user_passes_test(OfficerCheck, login_url="Officer Control Login")
-def OfficerControlSightingValid(request):
-    if request.method == "POST" and request.headers.get("x-requested-with") == "XMLHttpRequest":
-        id = request.POST.get("post_id")
-
-        post = get_object_or_404(Post, id=id)
-        
-        current_time = timezone.now()
-       
-        post.post_status = PostStatus.objects.get(id=1)
-        
-        if request.user.usertype.id == 2:
-            post.validated_by = request.user.user
-
-        post.read_date = current_time
-        
-        post.save()
-
-        return JsonResponse({"success": True, "message": "Post status updated successfully."})
-    
-    return JsonResponse({"success": False, "message": "Invalid request method."}, status=400)
-
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
-def OfficerControlSightingInvalid(request):
-    if request.method == "POST" and request.headers.get("x-requested-with") == "XMLHttpRequest":
-        id = request.POST.get("post_id")
-
-        remarks = request.POST.get("remarks")
-        
-        post = get_object_or_404(Post, id=id)
-        
-        current_time = timezone.now()
-       
-        if post.read_date is None:
-            post.post_status = PostStatus.objects.get(id=2)
-            
-            if request.user.usertype.id == 2:
-                post.validated_by = request.user.user
-            
-            post.remarks = remarks 
-
-            post.read_date = current_time  
-            
-            post.save()
-
-            return JsonResponse({"success": True, "message": "Post status updated to invalid with remarks. Read Date updated."})
-        
-    return JsonResponse({"success": False, "message": "Invalid request method."}, status = 400)
-    
-
-def PostValidReadRedirect(request, id):
-    if request.user.is_authenticated:
-        usertype = request.user.usertype_id
-
-        if usertype == 3:
-            object = Post.objects.get(id = id)
-
-            return redirect(reverse("Contributor Service Post Feed Read", kwargs = {"id": object.id}))
-
-        elif usertype == 2:
-            object = Account.objects.get(id = request.user.id)
-
-            return redirect(reverse("Officer Control Sighting Read", kwargs = {"id": object.id}))
-
-        elif usertype == 1:
-            object = Account.objects.get(id = request.user.id)
-
-            return redirect(reverse("admin:reports_post_change", kwargs = {"object_id": object.id}))
-    
-    else:
-        object = Post.objects.get(id = id)
-
-        return redirect(reverse("Public Service Post Feed Read", kwargs = {"id": object.id}))

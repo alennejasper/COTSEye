@@ -1,3 +1,8 @@
+.content:has(.feed-body){
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
 .feed-body{
     position: relative;
     width: 100%;
@@ -25,7 +30,7 @@
 
 .feed-body .feed{
     padding-bottom: 15px;
-    border-bottom: 1px solid #003755;
+    border-bottom: 1px solid #B2BEB5;
 }
 
 .feed-body .feed:last-child{
@@ -43,6 +48,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding-left: 30px;
+    padding-right: 30px;
     padding-top: 15px;
     padding-bottom: 15px;
 }
@@ -53,6 +60,8 @@
 
 @media screen and (min-width: 320px) and (max-width: 775px){
     .feed-body .feed .feed-header{
+        padding-left: 10px;
+        padding-right: 10px;
         padding-top: 5px;
         padding-bottom: 5px;
     }
@@ -72,7 +81,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     font-family: "Montserrat";
-    font-weight: 700;
+    font-weight: 600;
     font-size: 20px !important;
     color: #003755;
 }
@@ -183,37 +192,16 @@
 .feed-body .feed .feed-header img{
     margin-right: 10px !important;
     margin-bottom: 0px !important;
-    width: 24px;
-    height: 24px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     cursor: pointer;
 }
 
-@media screen and (min-width: 446px) and (max-width: 775px){
+@media screen and (min-width: 320px) and (max-width: 775px){
     .feed-body .feed .feed-header img{
-        width: 22px;
-        height: 22px;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .feed-body .feed .feed-header img{
-        width: 20px;
-        height: 20px;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .feed-body .feed .feed-header img{
-        width: 18px;
-        height: 18px;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .feed-body .feed .feed-header img{
-        width: 16px;
-        height: 16px;
+        width: 28px;
+        height: 28px;
     }
 }
 
@@ -251,8 +239,7 @@
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
-    margin-bottom: 0px !important;
-    padding-bottom: 15px;
+    margin-bottom: 15px;
     overflow: hidden;
     font-family: "Montserrat";
     font-weight: 700;
@@ -262,28 +249,28 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .feed-body .feed > h1{
-        padding-bottom: 5px;
+        margin-bottom: 5px;
         font-size: 22px !important;
     }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .feed-body .feed > h1{
-        padding-bottom: 5px;
+        margin-bottom: 5px;
         font-size: 20px !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .feed-body .feed > h1{
-        padding-bottom: 5px;
+        margin-bottom: 5px;
         font-size: 18px !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .feed-body .feed > h1{
-        padding-bottom: 5px;
+        margin-bottom: 5px;
         font-size: 16px !important;
     }
 }

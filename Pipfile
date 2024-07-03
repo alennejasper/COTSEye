@@ -9,6 +9,7 @@ django-jazzmin = "*"
 django-allauth = "*"
 psycopg2 = "*"
 pillow = "*"
+dj-database-url = "==2.2.0"
 
 [dev-packages]
 

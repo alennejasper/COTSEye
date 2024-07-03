@@ -20,18 +20,17 @@
                         </div>
                     </div>
 
-                    <p>{{intervention.intervention_date | date:'m/d/Y' | default:'None available'}}</p>
+                    <p>{{intervention.event_date | date:'m/d/Y' | default:'None available'}}</p>
                 </div>
 
-                <h1>{{intervention.title | default:'None available'}}</h1>
-
+                <!-- <h1>{{intervention.title | default:'None available'}}</h1> -->
 
                 <div class = "interventionread-gallery">
                     <img src = "{{intervention.intervention_photo.url}}">
                 </div>
 
                 <div class = "interventionread-origin">
-                    <h1>Major Details</h1>
+                    <h1>Activity Details</h1>
 
                     <div class = "origin-context">
                         <p>Activity Date:</p>

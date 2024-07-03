@@ -58,7 +58,7 @@ nav.navigation-topbar{
     padding-bottom: 15px;
     width: 100%;
     background-color: #FFFFFF;
-    border-bottom: 1px solid #003755;
+    border-bottom: 1px solid #B2BEB5;
     z-index: 100;
 }
 
@@ -394,7 +394,7 @@ nav.navigation-bottombar{
     padding-top: 15px;
     padding-bottom: 15px;
     width: 100%;
-    border-top: 1px solid #003755;
+    border-top: 1px solid #B2BEB5;
     background-color: #FFFFFF;
     z-index: 100;
 }
@@ -532,7 +532,7 @@ nav.navigation-bottombar img:active{
     top: 40px;    
     max-width: 400px;
     border-radius: 5px;
-    border: 1px solid #003755;     
+    border: 1px solid #B2BEB5; 
     background-color: #FFFFFF;
     z-index: 100;
 }
@@ -552,27 +552,29 @@ nav.navigation-bottombar img:active{
     padding-top: 15px;
     padding-bottom: 15px;
     white-space: wrap;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     font-family: "Montserrat";
     font-weight: 700;
     font-size: 24px;
-    background-color: #003755;
+    background-color: rgb(52, 144, 242);
     color: #FFFFFF;
     text-align: center;
     text-decoration: none !important;
 }
 
 .profile-content a.dropdown-header:hover{
-    background-color: #002C44 !important;
+    background-color: rgb(52, 144, 242) !important;
     color: #B2BEB5 !important;
 }
 
 .profile-content a.dropdown-header:focus{
-    background-color: #002C44 !important;
+    background-color: rgb(52, 144, 242) !important;
     color: #B2BEB5 !important;
 }
 
 .profile-content a.dropdown-header:active{
-    background-color: #002C44 !important;
+    background-color: rgb(52, 144, 242) !important;
     color: #B2BEB5 !important;
 }
 
@@ -738,7 +740,7 @@ nav.navigation-bottombar img:active{
 .profile-content .dropdown-divider{
     margin-top: 0px !important;
     margin-bottom: 0px !important;
-    border-bottom: 1px solid #003755; 
+    border-bottom: 1px solid #B2BEB5; 
 }
 
 .profile-content a.dropdown-footer{
@@ -748,27 +750,29 @@ nav.navigation-bottombar img:active{
     padding-top: 15px;
     padding-bottom: 15px;
     white-space: wrap;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
     font-family: "Montserrat";
     font-weight: 700;
     font-size: 24px;
-    background-color: #003755;
+    background-color: rgb(52, 144, 242);
     color: #FFFFFF;
     text-align: center;
     text-decoration: none !important;
 }
 
 .profile-content a.dropdown-footer:hover{
-    background-color: #002C44 !important;
+    background-color: rgb(52, 144, 242) !important;
     color: #B2BEB5 !important;
 }
 
 .dropdown-content a.dropdown-footer:focus{
-    background-color: #002C44 !important;
+    background-color: rgb(52, 144, 242) !important;
     color: #B2BEB5 !important;
 }
 
 .profile-content a.dropdown-footer:active{
-    background-color: #002C44 !important;
+    background-color: rgb(52, 144, 242) !important;
     color: #B2BEB5 !important;
 }
 
@@ -823,8 +827,8 @@ nav.navigation-bottombar img:active{
     right: 100px;
     top: 40px;    
     max-width: 400px;
-    border-radius: 5px;
-    border: 1px solid #003755;     
+    border-radius: 10px;
+    border: 1px solid #B2BEB5; 
     background-color: #FFFFFF;
     z-index: 100;
 }
@@ -844,28 +848,27 @@ nav.navigation-bottombar img:active{
     padding-top: 15px;
     padding-bottom: 15px;
     white-space: wrap;
-    background-color: #FFFFFF;
     text-decoration: none !important;
     font-family: "Montserrat";
     font-weight: 400;
     font-size: 20px;
     background-color: #FFFFFF;
-    color: #003755;
+    color: rgb(52, 144, 242);
     text-decoration: none !important;
 }
 
 .notification-content .dropdown-item:hover{
-    color: #002C44 !important;
+    color: rgb(52, 144, 242) !important;
     background-color: #B2BEB5;
 }
 
 .notification-content .dropdown-item:focus{
-    color: #002C44 !important;
+    color: rgb(52, 144, 242) !important;
     background-color: #B2BEB5;
 }
 
 .notification-content .dropdown-item:active{
-    color: #002C44 !important;
+    color: rgb(52, 144, 242) !important;
     background-color: #B2BEB5;
 }
 
@@ -907,6 +910,22 @@ nav.navigation-bottombar img:active{
         padding-bottom: 5px !important;
         font-size: 12px;
     }
+}
+
+.notification-content .dropdown-item:first-child{
+    display: inline-block;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 20px;
+    background-color: rgb(52, 144, 242);
+    color: #003755;
+    text-decoration: none !important;
 }
 
 .notification-content .dropdown-item .item-header{
@@ -1002,7 +1021,7 @@ nav.navigation-bottombar img:active{
 .notification-content .dropdown-divider{
     margin-top: 0px !important;
     margin-bottom: 0px !important;
-    border-bottom: 1px solid #003755; 
+    border-bottom: 1px solid #B2BEB5; 
 }
 
 .notification-content a.dropdown-footer{
@@ -1012,27 +1031,29 @@ nav.navigation-bottombar img:active{
     padding-top: 15px !important;
     padding-bottom: 15px !important;
     white-space: wrap;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
     font-family: "Montserrat";
-    font-weight: 700;
-    font-size: 24px;
-    background-color: #003755;
+    font-weight: 400;
+    font-size: 20px;
+    background-color: rgb(52, 144, 242);
     color: #FFFFFF;
     text-align: center;
     text-decoration: none !important;
 }
 
 .notification-content a.dropdown-footer:hover{
-    background-color: #002C44 !important;
+    background-color: rgb(52, 144, 242) !important;
     color: #B2BEB5 !important;
 }
 
 .notification-content a.dropdown-footer:focus{
-    background-color: #002C44 !important;
+    background-color: rgb(52, 144, 242) !important;
     color: #B2BEB5 !important;
 }
 
 .notification-content a.dropdown-footer:active{
-    background-color: #002C44 !important;
+    background-color: rgb(52, 144, 242) !important;
     color: #B2BEB5 !important;
 }
 
@@ -1042,7 +1063,7 @@ nav.navigation-bottombar img:active{
         padding-right: 10px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
-        font-size: 22px;
+        font-size: 18px;
     }
 }
 
@@ -1052,7 +1073,7 @@ nav.navigation-bottombar img:active{
         padding-right: 10px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
-        font-size: 20px;
+        font-size: 16px;
     }
 }
 
@@ -1062,7 +1083,7 @@ nav.navigation-bottombar img:active{
         padding-right: 10px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
-        font-size: 18px;
+        font-size: 14px;
     }
 }
 
@@ -1072,7 +1093,7 @@ nav.navigation-bottombar img:active{
         padding-right: 10px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
-        font-size: 16px;
+        font-size: 12px;
     }
 }
 

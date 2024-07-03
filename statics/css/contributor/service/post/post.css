@@ -1,3 +1,8 @@
+.content:has(.post-body){
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
 .post-body{
     position: relative;
     width: 100%;
@@ -49,6 +54,7 @@
 .post-body .post-filter button{
     display: block;
     margin-left: auto;
+    padding-right: 30px;
     padding-bottom: 15px;
     outline: none !important;
     border: none !important;
@@ -61,6 +67,7 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .post-body .post-filter button{
+        padding-right: 10px;
         padding-bottom: 5px;
         font-size: 22px;
     }
@@ -68,6 +75,7 @@
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .post-body .post-filter button{
+        padding-right: 10px;
         padding-bottom: 5px;
         font-size: 20px !important;
     }
@@ -75,6 +83,7 @@
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .post-body .post-filter button{
+        padding-right: 10px;
         padding-bottom: 5px;
         font-size: 18px !important;
     }
@@ -82,6 +91,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .post-body .post-filter button{
+        padding-right: 10px;
         padding-bottom: 5px;
         font-size: 16px !important;
     }
@@ -93,11 +103,15 @@
 
 .post-body .post-filter .hidden{
     display: grid;
+    padding-left: 30px;
+    padding-right: 30px;
     padding-bottom: 15px;
 }
 
 @media screen and (min-width: 320px) and (max-width: 775px){
     .post-body .post-filter .hidden{
+        padding-left: 10px;
+        padding-right: 10px;
         padding-bottom: 5px;
     }
 }
@@ -107,10 +121,10 @@
     padding-right: 30px;
     padding-top: 15px;
     padding-bottom: 15px;
-    border-left: 1px solid #003755;
-    border-right: 1px solid #003755;
-    border-top: 1px solid #003755;
-    border-bottom: 1px solid #003755;
+    border-left: 1px solid #B2BEB5;
+    border-right: 1px solid #B2BEB5;
+    border-top: 1px solid #B2BEB5;
+    border-bottom: 1px solid #B2BEB5;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     font-family: "Montserrat";
@@ -166,9 +180,9 @@
     padding-right: 30px;
     padding-top: 15px;
     padding-bottom: 15px;
-    border-left: 1px solid #003755;
-    border-right: 1px solid #003755;
-    border-bottom: 1px solid #003755;
+    border-left: 1px solid #B2BEB5;
+    border-right: 1px solid #B2BEB5;
+    border-bottom: 1px solid #B2BEB5;
     font-family: "Montserrat";
     font-weight: 700;
     font-size: 20px;
@@ -222,7 +236,7 @@
     padding-right: 30px;
     padding-top: 15px;
     padding-bottom: 15px;
-    border-bottom: 1px solid #003755;
+    border-bottom: 1px solid #B2BEB5;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     font-family: "Montserrat";
@@ -275,7 +289,7 @@
 
 .post-body .post{
     padding-bottom: 15px;
-    border-bottom: 1px solid #003755;
+    border-bottom: 1px solid #B2BEB5;
 }
 
 .post-body .post:last-child{
@@ -293,16 +307,20 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding-left: 30px;
+    padding-right: 30px;
     padding-top: 15px;
     padding-bottom: 15px;
 }
 
-.post-body .post:first-child .post-header{
+.post-body .post-post .post:first-child .post-header{
     padding-top: 0px;
 }
 
 @media screen and (min-width: 320px) and (max-width: 775px){
-    .post-body .post .post-header{
+    .post-body .post-post .post .post-header{
+        padding-left: 10px;
+        padding-right: 10px;
         padding-top: 5px;
         padding-bottom: 5px;
     }
@@ -433,37 +451,16 @@
 .post-body .post-post .post .post-header img{
     margin-right: 10px !important;
     margin-bottom: 0px !important;
-    width: 24px;
-    height: 24px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     cursor: pointer;
 }
 
-@media screen and (min-width: 446px) and (max-width: 775px){
+@media screen and (min-width: 320px) and (max-width: 775px){
     .post-body .post-post .post .post-header img{
-        width: 22px;
-        height: 22px;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .post-body .post-post .post .post-header img{
-        width: 20px;
-        height: 20px;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .post-body .post-post .post .post-header img{
-        width: 18px;
-        height: 18px;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .post-body .post-post .post .post-header img{
-        width: 16px;
-        height: 16px;
+        width: 28px;
+        height: 28px;
     }
 }
 
@@ -501,8 +498,7 @@
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
-    margin-bottom: 0px !important;
-    padding-bottom: 15px;
+    margin-bottom: 15px;
     overflow: hidden;
     font-family: "Montserrat";
     font-weight: 700;
@@ -512,28 +508,28 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .post-body .post > h1{
-        padding-bottom: 5px;
+        margin-bottom: 5px;
         font-size: 22px !important;
     }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .post-body .post > h1{
-        padding-bottom: 5px;
+        margin-bottom: 5px;
         font-size: 20px !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .post-body .post > h1{
-        padding-bottom: 5px;
+        margin-bottom: 5px;
         font-size: 18px !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .post-body .post > h1{
-        padding-bottom: 5px;
+        margin-bottom: 5px;
         font-size: 16px !important;
     }
 }

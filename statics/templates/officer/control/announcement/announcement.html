@@ -35,8 +35,37 @@
         }
 
         .table > :not(caption) > * > *{
-            padding: 9px !important;
+            padding: 15px 30px !important;
         }   
+
+        #announcementsTable td{
+            display: table-cell !important; 
+            max-width: 0px; 
+            font-family: 'Montserrat'; 
+            font-weight: 400; 
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .select2-container:has(span[title = "Select Barangay"]){
+            display: none;
+        }
+
+        .select2-container .select2-selection{
+            font-family: "Montserrat";
+            font-weight: 400;
+            font-size: 12px !important;
+        }
+
+        .select2-results__option{
+            padding-left: 10px !important;
+            padding-right: 10px !important;
+            padding-top: 5px !important;
+            padding-bottom: 5px !important;
+            font-family: "Montserrat";
+            font-weight: 400;
+            font-size: 12px !important;
+        }
     </style>
 
     <div class = "container-fluid mt-3">
@@ -44,41 +73,51 @@
             <div class = "col-12 col-md-3">
                 <div class = "filtercont">
                     <div class = "card-body">
-                        <p style = "margin-bottom: 0px !important; font-size: 17px !important; font-weight: 500; color: rgb(28, 179, 234);" class = "fs-3 mb-3">FILTER</p>
+                        <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 20px !important; color: rgb(52, 144, 242);" class = "fs-3 mb-3">FILTER</p>
 
-                        <div class = "mb-3">
-                            <label style = "margin-bottom: 0px !important; font-size: 15px; color: rgb(28, 186, 234); margin-top: 10px !important;" for = "searchBar" class = "form-label">Title</label>
+                        <p style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: rgb(28, 186, 234);">Title</p>
+
+                        <div>                            
+                            <input style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;" type = "text" id = "searchBar" class = "form-control" placeholder = "Search by title...">
+                        </div>
+
+                        <p style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: rgb(28, 186, 234);">Location</p>
+
+                        <div>
+                            <label for = "municipalityFilter" class = "form-label" style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">Municipality:</label>
+
+                            <select id = "municipalityFilter" class = "form-select form-select-sm mb-3 select2" onchange = "updateBarangayOptions()">
+                                <option value = "" disabled = "disabled" selected = "selected" style = "display: none;">Municipality</option>
+    
+                                {% for location in municipalities %}
+                                    <option value = "{{location.municipality_name}}" {% if request.GET.location == location.municipality_name %} selected {% endif %}>{{location.municipality_name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div>
+                            <label id = "barangayLabel" for = "barangayFilter" class = "form-label" style = "display: none; margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">Barangay:</label>
+
+                            <select id = "barangayFilter" class = "form-select form-select-sm mb-3 select2">
+                                <option value = "" disabled = "disabled" selected = "selected" style = "display: none;">Select Barangay</option>
+                            </select>
+                        </div>
+
+                        <p style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: rgb(28, 186, 234);">Date</p>
+
+                        <div>
+                            <label for = "dateFrom" class = "form-label" style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">From:</label>
+
+                            <input style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;" type = "date" id = "dateFrom" name = "dateFrom" class = "form-control form-control-sm">
+                        </div>
+
+                        <div>
+                            <label for = "dateTo" class = "form-label" style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">To:</label>
                             
-                            <input style = "margin-bottom: 0px !important; font-size: 13px !important;" type = "text" id = "searchBar" class = "form-control" placeholder = "Search by title...">
+                            <input style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;" type = "date" id = "dateTo" name = "dateTo" class = "form-control form-control-sm">
                         </div>
 
-                        <select id = "municipalityFilter" class = "form-select form-select-sm mb-3 select2" onchange = "updateBarangayOptions()">
-                            <option value = "">Municipality</option>
-
-                            {% for location in municipalities %}
-                                <option value = "{{location.municipality}}">{{location.municipality}}</option>
-                            {% endfor %}
-                        </select>
-
-                        <select id = "barangayFilter" class = "form-select form-select-sm mb-3 select2">
-                            <option value = "">Barangay</option>
-                        </select>
-
-                        <p style = "margin-bottom: 0px !important; font-size: 15px; color: rgb(28, 186, 234); margin-top: 10px !important;" scope = "col" class = "mb-1">Date</p>
-
-                        <div class = "mb-3">
-                            <label for = "dateFrom" class="form-label" style="margin-bottom: 0px !important; font-size: 13px;">From:</label>
-
-                            <input type = "date" id = "dateFrom" name = "dateFrom" class = "form-control form-control-sm">
-                        </div>
-
-                        <div class = "mb-3">
-                            <label for = "dateTo" class = "form-label" style = "margin-bottom: 0px !important; font-size: 13px;">To:</label>
-                            
-                            <input type = "date" id = "dateTo" name = "dateTo" class = "form-control form-control-sm">
-                        </div>
-
-                        <label style = "margin-top: 10px !important; margin-bottom: 0px !important; font-size: 15px; color: rgb(28, 186, 234);" for = "orderBy" class = "form-label">Order by</label>
+                        <p style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: rgb(28, 186, 234);">Order by</p>
                         
                         <select id = "orderBy" class = "form-select form-select-sm mb-3 select2">
                             <option value = "latest">Latest</option>
@@ -86,33 +125,33 @@
                             <option value = "oldest">Oldest</option>
                         </select>
 
-                        <button type = "button" class = "filterbutton" onclick = "filterAnnouncements()">Apply Filter</button>
+                        <button style = "margin-top: 0px !important;" type = "button" class = "filterbutton" onclick = "filterAnnouncements()">Apply Filter</button>
 
-                        <button type = "button" class  ="resetbutton" onclick = "resetFilter()">Reset Filter</button>
+                        <button type = "button" class = "resetbutton" onclick = "resetFilter()">Reset Filter</button>
                     </div>
                 </div>
             </div>
 
             <div class = "col-12 col-md-9">
                 <div class = "table-container mb-3">
-                    <button class = "btn btn-primary" style = "float: right; margin-top: 6px; background-color: rgb(30, 173, 95);" onclick = "window.location.href = '{% url 'Officer Control Add Announcement' %}'">ADD NEW</button>
+                    <button class = "btn btn-primary" style = "float: right; margin-top: 7px; padding-left: 10px !important; padding-right: 10px !important; padding-top: 5px !important; padding-bottom: 5px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px; background-color: rgb(30, 173, 95);" onclick = "window.location.href = '{% url 'Officer Control Announcement Add' %}'">ADD NEW</button>
 
-                    <h2 style = "font-size: 19px; color: rgb(52, 144, 242); border-bottom: 1px solid rgba(229, 229, 229);">ALL ANNOUNCEMENTS</h2>
+                    <h2 style = "border-bottom: 1px solid rgba(229, 229, 229); font-family: 'Montserrat'; font-weight: 700; font-size: 20px; color: rgb(52, 144, 242);">ALL ANNOUNCEMENTS</h2>
                                         
-                    <table class = "table table-hover">
+                    <table class = "table table-hover" style = "display: table; margin-bottom: 15px !important; width: 100%;">
                         <thead class = "thead-dark">
                             <tr>
-                                <th style = "font-size: 15px; color: rgb(28, 169, 234);" scope = "col">Event Date</th>
+                                <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">Event Date</th>
 
-                                <th style = "font-size: 15px; color: rgb(28, 169, 234);" scope = "col">Title</th>
+                                <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">Title</th>
                                 
-                                <th style = "font-size: 15px; color: rgb(28, 169, 234);" scope = "col">Municipality</th>
+                                <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">Municipality</th>
                                 
-                                <th style = "font-size: 15px; color: rgb(28, 169, 234);" scope = "col">Barangay</th>
+                                <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">Barangay</th>
                                 
-                                <th style = "font-size: 15px; color: rgb(28, 169, 234);" scope = "col">Hosting Agency</th>
+                                <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">Hosting Agency</th>
                                 
-                                <th style = "font-size: 15px; color: rgb(28, 169, 234);" scope = "col"></th>
+                                <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col"></th>
                             </tr>
                         </thead>
 
@@ -178,11 +217,11 @@
                     titleCell.innerText = announcement.title;
                     
                     titleCell.addEventListener("click", function(){
-                        window.location.href = "{% url 'Officer Control Announcement' 0 %}".replace("0", announcement.id);
+                        window.location.href = "{% url 'Officer Control Announcement Read' 0 %}".replace("0", announcement.id);
                     });
 
                     dateCell.addEventListener("click", function(){
-                        window.location.href = "{% url 'Officer Control Announcement' 0 %}".replace("0", announcement.id);
+                        window.location.href = "{% url 'Officer Control Announcement Read' 0 %}".replace("0", announcement.id);
                     });
 
                     let municipalityCell = row.insertCell(2);
@@ -190,7 +229,7 @@
                     municipalityCell.innerText = announcement.municipality;
                     
                     municipalityCell.addEventListener("click", function(){
-                        window.location.href = "{% url 'Officer Control Intervention Detail' 0 %}".replace("0", announcement.id);
+                        window.location.href = "{% url 'Officer Control Announcement Read' 0 %}".replace("0", announcement.id);
                     });
 
                     let barangayCell = row.insertCell(3);
@@ -198,7 +237,7 @@
                     barangayCell.innerText = announcement.barangay;
                     
                     barangayCell.addEventListener("click", function(){
-                        window.location.href = "{% url 'Officer Control Intervention Detail' 0 %}".replace('0', announcement.id);
+                        window.location.href = "{% url 'Officer Control Announcement Read' 0 %}".replace('0', announcement.id);
                     });
 
                     let userCell = row.insertCell(4);
@@ -206,18 +245,20 @@
                     userCell.innerText = announcement.hosting_agency;
 
                     userCell.addEventListener("click", function(){
-                        window.location.href = "{% url 'Officer Control Announcement' 0 %}".replace('0', announcement.id);
+                        window.location.href = "{% url 'Officer Control Announcement Read' 0 %}".replace('0', announcement.id);
                     });
 
                     let actionsCell = row.insertCell(5);
 
                     actionsCell.innerHTML = 
                         `<div class = "button-container">
-                            <a onclick = "showDropdown(event)"><img height = "15px" style = "margin-right: 13px" src = "{% static 'assets/3dots.png' %}" class = "drop"></a>
+                            <a onclick = "showDropdown(event)"><img height = "15px" src = "{% static 'assets/icons/options.png' %}" class = "drop"></a>
 
                             <div class = "dropdown">
                                 <div class = "dropdown-content">
                                     <a class = "dropdown-header" onclick = "updateAnnouncement(${announcement.id})">Update</a>
+
+                                    <div class = "dropdown-divider"></div>
 
                                     <a class = "dropdown-footer" onclick = "deleteAnnouncement(${announcement.id}, ${startIndex}, ${index})">Delete</a>
                                 </div>
@@ -229,13 +270,22 @@
 
                 const totalPages = Math.ceil(filteredAnnouncements.length / itemsPerPage);
 
-                pagination.innerHTML = `<li class = "page-item ${currentPage === 1 ? 'disabled' : ''}"><a class = "page-link" href = "#" onclick = "changePage('prev')">Previous</a></li>`;
+                pagination.innerHTML = 
+                    `<li class = "page-item ${currentPage === 1 ? 'disabled' : ''}">
+                        <a class = "page-link" href = "#" onclick = "changePage('prev')">Previous</a>
+                    </li>`;
                 
                 for (let i = 1; i <= totalPages; i++){
-                    pagination.innerHTML += `<li class = "page-item ${i === currentPage ? 'active' : ''}"><a class = "page-link" href = "#" onclick = "changePage(${i})">${i}</a></li>`;
+                    pagination.innerHTML += 
+                        `<li class = "page-item ${i === currentPage ? 'active' : ''}">
+                            <a class = "page-link" href = "#" onclick = "changePage(${i})">${i}</a>
+                        </li>`;
                 };
 
-                pagination.innerHTML += `<li class = "page-item ${currentPage === totalPages ? 'disabled' : ''}"><a class = "page-link" href = "#" onclick = "changePage('next')">Next</a></li>`;
+                pagination.innerHTML += 
+                    `<li class = "page-item ${currentPage === totalPages ? 'disabled' : ''}">
+                        <a class = "page-link" href = "#" onclick = "changePage('next')">Next</a>
+                    </li>`;
             };
 
             window.showDropdown = function(event){
@@ -253,13 +303,13 @@
             });
 
             window.updateAnnouncement = function(id){
-                window.location.href = "{% url 'Officer Control Update Announcement' pk=0 %}".replace("0", id);
+                window.location.href = "{% url 'Officer Control Announcement Update' id=0 %}".replace("0", id);
             };
 
             window.deleteAnnouncement = function(id, startIndex, index){
-                Swal.fire({title: "Are you sure?", text: "You won't be able to revert this!", icon: "warning", showCancelButton: true, confirmButtonColor: "#3085D6", cancelButtonColor: "#D33", confirmButtonText: "Yes, delete it!"}).then((result) => {
+                Swal.fire({title: "Alert!", text: "Officer, are you sure that you want to delete the announcement?", icon: "warning", showCancelButton: true, confirmButtonColor: "#3085D6", cancelButtonColor: "#D33", confirmButtonText: "Yes"}).then((result) => {
                     if (result.isConfirmed){
-                        fetch("{% url 'Officer Control Delete Announcement' pk=0 %}".replace("0", id), {
+                        fetch("{% url 'Officer Control Announcement Delete' id=0 %}".replace("0", id), {
                             method: "DELETE",
 
                             headers: {
@@ -275,7 +325,7 @@
                                 displayAnnouncements(currentPage);
 
                             } else {
-                                alert("COTSEye has failed to delete the announcement.");
+                                alert("The announcement could not be deleted. Kindly try again later.");
                             };
                         });
                     };
@@ -333,11 +383,14 @@
                 };
 
                 currentPage = 1;
+
                 displayAnnouncements(currentPage);
             };
 
             window.updateBarangayOptions = function(){
                 const municipalityFilter = document.getElementById("municipalityFilter").value;
+
+                const barangayLabel = document.getElementById("barangayLabel");
 
                 const barangayFilter = document.getElementById("barangayFilter");
                 
@@ -345,7 +398,7 @@
 
                 if (municipalityFilter){
                     $.ajax({
-                        url: "{% url 'get_barangays' %}",
+                        url: "{% url 'Officer Control Barangay Read' %}",
 
                         data: {
                             "municipality": municipalityFilter
@@ -363,6 +416,10 @@
                             });
                         }
                     });
+
+                    barangayLabel.style.display = "block";
+
+                    barangayFilter.style.display = "block";
                 };
             };
 

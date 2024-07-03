@@ -13,17 +13,15 @@
 
         <script src = "{% static 'templates/webwares/application.js' %}"></script>
 
-        <meta name = "theme-color" content = "#003755">
+        <meta name = "theme-color" content = "rgb(52, 144, 242)">
 
         <link rel = "apple-touch-icon" href = "{% static 'assets/icons/logo (180 x 180).png' %}">
 
-        <meta name = "apple-mobile-web-app-status-bar" content = "#003755">
+        <meta name = "apple-mobile-web-app-status-bar" content = "rgb(52, 144, 242)">
 
         <link rel = "icon" type = "image/x-icon" href = "{% static 'assets/icons/logo.png' %}">
 
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/index/index.css' %}">
-
-        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/fallback/fallback.css' %}">
 
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/home/home.css' %}">
 
@@ -92,7 +90,7 @@
             
             <div class = "menu">
                 <div class = "notification">
-                    <a class = "notification-link">
+                    <a class = "notification-link" href = "{% url 'Contributor Service Notification' %}">
                         <i class = "fa-solid fa-bell"></i>
     
                         {% if unread_notifications %}
@@ -109,27 +107,60 @@
             <div class = "notification-dropdown">
                 <div id = "notification-content" class = "notification-content">
                     {% if unread_notifications %}
-                        {% for post in unread_notifications %}
-                                <a class = "dropdown-item" href = "{% url 'Contributor Service Post Read' id=post.id %}" class = "post-link" post = "{{post.id}}">
+                        {% for notification in unread_notifications %}
+                            {% if notification.contenttype.model == "post" and notification.object.post_status.is_valid == True or notification.object.post_status.is_invalid == True %}
+                                <a class = "dropdown-item" href = "{% url 'Contributor Service Notification Read' id=notification.id %}" class = "post-link">
                                     <div class = "item-header">
-                                        <img src = "{{post.post_photos.first.post_photo.url}}">
+                                        <img src = "{{notification.object.post_photos.first.post_photo.url}}">
 
-                                        <div class = "item-context"> 
-                                            <p>The report you sent before was marked as <strong>{{post.post_status}}</strong>.</p>
+                                        <div class = "item-context">
+                                            {% if notification.object.post_status.is_valid == True %}
+                                                <p>Your report has been <strong>approved</strong>.</p>
 
-                                            <p>{{post.creation_date | date:'m/d/Y'}}</p>
+                                            {% else %}
+                                                <p>Your report has been <strong>disapproved</strong>.</p>
+                                            {% endif %}
+                                           
+                                            <p>{{notification.creation_date | date:'m/d/Y'}}</p>
                                         </div>
                                     </div>
                                 </a>
 
-                                <div class = "dropdown-divider"></div>
-                        {% endfor %}
-                    {% else %}
+                            {% elif notification.contenttype.model == "announcement" %}
+                                <a class = "dropdown-item" href = "{% url 'Contributor Service Notification Read' id=notification.id %}" class = "announcement-link">
+                                    <div class = "item-header">
+                                        <img src = "{{notification.object.announcement_photo.url}}">
 
+                                        <div class = "item-context">
+                                            <p><strong>{{notification.object.hosting_agency}}</strong> posted an announcement.</p>
+
+                                            <p>{{notification.creation_date | date:'m/d/Y'}}</p>
+                                        </div>
+                                    </div>
+                                </a>
+
+                            {% elif notification.contenttype.model == "intervention" %}
+                                <a class = "dropdown-item" href = "{% url 'Contributor Service Notification Read' id=notification.id %}" class = "intervention-link">
+                                    <div class = "item-header">
+                                        <img src = "{{notification.object.intervention_photo.url}}">
+
+                                        <div class = "item-context">
+                                            <p><strong>{{notification.object.hosting_agency}}</strong> posted an activity.</p>
+                                            
+                                            <p>{{notification.creation_date | date:'m/d/Y'}}</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            {% endif %}
+
+                            <div class = "dropdown-divider"></div>
+                        {% endfor %}
+
+                    {% else %}
                         <a class = "dropdown-item">You have no unread notifications in the last 30 days.</a>
                     {% endif %}
 
-                    <a href = "{% url 'Contributor Service Notification' %}" class = "dropdown-footer">See More</a>
+                    <a href = "{% url 'Contributor Service Notification' %}" class = "dropdown-footer">See more</a>
                 </div>
             </div>
 
@@ -137,15 +168,15 @@
                 <div id = "profile-content" class = "profile-content">
                     <a class = "dropdown-header" href = "{% url 'Contributor Service Profile' %}">{{username}}</a>
 
-                    <a href = "{% url 'Contributor Service Post' %}" class = "dropdown-item"><img src = "{% static 'assets/mypost.png' %}">My posts</a>
+                    <a href = "{% url 'Contributor Service Post' %}" class = "dropdown-item"><img src = "{% static 'assets/icons/post.png' %}">My posts</a>
 
                     <div class = "dropdown-divider"></div>
 
-                    <a href = "{% url 'Contributor Service Resource' %}" class = "dropdown-item"><img src = "{% static 'assets/resource.png' %}">See resources</a>
+                    <a href = "{% url 'Contributor Service Resource' %}" class = "dropdown-item"><img src = "{% static 'assets/icons/resource.png' %}">See resources</a>
                                     
                     <div class = "dropdown-divider"></div>
                     
-                    <a href = "{% url 'Contributor Service Inquiry' %}" class = "dropdown-item"><img src = "{% static 'assets/faqs.png' %}">See faqs</a>
+                    <a href = "{% url 'Contributor Service Inquiry' %}" class = "dropdown-item"><img src = "{% static 'assets/icons/inquiry.png' %}">See faqs</a>
                     
                     <div class = "dropdown-divider"></div>
                     
@@ -225,29 +256,29 @@
             {% endblock content %}
 
             {% block draggable_report %}
-                <a href = "{% url 'Contributor Service Report' %}" class = "draggable-report"><img src = "{% static 'assets/report.png' %}" class = "report"></a>
+                <a href = "{% url 'Contributor Service Report' %}" class = "draggable-report"><img src = "{% static 'assets/icons/report.png' %}" class = "report"></a>
             {% endblock draggable_report %}
         </div>
 
         <nav class = "navigation-bottombar">
             <a href = "{% url 'Contributor Service Home' %}">
-                <img src = "{% static 'assets/home.png' %}">
+                <img src = "{% static 'assets/icons/home.png' %}">
             </a>
 
             <a href = "{% url 'Contributor Service Post Feed' %}">
-                <img src = "{% static 'assets/cotseye.png' %}">
+                <img src = "{% static 'assets/icons/feed.png' %}">
             </a>
 
             <a href = "{% url 'Contributor Service Map' %}">
-                <img src = "{% static 'assets/map.png' %}">
+                <img src = "{% static 'assets/icons/map.png' %}">
             </a>
 
             <a href = "{% url 'Contributor Service Announcement' %}">
-                <img src = "{% static 'assets/announcement.png' %}">
+                <img src = "{% static 'assets/icons/announcement.png' %}">
             </a>
             
             <a href = "{% url 'Contributor Service Intervention' %}">
-                <img src = "{% static 'assets/intervention.png' %}">
+                <img src = "{% static 'assets/icons/intervention.png' %}">
             </a>
         </nav>
     </body>
@@ -286,7 +317,7 @@
         };
     </script>
 
-    <script>
+    <!-- <script>
         document.addEventListener("DOMContentLoaded", function (){
             const notification = document.querySelector(".notification-link");
 
@@ -353,7 +384,7 @@
                 });
             });
         });
-    </script>
+    </script> -->
     
     <script type = "text/javascript">if(window.location.hash && window.location.hash === "#_=_"){ window.location.hash = ""; history.pushState("", document.title, window.location.pathname);}</script>
 </html>

@@ -2,6 +2,8 @@ from django.conf import settings
 from django.core.validators import MinValueValidator
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager, Group, Permission
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.sites.models import Site
 from django.utils.html import mark_safe
 from allauth.socialaccount.models import SocialAccount, SocialToken, SocialApp
@@ -60,13 +62,13 @@ class UserType(models.Model):
         
 
 class Account(AbstractBaseUser, PermissionsMixin):
-    username = models.CharField(max_length = 150, unique = True, help_text = "Designates the name of the user.", verbose_name = "Username")
-    password = models.CharField(max_length = 150, help_text = "Designates the password of the user.", verbose_name = "Password")
-    usertype = models.ForeignKey(UserType, on_delete = models.SET_NULL, null = True, help_text = "Designates the foreign key of the User Type model.", verbose_name = "User Type")
-    is_active = models.BooleanField(default = False, help_text = "Designates whether the user should be considered active or not.", verbose_name = "Active Status")
-    last_login = models.DateTimeField(default = datetime.datetime.now, help_text = "Designates the last login date and time of the user.", verbose_name = "Last Signin")
-    groups = models.ManyToManyField(Group, null = True, blank = True, help_text = "Designates the foreign key of the Group model.", verbose_name = "Groups")
-    user_permissions = models.ManyToManyField(Permission, null = True, blank = True, help_text = "Designates the foreign key of the Permission model.", verbose_name = "User Permissions")
+    username = models.CharField(max_length = 150, unique = True, verbose_name = "Username")
+    password = models.CharField(max_length = 150, verbose_name = "Password")
+    usertype = models.ForeignKey(UserType, on_delete = models.SET_NULL, null = True, verbose_name = "User Type")
+    is_active = models.BooleanField(default = True, verbose_name = "Active Status")
+    last_login = models.DateTimeField(default = datetime.datetime.now, verbose_name = "Last Signin")
+    groups = models.ManyToManyField(Group, null = True, blank = True, verbose_name = "Groups")
+    user_permissions = models.ManyToManyField(Permission, null = True, blank = True, verbose_name = "User Permissions")
 
     objects = AccountManager()
     USERNAME_FIELD = "username"
@@ -103,7 +105,6 @@ class User(models.Model):
     email = models.EmailField(max_length = 65, null = True, help_text = "Designates the email of the user.", verbose_name = "Email")
     phone_number = models.IntegerField(validators = [MinValueValidator(0)], null = True, blank = True, help_text = "Designates the phone number of the user.", verbose_name = "Phone Number")
     profile_photo = models.ImageField(default = "profiles/default.png", null = True, upload_to = "profiles", help_text = "Designates the profile photo of the user.", verbose_name = "Profile Photo")
-    card_photo = models.ImageField(default = "profiles/default.png", null = True, upload_to = "cards", help_text = "Designates the valid ID of the user.", verbose_name = "Valid ID")
     joined_date = models.DateTimeField(default = datetime.datetime.now(), help_text = "Designates the joined date and time of the user.", verbose_name = "Joined Date")
     
     class Meta:
@@ -121,10 +122,25 @@ class User(models.Model):
         return str(self.account)
     
 
+class Notification(models.Model):
+    notificationtypes = (("post", "Post"), ("announcement", "Announcement"), ("intervention", "Intervention"),("post_valid", "Post Validated"))
+    notificationtype = models.CharField(max_length = 20, choices = notificationtypes)
+    user = models.ForeignKey(User, on_delete = models.CASCADE)
+    is_read = models.BooleanField(default = False)
+    creation_date = models.DateTimeField(auto_now_add = True)
+    object = GenericForeignKey("contenttype", "key")
+    contenttype = models.ForeignKey(ContentType, on_delete = models.CASCADE)
+    key = models.PositiveIntegerField()
+
+    @staticmethod
+    def get_user_notifications(user):
+        return Notification.objects.filter(user = user).order_by("-creation_date")
+
+
 class Site2(Site):
-    Site._meta.get_field("domain").help_text = "Designates the domain name of the site."
+    Site._meta.get_field("domain").help_text = ""
     Site._meta.get_field("domain").verbose_name = "Domain Name"
-    Site._meta.get_field("name").help_text = "Designates the display name of the site."
+    Site._meta.get_field("name").help_text = ""
     Site._meta.get_field("name").verbose_name = "Display Name"
     Site._meta.verbose_name = "Site URL"
     Site._meta.verbose_name_plural = "Site URL"

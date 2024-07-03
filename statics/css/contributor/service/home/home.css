@@ -595,43 +595,39 @@
     justify-content: flex-start;
     font-family: "Montserrat" !important;
     font-weight: 400 !important;
-    font-size: 24px !important;
+    font-size: 20px !important;
 }
 
 @media screen and (min-width: 446px) and (max-width: 775px){
-    .home-body .home-map .map .leaflet-control-layers span{
-        font-size: 22px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .home-body .home-map .map .leaflet-control-layers span{
-        font-size: 20px !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
     .home-body .home-map .map .leaflet-control-layers span{
         font-size: 18px !important;
     }
 }
 
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 369px) and (max-width: 445px){
     .home-body .home-map .map .leaflet-control-layers span{
         font-size: 16px !important;
     }
 }
 
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-body .home-map .map .leaflet-control-layers span{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .home-body .home-map .map .leaflet-control-layers span{
+        font-size: 12px !important;
+    }
+}
+
 .home-body .home-map .map a.leaflet-control-layers-toggle{
-    display: none !important;
-    width: 0px !important;
-    height: 0px !important;
     border-radius: 5px !important;
     background-color: #003755 !important;
 }
 
 .home-body .home-map .map .leaflet-control-layers-expanded{
-    display: block !important;
     padding-left: 0px !important;
     padding-right: 0px !important;
     padding-top: 0px !important;
@@ -641,7 +637,6 @@
 }
 
 .home-body .home-map .map .leaflet-control-layers-list{
-    display: block !important;
     padding-left: 30px !important;
     padding-right: 30px !important;
     padding-top: 15px !important;

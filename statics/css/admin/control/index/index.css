@@ -1,39 +1,35 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Overlock:wght@400;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap");
 
 
 *{
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    scrollbar-width: thin !important;
-    scrollbar-color: #698F3F #154360 !important;
     transition: all 0.25s ease;
 }
 
 
 ::-webkit-scrollbar{
-    width: 5px !important;
-    height: 5px !important;
+    width: 2.5px !important;
+    height: 2.5px !important;
 }
 
 ::-webkit-scrollbar-track{
-    border: 1px solid #B2BEB5; 
-    border-radius: 5px;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
-    background: #10354C !important; 
+    background-color: #FFFFFF !important; 
+}
+
+::-webkit-scrollbar-button{
+    display: none !important;
+    width: 0px !important;
 }
 
 ::-webkit-scrollbar-thumb{
-    border: 1px solid #B2BEB5; 
-    border-radius: 5px;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
-    background: #698F3F !important;
+    border-radius: 5px !important;
+    background-color: #003755 !important;
 }
 
 ::-webkit-scrollbar-thumb:hover{
-    background: #557433 !important;
+    background: #002C44 !important;
 }
 
 
@@ -47,7 +43,7 @@ body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .content-w
     padding-right: 30px;
     padding-top: 15px;
     padding-bottom: 15px;
-    background-color: #154360;
+    background-color: #003755;
 }
 
 .brand-link{
@@ -84,7 +80,7 @@ body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .content-w
 
 .navbar-nav li.d-none a{
     position: relative;
-    font-family: "Philosopher";
+    font-family: "Montserrat";
     font-weight: 700;
     font-size: 20px !important;
     color: #FFFFFF;
@@ -105,10 +101,10 @@ body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .content-w
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .navbar-nav li.d-none a{
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 18px !important;
-        background-color: #154360;
+        background-color: #003755;
         color: #FFFFFF;
         display: flex !important;
         align-items: center;
@@ -117,10 +113,10 @@ body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .content-w
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .navbar-nav li.d-none a{
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 16px !important;
-        background-color: #154360;
+        background-color: #003755;
         color: #FFFFFF;
         display: flex !important;
         align-items: center;
@@ -153,9 +149,8 @@ i.far.fa-user{
 }
 
 .dropdown-menu{
-    border: 1px solid #B2BEB5; 
+    border: 1px solid #003755; 
     border-radius: 5px;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
 }
 
 .dropdown-menu-lg{
@@ -164,8 +159,7 @@ i.far.fa-user{
 
 .dropdown-divider{
     border-radius: 5px;
-    border: 1px solid #B2BEB5; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    border: 1px solid #003755; 
 }
 
 .dropdown-header{
@@ -173,10 +167,10 @@ i.far.fa-user{
     padding-right: 12px !important;
     padding-top: 7px !important;
     padding-bottom: 7px !important;
-    font-family: "Philosopher";
+    font-family: "Montserrat";
     font-weight: 700;
     font-size: 20px;
-    background-color: #154360;
+    background-color: #003755;
     color: #FFFFFF;
 }
 
@@ -186,10 +180,10 @@ i.far.fa-user{
         padding-right: 12px !important;
         padding-top: 7px !important;
         padding-bottom: 7px !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 18px;
-        background-color: #154360;
+        background-color: #003755;
         color: #FFFFFF;
     }
 }
@@ -200,10 +194,10 @@ i.far.fa-user{
         padding-right: 12px !important;
         padding-top: 7px !important;
         padding-bottom: 7px !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 16px;
-        background-color: #154360;
+        background-color: #003755;
         color: #FFFFFF;
     }
 }
@@ -213,11 +207,11 @@ i.far.fa-user{
     padding-right: 15px !important;
     padding-top: 10px !important;
     padding-bottom: 10px !important;
-    font-family: "Overlock";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 18px;
     background-color: #FFFFFF;
-    color: #154360;
+    color: #003755;
 }
 
 i.fas.fa-key{
@@ -232,12 +226,12 @@ i.fas.fa-users{
 
 .dropdown-item:hover{
     background-color: #B2BEB5 !important;
-    color: #10354C !important;
+    color: #002C44 !important;
 }
 
 .dropdown-item.active{
     background-color: #B2BEB5 !important;
-    color: #10354C !important;
+    color: #002C44 !important;
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
@@ -246,11 +240,11 @@ i.fas.fa-users{
         padding-right: 15px !important;
         padding-top: 10px !important;
         padding-bottom: 10px !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 16px;
         background-color: #FFFFFF;
-        color: #154360;
+        color: #003755;
     }
 }
 
@@ -260,11 +254,11 @@ i.fas.fa-users{
         padding-right: 15px !important;
         padding-top: 10px !important;
         padding-bottom: 10px !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 14px;
         background-color: #FFFFFF;
-        color: #154360;
+        color: #003755;
     }
 }
 
@@ -273,20 +267,20 @@ i.fas.fa-users{
     padding-right: 12px !important;
     padding-top: 7px !important;
     padding-bottom: 7px !important;
-    font-family: "Philosopher";
+    font-family: "Montserrat";
     font-weight: 700;
     font-size: 20px;
-    background-color: #154360;
+    background-color: #003755;
     color: #FFFFFF;
 }
 
 .dropdown-footer:hover{
-    background-color: #10354C !important;
+    background-color: #002C44 !important;
     color: #B2BEB5 !important;
 }
 
 .dropdown-footer.active{
-    background-color: #10354C !important;
+    background-color: #002C44 !important;
     color: #B2BEB5 !important;
 }
 
@@ -296,10 +290,10 @@ i.fas.fa-users{
         padding-right: 12px !important;
         padding-top: 7px !important;
         padding-bottom: 7px !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 18px;
-        background-color: #154360;
+        background-color: #003755;
         color: #FFFFFF;
     }
 }
@@ -310,10 +304,10 @@ i.fas.fa-users{
         padding-right: 12px !important;
         padding-top: 7px !important;
         padding-bottom: 7px !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 16px;
-        background-color: #154360;
+        background-color: #003755;
         color: #FFFFFF;
     }
 }
@@ -321,9 +315,8 @@ i.fas.fa-users{
 
 .col-12 > .card{
     margin-bottom: 0px !important;
-    border: 1px solid #B2BEB5; 
+    border: 1px solid #003755; 
     border-radius: 5px;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
 }
 
 .col-12 > .card > .card-header{
@@ -332,7 +325,7 @@ i.fas.fa-users{
     padding-top: 15px;
     padding-bottom: 15px;
     width: 100% !important;
-    background-color: #154360;
+    background-color: #003755;
 }
 
 .card-title{
@@ -341,7 +334,7 @@ i.fas.fa-users{
 
 .card-title p{
     margin-bottom: 0px !important;
-    font-family: "Philosopher" !important;
+    font-family: "Montserrat" !important;
     font-weight: 700 !important;
     font-size: 22px !important;
     color: #FFFFFF !important;
@@ -352,7 +345,7 @@ i.fas.fa-users{
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .card-title p{
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 20px !important;
         color: #FFFFFF;
@@ -363,7 +356,7 @@ i.fas.fa-users{
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .card-title p{
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 18px !important;
         color: #FFFFFF;
@@ -374,7 +367,7 @@ i.fas.fa-users{
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .card-title p{
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 16px !important;
         color: #FFFFFF;
@@ -415,10 +408,10 @@ i.fas.fa-users{
     margin-right: 10px !important;
     margin-top: 0px !important;
     margin-bottom: 0px !important;
-    font-family: "Overlock";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 20px !important;
-    color: #154360 !important;
+    color: #003755 !important;
 }
 
 @media screen and (min-width: 446px) and (max-width: 1318px){
@@ -427,10 +420,10 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         float: left !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 20px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -440,10 +433,10 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         float: left !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 18px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -453,10 +446,10 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         float: left !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 16px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -466,10 +459,10 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         float: left !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 14px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -496,14 +489,13 @@ i.fas.fa-users{
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100% !important;
-    border: 1px solid #B2BEB5;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    border: 1px solid #003755;
     border-radius: 5px; 
     outline: none !important;
-    font-family: "Philosopher";
+    font-family: "Montserrat";
     font-weight: 700;
     font-size: 20px !important;
-    color: #154360 !important;
+    color: #003755 !important;
 }
 
 .row.form-group .col-12.col-md-6 input[name = "old_password"]:focus{
@@ -515,14 +507,13 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
-        border: 1px solid #B2BEB5;
+        border: 1px solid #003755;
         border-radius: 5px;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;  
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 20px !important;  
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -531,14 +522,13 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
-        border: 1px solid #B2BEB5;
+        border: 1px solid #003755;
         border-radius: 5px;  
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 18px !important; 
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -547,14 +537,13 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
-        border: 1px solid #B2BEB5;
+        border: 1px solid #003755;
         border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 16px !important;   
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -563,14 +552,13 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
-        border: 1px solid #B2BEB5;
+        border: 1px solid #003755;
         border-radius: 5px;  
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 14px !important;  
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -584,11 +572,10 @@ i.fas.fa-users{
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100% !important;
-    border: 1px solid #B2BEB5;
+    border: 1px solid #003755;
     border-radius: 5px; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;    
-    color: #154360 !important;
+    color: #003755 !important;
 }
 
 .row.form-group .col-12.col-md-6 input[name = "new_password1"]:focus{
@@ -600,14 +587,13 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
-        border: 1px solid #B2BEB5;
+        border: 1px solid #003755;
         border-radius: 5px;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 20px !important;    
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -616,14 +602,13 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
-        border: 1px solid #B2BEB5;
+        border: 1px solid #003755;
         border-radius: 5px;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 18px !important;    
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -632,14 +617,13 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
-        border: 1px solid #B2BEB5;
+        border: 1px solid #003755;
         border-radius: 5px;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 16px !important;    
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -648,14 +632,13 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
-        border: 1px solid #B2BEB5;
+        border: 1px solid #003755;
         border-radius: 5px;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 14px !important;    
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -669,14 +652,13 @@ i.fas.fa-users{
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100% !important;
-    border: 1px solid #B2BEB5;
+    border: 1px solid #003755;
     border-radius: 5px;   
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
-    font-family: "Philosopher";
+    font-family: "Montserrat";
     font-weight: 700;
     font-size: 20px !important;  
-    color: #154360 !important;
+    color: #003755 !important;
 }
 
 .row.form-group .col-12.col-md-6 input[name = "new_password2"]:focus{
@@ -688,14 +670,13 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
-        border: 1px solid #B2BEB5;
+        border: 1px solid #003755;
         border-radius: 5px;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 20px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -704,14 +685,13 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
-        border: 1px solid #B2BEB5;
+        border: 1px solid #003755;
         border-radius: 5px;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 18px !important;    
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -720,14 +700,13 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
-        border: 1px solid #B2BEB5;
+        border: 1px solid #003755;
         border-radius: 5px;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 16px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -736,14 +715,13 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
-        border: 1px solid #B2BEB5;
+        border: 1px solid #003755;
         border-radius: 5px;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 14px !important;    
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -790,13 +768,12 @@ i.fas.fa-users{
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     height: 100% !important;
-    border: 1px solid #B2BEB5; 
+    border: 1px solid #003755;
     border-radius: 5px !important;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
     float: right;
     line-height: 1.5 !important;
-    font-family: "Overlock";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 20px !important;
     background-color: #698F3F !important;
@@ -806,11 +783,10 @@ i.fas.fa-users{
 @media screen and (min-width: 369px) and (max-width: 445px){
     .row .submit-row.col-md-12.col-md-push-2 > input[type = "submit"]{
         height: 100% !important;
-        border: 1px solid #B2BEB5; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        border: 1px solid #003755;
         outline: none !important;
         float: unset;      
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 18px !important;
         background-color: #698F3F !important;
@@ -821,11 +797,10 @@ i.fas.fa-users{
 @media screen and (min-width: 349px) and (max-width: 368px){
     .row .submit-row.col-md-12.col-md-push-2 > input[type = "submit"]{
         height: 100% !important;
-        border: 1px solid #B2BEB5; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        border: 1px solid #003755;
         outline: none !important;
         float: unset;      
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 16px !important;
         background-color: #698F3F !important;
@@ -836,11 +811,10 @@ i.fas.fa-users{
 @media screen and (min-width: 320px) and (max-width: 348px){
     .row .submit-row.col-md-12.col-md-push-2 > input[type = "submit"]{
         height: 100% !important;
-        border: 1px solid #B2BEB5; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        border: 1px solid #003755;
         outline: none !important;
         float: unset;      
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 14px !important;
         background-color: #698F3F !important;
@@ -871,7 +845,7 @@ i.fas.fa-users{
     margin-left: 10px;
     margin-right: 10px;
     margin-bottom: 15px !important;
-    border-bottom: 2px solid #B2BEB5 !important;
+    border-bottom: 2px solid #003755 !important;
 }
 
 .col-12.col-lg-9 > .card > .card-body li.nav-item:first-child{
@@ -879,18 +853,17 @@ i.fas.fa-users{
     padding-right: 10px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
-    border: 1px solid #B2BEB5;
+    border: 1px solid #003755;
     border-top-left-radius: 5px !important;
     border-top-right-radius: 0px !important;
     border-bottom-left-radius: 0px !important;
     border-bottom-right-radius: 0px !important; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
     background-color: #FFFFFF;
 }
 
 .col-12.col-lg-9 > .card > .card-body li.nav-item:first-child:hover{
     background-color: #B2BEB5 !important;
-    color: #10354C !important;
+    color: #002C44 !important;
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
@@ -908,40 +881,40 @@ i.fas.fa-users{
     padding-top: 2.5px !important;
     padding-bottom: 2.5px !important;
     height: unset !important;
-    font-family: "Overlock";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 20px !important;
-    color: #154360 !important;
+    color: #003755 !important;
 }
 
 .col-12.col-lg-9 > .card > .card-body li.nav-item:first-child .nav-link:hover{
-    border-color: #B2BEB5 !important;
+    border-color: #002C44 !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .col-12.col-lg-9 > .card > .card-body li.nav-item:first-child .nav-link{
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 18px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .col-12.col-lg-9 > .card > .card-body li.nav-item:first-child .nav-link{
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 16px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .col-12.col-lg-9 > .card > .card-body li.nav-item:first-child .nav-link{
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 14px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -950,13 +923,13 @@ i.fas.fa-users{
     padding-right: 10px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
-    border: 1px solid #B2BEB5;
+    border: 1px solid #003755;
     border-top-left-radius: 5px !important;
     border-top-right-radius: 0px !important;
     border-bottom-left-radius: 0px !important;
     border-bottom-right-radius: 0px !important; 
     box-shadow: 0 0 0 1px #B2BEB5 !important;
-    background-color: #10354C !important;
+    background-color: #002C44 !important;
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
@@ -974,17 +947,17 @@ i.fas.fa-users{
     padding-top: 2.5px !important;
     padding-bottom: 2.5px !important;
     height: unset !important;
-    border-color: #10354C !important;
-    font-family: "Overlock";
+    border-color: #002C44 !important;
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 20px !important;
-    background-color: #10354C !important;
+    background-color: #002C44 !important;
     color: #FFFFFF !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .col-12.col-lg-9 > .card > .card-body li.nav-item:first-child .nav-link.active{
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 18px !important;
         color: #FFFFFF !important;
@@ -993,7 +966,7 @@ i.fas.fa-users{
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .col-12.col-lg-9 > .card > .card-body li.nav-item:first-child .nav-link.active{
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 16px !important;
         color: #FFFFFF !important;
@@ -1002,7 +975,7 @@ i.fas.fa-users{
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .col-12.col-lg-9 > .card > .card-body li.nav-item:first-child .nav-link.active{
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 14px !important;
         color: #FFFFFF !important;
@@ -1025,7 +998,7 @@ i.fas.fa-users{
 
 .col-12.col-lg-9 > .card > .card-body li.nav-item:last-child:hover{
     background-color: #B2BEB5 !important;
-    color: #10354C !important;
+    color: #002C44 !important;
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
@@ -1043,40 +1016,40 @@ i.fas.fa-users{
     padding-top: 2.5px !important;
     padding-bottom: 2.5px !important;
     height: unset !important;
-    font-family: "Overlock";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 20px !important;
-    color: #154360 !important;
+    color: #003755 !important;
 }
 
 .col-12.col-lg-9 > .card > .card-body li.nav-item:last-child .nav-link:hover{
-    border-color: #B2BEB5 !important;
+    border-color: #002C44 !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .col-12.col-lg-9 > .card > .card-body li.nav-item:last-child .nav-link{
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 18px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .col-12.col-lg-9 > .card > .card-body li.nav-item:last-child .nav-link{
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 16px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .col-12.col-lg-9 > .card > .card-body li.nav-item:last-child .nav-link{
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 14px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -1085,13 +1058,13 @@ i.fas.fa-users{
     padding-right: 10px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
-    border: 1px solid #B2BEB5;
+    border: 1px solid #002C44;
     border-top-left-radius: 0px !important;
     border-top-right-radius: 5px !important;
     border-bottom-left-radius: 0px !important;
     border-bottom-right-radius: 0px !important; 
     box-shadow: 0 0 0 1px #B2BEB5 !important;
-    background-color: #10354C !important;
+    background-color: #002C44 !important;
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
@@ -1108,18 +1081,18 @@ i.fas.fa-users{
     padding-right: 5px !important;
     padding-top: 2.5px !important;
     padding-bottom: 2.5px !important;
-    border-color: #10354C !important;
+    border-color: #002C44 !important;
     height: unset !important;
-    font-family: "Overlock";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 20px !important;
-    background-color: #10354C !important;
+    background-color: #002C44 !important;
     color: #FFFFFF !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .col-12.col-lg-9 > .card > .card-body li.nav-item:last-child .nav-link.active{
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 18px !important;
         color: #FFFFFF !important;
@@ -1128,7 +1101,7 @@ i.fas.fa-users{
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .col-12.col-lg-9 > .card > .card-body li.nav-item:last-child .nav-link.active{
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 16px !important;
         color: #FFFFFF !important;
@@ -1137,7 +1110,7 @@ i.fas.fa-users{
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .col-12.col-lg-9 > .card > .card-body li.nav-item:last-child .nav-link.active{
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 14px !important;
         color: #FFFFFF !important;
@@ -1167,8 +1140,8 @@ i.fas.fa-users{
 }
 
 .col-12.col-lg-9 > .card > .card-body .tab-content .tabular table thead tr{
-    border-top: 2px solid #B2BEB5 !important;
-    border-bottom: 2px solid #B2BEB5 !important;
+    border-top: 2px solid #003755 !important;
+    border-bottom: 2px solid #003755 !important;
 }
 
 .col-12.col-lg-9 > .card > .card-body .tab-content .tabular table thead tr th{
@@ -1176,10 +1149,10 @@ i.fas.fa-users{
     padding-right: 30px !important;
     padding-top: 15px !important;
     padding-bottom: 15px !important;
-    font-family: "Overlock";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 20px !important;
-    color: #154360 !important; 
+    color: #003755 !important; 
 }
 
 .col-12.col-lg-9 > .card > .card-body .tab-content .tabular table thead tr th.original{
@@ -1195,8 +1168,8 @@ i.fas.fa-users{
 }
 
 .col-12.col-lg-9 > .card > .card-body .tab-content .tabular table tbody tr{
-    border-top: 2px solid #B2BEB5 !important;
-    border-bottom: 2px solid #B2BEB5 !important;
+    border-top: 2px solid #003755 !important;
+    border-bottom: 2px solid #003755 !important;
 }
 
 .col-12.col-lg-9 > .card > .card-body .tab-content .tabular table tbody tr:hover{
@@ -1263,10 +1236,10 @@ i.fas.fa-users{
     padding-right: 10px !important;
     margin-top: 0px !important;
     margin-bottom: 0px !important;
-    font-family: "Overlock";
+    font-family: "Montserrat";
     font-weight: 400 !important;
-    font-size: 20px !important;
-    color: #154360 !important;
+    font-size: 18px !important;
+    color: #003755 !important;
 }
 
 @media screen and (min-width: 446px) and (max-width: 1318px){
@@ -1275,10 +1248,10 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         justify-content: flex-start !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400 !important;
-        font-size: 20px !important;
-        color: #154360 !important;
+        font-size: 16px !important;
+        color: #003755 !important;
     }
 }
 
@@ -1288,10 +1261,10 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         justify-content: flex-start !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400 !important;
-        font-size: 18px !important;
-        color: #154360 !important;
+        font-size: 14px !important;
+        color: #003755 !important;
     }
 }
 
@@ -1301,10 +1274,10 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         justify-content: flex-start !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400 !important;
-        font-size: 16px !important;
-        color: #154360 !important;
+        font-size: 12px !important;
+        color: #003755 !important;
     }
 }
 
@@ -1314,10 +1287,10 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         justify-content: flex-start !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400 !important;
-        font-size: 14px !important;
-        color: #154360 !important;
+        font-size: 10px !important;
+        color: #003755 !important;
     }
 }
 
@@ -1342,17 +1315,18 @@ i.fas.fa-users{
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100% !important;
-    border: 1px solid #B2BEB5;
-    border-radius: 5px; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    border: 1px solid #003755;
+    border-radius: 5px;
+    appearance: none !important; 
     outline: none !important;
-    font-family: "Philosopher";
+    font-family: "Montserrat";
     font-weight: 700 !important;
     font-size: 20px !important;   
-    color: #154360 !important;
+    color: #003755 !important;
 }
 
 .form-group input[type = "text"]:focus{
+    border-color: #002C44 !important;
     border-bottom-width: 2.5px !important;
 }
 
@@ -1361,14 +1335,13 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
-        border: 1px solid #B2BEB5;
+        border: 1px solid #003755;
         border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700 !important;
         font-size: 20px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -1377,14 +1350,13 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
-        border: 1px solid #B2BEB5;
+        border: 1px solid #003755;
         border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700 !important;
         font-size: 18px !important;  
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -1393,14 +1365,13 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
-        border: 1px solid #B2BEB5;
+        border: 1px solid #003755;
         border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700 !important;
         font-size: 16px !important;    
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -1409,20 +1380,19 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
-        border: 1px solid #B2BEB5;
+        border: 1px solid #003755;
         border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700 !important;
         font-size: 14px !important;   
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
 .form-group .help-block{
     width: 100% !important;
-    font-family: "Overlock";
+    font-family: "Montserrat";
     font-weight: 400 !important;
     font-size: 14px !important;
     color: #698F3F !important;
@@ -1431,7 +1401,7 @@ i.fas.fa-users{
 @media screen and (min-width: 446px) and (max-width: 1318px){
     .form-group .help-block{
         width: 100% !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400 !important;
         font-size: 14px !important;
         color: #698F3F !important;
@@ -1441,7 +1411,7 @@ i.fas.fa-users{
 @media screen and (min-width: 369px) and (max-width: 445px){
     .form-group .help-block{
         width: 100% !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400 !important;
         font-size: 12px !important;
         color: #698F3F !important;
@@ -1451,7 +1421,7 @@ i.fas.fa-users{
 @media screen and (min-width: 349px) and (max-width: 368px){
     .form-group .help-block{
         width: 100% !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400 !important;
         font-size: 11px !important;
         color: #698F3F !important;
@@ -1461,7 +1431,7 @@ i.fas.fa-users{
 @media screen and (min-width: 320px) and (max-width: 348px){
     .form-group .help-block{
         width: 100% !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400 !important;
         font-size: 10px !important;
         color: #698F3F !important;
@@ -1493,14 +1463,13 @@ i.fas.fa-users{
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100% !important;
-    border: 1px solid #B2BEB5 !important;
+    border: 1px solid #003755 !important;
     border-radius: 5px !important;
-    box-shadow: inset 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
-    font-family: "Philosopher" !important;
+    font-family: "Montserrat" !important;
     font-weight: 700 !important;
     font-size: 20px !important;
-    color: #154360 !important;
+    color: #003755 !important;
 }
 
 
@@ -1523,14 +1492,13 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
-        border: 1px solid #B2BEB5 !important;
+        border: 1px solid #003755 !important;
         border-radius: 5px !important;
-        box-shadow: inset 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 20px !important;  
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -1539,14 +1507,13 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
-        border: 1px solid #B2BEB5 !important;
+        border: 1px solid #003755 !important;
         border-radius: 5px !important;
-        box-shadow: inset 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 18px !important;   
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -1555,14 +1522,13 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
-        border: 1px solid #B2BEB5 !important;
+        border: 1px solid #003755 !important;
         border-radius: 5px !important;
-        box-shadow: inset 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 16px !important;    
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -1571,19 +1537,18 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
-        border: 1px solid #B2BEB5 !important;
+        border: 1px solid #003755 !important;
         border-radius: 5px !important;
-        box-shadow: inset 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 14px !important;    
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
 .select2-container--default .select2-selection--single .select2-selection__arrow b{
-    border-color: #B2BEB5 transparent !important;
+    border-color: #003755 transparent !important;
 }
 
 .select2-container .select2-selection--single .select2-selection__rendered{
@@ -1597,8 +1562,7 @@ i.fas.fa-users{
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     max-width: 100% !important;
-    border: 1px solid #B2BEB5;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    border: 1px solid #003755;
 }
 
 .select2-container--default .select2-search--dropdown .select2-search__field{
@@ -1609,14 +1573,13 @@ i.fas.fa-users{
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100% !important;
-    border: 1px solid #B2BEB5 !important;
+    border: 1px solid #003755 !important;
     border-radius: 5px !important;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
-    font-family: "Philosopher";
+    font-family: "Montserrat";
     font-weight: 700;
     font-size: 20px !important;    
-    color: #154360 !important; 
+    color: #003755 !important; 
 }
 
 .select2-container--default .select2-search--dropdown .select2-search__field:focus{
@@ -1628,14 +1591,13 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
-        border: 1px solid #B2BEB5 !important;
+        border: 1px solid #003755 !important;
         border-radius: 5px !important;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 20px !important;  
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -1644,14 +1606,13 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
-        border: 1px solid #B2BEB5 !important;
+        border: 1px solid #003755 !important;
         border-radius: 5px !important;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 18px !important;  
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -1660,14 +1621,13 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
-        border: 1px solid #B2BEB5 !important;
+        border: 1px solid #003755 !important;
         border-radius: 5px !important;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 16px !important;   
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -1676,25 +1636,24 @@ i.fas.fa-users{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
-        border: 1px solid #B2BEB5 !important;
+        border: 1px solid #003755 !important;
         border-radius: 5px !important;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 14px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
 .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable{
     background-color: #B2BEB5 !important;
-    color: #10354C !important;
+    color: #002C44 !important;
 }
 
 .select2-container--default .select2-results__option--selected{
     background-color: #B2BEB5 !important;
-    color: #10354C !important;
+    color: #002C44 !important;
 }
 
 .form-group a.change-related{
@@ -1720,9 +1679,8 @@ input[type = "checkbox"]{
     margin-bottom: 0px;
     width: 38px;
     height: 38px;
-    border: 1px solid #B2BEB5;
+    border: 1px solid #003755;
     border-radius: 5px;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
     -webkit-appearance: none !important;
     -moz-appearance: none !important;
     appearance: none !important;
@@ -1767,7 +1725,7 @@ input[type = "checkbox"]:checked::before{
     visibility: visible;
     font-weight: 400 !important;
     font-size: 20px !important;
-    color: #154360 !important;
+    color: #003755 !important;
 }
 
 @media screen and (min-width: 446px) and (max-width: 1318px){
@@ -1775,7 +1733,7 @@ input[type = "checkbox"]:checked::before{
         visibility: visible;
         font-weight: 400 !important;
         font-size: 20px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -1784,7 +1742,7 @@ input[type = "checkbox"]:checked::before{
         visibility: visible;
         font-weight: 400 !important;
         font-size: 18px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -1793,7 +1751,7 @@ input[type = "checkbox"]:checked::before{
         visibility: visible;
         font-weight: 400 !important;
         font-size: 16px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -1802,7 +1760,7 @@ input[type = "checkbox"]:checked::before{
         visibility: visible;
         font-weight: 400 !important;
         font-size: 14px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -1810,14 +1768,14 @@ input[type = "checkbox"]:checked::before{
     margin-right: 5px;
     width: 100% !important;
     visibility: visible;
-    font-family: "Overlock";
+    font-family: "Montserrat";
     font-weight: 400 !important;
     font-size: 20px !important;
-    color: #154360 !important;
+    color: #003755 !important;
 }
 
 .datetime span a:hover{
-    color: #10354C !important;
+    color: #002C44 !important;
 }
 
 @media screen and (min-width: 446px) and (max-width: 1318px){
@@ -1825,7 +1783,7 @@ input[type = "checkbox"]:checked::before{
         visibility: visible;
         font-weight: 400 !important;
         font-size: 20px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -1834,7 +1792,7 @@ input[type = "checkbox"]:checked::before{
         visibility: visible;
         font-weight: 400 !important;
         font-size: 18px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -1843,7 +1801,7 @@ input[type = "checkbox"]:checked::before{
         visibility: visible;
         font-weight: 400 !important;
         font-size: 16px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -1852,7 +1810,7 @@ input[type = "checkbox"]:checked::before{
         visibility: visible;
         font-weight: 400 !important;
         font-size: 14px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -1860,11 +1818,11 @@ input[type = "checkbox"]:checked::before{
     margin-left: 5px !important;
     visibility: visible;
     font-size: 20px !important;
-    color: #154360 !important;
+    color: #003755 !important;
 }
 
 .datetime span .date-icon::before:hover{
-    color: #10354C !important;
+    color: #002C44 !important;
 }
 
 @media screen and (min-width: 446px) and (max-width: 1318px){
@@ -1872,7 +1830,7 @@ input[type = "checkbox"]:checked::before{
         margin-left: 5px !important;
         visibility: visible;
         font-size: 20px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -1881,7 +1839,7 @@ input[type = "checkbox"]:checked::before{
         margin-left: 5px !important;
         visibility: visible;
         font-size: 18px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -1890,7 +1848,7 @@ input[type = "checkbox"]:checked::before{
         margin-left: 5px !important;
         visibility: visible;
         font-size: 16px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -1899,7 +1857,7 @@ input[type = "checkbox"]:checked::before{
         margin-left: 5px !important;
         visibility: visible;
         font-size: 14px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -1907,11 +1865,11 @@ input[type = "checkbox"]:checked::before{
     margin-left: 5px !important;
     visibility: visible;
     font-size: 20px !important;
-    color: #154360 !important;
+    color: #003755 !important;
 }
 
 .datetime span .clock-icon::before:hover{
-    color: #10354C !important;
+    color: #002C44 !important;
 }
 
 @media screen and (min-width: 446px) and (max-width: 1318px){
@@ -1919,7 +1877,7 @@ input[type = "checkbox"]:checked::before{
         margin-left: 5px !important;
         visibility: visible;
         font-size: 20px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -1928,7 +1886,7 @@ input[type = "checkbox"]:checked::before{
         margin-left: 5px !important;
         visibility: visible;
         font-size: 18px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -1937,7 +1895,7 @@ input[type = "checkbox"]:checked::before{
         margin-left: 5px !important;
         visibility: visible;
         font-size: 16px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -1946,14 +1904,14 @@ input[type = "checkbox"]:checked::before{
         margin-left: 5px !important;
         visibility: visible;
         font-size: 14px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
 .datetime .help{
     width: 100% !important;
     visibility: visible;
-    font-family: "Overlock";
+    font-family: "Montserrat";
     font-weight: 400 !important;
     font-size: 14px !important;
     color: #698F3F !important;
@@ -1962,7 +1920,7 @@ input[type = "checkbox"]:checked::before{
 @media screen and (min-width: 446px) and (max-width: 1318px){
     .datetime .help{
         width: 100% !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400 !important;
         font-size: 14px !important;
         color: #698F3F !important;
@@ -1972,7 +1930,7 @@ input[type = "checkbox"]:checked::before{
 @media screen and (min-width: 369px) and (max-width: 445px){
     .datetime .help{
         width: 100% !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400 !important;
         font-size: 12px !important;
         color: #698F3F !important;
@@ -1982,7 +1940,7 @@ input[type = "checkbox"]:checked::before{
 @media screen and (min-width: 349px) and (max-width: 368px){
     .datetime .help{
         width: 100% !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400 !important;
         font-size: 11px !important;
         color: #698F3F !important;
@@ -1992,7 +1950,7 @@ input[type = "checkbox"]:checked::before{
 @media screen and (min-width: 320px) and (max-width: 348px){
     .datetime .help{
         width: 100% !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400 !important;
         font-size: 10px !important;
         color: #698F3F !important;
@@ -2000,11 +1958,11 @@ input[type = "checkbox"]:checked::before{
 }
 
 .datetimeshortcuts a{
-    color: #154360 !important;    
+    color: #003755 !important;    
 }
 
 .datetimeshortcuts a:hover{
-    color: #10354C !important;    
+    color: #002C44 !important;    
 }
 
 .calendarbox{
@@ -2022,45 +1980,44 @@ input[type = "checkbox"]:checked::before{
     padding-right: 5px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
-    border: 1px solid #B2BEB5 !important;
+    border: 1px solid #003755 !important;
     border-top-left-radius: 0px !important;
     border-top-right-radius: 0px !important;
     border-bottom-left-radius: 0px !important;   
     border-bottom-right-radius: 0px !important;   
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
-    font-family: "Philosopher";
+    font-family: "Montserrat";
     font-weight: 700;
     font-size: 18px;
-    background-color: #154360 !important;
+    background-color: #003755 !important;
     color: #FFFFFF !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .calendarbox .calendar table caption{
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 16px;
-        background-color: #154360 !important;
+        background-color: #003755 !important;
         color: #FFFFFF !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .calendarbox .calendar table caption{
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 14px;
-        background-color: #154360 !important;
+        background-color: #003755 !important;
         color: #FFFFFF !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .calendarbox .calendar table caption{
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 12px;
-        background-color: #154360 !important;
+        background-color: #003755 !important;
         color: #FFFFFF !important;
     }
 }
@@ -2070,13 +2027,12 @@ input[type = "checkbox"]:checked::before{
     padding-right: 5px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
-    border: 2px solid #B2BEB5 !important;
+    border: 2px solid #003755 !important;
     border-top-left-radius: 5px !important;
     border-top-right-radius: 5px !important;
     border-bottom-left-radius: 0px !important;   
     border-bottom-right-radius: 0px !important;  
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
-    font-family: "Philosopher";
+    font-family: "Montserrat";
     font-weight: 700;
     font-size: 18px;
     background-color: #698F3F !important;
@@ -2085,7 +2041,7 @@ input[type = "checkbox"]:checked::before{
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .calendarbox .calendar table tr th{
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 16px;
         color: #FFFFFF !important;
@@ -2094,7 +2050,7 @@ input[type = "checkbox"]:checked::before{
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .calendarbox .calendar table tr th{
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 14px;
         color: #FFFFFF !important;
@@ -2103,7 +2059,7 @@ input[type = "checkbox"]:checked::before{
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .calendarbox .calendar table tr th{
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 12px;
         color: #FFFFFF !important;
@@ -2111,12 +2067,11 @@ input[type = "checkbox"]:checked::before{
 }
 
 .calendarbox .calendar table tr td{
-    border: 2px solid #B2BEB5 !important;
+    border: 2px solid #003755 !important;
     border-top-left-radius: 0px !important;
     border-top-right-radius: 0px !important;
     border-bottom-left-radius: 0px !important;   
     border-bottom-right-radius: 0px !important;
-    box-shadow: 1px 1px 1px 1px #B2BEB5 !important;
     background-color: #FFFFFF !important;
 }
 
@@ -2125,12 +2080,11 @@ input[type = "checkbox"]:checked::before{
     padding-right: 5px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
-    border: 2px solid #B2BEB5 !important;
+    border: 2px solid #003755 !important;
     border-top-left-radius: 0px !important;
     border-top-right-radius: 0px !important;
     border-bottom-left-radius: 0px !important;   
     border-bottom-right-radius: 0px !important;
-    box-shadow: 1px 1px 1px 1px #B2BEB5 !important;
     background-color: #B2BEB5 !important;
 }
 
@@ -2139,86 +2093,85 @@ input[type = "checkbox"]:checked::before{
     padding-right: 5px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
-    font-family: "Overlock";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 16px;
-    color: #154360 !important;
+    color: #003755 !important;
 }
 
 .calendarbox .calendar table tr td.selected a{
-    background-color: #10354C !important;
+    background-color: #002C44 !important;
     color: #FFFFFF !important;
 }
 
 .calendarbox .calendar table tr td a:hover{
-    background-color: #10354C !important;
+    background-color: #002C44 !important;
     color: #B2BEB5 !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .calendarbox .calendar table tr td a{
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 14px;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .calendarbox .calendar table tr td a{
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 12px;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .calendarbox .calendar table tr td a{
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 10px;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
 .calendarbox a.calendarnav-previous, .calendarbox a.calendarnav-next{
     margin-top: 25px !important;
-    color: #154360 !important;
+    color: #003755 !important;
 }
 
 .calendarbox a.calendarnav-previous:hover, .calendarbox a.calendarnav-next:hover{
-    color: #10354C !important;
+    color: #002C44 !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .calendarbox a.calendarnav-previous, .calendarbox a.calendarnav-next{
         margin-top: 21px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .calendarbox a.calendarnav-previous, .calendarbox a.calendarnav-next{
         margin-top: 19px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .calendarbox a.calendarnav-previous, .calendarbox a.calendarnav-next{
         margin-top: 17px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
 .calendarbox .calendar-shortcuts{
-    border: 1px solid #B2BEB5 !important;
+    border: 1px solid #003755 !important;
     border-top-left-radius: 0px !important;
     border-top-right-radius: 0px !important;
     border-bottom-left-radius: 0px !important;   
     border-bottom-right-radius: 0px !important;   
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
 }
 
 .calendarbox .calendar-shortcuts a{
@@ -2226,50 +2179,49 @@ input[type = "checkbox"]:checked::before{
     padding-right: 5px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
-    font-family: "Overlock";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 16px;
-    color: #154360 !important;
+    color: #003755 !important;
 }
 
 .calendarbox .calendar-shortcuts a:hover{
-    color: #10354C !important;
+    color: #002C44 !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .calendarbox .calendar-shortcuts a{
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 14px;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .calendarbox .calendar-shortcuts a{
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 12px;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .calendarbox .calendar-shortcuts a{
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 10px;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
 .calendarbox .calendar-cancel{
-    border: 1px solid #B2BEB5 !important;
+    border: 1px solid #003755 !important;
     border-top-left-radius: 0px !important;
     border-top-right-radius: 0px !important;
     border-bottom-left-radius: 5px !important;   
     border-bottom-right-radius: 5px !important;   
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
     background-color: #C90016 !important;
 }
 
@@ -2282,7 +2234,7 @@ input[type = "checkbox"]:checked::before{
     padding-right: 5px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
-    font-family: "Overlock";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 16px;
     color: #FFFFFF !important;
@@ -2290,7 +2242,7 @@ input[type = "checkbox"]:checked::before{
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .calendarbox .calendar-cancel a{
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 14px;
         color: #FFFFFF !important;
@@ -2299,7 +2251,7 @@ input[type = "checkbox"]:checked::before{
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .calendarbox .calendar-cancel a{
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 14px;
         color: #FFFFFF !important;
@@ -2308,7 +2260,7 @@ input[type = "checkbox"]:checked::before{
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .calendarbox .calendar-cancel a{
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 14px;
         color: #FFFFFF !important;
@@ -2326,56 +2278,54 @@ input[type = "checkbox"]:checked::before{
     padding-right: 5px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
-    border: 1px solid #B2BEB5 !important;
+    border: 1px solid #003755 !important;
     border-top-left-radius: 5px !important;
     border-top-right-radius: 5px !important;
     border-bottom-left-radius: 0px !important;   
     border-bottom-right-radius: 0px !important;   
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
-    font-family: "Philosopher";
+    font-family: "Montserrat";
     font-weight: 700;
     font-size: 18px;
-    background-color: #154360 !important;
+    background-color: #003755 !important;
     color: #FFFFFF !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .clockbox h2{
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 16px;
-        background-color: #154360 !important;
+        background-color: #003755 !important;
         color: #FFFFFF !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .clockbox h2{
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 14px;
-        background-color: #154360 !important;
+        background-color: #003755 !important;
         color: #FFFFFF !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .clockbox h2{
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 12px;
-        background-color: #154360 !important;
+        background-color: #003755 !important;
         color: #FFFFFF !important;
     }
 }
 
 .clockbox .timelist li{
-    border: 1px solid #B2BEB5 !important;
+    border: 1px solid #003755 !important;
     border-top-left-radius: 0px !important;
     border-top-right-radius: 0px !important;
     border-bottom-left-radius: 0px !important;   
     border-bottom-right-radius: 0px !important;   
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
 }
 
 .clockbox .timelist li a{
@@ -2383,51 +2333,50 @@ input[type = "checkbox"]:checked::before{
     padding-right: 5px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
-    font-family: "Overlock";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 16px;
-    color: #154360 !important;
+    color: #003755 !important;
 }
 
 .clockbox .timelist li a:hover{
-    background-color: #10354C !important;
+    background-color: #002C44 !important;
     color: #B2BEB5 !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .clockbox .timelist li a{
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 14px;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .clockbox .timelist li a{
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 12px;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .clockbox .timelist li a{
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 10px;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
 .clockbox .calendar-cancel{
-    border: 1px solid #B2BEB5 !important;
+    border: 1px solid #003755 !important;
     border-top-left-radius: 0px !important;
     border-top-right-radius: 0px !important;
     border-bottom-left-radius: 5px !important;   
     border-bottom-right-radius: 5px !important;   
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
     background-color: #C90016 !important;
 }
 
@@ -2440,7 +2389,7 @@ input[type = "checkbox"]:checked::before{
     padding-right: 5px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
-    font-family: "Overlock";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 16px;
     color: #FFFFFF !important;
@@ -2448,7 +2397,7 @@ input[type = "checkbox"]:checked::before{
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .clockbox .calendar-cancel a{
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 14px;
         color: #FFFFFF !important;
@@ -2457,7 +2406,7 @@ input[type = "checkbox"]:checked::before{
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .clockbox .calendar-cancel a{
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 14px;
         color: #FFFFFF !important;
@@ -2466,7 +2415,7 @@ input[type = "checkbox"]:checked::before{
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .clockbox .calendar-cancel a{
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 14px;
         color: #FFFFFF !important;
@@ -2474,7 +2423,7 @@ input[type = "checkbox"]:checked::before{
 }
 
 span.select2.select2-container.select2-container--default{
-    width: 100% !important;
+    min-width: 100% !important;
 }
 
 .select2-selection.select2-selection--multiple{
@@ -2485,15 +2434,14 @@ span.select2.select2-container.select2-container--default{
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100% !important;
-    border: 1px solid #B2BEB5 !important;
+    border: 1px solid #003755 !important;
     border-radius: 5px !important;   
-    box-shadow: inset 0 0 0 1px #B2BEB5 !important;
     outline: none !important; 
     height: 100% !important;
-    font-family: "Philosopher";
+    font-family: "Montserrat";
     font-weight: 700;
     font-size: 20px !important;
-    color: #154360 !important;
+    color: #003755 !important;
 }
 
 .select2-container--default.select2-container--open.select2-container--below .select2-selection--multiple{
@@ -2507,14 +2455,13 @@ span.select2.select2-container.select2-container--default{
         margin-bottom: 0px !important;
         width: 100% !important;
         height: 100% !important;
-        border: 1px solid #B2BEB5 !important;
+        border: 1px solid #003755 !important;
         border-radius: 5px !important;    
-        box-shadow: inset 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 20px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -2524,14 +2471,13 @@ span.select2.select2-container.select2-container--default{
         margin-bottom: 0px !important;
         width: 100% !important;
         height: 100% !important;
-        border: 1px solid #B2BEB5 !important;
+        border: 1px solid #003755 !important;
         border-radius: 5px !important;    
-        box-shadow: inset 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 18px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -2541,14 +2487,13 @@ span.select2.select2-container.select2-container--default{
         margin-bottom: 0px !important;
         width: 100% !important;
         height: 28px !important;
-        border: 1px solid #B2BEB5 !important;
+        border: 1px solid #003755 !important;
         border-radius: 5px !important;    
-        box-shadow: inset 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 16px !important;  
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -2558,14 +2503,13 @@ span.select2.select2-container.select2-container--default{
         margin-bottom: 0px !important;
         width: 100% !important;
         height: 28px !important;
-        border: 1px solid #B2BEB5 !important;
+        border: 1px solid #003755 !important;
         border-radius: 5px !important;  
-        box-shadow: inset 0 0 0 1px #B2BEB5 !important;
         outline: none !important;  
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 14px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -2580,14 +2524,13 @@ span.select2.select2-container.select2-container--default{
     padding-bottom: 5px !important;
     width: 100% !important;
     height: 100% !important;
-    border: 1px solid #B2BEB5 !important;
+    border: 1px solid #003755 !important;
     border-radius: 5px !important;    
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
-    font-family: "Philosopher";
+    font-family: "Montserrat";
     font-weight: 700;
     font-size: 20px !important;   
-    color: #154360 !important;
+    color: #003755 !important;
 }
 
 @media screen and (min-width: 446px) and (max-width: 1318px){
@@ -2602,14 +2545,13 @@ span.select2.select2-container.select2-container--default{
         padding-bottom: 5px !important;
         width: 100% !important;
         height: 100% !important;
-        border: 1px solid #B2BEB5 !important;
+        border: 1px solid #003755 !important;
         border-radius: 5px !important;    
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 20px !important;    
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -2625,14 +2567,13 @@ span.select2.select2-container.select2-container--default{
         padding-bottom: 5px !important;
         width: 100% !important;
         height: 100% !important;
-        border: 1px solid #B2BEB5 !important;
+        border: 1px solid #003755 !important;
         border-radius: 5px !important;    
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 18px !important;    
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -2648,14 +2589,13 @@ span.select2.select2-container.select2-container--default{
         padding-bottom: 5px !important;
         width: 100% !important;
         height: 100% !important;
-        border: 1px solid #B2BEB5 !important;
+        border: 1px solid #003755 !important;
         border-radius: 5px !important;    
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 16px !important;   
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -2671,14 +2611,13 @@ span.select2.select2-container.select2-container--default{
         padding-bottom: 5px !important;
         width: 100% !important;
         height: 100% !important;
-        border: 1px solid #B2BEB5 !important;
+        border: 1px solid #003755 !important;
         border-radius: 5px !important;    
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 14px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -2698,10 +2637,10 @@ li.select2-results__option{
     padding-bottom: 5px !important;
     width: 100% !important;
     height: 100% !important;
-    font-family: "Overlock" !important;
+    font-family: "Montserrat" !important;
     font-weight: 400;
     font-size: 20px !important;
-    color: #154360 !important; 
+    color: #003755 !important; 
 }
 
 @media screen and (min-width: 446px) and (max-width: 1318px){
@@ -2716,10 +2655,10 @@ li.select2-results__option{
         padding-bottom: 5px !important;
         width: 100% !important;
         height: 100% !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 20px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -2735,10 +2674,10 @@ li.select2-results__option{
         padding-bottom: 5px !important;
         width: 100% !important;
         height: 100% !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 18px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -2754,10 +2693,10 @@ li.select2-results__option{
         padding-bottom: 5px !important;
         width: 100% !important;
         height: 100% !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 16px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -2773,10 +2712,10 @@ li.select2-results__option{
         padding-bottom: 5px !important;
         width: 100% !important;
         height: 100% !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 14px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -2789,7 +2728,7 @@ li.select2-results__option{
     border: 1px solid #B2BEB5; 
     border-radius: 5px;
     box-shadow: 0 0 0 1px #B2BEB5;
-    background-color: #154360 !important;
+    background-color: #003755 !important;
 }
 
 .select2-container--default .select2-selection--multiple .select2-selection__choice__display{
@@ -2808,10 +2747,10 @@ li.select2-results__option{
     padding-bottom: 0px !important;
     height: 100% !important;
     outline: none !important;
-    font-family: "Philosopher";
+    font-family: "Montserrat";
     font-weight: 700 !important;
     font-size: 20px !important;
-    background-color: #154360 !important;
+    background-color: #003755 !important;
     color: #FFFFFF !important;
     pointer-events: auto !important;
     cursor: pointer;
@@ -2819,7 +2758,7 @@ li.select2-results__option{
 
 .select2-container--default .select2-selection--multiple .select2-selection__choice__remove:hover, .select2-container--default .select2-selection--multiple .select2-selection__choice__remove:focus{
     outline: none !important;
-    background-color: #10354C !important;
+    background-color: #002C44 !important;
     color: #B2BEB5 !important;
 }
 
@@ -2836,9 +2775,8 @@ li.select2-results__option{
     padding-top: 15px;
     padding-bottom: 15px;
     width: 100% !important;
-    border: 1px solid #B2BEB5; 
+    border: 1px solid #003755; 
     border-radius: 5px;
-    box-shadow: 0 0 0 1px #B2BEB5;
     background-color: #FFFFFF !important;
 }
 
@@ -2873,10 +2811,9 @@ li.select2-results__option{
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     height: 100% !important;
-    border: 1px solid #B2BEB5; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    border: 1px solid #003755; 
     outline: none !important;
-    font-family: "Overlock";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 20px !important;
     background-color: #698F3F !important;
@@ -2893,10 +2830,9 @@ li.select2-results__option{
 @media screen and (min-width: 369px) and (max-width: 445px){
     #jazzy-actions .form-group input[name = "_save"]{
         height: 100% !important;
-        border: 1px solid #B2BEB5;
-        box-shadow: 0 0 0 1px #B2BEB5 !important; 
+        border: 1px solid #003755;
         outline: none !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 18px !important;
         background-color: #698F3F !important;
@@ -2907,10 +2843,9 @@ li.select2-results__option{
 @media screen and (min-width: 349px) and (max-width: 368px){
     #jazzy-actions .form-group input[name = "_save"]{
         height: 100% !important;
-        border: 1px solid #B2BEB5;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        border: 1px solid #003755;
         outline: none !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 16px !important;
         background-color: #698F3F !important;
@@ -2921,10 +2856,9 @@ li.select2-results__option{
 @media screen and (min-width: 320px) and (max-width: 348px){
     #jazzy-actions .form-group input[name = "_save"]{
         height: 100% !important;
-        border: 1px solid #B2BEB5; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        border: 1px solid #003755;
         outline: none !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 14px !important;
         background-color: #698F3F !important;
@@ -2938,10 +2872,9 @@ li.select2-results__option{
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     height: 100% !important;
-    border: 1px solid #B2BEB5; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    border: 1px solid #003755;
     outline: none !important;
-    font-family: "Overlock";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 20px !important;
     background-color: #C90016 !important;
@@ -2958,10 +2891,9 @@ li.select2-results__option{
 @media screen and (min-width: 369px) and (max-width: 445px){
     #jazzy-actions .form-group a.btn-danger{
         height: 100% !important;
-        border: 1px solid #B2BEB5; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        border: 1px solid #003755;
         outline: none !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 18px !important;
         background-color: #C90016 !important;
@@ -2972,10 +2904,9 @@ li.select2-results__option{
 @media screen and (min-width: 349px) and (max-width: 368px){
     #jazzy-actions .form-group a.btn-danger{
         height: 100% !important;
-        border: 1px solid #B2BEB5; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        border: 1px solid #003755;
         outline: none !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 16px !important;
         background-color: #C90016 !important;
@@ -2986,10 +2917,9 @@ li.select2-results__option{
 @media screen and (min-width: 320px) and (max-width: 348px){
     #jazzy-actions .form-group a.btn-danger{
         height: 100% !important;
-        border: 1px solid #B2BEB5; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        border: 1px solid #003755; 
         outline: none !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 14px !important;
         background-color: #C90016 !important;
@@ -3003,10 +2933,9 @@ li.select2-results__option{
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     height: 100% !important;
-    border: 1px solid #B2BEB5; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    border: 1px solid #003755; 
     outline: none !important;
-    font-family: "Overlock";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 20px !important;
     background-color: #698F3F !important;
@@ -3023,10 +2952,9 @@ li.select2-results__option{
 @media screen and (min-width: 369px) and (max-width: 445px){
     #jazzy-actions .form-group input[name = "_addanother"]{
         height: 100% !important;
-        border: 1px solid #B2BEB5; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        border: 1px solid #003755; 
         outline: none !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 18px !important;
         background-color: #698F3F !important;
@@ -3037,10 +2965,9 @@ li.select2-results__option{
 @media screen and (min-width: 349px) and (max-width: 368px){
     #jazzy-actions .form-group input[name = "_addanother"]{
         height: 100% !important;
-        border: 1px solid #B2BEB5; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        border: 1px solid #003755; 
         outline: none !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 16px !important;
         background-color: #698F3F !important;
@@ -3051,10 +2978,9 @@ li.select2-results__option{
 @media screen and (min-width: 320px) and (max-width: 348px){
     #jazzy-actions .form-group input[name = "_addanother"]{
         height: 100% !important;
-        border: 1px solid #B2BEB5; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        border: 1px solid #003755; 
         outline: none !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 14px !important;
         background-color: #698F3F !important;
@@ -3068,10 +2994,9 @@ li.select2-results__option{
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     height: 100% !important;
-    border: 1px solid #B2BEB5; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    border: 1px solid #003755; 
     outline: none !important;
-    font-family: "Overlock";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 20px !important;
     background-color: #698F3F !important;
@@ -3088,13 +3013,12 @@ li.select2-results__option{
 @media screen and (min-width: 369px) and (max-width: 445px){
     #jazzy-actions .form-group input[name = "_continue"]{
         height: 100% !important;
-        border: 1px solid #B2BEB5; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        border: 1px solid #003755; 
         outline: none !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 18px !important;
-        background-color: #154360 !important;
+        background-color: #003755 !important;
         color: #FFFFFF !important;
     }
 }
@@ -3102,13 +3026,12 @@ li.select2-results__option{
 @media screen and (min-width: 349px) and (max-width: 368px){
     #jazzy-actions .form-group input[name = "_continue"]{
         height: 100% !important;
-        border: 1px solid #B2BEB5; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        border: 1px solid #003755; 
         outline: none !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 16px !important;
-        background-color: #154360 !important;
+        background-color: #003755 !important;
         color: #FFFFFF !important;
     }
 }
@@ -3116,19 +3039,90 @@ li.select2-results__option{
 @media screen and (min-width: 320px) and (max-width: 348px){
     #jazzy-actions .form-group input[name = "_continue"]{
         height: 100% !important;
-        border: 1px solid #B2BEB5; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        border: 1px solid #003755; 
         outline: none !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 14px !important;
-        background-color: #154360 !important;
+        background-color: #003755 !important;
         color: #FFFFFF !important;
     }
 }
 
+
 #jazzy-actions .object-tools{
-    display: none;
+    margin-top: 15px;
+}
+
+#jazzy-actions .object-tools a{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    height: 100% !important;
+    border: 1px solid #003755; 
+    border-radius: 5px !important;
+    outline: none !important;
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 20px !important;
+    background-color: #003755 !important;
+    color: #FFFFFF !important;
+    pointer-events: auto !important;
+    cursor: pointer;
+}
+
+.col-12 .card-header h4.card-title{
+    font-family: "Montserrat" !important;
+    font-weight: 700 !important; 
+    font-size: 22px !important;
+    color: #FFFFFF;
+    white-space: nowrap !important; 
+    overflow: auto !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .col-12 .card-header h4.card-title{
+        font-family: "Montserrat" !important;
+        font-weight: 700 !important;
+        font-size: 20px !important;
+        color: #FFFFFF;
+        white-space: nowrap !important; 
+        overflow: auto !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .col-12 .card-header h4.card-title{
+        font-family: "Montserrat" !important;
+        font-weight: 700 !important;
+        font-size: 18px !important;
+        color: #FFFFFF;
+        white-space: nowrap !important; 
+        overflow: auto !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .col-12 .card-header h4.card-title{
+        font-family: "Montserrat" !important;
+        font-weight: 700 !important;
+        font-size: 16px !important;
+        color: #FFFFFF;
+        white-space: nowrap !important; 
+        overflow: auto !important;
+    }
+}
+
+.timeline > .time-label > span{
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 20px !important;
+    background-color: #003755 !important;
 }
 
 
@@ -3136,7 +3130,119 @@ li.select2-results__option{
     background-color: #FFFFFF;
 }
 
-.content-wrapper > .content{
+
+.content-wrapper > .content:first-child{
+    margin-bottom: 0px !important;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #003755 !important;
+}
+
+.content-wrapper > .content:first-child .row{
+   display: grid !important;
+   grid-template-columns: auto auto !important;
+}
+
+.content-wrapper > .content:first-child h1{
+    margin-right: 0px !important;
+    padding-right: 30px !important;
+    max-width: 275px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-right: 1px solid #003755 !important;
+    font-family: "Montserrat";
+    font-weight: 700;
+    font-size: 22px !important;
+    color: #003755;
+}
+
+.content-wrapper > .content:first-child .row:has(h1:empty) .col-12{
+    display: unset !important;
+}
+
+.content-wrapper > .content:first-child:has(h1:empty) li:first-child{
+    padding-left: 0px !important;
+}
+
+.content-wrapper > .content:first-child ol{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+.content-wrapper > .content:first-child li{
+    display: inline-block !important;
+    padding-left: 30px !important;
+    padding-right: 0px !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    max-width: 275px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: "Montserrat";
+    font-weight: 700;
+    font-size: 22px !important;
+    color: #003755 !important;
+}
+
+.content-wrapper > .content:first-child li a{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    font-family: "Montserrat";
+    font-weight: 700;
+    font-size: 22px !important;
+    color: #003755 !important;
+}
+
+.content-wrapper > .content:first-child li::before{
+    padding-left: 0px !important;
+    padding-right: 30px !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    font-size: 22px;
+    color: #003755;
+}
+
+.content-wrapper > .content:first-child .page-actions a{
+    display: inline-block !important;   
+    align-items: center;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    margin-left: 30px !important;
+    margin-right: 0px !important;
+    margin-bottom: 0px !important;
+    max-width: 275px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border: 1px solid #003755 !important; 
+    border-radius: 5px !important;
+    outline: none !important;
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 20px !important;
+    background-color: #003755 !important;
+    color: #FFFFFF !important;
+    pointer-events: auto !important;
+    cursor: pointer;
+}
+
+.content-wrapper > .content:first-child .page-actions a:hover{
+    background-color: #002C44 !important;
+    color: #B2BEB5 !important;
+}
+
+
+.content-wrapper > .content:last-child{
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 30px;
@@ -4335,9 +4441,8 @@ li.select2-results__option{
 .col-md-6.col-sm-12 .card{
     margin-right: 30px;
     margin-bottom: 30px;
-    border: 1px solid #B2BEB5;
+    border: 1px solid #003755;
     border-radius: 5px;
-    box-shadow: 0 0 0 1px #B2BEB5; 
 }
 
 @media screen and (min-width: 320px) and (max-width: 1318px){
@@ -4360,11 +4465,11 @@ li.select2-results__option{
     padding-top: 15px;
     padding-bottom: 15px;
     width: 100% !important;
-    background-color: #154360;
+    background-color: #003755;
 }
 
 .col-md-6.col-sm-12 .card-header > .m-0{
-    font-family: "Philosopher";
+    font-family: "Montserrat";
     font-weight: 700;
     font-size: 22px !important;
     color: #FFFFFF;
@@ -4374,7 +4479,7 @@ li.select2-results__option{
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .col-md-6.col-sm-12 .card-header > .m-0{
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 20px !important;
         color: #FFFFFF;
@@ -4385,7 +4490,7 @@ li.select2-results__option{
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .col-md-6.col-sm-12 .card-header > .m-0{
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 18px !important;
         color: #FFFFFF;
@@ -4396,7 +4501,7 @@ li.select2-results__option{
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .col-md-6.col-sm-12 .card-header > .m-0{
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 16px !important;
         color: #FFFFFF;
@@ -4432,48 +4537,47 @@ li.select2-results__option{
 }
 
 .col-md-6.col-sm-12 .card-body td a{
-    font-family: "Overlock";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 20px !important;
-    color: #154360 !important;
+    color: #003755 !important;
     pointer-events: none;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .col-md-6.col-sm-12 .card-body td a{
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 18px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .col-md-6.col-sm-12 .card-body td a{
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 16px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .col-md-6.col-sm-12 .card-body td a{
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 14px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
 .col-md-6.col-sm-12 .card-body a.btn-success{
     height: 100% !important;
-    border: 1px solid #B2BEB5; 
+    border: 1px solid #003755; 
     border-top-left-radius: 5px !important;
     border-bottom-left-radius: 5px !important;    
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
-    font-family: "Overlock";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 20px !important;
     background-color: #698F3F !important;
@@ -4490,12 +4594,11 @@ li.select2-results__option{
 @media screen and (min-width: 369px) and (max-width: 445px){
     .col-md-6.col-sm-12 .card-body a.btn-success{
         height: 100% !important;
-        border: 1px solid #B2BEB5; 
+        border: 1px solid #003755; 
         border-top-left-radius: 5px !important;
         border-bottom-left-radius: 5px !important;  
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 18px !important;
         background-color: #698F3F !important;
@@ -4506,12 +4609,11 @@ li.select2-results__option{
 @media screen and (min-width: 349px) and (max-width: 368px){
     .col-md-6.col-sm-12 .card-body a.btn-success{
         height: 100% !important;
-        border: 1px solid #B2BEB5; 
+        border: 1px solid #003755; 
         border-top-left-radius: 5px !important;
         border-bottom-left-radius: 5px !important;  
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 16px !important;
         background-color: #698F3F !important;
@@ -4522,12 +4624,11 @@ li.select2-results__option{
 @media screen and (min-width: 320px) and (max-width: 348px){
     .col-md-6.col-sm-12 .card-body a.btn-success{
         height: 100% !important;
-        border: 1px solid #B2BEB5; 
+        border: 1px solid #003755; 
         border-top-left-radius: 5px !important;
         border-bottom-left-radius: 5px !important;  
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 14px !important;
         background-color: #698F3F !important;
@@ -4536,37 +4637,35 @@ li.select2-results__option{
 }
 
 .col-md-6.col-sm-12 .card-body a.btn-info{
-    border: 1px solid #B2BEB5; 
+    border: 1px solid #003755; 
     border-top-right-radius: 5px !important;
     border-bottom-right-radius: 5px !important;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
-    font-family: "Overlock";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 20px !important;
-    background-color: #154360 !important;
+    background-color: #003755 !important;
     color: #FFFFFF !important;
     pointer-events: auto !important;
     cursor: pointer;
 }
 
 .col-md-6.col-sm-12 .card-body a.btn-info:hover{
-    background-color: #10354C !important;
+    background-color: #002C44 !important;
     color: #B2BEB5 !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .col-md-6.col-sm-12 .card-body a.btn-info{
         height: 100% !important;
-        border: 1px solid #B2BEB5; 
+        border: 1px solid #003755; 
         border-top-right-radius: 5px !important;
         border-bottom-right-radius: 5px !important;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 18px !important;
-        background-color: #154360 !important;
+        background-color: #003755 !important;
         color: #FFFFFF !important;
     }
 }
@@ -4574,15 +4673,14 @@ li.select2-results__option{
 @media screen and (min-width: 348px) and (max-width: 368px){
     .col-md-6.col-sm-12 .card-body a.btn-info{
         height: 100% !important;
-        border: 1px solid #B2BEB5; 
+        border: 1px solid #003755; 
         border-top-right-radius: 5px !important;
         border-bottom-right-radius: 5px !important;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 16px !important;
-        background-color: #154360 !important;
+        background-color: #003755 !important;
         color: #FFFFFF !important;
     }
 }
@@ -4590,92 +4688,91 @@ li.select2-results__option{
 @media screen and (min-width: 320px) and (max-width: 348px){
     .col-md-6.col-sm-12 .card-body a.btn-info{
         height: 100% !important;
-        border: 1px solid #B2BEB5; 
+        border: 1px solid #003755; 
         border-top-right-radius: 5px !important;
         border-bottom-right-radius: 5px !important;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 14px !important;
-        background-color: #154360 !important;
+        background-color: #003755 !important;
         color: #FFFFFF !important;
     }
 }
 
 #recent-actions-module > h4.mb-3{
     margin-bottom: 15px !important;
-    font-family: "Philosopher";
+    font-family: "Montserrat";
     font-weight: 700;
     font-size: 22px;
-    color: #154360;
+    color: #003755;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     #recent-actions-module > h4.mb-3{
         margin-bottom: 15px !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 20px;
-        color: #154360;
+        color: #003755;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 368px){
     #recent-actions-module > h4.mb-3{
         margin-bottom: 15px !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 18px;
-        color: #154360;
+        color: #003755;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     #recent-actions-module > h4.mb-3{
         margin-bottom: 15px !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 16px;
-        color: #154360;
+        color: #003755;
     }
 }
 
 #recent-actions-module > p{
     margin-bottom: 0px !important;
-    font-family: "Overlock";
+    font-family: "Montserrat";
     font-weight: 400 !important;
     font-size: 20px;
-    color: #154360;
+    color: #003755;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     #recent-actions-module > p{
         margin-bottom: 0px !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400 !important;
         font-size: 18px;
-        color: #154360;
+        color: #003755;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 368px){
     #recent-actions-module > p{
         margin-bottom: 0px !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400 !important;
         font-size: 16px;
-        color: #154360;
+        color: #003755;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     #recent-actions-module > p{
         margin-bottom: 0px !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400 !important;
         font-size: 14px;
-        color: #154360;
+        color: #003755;
     }
 }
 
@@ -4692,7 +4789,7 @@ i.fas.fa-edit{
     left: 0px !important;
     height: 30px !important; 
     width: 30px !important;
-    background-color: #154360 !important;
+    background-color: #003755 !important;
 }
 
 i.fas.fa-plus-circle{
@@ -4713,7 +4810,18 @@ i.fa.fa-clock{
     left: 0px !important;
     height: 30px !important;
     width: 30px !important;
-    background-color: #154360 !important;
+    background-color: #003755 !important;
+}
+
+i.fas.fa-clock{
+    left: 0px !important;
+    height: 30px !important;
+    width: 30px !important;
+    background-color: #003755 !important;
+}
+
+i.fas.fa-clock::before{
+    margin-right: 0px !important;
 }
 
 .timeline > div{
@@ -4724,9 +4832,8 @@ i.fa.fa-clock{
 .timeline-item{
     margin-left: 55px !important;
     margin-right: 0px !important;
-    border: 1px solid #B2BEB5 !important;
+    border: 1px solid #003755 !important;
     border-radius: 5px !important;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
 }
 
 .timeline > div > .timeline-item > .timeline-header{
@@ -4735,11 +4842,12 @@ i.fa.fa-clock{
     padding-top: 15px !important;
     padding-bottom: 15px !important;
     width: 100%;
-    font-family: "Philosopher";
-    font-weight: 700;
-    font-size: 16px;
-    background-color: #698F3F;
-    color: #FFFFFF !important;
+    border-bottom: 1px solid #003755;
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 18px;
+    background-color: #FFFFFF;
+    color: #003755 !important;
     text-align: center !important;
     white-space: nowrap !important; 
     overflow: auto !important;
@@ -4752,11 +4860,11 @@ i.fa.fa-clock{
         padding-top: 15px !important;
         padding-bottom: 15px !important;
         width: 100%;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
-        font-size: 14px;
-        background-color: #698F3F;
-        color: #FFFFFF !important;
+        font-size: 16px;
+        background-color: #FFFFFF;
+        color: #003755 !important;
         text-align: center !important;
         white-space: nowrap !important; 
         overflow: auto !important;
@@ -4770,11 +4878,11 @@ i.fa.fa-clock{
         padding-top: 15px !important;
         padding-bottom: 15px !important;
         width: 100%;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
-        font-size: 12px;
-        background-color: #698F3F;
-        color: #FFFFFF !important;
+        font-size: 14px;
+        background-color: #FFFFFF;
+        color: #003755 !important;
         text-align: center !important;
         white-space: nowrap !important; 
         overflow: auto !important;
@@ -4788,48 +4896,52 @@ i.fa.fa-clock{
         padding-top: 15px !important;
         padding-bottom: 15px !important;
         width: 100%;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
-        font-size: 10px;
-        background-color: #698F3F;
-        color: #FFFFFF !important;
+        font-size: 12px;
+        background-color: #FFFFFF;
+        color: #003755 !important;
         text-align: center !important;
         white-space: nowrap !important; 
         overflow: auto !important;
     }
 }
 
+.timeline > div > .timeline-item > .timeline-header strong{
+    font-weight: 400 !important;
+}
+
 .timeline > div > .timeline-item > .timeline-header > a{
-    font-family: "Philosopher";
+    font-family: "Montserrat";
     font-weight: 700;
-    font-size: 16px;
-    color: #FFFFFF !important;
+    font-size: 18px;
+    color: #003755 !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .timeline > div > .timeline-item > .timeline-header > a{
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
-        font-size: 14px;
-        color: #FFFFFF !important;
+        font-size: 16px;
+        color: #003755 !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 368px){
     .timeline > div > .timeline-item > .timeline-header > a{
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
-        font-size: 12px;
-        color: #FFFFFF !important;
+        font-size: 14px;
+        color: #003755 !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .timeline > div > .timeline-item > .timeline-header > a{
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
-        font-size: 10px;
-        color: #FFFFFF !important;
+        font-size: 12px;
+        color: #003755 !important;
     }
 }
 
@@ -4838,19 +4950,16 @@ i.fas.fa-clock::before{
 }
 
 .timeline > div > .timeline-item > .time{
-    padding-left: 30px !important;
-    padding-right: 30px !important;
     padding-top: 15px !important;
     padding-bottom: 15px !important;
     width: 100%;
-    font-family: "Overlock";
+    font-family: "Montserrat";
     font-weight: 400 !important;
     font-size: 16px;
-    background-color: #154360;
+    background-color: #003755;
     color: #FFFFFF;
     text-align: center !important;
-    white-space: nowrap !important; 
-    overflow: auto !important;
+    white-space: wrap !important; 
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
@@ -4860,14 +4969,13 @@ i.fas.fa-clock::before{
         padding-top: 15px !important;
         padding-bottom: 15px !important;
         width: 100%;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400 !important;
         font-size: 14px;
-        background-color: #154360;
+        background-color: #003755;
         color: #FFFFFF;
         text-align: center !important;
-        white-space: nowrap !important; 
-        overflow: auto !important;
+        white-space: wrap !important; 
     }
 }
 
@@ -4878,14 +4986,13 @@ i.fas.fa-clock::before{
         padding-top: 15px !important;
         padding-bottom: 15px !important;
         width: 100%;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400 !important;
         font-size: 12px;
-        background-color: #154360;
+        background-color: #003755;
         color: #FFFFFF;
         text-align: center !important;
-        white-space: nowrap !important; 
-        overflow: auto !important;
+        white-space: wrap !important; 
     }
 }
 
@@ -4896,14 +5003,13 @@ i.fas.fa-clock::before{
         padding-top: 15px !important;
         padding-bottom: 15px !important;
         width: 100%;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400 !important;
         font-size: 10px;
-        background-color: #154360;
+        background-color: #003755;
         color: #FFFFFF;
         text-align: center !important;
-        white-space: nowrap !important; 
-        overflow: auto !important;
+        white-space: wrap !important; 
     }
 }
 
@@ -4912,11 +5018,11 @@ i.fas.fa-clock::before{
     padding-right: 30px !important;
     padding-top: 15px !important;
     padding-bottom: 15px !important;
-    font-family: "Overlock";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 16px !important;
     background-color: #FFFFFF;
-    color: #154360 !important;
+    color: #003755 !important;
     text-align: center !important;
     white-space: nowrap !important; 
     overflow: auto !important;
@@ -4928,11 +5034,11 @@ i.fas.fa-clock::before{
         padding-right: 30px !important;
         padding-top: 15px !important;
         padding-bottom: 15px !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 14px !important;
         background-color: #FFFFFF;
-        color: #154360 !important;
+        color: #003755 !important;
         text-align: center !important;
         white-space: nowrap !important; 
         overflow: auto !important;
@@ -4945,11 +5051,11 @@ i.fas.fa-clock::before{
         padding-right: 30px !important;
         padding-top: 15px !important;
         padding-bottom: 15px !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 12px !important;
         background-color: #FFFFFF;
-        color: #154360 !important;
+        color: #003755 !important;
         text-align: center !important;
         white-space: nowrap !important; 
         overflow: auto !important;
@@ -4962,11 +5068,11 @@ i.fas.fa-clock::before{
         padding-right: 30px !important;
         padding-top: 15px !important;
         padding-bottom: 15px !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 10px !important;
         background-color: #FFFFFF;
-        color: #154360 !important;
+        color: #003755 !important;
         text-align: center !important;
         white-space: nowrap !important; 
         overflow: auto !important;
@@ -4991,14 +5097,13 @@ i.fas.fa-clock::before{
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100% !important;
-    border: 1px solid #B2BEB5;
+    border: 1px solid #003755;
     border-radius: 5px; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
-    font-family: "Philosopher";
+    font-family: "Montserrat";
     font-weight: 700 !important;
     font-size: 20px !important;   
-    color: #154360 !important;
+    color: #003755 !important;
 }
 
 .form-group input[type = "email"]:focus{
@@ -5010,14 +5115,13 @@ i.fas.fa-clock::before{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
-        border: 1px solid #B2BEB5;
+        border: 1px solid #003755;
         border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700 !important;
         font-size: 20px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -5026,14 +5130,13 @@ i.fas.fa-clock::before{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
-        border: 1px solid #B2BEB5;
+        border: 1px solid #003755;
         border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700 !important;
         font-size: 18px !important;  
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -5042,14 +5145,13 @@ i.fas.fa-clock::before{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
-        border: 1px solid #B2BEB5;
+        border: 1px solid #003755;
         border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 400 !important;
         font-size: 16px !important;    
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -5058,14 +5160,13 @@ i.fas.fa-clock::before{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
-        border: 1px solid #B2BEB5;
+        border: 1px solid #003755;
         border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700 !important;
         font-size: 14px !important;   
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -5079,14 +5180,13 @@ i.fas.fa-clock::before{
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100% !important;
-    border: 1px solid #B2BEB5;
+    border: 1px solid #003755;
     border-radius: 5px; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
-    font-family: "Philosopher";
+    font-family: "Montserrat";
     font-weight: 700 !important;
     font-size: 20px !important;   
-    color: #154360 !important;
+    color: #003755 !important;
     pointer-events: none;
 }
 
@@ -5099,14 +5199,13 @@ i.fas.fa-clock::before{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
-        border: 1px solid #B2BEB5;
+        border: 1px solid #003755;
         border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700 !important;
         font-size: 20px !important;
-        color: #154360 !important;
+        color: #003755 !important;
         pointer-events: none;
     }
 }
@@ -5116,14 +5215,13 @@ i.fas.fa-clock::before{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
-        border: 1px solid #B2BEB5;
+        border: 1px solid #003755;
         border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700 !important;
         font-size: 18px !important;  
-        color: #154360 !important;
+        color: #003755 !important;
         pointer-events: none;
     }
 }
@@ -5133,14 +5231,13 @@ i.fas.fa-clock::before{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
-        border: 1px solid #B2BEB5;
+        border: 1px solid #003755;
         border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 400 !important;
         font-size: 16px !important;    
-        color: #154360 !important;
+        color: #003755 !important;
         pointer-events: none;
     }
 }
@@ -5150,14 +5247,13 @@ i.fas.fa-clock::before{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
-        border: 1px solid #B2BEB5;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
+        border: 1px solid #003755;
         border-radius: 5px; 
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700 !important;
         font-size: 14px !important;   
-        color: #154360 !important;
+        color: #003755 !important;
         pointer-events: none;
     }
 }
@@ -5173,15 +5269,14 @@ i.fas.fa-clock::before{
     padding-bottom: 5px !important;
     margin-right: 10px;
     display: inline-block;
-    border: 1px solid #B2BEB5 !important;
+    border: 1px solid #003755 !important;
     border-radius: 5px !important;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
     -webkit-user-select: none;
     -ms-user-select: none; 
     user-select: none;
     outline: none;
     content: "Choose a file";
-    font-family: "Overlock";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 20px !important;
     background-color: #698F3F;
@@ -5203,15 +5298,14 @@ i.fas.fa-clock::before{
         padding-bottom: 2px !important;
         margin-right: 10px;
         display: inline-block;
-        border: 1px solid #B2BEB5 !important;
+        border: 1px solid #003755 !important;
         border-radius: 5px !important;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         -webkit-user-select: none;
         -ms-user-select: none; 
         user-select: none;
         outline: none;
         content: "Choose file";
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 18px !important;
         background-color: #698F3F;
@@ -5229,15 +5323,14 @@ i.fas.fa-clock::before{
         padding-bottom: 2px !important;
         margin-right: 10px;
         display: inline-block;
-        border: 1px solid #B2BEB5 !important;
+        border: 1px solid #003755 !important;
         border-radius: 5px !important;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         -webkit-user-select: none;
         -ms-user-select: none; 
         user-select: none;
         outline: none;
         content: "Choose file";
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 16px !important;
         background-color: #698F3F;
@@ -5255,15 +5348,14 @@ i.fas.fa-clock::before{
         padding-bottom: 2px !important;
         margin-right: 10px;
         display: inline-block;
-        border: 1px solid #B2BEB5 !important;
+        border: 1px solid #003755 !important;
         border-radius: 5px !important;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         -webkit-user-select: none;
         -ms-user-select: none; 
         user-select: none;
         outline: none;
         content: "Choose file";
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 14px !important;
         background-color: #698F3F;
@@ -5288,7 +5380,7 @@ p.file-upload label{
     margin-bottom: 15px !important;
     width: 100% !important;
     visibility: hidden !important;
-    font-family: "Overlock";
+    font-family: "Montserrat";
     font-weight: 400 !important;
     font-style: italic;
     font-size: 14px !important;
@@ -5305,7 +5397,7 @@ p.file-upload label::before{
         margin-bottom: 15px !important;
         width: 100% !important;
         visibility: visible;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400 !important;
         font-style: italic;
         font-size: 14px !important;
@@ -5318,7 +5410,7 @@ p.file-upload label::before{
         margin-bottom: 15px !important;
         width: 100% !important;
         visibility: visible;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400 !important;
         font-style: italic;
         font-size: 12px !important;
@@ -5331,7 +5423,7 @@ p.file-upload label::before{
         margin-bottom: 15px !important;
         width: 100% !important;
         visibility: visible;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400 !important;
         font-style: italic;
         font-size: 11px !important;
@@ -5344,7 +5436,7 @@ p.file-upload label::before{
         margin-bottom: 15px !important;
         width: 100% !important;
         visibility: visible;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400 !important;
         font-style: italic;
         font-size: 10px !important;
@@ -5361,17 +5453,15 @@ p.file-upload .help-block{
     padding-right: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
-    border: 1px solid #B2BEB5;
+    border: 1px solid #003755;
     border-radius: 5px; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
 }
 
 .readonly img{
     width: 100%;
     height: 100%;
-    border: 1px solid #B2BEB5;
+    border: 1px solid #003755;
     border-radius: 5px; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
 }
 
 textarea.vLargeTextField{
@@ -5381,14 +5471,13 @@ textarea.vLargeTextField{
     padding-bottom: 5px !important;
     width: 100% !important;
     resize: none !important;
-    border: 1px solid #B2BEB5;
+    border: 1px solid #003755;
     border-radius: 5px; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
-    font-family: "Philosopher";
+    font-family: "Montserrat";
     font-weight: 700 !important;
     font-size: 20px !important;   
-    color: #154360 !important;
+    color: #003755 !important;
     text-align: justify !important;
     white-space: normal;
 }
@@ -5405,14 +5494,13 @@ textarea.vLargeTextField:focus{
         padding-bottom: 5px !important;
         width: 100% !important;
         resize: none !important;
-        border: 1px solid #B2BEB5;
+        border: 1px solid #003755;
         border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700 !important;
         font-size: 20px !important;   
-        color: #154360 !important;
+        color: #003755 !important;
         text-align: justify !important;
         white-space: normal;
     }
@@ -5426,14 +5514,13 @@ textarea.vLargeTextField:focus{
         padding-bottom: 5px !important;
         width: 100% !important;
         resize: none !important;
-        border: 1px solid #B2BEB5;
+        border: 1px solid #003755;
         border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700 !important;
         font-size: 18px !important;   
-        color: #154360 !important;
+        color: #003755 !important;
         text-align: justify !important;
         white-space: normal;
     }
@@ -5447,14 +5534,13 @@ textarea.vLargeTextField:focus{
         padding-bottom: 5px !important;
         width: 100% !important;
         resize: none !important;
-        border: 1px solid #B2BEB5;
+        border: 1px solid #003755;
         border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700 !important;
         font-size: 16px !important;   
-        color: #154360 !important;
+        color: #003755 !important;
         text-align: justify !important;
         white-space: normal;
     }
@@ -5468,14 +5554,13 @@ textarea.vLargeTextField:focus{
         padding-bottom: 5px !important;
         width: 100% !important;
         resize: none !important;
-        border: 1px solid #B2BEB5;
+        border: 1px solid #003755;
         border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700 !important;
         font-size: 14px !important;   
-        color: #154360 !important;
+        color: #003755 !important;
         text-align: justify !important;
         white-space: normal;
     }
@@ -5489,15 +5574,14 @@ textarea.vLargeTextField:focus{
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: 100% !important;
-    border: 1px solid #B2BEB5;
+    border: 1px solid #003755;
     border-radius: 5px; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
     -moz-appearance: textfield;
     outline: none !important;
-    font-family: "Philosopher";
+    font-family: "Montserrat";
     font-weight: 700 !important;
     font-size: 20px !important;   
-    color: #154360 !important;
+    color: #003755 !important;
 }
 
 .form-group input[type = "number"]:focus{
@@ -5509,15 +5593,14 @@ textarea.vLargeTextField:focus{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
-        border: 1px solid #B2BEB5;
+        border: 1px solid #003755;
         border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         -moz-appearance: textfield;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700 !important;
         font-size: 20px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -5526,15 +5609,14 @@ textarea.vLargeTextField:focus{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
-        border: 1px solid #B2BEB5;
+        border: 1px solid #003755;
         border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         -moz-appearance: textfield;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700 !important;
         font-size: 18px !important;  
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -5543,15 +5625,14 @@ textarea.vLargeTextField:focus{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
-        border: 1px solid #B2BEB5;
+        border: 1px solid #003755;
         border-radius: 5px;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         -moz-appearance: textfield;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 400 !important;
         font-size: 16px !important;    
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -5560,15 +5641,14 @@ textarea.vLargeTextField:focus{
         margin-top: 0px !important;
         margin-bottom: 0px !important;
         width: 100% !important;
-        border: 1px solid #B2BEB5;
+        border: 1px solid #003755;
         border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         -moz-appearance: textfield;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700 !important;
         font-size: 14px !important;   
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -5584,14 +5664,13 @@ textarea{
     padding-bottom: 5px !important;
     width: 100% !important;
     resize: none !important;
-    border: 1px solid #B2BEB5;
+    border: 1px solid #003755;
     border-radius: 5px; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
-    font-family: "Philosopher";
+    font-family: "Montserrat";
     font-weight: 700 !important;
     font-size: 20px !important;   
-    color: #154360 !important;
+    color: #003755 !important;
     text-align: justify !important;
     white-space: normal;
 }
@@ -5608,14 +5687,13 @@ textarea:focus{
         padding-bottom: 5px !important;
         width: 100% !important;
         resize: none !important;
-        border: 1px solid #B2BEB5;
+        border: 1px solid #003755;
         border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700 !important;
         font-size: 20px !important;   
-        color: #154360 !important;
+        color: #003755 !important;
         text-align: justify !important;
         white-space: normal;
     }
@@ -5629,14 +5707,13 @@ textarea:focus{
         padding-bottom: 5px !important;
         width: 100% !important;
         resize: none !important;
-        border: 1px solid #B2BEB5;
+        border: 1px solid #003755;
         border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700 !important;
         font-size: 18px !important;   
-        color: #154360 !important;
+        color: #003755 !important;
         text-align: justify !important;
         white-space: normal;
     }
@@ -5650,14 +5727,13 @@ textarea:focus{
         padding-bottom: 5px !important;
         width: 100% !important;
         resize: none !important;
-        border: 1px solid #B2BEB5;
+        border: 1px solid #003755;
         border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700 !important;
         font-size: 16px !important;   
-        color: #154360 !important;
+        color: #003755 !important;
         text-align: justify !important;
         white-space: normal;
     }
@@ -5671,14 +5747,13 @@ textarea:focus{
         padding-bottom: 5px !important;
         width: 100% !important;
         resize: none !important;
-        border: 1px solid #B2BEB5;
+        border: 1px solid #003755;
         border-radius: 5px; 
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700 !important;
         font-size: 14px !important;   
-        color: #154360 !important;
+        color: #003755 !important;
         text-align: justify !important;
         white-space: normal;
     }
@@ -5690,7 +5765,52 @@ textarea:focus{
 }
 
 .col-12#change-list-filters{
-    display: none;
+    display: grid;
+    gap: 30px;
+}
+
+.col-12#change-list-filters #changelist-search{
+    display: flex !important;
+    justify-content: space-between !important;
+    gap: 30px;
+}
+
+.col-12#change-list-filters #changelist-search .form-group{
+    flex-grow: 1;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    margin-bottom: 0px !important;
+}
+
+.col-12#change-list-filters #changelist-search .form-group#search_group{
+    justify-content: flex-end;
+}
+
+.col-12#change-list-filters form .form-group button{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    margin-bottom: 0px !important;
+    height: 100% !important;
+    display: flex !important;   
+    border: 1px solid #003755 !important; 
+    border-radius: 5px !important;
+    outline: none !important;
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 20px !important;
+    background-color: #003755 !important;
+    color: #FFFFFF !important;
+    pointer-events: auto !important;
+    cursor: pointer;
+}
+
+.col-12 .change-list-actions .actions button:hover{
+    background-color: #002C44 !important;
+    color: #B2BEB5 !important;
 }
 
 .col-12 .change-list-actions.pb-3{
@@ -5729,11 +5849,10 @@ textarea:focus{
     margin-bottom: 0px !important;
     height: 100% !important;
     display: flex !important;   
-    border: 1px solid #B2BEB5 !important; 
+    border: 1px solid #003755 !important; 
     border-radius: 5px !important;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
-    font-family: "Overlock";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 20px !important;
     background-color: #698F3F !important;
@@ -5765,7 +5884,7 @@ textarea:focus{
 }
 
 table#result_list thead{
-    background-color: #154360 !important;
+    background-color: #003755 !important;
 }
 
 table#result_list tr{
@@ -5779,24 +5898,24 @@ table#result_list tr{
 
 table#result_list th{
     border-top: 0 !important;
+    width: 250px !important;
 }
 
 table#result_list th:nth-child(1){
+    display: flex !important;
     padding-left: 0px !important;
     padding-right: 0px !important;
     padding-top: 0px !important;
     padding-bottom: 0px !important;
-    width: fit-content !important;
-    display: flex !important;
+    width: 100px !important;
 }
 
 table#result_list tr th:nth-child(2){
-    padding-left: 10px !important;
-    padding-right: 10px !important;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
-    width: fit-content !important;
-    font-family: "Philosopher";
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    font-family: "Montserrat";
     font-weight: 700;
     font-size: 22px !important;
     color: #FFFFFF !important;
@@ -5805,12 +5924,8 @@ table#result_list tr th:nth-child(2){
 
 @media screen and (min-width: 446px) and (max-width: 1318px){
     table#result_list tr th:nth-child(2){
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
         width: fit-content !important;
-        font-family: "Philosopher" !important;
+        font-family: "Montserrat" !important;
         font-weight: 700;
         font-size: 22px !important;
         color: #FFFFFF !important;
@@ -5820,11 +5935,9 @@ table#result_list tr th:nth-child(2){
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     table#result_list tr th:nth-child(2){
-        margin-top: 0px !important;
-        margin-bottom: 0px !important;
         width: 100% !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 20px !important; 
         color: #FFFFFF !important;
@@ -5834,12 +5947,8 @@ table#result_list tr th:nth-child(2){
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     table#result_list tr th:nth-child(2){
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
         width: fit-content !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 18px !important;
         color: #FFFFFF !important;
@@ -5849,12 +5958,8 @@ table#result_list tr th:nth-child(2){
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     table#result_list tr th:nth-child(2){
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
         width: fit-content !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 16px !important;
         color: #FFFFFF !important;
@@ -5871,7 +5976,7 @@ table#result_list td.action-checkbox{
     padding-right: 0px !important;
     padding-top: 0px !important;
     padding-bottom: 0px !important;
-    width: fit-content !important;
+    width: 100px !important;
     display: flex !important;
 }
 
@@ -5889,19 +5994,21 @@ table#result_list .odd{
 }
 
 table#result_list .odd th a{
-    color: #154360 !important;
+    color: #003755 !important;
 }
 
 table#result_list th a{
-    padding-left: 0px !important;
-    padding-right: 0px !important;
-    padding-top: 0px !important;
-    padding-bottom: 0px !important;
-    font-family: "Overlock";
+    display: block !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    max-width: 100%;
+    white-space: wrap !important;
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 20px !important;
-    display: flex !important;
-    color: #154360 !important;
+    color: #003755 !important;
 }
 
 @media screen and (min-width: 446px) and (max-width: 1318px){
@@ -5910,11 +6017,11 @@ table#result_list th a{
         padding-right: 0px !important;
         padding-top: 0px !important;
         padding-bottom: 0px !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 20px !important;
         display: flex !important;
-        color: #154360 !important;    
+        color: #003755 !important;    
     }
 }
 
@@ -5924,11 +6031,11 @@ table#result_list th a{
         padding-right: 0px !important;
         padding-top: 0px !important;
         padding-bottom: 0px !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 18px !important;
         display: flex !important;
-        color: #154360 !important;    
+        color: #003755 !important;    
     }
 }
 
@@ -5938,11 +6045,11 @@ table#result_list th a{
         padding-right: 0px !important;
         padding-top: 0px !important;
         padding-bottom: 0px !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 16px !important;
         display: flex !important;
-        color: #154360 !important;    
+        color: #003755 !important;    
     }
 }
 
@@ -5952,13 +6059,86 @@ table#result_list th a{
         padding-right: 0px !important;
         padding-top: 0px !important;
         padding-bottom: 0px !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 14px !important;
         display: flex !important;
-        color: #154360 !important;   
+        color: #003755 !important;   
     }
 }
+
+table#result_list .odd td{
+    color: #003755 !important;
+}
+
+table#result_list td{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 20px !important;
+    display: flex !important;
+    color: #FFFFFF !important;
+}
+
+@media screen and (min-width: 446px) and (max-width: 1318px){
+    table#result_list td{
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+        padding-top: 0px !important;
+        padding-bottom: 0px !important;
+        font-family: "Montserrat";
+        font-weight: 400;
+        font-size: 20px !important;
+        display: flex !important;
+        color: #FFFFFF !important;    
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    table#result_list td{
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+        padding-top: 0px !important;
+        padding-bottom: 0px !important;
+        font-family: "Montserrat";
+        font-weight: 400;
+        font-size: 18px !important;
+        display: flex !important;
+        color: #FFFFFF !important;    
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    table#result_list td{
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+        padding-top: 0px !important;
+        padding-bottom: 0px !important;
+        font-family: "Montserrat";
+        font-weight: 400;
+        font-size: 16px !important;
+        display: flex !important;
+        color: #FFFFFF !important;    
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    table#result_list td{
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+        padding-top: 0px !important;
+        padding-bottom: 0px !important;
+        font-family: "Montserrat";
+        font-weight: 400;
+        font-size: 14px !important;
+        display: flex !important;
+        color: #FFFFFF !important;   
+    }
+}
+
 
 .row + .row > .col-7{
     display: none;
@@ -5977,7 +6157,7 @@ table#result_list tr th.sorting_asc a{
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: fit-content !important;
-    font-family: "Philosopher";
+    font-family: "Montserrat";
     font-weight: 700;
     font-size: 22px !important;
     color: #FFFFFF !important;
@@ -5991,7 +6171,7 @@ table#result_list tr th.sorting_asc a{
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: fit-content !important;
-        font-family: "Philosopher" !important;
+        font-family: "Montserrat" !important;
         font-weight: 700;
         font-size: 22px !important;
         color: #FFFFFF !important;
@@ -6005,7 +6185,7 @@ table#result_list tr th.sorting_asc a{
         margin-bottom: 0px !important;
         width: 100% !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 20px !important; 
         color: #FFFFFF !important;
@@ -6020,7 +6200,7 @@ table#result_list tr th.sorting_asc a{
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: fit-content !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 18px !important;
         color: #FFFFFF !important;
@@ -6035,7 +6215,7 @@ table#result_list tr th.sorting_asc a{
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: fit-content !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 16px !important;
         color: #FFFFFF !important;
@@ -6063,8 +6243,7 @@ table#result_list tr th.sorting a{
     padding-right: 10px !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
-    width: fit-content !important;
-    font-family: "Philosopher";
+    font-family: "Montserrat";
     font-weight: 700;
     font-size: 22px !important;
     color: #FFFFFF !important;
@@ -6078,7 +6257,7 @@ table#result_list tr th.sorting a{
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: fit-content !important;
-        font-family: "Philosopher" !important;
+        font-family: "Montserrat" !important;
         font-weight: 700;
         font-size: 22px !important;
         color: #FFFFFF !important;
@@ -6092,7 +6271,7 @@ table#result_list tr th.sorting a{
         margin-bottom: 0px !important;
         width: 100% !important;
         outline: none !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 20px !important; 
         color: #FFFFFF !important;
@@ -6107,7 +6286,7 @@ table#result_list tr th.sorting a{
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: fit-content !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 18px !important;
         color: #FFFFFF !important;
@@ -6122,7 +6301,7 @@ table#result_list tr th.sorting a{
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         width: fit-content !important;
-        font-family: "Philosopher";
+        font-family: "Montserrat";
         font-weight: 700;
         font-size: 16px !important;
         color: #FFFFFF !important; 
@@ -6137,7 +6316,7 @@ table#result_list tr th.sorting a{
 
 
 .col-12 .card-danger h4.card-title{
-    font-family: "Philosopher" !important;
+    font-family: "Montserrat" !important;
     font-weight: 700 !important; 
     font-size: 22px !important;
     color: #FFFFFF;
@@ -6147,7 +6326,7 @@ table#result_list tr th.sorting a{
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .col-12 .card-danger h4.card-title{
-        font-family: "Philosopher" !important;
+        font-family: "Montserrat" !important;
         font-weight: 700 !important;
         font-size: 20px !important;
         color: #FFFFFF;
@@ -6158,7 +6337,7 @@ table#result_list tr th.sorting a{
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .col-12 .card-danger h4.card-title{
-        font-family: "Philosopher" !important;
+        font-family: "Montserrat" !important;
         font-weight: 700 !important;
         font-size: 18px !important;
         color: #FFFFFF;
@@ -6169,7 +6348,7 @@ table#result_list tr th.sorting a{
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .col-12 .card-danger h4.card-title{
-        font-family: "Philosopher" !important;
+        font-family: "Montserrat" !important;
         font-weight: 700 !important;
         font-size: 16px !important;
         color: #FFFFFF;
@@ -6201,8 +6380,7 @@ table#result_list tr th.sorting a{
 .col-12 .card-danger .card-body .col-sm-9{
     max-width: 100%;
     border-radius: 5px;
-    border: 1px solid #B2BEB5; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    border: 1px solid #003755; 
 }
 
 @media screen and (min-width: 320px) and (max-width: 775px){
@@ -6219,7 +6397,7 @@ table#result_list tr th.sorting a{
     padding-top: 15px !important;
     padding-bottom: 15px !important;
     width: 100%;
-    font-family: "Overlock";
+    font-family: "Montserrat";
     font-weight: 400 !important;
     font-size: 20px;
     background-color: #698F3F;
@@ -6236,7 +6414,7 @@ table#result_list tr th.sorting a{
         padding-top: 15px !important;
         padding-bottom: 15px !important;
         width: 100%;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400 !important;
         font-size: 18px;
         background-color: #698F3F;
@@ -6254,7 +6432,7 @@ table#result_list tr th.sorting a{
         padding-top: 15px !important;
         padding-bottom: 15px !important;
         width: 100%;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400 !important;
         font-size: 16px;
         background-color: #698F3F;
@@ -6272,7 +6450,7 @@ table#result_list tr th.sorting a{
         padding-top: 15px !important;
         padding-bottom: 15px !important;
         width: 100%;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400 !important;
         font-size: 14px;
         background-color: #698F3F;
@@ -6295,12 +6473,12 @@ table#result_list tr th.sorting a{
     padding-right: 0px !important;
     padding-top: 0px !important;
     padding-bottom: 0px !important;
-    border-bottom: 1px solid #B2BEB5;
+    border-bottom: 1px solid #003755;
     width: 100% !important;
-    font-family: "Overlock";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 18px !important;
-    color: #154360 !important;
+    color: #003755 !important;
     white-space: nowrap;
     overflow-x: auto;
     list-style-type: none;
@@ -6310,10 +6488,10 @@ table#result_list tr th.sorting a{
     .col-12 .card-danger .card-body .col-sm-9 li{
         width: 100% !important;
         border-bottom: 0px !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 16px !important;
-        color: #154360 !important;
+        color: #003755 !important;
         white-space: nowrap;
         overflow-x: auto;
     }
@@ -6323,10 +6501,10 @@ table#result_list tr th.sorting a{
     .col-12 .card-danger .card-body .col-sm-9 li{
         width: 100% !important;
         border-bottom: 0px !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 14px !important;
-        color: #154360 !important;
+        color: #003755 !important;
         white-space: nowrap;
         overflow-x: auto;
     }
@@ -6336,10 +6514,10 @@ table#result_list tr th.sorting a{
     .col-12 .card-danger .card-body .col-sm-9 li{
         width: 100% !important;
         border-bottom: 0px !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 12px !important;
-        color: #154360 !important;
+        color: #003755 !important;
         white-space: nowrap;
         overflow-x: auto;    
     }
@@ -6347,24 +6525,24 @@ table#result_list tr th.sorting a{
 
 .col-12 .card-danger .card-body .col-sm-9 li a{
     float: right;
-    font-family: "Philosopher" !important;
+    font-family: "Montserrat" !important;
     font-weight: 700 !important; 
     font-size: 18px !important;
-    color: #154360 !important;
+    color: #003755 !important;
 }
 
 .col-12 .card-danger .card-body .col-sm-9 li a:hover{
-    color: #10354C !important;
+    color: #002C44 !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .col-12 .card-danger .card-body .col-sm-9 li a{
         display: block;        
         float: unset;        
-        font-family: "Philosopher" !important;
+        font-family: "Montserrat" !important;
         font-weight: 700 !important; 
         font-size: 16px !important;
-        color: #154360 !important;   
+        color: #003755 !important;   
     }
 }
 
@@ -6372,10 +6550,10 @@ table#result_list tr th.sorting a{
     .col-12 .card-danger .card-body .col-sm-9 li a{
         display: block;        
         float: unset;        
-        font-family: "Philosopher" !important;
+        font-family: "Montserrat" !important;
         font-weight: 700 !important; 
         font-size: 14px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
@@ -6383,18 +6561,17 @@ table#result_list tr th.sorting a{
     .col-12 .card-danger .card-body .col-sm-9 li a{
         display: block;        
         float: unset;        
-        font-family: "Philosopher" !important;
+        font-family: "Montserrat" !important;
         font-weight: 700 !important; 
         font-size: 12px !important;
-        color: #154360 !important;
+        color: #003755 !important;
     }
 }
 
 .col-12 .card-danger .card-body .col-sm-3{
     max-width: 100%;
     border-radius: 5px;
-    border: 1px solid #B2BEB5; 
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
+    border: 1px solid #003755; 
 }
 
 .col-12 .card-danger .card-body .col-sm-3 h4{
@@ -6404,7 +6581,7 @@ table#result_list tr th.sorting a{
     padding-top: 15px !important;
     padding-bottom: 15px !important;
     width: 100%;
-    font-family: "Overlock";
+    font-family: "Montserrat";
     font-weight: 400 !important;
     font-size: 20px;
     background-color: #698F3F;
@@ -6419,7 +6596,7 @@ table#result_list tr th.sorting a{
         padding-top: 15px !important;
         padding-bottom: 15px !important;
         width: 100%;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400 !important;
         font-size: 18px;
         background-color: #698F3F;
@@ -6435,7 +6612,7 @@ table#result_list tr th.sorting a{
         padding-top: 15px !important;
         padding-bottom: 15px !important;
         width: 100%;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400 !important;
         font-size: 16px;
         background-color: #698F3F;
@@ -6451,7 +6628,7 @@ table#result_list tr th.sorting a{
         padding-top: 15px !important;
         padding-bottom: 15px !important;
         width: 100%;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400 !important;
         font-size: 14px;
         background-color: #698F3F;
@@ -6471,7 +6648,7 @@ table#result_list tr th.sorting a{
     padding-right: 30px !important;
     padding-top: 15px !important;
     padding-bottom: 15px !important;
-    border-bottom: 2px solid #B2BEB5 !important; 
+    border-bottom: 2px solid #003755 !important; 
     text-align: center !important;
     white-space: nowrap;
     overflow-x: auto;
@@ -6479,21 +6656,21 @@ table#result_list tr th.sorting a{
 
 .col-12 .card-danger .card-body .col-sm-3 .table td:nth-child(1){
     width: 75% !important;
-    border-right: 2px solid #B2BEB5 !important; 
-    font-family: "Overlock";
+    border-right: 2px solid #003755 !important; 
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 18px !important;
-    color: #154360 !important;
+    color: #003755 !important;
     white-space: nowrap;
     overflow-x: auto;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .col-12 .card-danger .card-body .col-sm-3 .table td:nth-child(1){
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 16px !important;
-        color: #154360 !important;
+        color: #003755 !important;
         white-space: nowrap;
         overflow-x: auto;
     }
@@ -6501,10 +6678,10 @@ table#result_list tr th.sorting a{
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .col-12 .card-danger .card-body .col-sm-3 .table td:nth-child(1){
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 14px !important;
-        color: #154360 !important;
+        color: #003755 !important;
         white-space: nowrap;
         overflow-x: auto;
     }
@@ -6512,10 +6689,10 @@ table#result_list tr th.sorting a{
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .col-12 .card-danger .card-body .col-sm-3 .table td:nth-child(1){
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 12px !important;
-        color: #154360 !important;
+        color: #003755 !important;
         white-space: nowrap;
         overflow-x: auto;
     }
@@ -6523,21 +6700,21 @@ table#result_list tr th.sorting a{
 
 .col-12 .card-danger .card-body .col-sm-3 .table td:nth-child(2){
     width: 25% !important;
-    border-left: 2px solid #B2BEB5 !important; 
-    font-family: "Philosopher" !important;
+    border-left: 2px solid #003755 !important; 
+    font-family: "Montserrat" !important;
     font-weight: 700 !important; 
     font-size: 18px !important;
-    color: #154360 !important;
+    color: #003755 !important;
     white-space: nowrap;
     overflow-x: auto;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .col-12 .card-danger .card-body .col-sm-3 .table td:nth-child(2){       
-        font-family: "Philosopher" !important;
+        font-family: "Montserrat" !important;
         font-weight: 700 !important; 
         font-size: 16px !important;
-        color: #154360 !important;
+        color: #003755 !important;
         white-space: nowrap;
         overflow-x: auto;
     }
@@ -6545,10 +6722,10 @@ table#result_list tr th.sorting a{
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .col-12 .card-danger .card-body .col-sm-3 .table td:nth-child(2){  
-        font-family: "Philosopher" !important;
+        font-family: "Montserrat" !important;
         font-weight: 700 !important; 
         font-size: 14px !important;
-        color: #154360 !important;
+        color: #003755 !important;
         white-space: nowrap;
         overflow-x: auto;
     }
@@ -6556,10 +6733,10 @@ table#result_list tr th.sorting a{
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .col-12 .card-danger .card-body .col-sm-3 .table td:nth-child(2){   
-        font-family: "Philosopher" !important;
+        font-family: "Montserrat" !important;
         font-weight: 700 !important; 
         font-size: 12px !important;
-        color: #154360 !important;
+        color: #003755 !important;
         white-space: nowrap;
         overflow-x: auto;
     }
@@ -6573,7 +6750,7 @@ table#result_list tr th.sorting a{
 
 .col-12 .card-danger .card-body .col-sm-3 .table tbody tr:nth-of-type(odd){
     background-color: #FFFFFF !important;
-    color: #154360 !important;
+    color: #003755 !important;
 }
 
 .col-12 .card-danger .card-body .col-sm-3 hr{
@@ -6598,13 +6775,12 @@ table#result_list tr th.sorting a{
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     height: 100% !important;
-    border: 1px solid #B2BEB5; 
+    border: 1px solid #003755; 
     border-radius: 5px;
     border-top-left-radius: 5px !important;
     border-top-right-radius: 5px !important;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
-    font-family: "Overlock";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 20px !important;
     background-color: #C90016 !important;
@@ -6621,12 +6797,11 @@ table#result_list tr th.sorting a{
 @media screen and (min-width: 369px) and (max-width: 445px){
     .col-12 .card-danger .card-body .col-sm-3 form input{
         height: 100% !important;
-        border: 1px solid #B2BEB5; 
+        border: 1px solid #003755; 
         border-top-left-radius: 5px !important;
         border-top-right-radius: 5px !important;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 18px !important;
         background-color: #C90016 !important;
@@ -6637,12 +6812,11 @@ table#result_list tr th.sorting a{
 @media screen and (min-width: 349px) and (max-width: 368px){
     .col-12 .card-danger .card-body .col-sm-3 form input{
         height: 100% !important;
-        border: 1px solid #B2BEB5; 
+        border: 1px solid #003755; 
         border-top-left-radius: 5px !important;
         border-top-right-radius: 5px !important;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 16px !important;
         background-color: #C90016 !important;
@@ -6653,12 +6827,11 @@ table#result_list tr th.sorting a{
 @media screen and (min-width: 320px) and (max-width: 348px){
     .col-12 .card-danger .card-body .col-sm-3 form input{
         height: 100% !important;
-        border: 1px solid #B2BEB5; 
+        border: 1px solid #003755; 
         border-top-left-radius: 5px !important;
         border-top-right-radius: 5px !important;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 14px !important;
         background-color: #C90016 !important;
@@ -6672,12 +6845,11 @@ table#result_list tr th.sorting a{
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     height: 100% !important;
-    border: 1px solid #B2BEB5; 
+    border: 1px solid #003755; 
     border-bottom-left-radius: 5px !important;
     border-bottom-right-radius: 5px !important;
-    box-shadow: 0 0 0 1px #B2BEB5 !important;
     outline: none !important;
-    font-family: "Overlock";
+    font-family: "Montserrat";
     font-weight: 400;
     font-size: 20px !important;
     background-color: #C90016 !important;
@@ -6694,12 +6866,11 @@ table#result_list tr th.sorting a{
 @media screen and (min-width: 369px) and (max-width: 445px){
     .col-12 .card-danger .card-body .col-sm-3 form a{
         height: 100% !important;
-        border: 1px solid #B2BEB5; 
+        border: 1px solid #003755; 
         border-bottom-left-radius: 5px !important;
         border-bottom-right-radius: 5px !important;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 18px !important;
         background-color: #C90016 !important;
@@ -6710,12 +6881,11 @@ table#result_list tr th.sorting a{
 @media screen and (min-width: 349px) and (max-width: 368px){
     .col-12 .card-danger .card-body .col-sm-3 form a{
         height: 100% !important;
-        border: 1px solid #B2BEB5; 
+        border: 1px solid #003755; 
         border-bottom-left-radius: 5px !important;
         border-bottom-right-radius: 5px !important;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 16px !important;
         background-color: #C90016 !important;
@@ -6726,12 +6896,11 @@ table#result_list tr th.sorting a{
 @media screen and (min-width: 320px) and (max-width: 348px){
     .col-12 .card-danger .card-body .col-sm-3 form a{
         height: 100% !important;
-        border: 1px solid #B2BEB5; 
+        border: 1px solid #003755; 
         border-bottom-left-radius: 5px !important;
         border-bottom-right-radius: 5px !important;
-        box-shadow: 0 0 0 1px #B2BEB5 !important;
         outline: none !important;
-        font-family: "Overlock";
+        font-family: "Montserrat";
         font-weight: 400;
         font-size: 14px !important;
         background-color: #C90016 !important;
@@ -6741,11 +6910,11 @@ table#result_list tr th.sorting a{
 
 
 input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus input:-webkit-autofill, textarea:-webkit-autofill, textarea:-webkit-autofill:hover textarea:-webkit-autofill:focus, select:-webkit-autofill, select:-webkit-autofill:hover, select:-webkit-autofill:focus{
-    -webkit-text-fill-color: #154360;
+    -webkit-text-fill-color: #003755;
     -webkit-box-shadow: 0 0 0px 1000px #FFFFFF inset;
     transition: background-color 5000s ease-in-out 0s;
 }
 
 input:autofill{
     background: #FFFFFF !important;
-} */
+}

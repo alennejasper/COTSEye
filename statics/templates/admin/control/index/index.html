@@ -156,7 +156,7 @@
 
             status.addTo(map_statuses);
             
-            var starfish = L.icon({iconUrl: "{% static 'assets/pin.png' %}", iconSize: [30, 30], iconAnchor: [15, 15]});
+            var starfish = L.icon({iconUrl: "{% static 'assets/icons/pin.png' %}", iconSize: [30, 30], iconAnchor: [15, 15]});
         
             var map_posts = L.markerClusterGroup({iconCreateFunction: function(cluster){return starfish}, removeOutsideVisibleBounds: false});
         
@@ -257,4 +257,18 @@
             revealMap();
         });
     </script> -->
+
+    <script>
+        function redirectMobileHandler() {
+            const width = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+            
+            if (width < 1080){
+                window.location.href = "{% url 'Administrator Control Fallback' %}";
+            }
+        }
+
+        window.onload = redirectMobileHandler;
+
+        window.onresize = redirectMobileHandler;
+    </script>
 {% endblock %}

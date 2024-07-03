@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang = "en">
+    <head>
+        <link rel = "stylesheet" type = "text/css" href = "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap">
+
+        <style>
+            *{
+                margin: 0px;
+                padding: 0px;
+                box-sizing: border-box !important;
+            }         
+
+            .content{
+                padding-left: 30px;
+                padding-right: 30px;
+                padding-top: 30px;
+                padding-bottom: 30px;
+                display: grid;
+                grid-template-columns: 100%;
+            }
+
+            .email{
+                width: 100%;
+                height: 100%;
+                display: grid;
+                grid-column: 1;
+                border: 1px solid #B2BEB5;
+                border-radius: 5px !important;
+            }
+
+            .email .card-header{
+                padding-left: 30px;
+                padding-right: 30px;
+                padding-top: 15px;
+                padding-bottom: 15px;
+                border-top-left-radius: 5px !important;
+                border-top-right-radius: 5px !important;
+                background-color: #003755;
+                display: grid;
+            }
+
+            .email .card-header header{
+                font-family: "Montserrat";
+                font-weight: 700;
+                font-size: 22px !important;
+                color: #FFFFFF;
+                white-space: nowrap !important; 
+                overflow: auto !important; 
+            }
+
+            @media screen and (min-width: 369px) and (max-width: 445px){
+                .email .card-header header{
+                    font-family: "Montserrat";
+                    font-weight: 700;
+                    font-size: 20px !important;
+                    color: #FFFFFF;
+                    white-space: nowrap !important; 
+                    overflow: auto !important; 
+                }
+            }
+
+            @media screen and (min-width: 349px) and (max-width: 368px){
+                .email .card-header header{
+                    font-family: "Montserrat";
+                    font-weight: 700;
+                    font-size: 18px !important;
+                    color: #FFFFFF;
+                    white-space: nowrap !important; 
+                    overflow: auto !important;
+                }
+            }
+
+            @media screen and (min-width: 320px) and (max-width: 348px){
+                .email .card-header header{
+                    font-family: "Montserrat";
+                    font-weight: 700;
+                    font-size: 16px !important;
+                    color: #FFFFFF;
+                    white-space: nowrap !important; 
+                    overflow: auto !important; 
+                }
+            }
+
+            .email .card-body{
+                padding-left: 30px;
+                padding-right: 30px;
+                padding-top: 15px;
+                padding-bottom: 15px;
+                width: 100%;
+                border-bottom-left-radius: 5px !important;
+                border-bottom-right-radius: 5px !important;
+                display: grid;
+                gap: 15px;
+                background-color: #FFFFFF;
+            }
+
+            .email .card-body p{
+                width: 100%;
+                font-family: "Montserrat";
+                font-weight: 400;
+                font-size: 20px;
+                line-height: 30px;
+                color: #003755 !important;
+                text-align: justify;
+                white-space: normal !important;
+            }
+
+            @media screen and (min-width: 369px) and (max-width: 445px){
+                .email .card-body p{
+                    font-family: "Montserrat";
+                    font-weight: 400;
+                    font-size: 18px;
+                    line-height: 30px;
+                    color: #003755;
+                    text-align: justify;
+                    white-space: normal !important; 
+                }
+            }
+
+            @media screen and (min-width: 349px) and (max-width: 368px){
+                .email .card-body p{
+                    font-family: "Montserrat";
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 30px;
+                    color: #003755;
+                    text-align: justify;
+                    white-space: normal !important; 
+                }
+            }
+
+            @media screen and (min-width: 320px) and (max-width: 348px){
+                .email .card-body p{
+                    font-family: "Montserrat";
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 30px;
+                    color: #003755;
+                    text-align: justify;
+                    white-space: normal; 
+                }
+            }
+
+            .email .card-body .button{
+                margin-left: auto;
+                padding-top: 5px !important;
+                padding-bottom: 5px !important;
+                width: fit-content;
+                height: 100% !important;
+            }
+
+            .email .card-body .button a.review-post{
+                padding-left: 10px !important;
+                padding-right: 10px !important;
+                padding-top: 5px !important;
+                padding-bottom: 5px !important;
+                border: 1px solid #B2BEB5; 
+                border-radius: 5px;
+                box-shadow: 0 0 0 1px #B2BEB5 !important;
+                outline: none !important;
+                font-family: "Montserrat";
+                font-weight: 400;
+                font-size: 20px;
+                color: #FFFFFF !important;
+                background-color: #003755 !important;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+            .email .card-body .button a.review-post:hover{
+                background-color: #002C44 !important;
+                color: #B2BEB5 !important;
+            }
+
+            @media screen and (min-width: 369px) and (max-width: 445px){
+                .email .card-body .button a{
+                    font-family: "Montserrat";
+                    font-weight: 400;
+                    font-size: 18px !important;
+                    color: #FFFFFF !important;
+                    text-decoration: none;
+                }
+            }
+
+            @media screen and (min-width: 349px) and (max-width: 368px){
+                .email .card-body .button a{
+                    font-family: "Montserrat";
+                    font-weight: 400;
+                    font-size: 16px !important;
+                    color: #FFFFFF !important;
+                    text-decoration: none;
+                }
+            }
+
+            @media screen and (min-width: 320px) and (max-width: 348px){
+                .email .card-body .button a{
+                    font-family: "Montserrat";
+                    font-weight: 400;
+                    font-size: 14px !important;
+                    color: #FFFFFF !important;
+                    text-decoration: none;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class = "content">
+            <div class = "email">
+                <div class = "card-header">
+                    <header>Attention! {{administrator}},</header>
+                </div>
+
+                <div class = "card-body">
+                    <p>This alert message serves to inform that an account has been requested by officer {{officer}} to be activated. Kindly review the account at the earliest convenience.</p>
+
+                    <div class = "button">
+                        <a class = "review-post" href = "{{scheme}}://{{host}}{% url 'admin:Control Profile Redirect' account.id %}">Review</a>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

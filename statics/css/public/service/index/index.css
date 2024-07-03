@@ -58,7 +58,7 @@ nav.navigation-topbar{
     padding-bottom: 15px;
     width: 100%;
     background-color: #FFFFFF;
-    border-bottom: 1px solid #003755;
+    border-bottom: 1px solid #B2BEB5;
     z-index: 100;
 }
 
@@ -392,7 +392,7 @@ nav.navigation-bottombar{
     padding-top: 15px;
     padding-bottom: 15px;
     width: 100%;
-    border-top: 1px solid #003755;
+    border-top: 1px solid #B2BEB5;
     background-color: #FFFFFF;
     z-index: 100;
 }
@@ -494,7 +494,7 @@ nav.navigation-bottombar img:active{
     top: 40px;    
     max-width: 400px;
     border-radius: 5px;
-    border: 1px solid #003755;     
+    border: 1px solid #B2BEB5;     
     background-color: #FFFFFF;
     z-index: 100;
 }
@@ -514,27 +514,29 @@ nav.navigation-bottombar img:active{
     padding-top: 15px;
     padding-bottom: 15px;
     white-space: wrap;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     font-family: "Montserrat";
     font-weight: 700;
     font-size: 24px;
-    background-color: #003755;
+    background-color: rgb(52, 144, 242);
     color: #FFFFFF;
     text-align: center;
     text-decoration: none !important;
 }
 
 .profile-content a.dropdown-header:hover{
-    background-color: #002C44 !important;
+    background-color: rgb(52, 144, 242) !important;
     color: #B2BEB5 !important;
 }
 
 .profile-content a.dropdown-header:focus{
-    background-color: #002C44 !important;
+    background-color: rgb(52, 144, 242) !important;
     color: #B2BEB5 !important;
 }
 
 .profile-content a.dropdown-header:active{
-    background-color: #002C44 !important;
+    background-color: rgb(52, 144, 242) !important;
     color: #B2BEB5 !important;
 }
 
@@ -710,27 +712,29 @@ nav.navigation-bottombar img:active{
     padding-top: 15px;
     padding-bottom: 15px;
     white-space: wrap;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     font-family: "Montserrat";
     font-weight: 700;
     font-size: 24px;
-    background-color: #003755;
+    background-color: rgb(52, 144, 242);
     color: #FFFFFF;
     text-align: center;
     text-decoration: none !important;
 }
 
 .profile-content a.dropdown-footer:hover{
-    background-color: #002C44 !important;
+    background-color: rgb(52, 144, 242) !important;
     color: #B2BEB5 !important;
 }
 
 .dropdown-content a.dropdown-footer:focus{
-    background-color: #002C44 !important;
+    background-color: rgb(52, 144, 242) !important;
     color: #B2BEB5 !important;
 }
 
 .profile-content a.dropdown-footer:active{
-    background-color: #002C44 !important;
+    background-color: rgb(52, 144, 242) !important;
     color: #B2BEB5 !important;
 }
 
@@ -1146,6 +1150,138 @@ nav.navigation-bottombar img:active{
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .swal2-container .error-button::before{
+        font-size: 12px !important;
+    }
+}
+
+.swal2-container .confirm-button{
+    visibility: hidden;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 0px !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .swal2-container .confirm-button{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+.swal2-container .confirm-button::before{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    content: "Yes" !important;
+    visibility: visible !important;
+    border: 1px solid #003755 !important; 
+    border-radius: 5px !important;
+    outline: none !important;
+    font-family: "Montserrat" !important;
+    font-weight: 400 !important;
+    font-size: 20px !important;
+    background-color: #003755 !important;
+    color: #FFFFFF !important;
+    pointer-events: auto !important;
+    cursor: pointer;
+}
+
+.swal2-container .confirm-button:hover{
+    background-color: #10354C !important;
+    color: #B2BEB5 !important;        
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .swal2-container .confirm-button::before{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .swal2-container .confirm-button::before{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .swal2-container .confirm-button::before{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .swal2-container .confirm-button::before{
+        font-size: 12px !important;
+    }
+}
+
+.swal2-container .cancel-button{
+    visibility: hidden;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 0px !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .swal2-container .cancel-button{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+.swal2-container .cancel-button::before{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    content: "No" !important;
+    visibility: visible !important;
+    border: 1px solid #003755 !important; 
+    border-radius: 5px !important;
+    outline: none !important;
+    font-family: "Montserrat" !important;
+    font-weight: 400 !important;
+    font-size: 20px !important;
+    background-color: #003755 !important;
+    color: #FFFFFF !important;
+    pointer-events: auto !important;
+    cursor: pointer;
+}
+
+.swal2-container .cancel-button:hover{
+    background-color: #10354C !important;
+    color: #B2BEB5 !important;        
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .swal2-container .cancel-button::before{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .swal2-container .cancel-button::before{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .swal2-container .cancel-button::before{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .swal2-container .cancel-button::before{
         font-size: 12px !important;
     }
 }

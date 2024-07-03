@@ -33,7 +33,7 @@
     {% if edition %}
         <script>
             function revealMap(){    
-                var starfish = L.icon({iconUrl: "{% static 'assets/icons/marker.png' %}", iconSize: [30, 30], iconAnchor: [15, 15]});
+                var starfish = L.icon({iconUrl: "{% static 'assets/icons/pin.png' %}", iconSize: [30, 30], iconAnchor: [15, 15]});
                 
                 var posts = L.markerClusterGroup({iconCreateFunction: function(cluster){return starfish}});
         

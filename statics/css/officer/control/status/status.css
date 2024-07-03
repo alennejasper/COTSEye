@@ -1,3 +1,7 @@
+.status-None{
+    color: #003755 !important;
+}
+
 .status-Low{
     color: #698F3F !important;
 }
@@ -33,6 +37,53 @@
     padding: 20px;
 }
 
+.table > :not(caption) > * > *{
+    padding: 9px !important;
+}
+
 th, td{
+    border-top: unset !important;
     text-align: left;
+}
+
+.table thead th{
+    border-bottom: 2px solid black;
+}
+
+.report-button{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.report-button button{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: none;
+    border-radius: 5px;
+    outline: none !important;
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 12px;        
+    color: #FFFFFF;
+    background-color: rgb(30, 173, 95);
+    text-align: center;
+    cursor: pointer;
+}
+
+.report-button button:hover{
+    color: #B2BEB5;
+    background-color: rgb(25, 141, 77);
+}
+
+.report-button button:focus{
+    color: #B2BEB5;
+    background-color: rgb(25, 141, 77);
+}
+
+.report-button button:active{
+    color: #B2BEB5;
+    background-color: #547232;
 }

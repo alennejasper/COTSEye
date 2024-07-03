@@ -1,3 +1,8 @@
+.content:has(.interventionread-body){
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
 .interventionread-body{
     position: relative;
     width: 100%;
@@ -38,11 +43,15 @@
     align-items: center;
     justify-content: space-between;
     row-gap: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
 @media screen and (min-width: 320px) and (max-width: 775px){
     .interventionread-body .interventionread .interventionread-header{
         row-gap: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
     }
 }
 
@@ -164,32 +173,14 @@
 .interventionread-body .interventionread .interventionread-header i{
     margin-right: 10px !important;
     margin-bottom: 0px !important;
-    font-size: 24px;
+    font-size: 36px;
     border-radius: 50%;
     cursor: pointer;
 }
 
-@media screen and (min-width: 446px) and (max-width: 775px){
+@media screen and (min-width: 320px) and (max-width: 775px){
     .interventionread-body .interventionread .interventionread-header i{
-        font-size: 22px;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .interventionread-body .interventionread .interventionread-header i{
-        font-size: 20px;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .interventionread-body .interventionread .interventionread-header i{
-        font-size: 18px;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .interventionread-body .interventionread .interventionread-header i{
-        font-size: 16px;
+        font-size: 28px;
     }
 }
 
@@ -240,129 +231,33 @@
     position: relative;
     display: inline-block;
     place-items: center;
-    object-fit: contain;
+    object-fit: cover;
     width: 100%;
-    height: 500px;
+    height: 100%;
     overflow: hidden !important;
 }
 
 @media screen and (min-width: 320px) and (max-width: 775px){
     .interventionread-body .interventionread .interventionread-gallery img{
-        height: 250px;
-    }
-}
-
-.interventionread-body .interventionread .interventionread-remarks{
-    display: grid;
-    row-gap: 15px;
-    padding-bottom: 15px;
-    width: 100%; 
-    border-bottom: 1px solid #003755;
-}
-
-@media screen and (min-width: 320px) and (max-width: 775px){
-    .interventionread-body .interventionread .interventionread-remarks{
-        gap: 5px;
-        padding-bottom: 5px;
-    }
-}
-
-.interventionread-body .interventionread .interventionread-remarks .remarks-context{
-    padding-left: 30px;
-    padding-right: 30px;
-    border: 1px solid #003755;
-    border-radius: 5px;
-    background-color: #C90016;
-}
-
-@media screen and (min-width: 320px) and (max-width: 775px){
-    .interventionread-body .interventionread .interventionread-remarks .remarks-context{
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-}
-
-.interventionread-body .interventionread .interventionread-remarks .remarks-context h1{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 0px !important;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-family: "Montserrat";
-    font-weight: 700; 
-    font-size: 24px;      
-    color: #FFFFFF;
-}
-
-@media screen and (min-width: 446px) and (max-width: 775px){
-    .interventionread-body .interventionread .interventionread-remarks .remarks-context h1{
-        font-size: 22px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .interventionread-body .interventionread .interventionread-remarks .remarks-context h1{
-        font-size: 20px !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .interventionread-body .interventionread .interventionread-remarks .remarks-context h1{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .interventionread-body .interventionread .interventionread-remarks .remarks-context h1{
-        font-size: 16px !important;
-    }
-}
-
-.interventionread-body .interventionread .interventionread-remarks .remarks-context p{ 
-    margin-bottom: 0px !important;
-    font-family: "Montserrat";
-    font-weight: 400;       
-    font-size: 20px;
-    color: #FFFFFF;
-    text-align: justify;
-}
-
-@media screen and (min-width: 446px) and (max-width: 775px){
-    .interventionread-body .interventionread .interventionread-remarks .remarks-context p{ 
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .interventionread-body .interventionread .interventionread-remarks .remarks-context p{ 
-        font-size: 16px !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .interventionread-body .interventionread .interventionread-remarks .remarks-context p{ 
-        font-size: 14px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .interventionread-body .interventionread .interventionread-remarks .remarks-context p{ 
-        font-size: 12px !important;
+        height: 100%;
     }
 }
 
 .interventionread-body .interventionread .interventionread-origin{  
     display: grid !important;    
     gap: 15px;  
+    padding-left: 30px;
+    padding-right: 30px;
     padding-bottom: 15px;
     width: 100%; 
-    border-bottom: 1px solid #003755;
+    border-bottom: 1px solid #B2BEB5;
 }
 
 @media screen and (min-width: 320px) and (max-width: 775px){
     .interventionread-body .interventionread .interventionread-origin{      
         gap: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
         padding-bottom: 5px;
     }
 }
@@ -478,133 +373,14 @@
     color: #003755;  
 } */
 
-.interventionread-body .interventionread .interventionread-observation{
-    display: grid;
-    row-gap: 15px;
-    padding-bottom: 15px;
-    width: 100%; 
-    border-bottom: 1px solid #003755;
-}
-
-@media screen and (min-width: 320px) and (max-width: 775px){
-    .interventionread-body .interventionread .interventionread-observation{
-        gap: 5px;
-        padding-bottom: 5px;
-    }
-}
-
-.interventionread-body .interventionread .interventionread-observation h1{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 0px !important;
-    font-family: "Montserrat";
-    font-weight: 700; 
-    font-size: 24px;      
-    color: #003755;
-}
-
-@media screen and (min-width: 446px) and (max-width: 775px){
-    .interventionread-body .interventionread .interventionread-observation h1{
-        font-size: 22px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .interventionread-body .interventionread .interventionread-observation h1{
-        font-size: 20px !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .interventionread-body .interventionread .interventionread-observation h1{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .interventionread-body .interventionread .interventionread-observation h1{
-        font-size: 16px !important;
-    }
-}
-
-.interventionread-body .interventionread .interventionread-observation .observation-context p:first-child{
-    display: flex;
-    align-items: center;
-    margin-right: 10px;
-    margin-bottom: 0px !important;
-    white-space: wrap;
-    font-family: "Montserrat";
-    font-weight: 400;       
-    font-size: 20px;
-    color: #003755;                          
-}
-
-@media screen and (min-width: 446px) and (max-width: 775px){
-    .interventionread-body .interventionread .interventionread-observation .observation-context p:first-child{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .interventionread-body .interventionread .interventionread-observation .observation-context p:first-child{
-        font-size: 16px !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .interventionread-body .interventionread .interventionread-observation .observation-context p:first-child{
-        font-size: 14px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .interventionread-body .interventionread .interventionread-observation .observation-context p:first-child{
-        font-size: 12px !important;
-    }
-}
-
-.interventionread-body .interventionread .interventionread-observation .observation-context p:last-child{
-    display: flex;
-    align-items: center;
-    margin-bottom: 0px !important;
-    white-space: wrap;
-    font-family: "Montserrat";
-    font-weight: 700;       
-    font-size: 20px;
-    color: #003755;                          
-}
-
-@media screen and (min-width: 446px) and (max-width: 775px){
-    .interventionread-body .interventionread .interventionread-observation .observation-context p:last-child{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .interventionread-body .interventionread .interventionread-observation .observation-context p:last-child{
-        font-size: 16px !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .interventionread-body .interventionread .interventionread-observation .observation-context p:last-child{
-        font-size: 14px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .interventionread-body .interventionread .interventionread-observation .observation-context p:last-child{
-        font-size: 12px !important;
-    }
-}
-
 .interventionread-body .interventionread .interventionread-description{
     display: grid;
     row-gap: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
     padding-bottom: 15px;
     width: 100%; 
-    border-bottom: 1px solid #003755;
+    border-bottom: 1px solid #B2BEB5;
 }
 
 .interventionread-body .interventionread .interventionread-description:last-child{
@@ -614,6 +390,8 @@
 @media screen and (min-width: 320px) and (max-width: 775px){
     .interventionread-body .interventionread .interventionread-description{
         gap: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
         padding-bottom: 5px;
     }
 }
@@ -690,10 +468,17 @@
 
 .interventionread-body .interventionread .button{
     margin-left: auto;
+    margin-right: 30px;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     width: fit-content;
     height: 100% !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .interventionread-body .interventionread .button{
+        margin-right: 10px;
+    }
 }
 
 .interventionread-body .interventionread a{

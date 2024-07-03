@@ -5,6 +5,15 @@
     color: #003755;
 }
 
+.profileupdate-body h1{
+    margin-bottom: 0px !important;
+    text-align: center;     
+    font-weight: 700;       
+    font-size: 24px;        
+    font-family: "Montserrat";
+    color: #003755;
+}
+
 /* .profileupdate-body .profileupdate-section{
     display: flex;                   
     align-items: center; 

@@ -219,8 +219,17 @@
 .profile-body .button{
     display: flex;
     justify-content: center;
+    gap: 30px;
     width: 100%;
 }
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .profile-body .button{
+        gap: 10px;
+    }
+    
+}
+
 
 .profile-body a{
     padding-left: 10px !important;
