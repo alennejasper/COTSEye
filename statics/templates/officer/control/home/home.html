@@ -335,6 +335,12 @@
                 revealMap();
             });
         </script>
+
+        <style>
+            .table > :not(caption) > * > *{
+                padding: 15px 30px !important;
+            }
+        </style>
     
         <div class = "home-graph">  
             <form method = "GET" action = "{% url 'Officer Control Home' %}">
@@ -878,6 +884,10 @@
 
                         statusCell.innerText = shownStatusType(entry.caught_amount);
                         
+                        statusCell.style.fontWeight = "700"
+
+                        statusCell.style.color = shownStatusColor(statusType);
+
                         row.appendChild(statusCell);
 
                         dataTableBody.appendChild(row);

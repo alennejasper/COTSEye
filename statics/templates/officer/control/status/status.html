@@ -19,6 +19,12 @@
 
     <link rel = "stylesheet" href = "{% static 'css/officer/control/status/status.css' %}" >
 
+    <style>
+        .table > :not(caption) > * > *{
+            padding: 15px 30px !important;
+        }
+    </style>
+    
     {% block status-content %}
         <div class = "report-button" style = "float: right; margin-top: 7px; margin-bottom: 0px;">
             <button onclick = "window.location.href = '{% url 'Officer Control Report' %}'">GENERATE REPORT</button>
