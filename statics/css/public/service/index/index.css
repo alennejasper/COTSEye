@@ -712,8 +712,8 @@ nav.navigation-bottombar img:active{
     padding-top: 15px;
     padding-bottom: 15px;
     white-space: wrap;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
     font-family: "Montserrat";
     font-weight: 700;
     font-size: 24px;

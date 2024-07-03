@@ -1,5 +1,3 @@
-from __future__ import unicode_literals
-
 import json
 
 from allauth.core import context
@@ -11,8 +9,6 @@ from allauth.socialaccount.providers.oauth2.views import (
     OAuth2CallbackView,
     OAuth2LoginView,
 )
-
-from .provider import MicrosoftGraphProvider
 
 
 def _check_errors(response):
@@ -34,7 +30,7 @@ def _check_errors(response):
 
 
 class MicrosoftGraphOAuth2Adapter(OAuth2Adapter):
-    provider_id = MicrosoftGraphProvider.id
+    provider_id = "microsoft"
 
     def _build_tenant_url(self, path):
         settings = app_settings.PROVIDERS.get(self.provider_id, {})
@@ -43,7 +39,8 @@ class MicrosoftGraphOAuth2Adapter(OAuth2Adapter):
         # Prefer app based tenant setting.
         app = get_adapter().get_app(context.request, provider=self.provider_id)
         tenant = app.settings.get("tenant", tenant)
-        return f"https://login.microsoftonline.com/{tenant}{path}"
+        login_url = app.settings.get("login_url", "https://login.microsoftonline.com")
+        return f"{login_url}/{tenant}{path}"
 
     @property
     def access_token_url(self):
@@ -53,7 +50,11 @@ class MicrosoftGraphOAuth2Adapter(OAuth2Adapter):
     def authorize_url(self):
         return self._build_tenant_url("/oauth2/v2.0/authorize")
 
-    profile_url = "https://graph.microsoft.com/v1.0/me"
+    @property
+    def profile_url(self):
+        app = get_adapter().get_app(context.request, provider=self.provider_id)
+        graph_url = app.settings.get("graph_url", "https://graph.microsoft.com")
+        return f"{graph_url}/v1.0/me"
 
     user_properties = (
         "businessPhones",

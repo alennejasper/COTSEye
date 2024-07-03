@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-vz!lj^+vf@!(6&07mgt6r*u72%!g-2@tqa*3fqc_g1y=!$x(hk
 
 
 #SECURITY WARNING: don"t run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 
 ALLOWED_HOSTS = ["*"]
@@ -126,26 +126,6 @@ WSGI_APPLICATION = "configurations.wsgi.application"
 
 #Database
 #https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        
-        "OPTIONS": {
-            "options": "-c search_path=cotseye_schema"
-        },
-
-        "NAME": "cotseye_yekg",
-        
-        "USER": "cotseye_yekg_user",
-        
-        "PASSWORD": "IXNRnNoWxcHGXCfbZzi7aUbraeOIkulw",
-        
-        "HOST": "dpg-cq2ffbrv2p9s73erneog-a.singapore-postgres.render.com",
-        
-        "PORT": "5432",
-    }
-}
-
 # DATABASES = {
 #     "default": {
 #         "ENGINE": "django.db.backends.postgresql_psycopg2",
@@ -154,17 +134,37 @@ DATABASES = {
 #             "options": "-c search_path=cotseye_schema"
 #         },
 
-#         "NAME": "cotseye",
+#         "NAME": "cotseye_yekg",
         
-#         "USER": "postgres",
+#         "USER": "cotseye_yekg_user",
         
-#         "PASSWORD": "lucyheaven",
+#         "PASSWORD": "IXNRnNoWxcHGXCfbZzi7aUbraeOIkulw",
         
-#         "HOST": "localhost",
+#         "HOST": "dpg-cq2ffbrv2p9s73erneog-a.singapore-postgres.render.com",
         
 #         "PORT": "5432",
 #     }
 # }
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        
+        "OPTIONS": {
+            "options": "-c search_path=cotseye_schema"
+        },
+
+        "NAME": "cotseye",
+        
+        "USER": "postgres",
+        
+        "PASSWORD": "lucyheaven",
+        
+        "HOST": "localhost",
+        
+        "PORT": "5432",
+    }
+}
 
 # postgresql://cotseye_yekg_user:IXNRnNoWxcHGXCfbZzi7aUbraeOIkulw@dpg-cq2ffbrv2p9s73erneog-a.singapore-postgres.render.com/cotseye_yekg
 

@@ -11,12 +11,9 @@ from allauth.socialaccount.providers.oauth2.views import (
     OAuth2LoginView,
 )
 
-from .provider import ShopifyProvider
-
 
 class ShopifyOAuth2Adapter(OAuth2Adapter):
-    provider_id = ShopifyProvider.id
-    supports_state = False
+    provider_id = "shopify"
     scope_delimiter = ","
 
     def _shop_domain(self):
@@ -74,7 +71,7 @@ class ShopifyOAuth2LoginView(OAuth2LoginView):
             #     are being removed from Shopify on January 1, 2022.
             #
             # So this needs to be dropped/revisitted anyway.
-            response = super().login(request, *args, **kwargs)
+            response = super().dispatch(request, *args, **kwargs)
             """
             Shopify embedded apps (that run within an iFrame) require a JS
             (not server) redirect for starting the oauth2 process.
