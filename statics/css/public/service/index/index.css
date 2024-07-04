@@ -66,8 +66,8 @@ nav.navigation-topbar{
     nav.navigation-topbar{
         padding-left: 10px;
         padding-right: 10px;
-        padding-top: 5px;
-        padding-bottom: 5px;
+        padding-top: 10px;
+        padding-bottom: 10px;
     }
 }
 
@@ -401,8 +401,8 @@ nav.navigation-bottombar{
     nav.navigation-bottombar{
         padding-left: 10px;
         padding-right: 10px;
-        padding-top: 5px;
-        padding-bottom: 5px;
+        padding-top: 10px;
+        padding-bottom: 10px;
     }
 }
 

@@ -98,6 +98,15 @@
     padding-bottom: 15px;
 }
 
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .report-body .report-form .tab-content{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+
 .report-body .report-form .controls-wrapper{
     display: flex;
     align-items: center;
@@ -112,7 +121,8 @@
     padding-top: 5px;
     padding-bottom: 5px;
     width: 100%;
-    height: 100px;
+    height: 50px;
+    border-radius: 5px;
     background-color: #3C6BD1;
     color: #FFFFFF;
     cursor: pointer;
@@ -126,7 +136,8 @@
     padding-top: 5px;
     padding-bottom: 5px;
     width: 100%;
-    height: 100px;
+    height: 50px;
+    border-radius: 5px;
     background-color: #1E78A8;
     color: #FFFFFF;
     cursor: pointer;
@@ -217,6 +228,10 @@
     width: 100%;
     height: 100%;
     cursor: pointer;
+}
+
+.report-body .report-form .report-gallery{
+    display: none;
 }
 
 .report-body .report-form .capture-date{
