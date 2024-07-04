@@ -109,7 +109,7 @@ self.addEventListener("fetch", event => {
             caches.open("service/whole").then(cache => {
                 cache.put(event.request, clone);
             
-                limit("service/whole", 500);
+                limit("service/whole", 250);
             });
             
             return response;
