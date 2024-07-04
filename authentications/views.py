@@ -265,6 +265,8 @@ def ContributorServiceLogin(request):
         if Account.DoesNotExist:
             messages.error(request, "Account not found. Kindly create a new one and try again.")
 
+        if SocialAccount.DoesNotExist:
+            messages.error(request, "Account not found. Kindly create a new one and try again.")
 
     context = {}
 
@@ -814,6 +816,9 @@ def OfficerControlLogin(request):
                 return redirect("Officer Control Home")
 
         if Account.DoesNotExist:
+            messages.error(request, "Account not found. Kindly create a new one and try again.")
+
+        if SocialAccount.DoesNotExist:
             messages.error(request, "Account not found. Kindly create a new one and try again.")
 
     context = {}

@@ -132,6 +132,11 @@ class Notification(models.Model):
     contenttype = models.ForeignKey(ContentType, on_delete = models.CASCADE)
     key = models.PositiveIntegerField()
 
+    # class Meta:
+    #     db_table = "auth_notification"
+    #     verbose_name = "Notification"
+    #     verbose_name_plural = "Notifications"
+
     @staticmethod
     def get_user_notifications(user):
         return Notification.objects.filter(user = user).order_by("-creation_date")

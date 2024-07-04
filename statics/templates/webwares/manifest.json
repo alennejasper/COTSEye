@@ -3,6 +3,8 @@
 
     "short_name": "COTSEye",
 
+    "scope": "/",
+
     "start_url": "/public/service/home/",
 
     "display": "standalone",

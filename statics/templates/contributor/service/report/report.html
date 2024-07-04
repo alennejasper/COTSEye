@@ -405,17 +405,21 @@
 
     <script>
         document.querySelector(".control-section.choose").addEventListener("click", function(event){
-            event.stopPropagation();
-            
             var chooseInput = document.querySelector(".post-photo-choose");
-
-            if (event.target !== chooseInput){
+        
+            var chooseLabel = document.querySelector("label[for='post-photo-choose']");
+        
+            if (event.target !== chooseInput && event.target !== chooseLabel){
                 chooseInput.click();
-
-                document.querySelector(".post-photo-capture").removeAttribute("required");
-
-                document.querySelector("label[for='post-photo-capture']").classList.remove("required");
             }
+
+            document.querySelector(".post-photo-capture").removeAttribute("required");
+
+            document.querySelector("label[for='post-photo-capture']").classList.remove("required");
+        });
+
+        document.querySelector("label[for='post-photo-choose']").addEventListener("click", function(event){
+            event.stopPropagation();
         });
     </script>
 
@@ -444,10 +448,6 @@
             
             } else{
                 reportGallery.style.display = "block";
-            
-                reportGallery.style.paddingTop = "10px";
-            
-                reportGallery.style.paddingBottom = "10px";
             };
         };
 
@@ -472,9 +472,7 @@
                 photoWrapper.classList.add("gallery-photo");
                 
                 photoWrapper.style.position = "relative";
-                
-                photoWrapper.style.padding = "10px";
-                
+                                
                 photoWrapper.style.height = "250px";
                 
                 photoWrapper.style.borderRadius = "5px";
@@ -885,27 +883,29 @@
             const longitude = position.coords.longitude;
 
             if (latitude < minimumLatitude || latitude > maximumLatitude || longitude < minimumLongitude || longitude > maximumLongitude){
-                document.querySelector(".post-photo-capture").addEventListener("click", function(event){
-                    event.preventDefault()
-
-                    event.stopPropagation();
-                    
+                document.querySelector(".post-photo-capture").addEventListener("click", function(event){                    
                     Swal.fire({title: "Oops!", text: "The location given to COTSEye incorporated coordinates out of bounds.", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}});
                 });
 
             } else{
-                document.querySelector(".control-section.capture").addEventListener("click", function(event){
-                    event.stopPropagation();
-                    
+                document.querySelector(".control-section.capture").addEventListener("click", function(event){                    
                     var captureInput = document.querySelector(".post-photo-capture");
+
+                    var captureLabel = document.querySelector("label[for='post-photo-capture']");
                     
-                    if (!captureInput.value){
-                        captureInput.click();
+                    if (event.target !== captureInput && event.target !== captureLabel){
+                        if (!captureInput.value){
+                            captureInput.click();
+                        };
 
                         document.querySelector(".post-photo-choose").removeAttribute("required");
 
                         document.querySelector("label[for='post-photo-choose']").classList.remove("required");
                     };
+                });
+
+                document.querySelector("label[for='post-photo-capture']").addEventListener("click", function(event){
+                    event.stopPropagation();
                 });
 
                 report.setLatLng([latitude, longitude]);

@@ -920,12 +920,12 @@ def PostValidReadRedirect(request, id):
             return redirect(reverse("Contributor Service Post Feed Read", kwargs = {"id": object.id}))
 
         elif usertype == 2:
-            object = Account.objects.get(id = request.user.id)
+            object = Post.objects.get(id = id)
 
             return redirect(reverse("Officer Control Sighting Read", kwargs = {"id": object.id}))
 
         elif usertype == 1:
-            object = Account.objects.get(id = request.user.id)
+            object = Post.objects.get(id = id)
 
             return redirect(reverse("admin:reports_post_change", kwargs = {"object_id": object.id}))
     

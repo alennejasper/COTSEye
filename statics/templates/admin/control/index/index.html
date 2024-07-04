@@ -277,9 +277,3 @@
         window.onresize = redirectMobileHandler;
     </script>
 {% endblock %}
-
-{% block sidebar %}
-    {% load log %}
-
-    {% get_admin_log 10 as admin_log %}
-{% endblock %}

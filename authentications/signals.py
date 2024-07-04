@@ -306,7 +306,7 @@ def SendNotification(sender, instance, created, **kwargs):
         if sender == Post:
             notification_type = "post"
 
-            user_filter = Q(id = instance.user.id) | Q(account__usertype__is_staff = True)
+            user_filter = Q(account__usertype__is_staff = True)
 
         elif sender == Announcement:
             notification_type = "announcement"

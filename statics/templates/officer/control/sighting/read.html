@@ -226,7 +226,7 @@
         });
 
         function changeStatus(postId){
-            Swal.fire({title: "Alert!", text: "are you sure that you want to update the post status?", icon: "warning", showCancelButton: true, confirmButtonColor: "#3085D6", cancelButtonColor: "#D33", confirmButtonText: "Yes"}).then((result) => {
+            Swal.fire({title: "Alert!", text: "Officer, are you sure that you want to update the post status?", icon: "warning", showCancelButton: true, confirmButtonColor: "#3085D6", cancelButtonColor: "#D33", confirmButtonText: "Yes"}).then((result) => {
                 if (result.isConfirmed){
                     $.ajax({
                         type: "POST",
