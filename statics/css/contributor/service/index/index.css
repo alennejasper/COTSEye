@@ -375,8 +375,8 @@ nav.navigation-topbar img:active{
     .content{
         padding-left: 10px;
         padding-right: 10px;
-        padding-top: 40px;
-        padding-bottom: 40px;
+        padding-top: 50px !important;
+        padding-bottom: 50px !important;
     }
 }
 

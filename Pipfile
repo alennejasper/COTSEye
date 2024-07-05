@@ -13,8 +13,8 @@ dj-database-url = "==2.2.0"
 gunicorn = "~=22.0.0"
 requests = "*"
 whitenoise = "*"
-pyjwt = "*"
 cryptography = "*"
+pyjwt = "*"
 
 [dev-packages]
 

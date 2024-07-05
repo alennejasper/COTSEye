@@ -169,8 +169,6 @@ def ContributorServiceLogin(request):
                     email = sociallogin.account.extra_data["email"]
 
                     username = email.split("@")[0]
-
-                    user.username = username
                     
                     user.save()
 
@@ -181,6 +179,8 @@ def ContributorServiceLogin(request):
                     instance, created = User.objects.get_or_create(account = user)
 
                     if created:
+                        instance.account.username = username
+
                         instance.email = email
 
                         instance.first_name = sociallogin.account.extra_data.get("given_name", "")
@@ -191,7 +191,7 @@ def ContributorServiceLogin(request):
 
                     else:
                         pass
-        
+                
         elif sociallogin.account.provider == "facebook":
             if sociallogin.user.usertype_id == 1 or sociallogin.user.usertype_id == 2:
                 messages.error(request, "Account not found. Kindly create a new one and try again.")
@@ -222,8 +222,6 @@ def ContributorServiceLogin(request):
                     email = sociallogin.account.extra_data["email"]
 
                     username = email.split("@")[0]
-
-                    user.username = username
                     
                     user.save()
 
@@ -236,6 +234,8 @@ def ContributorServiceLogin(request):
                     instance, created = User.objects.get_or_create(account = user)
 
                     if created:
+                        instance.account.username = username
+
                         instance.email = email
 
                         instance.first_name = sociallogin.account.extra_data.get("given_name", "")
@@ -267,6 +267,27 @@ def ContributorServiceLogin(request):
 
         if SocialAccount.DoesNotExist:
             messages.error(request, "Account not found. Kindly create a new one and try again.")
+    
+    user = request.user
+
+    if user.is_authenticated:
+        if user.usertype_id == 2:
+            logout(request)
+        
+            username = user.username
+
+            messages.success(request, username + ", " + "you have successfully logged out. Have a great day ahead!")
+
+            return redirect("Contributor Service Login")
+        
+        elif user.usertype_id == 1:
+            logout(request)
+
+            username = user.username
+
+            messages.success(request, username + ", " + "you have successfully logged out. Have a great day ahead!")
+
+            return redirect("Contributor Service Login")
 
     context = {}
 
@@ -724,8 +745,6 @@ def OfficerControlLogin(request):
                     email = sociallogin.account.extra_data["email"]
 
                     username = email.split("@")[0]
-
-                    user.username = username
                     
                     user.save()
 
@@ -736,6 +755,8 @@ def OfficerControlLogin(request):
                     instance, created = User.objects.get_or_create(account = user)
 
                     if created:
+                        instance.account.username = username
+
                         instance.email = email
 
                         instance.first_name = sociallogin.account.extra_data.get("given_name", "")
@@ -777,8 +798,6 @@ def OfficerControlLogin(request):
                     email = sociallogin.account.extra_data["email"]
 
                     username = email.split("@")[0]
-
-                    user.username = username
                     
                     user.save()
 
@@ -789,6 +808,8 @@ def OfficerControlLogin(request):
                     instance, created = User.objects.get_or_create(account = user)
 
                     if created:
+                        instance.account.username = username
+                        
                         instance.email = email
 
                         instance.first_name = sociallogin.account.extra_data.get("given_name", "")
@@ -821,6 +842,27 @@ def OfficerControlLogin(request):
         if SocialAccount.DoesNotExist:
             messages.error(request, "Account not found. Kindly create a new one and try again.")
 
+    user = request.user
+
+    if user.is_authenticated:
+        if user.usertype_id == 3:
+            logout(request)
+        
+            username = user.username
+
+            messages.success(request, username + ", " + "you have successfully logged out. Have a great day ahead!")
+
+            return redirect("Officer Control Login")
+        
+        elif user.usertype_id == 1:
+            logout(request)
+
+            username = user.username
+
+            messages.success(request, username + ", " + "you have successfully logged out. Have a great day ahead!")
+
+            return redirect("Officer Control Login")
+        
     context = {}
 
     return render(request, "officer/control/login/login.html", context)
@@ -1190,6 +1232,27 @@ def AdministratorControlLogin(request):
             
         if Account.DoesNotExist:
             messages.error(request, "Account not found. Kindly create a new one and try again.")
+    
+    user = request.user
+
+    if user.is_authenticated:
+        if user.usertype_id == 3:
+            logout(request)
+        
+            username = user.username
+
+            messages.success(request, username + ", " + "you have successfully logged out. Have a great day ahead!")
+
+            return redirect("admin:Administrator Control Login")
+        
+        elif user.usertype_id == 2:
+            logout(request)
+
+            username = user.username
+
+            messages.success(request, username + ", " + "you have successfully logged out. Have a great day ahead!")
+
+            return redirect("admin:Administrator Control Login")
         
     context = {}
 

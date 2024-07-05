@@ -118,7 +118,7 @@ class Post(models.Model):
     validator = models.ForeignKey(User, null = True, blank = True, on_delete = models.SET_NULL, help_text = "Designates the validator the post.", related_name = "validator", verbose_name = "Validator")
     description = models.TextField(max_length = 255, help_text = "Designates the description of the post.", verbose_name = "Description")
     coordinates = models.ForeignKey(Coordinates, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Coordinates model.", verbose_name = "Coordinates")
-    location = models.ForeignKey(Location, null = True, blank = True, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Location model.", verbose_name = "Location")
+    location = models.ForeignKey(Location, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Location model.", verbose_name = "Location")
     post_status = models.ForeignKey(PostStatus, on_delete = models.CASCADE, default = 4, help_text = "Designates the foreign key of the Post Status model.", verbose_name = "Post Status")
     post_observation = models.ForeignKey(PostObservation, null = True, blank = True, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Post Observation model.", verbose_name = "Post Observation")
     remarks = models.CharField(null = True, blank = True, max_length = 255, help_text = "Additional remarks for the post.", verbose_name = "Remarks")

@@ -67,8 +67,8 @@ class Account(AbstractBaseUser, PermissionsMixin):
     usertype = models.ForeignKey(UserType, on_delete = models.SET_NULL, null = True, verbose_name = "User Type")
     is_active = models.BooleanField(default = True, verbose_name = "Active Status")
     last_login = models.DateTimeField(default = datetime.datetime.now, verbose_name = "Last Signin")
-    groups = models.ManyToManyField(Group, null = True, blank = True, verbose_name = "Groups")
-    user_permissions = models.ManyToManyField(Permission, null = True, blank = True, verbose_name = "User Permissions")
+    groups = models.ManyToManyField(Group, blank = True, verbose_name = "Groups")
+    user_permissions = models.ManyToManyField(Permission, blank = True, verbose_name = "User Permissions")
 
     objects = AccountManager()
     USERNAME_FIELD = "username"
