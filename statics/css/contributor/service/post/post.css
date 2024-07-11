@@ -67,7 +67,7 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .post-body .post-filter button{
-        padding-right: 10px;
+        padding-right: 15px;
         padding-bottom: 5px;
         font-size: 22px;
     }
@@ -75,7 +75,7 @@
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .post-body .post-filter button{
-        padding-right: 10px;
+        padding-right: 15px;
         padding-bottom: 5px;
         font-size: 20px !important;
     }
@@ -83,7 +83,7 @@
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .post-body .post-filter button{
-        padding-right: 10px;
+        padding-right: 15px;
         padding-bottom: 5px;
         font-size: 18px !important;
     }
@@ -91,7 +91,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .post-body .post-filter button{
-        padding-right: 10px;
+        padding-right: 15px;
         padding-bottom: 5px;
         font-size: 16px !important;
     }
@@ -110,9 +110,9 @@
 
 @media screen and (min-width: 320px) and (max-width: 775px){
     .post-body .post-filter .hidden{
-        padding-left: 10px;
-        padding-right: 10px;
-        padding-bottom: 5px;
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-bottom: 15px;
     }
 }
 
@@ -121,7 +121,7 @@
     padding-right: 30px;
     padding-top: 15px;
     padding-bottom: 15px;
-    border-left: 1px solid #B2BEB5;
+    border-left: 1px solid #D3D3D3;
     border-right: 1px solid #B2BEB5;
     border-top: 1px solid #B2BEB5;
     border-bottom: 1px solid #B2BEB5;
@@ -180,9 +180,9 @@
     padding-right: 30px;
     padding-top: 15px;
     padding-bottom: 15px;
-    border-left: 1px solid #B2BEB5;
-    border-right: 1px solid #B2BEB5;
-    border-bottom: 1px solid #B2BEB5;
+    border-left: 1px solid #D3D3D3;
+    border-right: 1px solid #D3D3D3;
+    border-bottom: 1px solid #D3D3D3;
     font-family: "Montserrat";
     font-weight: 700;
     font-size: 20px;
@@ -236,7 +236,7 @@
     padding-right: 30px;
     padding-top: 15px;
     padding-bottom: 15px;
-    border-bottom: 1px solid #B2BEB5;
+    border-bottom: 1px solid #D3D3D3;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     font-family: "Montserrat";
@@ -289,7 +289,7 @@
 
 .post-body .post{
     padding-bottom: 15px;
-    border-bottom: 1px solid #B2BEB5;
+    border-bottom: 1px solid #D3D3D3;
 }
 
 .post-body .post:last-child{
@@ -319,10 +319,8 @@
 
 @media screen and (min-width: 320px) and (max-width: 775px){
     .post-body .post-post .post .post-header{
-        padding-left: 10px;
-        padding-right: 10px;
-        padding-top: 5px;
-        padding-bottom: 5px;
+        padding-left: 15px;
+        padding-right: 15px;
     }
 }
 
@@ -347,23 +345,11 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .post-body .post .post-header .header-context:first-child .context-caption p:first-child{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .post-body .post .post-header .header-context:first-child .context-caption p:first-child{
         font-size: 16px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .post-body .post .post-header .header-context:first-child .context-caption p:first-child{
-        font-size: 14px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .post-body .post .post-header .header-context:first-child .context-caption p:first-child{
         font-size: 12px !important;
     }
@@ -384,23 +370,11 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .post-body .post .post-header .header-context:first-child .context-caption p:last-child{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .post-body .post .post-header .header-context:first-child .context-caption p:last-child{
         font-size: 16px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .post-body .post .post-header .header-context:first-child .context-caption p:last-child{
-        font-size: 14px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .post-body .post .post-header .header-context:first-child .context-caption p:last-child{
         font-size: 12px !important;
     }
@@ -426,23 +400,11 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .post-body .post .post-header .header-context:last-child p{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .post-body .post .post-header .header-context:last-child p{
         font-size: 16px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .post-body .post .post-header .header-context:last-child p{
-        font-size: 14px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .post-body .post .post-header .header-context:last-child p{
         font-size: 12px !important;
     }
@@ -502,35 +464,21 @@
     overflow: hidden;
     font-family: "Montserrat";
     font-weight: 700;
-    font-size: 24px;
+    font-size: 20px;
     color: #003755;
 }
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .post-body .post > h1{
         margin-bottom: 5px;
-        font-size: 22px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .post-body .post > h1{
-        margin-bottom: 5px;
-        font-size: 20px !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .post-body .post > h1{
-        margin-bottom: 5px;
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .post-body .post > h1{
-        margin-bottom: 5px;
         font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 445px){
+    .post-body .post > h1{
+        margin-bottom: 5px;
+        font-size: 12px !important;
     }
 }
 

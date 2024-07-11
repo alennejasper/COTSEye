@@ -64,9 +64,14 @@
 .resource-body .resource .resource-context{
     display: grid;
     align-items: center;
+    padding-top: 15px;
     grid-template-columns: 1fr auto;
-    border-bottom: 1px solid #003755;
+    border-bottom: 1px solid #D3D3D3;
     text-decoration: none;
+}
+
+.resource-body .resource .resource-context:first-child{
+    padding-top: 0px;
 }
 
 .resource-body .resource .resource-context:last-child{
@@ -96,25 +101,13 @@
     padding-top: 0px;
 }
 
-@media screen and (min-width: 446px) and (max-width: 775px){
-    .resource-body .resource .resource-context p{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
+@media screen and (min-width: 445px) and (max-width: 775px){
     .resource-body .resource .resource-context p{
         font-size: 16px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .resource-body .resource .resource-context p{
-        font-size: 14px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .resource-body .resource .resource-context p{
         font-size: 12px !important;
     }
@@ -130,23 +123,11 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .resource-body .resource .resource-context strong{
-        font-size: 22px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .resource-body .resource .resource-context strong{
         font-size: 20px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .resource-body .resource .resource-context strong{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .resource-body .resource .resource-context strong{
         font-size: 16px !important;
     }

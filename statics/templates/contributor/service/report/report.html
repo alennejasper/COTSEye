@@ -273,16 +273,16 @@
                 </div>
 
                 <div id = "second-tab" class = "tab-content" style = "display: none;">
-                    <img class = "back-report" src = "{% static 'assets/icons/return.png' %}" onclick = "openTab('first-tab')">
-
                     <div class = "report-section">
+                        <img class = "back-report" src = "{% static 'assets/icons/return.png' %}" onclick = "openTab('first-tab')">
+                        
                         <h1>CREATE REPORT</h1>
                     </div>
                     
                     <div class = "description">
                         <label for = "description" class = "required">Sighting Description</label>
                         
-                        <textarea placeholder = "Describe your sighting of COTS here." type = "text" id = "description" name = "description" maxlength = "255" required></textarea>
+                        <textarea placeholder = "e.g. I saw COTS while walking, diving, swimming, etc." type = "text" id = "description" name = "description" maxlength = "255" required></textarea>
                         
                         <p id = "description-characters">0/255</p>
                        
@@ -763,9 +763,9 @@
     
             var reportMap = document.getElementsByClassName("report-map")[0];
     
-            var background = L.tileLayer("http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}", {minZoom: 12, maxZoom: 20, subdomains: ["mt0", "mt1", "mt2", "mt3"], attribution: "Google"});
+            var background = L.tileLayer("http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}", {minZoom: 9, maxZoom: 20, subdomains: ["mt0", "mt1", "mt2", "mt3"], attribution: "Google"});
     
-            map = L.map(reportMap, {zoomControl: false, scrollWheelZoom: false, dragging: true, maxBounds: [[5.3, 124.3], [6.3, 126.3]], layers: [background, report]}).setView([5.9656, 125.1929], 12);
+            map = L.map(reportMap, {zoomControl: false, scrollWheelZoom: false, dragging: true, maxBounds: [[5.3, 124.3], [6.3, 126.3]], layers: [background, report]}).setView([5.9656, 125.1929], 15);
     
             map.attributionControl.remove();
 

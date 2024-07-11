@@ -8,12 +8,17 @@
 }
 
 .report-body .report-section{
-    display: flex;                   
+    display: flex;         
     align-items: center; 
     justify-content: center;          
-    flex-direction: column;
+    flex-direction: row;
     width: 100%;                     
     text-align: center;                                   
+}
+
+.report-body .report-section img{
+    position: absolute;
+    left: 10px;
 }
 
 /* .report-body .report-section img{
@@ -121,9 +126,9 @@
     padding-top: 5px;
     padding-bottom: 5px;
     width: 100%;
-    height: 50px;
+    height: 100%;
     border-radius: 5px;
-    background-color: #3C6BD1;
+    background-color: #168ECE;
     color: #FFFFFF;
     cursor: pointer;
 }
@@ -136,7 +141,7 @@
     padding-top: 5px;
     padding-bottom: 5px;
     width: 100%;
-    height: 50px;
+    height: 100%;
     border-radius: 5px;
     background-color: #1E78A8;
     color: #FFFFFF;
@@ -287,7 +292,7 @@
     padding-right: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
-    border: 1px solid #B2BEB5;
+    border: 1px solid #D3D3D3;
     border-radius: 5px;
     appearance: none !important;
     outline: none !important;
@@ -302,7 +307,7 @@
 }
 
 .report-body .report-form .capture-date input[type = "datetime-local"]:focus{
-    border: 1px solid #003755 !important;
+    border: 1px solid #D3D3D3 !important;
 }
 
 @media screen and (min-width: 446px) and (max-width: 775px){
@@ -342,7 +347,7 @@
 }
 
 .report-body .report-form .capture-date input[type = "datetime-local"]:focus{
-    border: 1px solid #003755 !important;
+    border: 1px solid #D3D3D3 !important;
 }
 
 /* .report-body .report-form h1{
@@ -354,12 +359,12 @@
 
 .report-body .report-form .map:has(.report-map){ 
     width: 100%;
-    height: 250px;
+    height: 350px;
 }
 
 .report-body .report-form .report-map{
     min-width: 100%;
-    height: 250px;
+    height: 350px;
     border-radius: 5px; 
     z-index: 1;
 }
@@ -533,7 +538,7 @@
     padding-right: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
-    border: 1px solid #B2BEB5;
+    border: 1px solid #D3D3D3;
     border-radius: 5px;
     appearance: none;
     outline: none !important;
@@ -545,7 +550,7 @@
 }
 
 .report-body .report-form .municipality select:focus{
-    border: 1px solid #003755 !important;
+    border: 1px solid #D3D3D3 !important;
 }
 
 @media screen and (min-width: 446px) and (max-width: 775px){
@@ -614,7 +619,7 @@
     padding-right: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
-    border: 1px solid #B2BEB5;
+    border: 1px solid #D3D3D3;
     border-radius: 5px;
     appearance: none;
     outline: none !important;
@@ -626,7 +631,7 @@
 }
 
 .report-body .report-form .barangay select:focus{
-    border: 1px solid #003755 !important;
+    border: 1px solid #D3D3D3 !important;
 }
 
 @media screen and (min-width: 446px) and (max-width: 775px){
@@ -692,7 +697,7 @@
     padding-bottom: 5px;
     width: 100%;
     height: 100px;
-    border: 1px solid #B2BEB5;
+    border: 1px solid #D3D3D3;
     border-radius: 5px;
     outline: none !important;
     font-family: "Montserrat";
@@ -702,7 +707,7 @@
 }
 
 .report-body .report-form .description textarea:focus{
-    border: 1px solid #003755 !important;
+    border: 1px solid #D3D3D3 !important;
 }
 
 @media screen and (min-width: 446px) and (max-width: 775px){
@@ -804,7 +809,7 @@
     padding-right: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
-    border: 1px solid #B2BEB5;
+    border: 1px solid #D3D3D3;
     border-radius: 5px;
     appearance: none;
     outline: none !important;
@@ -816,7 +821,7 @@
 }
 
 .report-body .report-form .size select:focus{
-    border: 1px solid #003755 !important;
+    border: 1px solid #D3D3D3 !important;
 }
 
 @media screen and (min-width: 446px) and (max-width: 775px){
@@ -881,7 +886,7 @@
     padding-right: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
-    border: 1px solid #B2BEB5;
+    border: 1px solid #D3D3D3;
     border-radius: 5px;
     outline: none !important;
     font-family: "Montserrat";
@@ -891,7 +896,7 @@
 }
 
 .report-body .report-form .density input:focus{
-    border: 1px solid #003755 !important;
+    border: 1px solid #D3D3D3 !important;
 }
 
 @media screen and (min-width: 446px) and (max-width: 775px){
@@ -931,24 +936,28 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .report-body .report-form .density::after{
+        right: 20px;
         font-size: 18px !important;
     }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .report-body .report-form .density::after{
+        right: 20px;
         font-size: 16px !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .report-body .report-form .density::after{
+        right: 20px;
         font-size: 14px !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .report-body .report-form .density::after{
+        right: 20px;
         font-size: 12px !important;
     }
 }
@@ -991,7 +1000,7 @@
     padding-right: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
-    border: 1px solid #B2BEB5;
+    border: 1px solid #D3D3D3;
     border-radius: 5px;
     appearance: none;
     outline: none !important;
@@ -1003,7 +1012,7 @@
 }
 
 .report-body .report-form .depth select:focus{
-    border: 1px solid #003755 !important;
+    border: 1px solid #D3D3D3 !important;
 }
 
 @media screen and (min-width: 446px) and (max-width: 775px){
@@ -1068,7 +1077,7 @@
     padding-right: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
-    border: 1px solid #B2BEB5;
+    border: 1px solid #D3D3D3;
     border-radius: 5px;
     appearance: none;
     outline: none !important;
@@ -1080,7 +1089,7 @@
 }
 
 .report-body .report-form .weather select:focus{
-    border: 1px solid #003755 !important;
+    border: 1px solid #D3D3D3 !important;
 }
 
 @media screen and (min-width: 446px) and (max-width: 775px){

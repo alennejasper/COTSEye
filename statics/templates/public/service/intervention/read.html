@@ -30,10 +30,10 @@
                 </div>
 
                 <div class = "interventionread-origin">
-                    <h1>Activity Details</h1>
+                    <!-- <h1>Activity Details</h1> -->
 
                     <div class = "origin-context">
-                        <p>Activity Date:</p>
+                        <p>Activity date:</p>
 
                         <p>{{intervention.activity_date | default:'None available'}}</p>
                     </div>
@@ -45,26 +45,26 @@
                     </div>
 
                     <div class = "origin-context">
-                        <p>Infestation Status:</p>
+                        <p>Infestation status:</p>
     
                         <p>{{intervention.statustype | default:'None available'}}</p>
                     </div>
 
                     <div class = "origin-context">
-                        <p>COTS Collected:</p>
+                        <p>COTS collected:</p>
     
                         <p>{{intervention.caught_amount | default:'0'}}</p>
                     </div>
     
                     <div class = "origin-context">
-                        <p>Volunteer Count:</p>
+                        <p>Volunteer count:</p>
     
                         <p>{{intervention.volunteer_amount | default:'0'}}</p>
                     </div>
                 </div>
 
                 <div class = "interventionread-description">
-                    <h1>Activity Description</h1>
+                    <h1>Description:</h1>
     
                     <div class = "description-context">
                         <p>{{intervention.details | default:'None available'}}</p>

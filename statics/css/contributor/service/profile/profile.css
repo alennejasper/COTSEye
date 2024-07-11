@@ -9,7 +9,6 @@
     display: grid;
     place-items: center;
     align-items: center; 
-    justify-content: center;
     grid-template-columns: 1fr 1fr;
     row-gap: 15px;
     height: 100% !important;
@@ -90,6 +89,7 @@
 .profile-body .profile-section p{
     display: flex;
     align-items: center;
+    justify-content: center;
     margin-bottom: 0px !important;
     white-space: nowrap;
     overflow: hidden;
@@ -98,7 +98,6 @@
     font-weight: 400;
     font-size: 20px !important;
     color: #003755;
-    text-transform: uppercase;
 }
 
 @media screen and (min-width: 446px) and (max-width: 775px){
@@ -128,7 +127,6 @@
 .profile-body .profile-details{
     display: grid;
     align-items: center; 
-    justify-content: center;
     row-gap: 15px;
     width: 100%;               
     height: fit-content;
@@ -149,7 +147,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     font-family: "Montserrat";
-    font-weight: 400;       
+    font-weight: 700;       
     font-size: 20px;
     color: #003755;                          
 }
@@ -186,7 +184,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     font-family: "Montserrat";
-    font-weight: 700;       
+    font-weight: 400;       
     font-size: 24px;
     color: #003755;                          
 }
@@ -229,7 +227,6 @@
     }
     
 }
-
 
 .profile-body a{
     padding-left: 10px !important;

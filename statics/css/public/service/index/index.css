@@ -58,16 +58,14 @@ nav.navigation-topbar{
     padding-bottom: 15px;
     width: 100%;
     background-color: #FFFFFF;
-    border-bottom: 1px solid #B2BEB5;
+    border-bottom: 1px solid #D3D3D3;
     z-index: 100;
 }
 
 @media screen and (min-width: 320px) and (max-width: 775px){
     nav.navigation-topbar{
-        padding-left: 10px;
-        padding-right: 10px;
-        padding-top: 10px;
-        padding-bottom: 10px;
+        padding-left: 15px;
+        padding-right: 15px;
     }
 }
 
@@ -371,10 +369,10 @@ nav.navigation-topbar img:active{
 
 @media screen and (min-width: 320px) and (max-width: 775px){
     .content{
-        padding-left: 10px;
-        padding-right: 10px;
-        padding-top: 50px !important;
-        padding-bottom: 50px !important;
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-top: 60px !important;
+        padding-bottom: 60px !important;
     }
 }
 
@@ -392,17 +390,15 @@ nav.navigation-bottombar{
     padding-top: 15px;
     padding-bottom: 15px;
     width: 100%;
-    border-top: 1px solid #B2BEB5;
+    border-top: 1px solid #D3D3D3;
     background-color: #FFFFFF;
     z-index: 100;
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     nav.navigation-bottombar{
-        padding-left: 10px;
-        padding-right: 10px;
-        padding-top: 10px;
-        padding-bottom: 10px;
+        padding-left: 15px;
+        padding-right: 15px;
     }
 }
 
@@ -494,7 +490,7 @@ nav.navigation-bottombar img:active{
     top: 40px;    
     max-width: 400px;
     border-radius: 5px;
-    border: 1px solid #B2BEB5;     
+    border: 1px solid #D3D3D3;     
     background-color: #FFFFFF;
     z-index: 100;
 }
@@ -502,7 +498,6 @@ nav.navigation-bottombar img:active{
 @media screen and (min-width: 320px) and (max-width: 775px){
     .profile-content{
         right: 10px;
-        top: 30px;    
         max-width: 270px;
     }
 }
@@ -702,7 +697,7 @@ nav.navigation-bottombar img:active{
 .profile-content .dropdown-divider{
     margin-top: 0px !important;
     margin-bottom: 0px !important;
-    border-bottom: 1px solid #003755; 
+    border-bottom: 1px solid #D3D3D3; 
 }
 
 .profile-content a.dropdown-footer{
@@ -788,7 +783,7 @@ nav.navigation-bottombar img:active{
     padding-top: 15px !important;
     padding-bottom: 15px !important;
     border-radius: 5px !important;
-    border: 1px solid #003755 !important; 
+    border: 1px solid #D3D3D3 !important; 
 }
 
 @media screen and (min-width: 320px) and (max-width: 775px){
@@ -877,7 +872,7 @@ nav.navigation-bottombar img:active{
 }
 
 .swal2-container div:where(.swal2-icon).swal2-success .swal2-success-ring{
-    border: 1px solid #003755 !important;
+    border: 1px solid #D3D3D3 !important;
 }
 
 .swal2-container div:where(.swal2-icon).swal2-success [class ^= swal2-success-line]{
@@ -981,7 +976,7 @@ nav.navigation-bottombar img:active{
     padding-bottom: 5px;
     content: "Ok" !important;
     visibility: visible !important;
-    border: 1px solid #003755 !important; 
+    border: 1px solid #D3D3D3 !important; 
     border-radius: 5px !important;
     outline: none !important;
     font-family: "Montserrat" !important;
@@ -1047,7 +1042,7 @@ nav.navigation-bottombar img:active{
     padding-bottom: 5px !important;
     content: "Ok" !important;
     visibility: visible !important;
-    border: 1px solid #003755 !important; 
+    border: 1px solid #D3D3D3 !important; 
     border-radius: 5px !important;
     outline: none !important;
     font-family: "Montserrat" !important;
@@ -1113,7 +1108,7 @@ nav.navigation-bottombar img:active{
     padding-bottom: 5px !important;
     content: "Ok" !important;
     visibility: visible !important;
-    border: 1px solid #003755 !important; 
+    border: 1px solid #D3D3D3 !important; 
     border-radius: 5px !important;
     outline: none !important;
     font-family: "Montserrat" !important;
@@ -1179,7 +1174,7 @@ nav.navigation-bottombar img:active{
     padding-bottom: 5px;
     content: "Yes" !important;
     visibility: visible !important;
-    border: 1px solid #003755 !important; 
+    border: 1px solid #D3D3D3 !important; 
     border-radius: 5px !important;
     outline: none !important;
     font-family: "Montserrat" !important;
@@ -1245,7 +1240,7 @@ nav.navigation-bottombar img:active{
     padding-bottom: 5px;
     content: "No" !important;
     visibility: visible !important;
-    border: 1px solid #003755 !important; 
+    border: 1px solid #D3D3D3 !important; 
     border-radius: 5px !important;
     outline: none !important;
     font-family: "Montserrat" !important;

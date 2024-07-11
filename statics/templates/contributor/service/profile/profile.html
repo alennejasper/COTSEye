@@ -7,9 +7,11 @@
         <div class = "profile-section">
             <img src = "{{user.profile_photo.url}}">
     
-            <h1>{{user.account.username}}</h1>
+            <div>
+                <h1>{{user.account.username}}</h1>
                         
-            <p>{{user.account.usertype}}</p>
+                <p>username</p>
+            </div>
         </div>
     
         <div class = "profile-details">
@@ -40,7 +42,7 @@
             <div class = "button">
                 <a class = "update-profile" href = "{% url 'Contributor Service Profile Update' %}">Update</a>
 
-                <a class = "delete-account" href = "{% url 'Contributor Service Profile Delete' user.id %}">Delete</a>
+                <!-- <a class = "delete-account" href = "{% url 'Contributor Service Profile Delete' user.id %}">Delete</a> -->
             </div>
         </div>
     </div>

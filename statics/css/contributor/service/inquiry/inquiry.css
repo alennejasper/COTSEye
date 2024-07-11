@@ -55,15 +55,9 @@
     margin-bottom: 0px;
 }
 
-@media screen and (min-width: 320px) and (max-width: 775px){
-    .inquiry-body .inquiry{
-        margin-bottom: 5px;
-    }
-}
-
 .inquiry-body .inquiry .inquiry-context{
     display: grid;
-    border-bottom: 1px solid #003755;
+    border-bottom: 1px solid #D3D3D3;
 }
 
 .inquiry-body .inquiry .inquiry-context:last-child{
@@ -71,7 +65,7 @@
 }
 
 .inquiry-body .inquiry .inquiry-context p:first-child{
-    margin-bottom: 0px !important;
+    margin-bottom: 15px !important;
     padding-top: 15px;
     font-family: "Montserrat";
     font-weight: 700; 
@@ -85,23 +79,11 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .inquiry-body .inquiry .inquiry-context p:first-child{
-        font-size: 22px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .inquiry-body .inquiry .inquiry-context p:first-child{
         font-size: 20px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .inquiry-body .inquiry .inquiry-context p:first-child{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .inquiry-body .inquiry .inquiry-context p:first-child{
         font-size: 16px !important;
     }
@@ -122,23 +104,11 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .inquiry-body .inquiry .inquiry-context p:last-child{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .inquiry-body .inquiry .inquiry-context p:last-child{
         font-size: 16px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .inquiry-body .inquiry .inquiry-context p:last-child{
-        font-size: 14px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .inquiry-body .inquiry .inquiry-context p:last-child{
         font-size: 12px !important;
     }

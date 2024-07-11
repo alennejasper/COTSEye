@@ -30,7 +30,7 @@
 
 .feed-body .feed{
     padding-bottom: 15px;
-    border-bottom: 1px solid #B2BEB5;
+    border-bottom: 1px solid #D3D3D3;
 }
 
 .feed-body .feed:last-child{
@@ -60,10 +60,8 @@
 
 @media screen and (min-width: 320px) and (max-width: 775px){
     .feed-body .feed .feed-header{
-        padding-left: 10px;
-        padding-right: 10px;
-        padding-top: 5px;
-        padding-bottom: 5px;
+        padding-left: 15px;
+        padding-right: 15px;
     }
 }
 
@@ -81,30 +79,18 @@
     overflow: hidden;
     text-overflow: ellipsis;
     font-family: "Montserrat";
-    font-weight: 600;
+    font-weight: 700;
     font-size: 20px !important;
     color: #003755;
 }
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .feed-body .feed .feed-header .header-context .context-caption p:first-child{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .feed-body .feed .feed-header .header-context .context-caption p:first-child{
         font-size: 16px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .feed-body .feed .feed-header .header-context .context-caption p:first-child{
-        font-size: 14px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .feed-body .feed .feed-header .header-context .context-caption p:first-child{
         font-size: 12px !important;
     }
@@ -125,23 +111,11 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .feed-body .feed .feed-header .header-context .context-caption p:last-child{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .feed-body .feed .feed-header .header-context .context-caption p:last-child{
         font-size: 16px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .feed-body .feed .feed-header .header-context .context-caption p:last-child{
-        font-size: 14px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .feed-body .feed .feed-header .header-context .context-caption p:last-child{
         font-size: 12px !important;
     }
@@ -167,23 +141,11 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .feed-body .feed .feed-header .header-context:last-child > p{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .feed-body .feed .feed-header .header-context:last-child > p{
         font-size: 16px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .feed-body .feed .feed-header .header-context:last-child > p{
-        font-size: 14px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .feed-body .feed .feed-header .header-context:last-child > p{
         font-size: 12px !important;
     }
@@ -243,35 +205,21 @@
     overflow: hidden;
     font-family: "Montserrat";
     font-weight: 700;
-    font-size: 24px;
+    font-size: 20px;
     color: #003755;
 }
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .feed-body .feed > h1{
         margin-bottom: 5px;
-        font-size: 22px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .feed-body .feed > h1{
-        margin-bottom: 5px;
-        font-size: 20px !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .feed-body .feed > h1{
-        margin-bottom: 5px;
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .feed-body .feed > h1{
-        margin-bottom: 5px;
         font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 445px){
+    .feed-body .feed > h1{
+        margin-bottom: 5px;
+        font-size: 12px !important;
     }
 }
 

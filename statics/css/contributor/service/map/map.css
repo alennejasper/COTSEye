@@ -42,7 +42,7 @@
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    border: 1px solid #003755;
+    border: 1px solid #D3D3D3;
 }
 
 .map-body .map-map .map .leaflet-left{
@@ -207,23 +207,11 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .map-body .map-map .map .legend .popup-header a{
-        font-size: 22px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .map-body .map-map .map .legend .popup-header a{
         font-size: 20px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .map-body .map-map .map .legend .popup-header a{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .map-body .map-map .map .legend .popup-header a{
         font-size: 16px !important;
     }
@@ -255,26 +243,12 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .map-body .map-map .map .legend .popup-statistics i{
-        width: 18px; 
-        height: 18px;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .map-body .map-map .map .legend .popup-statistics i{
         width: 16px; 
         height: 16px;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .map-body .map-map .map .legend .popup-statistics i{
-        width: 14px; 
-        height: 14px;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .map-body .map-map .map .legend .popup-statistics i{
         width: 12px; 
         height: 12px;
@@ -293,23 +267,11 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .map-body .map-map .map .legend .popup-statistics a{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .map-body .map-map .map .legend .popup-statistics a{
         font-size: 16px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .map-body .map-map .map .legend .popup-statistics a{
-        font-size: 14px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .map-body .map-map .map .legend .popup-statistics a{
         font-size: 12px !important;
     }
@@ -328,23 +290,11 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .map-body .map-map .map .legend .popup-statistics p{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .map-body .map-map .map .legend .popup-statistics p{
         font-size: 16px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .map-body .map-map .map .legend .popup-statistics p{
-        font-size: 14px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .map-body .map-map .map .legend .popup-statistics p{
         font-size: 12px !important;
     }
@@ -363,23 +313,11 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .map-body .map-map .map .legend .popup-alert p{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .map-body .map-map .map .legend .popup-alert p{
         font-size: 16px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .map-body .map-map .map .legend .popup-alert p{
-        font-size: 14px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .map-body .map-map .map .legend .popup-alert p{
         font-size: 12px !important;
     }
@@ -527,23 +465,11 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .map-body .map-map .map .leaflet-control-layers span{
-        font-size: 22px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .map-body .map-map .map .leaflet-control-layers span{
         font-size: 20px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .map-body .map-map .map .leaflet-control-layers span{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .map-body .map-map .map .leaflet-control-layers span{
         font-size: 16px !important;
     }
@@ -581,31 +507,11 @@
         padding-right: 10px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
-        font-size: 22px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .map-body .map-map .map .leaflet-control-layers-list{
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
         font-size: 20px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .map-body .map-map .map .leaflet-control-layers-list{
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .map-body .map-map .map .leaflet-control-layers-list{
         padding-left: 10px !important;
         padding-right: 10px !important;
@@ -790,24 +696,12 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .map-body .map-map .map .popup .popup-header i.fa-solid.fa-circle-exclamation{
-        font-size: 22px !important;
-
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .map-body .map-map .map .popup .popup-header i.fa-solid.fa-circle-exclamation{
         font-size: 20px !important;
+
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .map-body .map-map .map .popup .popup-header i.fa-solid.fa-circle-exclamation{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .map-body .map-map .map .popup .popup-header i.fa-solid.fa-circle-exclamation{
         font-size: 16px !important;
     }
@@ -916,23 +810,11 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .map-body .map-map .map .popup .popup-place p{
-        font-size: 22px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .map-body .map-map .map .popup .popup-place p{
         font-size: 20px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .map-body .map-map .map .popup .popup-place p{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .map-body .map-map .map .popup .popup-place p{
         font-size: 16px !important;
     }
@@ -950,23 +832,11 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .map-body .map-map .map .popup .popup-place p a{
-        font-size: 22px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .map-body .map-map .map .popup .popup-place p a{
         font-size: 20px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .map-body .map-map .map .popup .popup-place p a{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .map-body .map-map .map .popup .popup-place p a{
         font-size: 16px !important;
     }
@@ -1005,23 +875,11 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .map-body .map-map .map .popup .popup-statistics p{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .map-body .map-map .map .popup .popup-statistics p{
         font-size: 16px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .map-body .map-map .map .popup .popup-statistics p{
-        font-size: 14px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .map-body .map-map .map .popup .popup-statistics p{
         font-size: 12px !important;
     }
@@ -1039,23 +897,11 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .map-body .map-map .map .popup .popup-statistics p a{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .map-body .map-map .map .popup .popup-statistics p a{
         font-size: 16px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .map-body .map-map .map .popup .popup-statistics p a{
-        font-size: 14px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .map-body .map-map .map .popup .popup-statistics p a{
         font-size: 12px !important;
     }
@@ -1069,26 +915,12 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .map-body .map-map .map .popup .popup-header img{
-        width: 22px;
-        height: 22px;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .map-body .map-map .map .popup .popup-header img{
         width: 20px;
         height: 20px;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .map-body .map-map .map .popup .popup-header img{
-        width: 18px;
-        height: 18px;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 369px) and (max-width: 445px){
     .map-body .map-map .map .popup .popup-header img{
         width: 16px;
         height: 16px;
@@ -1129,23 +961,11 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .map-body .map-map .map .popup .popup-username a{
-        font-size: 22px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .map-body .map-map .map .popup .popup-username a{
         font-size: 20px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .map-body .map-map .map .popup .popup-username a{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .map-body .map-map .map .popup .popup-username a{
         font-size: 16px !important;
     }
@@ -1157,8 +977,8 @@
     gap: 15px;
     padding-top: 15px;
     padding-bottom: 15px;
-    border-top: 1px solid #003755;
-    border-bottom: 1px solid #003755;
+    border-top: 1px solid #D3D3D3;
+    border-bottom: 1px solid #D3D3D3;
     background-color: #FFFFFF;
 }
 
@@ -1217,23 +1037,11 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .map-body .map-map .map .popup .popup-post .post-gallery .post-context p{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .map-body .map-map .map .popup .popup-post .post-gallery .post-context p{
         font-size: 16px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .map-body .map-map .map .popup .popup-post .post-gallery .post-context p{
-        font-size: 14px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .map-body .map-map .map .popup .popup-post .post-gallery .post-context p{
         font-size: 12px !important;
     }
@@ -1250,23 +1058,11 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .map-body .map-map .map .popup .popup-post .post-gallery .post-context a{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .map-body .map-map .map .popup .popup-post .post-gallery .post-context a{
         font-size: 16px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .map-body .map-map .map .popup .popup-post .post-gallery .post-context a{
-        font-size: 14px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .map-body .map-map .map .popup .popup-post .post-gallery .post-context a{
         font-size: 12px !important;
     }
@@ -1319,23 +1115,11 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .map-body .map-map .map .popup .button a.read-post{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .map-body .map-map .map .popup .button a.read-post{
         font-size: 16px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .map-body .map-map .map .popup .button a.read-post{
-        font-size: 14px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .map-body .map-map .map .popup .button a.read-post{
         font-size: 12px !important;
     }

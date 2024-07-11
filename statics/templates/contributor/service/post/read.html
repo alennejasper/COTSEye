@@ -21,7 +21,11 @@
                         </div>
                     </div>
 
-                    <p>{{valid_post.creation_date | date:'m/d/Y' | default:'None available'}}</p>
+                    <div class = "header-context">
+                        <p>{{valid_post.post_status | default:'None available'}}</p>
+                    
+                        <p>{{valid_post.creation_date | date:'m/d/Y' | default:'None available'}}</p>
+                    </div>
                 </div>
 
                 <div class = "postandfeedread-gallery">
@@ -31,53 +35,43 @@
                 </div>
 
                 <div class = "postandfeedread-origin">
-                    <h1>Sighting Details</h1>
-
                     <div class = "origin-context">
-                        <p>Capture Date:</p>
+                        <p>Capture date:</p>
 
                         <p>{{valid_post.capture_date | date:'m/d/Y' | default:'None available'}}</p>
-                    </div>
-
-                    <div class = "origin-context">
-                        <p>Post Status:</p>
-
-                        <p>{{valid_post.post_status | default:'None available'}}</p>
                     </div>
                 </div>
 
                 <div class = "postandfeedread-observation">
-                    <h1>Observation Details</h1>
-
                     <div class = "observation-context">
-                        <p>Size (How big were the COTS):</p>
+                        <p>Average COTS size:</p>
 
                         <p>{{valid_post.post_observation.size | default:'0'}}</p>
                     </div>
 
                     <div class = "observation-context">
-                        <p>Depth (Where the COTS was sighted):</p>
+                        <p>Depth where the COTS was sighted:</p>
 
                         <p>{{valid_post.post_observation.depth | default:'0'}}</p>
                     </div>
 
                     <div class = "observation-context">
-                        <p>Density (COTS per m²):</p>
+                        <p>Density COTS per m²:</p>
 
                         <p>{{valid_post.post_observation.density | default:'0'}}</p>
                     </div>
 
                     <div class = "observation-context">
-                        <p>Weather (Weather during sighting):</p>
+                        <p>Weather during sighting:</p>
 
                         <p>{{valid_post.post_observation.weather | default:'None available'}}</p>
                     </div>
                 </div>
 
                 <div class = "postandfeedread-description">
-                    <h1>Sighting Description</h1>
-
                     <div class = "description-context">
+                        <h1>Description:</h1>
+                        
                         <p>{{valid_post.description | default:'None available'}}</p>
                     </div>
                 </div>
@@ -101,7 +95,12 @@
                         </div>
                     </div>
 
-                    <p>{{invalid_post.creation_date | date:'m/d/Y' | default:'None available'}}</p>
+                    <div class = "header-context">
+                        <p>{{invalid_post.post_status | default:'None available'}}</p>
+
+                        <p>{{invalid_post.creation_date | date:'m/d/Y' | default:'None available'}}</p>
+
+                    </div>
                 </div>
 
                 <div class = "postandfeedread-gallery">
@@ -119,51 +118,41 @@
                 </div>
 
                 <div class = "postandfeedread-origin">
-                    <h1>Major Details</h1>
-
                     <div class = "origin-context">
-                        <p>Capture Date:</p>
+                        <p>Capture date:</p>
 
                         <p>{{invalid_post.capture_date | date:'m/d/Y' | default:'None available'}}</p>
-                    </div>
-
-                    <div class = "origin-context">
-                        <p>Post Status:</p>
-
-                        <p>{{invalid_post.post_status | default:'None available'}}</p>
                     </div>
                 </div>
 
                 <div class = "postandfeedread-observation">
-                    <h1>Observations</h1>
-
                     <div class = "observation-context">
-                        <p>Size (How big were the COTS):</p>
+                        <p>Average COTS size:</p>
 
                         <p>{{invalid_post.post_observation.size | default:'0'}}</p>
                     </div>
 
                     <div class = "observation-context">
-                        <p>Depth (Where the COTS was sighted):</p>
+                        <p>Depth where the COTS was sighted:</p>
 
                         <p>{{invalid_post.post_observation.depth | default:'0'}}</p>
                     </div>
 
                     <div class = "observation-context">
-                        <p>Density (COTS per m²):</p>
+                        <p>Density COTS per m²:</p>
 
                         <p>{{invalid_post.post_observation.density | default:'0'}}</p>
                     </div>
 
                     <div class = "observation-context">
-                        <p>Weather (Weather during sighting):</p>
+                        <p>Weather during sighting:</p>
 
                         <p>{{invalid_post.post_observation.weather | default:'None available'}}</p>
                     </div>
                 </div>
 
                 <div class = "postandfeedread-description">
-                    <h1>Sighting Description</h1>
+                    <h1>Description:</h1>
 
                     <div class = "description-context">
                         <p>{{invalid_post.description | default:'None available'}}</p>
@@ -189,7 +178,11 @@
                         </div>
                     </div>
 
-                    <p>{{pending_post.creation_date | date:'m/d/Y' | default:'None available'}}</p>
+                    <div class = "header-context">
+                        <p>{{pending_post.post_status | default:'None available'}}</p>
+
+                        <p>{{pending_post.creation_date | date:'m/d/Y' | default:'None available'}}</p>
+                    </div>
                 </div>
 
                 <div class = "postandfeedread-gallery">
@@ -199,51 +192,41 @@
                 </div>
 
                 <div class = "postandfeedread-origin">
-                    <h1>Major Details</h1>
-
                     <div class = "origin-context">
-                        <p>Capture Date:</p>
+                        <p>Capture date:</p>
 
                         <p>{{pending_post.capture_date | date:'m/d/Y' | default:'None available'}}</p>
-                    </div>
-
-                    <div class = "origin-context">
-                        <p>Post Status:</p>
-
-                        <p>{{pending_post.post_status | default:'None available'}}</p>
                     </div>
                 </div>
 
                 <div class = "postandfeedread-observation">
-                    <h1>Observations</h1>
-
                     <div class = "observation-context">
-                        <p>Size (How big were the COTS):</p>
+                        <p>Average COTS size:</p>
 
                         <p>{{pending_post.post_observation.size | default:'0'}}</p>
                     </div>
 
                     <div class = "observation-context">
-                        <p>Depth (Where the COTS was sighted):</p>
+                        <p>Depth where the COTS was sighted:</p>
 
                         <p>{{pending_post.post_observation.depth | default:'0'}}</p>
                     </div>
 
                     <div class = "observation-context">
-                        <p>Density (COTS per m²):</p>
+                        <p>Density COTS per m²:</p>
 
                         <p>{{pending_post.post_observation.density | default:'0'}}</p>
                     </div>
 
                     <div class = "observation-context">
-                        <p>Weather (Weather during sighting):</p>
+                        <p>Weather during sighting:</p>
 
                         <p>{{pending_post.post_observation.weather | default:'None available'}}</p>
                     </div>
                 </div>
 
                 <div class = "postandfeedread-description">
-                    <h1>Sighting Description</h1>
+                    <h1>Description:</h1>
 
                     <div class = "description-context">
                         <p>{{pending_post.description | default:'None available'}}</p>
@@ -265,7 +248,11 @@
                         </div>
                     </div>
 
-                    <p>{{draft_post.creation_date | date:'m/d/Y' | default:'None available'}}</p>
+                    <div class = "header-context">
+                        <p>{{draft_post.post_status | default:'None available'}}</p>
+
+                        <p>{{draft_post.creation_date | date:'m/d/Y' | default:'None available'}}</p>
+                    </div>
                 </div>
 
                 <div class = "postandfeedread-gallery">
@@ -275,51 +262,41 @@
                 </div>
 
                 <div class = "postandfeedread-origin">
-                    <h1>Major Details</h1>
-
                     <div class = "origin-context">
-                        <p>Capture Date:</p>
+                        <p>Capture date:</p>
 
                         <p>{{draft_post.capture_date | date:'m/d/Y' | default:'None available'}}</p>
-                    </div>
-
-                    <div class = "origin-context">
-                        <p>Post Status:</p>
-
-                        <p>{{draft_post.post_status | default:'None available'}}</p>
                     </div>
                 </div>
 
                 <div class = "postandfeedread-observation">
-                    <h1>Observations</h1>
-
                     <div class = "observation-context">
-                        <p>Size (How big were the COTS):</p>
+                        <p>Average COTS size:</p>
 
                         <p>{{draft_post.post_observation.size | default:'0'}}</p>
                     </div>
 
                     <div class = "observation-context">
-                        <p>Depth (Where the COTS was sighted):</p>
+                        <p>Depth where the COTS was sighted:</p>
 
                         <p>{{draft_post.post_observation.depth | default:'0'}}</p>
                     </div>
 
                     <div class = "observation-context">
-                        <p>Density (COTS per m²):</p>
+                        <p>Density COTS per m²:</p>
 
                         <p>{{draft_post.post_observation.density | default:'0'}}</p>
                     </div>
 
                     <div class = "observation-context">
-                        <p>Weather (Weather during sighting):</p>
+                        <p>Weather during sighting:</p>
 
                         <p>{{draft_post.post_observation.weather | default:'None available'}}</p>
                     </div>
                 </div>
 
                 <div class = "postandfeedread-description">
-                    <h1>Sighting Description</h1>
+                    <h1>Description:</h1>
 
                     <div class = "description-context">
                         <p>{{draft_post.description | default:'None available'}}</p>

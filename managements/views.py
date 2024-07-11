@@ -22,7 +22,7 @@ def PublicServiceAnnouncement(request):
 
     locations = Location.objects.all()
 
-    municipalities = Location.objects.values("municipality").distinct()
+    municipalities = Municipality.objects.values("municipality_name").distinct()
 
     municipality = request.GET.get("municipality")
 
@@ -35,10 +35,10 @@ def PublicServiceAnnouncement(request):
     announcements = Announcement.objects.all().order_by("-release_date")
 
     if municipality:
-        announcements = announcements.filter(location__municipality = municipality)
+        announcements = announcements.filter(location__municipality__municipality_name = municipality)
 
     if barangay:
-        announcements = announcements.filter(location__barangay = barangay)
+        announcements = announcements.filter(location__barangay__barangay_name = barangay)
 
     if from_date:
         from_date = datetime.datetime.strptime(from_date, '%Y-%m-%d')
@@ -74,7 +74,7 @@ def PublicServiceIntervention(request):
 
     locations = Location.objects.all()
 
-    municipalities = Location.objects.values("municipality").distinct()
+    municipalities = Municipality.objects.values("municipality_name").distinct()
 
     municipality = request.GET.get("municipality")
 
@@ -87,10 +87,10 @@ def PublicServiceIntervention(request):
     interventions = Intervention.objects.all().order_by("-event_date")
 
     if municipality:
-        interventions = interventions.filter(location__municipality = municipality)
+        interventions = interventions.filter(location__municipality__municipality_name = municipality)
 
     if barangay:
-        interventions = interventions.filter(location__barangay = barangay)
+        interventions = interventions.filter(location__barangay__barangay_name = barangay)
 
     if from_date:
         from_date = datetime.datetime.strptime(from_date, '%Y-%m-%d')
@@ -136,7 +136,7 @@ def ContributorServiceAnnouncement(request):
 
     locations = Location.objects.all()
 
-    municipalities = Location.objects.values("municipality").distinct()
+    municipalities = Municipality.objects.values("municipality_name").distinct()
 
     municipality = request.GET.get("municipality")
 
@@ -149,10 +149,10 @@ def ContributorServiceAnnouncement(request):
     announcements = Announcement.objects.all().order_by("-release_date")
 
     if municipality:
-        announcements = announcements.filter(location__municipality = municipality)
+        announcements = announcements.filter(location__municipality__municipality_name = municipality)
 
     if barangay:
-        announcements = announcements.filter(location__barangay = barangay)
+        announcements = announcements.filter(location__barangay__barangay_name = barangay)
 
     if from_date:
         from_date = datetime.datetime.strptime(from_date, '%Y-%m-%d')
@@ -208,7 +208,7 @@ def ContributorServiceIntervention(request):
 
     locations = Location.objects.all()
 
-    municipalities = Location.objects.values("municipality").distinct()
+    municipalities = Municipality.objects.values("municipality_name").distinct()
 
     municipality = request.GET.get("municipality")
 
@@ -221,10 +221,10 @@ def ContributorServiceIntervention(request):
     interventions = Intervention.objects.all().order_by("-event_date")
 
     if municipality:
-        interventions = interventions.filter(location__municipality = municipality)
+        interventions = interventions.filter(location__municipality__municipality_name = municipality)
 
     if barangay:
-        interventions = interventions.filter(location__barangay = barangay)
+        interventions = interventions.filter(location__barangay__barangay_name = barangay)
 
     if from_date:
         from_date = datetime.datetime.strptime(from_date, '%Y-%m-%d')

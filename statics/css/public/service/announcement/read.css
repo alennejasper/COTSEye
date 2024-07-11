@@ -32,12 +32,6 @@
     row-gap: 15px;
 }
 
-@media screen and (min-width: 320px) and (max-width: 775px){
-    .announcementread-body .announcementread{
-        row-gap: 5px;
-    }
-}
-
 .announcementread-body .announcementread .announcementread-header{
     display: flex;
     align-items: center;
@@ -49,9 +43,8 @@
 
 @media screen and (min-width: 320px) and (max-width: 775px){
     .announcementread-body .announcementread .announcementread-header{
-        row-gap: 5px;
-        padding-left: 10px;
-        padding-right: 10px;
+        padding-left: 15px;
+        padding-right: 15px;
     }
 }
 
@@ -76,23 +69,11 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .announcementread-body .announcementread .announcementread-header .header-context .context-caption p:first-child{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .announcementread-body .announcementread .announcementread-header .header-context .context-caption p:first-child{
         font-size: 16px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .announcementread-body .announcementread .announcementread-header .header-context .context-caption p:first-child{
-        font-size: 14px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .announcementread-body .announcementread .announcementread-header .header-context .context-caption p:first-child{
         font-size: 12px !important;
     }
@@ -113,23 +94,11 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .announcementread-body .announcementread .announcementread-header .header-context .context-caption p:last-child{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .announcementread-body .announcementread .announcementread-header .header-context .context-caption p:last-child{
         font-size: 16px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .announcementread-body .announcementread .announcementread-header .header-context .context-caption p:last-child{
-        font-size: 14px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .announcementread-body .announcementread .announcementread-header .header-context .context-caption p:last-child{
         font-size: 12px !important;
     }
@@ -148,23 +117,11 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .announcementread-body .announcementread .announcementread-header > p{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .announcementread-body .announcementread .announcementread-header > p{
         font-size: 16px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .announcementread-body .announcementread .announcementread-header > p{
-        font-size: 14px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .announcementread-body .announcementread .announcementread-header > p{
         font-size: 12px !important;
     }
@@ -200,23 +157,11 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .announcementread-body .announcementread > h1{
-        font-size: 22px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .announcementread-body .announcementread > h1{
         font-size: 20px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .announcementread-body .announcementread > h1{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .announcementread-body .announcementread > h1{
         font-size: 16px !important;
     }
@@ -252,15 +197,13 @@
     padding-right: 30px;
     padding-bottom: 15px;
     width: 100%; 
-    border-bottom: 1px solid #B2BEB5;
+    border-bottom: 1px solid #D3D3D3;
 }
 
 @media screen and (min-width: 320px) and (max-width: 775px){
     .announcementread-body .announcementread .announcementread-origin{      
-        gap: 5px;
-        padding-left: 10px;
-        padding-right: 10px;
-        padding-bottom: 5px;
+        padding-left: 15px;
+        padding-right: 15px;
     }
 }
 
@@ -305,30 +248,18 @@
     margin-bottom: 0px !important;
     white-space: wrap;
     font-family: "Montserrat";
-    font-weight: 400; 
+    font-weight: 700; 
     font-size: 20px;      
     color: #003755;
 }
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .announcementread-body .announcementread .announcementread-origin .origin-context p:first-child{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .announcementread-body .announcementread .announcementread-origin .origin-context p:first-child{
         font-size: 16px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .announcementread-body .announcementread .announcementread-origin .origin-context p:first-child{
-        font-size: 14px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .announcementread-body .announcementread .announcementread-origin .origin-context p:first-child{
         font-size: 12px !important;
     }
@@ -340,30 +271,18 @@
     margin-bottom: 0px !important;
     white-space: wrap;
     font-family: "Montserrat";
-    font-weight: 700;       
+    font-weight: 400;       
     font-size: 20px;
     color: #003755;
 }
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .announcementread-body .announcementread .announcementread-origin .origin-context p:last-child{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .announcementread-body .announcementread .announcementread-origin .origin-context p:last-child{
         font-size: 16px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .announcementread-body .announcementread .announcementread-origin .origin-context p:last-child{
-        font-size: 14px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .announcementread-body .announcementread .announcementread-origin .origin-context p:last-child{
         font-size: 12px !important;
     }
@@ -377,12 +296,11 @@
 
 .announcementread-body .announcementread .announcementread-description{
     display: grid;
-    row-gap: 15px;
     padding-left: 30px;
     padding-right: 30px;
     padding-bottom: 15px;
     width: 100%; 
-    border-bottom: 1px solid #B2BEB5;
+    border-bottom: 1px solid #D3D3D3;
 }
 
 .announcementread-body .announcementread .announcementread-description:last-child{
@@ -391,47 +309,32 @@
 
 @media screen and (min-width: 320px) and (max-width: 775px){
     .announcementread-body .announcementread .announcementread-description{
-        gap: 5px;
-        padding-left: 10px;
-        padding-right: 10px;
-        padding-bottom: 5px;
+        padding-left: 15px;
+        padding-right: 15px;
     }
 }
 
 .announcementread-body .announcementread .announcementread-description h1{
     display: flex;
     align-items: center;
-    justify-content: center;
     margin-bottom: 0px !important;
     overflow: hidden;
     text-overflow: ellipsis;
     font-family: "Montserrat";
     font-weight: 700; 
-    font-size: 24px;      
+    font-size: 20px;      
     color: #003755;
 }
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .announcementread-body .announcementread .announcementread-description h1{
-        font-size: 22px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .announcementread-body .announcementread .announcementread-description h1{
-        font-size: 20px !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .announcementread-body .announcementread .announcementread-description h1{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .announcementread-body .announcementread .announcementread-description h1{
         font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 445px){
+    .announcementread-body .announcementread .announcementread-description h1{
+        font-size: 12px !important;
     }
 }
 
@@ -446,23 +349,11 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .announcementread-body .announcementread .announcementread-description .description-context p{ 
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .announcementread-body .announcementread .announcementread-description .description-context p{ 
         font-size: 16px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .announcementread-body .announcementread .announcementread-description .description-context p{ 
-        font-size: 14px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .announcementread-body .announcementread .announcementread-description .description-context p{ 
         font-size: 12px !important;
     }
@@ -479,7 +370,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 775px){
     .announcementread-body .announcementread .button{
-        margin-right: 10px;
+        margin-right: 15px;
     }
 }
 
@@ -504,23 +395,11 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .announcementread-body .announcementread a{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .announcementread-body .announcementread a{
         font-size: 16px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .announcementread-body .announcementread a{
-        font-size: 14px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .announcementread-body .announcementread a{
         font-size: 12px !important;
     }

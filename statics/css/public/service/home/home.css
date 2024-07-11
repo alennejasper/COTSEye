@@ -6,12 +6,6 @@
     height: 100%;
 }
 
-@media screen and (min-width: 320px) and (max-width: 775px){
-    .home-body{
-        gap: 5px;
-    }
-}
-
 .home-body .home-section{
     display: flex;                   
     align-items: center; 
@@ -19,6 +13,12 @@
     flex-direction: column;
     width: 100%;                     
     text-align: center;                                   
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .home-body .home-section{
+        gap: 5px;
+    }
 }
 
 .home-body .home-section h1{
@@ -93,7 +93,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 935px){
     .home-body .home-map{ 
-        height: 375px;
+        height: 650px;
     }
 }
 
@@ -106,7 +106,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 935px){
     .home-body .home-map .map{
-        height: 375px;
+        height: 650px;
     }
 }
 
@@ -114,7 +114,7 @@
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    border: 1px solid #003755;
+    border: 1px solid #D3D3D3;
 }
 
 .home-body .home-map .map .leaflet-left{
@@ -279,23 +279,11 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .home-body .home-map .map .legend .popup-header a{
-        font-size: 22px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .home-body .home-map .map .legend .popup-header a{
         font-size: 20px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .home-body .home-map .map .legend .popup-header a{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .home-body .home-map .map .legend .popup-header a{
         font-size: 16px !important;
     }
@@ -327,26 +315,12 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .home-body .home-map .map .legend .popup-statistics i{
-        width: 18px; 
-        height: 18px;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .home-body .home-map .map .legend .popup-statistics i{
         width: 16px; 
         height: 16px;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .home-body .home-map .map .legend .popup-statistics i{
-        width: 14px; 
-        height: 14px;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .home-body .home-map .map .legend .popup-statistics i{
         width: 12px; 
         height: 12px;
@@ -365,23 +339,11 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .home-body .home-map .map .legend .popup-statistics a{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .home-body .home-map .map .legend .popup-statistics a{
         font-size: 16px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .home-body .home-map .map .legend .popup-statistics a{
-        font-size: 14px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .home-body .home-map .map .legend .popup-statistics a{
         font-size: 12px !important;
     }
@@ -400,23 +362,11 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .home-body .home-map .map .legend .popup-statistics p{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .home-body .home-map .map .legend .popup-statistics p{
         font-size: 16px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .home-body .home-map .map .legend .popup-statistics p{
-        font-size: 14px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .home-body .home-map .map .legend .popup-statistics p{
         font-size: 12px !important;
     }
@@ -435,23 +385,11 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .home-body .home-map .map .legend .popup-alert p{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .home-body .home-map .map .legend .popup-alert p{
         font-size: 16px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .home-body .home-map .map .legend .popup-alert p{
-        font-size: 14px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .home-body .home-map .map .legend .popup-alert p{
         font-size: 12px !important;
     }
@@ -599,23 +537,11 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .home-body .home-map .map .leaflet-control-layers span{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .home-body .home-map .map .leaflet-control-layers span{
         font-size: 16px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .home-body .home-map .map .leaflet-control-layers span{
-        font-size: 14px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .home-body .home-map .map .leaflet-control-layers span{
         font-size: 12px !important;
     }
@@ -653,7 +579,7 @@
         padding-right: 10px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
-        font-size: 22px !important;
+        font-size: 16px !important;
     }
 }
 
@@ -663,27 +589,7 @@
         padding-right: 10px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
-        font-size: 20px !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .home-body .home-map .map .leaflet-control-layers-list{
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .home-body .home-map .map .leaflet-control-layers-list{
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-        font-size: 16px !important;
+        font-size: 12px !important;
     }
 }
 
@@ -862,24 +768,12 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .home-body .home-map .map .popup .popup-header i.fa-solid.fa-circle-exclamation{
-        font-size: 22px !important;
-
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .home-body .home-map .map .popup .popup-header i.fa-solid.fa-circle-exclamation{
         font-size: 20px !important;
+
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .home-body .home-map .map .popup .popup-header i.fa-solid.fa-circle-exclamation{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .home-body .home-map .map .popup .popup-header i.fa-solid.fa-circle-exclamation{
         font-size: 16px !important;
     }
@@ -912,24 +806,12 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .home-body .home-map .map .popup .popup-header .popup-back{
-        font-size: 22px !important;
-
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .home-body .home-map .map .popup .popup-header .popup-back{
         font-size: 20px !important;
+
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .home-body .home-map .map .popup .popup-header .popup-back{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .home-body .home-map .map .popup .popup-header .popup-back{
         font-size: 16px !important;
     }
@@ -988,23 +870,11 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .home-body .home-map .map .popup .popup-place p{
-        font-size: 22px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .home-body .home-map .map .popup .popup-place p{
         font-size: 20px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .home-body .home-map .map .popup .popup-place p{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .home-body .home-map .map .popup .popup-place p{
         font-size: 16px !important;
     }
@@ -1022,23 +892,11 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .home-body .home-map .map .popup .popup-place p a{
-        font-size: 22px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .home-body .home-map .map .popup .popup-place p a{
         font-size: 20px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .home-body .home-map .map .popup .popup-place p a{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .home-body .home-map .map .popup .popup-place p a{
         font-size: 16px !important;
     }
@@ -1077,23 +935,11 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .home-body .home-map .map .popup .popup-statistics p{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .home-body .home-map .map .popup .popup-statistics p{
         font-size: 16px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .home-body .home-map .map .popup .popup-statistics p{
-        font-size: 14px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .home-body .home-map .map .popup .popup-statistics p{
         font-size: 12px !important;
     }
@@ -1111,23 +957,11 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .home-body .home-map .map .popup .popup-statistics p a{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .home-body .home-map .map .popup .popup-statistics p a{
         font-size: 16px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .home-body .home-map .map .popup .popup-statistics p a{
-        font-size: 14px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .home-body .home-map .map .popup .popup-statistics p a{
         font-size: 12px !important;
     }
@@ -1141,29 +975,15 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .home-body .home-map .map .popup .popup-header img{
-        width: 22px;
-        height: 22px;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .home-body .home-map .map .popup .popup-header img{
         width: 20px;
         height: 20px;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .home-body .home-map .map .popup .popup-header img{
-        width: 18px;
-        height: 18px;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .home-body .home-map .map .popup .popup-header img{
-        width: 16px;
-        height: 16px;
+        width: 12px;
+        height: 12px;
     }
 }
 
@@ -1201,23 +1021,11 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .home-body .home-map .map .popup .popup-username a{
-        font-size: 22px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .home-body .home-map .map .popup .popup-username a{
         font-size: 20px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .home-body .home-map .map .popup .popup-username a{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .home-body .home-map .map .popup .popup-username a{
         font-size: 16px !important;
     }
@@ -1229,8 +1037,8 @@
     gap: 15px;
     padding-top: 15px;
     padding-bottom: 15px;
-    border-top: 1px solid #003755;
-    border-bottom: 1px solid #003755;
+    border-top: 1px solid #D3D3D3;
+    border-bottom: 1px solid #D3D3D3;
     background-color: #FFFFFF;
 }
 
@@ -1289,23 +1097,11 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .home-body .home-map .map .popup .popup-post .post-gallery .post-context p{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .home-body .home-map .map .popup .popup-post .post-gallery .post-context p{
         font-size: 16px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .home-body .home-map .map .popup .popup-post .post-gallery .post-context p{
-        font-size: 14px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .home-body .home-map .map .popup .popup-post .post-gallery .post-context p{
         font-size: 12px !important;
     }
@@ -1322,23 +1118,11 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .home-body .home-map .map .popup .popup-post .post-gallery .post-context a{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .home-body .home-map .map .popup .popup-post .post-gallery .post-context a{
         font-size: 16px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .home-body .home-map .map .popup .popup-post .post-gallery .post-context a{
-        font-size: 14px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .home-body .home-map .map .popup .popup-post .post-gallery .post-context a{
         font-size: 12px !important;
     }
@@ -1391,23 +1175,11 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .home-body .home-map .map .popup .button a.read-post{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .home-body .home-map .map .popup .button a.read-post{
         font-size: 16px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .home-body .home-map .map .popup .button a.read-post{
-        font-size: 14px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .home-body .home-map .map .popup .button a.read-post{
         font-size: 12px !important;
     }
@@ -1450,7 +1222,7 @@
     padding-top: 15px; 
     padding-bottom: 15px;  
     width: 100%;                                
-    max-height: 50%;                 
+    max-height: 75%;                 
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.75) 50%)         
 }
 
@@ -1458,8 +1230,8 @@
     .home-body .home-cots .cots-context{                        
         padding-left: 10px;        
         padding-right: 10px; 
-        padding-top: 5px; 
-        padding-bottom: 5px;        
+        padding-top: 10px; 
+        padding-bottom: 10px;        
     }
 }
 
@@ -1471,27 +1243,16 @@
     font-weight: 400;
     font-size: 20px !important;
     color: #FFFFFF;
+    letter-spacing: 5px;
 }
 
 @media screen and (min-width: 446px) and (max-width: 775px){
-    .home-body .home-cots .cots-context p{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
     .home-body .home-cots .cots-context p{
         font-size: 16px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .home-body .home-cots .cots-context p{
-        font-size: 14px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .home-body .home-cots .cots-context p{
         font-size: 12px !important;
     }
@@ -1508,30 +1269,18 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .home-body .home-cots .cots-context h1{
-        font-size: 22px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .home-body .home-cots .cots-context h1{
         font-size: 20px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .home-body .home-cots .cots-context h1{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .home-body .home-cots .cots-context h1{
         font-size: 16px !important;
     }
 }
 
 .home-body .home-post > h1{
-    margin-bottom: 0px !important;
+    margin-bottom: 10px !important;
     font-family: "Montserrat";
     font-weight: 700;       
     font-size: 24px; 
@@ -1623,7 +1372,7 @@
     padding-top: 15px; 
     padding-bottom: 15px;   
     width: 100%;                                      
-    max-height: 50%;                
+    max-height: 75%;                
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.75) 50%)    
 }
 
@@ -1631,8 +1380,8 @@
     .home-body .home-post .post-gallery .post-context{
         padding-left: 10px;        
         padding-right: 10px; 
-        padding-top: 5px; 
-        padding-bottom: 5px;                   
+        padding-top: 10px; 
+        padding-bottom: 10px;                   
     }
 }
 
@@ -1647,23 +1396,11 @@
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .home-body .home-post .post-gallery .post-context p{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .home-body .home-post .post-gallery .post-context p{
         font-size: 16px !important;
     }
 }
 
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .home-body .home-post .post-gallery .post-context p{
-        font-size: 14px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .home-body .home-post .post-gallery .post-context p{
         font-size: 12px !important;
     }
@@ -1703,7 +1440,7 @@
 }
 
 .home-body .home-announcement > h1{
-    margin-bottom: 0px !important;
+    margin-bottom: 10px !important;
     font-family: "Montserrat";
     font-weight: 700;       
     font-size: 24px; 
@@ -1736,17 +1473,10 @@
 
 .home-body .home-announcement .announcement{
     position: relative;
-    height: 500px;                
     background-color: #FFFFFF;
     overflow-x: auto !important;
     overflow-y: hidden !important;
     white-space: nowrap;
-}
-
-@media screen and (min-width: 320px) and (max-width: 775px){
-    .home-body .home-announcement .announcement{
-        height: 250px;                
-    }
 }
 
 .home-body .home-announcement .announcement-gallery{
