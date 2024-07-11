@@ -209,7 +209,7 @@
             <table class = "table table-bordered" style = "display: table; margin-bottom: 15px !important; width: 100%;">
                 <thead>
                     <tr>
-                        <th style = "display: table-cell; vertical-align: middle; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 12px; color: rgb(28, 169, 234);">Date</th>
+                        <th style = "display: table-cell; vertical-align: middle; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 12px; color: rgb(28, 169, 234);">Activity Date</th>
                         
                         <th style = "display: table-cell; vertical-align: middle; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 12px; color: rgb(28, 169, 234);">Municipality</th>
                         
@@ -217,9 +217,9 @@
                         
                         <th style = "display: table-cell; vertical-align: middle; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 12px; color: rgb(28, 169, 234);">Volunteers</th>
                         
-                        <th style = "display: table-cell; vertical-align: middle; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 12px; color: rgb(28, 169, 234);">Total Number of Cots Collected</th>
+                        <th style = "display: table-cell; vertical-align: middle; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 12px; color: rgb(28, 169, 234);">Total No. of COTS Collected</th>
                         
-                        <th style = "display: table-cell; vertical-align: middle; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 12px; color: rgb(28, 169, 234);">Status</th>
+                        <th style = "display: table-cell; vertical-align: middle; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 12px; color: rgb(28, 169, 234);">Infestation Level</th>
                     </tr>
                 </thead>
 
@@ -236,7 +236,7 @@
                             
                             <td style = "display: table-cell !important; vertical-align: middle; max-width: 0px; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">{{result.caught_overall}}</td>
                             
-                            <td style = "display: table-cell !important; vertical-align: middle; max-width: 0px; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">{{result.statustype}}</td>
+                            <td style = "display: table-cell !important; vertical-align: middle; max-width: 0px; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">{{result.statustype.statustype}}</td>
                         </tr>
                     {% endfor %}
                 </tbody>
