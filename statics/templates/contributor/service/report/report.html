@@ -1034,9 +1034,7 @@
                     const username = "{{request.user.username}}";
 
                     if (!navigator.onLine){
-                        Swal.fire({title: "Info!", text: username + ", " + "your report has been successfully saved offline. Kindly visit the current page when back online.", background: "#FFFFFF", icon: "warning", iconColor: "#003755", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#003755", customClass: {confirmButton: "info-button", title: "title"}}).then(() => {
-                            location.reload();
-                        });
+                        Swal.fire({title: "Info!", text: username + ", " + "your report has been successfully saved offline. Kindly visit the current page when back online.", background: "#FFFFFF", icon: "warning", iconColor: "#003755", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#003755", customClass: {confirmButton: "info-button", title: "title"}}).then((result) => {if (result.isConfirmed){location.reload()}});
 
                     } else {
                         if (item.classList.contains("draft")){
@@ -1091,7 +1089,7 @@
 
                 const postPhotos = [];
 
-                document.querySelector(".save-report.submit").addEventListener("click", (event) => {
+                document.querySelector(".save-report.submit button").addEventListener("click", (event) => {
                     const information = new FormData(form);
 
                     const action = information.get("action");
@@ -1118,7 +1116,7 @@
 
                     const cotseye_schema = transaction.objectStore("cotseye_schema");
 
-                    const post = {            
+                    const submitPost = {            
                         {% if draft_post %}
                             id: parseInt(id),
                         {% endif %}        
@@ -1148,10 +1146,10 @@
                         weather: parseInt(weather)
                     };
 
-                    cotseye_schema.add(post);
+                    cotseye_schema.add(submitPost);
                 }); 
 
-                document.querySelector(".save-report.draft").addEventListener("click", (event) => {
+                document.querySelector(".save-report.draft button").addEventListener("click", (event) => {
                     const information = new FormData(form);
 
                     const action = information.get("action");

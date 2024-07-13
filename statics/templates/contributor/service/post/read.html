@@ -348,9 +348,7 @@
             if (!navigator.onLine){
                 const username = "{{request.user.username}}";
 
-                Swal.fire({title: "Info!", text: username + ", " + "Your post has been successfully sent offline. Kindly visit the current page when back online.", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}}).then(() => {
-                    location.reload();
-                });
+                Swal.fire({title: "Info!", text: username + ", " + "Your post has been successfully sent offline. Kindly visit the current page when back online.", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}}).then((result) => {if (result.isConfirmed){location.reload()}});
 
             } else{
                 window.location.href = "{% if draft_post %}{% url 'Contributor Service Post Draft Send' draft_post.id %}{% endif %}";
