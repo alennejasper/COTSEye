@@ -72,6 +72,8 @@ self.addEventListener("install", event => {
                 
                 "https://cdn.jsdelivr.net/npm/sweetalert2@11",
             ]);
+
+            return fetch("/").then(response => cache.put("/", new Response(response.body)));
         })
     );
 });
@@ -109,19 +111,13 @@ self.addEventListener("fetch", event => {
         fetch(event.request).then(response => {
             const clone = response.clone();
 
-            const bodyPromise = "body" in clone ? Promise.resolve(clone.body) : clone.blob();
-
-            return bodyPromise.then((body) => {
-                const newClone = new Response(body, {headers: clone.headers, status: clone.status, statusText: clone.statusText,});
-
-                caches.open("service/whole").then(cache => {
-                    cache.put(event.request, newClone);
-                
-                    limit("service/whole", 250);
-                });
-
-                return response;
+            caches.open("service/whole").then(cache => {
+                cache.put(event.request, clone);
+            
+                limit("service/whole", 250);
             });
+            
+            return response;
             
         }).catch(() => {
             return caches.match(event.request).then(response => {
