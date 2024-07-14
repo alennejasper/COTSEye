@@ -25,7 +25,7 @@ import json
 
 # Create your views here.
 def PublicServiceFallback(request):
-    public = "public/everyone"
+    public = "public/anyone"
 
     fallback = "You are currently offline and the requested page is not available. Kindly check your connection and try again."
 
@@ -37,7 +37,7 @@ def PublicServiceFallback(request):
 def PublicServiceHome(request):
     user = request.user
 
-    username = "public/everyone"
+    username = "public/anyone"
 
     latest_announcements = Announcement.objects.all().order_by("-release_date")[:3]
 
@@ -88,7 +88,7 @@ def PublicServiceHome(request):
 
 
 def ContributorServiceFallback(request):
-    contributor = "contributor/everyone"
+    contributor = "contributor/anyone"
 
     fallback = "You are currently offline and the requested page is not available. Kindly check your connection and try again."
 
@@ -98,7 +98,7 @@ def ContributorServiceFallback(request):
 
 
 def ContributorServiceRegister(request):
-    username = "public/everyone"
+    username = "public/anyone"
 
     account_form = AccountForm()
 
@@ -616,7 +616,7 @@ def ContributorServiceLogout(request):
 
 
 def OfficerControlFallback(request):
-    officer = "officer/everyone"
+    officer = "officer/anyone"
 
     fallback = "Your device screen is too small to view this page. Please try again on a device with a screen width of 1080px or higher."
 
@@ -626,7 +626,7 @@ def OfficerControlFallback(request):
 
 
 def OfficerControlRegister(request):
-    username = "public/everyone"
+    username = "public/anyone"
 
     account_form = AccountForm()
 
@@ -1289,7 +1289,7 @@ def ControlProfileRedirect(request, id):
 
 def ForgeryReadRedirect(request, reason = ""):
     if request.user.is_authenticated:
-        user = "public/everyone"
+        user = "public/anyone"
 
     else:
         user = request.user.username
