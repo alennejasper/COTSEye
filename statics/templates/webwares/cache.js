@@ -126,6 +126,9 @@ self.addEventListener("fetch", event => {
                 if (event.request.url.includes("contributor/")){
                     return caches.match("contributor/service/fallback/");
 
+                } else if (event.request.url.includes("contributor/service/login/") || event.request.url.includes("contributor/service/register/")){
+                    return caches.match("public/service/fallback/");
+
                 } else{
                     return caches.match("public/service/fallback/");
                 };
