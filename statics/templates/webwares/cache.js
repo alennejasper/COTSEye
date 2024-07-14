@@ -72,8 +72,6 @@ self.addEventListener("install", event => {
                 
                 "https://cdn.jsdelivr.net/npm/sweetalert2@11",
             ]);
-                
-            return fetch("contributor/service/fallback/").then(response => cache.put("contributor/service/fallback/", new Response(response.body)));
         })
     );
 });

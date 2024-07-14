@@ -24,6 +24,16 @@ import json
 
 
 # Create your views here.
+def PublicServiceFallback(request):
+    public = "public/everyone"
+
+    fallback = "You are currently offline and the requested page is not available. Kindly check your connection and try again."
+
+    context = {"public": public, "fallback": fallback}
+    
+    return render(request, "public/service/fallback/fallback.html", context)
+
+
 def PublicServiceHome(request):
     user = request.user
 
@@ -77,14 +87,14 @@ def PublicServiceHome(request):
     return render(request, "public/service/home/home.html", context)
 
 
-def PublicServiceFallback(request):
-    public = "public/everyone"
+def ContributorServiceFallback(request):
+    contributor = request.user.username
 
     fallback = "You are currently offline and the requested page is not available. Kindly check your connection and try again."
 
-    context = {"public": public, "fallback": fallback}
+    context = {"contributor": contributor, "fallback": fallback}
     
-    return render(request, "public/service/fallback/fallback.html", context)
+    return render(request, "contributor/service/fallback/fallback.html", context)
 
 
 def ContributorServiceRegister(request):
@@ -591,18 +601,6 @@ def ContributorServiceProfileDeleteFetch(request):
             email.fail_silently = False
 
             email.send()
-
-
-@login_required(login_url = "Contributor Service Login")
-@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
-def ContributorServiceFallback(request):
-    contributor = request.user.username
-
-    fallback = "You are currently offline and the requested page is not available. Kindly check your connection and try again."
-
-    context = {"contributor": contributor, "fallback": fallback}
-    
-    return render(request, "contributor/service/fallback/fallback.html", context)
 
 
 @login_required(login_url = "Contributor Service Login")

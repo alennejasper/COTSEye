@@ -3,10 +3,12 @@ from authentications import views
 
 # Create your URL configuration here.
 urlpatterns = [
-    path("public/service/home/", views.PublicServiceHome, name = "Public Service Home"),
-
     path("public/service/fallback/", views.PublicServiceFallback, name = "Public Service Fallback"),
+
+    path("public/service/home/", views.PublicServiceHome, name = "Public Service Home"),
     
+    path("contributor/service/fallback/", views.ContributorServiceFallback, name = "Contributor Service Fallback"),
+
     path("contributor/service/register/", views.ContributorServiceRegister, name = "Contributor Service Register"),
    
     path("contributor/service/login/", views.ContributorServiceLogin, name = "Contributor Service Login"),
@@ -28,8 +30,6 @@ urlpatterns = [
     path("officer/control/profile/delete/<int:id>/", views.ContributorServiceProfileDelete, name = "Contributor Service Profile Delete"),
 
     path("contributor/service/profile/delete/fetch/", views.ContributorServiceProfileDeleteFetch, name = "Contributor Service Profile Delete Fetch"),
-
-    path("contributor/service/fallback/", views.ContributorServiceFallback, name = "Contributor Service Fallback"),
     
     path("contributor/service/logout/", views.ContributorServiceLogout, name = "Contributor Service Logout"),       
 
