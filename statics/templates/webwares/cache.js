@@ -109,13 +109,19 @@ self.addEventListener("fetch", event => {
         fetch(event.request).then(response => {
             const clone = response.clone();
 
-            caches.open("service/whole").then(cache => {
-                cache.put(event.request, clone);
-            
-                limit("service/whole", 250);
+            const bodyPromise = "body" in clone ? Promise.resolve(clone.body) : clone.blob();
+
+            return bodyPromise.then((body) => {
+                const newClone = new Response(body, {headers: clone.headers, status: clone.status, statusText: clone.statusText,});
+
+                caches.open("service/whole").then(cache => {
+                    cache.put(event.request, newClone);
+                
+                    limit("service/whole", 250);
+                });
+
+                return response;
             });
-            
-            return response;
             
         }).catch(() => {
             return caches.match(event.request).then(response => {
@@ -123,7 +129,7 @@ self.addEventListener("fetch", event => {
                     return response;
                 };
 
-                if (event.request.url.includes("/contributor")){
+                if (event.request.url.includes("contributor/")){
                     return caches.match("contributor/service/fallback/");
 
                 } else{
