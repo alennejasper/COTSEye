@@ -5,6 +5,8 @@
 
 .post-body{
     position: relative;
+    display: grid;
+    place-items: start;
     width: 100%;
     height: 100%;
     color: #003755;
@@ -351,7 +353,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 445px){
     .post-body .post .post-header .header-context:first-child .context-caption p:first-child{
-        font-size: 12px !important;
+        font-size: 14px !important;
     }
 }
 
@@ -376,7 +378,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 445px){
     .post-body .post .post-header .header-context:first-child .context-caption p:last-child{
-        font-size: 12px !important;
+        font-size: 14px !important;
     }
 }
 
@@ -406,7 +408,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 445px){
     .post-body .post .post-header .header-context:last-child p{
-        font-size: 12px !important;
+        font-size: 14px !important;
     }
 }
 
@@ -478,7 +480,7 @@
 @media screen and (min-width: 320px) and (max-width: 445px){
     .post-body .post > h1{
         margin-bottom: 5px;
-        font-size: 12px !important;
+        font-size: 14px !important;
     }
 }
 

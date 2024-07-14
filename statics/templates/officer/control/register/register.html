@@ -114,8 +114,6 @@
         <div id = "load">
             <img class = "load" src = "{% static 'assets/icons/load.gif' %}"/>
         </div>  
-
-        <script>window.onload = function(){document.getElementById("load").style.display = "none"}</script> 
     </body>
 
     <script> 
@@ -131,6 +129,10 @@
                     Swal.fire({title: "Oops!", text: "reCAPTCHA is not valid. Kindly check the reCAPTCHA and try again.", icon: "error", iconColor: "#C90016", confirmButtonColor: "#C90016"});
                 };
             });
+
+            document.getElementById("load").style.display = "none";
+
+            redirectMobileHandler();
 		};
 	</script>
 
@@ -214,8 +216,6 @@
                 window.location.href = "{% url 'Officer Control Fallback' %}";
             }
         }
-
-        window.onload = redirectMobileHandler;
 
         window.onresize = redirectMobileHandler;
     </script>

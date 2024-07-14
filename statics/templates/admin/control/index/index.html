@@ -50,8 +50,6 @@
         <img class = "load" src = "{% static 'assets/icons/load.gif' %}"/>
     </div>  
 
-    <script>window.onload = function(){document.getElementById("load").style.display = "none"}</script>  
-
     {% get_side_menu using="app_list" as dashboard_list %}
 
     {% if dashboard_list %}
@@ -402,7 +400,11 @@
             }
         }
 
-        window.onload = redirectMobileHandler;
+        window.onload = function() {
+            redirectMobileHandler();
+            
+            document.getElementById("load").style.display = "none";
+        };
 
         window.onresize = redirectMobileHandler;
     </script>

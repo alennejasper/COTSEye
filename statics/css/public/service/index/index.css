@@ -364,6 +364,7 @@ nav.navigation-topbar img:active{
     padding-right: 30px;
     padding-top: 80px;
     padding-bottom: 80px;
+    min-height: 100vh;
     background-color: #FFFFFF;
 }
 

@@ -93,7 +93,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 935px){
     .home-body .home-map{ 
-        height: 650px;
+        height: 400px;
     }
 }
 
@@ -106,7 +106,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 935px){
     .home-body .home-map .map{
-        height: 650px;
+        height: 400px;
     }
 }
 
@@ -1124,7 +1124,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 445px){
     .home-body .home-map .map .popup .popup-post .post-gallery .post-context a{
-        font-size: 12px !important;
+        font-size: 14px !important;
     }
 }
 
@@ -1254,7 +1254,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 445px){
     .home-body .home-cots .cots-context p{
-        font-size: 12px !important;
+        font-size: 14px !important;
     }
 }
 
@@ -1402,7 +1402,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 445px){
     .home-body .home-post .post-gallery .post-context p{
-        font-size: 12px !important;
+        font-size: 14px !important;
     }
 }
 
@@ -1417,23 +1417,11 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .home-body .home-post .post-gallery .post-context > h1{
-        font-size: 22px;
+        font-size: 20px;
     }
 }
 
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .home-body .home-post .post-gallery .post-context > h1{
-        font-size: 20px !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .home-body .home-post .post-gallery .post-context > h1{
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .home-body .home-post .post-gallery .post-context > h1{
         font-size: 16px !important;
     }

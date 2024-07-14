@@ -5,6 +5,8 @@
 
 .intervention-body{
     position: relative;
+    display: grid;
+    place-items: start;
     width: 100%;
     height: 100%;
     color: #003755;
@@ -186,7 +188,7 @@
         margin-bottom: 15px;        
         padding-top:  5px;
         padding-bottom: 5px;
-        font-size: 12px !important;
+        font-size: 14px !important;
     }
 }
 
@@ -264,8 +266,8 @@
         margin-bottom: 15px;        
         padding-top:  5px;
         padding-bottom: 5px;
-        font-size: 12px !important;
-        background: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '12' height = '12' viewBox = '0 0 448 512' fill = '%23154360'> <path d = 'M96 32V64H48C21.5 64 0 85.5 0 112v48H448V112c0-26.5-21.5-48-48-48H352V32c0-17.7-14.3-32-32-32s-32 14.3-32 32V64H160V32c0-17.7-14.3-32-32-32S96 14.3 96 32zM448 192H0V464c0 26.5 21.5 48 48 48H400c26.5 0 48-21.5 48-48V192zM224 248c13.3 0 24 10.7 24 24v56h56c13.3 0 24 10.7 24 24s-10.7 24-24 24H248v56c0 13.3-10.7 24-24 24s-24-10.7-24-24V376H144c-13.3 0-24-10.7-24-24s10.7-24 24-24h56V272c0-13.3 10.7-24 24-24z'/></svg>");
+        font-size: 14px !important;
+        background: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '14' height = '14' viewBox = '0 0 448 512' fill = '%23154360'> <path d = 'M96 32V64H48C21.5 64 0 85.5 0 112v48H448V112c0-26.5-21.5-48-48-48H352V32c0-17.7-14.3-32-32-32s-32 14.3-32 32V64H160V32c0-17.7-14.3-32-32-32S96 14.3 96 32zM448 192H0V464c0 26.5 21.5 48 48 48H400c26.5 0 48-21.5 48-48V192zM224 248c13.3 0 24 10.7 24 24v56h56c13.3 0 24 10.7 24 24s-10.7 24-24 24H248v56c0 13.3-10.7 24-24 24s-24-10.7-24-24V376H144c-13.3 0-24-10.7-24-24s10.7-24 24-24h56V272c0-13.3 10.7-24 24-24z'/></svg>");
         background-repeat: no-repeat;
         background-position: right 2.5px center; 
     }
@@ -345,8 +347,8 @@
         margin-bottom: 15px;        
         padding-top:  5px;
         padding-bottom: 5px;
-        font-size: 12px !important;
-        background: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '12' height = '12' viewBox = '0 0 448 512' fill = '%23154360'> <path d = 'M96 32V64H48C21.5 64 0 85.5 0 112v48H448V112c0-26.5-21.5-48-48-48H352V32c0-17.7-14.3-32-32-32s-32 14.3-32 32V64H160V32c0-17.7-14.3-32-32-32S96 14.3 96 32zM448 192H0V464c0 26.5 21.5 48 48 48H400c26.5 0 48-21.5 48-48V192zM224 248c13.3 0 24 10.7 24 24v56h56c13.3 0 24 10.7 24 24s-10.7 24-24 24H248v56c0 13.3-10.7 24-24 24s-24-10.7-24-24V376H144c-13.3 0-24-10.7-24-24s10.7-24 24-24h56V272c0-13.3 10.7-24 24-24z'/></svg>");
+        font-size: 14px !important;
+        background: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '14' height = '14' viewBox = '0 0 448 512' fill = '%23154360'> <path d = 'M96 32V64H48C21.5 64 0 85.5 0 112v48H448V112c0-26.5-21.5-48-48-48H352V32c0-17.7-14.3-32-32-32s-32 14.3-32 32V64H160V32c0-17.7-14.3-32-32-32S96 14.3 96 32zM448 192H0V464c0 26.5 21.5 48 48 48H400c26.5 0 48-21.5 48-48V192zM224 248c13.3 0 24 10.7 24 24v56h56c13.3 0 24 10.7 24 24s-10.7 24-24 24H248v56c0 13.3-10.7 24-24 24s-24-10.7-24-24V376H144c-13.3 0-24-10.7-24-24s10.7-24 24-24h56V272c0-13.3 10.7-24 24-24z'/></svg>");
         background-repeat: no-repeat;
         background-position: right 2.5px center;
     }
@@ -387,19 +389,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 445px){
     .intervention-body .intervention-filter .hidden form .button a{
-        font-size: 12px !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .intervention-body .intervention-filter .hidden form .button a{
         font-size: 14px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .intervention-body .intervention-filter .hidden form .button a{
-        font-size: 12px !important;
     }
 }
 
@@ -461,7 +451,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 445px){
     .intervention-body .intervention .intervention-header .header-context .context-caption p:first-child{
-        font-size: 12px !important;
+        font-size: 14px !important;
     }
 }
 
@@ -486,7 +476,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 445px){
     .intervention-body .intervention .intervention-header .header-context .context-caption p:last-child{
-        font-size: 12px !important;
+        font-size: 14px !important;
     }
 }
 
@@ -509,7 +499,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 445px){
     .intervention-body .intervention .intervention-header > p{
-        font-size: 12px !important;
+        font-size: 14px !important;
     }
 }
 

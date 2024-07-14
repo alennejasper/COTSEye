@@ -166,8 +166,6 @@
             <img class = "load" src = "{% static 'assets/icons/load.gif' %}"/>
         </div>  
 
-        <script>window.onload = function(){document.getElementById("load").style.display = "none"}</script>  
-
         <script>
             $(document).ready(function(){
                 $(".select2").select2();
@@ -239,7 +237,7 @@
         </script>
 
         <script>
-            function redirectMobileHandler() {
+            function redirectMobileHandler(){
                 const width = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
                 
                 if (width < 1080){
@@ -247,7 +245,11 @@
                 }
             }
 
-            window.onload = redirectMobileHandler;
+            window.onload = function() {
+                redirectMobileHandler();
+                
+                document.getElementById("load").style.display = "none";
+            };
 
             window.onresize = redirectMobileHandler;
         </script>

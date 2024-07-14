@@ -85,8 +85,6 @@
         <div id = "load">
             <img class = "load" src = "{% static 'assets/icons/load.gif' %}"/>
         </div>  
-
-        <script>window.onload = function(){document.getElementById("load").style.display = "none"}</script> 
     </body>
 
     <script type = "text/javascript">if(window.location.hash && window.location.hash === "#_=_"){ window.location.hash = ""; history.pushState("", document.title, window.location.pathname);}</script>
@@ -104,6 +102,10 @@
                     Swal.fire({title: "Error!", text: "The reCAPTCHA verification was not completed. Kindly try again.", icon: "error", iconColor: "#C90016", confirmButtonColor: "#C90016"}).then(() => {$recaptcha.removeAttribute("required")});
                 };
             });
+
+            document.getElementById("load").style.display = "none";
+
+            redirectMobileHandler();
 		};
 	</script>
 
@@ -138,8 +140,6 @@
                 window.location.href = "{% url 'admin:Administrator Control Fallback' %}";
             }
         }
-
-        window.onload = redirectMobileHandler;
 
         window.onresize = redirectMobileHandler;
     </script>

@@ -14,34 +14,7 @@
             <div class = "row">
                 <div class = "col-md-6">
                     <div class = "card mb-4" style = "padding: 12px;">
-                        <div id = "postCarousel" class = "carousel slide" data-bs-ride = "carousel">
-                            <div class = "carousel-inner">
-                                {% for photo in post_photos %}
-                                    <div class = "carousel-item {% if forloop.first %} active {% endif %}">
-                                        <img src = "{{photo.post_photo.url}}" style = "object-fit: cover; height: 250px;" class = "d-block w-100 carousel-image" alt = "...">
-                                        {% if post.post_status.is_pending != True %}
-
-                                        {% else %}
-                                            <a href = "#" class = "delete-photo" data-photo-id = "{{photo.id}}" onclick = "deletePhoto({{photo.id}})" style = "position: absolute; top: 10px; right: 15px; z-index: 1000;">
-                                                <i class = "fa fa-trash" style = "font-size: 15px; color: white;"></i>
-                                            </a>
-                                        {% endif %}
-                                    </div>
-                                {% endfor %}
-                            </div>
-
-                            <button class = "carousel-control-prev" type = "button" data-bs-target = "#postCarousel" data-bs-slide = "prev">
-                                <span class = "carousel-control-prev-icon" aria-hidden = "true"></span>
-                                
-                                <span class = "visually-hidden">Previous</span>
-                            </button>
-                            
-                            <button class = "carousel-control-next" type = "button" data-bs-target = "#postCarousel" data-bs-slide = "next">
-                                <span class = "carousel-control-next-icon" aria-hidden = "true"></span>
-                                
-                                <span class = "visually-hidden">Next</span>
-                            </button>
-                        </div>
+                      
 
                         <div class = "card-body">
                             <div class = "row">
@@ -140,21 +113,51 @@
                 </script>
 
                 <div class = "col-md-6">
+                    <div id = "postCarousel" class = "carousel slide" data-bs-ride = "carousel" style = "padding: 12px; border-radius: 5px;">
+                        <div class = "carousel-inner">
+                            {% for photo in post_photos %}
+                                <div class = "carousel-item {% if forloop.first %} active {% endif %}">
+                                    <img src = "{{photo.post_photo.url}}" style = "object-fit: cover; height: 250px;" class = "d-block w-100 carousel-image" alt = "...">
+                                    
+                                    {% if post.post_status.is_pending != True %}
+
+                                    {% else %}
+                                        <a href = "#" class = "delete-photo" data-photo-id = "{{photo.id}}" onclick = "deletePhoto({{photo.id}})" style = "position: absolute; top: 10px; right: 15px; z-index: 1000;">
+                                            <i class = "fa fa-trash" style = "padding: 5px; border-radius: 5px; font-size: 15px; background-color: white; color: black;"></i>
+                                        </a>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                        <button class = "carousel-control-prev" type = "button" data-bs-target = "#postCarousel" data-bs-slide = "prev">
+                            <span class = "carousel-control-prev-icon" aria-hidden = "true"></span>
+                            
+                            <span class = "visually-hidden">Previous</span>
+                        </button>
+                        
+                        <button class = "carousel-control-next" type = "button" data-bs-target = "#postCarousel" data-bs-slide = "next">
+                            <span class = "carousel-control-next-icon" aria-hidden = "true"></span>
+                            
+                            <span class = "visually-hidden">Next</span>
+                        </button>
+                    </div>
+
                     {% if post.post_status.is_pending != True %}
-                        <a class = "" style = "position: absolute; margin-top: 5px; right: 65px; z-index: 1000;">
+                        <a class = "" style = "position: absolute; margin-top: 20px; right: 75px; padding: 5px; z-index: 1000; border-radius: 5px; background-color: white;">
                             <img style = "cursor: pointer;" width = "20px" src = "{% static 'assets/icons/update.png' %}" {% if post.post_status.is_pending != True %} data-toggle = "tooltip" data-placement = "top" title = "Action not allowed" {% endif %}>
                         </a>
 
                     {% else %}
-                        <a class = "" style = "position: absolute; margin-top: 5px; right: 65px; z-index: 1000;" onclick = "showPopup({{post.id}})">
+                        <a class = "" style = "position: absolute; margin-top: 20px; right: 75px; padding: 5px; z-index: 1000; border-radius: 5px; background-color: white;" onclick = "showPopup({{post.id}})">
                             <img style = "cursor: pointer;" width = "20px" src = "{% static 'assets/icons/update.png' %}">
                         </a>
                     {% endif %}
 
-                    <div id = "map" class = "mb-3" style = "height: 500px;"></div>
+                    <div id = "map" class = "mb-3" style = "margin: 12px; height: 265px;"></div>
                     
                     <div class = "card mb-4" style = "border: none !important;">
-                        <div class = "card-body" style = "padding: 0px !important;">
+                        <div class = "card-body" style = "padding: 12px !important;">
                             {% if post.post_status.is_pending != True %}
                                 <div class = "button-container" style = "display: flex; gap: 10px; flex-direction: column;">
                                     <button style = "padding-left: 10px !important; padding-right: 10px !important; padding-top: 5px !important; padding-bottom: 5px !important; font-family: 'Montserrat' !important; font-weight: 400; font-size: 12px !important;" class = "btn btn-success w-100" {% if post.post_status.is_pending != True %} data-toggle = "tooltip" data-placement = "top" title = "Action not allowed" {% endif %}>Approve</button>

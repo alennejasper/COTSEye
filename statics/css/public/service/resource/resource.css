@@ -1,5 +1,7 @@
 .resource-body{
     position: relative;
+    display: grid;
+    place-items: start;
     width: 100%;
     height: 100%;
     color: #003755;
@@ -109,7 +111,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 445px){
     .resource-body .resource .resource-context p{
-        font-size: 12px !important;
+        font-size: 14px !important;
     }
 }
 
