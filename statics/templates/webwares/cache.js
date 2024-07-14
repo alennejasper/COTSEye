@@ -6,9 +6,9 @@ self.addEventListener("install", event => {
     event.waitUntil(
         caches.open("service/index").then(cache => {
             cache.addAll([                    
-                "public/service/fallback/",
+                "/public/service/fallback/",
 
-                "contributor/service/fallback/",
+                "/contributor/service/fallback/",
 
 
                 "/statics/templates/public/service/index/index.html",
@@ -81,14 +81,14 @@ self.addEventListener("activate", event => {
     console.log("The service worker or cache for COTSEye has been activated.");
 
     event.waitUntil(
+        clients.claim(),
+
         caches.keys().then(keys => {
             return Promise.all(                
                 keys.filter( key => key === "service/whole").map(key => caches.delete(key))
             )
         })
     );      
-    
-    self.clients.claim()
 });
 
   
@@ -112,7 +112,7 @@ self.addEventListener("fetch", event => {
             caches.open("service/whole").then(cache => {
                 cache.put(event.request, clone);
             
-                limit("service/whole", 250);
+                limit("service/whole", 150);
             });
             
             return response;
@@ -123,11 +123,11 @@ self.addEventListener("fetch", event => {
                     return response;
                 };
 
-                if (event.request.url.includes("contributor/")){
-                    return caches.match("contributor/service/fallback/");
+                if (event.request.url.includes("/contributor/")){
+                    return caches.match("/statics/templates/contributor/service/fallback/fallback.html");
 
                 } else{
-                    return caches.match("public/service/fallback/");
+                    return caches.match("/statics/templates/public/service/fallback/fallback.html");
                 };
             });
         })
