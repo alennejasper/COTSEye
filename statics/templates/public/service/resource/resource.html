@@ -11,28 +11,28 @@
             {% for resource in resource_links %}
                 <a href = "{% url 'Service Link Read Redirect' resource.id %}" class = "resource-context">
                     <div class = "context-header">
-                        <p>{{resource.release_date | date:'m/d/Y' | default:'None available'}}</p>
+                        <!-- <p>{{resource.release_date | date:'m/d/Y' | default:'None available'}}</p> -->
 
                         <strong>{{resource.title | default:'None available'}}</strong>
 
                         <p>{{resource.author | default:'None available'}}</p>
                     </div>
                     
-                    <i class = "fa-solid fa-play"></i>
+                    <!-- <i class = "fa-solid fa-play"></i> -->
                 </a>
             {% endfor %}
 
             {% for resource in resource_files %}
                 <a href = "{% url 'Service File Read Redirect' resource.id %}" class = "resource-context">
                     <div class = "context-header">
-                        <p>{{resource.release_date | date:'m/d/Y' | default:'None available'}}</p>
+                        <!-- <p>{{resource.release_date | date:'m/d/Y' | default:'None available'}}</p> -->
 
                         <strong>{{resource.title | default:'None available'}}</strong>
 
                         <p>{{resource.author | default:'None available'}}</p>
                     </div>
                     
-                    <i class = "fa-solid fa-play"></i>
+                    <!-- <i class = "fa-solid fa-play"></i> -->
                 </a>
             {% endfor %}
         </div>
