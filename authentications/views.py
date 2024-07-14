@@ -88,7 +88,11 @@ def PublicServiceHome(request):
 
 
 def ContributorServiceFallback(request):
-    contributor = request.user.username
+    if request.user.is_authenticated:
+        contributor = request.user.username
+
+    else:
+        contributor = "public/everyone"
 
     fallback = "You are currently offline and the requested page is not available. Kindly check your connection and try again."
 
