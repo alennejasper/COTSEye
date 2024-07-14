@@ -260,6 +260,12 @@
             {% endblock draggable_report %}
         </div>
 
+        <div id = "load">
+            <img class = "load" src = "{% static 'assets/icons/load.gif' %}"/>
+        </div>  
+
+        <script>window.onload = function(){document.getElementById("load").style.display = "none"}</script>    
+
         <nav class = "navigation-bottombar">
             <a href = "{% url 'Contributor Service Home' %}">
                 <img src = "{% static 'assets/icons/home.png' %}">

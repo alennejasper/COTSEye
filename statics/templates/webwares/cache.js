@@ -54,6 +54,9 @@ self.addEventListener("install", event => {
                 
                 "/statics/assets/icons/logo (512 x 512).png",
 
+
+                "/statics/assets/icons/load.gif",
+
                 
                 "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap",
                 

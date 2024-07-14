@@ -162,6 +162,12 @@
             {% endblock %}
         </div>
 
+        <div id = "load">
+            <img class = "load" src = "{% static 'assets/icons/load.gif' %}"/>
+        </div>  
+
+        <script>window.onload = function(){document.getElementById("load").style.display = "none"}</script>  
+
         <script>
             $(document).ready(function(){
                 $(".select2").select2();

@@ -81,6 +81,24 @@ body{
 }
 
 
+#load{
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #FFFFFF;
+    z-index: 99;
+}
+
+.load{
+    z-index: 100
+} 
+
+
 .swal2-container .swal2-popup{
     padding-top: 15px !important;
     padding-bottom: 15px !important;
