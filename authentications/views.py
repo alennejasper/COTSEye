@@ -272,8 +272,8 @@ def ContributorServiceLogin(request):
                 
                 return redirect("Contributor Service Home")
             
-        if Account.DoesNotExist:
-            messages.error(request, "Account not found. Kindly create a new one and try again.")
+            else:
+                messages.error(request, "Account not found. Kindly create a new one and try again.")
     
     user = request.user
 
@@ -831,8 +831,8 @@ def OfficerControlLogin(request):
                 
                 return redirect("Officer Control Home")
 
-        if Account.DoesNotExist:
-            messages.error(request, "Account not found. Kindly create a new one and try again.")
+            else:
+                messages.error(request, "Account not found. Kindly create a new one and try again.")
 
     user = request.user
 
@@ -1222,8 +1222,8 @@ def AdministratorControlLogin(request):
                 
                 return redirect("admin:index")
             
-        if Account.DoesNotExist:
-            messages.error(request, "Account not found. Kindly create a new one and try again.")
+            else:
+                messages.error(request, "Account not found. Kindly create a new one and try again.")
     
     user = request.user
 

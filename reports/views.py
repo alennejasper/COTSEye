@@ -125,16 +125,18 @@ def ContributorServiceReport(request):
                 post_observation.weather = None
 
             location = request.POST.get("barangay")
-
+    
             try:
                 post.location = Location.objects.get(id = location)
 
             except:
-                post.location = None
+                messages.error(request, "There is an issue in the location field. This field is required.")
+
+                return redirect("Contributor Service Report")
 
             post_observation = PostObservation.objects.create(size = post_observation.size, depth = post_observation.depth, density = post_observation.density, weather = post_observation.weather)
             
-            if Coordinates.objects.filter(latitude = coordinates.latitude, longitude = coordinates.longitude).exists() and Coordinates.objects.filter(latitude = coordinates.latitude, longitude = coordinates.longitude).exists() and PostObservation.objects.filter(size = post_observation.size, depth = post_observation.depth, density = post_observation.density, weather = post_observation.weather).exists():
+            if Coordinates.objects.filter(latitude = coordinates.latitude, longitude = coordinates.longitude).exists() and PostObservation.objects.filter(size = post_observation.size, depth = post_observation.depth, density = post_observation.density, weather = post_observation.weather).exists():
                 post = Post.objects.create(user = user, description = post.description, capture_date = post.capture_date, coordinates = coordinates, location = post.location, post_status = post_status, post_observation = post_observation)
                 
                 post_photos_capture = request.FILES.getlist("post_photos_capture")
@@ -151,10 +153,10 @@ def ContributorServiceReport(request):
                 username = request.user.username
                 
                 if post_status.id == 3:
-                    messages.success(request, username + "," + "Your report has been successfully sent. Kindly wait for an approval email in the next 3 to 5 business days.")
+                    messages.success(request, username + ", " + "your report has been successfully sent. Kindly wait for an approval email in the next 3 to 5 business days.")
                 
                 elif post_status.id == 4:
-                    messages.success(request, username + "," + "Your report has been successfully saved. Kindly proceed to drafts to see changes.")
+                    messages.success(request, username + ", " + "your report has been successfully saved. Kindly proceed to drafts to see changes.")
 
                 return redirect("Contributor Service Post")
 
@@ -281,11 +283,11 @@ def ContributorServicePostRead(request, id):
 
     user_profile = User.objects.get(account = request.user)
 
-    notification_life = timezone.now() - timedelta(days=30)
+    notification_life = timezone.now() - timedelta(days = 30)
 
     user = User.objects.get(account = request.user)
 
-    unread_notifications = Notification.objects.filter(user=user, is_read = False, creation_date__gte = notification_life).order_by("-creation_date")
+    unread_notifications = Notification.objects.filter(user = user, is_read = False, creation_date__gte = notification_life).order_by("-creation_date")
 
     scheme = request.scheme
 
@@ -327,7 +329,7 @@ def ContributorServicePostFeed(request):
 
     user_profile = User.objects.get(account = request.user)
 
-    notification_life = timezone.now() - timedelta(days=30)
+    notification_life = timezone.now() - timedelta(days = 30)
 
     user = User.objects.get(account = request.user)
 
