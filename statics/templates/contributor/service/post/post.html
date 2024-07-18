@@ -4,7 +4,7 @@
 {% block content %}
     <div class = "post-body">
         <div class = "post-section">
-            <h1>{% if post_status == "1" %} VALID POSTS {% elif post_status == "2" %} INVALID POSTS {% elif post_status == "3" %} PENDING POSTS {% elif post_status == "4" %} DRAFT POSTS {% else %} MY POSTS {% endif %}</h1>
+            <h1>{% if post_status == "1" %} VALID SIGHTINGS {% elif post_status == "2" %} INVALID SIGHTINGS {% elif post_status == "3" %} PENDING SIGHTINGS {% elif post_status == "4" %} DRAFT SIGHTINGS {% else %} MY SIGHTINGS {% endif %}</h1>
         </div>
 
         <div class = "post-filter">
@@ -16,13 +16,13 @@
                 {% csrf_token %}
 
                 <div class = "options" id = "options" class = "hidden">
-                    <a name = "post_status" href = "?post_status=1" class = "filter-posts">Valid Posts</a>
+                    <a name = "post_status" href = "?post_status=1" class = "filter-posts">Valid Sightings</a>
                     
-                    <a name = "post_status" href = "?post_status=2" class = "filter-posts">Invalid Posts</a>
+                    <a name = "post_status" href = "?post_status=2" class = "filter-posts">Invalid Sightings</a>
 
-                    <a name = "post_status" href = "?post_status=3" class = "filter-posts">Pending Posts</a>
+                    <a name = "post_status" href = "?post_status=3" class = "filter-posts">Pending Sightings</a>
                 
-                    <a name = "post_status" href = "?post_status=4" class = "filter-posts">Draft Posts</a>
+                    <a name = "post_status" href = "?post_status=4" class = "filter-posts">Draft Sightings</a>
                 </div>
             </form>
         </div>
