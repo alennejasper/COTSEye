@@ -1090,6 +1090,8 @@
                 const postPhotos = [];
 
                 document.querySelector(".save-report.submit button").addEventListener("click", (event) => {
+                    event.stopPropagation()
+
                     const information = new FormData(form);
 
                     const action = information.get("action");
@@ -1150,6 +1152,8 @@
                 }); 
 
                 document.querySelector(".save-report.draft button").addEventListener("click", (event) => {
+                    event.stopPropagation()
+
                     const information = new FormData(form);
 
                     const action = information.get("action");

@@ -191,7 +191,7 @@ def ContributorServiceReportFetch(request):
         for information in information:
             user = information.get("user")
 
-            user = User.objects.get(id = user)
+            user = User.objects.get(account = user)
 
             capture_date = information.get("capture_date")
 
