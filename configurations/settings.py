@@ -222,7 +222,6 @@ MEDIA_URL = "assets/"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "statics/assets")
 
-DATA_UPLOAD_MAX_MEMORY_SIZE = 5242880
 
 #Default primary key field type
 #https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -313,9 +312,9 @@ JAZZMIN_SETTINGS = {
 
     "custom_css": "css/admin/control/index/index.css", 
 
-    "navigation_expanded": False,
+    "navigation_expanded": True,
 
-    "show_sidebar": False,
+    "show_sidebar": True,
 
     "site_brand": "COTSEYE",
     
