@@ -422,7 +422,7 @@ def ContributorServicePostDraftUpdate(request, id):
 
     user_profile = get_object_or_404(User, account = request.user)
 
-    notification_life = timezone.now() - timedelta(days=30)
+    notification_life = timezone.now() - timedelta(days = 30)
 
     user = User.objects.get(account = request.user)
 
@@ -435,7 +435,7 @@ def ContributorServicePostDraftUpdate(request, id):
     municipalities = Municipality.objects.values("municipality_name").distinct()
 
     if draft_post.location and draft_post.location.municipality:
-        municipalities = municipalities.exclude(municipality_name=draft_post.location.municipality.municipality_name)
+        municipalities = municipalities.exclude(municipality_name = draft_post.location.municipality.municipality_name)
 
     sizes = Size.objects.all()
 
@@ -448,7 +448,7 @@ def ContributorServicePostDraftUpdate(request, id):
 
         postobservation_form = PostObservationForm(request.POST, instance = draft_post.post_observation)
 
-        post_form = PostForm(request.POST, request.FILES, instance=draft_post)
+        post_form = PostForm(request.POST, request.FILES, instance = draft_post)
 
         if coordinates_form.is_valid() and postobservation_form.is_valid() and post_form.is_valid():
             coordinates_form.save()
@@ -526,7 +526,7 @@ def ContributorServicePostDraftUpdateFetch(request):
 
             user = information.get("user")
 
-            user = User.objects.get(id = user)
+            user = User.objects.get(account = user)
 
             capture_date = information.get("capture_date")
 
@@ -554,7 +554,7 @@ def ContributorServicePostDraftUpdateFetch(request):
 
             weather = Weather.objects.get(id = weather) if weather else None
 
-            location = Weather.objects.get(id = location) if location else None
+            location = Location.objects.get(id = location) if location else None
 
             post_observation = PostObservation.objects.create(size = size, depth = depth, density = density, weather = weather)
             
