@@ -36,7 +36,7 @@
                 <div class = "origin-context">
                     <p>Event date:</p>
 
-                    <p>{{announcement.release_date | default:'None available'}}</p>
+                    <p>{{announcement.release_date | date:'m/d/Y' | default:'None available'}}</p>
                 </div>
 
                 <!-- <div class = "origin-context">
