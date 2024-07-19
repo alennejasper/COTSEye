@@ -6,7 +6,6 @@
 .interventionread-body{
     position: relative;
     display: grid;
-    place-items: center;
     width: 100%;
     height: 100%;
     color: #003755;
