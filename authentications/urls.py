@@ -31,6 +31,8 @@ urlpatterns = [
 
     path("contributor/service/profile/delete/fetch/", views.ContributorServiceProfileDeleteFetch, name = "Contributor Service Profile Delete Fetch"),
     
+    path("contributor/service/leaderboard/", views.ContributorServiceLeaderboard, name = "Contributor Service Leaderboard"),
+
     path("contributor/service/logout/", views.ContributorServiceLogout, name = "Contributor Service Logout"),       
 
     path("officer/control/fallback/", views.OfficerControlFallback, name = "Officer Control Fallback"),

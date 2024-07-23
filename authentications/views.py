@@ -18,6 +18,8 @@ from authentications.forms import AccountForm, UserForm, ProfileForm
 from authentications.models import *
 from managements.models import Status, Announcement, Intervention, Location, Municipality, Barangay
 from reports.models import Post
+from django.db.models import Count
+from operator import itemgetter
 
 import base64
 import json
@@ -311,6 +313,29 @@ def ContributorCheck(account):
     except Account.DoesNotExist:
             return False
 
+@login_required(login_url = "Contributor Service Login")
+@user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
+def ContributorServiceLeaderboard(request):
+    username = request.user.username
+
+
+    user_profile = User.objects.get(account = request.user)
+
+    notification_life = timezone.now() - timedelta(days = 30)
+
+    valid_posts = Post.objects.filter(post_status__is_valid = True)
+    
+    leaderboard = valid_posts.values("user__account__username", "user__profile_photo").annotate(post_count = Count("id")).order_by('-post_count')
+
+    user = User.objects.get(account = request.user)
+
+    unread_notifications = Notification.objects.filter(user = user, is_read = False, creation_date__gte = notification_life).order_by("-creation_date")
+
+    context = { 
+        "leaderboard": leaderboard, "username": username, "user_profile": user_profile, "valid_posts": valid_posts, "unread_notifications": unread_notifications,
+    }
+
+    return render(request, "contributor/service/leaderboard/leaderboard.html", context)
 
 @login_required(login_url = "Contributor Service Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
@@ -321,6 +346,10 @@ def ContributorServiceHome(request):
 
     notification_life = timezone.now() - timedelta(days = 30)
 
+    valid_posts = Post.objects.filter(post_status__is_valid = True)
+    
+    leaderboard = valid_posts.values("user__account__username", "user__profile_photo").annotate(post_count = Count("id")).order_by('-post_count')
+    
     user = User.objects.get(account = request.user)
 
     unread_notifications = Notification.objects.filter(user = user, is_read = False, creation_date__gte = notification_life).order_by("-creation_date")
@@ -334,12 +363,18 @@ def ContributorServiceHome(request):
 
         map_statuses = Status.objects.all()
 
+        six_months_ago = timezone.now() - timedelta(days = 180)
+
+        map_posts = Post.objects.filter(post_status = 1, creation_date__gte = six_months_ago)
+
+        map_statuses = Status.objects.filter(creation_date__gte = six_months_ago)
+
     except:
         map_posts = None
 
         map_statuses = None
     
-    context = {"username": username, "user_profile": user_profile, "unread_notifications": unread_notifications, "map_posts": map_posts, "map_statuses": map_statuses, "latest_announcements": latest_announcements, "valid_posts": valid_posts}
+    context = {"leaderboard": leaderboard, "username": username, "user_profile": user_profile, "unread_notifications": unread_notifications, "map_posts": map_posts, "map_statuses": map_statuses, "latest_announcements": latest_announcements, "valid_posts": valid_posts}
 
     return render(request, "contributor/service/home/home.html", context)
     
@@ -399,6 +434,9 @@ def ContributorServiceMarkNotificationAsRead(request, id):
         elif notification.contenttype.model == "intervention":
             return redirect("Contributor Service Intervention Read", id = notification.key)
         
+        elif notification.notificationtype  == "achievement":
+            return redirect("Contributor Service Profile")
+        
         else:
             return redirect("Contributor Service Notification")
         
@@ -413,15 +451,17 @@ def ContributorServiceProfile(request):
 
     username = request.user.username
 
-    user_profile = User.objects.get(account = request.user)
-
     notification_life = timezone.now() - timedelta(days = 30)
 
     user = User.objects.get(account = request.user)
 
     unread_notifications = Notification.objects.filter(user = user, is_read = False, creation_date__gte = notification_life).order_by("-creation_date")
 
-    context = {"user": user, "username": username, "user_profile": user_profile, "unread_notifications": unread_notifications}
+    user_profile = User.objects.get(account = request.user)
+
+    user_sightings = Post.objects.filter(user = user_profile, post_status = 1).count()
+
+    context = {"user": user, "username": username, "unread_notifications": unread_notifications, "user_profile": user_profile, "user_sightings": user_sightings}
 
     return render(request, "contributor/service/profile/profile.html", context)
 
@@ -877,9 +917,15 @@ def OfficerCheck(account):
 @login_required(login_url = "Officer Control Login")
 @user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def OfficerControlHome(request):
+    tab_number = 1
+
     username = request.user.username
 
     user_profile = User.objects.get(account = request.user)
+
+    valid_posts = Post.objects.filter(post_status__is_valid=True)
+
+    leaderboard = valid_posts.values('user__account__username').annotate(post_count=Count('id')).order_by('-post_count')
 
     user = User.objects.get(account = request.user)
 
@@ -901,6 +947,16 @@ def OfficerControlHome(request):
 
     for status_entry in latest_status_entries:
         status_data.append({"municipality": status_entry.location.municipality.municipality_name, "caught_amount": status_entry.caught_overall, "volunteer_amount": status_entry.volunteer_overall, "status_type": str(status_entry.statustype.statustype), "event_date": status_entry.onset_date.strftime("%m/%d/%Y")})
+    
+    status_order = {
+        'Critical': 1,
+        'High': 2,
+        'Moderate': 3,
+        'Low': 4,
+        'None': 5
+    }
+
+    status_data = sorted(status_data, key=lambda x: status_order.get(x['status_type'], float('inf')))
 
     municipalities = Municipality.objects.values("municipality_name").distinct()
 
@@ -1010,7 +1066,7 @@ def OfficerControlHome(request):
             for item in range(len(event_dates)):
                 data.append({"location": f"{location.barangay.barangay_name}, {location.municipality.municipality_name}", "municipality": location.municipality.municipality_name, "event_date": event_dates[item], "caught_amount": caught_overalls[item], "title": titles[item], "status_type": status_types[item], "volunteer_amount": volunteer_amounts[item]})
 
-    context = {"username": username, "user_profile": user_profile, "unread_notifications": unread_notifications, "chart_data": json.dumps(data), "locations": locations, "municipalities": municipalities, "barangays": barangays, "total_caught_overall": total_caught_overall, "selected_municipality": municipality_filter, "selected_barangay": barangay_filter, "year_filter": year_filter, "current_year": timezone.now().year, "status_data": status_data}
+    context = {"leaderboard": leaderboard, "tab_number": tab_number, "username": username, "user_profile": user_profile, "unread_notifications": unread_notifications, "chart_data": json.dumps(data), "locations": locations, "municipalities": municipalities, "barangays": barangays, "total_caught_overall": total_caught_overall, "selected_municipality": municipality_filter, "selected_barangay": barangay_filter, "year_filter": year_filter, "current_year": timezone.now().year, "status_data": status_data}
 
     return render(request, "officer/control/home/home.html", context)
 
@@ -1018,6 +1074,8 @@ def OfficerControlHome(request):
 @login_required(login_url = "Officer Control Login")
 @user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def OfficerControlNotification(request):
+    tab_number = 6 
+
     user = User.objects.get(account = request.user)
 
     notification_life = timezone.now() - timedelta(days = 30)
@@ -1036,11 +1094,11 @@ def OfficerControlNotification(request):
 
     read_page_number = request.GET.get("read_page")
     
-    unread_notifications = unread_paginator.get_page(unread_page_number)
+    unread_posts = unread_paginator.get_page(unread_page_number)
 
     read_posts = read_paginator.get_page(read_page_number)
     
-    context = {"unread_notifications": unread_notifications, "read_posts": read_posts}
+    context = {"tab_number": tab_number, "unread_notifications": unread_notifications, "unread_posts": unread_posts, "read_posts": read_posts}
     
     return render(request, "officer/control/notification/notification.html", context)
 
@@ -1087,6 +1145,8 @@ def OfficerControlMarkNotificationAsRead(request, id):
 @login_required(login_url = "Officer Control Login")
 @user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def OfficerControlProfile(request):
+    tab_number = 7 
+
     account = Account.objects.get(id = request.user.id)
 
     user = User.objects.get(account = request.user)
@@ -1099,7 +1159,7 @@ def OfficerControlProfile(request):
 
     unread_notifications = Notification.objects.filter(user = user, is_read = False, creation_date__gte = notification_life).order_by("-creation_date")[:3]
 
-    context = {"account": account, "user": user, "username": username, "user_profile": user_profile, "unread_notifications": unread_notifications}
+    context = {"tab_number": tab_number, "account": account, "user": user, "username": username, "user_profile": user_profile, "unread_notifications": unread_notifications}
 
     return render(request, "officer/control/profile/profile.html", context)
 

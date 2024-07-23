@@ -94,32 +94,48 @@
             background: rgb(233, 27, 27);
             line-height: 1;
         }
+
+        .active{
+            color: rgb(255, 252, 252);
+            background-color: rgb(226, 245, 247);
+            border-radius: 5px;
+        }
     </style>
 
     <body>
         <div style = "box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1); background-color: white !important;" class = "bg-primary navbar">
             <div class = "container-fluid d-flex justify-content-between align-items-center flex-wrap">
                 <nav class = "nav">
-                    <a class = "nav-link active disabled" aria-current = "page">
-                        <img src = "{% static 'assets/icons/header.png' %}" height = "20px">
+                    <a class = "nav-link disabled" aria-current = "page">
+                        <img src = "{% static 'assets/icons/header.png' %}" height="20px">
                     </a>
-
-                    <a style = "font-family: 'Montserrat'; font-weight: 400; font-size: 12px; color: rgb(0, 151, 252) !important;" class = "nav-link text-white" href = "{% url 'Officer Control Home' %}">HOME</a>
-                    
-                    <a style = "font-family: 'Montserrat'; font-weight: 400; font-size: 12px; color: rgb(0, 151, 252) !important;" class = "nav-link text-white" href = "{% url 'Officer Control Sighting' %}">SIGHTINGS</a>
-                    
-                    <a style = "font-family: 'Montserrat'; font-weight: 400; font-size: 12px; color: rgb(0, 151, 252) !important;" class = "nav-link text-white" href = "{% url 'Officer Control Status' %}">INFESTATIONS</a>
-                    
-                    <a style = "font-family: 'Montserrat'; font-weight: 400; font-size: 12px; color: rgb(0, 151, 252) !important;" class = "nav-link text-white" href = "{% url 'Officer Control Intervention' %}">ACTIVITIES</a>
-                    
-                    <a style = "font-family: 'Montserrat'; font-weight: 400; font-size: 12px; color: rgb(0, 151, 252) !important;" class = "nav-link text-white" href = "{% url 'Officer Control Announcement' %}">ANNOUNCEMENTS</a>
+                
+                    <a style = "font-family: 'Montserrat'; font-weight: 400; font-size: 12px; color: rgb(0, 151, 252) !important;" class = "nav-link {% if tab_number == 1 %}active{% else %}text-white{% endif %}" href = "{% url 'Officer Control Home' %}">
+                        HOME
+                    </a>
+                
+                    <a style = "font-family: 'Montserrat'; font-weight: 400; font-size: 12px; color: rgb(0, 151, 252) !important;" class = "nav-link {% if tab_number == 2 %}active{% else %}text-white{% endif %}" href = "{% url 'Officer Control Sighting' %}">
+                        SIGHTINGS
+                    </a>
+                
+                    <a style = "font-family: 'Montserrat'; font-weight: 400; font-size: 12px; color: rgb(0, 151, 252) !important;" class = "nav-link {% if tab_number == 3 %}active{% else %}text-white{% endif %}" href = "{% url 'Officer Control Status' %}">
+                        INFESTATIONS
+                    </a>
+                
+                    <a style="font-family: 'Montserrat'; font-weight: 400; font-size: 12px; color: rgb(0, 151, 252) !important;" class = "nav-link {% if tab_number == 4 %}active{% else %}text-white{% endif %}" href = "{% url 'Officer Control Intervention' %}">
+                        ACTIVITIES
+                    </a>
+                
+                    <a style = "font-family: 'Montserrat'; font-weight: 400; font-size: 12px; color: rgb(0, 151, 252) !important;" class = "nav-link {% if tab_number == 5 %}active{% else %}text-white{% endif %}" href = "{% url 'Officer Control Announcement' %}">
+                        ANNOUNCEMENTS
+                    </a>
                 </nav>
         
                 <div class = "d-flex align-items-center login-cursor">
                     <nav class = "nav">
                         <div class = "dropdown" id = "notification-bell">
-                            <a class = "nav-link text-black notification-bell position-relative" style = "cursor: pointer;" id = "notificationBell">
-                                <i class = "fa-solid fa-bell"></i>
+                            <a class = "nav-link text-black notification-bell position-relative {% if tab_number == 6 %}active{% else %}text-white{% endif %}" style = "cursor: pointer;" id = "notificationBell">
+                                <i class = "fa-solid fa-bell" style = "color: rgb(0, 151, 252) !important;"></i>
 
                                 {% if unread_notifications %}
                                     <span class = "badge rounded-pill">{{unread_notifications | length}}</span>
@@ -148,9 +164,9 @@
                             </ul>
                         </div>
                     
-                        <a style = "font-family: 'Montserrat'; font-weight: 400; font-size: 12px;" class = "nav-link text-black" href = "{% url 'Officer Control Profile' %}">PROFILE</a>
+                        <a style = "font-family: 'Montserrat'; font-weight: 400; font-size: 12px; color: rgb(0, 151, 252) !important;" class = "nav-link text-black {% if tab_number == 7 %}active{% else %}{% endif %}" href = "{% url 'Officer Control Profile' %}">PROFILE</a>
                     
-                        <a style = "font-family: 'Montserrat'; font-weight: 400; font-size: 12px;" class = "nav-link text-black" href = "{% url 'Officer Control Logout' %}">LOGOUT</a>
+                        <a style = "font-family: 'Montserrat'; font-weight: 400; font-size: 12px; color: rgb(0, 151, 252) !important;" class = "nav-link text-black" href = "{% url 'Officer Control Logout' %}">LOGOUT</a>
                     </nav>
                 </div>
             </div>

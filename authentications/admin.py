@@ -16,6 +16,27 @@ from authentications.models import *
 
 # administrator.register(UserType, UserTypeAdmin)
 
+class BadgeAdmin(admin.ModelAdmin):
+    list_display = ("badge_name", "description")
+    
+    search_fields = ("badge_name",)
+
+administrator.register(Badge, BadgeAdmin)
+
+
+class UserAdmin(admin.ModelAdmin):
+    list_display = ("account", "joined_date")
+    
+    search_fields = ("account__username", "first_name", "last_name", "email")
+    
+    list_filter = ("joined_date",)
+    
+    fieldsets = ((None, {"fields": ("account", "first_name", "last_name", "email", "phone_number", "profile_photo", "joined_date", "badges")}),)
+    
+    filter_horizontal = ("badges",)
+
+administrator.register(User, UserAdmin)
+
 
 class AccountAdmin(admin.ModelAdmin):
     class Media:   
@@ -79,7 +100,6 @@ class SiteAdmin(admin.ModelAdmin):
         return super().render_change_form(request, context, add, change, form_url, obj)
 
 administrator.register(Site, SiteAdmin)
-
 
 # class SocialAccountAdmin(admin.ModelAdmin):
 #     class Media:   

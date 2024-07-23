@@ -38,7 +38,29 @@
     
                 <p>{{user.phone_number | default:'None available'}}</p>
             </div>
+
+            <div class = "profile-context">
+                <p>Badges:</p>
+
+                <div class = "badge-list">
+                    {% for badge in user.badges.all %}
+                        <div class = "badge-item">
+                            <div class = "badge-box" title = "{{badge.description}}">
+                                <img src = "{{badge.badge_icon.url}}" alt = "{{badge.badge_name}}" class = "badge-icon">
+                                
+                                <p class = "badge-name">{{badge.badge_name}}</p>    
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class = "profile-context">
+                <p>Sightings Validated:</p>
     
+                <p>{{user_sightings | default:"0"}}</p>
+            </div>
+
             <div class = "button">
                 <a class = "update-profile" href = "{% url 'Contributor Service Profile Update' %}">Update</a>
 

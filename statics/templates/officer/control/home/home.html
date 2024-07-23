@@ -4,7 +4,7 @@
 {% block content %}
     <div class = "home-body">
         <div class = "home-section">
-            <h1>COTSEYE DASHBOARD</h1>
+           <img src = "{% static 'assets/icons/brand.png' %}" style = "padding-left: 30px; padding-right: 30px; padding-top: 30px; padding-bottom: 30px; width: 100%;">
         </div>
 
         <div class = "home-cards">
@@ -13,7 +13,8 @@
             <div class = "cards-container">
             </div>
         </div>
-
+       
+        
         <script src = "https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
         <script>
@@ -22,7 +23,7 @@
     
                 function shownStatus(status){
                     switch (status){
-                        case "None":
+                        case "Very Low":
                             return "#003755";
 
                         case "Low":
@@ -113,7 +114,83 @@
             <div class = "map">
             </div>
         </div>
+        <div class = "leaderboard">
+            <h2>TOP CONTRIBUTORS</h2>
 
+            <div class = "top-3">
+                <!-- Top 1 -->
+                {% if leaderboard|length >= 1 %}
+                    <div class = "rank-1">
+                        <div class = "circle rank-1">
+                            <img id = "profilePicture" src = "{{ user.user.profile_photo.url }}" class = "profile-picture">
+                        </div>
+
+                        <p class = "name">{{leaderboard.0.user__account__username}}</p>
+
+                        <p class = "count"><i class = "fas fa-star"></i>{{leaderboard.0.post_count}}</p>
+                    </div>
+                {% endif %}
+                
+                <div class = "second-row">
+                    <!-- Top 2 -->
+                    {% if leaderboard|length >= 2 %}
+                        <div class = "rank-2">
+                            <div class = "circle rank-2">
+                                <img id = "profilePicture" src = "{{ user.user.profile_photo.url }}" class = "profile-picture">
+                            </div>
+
+                            <p class = "name">{{leaderboard.1.user__account__username}}</p>
+
+                            <p class = "count"><i class="fas fa-star"></i>{{leaderboard.1.post_count}}</p>
+                            
+                            <div class = "box-div">
+                                <h2>2</h2>
+                            </div>
+                        </div>
+                    {% endif %}
+                    
+            
+                    <div class = "box-div">
+                        <h2>1</h2>
+                    </div>
+
+                    <!-- Top 3 -->
+                    {% if leaderboard|length >= 3 %}
+                    <div class = "rank-3">
+                        <div class = "circle rank-3">
+                            <img id = "profilePicture" src = "{{ user.user.profile_photo.url }}" class = "profile-picture">
+                        </div>
+
+                        <p class = "name">{{leaderboard.2.user__account__username}}</p>
+
+                        <p class = "count"><i class="fas fa-star"></i>{{leaderboard.2.post_count}}</p>
+                        
+                        <div class = "box-div">
+                            <h2>3</h2>
+                        </div>
+                    </div>
+                     {% endif %}
+                </div>
+            </div>
+
+            
+            <div class = "third-row">
+                <!-- Ranks 4 to 5 -->
+                {% for entry in leaderboard|slice:"3:5" %}
+                <div class = "rank-4-5">
+                    <div class = "circle">
+                        <img id = "profilePicture" src = "{{ user.user.profile_photo.url }}" class = "profile-picture">
+                    </div>
+
+                    <p class = "name">{{entry.user__account__username}}</p>
+
+                    <p class = "count"><i class="fas fa-star"></i>{{entry.post_count}}</p>
+                </div>
+                {% endfor %}
+            </div>
+            
+        </div>
+        
         <script>
             function revealMap(){    
                 map_statuses = L.layerGroup();
@@ -176,6 +253,7 @@
                     "type": "FeatureCollection", 
                                 
                     "features": [
+                        
                         {% for status in map_statuses %}
                             {"type": "Feature", "properties": {"barangay": "{{status.location.barangay}}", "municipality": "{{status.location.municipality}}", "caught_overall": "{{status.caught_overall}}", "statustype": "{{status.statustype.statustype}}", "onset_date": "{{status.onset_date | date:'m/d/Y'}}"}, "geometry": {"type": "Polygon", "coordinates": {{status.location.perimeters}}}}, 
                         {% endfor %}
@@ -299,9 +377,9 @@
                         
                         this._div.innerHTML = "<div class = 'popup-header'>" + "<a>" + "Legend:" + "</a>" + "</div>";
                         
-                        var ranges = ["25 and up", "19 to 24", "13 to 18", "6 to 12", "0 to 5"];
+                        var ranges = ["25 and up", "19 to 24", "13 to 18", "6 to 12", "1 to 5"];
                         
-                        var labels = ["Critical", "High", "Moderate", "Low", "None"];
+                        var labels = ["Critical", "High", "Moderate", "Low", "Very Low"];
                         
                         var colors = ["#C90016", "#FF7518", "#F4C430", "#698F3F", "#003755"];
 
@@ -366,6 +444,7 @@
                             <select id = "barangayFilter" onchange = "setBarangayValue()">
                                 {% if selected_barangay == '' %}
                                     <option value = "">Select Barangay</option>
+
                                 {% else %}
                                     <option value = {{selected_barangay}}>{{selected_barangay}}</option>
                                 {% endif %}
@@ -450,12 +529,12 @@
                 <div id = "noDataMessage">No data available for the selected year.</div>
                 
                 <div class="graph-container">
-                    <div class="graph">
-                        <canvas id="activityGraph"></canvas>
+                    <div class = "graph">
+                        <canvas id = "activityGraph"></canvas>
                     </div>
-                    <div class="graph-legends" id="graphLegends">
-                        
-                        <div class="legends-container">
+
+                    <div class = "graph-legends" id = "graphLegends">
+                        <div class = "legends-container">
                             <h1>Legend:</h1>
                         </div>
                        
@@ -518,7 +597,7 @@
         <script>
             function shownStatusColor(statusType){
                 switch (statusType){
-                    case "None":
+                    case "Very Low":
                         return "#003755";
 
                     case "Low":
@@ -539,10 +618,10 @@
             };
 
             function shownStatusType(caughtAmount){
-                if (caughtAmount >= 0 && caughtAmount <= 6){
-                    return "None";
+                if (caughtAmount >= 1 && caughtAmount <= 5){
+                    return "Very Low";
 
-                } else if (caughtAmount >= 7 && caughtAmount <= 12){
+                } else if (caughtAmount >= 6 && caughtAmount <= 12){
                     return "Low";
 
                 } else if (caughtAmount >= 13 && caughtAmount <= 18){
@@ -558,7 +637,7 @@
 
             const graphData = JSON.parse("{{chart_data | escapejs}}");
 
-            const statusOrder = ["None","Low", "Moderate", "High", "Critical"];
+            const statusOrder = ["Very Low", "Low", "Moderate", "High", "Critical"];
 
             graphData.sort((a, b) => new Date(a.event_date) - new Date(b.event_date));
 
@@ -801,11 +880,11 @@
 
                 function shownStatusRange(statusType){
                     switch (statusType){
-                        case "None":
-                            return "0 - 6 COTS";
+                        case "Very Low":
+                            return "1 - 5 COTS";
 
                         case "Low":
-                            return "7 - 12 COTS";
+                            return "6 - 12 COTS";
 
                         case "Moderate":
                             return "13 - 18 COTS";
@@ -820,27 +899,25 @@
 
                 const legendsContainer = document.querySelector(".legends-container");
 
-                statusOrder.forEach(statusType => {
+                for (let index = statusOrder.length - 1; index >= 0; index--) {
+                    const statusType = statusOrder[index];
                     const legendItem = document.createElement("div");
-
                     legendItem.className = "legend-item";
 
                     const legendColorbox = document.createElement("span");
-                    
                     legendColorbox.className = "legend-colorbox";
-                    
                     legendColorbox.style.backgroundColor = shownStatusColor(statusType);
 
                     const legendText = document.createElement("span");
-                    
                     legendText.innerHTML = `${statusType.toUpperCase()} <strong>(${shownStatusRange(statusType)})</strong>`;
 
                     legendItem.appendChild(legendColorbox);
-                    
+
                     legendItem.appendChild(legendText);
-                    
+
                     legendsContainer.appendChild(legendItem);
-                });
+                }
+
 
                 const dataTableBody = document.getElementById("dataTableBody");
 

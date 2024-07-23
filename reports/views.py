@@ -11,10 +11,13 @@ from django.utils import timezone
 from django.utils.html import strip_tags
 from authentications.models import Account, Notification
 from authentications.views import ContributorCheck, OfficerCheck
-from managements.models import Location, Municipality
+from managements.models import Location, Municipality, Barangay
 from reports.models import *
 from reports.forms import CoordinatesForm, PostObservationForm, PostForm
 from datetime import timedelta
+from django.db.models import Case, When, IntegerField
+from django.core.files.storage import default_storage
+from django.http import HttpResponseNotFound, HttpResponse, Http404
 
 import base64
 import json
@@ -70,10 +73,104 @@ def ContributorServiceReport(request):
 
     depths = Depth.objects.all()
 
-    weathers = Weather.objects.all()
+    densities = Density.objects.all()
 
     post_form = PostForm()
+
+    selected_density = None
+
+    density = request.POST.get("density")
     
+    if density is not None and density != "":
+        selected_density = Density.objects.get(id = density)
+
+    selected_size = None
+
+    size = request.POST.get("size")
+
+    if size is not None and size != "":
+        selected_size = Size.objects.get(id = size)
+
+    selected_depth = None
+
+    depth = request.POST.get("depth")
+
+    if depth is not None and depth != "":
+        selected_depth = Depth.objects.get(id = depth)
+
+    selected_longitude = 125.1929
+
+    selected_latitude = 5.9656
+
+    selected_municipality = None
+
+    selected_barangay = None
+
+    barangay = request.POST.get("barangay")
+
+    municipality = request.POST.get("municipality")
+
+    try:
+        if barangay and barangay.strip():
+            if barangay.isdigit():
+                location = get_object_or_404(Location, id = barangay)
+            else:
+                location = get_object_or_404(Location, barangay__barangay_name = barangay)
+
+            selected_barangay = Barangay.objects.get(id = location.barangay.id)
+
+        if municipality and municipality.strip():
+            if municipality.isdigit():
+                location = get_object_or_404(Location, municipality = municipality, barangay = selected_barangay)
+
+            else:
+                location = get_object_or_404(Location, municipality__municipality_name = municipality, barangay = selected_barangay)
+
+            selected_municipality = Municipality.objects.get(id = location.municipality.id)
+
+    except Http404 as error:
+        messages.error(request, f"There is an error: {error}. Kindly check the barangay and municipality input again.")
+
+    selected_longitude = request.POST.get("longitude")
+
+    if selected_longitude is not None and selected_longitude != "":
+        longitude = request.POST.get("longitude")
+
+        selected_longitude = longitude
+
+    else:
+        selected_longitude = 125.1929
+
+    selected_latitude = request.POST.get("latitude")
+
+    if selected_latitude is not None and selected_latitude != "":
+        latitude = request.POST.get("latitude")
+        
+        selected_latitude = latitude
+
+    else:
+        selected_latitude = 5.9656
+     
+    location_data = {
+        "selected_latitude": selected_latitude,
+
+        "selected_longitude": selected_longitude
+    }
+
+    location_data_json = json.dumps(location_data)
+
+    post_photos_capture = request.FILES.getlist("post_photos_capture")
+
+    post_photos_choose = request.FILES.getlist("post_photos_choose")
+
+    post_photos = post_photos_capture + post_photos_choose
+
+    if post_photos is not None:
+        photo_urls = [default_storage.url(photo.name).replace("/assets/", "/assets/posts/") for photo in post_photos]
+
+    else:
+        photo_urls = []
+
     if request.method == "POST":
         coordinates_form = CoordinatesForm(request.POST)
 
@@ -87,6 +184,18 @@ def ContributorServiceReport(request):
             post_observation = postobservation_form.save(commit = False)
 
             post = post_form.save(commit = False)
+
+            barangay = request.POST.get("barangay")
+
+            try:
+                selected_barangay = Location.objects.get(barangay = barangay)
+
+            except:
+                selected_barangay = None
+
+            selected_longitude = request.POST.get("longitude")
+
+            selected_latitude = request.POST.get("latitude")
 
             user = request.user.user
 
@@ -103,6 +212,8 @@ def ContributorServiceReport(request):
             size = request.POST.get("size")
 
             try:
+                selected_size = Size.objects.get(id = size)
+
                 post_observation.size = Size.objects.get(id = size)
 
             except:
@@ -111,54 +222,80 @@ def ContributorServiceReport(request):
             depth = request.POST.get("depth")
 
             try:
+                selected_depth = Depth.objects.get(id = depth)
+
                 post_observation.depth = Depth.objects.get(id = depth)
 
             except:
                 post_observation.depth = None
 
-            weather = request.POST.get("weather")
-
+            density = request.POST.get("density")
+           
             try:
-                post_observation.weather = Weather.objects.get(id = weather)
-            
+                selected_density = Density.objects.get(id = density)
+                
+                post_observation.density = selected_density
+
             except:
-                post_observation.weather = None
+                post_observation.density = None
 
             location = request.POST.get("barangay")
-    
+
             try:
-                post.location = Location.objects.get(id = location)
+                if location is not None and location != "":
+                    if location.isdigit():
+                        location = get_object_or_404(Location, barangay = location)
+
+                        post.location = Location.objects.get(id = location.id)
+
+                    else:
+                        location = get_object_or_404(Location, barangay__barangay_name = location)
+
+                        post.location = Location.objects.get(id = location.id)
 
             except:
                 messages.error(request, "There is an issue in the location field. This field is required.")
 
-                return redirect("Contributor Service Report")
+                context = {"username": username, "user_profile": user_profile, "unread_notifications": unread_notifications, "locations": locations, "municipalities": municipalities, "coordinates_form": coordinates_form, "sizes": sizes, "depths": depths, "postobservation_form": postobservation_form, "post_form": post_form}
+
+                return render(request, "contributor/service/report/report.html", context)
 
             post_observation = PostObservation.objects.create(size = post_observation.size, depth = post_observation.depth, density = post_observation.density, weather = post_observation.weather)
             
             if Coordinates.objects.filter(latitude = coordinates.latitude, longitude = coordinates.longitude).exists() and PostObservation.objects.filter(size = post_observation.size, depth = post_observation.depth, density = post_observation.density, weather = post_observation.weather).exists():
-                post = Post.objects.create(user = user, description = post.description, capture_date = post.capture_date, coordinates = coordinates, location = post.location, post_status = post_status, post_observation = post_observation)
+                six_hours_ago = timezone.now() - timedelta(hours = 6)
+
+                recent_posts = Post.objects.filter(user = user, creation_date__gte = six_hours_ago)
                 
-                post_photos_capture = request.FILES.getlist("post_photos_capture")
+                if recent_posts.exists() and action == "save and submit":
+                    messages.error(request, username + ", " +  "you have already created a post within the last 6 hours.")
+                
+                    return redirect("Contributor Service Post")
+                
+                else:
+                    post = Post.objects.create(user = user, description = post.description, capture_date = post.capture_date, coordinates = coordinates, location = post.location, post_status = post_status, post_observation = post_observation)
+ 
+                    post_photos_capture = request.FILES.getlist("post_photos_capture")
 
-                post_photos_choose = request.FILES.getlist("post_photos_choose")
+                    post_photos_choose = request.FILES.getlist("post_photos_choose")
 
-                post_photos = post_photos_capture + post_photos_choose
+                    post_photos = post_photos_capture + post_photos_choose
 
-                for post_photo in post_photos:
-                    photo = PostPhoto.objects.create(post_photo = post_photo)
+
+                    for post_photo in post_photos:
+                        photo = PostPhoto.objects.create(post_photo = post_photo)
+                        
+                        post.post_photos.add(photo)
+
+                    username = request.user.username
                     
-                    post.post_photos.add(photo)
+                    if post_status.id == 3:
+                        messages.success(request, username + ", " + "your report has been successfully sent. Kindly wait for an approval email in the next 3 to 5 business days.")
+                    
+                    elif post_status.id == 4:
+                        messages.success(request, username + ", " + "your report has been successfully saved. Kindly proceed to drafts to see changes.")
 
-                username = request.user.username
-                
-                if post_status.id == 3:
-                    messages.success(request, username + ", " + "your report has been successfully sent. Kindly wait for an approval email in the next 3 to 5 business days.")
-                
-                elif post_status.id == 4:
-                    messages.success(request, username + ", " + "your report has been successfully saved. Kindly proceed to drafts to see changes.")
-
-                return redirect("Contributor Service Post")
+                    return redirect("Contributor Service Post")
 
         else:
             for field, errors in coordinates_form.errors.items():
@@ -177,7 +314,7 @@ def ContributorServiceReport(request):
         
         post_form = PostForm() 
 
-    context = {"username": username, "user_profile": user_profile, "unread_notifications": unread_notifications, "locations": locations, "municipalities": municipalities, "coordinates_form": coordinates_form, "sizes": sizes, "depths": depths, "weathers": weathers, "postobservation_form": postobservation_form, "post_form": post_form}
+    context = { 'photo_urls': photo_urls, 'selected_municipality':selected_municipality, 'location_data_json': location_data_json, 'selected_latitude': selected_latitude, 'selected_longitude': selected_longitude,'selected_barangay':selected_barangay, 'selected_depth': selected_depth, 'selected_size':selected_size,'selected_density': selected_density,"username": username, "user_profile": user_profile, "unread_notifications": unread_notifications, "locations": locations, "municipalities": municipalities, "coordinates_form": coordinates_form, "sizes": sizes, "depths": depths, "densities": densities, "postobservation_form": postobservation_form, "post_form": post_form}
     
     return render(request, "contributor/service/report/report.html", context)
 
@@ -222,8 +359,6 @@ def ContributorServiceReportFetch(request):
                 post_status = PostStatus.objects.get(id = 4)
 
             depth = Depth.objects.get(id = depth) if depth else None
-
-            weather = Weather.objects.get(id = weather) if weather else None
 
             location = Location.objects.get(id = location) if location else None
                     
@@ -434,6 +569,42 @@ def ContributorServicePostDraftUpdate(request, id):
 
     municipalities = Municipality.objects.values("municipality_name").distinct()
 
+    selected_barangay = None
+    barangay = request.POST.get("barangay")
+    if barangay is not None and barangay != "":
+        if barangay.isdigit():
+            location = get_object_or_404(Location, barangay = barangay)
+
+            selected_barangay = location.id
+
+        else:
+            location = get_object_or_404(Location, barangay__barangay_name = barangay)
+
+            selected_barangay = location.id
+
+    selected_longitude = request.POST.get("longitude")
+
+    if selected_longitude is not None:
+        longitude = request.POST.get("longitude")
+
+        selected_longitude = longitude
+
+    selected_latitude = request.POST.get("latitude")
+
+    if selected_latitude is not None:
+        latitude = request.POST.get("latitude")
+        
+        selected_latitude = latitude
+    
+    location_data = {
+        "selected_latitude": selected_latitude,
+
+        "selected_longitude": selected_longitude
+    }
+
+    location_data_json = json.dumps(location_data)
+
+
     if draft_post.location and draft_post.location.municipality:
         municipalities = municipalities.exclude(municipality_name = draft_post.location.municipality.municipality_name)
 
@@ -441,7 +612,7 @@ def ContributorServicePostDraftUpdate(request, id):
 
     depths = Depth.objects.all()
 
-    weathers = Weather.objects.all()
+    densities = Density.objects.all()
 
     if request.method == "POST":
         coordinates_form = CoordinatesForm(request.POST, instance = draft_post.coordinates)
@@ -475,6 +646,7 @@ def ContributorServicePostDraftUpdate(request, id):
 
             draft_post.post_status = post_status
 
+            
             post.save()
 
             post_photos_capture = request.FILES.getlist("post_photos_capture")
@@ -510,7 +682,7 @@ def ContributorServicePostDraftUpdate(request, id):
 
         post_form = PostForm(instance = draft_post)
 
-    context = {"username": username, "user_profile": user_profile, "unread_notifications": unread_notifications, "draft_post": draft_post, "locations": locations, "municipalities": municipalities, "coordinates_form": coordinates_form, "sizes": sizes, "depths": depths, "weathers": weathers, "postobservation_form": postobservation_form, "post_form": post_form}
+    context = {'selected_barangay': selected_barangay,  'location_data_json': location_data_json, 'selected_latitude': selected_latitude, 'selected_longitude': selected_longitude, "username": username, "user_profile": user_profile, "unread_notifications": unread_notifications, "draft_post": draft_post, "locations": locations, "municipalities": municipalities, "coordinates_form": coordinates_form, "sizes": sizes, "depths": depths, "densities": densities, "postobservation_form": postobservation_form, "post_form": post_form}
 
     return render(request, "contributor/service/report/report.html", context)
 
@@ -551,8 +723,6 @@ def ContributorServicePostDraftUpdateFetch(request):
             coordinates = Coordinates.objects.create(latitude = latitude, longitude = longitude)
 
             depth = Depth.objects.get(id = depth) if depth else None
-
-            weather = Weather.objects.get(id = weather) if weather else None
 
             location = Location.objects.get(id = location) if location else None
 
@@ -748,19 +918,27 @@ def ContributorServicePostDraftDeleteFetch(request):
 @login_required(login_url = "Officer Control Login")
 @user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def OfficerControlSighting(request):
+    tab_number = 2
+
+    sighting_number = 1
+
     notification_life = timezone.now() - timedelta(days = 30) 
 
     user = User.objects.get(account = request.user)
 
     unread_notifications = Notification.objects.filter(user = user, is_read = False, creation_date__gte = notification_life).order_by("-creation_date")[:3]
 
-    posts = Post.objects.exclude(post_status = 4).order_by("-creation_date")
+    posts = Post.objects.exclude(post_status = 4).order_by(
+        Case(When(post_status = 3, then = 0), default = 1, output_field = IntegerField()),
 
+        "-creation_date"
+    )
+    
     locations = Location.objects.all()
 
     municipalities = Municipality.objects.values('municipality_name').distinct()
     
-    context = {"unread_notifications": unread_notifications, "posts": posts, "locations": locations, 'municipalities': municipalities}  
+    context = {"sighting_number": sighting_number, "tab_number": tab_number, "unread_notifications": unread_notifications, "posts": posts, "locations": locations, 'municipalities': municipalities}  
     
     return render(request, 'officer/control/sighting/sighting.html', context)
 
@@ -769,6 +947,10 @@ def OfficerControlSighting(request):
 @user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def OfficerControlSightingRead(request, id):
     notification_life = timezone.now() - timedelta(days = 30) 
+    
+    tab_number = 2
+
+    sighting_number = 2
 
     user = User.objects.get(account = request.user)
 
@@ -791,7 +973,7 @@ def OfficerControlSightingRead(request, id):
 
         other_photos.append({"post": other_post, "first_photo": first_photo})
     
-    context = {"unread_notifications": unread_notifications, "post": post, "other_posts_with_photos": other_photos, 'municipalities': municipalities, "post_photos": post_photos, "locations": locations}
+    context = {"tab_number": tab_number, "sighting_number": sighting_number, "unread_notifications": unread_notifications, "post": post, "other_posts_with_photos": other_photos, "municipalities": municipalities, "post_photos": post_photos, "locations": locations}
     
     return render(request, "officer/control/sighting/read.html", context)
 
@@ -865,7 +1047,7 @@ def OfficerControlSightingValid(request):
 
         return JsonResponse({"success": True, "message": "The post status has been successfully updated."})
     
-    return JsonResponse({"success": False, "message": "The post status could not be updated. Kindly try again later."}, status=400)
+    return JsonResponse({"success": False, "message": "The post status could not be updated. Kindly try again later."}, status = 400)
 
 
 @login_required(login_url = "Officer Control Login")
@@ -876,12 +1058,9 @@ def OfficerControlSightingInvalid(request):
 
         remarks = request.POST.get("remarks")
         
-        post = get_object_or_404(Post, id=id)
-        
-        current_time = timezone.now()
-       
-       
-        post.post_status = PostStatus.objects.get(id=2)
+        post = get_object_or_404(Post, id = id)
+               
+        post.post_status = PostStatus.objects.get(id = 2)
         
         if request.user.usertype.id == 2:
             post.validator = request.user.user
@@ -977,3 +1156,49 @@ def update_post(request, post_id):
     
     except Exception as e:
         return JsonResponse({"status": "error", "message": str(e)}, status = 400)
+    
+
+def GetPostDetails(request, post_id):
+    try:
+        post = get_object_or_404(Post, id = post_id)
+    
+        post_data = {
+            "id": post.id,
+
+            "description": post.description,
+
+            "coordinates": str(post.coordinates),
+
+            "municipality":  str(post.location.municipality),
+
+            "barangay":  str(post.location.barangay),
+
+            "municipality":  str(post.location.municipality),
+
+            "post_status": str(post.post_status),  
+
+            "size": str(post.post_observation.size), 
+
+            "density": str(post.post_observation.density), 
+
+            "weather": str(post.post_observation.weather), 
+
+            "depth": str(post.post_observation.depth), 
+
+            "remarks": post.remarks,
+
+            "capture_date": post.capture_date.isoformat(),
+
+            "creation_date": post.creation_date.isoformat(),
+
+            "user": str(post.user),
+
+            "validator": str(post.validator) if post.validator else None,
+
+            "post_photos": [{"url": photo.post_photo.url, "id": photo.id} for photo in post.post_photos.all()],
+        }
+        
+        return JsonResponse(post_data)
+    
+    except Post.DoesNotExist:
+        return JsonResponse({"error": "The post could not be found."}, status = 404)

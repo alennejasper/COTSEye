@@ -53,5 +53,7 @@ urlpatterns = [
 
     path("service/post/valid/read/<int:id>/redirect/", views.PostValidReadRedirect, name = "Post Valid Read Redirect"),
 
-    path("api/posts/update/<int:post_id>/", views.update_post, name = "update_post"),       
-]
+    path("api/posts/update/<int:post_id>/", views.update_post, name = "update_post"), 
+
+    path("post-detail/<int:post_id>/", views.GetPostDetails, name = "post-detail"),
+] 

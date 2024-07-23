@@ -1,7 +1,9 @@
-{% extends "officer/control/index/index.html" %}
+{% extends "officer/control/intervention/intervention.html" %}
 {% load static %}
-
-{% block content %}
+<header>
+    {% block action %} Edit {% endblock action %}
+</header>
+{% block intervention_content %}
     <style>
         #interventionTitle{
             margin-bottom: 0px !important; 
@@ -83,7 +85,7 @@
     </style>
 
     <div class = "container" style = "padding: 0px !important;">
-        <h1 style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 24px; color: rgb(52, 144, 242); text-align: center; text-transform: uppercase;" class = "text-center">{% if update %} Update {% else %} Add {% endif %} Activity</h1>
+        <h1 style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 24px; color: rgb(52, 144, 242); text-align: center; text-transform: uppercase;" class = "text-center">{% if update %} Edit {% else %} Add {% endif %} Activity</h1>
         
         <div class = "card">
             <div class = "card-body">
@@ -184,7 +186,7 @@
 
                             <input type = "hidden" id = "id_barangay" name = "barangay" value = "{{intervention.location.barangay}}">
                             
-                            <button type = "submit" class = "btn btn-primary" style = "padding-left: 10px !important; padding-right: 10px !important; padding-top: 5px !important; padding-bottom: 5px !important; width: 100%; font-family: 'Montserrat'; font-weight: 400; font-size: 16px; background-color: rgb(52, 144, 242);" id = "submitButton">{% if update %} Update {% else %} Add {% endif %}</button>
+                            <button type = "submit" class = "btn btn-primary" style = "padding-left: 10px !important; padding-right: 10px !important; padding-top: 5px !important; padding-bottom: 5px !important; width: 100%; font-family: 'Montserrat'; font-weight: 400; font-size: 16px; background-color: rgb(52, 144, 242);" id = "submitButton">{% if update %} Edit {% else %} Add {% endif %}</button>
                         </div>
                     </div>
                 </form>

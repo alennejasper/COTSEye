@@ -2,15 +2,15 @@
 {% load static %}
 {% load custom_filters %}
 
+{% block municipality%} {{ municipality_name }} {% endblock municipality %}
+{% block barangay%} {{ barangay_name }} {% endblock barangay %}
+
 {% block status-content %}
-    <div class= "container-fluid mt-3">
-        <div class = "report-button" style = "float: right; margin-top: 7px; margin-bottom: 0px;">
-            <button onclick = "window.location.href = '{% url 'Officer Control Report' %}'">GENERATE REPORT</button>
-        </div>
+    <div class= "container-fluid mt-3" style = "padding: 0px !important;">
         
         <h2 style = "border-bottom: 1px solid rgba(229, 229, 229); font-family: 'Montserrat'; font-weight: 700; font-size: 20px; color: rgb(52, 144, 242); text-align: left; text-transform: uppercase;">Infestation Status of {{barangay_name}}</h2>
 
-        <table class = "table table-hover">
+        <table id = "statusTable" class = "table table-hover">
             <thead>
                 <tr>
                     <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">Activity Date</th>

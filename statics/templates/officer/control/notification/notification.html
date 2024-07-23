@@ -34,11 +34,11 @@
                 </thead>
 
                 <tbody style = "border-top: 2px solid #000000 !important;">
-                    {% for post in unread_notifications %}
+                    {% for post in unread_posts %}
                         <tr>
                             <td style = "display: table-cell !important; max-width: 0px; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">{{post.object.user}}</td>
 
-                            <td style = "display: table-cell !important; max-width: 0px; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">{{post.object.user}} has sent a {{post.get_notificationtype_display}}</td>
+                            <td style = "display: table-cell !important; max-width: 0px; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">{{post.object.user}} has sent a report.</td>
                             
                             <td style = "display: table-cell !important; max-width: 0px; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">{{post.creation_date}}</td>
                             
@@ -54,23 +54,23 @@
 
             <nav aria-label = "Unread posts pagination">
                 <ul class = "pagination justify-content-center">
-                    {% if unread_notifications.has_previous %}
+                    {% if unread_posts.has_previous %}
                         <li class = "page-item">
-                            <a class = "page-link" href = "?unread_page = {{unread_notifications.previous_page_number}} {% if read_posts.has_other_pages %} &read_page = {{read_posts.number}} {% endif %}" aria-label = "Previous">
+                            <a class = "page-link" href = "?unread_page = {{unread_posts.previous_page_number}} {% if read_posts.has_other_pages %} &read_page = {{read_posts.number}} {% endif %}" aria-label = "Previous">
                                 <span aria-hidden = "true">&laquo;</span>
                             </a>
                         </li>
                     {% endif %}
 
-                    {% for num in unread_notifications.paginator.page_range %}
-                        <li class = "page-item {% if unread_notifications.number == num %} active {% endif %}">
+                    {% for num in unread_posts.paginator.page_range %}
+                        <li class = "page-item {% if unread_posts.number == num %} active {% endif %}">
                             <a class = "page-link" href = "?unread_page = {{num}} {% if read_posts.has_other_pages %} &read_page = {{read_posts.number}} {% endif %}">{{num}}</a>
                         </li>
                     {% endfor %}
 
-                    {% if unread_notifications.has_next %}
+                    {% if unread_posts.has_next %}
                         <li class = "page-item">
-                            <a class = "page-link" href = "?unread_page = {{unread_notifications.next_page_number}} {% if read_posts.has_other_pages %}&read_page={{read_posts.number}}{% endif %}" aria-label="Next">
+                            <a class = "page-link" href = "?unread_page = {{unread_posts.next_page_number}} {% if read_posts.has_other_pages %}&read_page={{read_posts.number}}{% endif %}" aria-label="Next">
                                 <span aria-hidden = "true">&raquo;</span>
                             </a>
                         </li>
@@ -100,7 +100,7 @@
                         <tr>
                             <td style = "display: table-cell !important; max-width: 0px; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">{{post.object.user}}</td>
                             
-                            <td style = "display: table-cell !important; max-width: 0px; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">{{post.object.user}} has sent a {{post.get_notificationtype_display}}</td>
+                            <td style = "display: table-cell !important; max-width: 0px; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">{{post.object.user}} has sent a report.</td>
                             
                             <td style = "display: table-cell !important; max-width: 0px; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">{{post.creation_date}}</td>
                             
@@ -117,7 +117,7 @@
             <ul class = "pagination justify-content-center">
                 {% if read_posts.has_previous %}
                     <li class = "page-item">
-                        <a class = "page-link" href = "?read_page = {{read_posts.previous_page_number}} {% if unread_notifications.has_other_pages %} &unread_page = {{unread_notifications.number}}{% endif %}" aria-label = "Previous">
+                        <a class = "page-link" href = "?read_page = {{read_posts.previous_page_number}} {% if unread_posts.has_other_pages %} &unread_page = {{unread_posts.number}}{% endif %}" aria-label = "Previous">
                             <span aria-hidden = "true">&laquo;</span>
                         </a>
                     </li>
@@ -125,13 +125,13 @@
 
                 {% for num in read_posts.paginator.page_range %}
                     <li class = "page-item {% if read_posts.number == num %} active {% endif %}">
-                        <a class = "page-link" href = "?read_page = {{num}} {% if unread_notifications.has_other_pages %} &unread_page = {{unread_notifications.number}}{% endif %}">{{num}}</a>
+                        <a class = "page-link" href = "?read_page = {{num}} {% if unread_posts.has_other_pages %} &unread_page = {{unread_posts.number}}{% endif %}">{{num}}</a>
                     </li>
                 {% endfor %}
 
                 {% if read_posts.has_next %}
                     <li class = "page-item">
-                        <a class = "page-link" href = "?read_page = {{read_posts.next_page_number}} {% if unread_notifications.has_other_pages %} &unread_page = {{unread_notifications.number}}{% endif %}" aria-label = "Next">
+                        <a class = "page-link" href = "?read_page = {{read_posts.next_page_number}} {% if unread_posts.has_other_pages %} &unread_page = {{unread_posts.number}}{% endif %}" aria-label = "Next">
                             <span aria-hidden = "true">&raquo;</span>
                         </a>
                     </li>

@@ -269,3 +269,84 @@
         font-size: 12px !important;
     }
 }
+
+.profile-body .profile-details .profile-context .badge-list{
+    position: relative;
+    background-color: #FFFFFF;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    white-space: nowrap;
+}
+
+.profile-body .profile-details .profile-context .badge-item{
+    position: relative;
+    display: inline-block;
+    margin-right: 30px;
+    width: fit-content;
+    height: 100%;
+    vertical-align: top;
+    overflow: hidden !important;
+}
+
+.profile-body .profile-details .profile-context .badge-item:last-child{
+    margin-right: 0px !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .profile-body .profile-details .profile-context .badge-item{
+        margin-right: 10px;
+    }
+}
+
+.profile-body .profile-details .profile-context .badge-item .badge-box{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    align-items: center;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    max-width: 175px;
+    max-height: 175px;
+    border: 2px solid #D3D3D3;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.profile-body .profile-details .profile-context .badge-item .badge-icon{
+    place-items: center;
+    object-fit: contain;
+    height: 100%;              
+    width: 100%;               
+    transition: all 0.5s;
+}
+
+img.badge-icon:hover{
+    transform: scale(1.25);
+}
+
+.profile-body .profile-details .profile-context .badge-list .badge-item .badge-box p:last-child{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0px !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: "Montserrat";
+    font-weight: 400;       
+    font-size: 20px;
+    color: #003755;                          
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .profile-body .profile-details .profile-context .badge-list .badge-item .badge-box p:last-child{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 445px){
+    .profile-body .profile-details .profile-context .badge-list .badge-item .badge-box p:last-child{
+        font-size: 12px !important;
+    }
+}

@@ -117,8 +117,8 @@ class Intervention(models.Model):
 
     class Meta:
         db_table = "managements_intervention"
-        verbose_name = "Intervention"
-        verbose_name_plural = "Interventions"
+        verbose_name = "Activity"
+        verbose_name_plural = "Activities"
 
     def gallery_photo(self):
         if self.intervention_photo != "":
@@ -131,8 +131,8 @@ class Intervention(models.Model):
     
     def save(self, *args, **kwargs):
         if self.caught_amount is not None:
-            if 0 <= self.caught_amount <= 5:
-                self.statustype = StatusType.objects.get(statustype = "None")
+            if 1 <= self.caught_amount <= 5:
+                self.statustype = StatusType.objects.get(statustype = "Vey Low")
 
             elif 6 <= self.caught_amount <= 12:
                 self.statustype = StatusType.objects.get(statustype = "Low")

@@ -4,6 +4,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.db.models.signals import pre_save, post_save, post_delete
 from django.dispatch import receiver
 from django.utils import timezone
+from datetime import timedelta
 from authentications.models import Account
 
 
@@ -337,74 +338,6 @@ def UpdateDepthLog(sender, instance, **kwargs):
 
 @receiver(post_delete, sender = Depth)
 def DeleteDepthLog(sender, instance, **kwargs):
-    import inspect
-
-    for information in inspect.stack():
-        if information[3] == "get_response":
-            request = information[0].f_locals["request"]
-
-            break
-
-        else:
-            request = None
-
-    LogEntry.objects.create(content_type = ContentType.objects.get_for_model(instance), object_id = instance.id, object_repr = str(instance), action_flag = DELETION, change_message = "Deleted.", user = Account.objects.get(username = request.user.username), action_time = timezone.now())
-
-
-@receiver(post_save, sender = Weather)
-def AddWeatherLog(sender, instance, created, **kwargs):
-    if created:
-        import inspect
-
-        for information in inspect.stack():
-            if information[3] == "get_response":
-                request = information[0].f_locals["request"]
-
-                break
-
-            else:
-                request = None
-
-        LogEntry.objects.create(content_type = ContentType.objects.get_for_model(instance), object_id = instance.id, object_repr = str(instance), action_flag = ADDITION, change_message = "Added.", user = Account.objects.get(username = request.user.username), action_time = timezone.now())
-
-
-@receiver(pre_save, sender = Weather)
-def UpdateWeatherLog(sender, instance, **kwargs):
-    if instance.id:
-        try:
-            weather = Weather.objects.get(id = instance.id)
-
-        except Weather.DoesNotExist:
-            weather = None
-
-        import inspect
-
-        for information in inspect.stack():
-            if information[3] == "get_response":
-                request = information[0].f_locals["request"]
-
-                break
-
-            else:
-                request = None
-
-        changes = []
-        
-        if weather:
-            if instance.weather != weather.weather:
-                changes.append("Changed Weather")
-            
-            if instance.description != weather.description:
-                changes.append("Changed Description")
-                
-            if changes:
-                message = ", ".join(changes)
-
-                LogEntry.objects.create(content_type = ContentType.objects.get_for_model(instance), object_id = instance.id, object_repr = str(instance), action_flag = CHANGE, change_message = message, user = Account.objects.get(username = request.user.username), action_time = timezone.now())
-
-
-@receiver(post_delete, sender = Weather)
-def DeleteWeatherLog(sender, instance, **kwargs):
     import inspect
 
     for information in inspect.stack():

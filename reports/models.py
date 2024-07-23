@@ -86,23 +86,25 @@ class Depth(models.Model):
     def __str__(self):
         return str(self.depth)  + " (" + str(self.description) + ") " 
         
-class Weather(models.Model):
-    weather = models.CharField(max_length = 65, unique = True, error_messages = {"unique": "This weather already exist."}, null = True, verbose_name = "Weather")
+
+class Density(models.Model):
+    density = models.CharField(max_length = 65, unique = True, error_messages = {"unique": "This Density already exist."}, null = True, verbose_name = "Density")
+    description = models.TextField(max_length = 255, default = "Default Description", verbose_name = "Description")
     
     class Meta:
-        db_table = "reports_weather"
-        verbose_name = "Weather"
-        verbose_name_plural = "Weather"
+        db_table = "reports_density"
+        verbose_name = "Density"
+        verbose_name_plural = "Density"
     
     def __str__(self):
-        return str(self.weather)
+        return str(self.density) + " (" + str(self.description) + ") " 
 
 
 class PostObservation(models.Model):
     size = models.ForeignKey(Size, on_delete = models.CASCADE, null = True, blank = True, help_text = "Designates the foreign key of the Size model.", verbose_name = "Size")
     depth = models.ForeignKey(Depth, on_delete = models.CASCADE, null = True, blank = True, help_text = "Designates the foreign key of the Depth model.", verbose_name = "Depth")
-    density = models.IntegerField(validators = [MinValueValidator(0)], null = True, blank = True, help_text = "Designates the density of the Crown-of-Thorns Starfish at the moment the post taken.", verbose_name = "Density / Square Meter")
-    weather = models.ForeignKey(Weather, on_delete = models.CASCADE, null = True, blank = True, help_text = "Designates the foreign key of the Weather model.", verbose_name = "Weather")
+    density = models.ForeignKey(Density, on_delete = models.CASCADE, null = True, blank = True, help_text = "Designates the foreign key of the Density model.", verbose_name = "Density")
+    weather = models.CharField(max_length = 65, null = True, blank = True, verbose_name = "Weather")
 
     class Meta:
         db_table = "reports_post_observation"

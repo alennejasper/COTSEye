@@ -58,10 +58,11 @@ def ContributorServiceMap(request):
 
     user_profile = User.objects.get(account = request.user)
 
-    notification_life = timezone.now() - timedelta(days=30)
+    notification_life = timezone.now() - timedelta(days = 30)
 
-    user = User.objects.get(account=request.user)
-    unread_notifications = Notification.objects.filter(user=user, is_read=False, creation_date__gte=notification_life).order_by("-creation_date")
+    user = User.objects.get(account = request.user)
+
+    unread_notifications = Notification.objects.filter(user = user, is_read = False, creation_date__gte = notification_life).order_by("-creation_date")
 
     try:
         map_posts = Post.objects.filter(post_status = 1)
@@ -85,10 +86,11 @@ def ContributorServiceResource(request):
 
     user_profile = User.objects.get(account = request.user)
 
-    notification_life = timezone.now() - timedelta(days=30)
+    notification_life = timezone.now() - timedelta(days = 30)
 
-    user = User.objects.get(account=request.user)
-    unread_notifications = Notification.objects.filter(user=user, is_read=False, creation_date__gte=notification_life).order_by("-creation_date")
+    user = User.objects.get(account = request.user)
+
+    unread_notifications = Notification.objects.filter(user = user, is_read = False, creation_date__gte = notification_life).order_by("-creation_date")
 
     resource_links = Link.objects.all()
 
@@ -108,8 +110,9 @@ def ContributorServiceInquiry(request):
 
     notification_life = timezone.now() - timedelta(days=30)
 
-    user = User.objects.get(account=request.user)
-    unread_notifications = Notification.objects.filter(user=user, is_read=False, creation_date__gte=notification_life).order_by("-creation_date")
+    user = User.objects.get(account = request.user)
+
+    unread_notifications = Notification.objects.filter(user = user, is_read = False, creation_date__gte = notification_life).order_by("-creation_date")
 
     inquiries = Inquiry.objects.all()
 

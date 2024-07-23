@@ -54,11 +54,70 @@
             font-weight: 400;
             font-size: 12px !important;
         }
+
+        .breadcrumb{
+            padding: 1rem;
+            border-radius: 0.25rem;
+            background-color: #FAFAFA;
+        }
+
+        .breadcrub-item{
+            display: none;
+            color: #6C757D;
+        }
+
+        .breadcrumb-item::before{
+            display: none !important;
+        }
+
+        .status_active {
+            display: block;
+            font-family: "Montserrat"; 
+            font-weight: 700; 
+            font-size: 16px;            
+            color: rgb(28, 186, 234);
+        }
+
+        .status_active::before{
+            display: block !important;
+        }
+
     </style>
 
+    <nav aria-label = "breadcrumb">
+        <ol class = "breadcrumb">
+            <li style = "font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: rgb(52, 144, 242);" class = "breadcrumb-item {% if sighting_number >= 1 %}status_active{% endif %}">
+                {% if sighting_number >= 1 %}
+                    Sightings
+                {% endif %}
+            </li>
+
+            <li style = "font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: rgb(52, 144, 242);" class = "breadcrumb-item {% if sighting_number >= 2 %}status_active{% endif %}">
+                {% if sighting_number >= 2 %}
+                    {% block action %} Action {% endblock action %}
+                {% endif %}
+            </li>
+        </ol>
+    </nav>
+
+    {% if sighting_number > 1 %}
+        <button style = "margin-bottom: 15px; padding-left: 10px !important; padding-right: 10px !important; padding-top: 5px !important; padding-bottom: 5px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: #FFFFFF;" class = "btn btn-secondary back-button" onclick = "window.history.back()">
+            <i class = "fas fa-arrow-left"></i> 
+            
+            Back
+        </button>
+    {% endif %}
+
+    {% block sighting_content %}
     <div class = "container-fluid mt-3">
+         <button style = "margin-bottom: 15px; padding-left: 10px !important; padding-right: 10px !important; padding-top: 5px !important; padding-bottom: 5px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: #FFFFFF;" class = "btn btn-secondary collapse-button" type = "button" id = "filterToggle" data-bs-toggle = "collapse" data-bs-target = "#filterCollapse" aria-expanded = "false" aria-controls = "filterCollapse">
+            <i class = "fas fa-chevron-down"></i>
+
+            Filter
+        </button>
+
         <div class = "row">
-            <div class = "col-12 col-md-3">
+            <div class = "col-12 col-md-3 collapse" id = "filterCollapse">
                 <div class = "filtercont">
                     <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 20px !important; color: rgb(52, 144, 242);" class = "fs-3 mb-3">FILTER</p>
                     
@@ -67,11 +126,11 @@
                     <div>
                         <label for = "municipalityFilter" class = "form-label" style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">Municipality:</label>
 
-                        <select id = "municipalityFilter" class = "form-select mb-3 select2" onchange = "updateBarangayOptions()">
+                        <select id = "municipalityFilter" class = "form-select mb-3 select2" onchange="updateBarangayOptions()">
                             <option value = "" disabled = "disabled" selected = "selected" style = "display: none; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">Municipality</option>
 
                             {% for municipality in municipalities %}
-                                <option style = "display: none; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;" value = "{{municipality.municipality_name}}" {% if request.GET.municipality == municipality.municipality_name %} selected {% endif %}>{{municipality.municipality_name}}</option>
+                                <option style = "display: none; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;" value = "{{ municipality.municipality_name }}" {% if request.GET.municipality == municipality.municipality_name %} selected {% endif %}>{{ municipality.municipality_name }}</option>
                             {% endfor %}
                         </select>
                     </div>
@@ -102,13 +161,13 @@
                     
                     <div class = "form-check">
                         <input class = "form-check-input" type = "radio" name = "status" id = "statusPending" value = "Pending">
-
+                       
                         <label style = "font-family: 'Montserrat'; font-weight: 400; font-size: 12px;" class = "form-check-label" for = "statusPending">Pending</label>
                     </div>
 
                     <div class = "form-check">
                         <input class = "form-check-input" type = "radio" name = "status" id = "statusValid" value = "Valid">
-
+                        
                         <label style = "font-family: 'Montserrat'; font-weight: 400; font-size: 12px;" class = "form-check-label" for = "statusValid">Valid</label>
                     </div>
 
@@ -123,25 +182,25 @@
                     <div>                            
                         <select id = "orderBy" class = "form-select form-select-sm select2">
                             <option value = "latest">Latest</option>
-
+                            
                             <option value = "oldest">Oldest</option>
                         </select>
                     </div>
 
                     <button style = "margin-top: 0px !important;" type = "button" class = "filterbutton" onclick = "applyFilter()">Apply Filter</button>
-
+                    
                     <button type = "button" class = "resetbutton" onclick = "resetFilter()">Reset Filter</button>
                 </div>
             </div>
 
-            <div class = "col-12 col-md-9">
-                <div class = "table-container mb-3">
+            <div class = "col-12 col-lg-9 mx-auto w-100" id = "mainContent">
+                <div class = "table-container container-fluid mb-3 w-100" style = "padding: 0px !important;">
                     <h2 style = "border-bottom: 1px solid rgba(229, 229, 229); font-family: 'Montserrat'; font-weight: 700; font-size: 20px; color: rgb(52, 144, 242);">ALL SIGHTINGS</h2>
 
                     <table class = "table table-hover" style = "display: table; margin-bottom: 15px !important; width: 100%;">
                         <thead>
                             <tr>
-                                <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">Creation Date</th>
+                                <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">Submission Date</th>
 
                                 <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">Contributor</th>
                                 
@@ -176,6 +235,88 @@
             </div>
         </div>
     </div>
+
+    <style>
+        .swal2-container:has(.sightings-text) .swal2-close{
+            display: none !important;
+        }
+
+        .swal2-container:has(.sightings-text) h2:where(.swal2-title){
+            padding: 0px !important;
+        }
+
+        .sightings-text{
+            text-align: left !important;
+        }
+
+        .sightings-text strong{
+            margin-bottom: 0px !important;
+            font-family: "Montserrat";
+            font-weight: 700 !important;
+            font-size: 20px;
+            color: #003755 !important;
+        }
+
+        @media screen and (min-width: 446px) and (max-width: 775px){
+            .sightings-text strong{
+                font-size: 18px !important;
+            }
+        }
+
+        @media screen and (min-width: 369px) and (max-width: 445px){
+            .sightings-text strong{
+                font-size: 16px !important;
+            }
+        }
+
+        @media screen and (min-width: 349px) and (max-width: 368px){
+            .sightings-text strong{
+                font-size: 14px !important;
+            }
+        }
+
+        @media screen and (min-width: 320px) and (max-width: 348px){
+            .sightings-text strong{
+                font-size: 12px !important;
+            }
+        }
+
+        .sightings-text p{
+            margin-bottom: 16px !important;
+            font-family: "Montserrat";
+            font-weight: 400 !important;
+            font-size: 20px;
+            color: #003755 !important;
+        }
+
+        @media screen and (min-width: 446px) and (max-width: 775px){
+            .sightings-text p{
+                margin-bottom: 5px !important;
+                font-size: 18px !important;
+            }
+        }
+
+        @media screen and (min-width: 369px) and (max-width: 445px){
+            .sightings-text p{
+                margin-bottom: 5px !important;
+                font-size: 16px !important;
+            }
+        }
+
+        @media screen and (min-width: 349px) and (max-width: 368px){
+            .sightings-text p{
+                margin-bottom: 5px !important;
+                font-size: 14px !important;
+            }
+        }
+
+        @media screen and (min-width: 320px) and (max-width: 348px){
+            .sightings-text p{
+                margin-bottom: 5px !important;
+                font-size: 12px !important;
+            }
+        }
+    </style>
 
     <script src = "https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -378,23 +519,12 @@
                         <td style = "display: table-cell !important; max-width: 0px; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;" onclick = "window.location.href = '${baseUrl}'">${remarksOrStatus}</td>
 
                         <td style = "display: table-cell !important; max-width: 0px; font-family: 'Montserrat'; font-weight: 400; font-size: 12px; text-align: center; vertical-align: middle;">
-                            <div class = "button-container" ${approveDisabled ? `data-tippy-content = "${tooltipText}"` : ""}>
-                                <a onclick = "shownDropdown(event)"><img height = "15px" src = "{% static 'assets/icons/options.png' %}" class = "drop"></a>
-                                
-                                ${!approveDisabled ? `
-                                    <div class = "dropdown">
-                                        <div class = "dropdown-content">
-                                            <a class = "dropdown-header ${approveDisabled ? 'disabled' : ''}" onclick = "changeStatus(${item.id}, 'Valid')">Approve</a>
-                                            
-                                            <div class = "dropdown-divider"></div>
-
-                                            <a class = "dropdown-footer ${disapproveDisabled ? 'disabled' : ''}" onclick = "invalidStatus(${item.id})">Disapprove</a>
-                                        </div>
-                                    </div>
-                                ` : ''}
-                            </div>
+                            <a href = "#" onclick = "showItemDetails(${item.id})">
+                                <i class = "fa fa-search" style = "font-size: 12px; color: rgb(28, 169, 234); aria-hidden="true"></i>
+                            </a>
                         </td>
                     </tr>`;
+
                 tableBody.innerHTML += row;
             });
 
@@ -409,7 +539,7 @@
             if (direction === "prev" && currentPage > 1){
                 currentPage--;
 
-            } else if (direction === 'next' && (currentPage * rowsPerPage) < filteredData.length){
+            } else if (direction === "next" && (currentPage * rowsPerPage) < filteredData.length){
                 currentPage++;
             };
 
@@ -417,6 +547,142 @@
             
             updatePagination();
         };
+
+        function formatDate(dateString){
+            const options = { year: "numeric", month: "2-digit", day: "2-digit"};
+            
+            const date = new Date(dateString);
+            
+            const formattedDate = new Intl.DateTimeFormat("en-US", options).format(date);
+            
+            return formattedDate;
+        }
+
+        async function showItemDetails(itemId){
+            try{
+                const response = await fetch(`/post-detail/${itemId}/`);
+
+                const data = await response.json();
+                
+                const postPhotos = data.post_photos || [];
+
+                const post = data;
+
+                const carouselItems = postPhotos.map(photo => `
+                    <div class = "carousel-item ${photo === postPhotos[0] ? 'active' : ''}">
+                        <img src="${photo.url}" style = "object-fit: cover; height: 250px; border-radius: 5px;" class = "d-block w-100 carousel-image" alt = "...">
+                        
+                        ${post.post_status === "Pending" ? "" : `
+                            <a href="#" class = "delete-photo" data-photo-id = "${photo.id}" onclick = "deletePhoto(${photo.id})" style = "position: absolute; top: 10px; right: 15px; z-index: 1000;">
+                                <i class = "fa fa-trash" style = "padding: 5px; border-radius: 5px; font-size: 16px; background-color: white; color: black;"></i>
+                            </a>
+                        `}
+                    </div>
+                `).join("");
+                
+                const approveDisabled = post.post_status !== "Pending";
+
+                const disapproveDisabled = post.post_status !== "Pending";
+
+                const content = `   
+                    <div class = "col-md-12">
+                        <div id = "postCarousel" class = "carousel slide" data-bs-ride="carousel" style = "padding-top: 15px; padding-bottom: 15px; border-radius: 5px;">
+                            <div class = "carousel-inner">
+                                ${carouselItems}
+                            </div>
+
+                            <button class = "carousel-control-prev" type = "button" data-bs-target = "#postCarousel" data-bs-slide = "prev">
+                                <span class = "carousel-control-prev-icon" aria-hidden="true"></span>
+                               
+                                <span class = "visually-hidden">Previous</span>
+                            </button>
+
+                            <button class = "carousel-control-next" type = "button" data-bs-target = "#postCarousel" data-bs-slide = "next">
+                                <span class = "carousel-control-next-icon" aria-hidden="true"></span>
+                                
+                                <span class = "visually-hidden">Next</span>
+                            </button>
+                        </div>
+
+                        <div class = "card" style = "padding: 12px;">
+                            <div class = "card-body" style = "padding: 0px !important;">
+                                <div class = "row">
+                                    <h5 style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 20px !important; color: rgb(52, 144, 242);">Description</h5>
+                                    
+                                    <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">${post.description}</p>
+                                    
+                                    <hr style = "margin-left: auto; margin-right: auto; width: 95%;">
+                                    
+                                    <div class = "col-md-6">
+                                        <h5 style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 20px !important; color: rgb(52, 144, 242);">Report Details</h5>
+                                        
+                                        <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Submission Date: </strong>
+                                        
+                                        <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">${formatDate(post.creation_date)}</p>
+                                        
+                                        <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Capture Date: </strong>
+                                        
+                                        <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">${formatDate(post.capture_date)}</p>
+                                    </div>
+
+                                    <div class = "col-md-6">
+                                        <h5 style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 20px !important; color: rgb(52, 144, 242);">Location Details</h5>
+                                       
+                                        <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Municipality: </strong>
+                                       
+                                        <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">${post.municipality}</p>
+                                       
+                                        <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Barangay: </strong>
+                                       
+                                        <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">${post.barangay}</p>
+                                        
+                                        <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Coordinates: </strong>
+                                        
+                                        <p style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">${post.coordinates}</p>
+                                    </div>
+
+                                    <div style = "display: flex; justify-content: flex-end; align-items: center; gap: 15px; margin-top: 15px;">
+                                        <button style = "border-radius: 5px !important; outline: none !important; font-family: 'Montserrat' !important; font-weight: 400 !important; font-size: 16px !important; color: #FFFFFF !important; background-color: rgb(30, 173, 95) !important; pointer-events: auto !important; cursor: pointer;" class = "btn btn-success w-auto ${approveDisabled ? 'disabled' : ''}" onclick = "changeStatus(${post.id}, 'Valid')">Approve</a>
+                                            
+
+                                        <button style = "border-radius: 5px !important; outline: none !important; font-family: 'Montserrat' !important; font-weight: 400 !important; font-size: 16px !important; color: #FFFFFF !important; pointer-events: auto !important; cursor: pointer;" class = "btn btn-danger w-auto ${disapproveDisabled ? 'disabled' : ''}" onclick = "invalidStatus(${post.id})">Disapprove</a>
+                                    </div>
+                                </div>                               
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                Swal.fire({
+                    title: "Sighting Details",
+
+                    html: `<div class = "sightings-text">${content}</div>`,
+
+                    width: 800,
+
+                    showCloseButton: true,
+
+                    showCancelButton: false,
+
+                    focusConfirm: false,
+
+                    confirmButtonText: "Ok",
+
+                    customClass: {title: "title", html: "sightings-text"}
+                });
+
+            } catch(error){
+                console.error("An error occurred during post details fethcing: ", error);
+                
+                Swal.fire({
+                    title: "Error!",
+                    
+                    text: "The post details have failed to load.",
+                    
+                    icon: "error"
+                });
+            }
+        }
 
         function updatePagination(){
             const pagination = document.getElementById("pagination");
@@ -435,7 +701,7 @@
             for (let i = 1; i <= totalPages; i++){
                 const pageItem = document.createElement("li");
 
-                pageItem.className = "page-item" + (i === currentPage ? " active" : "");
+                pageItem.className = "page-item" + (i === currentPage ? "active" : "");
 
                 pageItem.innerHTML = `<a class = "page-link" href = "#" onclick = "goToPage(${i})">${i}</a>`;
 
@@ -470,7 +736,7 @@
                 return new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
 
             } catch (error){
-                console.error("Failed to parse date:", error);
+                console.error("The parse date has failed to load: ", error);
 
                 return null;
             };
@@ -486,7 +752,7 @@
             
             const dateTo = document.getElementById("dateTo").value;
             
-            const status = document.querySelector("input[name='status']:checked")?.value;
+            const status = document.querySelector("input[name = 'status']:checked")?.value;
             
             const dateFromObj = dateFrom ? new Date(dateFrom) : null;
             
@@ -723,4 +989,36 @@
             updatePagination();
         });
     </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function (){
+            const filterCollapse = document.getElementById("filterCollapse");
+
+            const mainContent = document.getElementById("mainContent");
+
+            const filterToggle = document.getElementById("filterToggle");
+        
+            function adjustMainContentWidth() {
+                if (filterCollapse.classList.contains("show")){
+                    mainContent.classList.remove("w-100");
+
+                } else {
+                    console.log(mainContent.classList)
+
+                    mainContent.classList.add("w-100");
+                }
+            }
+        
+            adjustMainContentWidth();
+        
+            // Add event listener to toggle button
+            filterToggle.addEventListener('click', adjustMainContentWidth);
+        
+            // Handle collapse events directly if needed
+            filterCollapse.addEventListener('shown.bs.collapse', adjustMainContentWidth);
+            filterCollapse.addEventListener('hidden.bs.collapse', adjustMainContentWidth);
+        });
+    </script>
+        
+     {% endblock sighting_content %}
 {% endblock %}

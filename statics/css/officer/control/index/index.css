@@ -38,7 +38,7 @@ body{
 }
 
 .nav-link:hover{
-    color: #55ebff !important;
+    color: #55EBFF !important;
     text-decoration: none;
 }
 
@@ -56,6 +56,23 @@ body{
 
 .container-fluid{
     max-width: 100%;
+}
+
+
+.breadcrub-item{
+    display: none;
+}
+
+.breadcrumb-item::before{
+    display: none !important;
+}
+
+.status_active{
+    display: block;
+}
+
+.status_active::before{
+    display: block !important;
 }
 
 @media (max-width: 768px){

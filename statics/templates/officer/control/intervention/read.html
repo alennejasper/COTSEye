@@ -1,7 +1,9 @@
-{% extends "officer/control/index/index.html" %}
+{% extends "officer/control/intervention/intervention.html" %}
 {% load custom_filters %}
-
-{% block content %}
+<header>
+    {% block action %} Read {% endblock action %}
+</header>
+{% block intervention_content %}
     <style>
         p.status-None{
             color:#003755 !important;
@@ -102,7 +104,7 @@
                         </div>
 
                         <div class = "text-end">
-                            <a style = "padding-left: 10px !important; padding-right: 10px !important; padding-top: 5px !important; padding-bottom: 5px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px; background-color: rgb(52, 144, 242);" href = "{% url 'Officer Control Intervention Update' intervention.id %}" class = "btn btn-primary">Update</a>
+                            <a style = "padding-left: 10px !important; padding-right: 10px !important; padding-top: 5px !important; padding-bottom: 5px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px; background-color: rgb(52, 144, 242);" href = "{% url 'Officer Control Intervention Update' intervention.id %}" class = "btn btn-primary">Edit</a>
                         </div>
                     </div>
                 </div>

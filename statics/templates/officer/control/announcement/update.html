@@ -1,7 +1,10 @@
-{% extends "officer/control/index/index.html" %}
+{% extends "officer/control/announcement/announcement.html" %}
 {% load static %}
+<header>
+    {% block action %} Edit {% endblock action %}
+</header>
 
-{% block content %}
+{% block announcement_content %}
     <style>
         #announcementTitle{
             margin-bottom: 0px !important; 
@@ -69,7 +72,7 @@
     </style>
 
     <div class = "container" style = "padding: 0px !important;">
-        <h1 style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 24px; color: rgb(52, 144, 242); text-align: center; text-transform: uppercase;" class = "required">Update Announcement</h1>
+        <h1 style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 24px; color: rgb(52, 144, 242); text-align: center; text-transform: uppercase;" class = "required">Edit Announcement</h1>
 
         <div class = "card">
             <div class = "card-body">
@@ -153,7 +156,7 @@
                                 <img id = "photoPreview" src = "{{announcement.get_photo_url}}" style = "display: block; margin-bottom: 15px; width: 100%; height: auto; border-radius: 5px;">
                             </div>
 
-                            <button type = "submit" style = "padding-left: 10px !important; padding-right: 10px !important; padding-top: 5px !important; padding-bottom: 5px !important; width: 100%; font-family: 'Montserrat'; font-weight: 400; font-size: 16px; background-color: rgb(52, 144, 242);" class = "btn btn-primary">Update</button>
+                            <button type = "submit" style = "padding-left: 10px !important; padding-right: 10px !important; padding-top: 5px !important; padding-bottom: 5px !important; width: 100%; font-family: 'Montserrat'; font-weight: 400; font-size: 16px; background-color: rgb(52, 144, 242);" class = "btn btn-primary">Edit</button>
                         </div>
                     </div>
                 </form>

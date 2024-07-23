@@ -109,405 +109,493 @@
             font-weight: 400;
             font-size: 12px !important;
         }
+
+        .breadcrumb{
+            padding: 1rem;
+            border-radius: 0.25rem;
+            background-color: #FAFAFA;
+        }
+
+        .breadcrub-item{
+            display: none;
+            color: #6C757D;
+        }
+
+        .breadcrumb-item::before{
+            display: none !important;
+        }
+
+        .status_active{
+            display: block;
+            font-family: "Montserrat"; 
+            font-weight: 700; 
+            font-size: 16px;            
+            color: rgb(28, 186, 234);
+        }
+
+        .status_active::before{
+            display: block !important;
+        }
     </style>
 
-    <div class = "container-fluid mt-3">
-        <div class = "row">
-            <div class = "col-12 col-md-3">
-                <div class = "filtercont">
-                    <div class = "card-body">
-                        <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 20px !important; color: rgb(52, 144, 242);" class = "fs-3 mb-3">FILTER</p>
-                        
-                        <p style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: rgb(28, 186, 234);">Title</p>
+    <nav aria-label = "breadcrumb">
+        <ol class = "breadcrumb">
+            <li style = "font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: rgb(52, 144, 242);" class = "breadcrumb-item {% if int_number >= 1 %}status_active{% endif %}">
+                {% if int_number >= 1 %}
+                    Activities
+                {% endif %}
+            </li>
 
-                        <div>                            
-                            <input style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;" type = "text" id = "searchBar" class = "form-control" placeholder = "Search by title...">
-                        </div>
+            <li style = "font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: rgb(52, 144, 242);" class = "breadcrumb-item {% if int_number >= 2 %}status_active{% endif %}">
+                {% if int_number >= 2 %}
+                    {% block action %}Action{% endblock action %}
+                {% endif %}
+            </li>
+        </ol>
+    </nav>
 
-                        <p style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: rgb(28, 186, 234);">Location</p>
+    {% if int_number > 1 %}
+        <button style = "margin-bottom: 15px; padding-left: 10px !important; padding-right: 10px !important; padding-top: 5px !important; padding-bottom: 5px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: #FFFFFF;" class = "btn btn-secondary mb-3 back-button" onclick = "window.history.back()">
+            <i class = "fas fa-arrow-left"></i> 
+            
+            Back
+        </button>
+    {% endif %}
 
-                        <div>
-                            <label for = "municipalityFilter" class = "form-label" style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">Municipality:</label>
+    {% block intervention_content %}
+        <div class = "container-fluid mt-3">
+            <button style = "margin-bottom: 15px; padding-left: 10px !important; padding-right: 10px !important; padding-top: 5px !important; padding-bottom: 5px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: #FFFFFF;" class = "btn btn-secondary collapse-button" type = "button" id = "filterToggle" data-bs-toggle = "collapse" data-bs-target = "#filterCollapse" aria-expanded = "false" aria-controls = "filterCollapse">
+                <i class = "fas fa-chevron-down"></i>
 
-                            <select id = "municipalityFilter" class = "form-select form-select-sm mb-3 select2" onchange = "updateBarangayOptions()">
-                                <option value = "" disabled = "disabled" selected = "selected" style = "display: none;">Municipality</option>
-    
-                                {% for municipality in municipalities %}
-                                    <option value = "{{municipality.municipality_name}}" {% if request.GET.municipality == municipality.municipality_name %} selected {% endif %}>{{municipality.municipality_name}}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
+                Filter
+            </button>
 
-                        <div>
-                            <label id = "barangayLabel" for = "barangayFilter" class = "form-label" style = "display: none; margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">Barangay:</label>
-
-                            <select id = "barangayFilter" class = "form-select form-select-sm mb-3 select2">
-                                <option value = "" disabled = "disabled" selected = "selected" style = "display: none;">Barangay</option>
-                            </select>
-                        </div>
-
-                        <p style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: rgb(28, 186, 234);">Date</p>
-
-                        <div>
-                            <label for = "dateFrom" class = "form-label" style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">From:</label>
-
-                            <input style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;" type = "date" id=  "dateFrom" name = "dateFrom" class = "form-control form-control-sm">
-                        </div>
-
-                        <div>
-                            <label for = "dateTo" class = "form-label" style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">To:</label>
+            <div class = "row"> 
+                <div class = "col-12 col-md-3 mt-3 collapse" id = "filterCollapse">
+                    <div class = "filtercont">
+                        <div class = "card-body">
+                            <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 20px !important; color: rgb(52, 144, 242);" class = "fs-3 mb-3">FILTER</p>
                             
-                            <input style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;" type = "date" id = "dateTo" name = "dateTo" class = "form-control form-control-sm">
+                            <p style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: rgb(28, 186, 234);">Title</p>
+
+                            <div>                            
+                                <input style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;" type = "text" id = "searchBar" class = "form-control" placeholder = "Search by title...">
+                            </div>
+
+                            <p style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: rgb(28, 186, 234);">Location</p>
+
+                            <div>
+                                <label for = "municipalityFilter" class = "form-label" style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">Municipality:</label>
+
+                                <select id = "municipalityFilter" class = "form-select form-select-sm mb-3 select2" onchange = "updateBarangayOptions()">
+                                    <option value = "" disabled = "disabled" selected = "selected" style = "display: none;">Municipality</option>
+        
+                                    {% for municipality in municipalities %}
+                                        <option value = "{{municipality.municipality_name}}" {% if request.GET.municipality == municipality.municipality_name %} selected {% endif %}>{{municipality.municipality_name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div>
+                                <label id = "barangayLabel" for = "barangayFilter" class = "form-label" style = "display: none; margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">Barangay:</label>
+
+                                <select id = "barangayFilter" class = "form-select form-select-sm mb-3 select2">
+                                    <option value = "" disabled = "disabled" selected = "selected" style = "display: none;">Barangay</option>
+                                </select>
+                            </div>
+
+                            <p style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: rgb(28, 186, 234);">Date</p>
+
+                            <div>
+                                <label for = "dateFrom" class = "form-label" style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">From:</label>
+
+                                <input style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;" type = "date" id =   "dateFrom" name = "dateFrom" class = "form-control form-control-sm">
+                            </div>
+
+                            <div>
+                                <label for = "dateTo" class = "form-label" style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">To:</label>
+                                
+                                <input style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;" type = "date" id = "dateTo" name = "dateTo" class = "form-control form-control-sm">
+                            </div>
+
+                            <p style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: rgb(28, 186, 234);">Order by</p>
+
+                            <div>                            
+                                <select id = "orderBy" class = "form-select form-select-sm select2">
+                                    <option value = "latest">Latest</option>
+
+                                    <option value = "oldest">Oldest</option>
+                                </select>
+                            </div>
+
+                            <button style = "margin-top: 0px !important;" type = "button" class = "filterbutton" onclick = "filterInterventions()">Apply Filter</button>
+
+                            <button type = "button" class = "resetbutton" onclick = "resetFilter()">Reset Filter</button>
                         </div>
+                    </div>
+                </div>
 
-                        <p style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: rgb(28, 186, 234);">Order by</p>
+                <div class = "col-12 col-lg-9 mx-auto w-100" id = "mainContent">
+                    <div class = "table-container container-fluid mb-3 w-100" style = "padding: 0px !important;">
+                        <button style = "float: right; margin-top: 7px; padding-left: 10px !important; padding-right: 10px !important; padding-top: 5px !important; padding-bottom: 5px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px; background-color: rgb(30, 173, 95);" onclick = "window.location.href = '{% url 'Officer Control Intervention Add' %}'" class = "btn btn-primary">ADD NEW</button>
 
-                        <div>                            
-                            <select id = "orderBy" class = "form-select form-select-sm select2">
-                                <option value = "latest">Latest</option>
+                        <h2 style = "border-bottom: 1px solid rgba(229, 229, 229); font-family: 'Montserrat'; font-weight: 700; font-size: 20px; color: rgb(52, 144, 242);">ALL ACTIVITIES</h2>
+                        
+                        <table class = "table table-hover" style = "display: table; margin-bottom: 15px !important; width: 100%;">
+                            <thead class = "thead-dark">
+                                <tr>
+                                    <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">Activity Date</th>
+                                    
+                                    <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">Title</th>
+                                    
+                                    <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">Municipality</th>
+                                    
+                                    <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">Barangay</th>
+                                    
+                                    <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">COTS Collected</th>
+                                    
+                                    <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234); text-align: center;" scope = "col">Action</th>
+                                </tr>
+                            </thead>
 
-                                <option value = "oldest">Oldest</option>
-                            </select>
-                        </div>
+                            <tbody class = "table-group-divider" id = "interventionsTable">
+                            </tbody>
+                        </table>
 
-                        <button style = "margin-top: 0px !important;" type = "button" class = "filterbutton" onclick = "filterInterventions()">Apply Filter</button>
+                        <nav aria-label = "Page navigation example">
+                            <ul class = "pagination justify-content-center" id = "pagination">
+                                <li class = "page-item" id = "previousPage">
+                                    <a class = "page-link" href = "#" onclick = "changePage('prev')">Previous</a>
+                                </li>
 
-                        <button type = "button" class = "resetbutton" onclick = "resetFilter()">Reset Filter</button>
+                                <li class = "page-item" id = "nextPage">
+                                    <a class = "page-link" href = "#" onclick = "changePage('next')">Next</a>
+                                </li>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>
-
-            <div class = "col-12 col-md-9">
-                <div class = "table-container mb-3">
-                    <button style = "float: right; margin-top: 7px; padding-left: 10px !important; padding-right: 10px !important; padding-top: 5px !important; padding-bottom: 5px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px; background-color: rgb(30, 173, 95);" onclick = "window.location.href = '{% url 'Officer Control Intervention Add' %}'" class = "btn btn-primary">ADD NEW</button>
-
-                    <h2 style = "border-bottom: 1px solid rgba(229, 229, 229); font-family: 'Montserrat'; font-weight: 700; font-size: 20px; color: rgb(52, 144, 242);">ALL ACTIVITIES</h2>
-                    
-                    <table class = "table table-hover" style = "display: table; margin-bottom: 15px !important; width: 100%;">
-                        <thead class = "thead-dark">
-                            <tr>
-                                <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">Activity Date</th>
-                                
-                                <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">Title</th>
-                                
-                                <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">Municipality</th>
-                                
-                                <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">Barangay</th>
-                                
-                                <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">COTS Collected</th>
-                                
-                                <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234); text-align: center;" scope = "col">Action</th>
-                            </tr>
-                        </thead>
-
-                        <tbody class = "table-group-divider" id = "interventionsTable">
-                        </tbody>
-                    </table>
-
-                    <nav aria-label = "Page navigation example">
-                        <ul class = "pagination justify-content-center" id = "pagination">
-                            <li class = "page-item" id = "previousPage">
-                                <a class = "page-link" href = "#" onclick = "changePage('prev')">Previous</a>
-                            </li>
-
-                            <li class = "page-item" id = "nextPage">
-                                <a class = "page-link" href = "#" onclick = "changePage('next')">Next</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
         </div>
-    </div>
 
-    <script>
-        $(document).ready(function(){
-            $(".select2").select2();
-        });
+        <script>
+            $(document).ready(function(){
+                $(".select2").select2();
+            });
 
-        document.addEventListener("DOMContentLoaded", function(){
-            const interventions = JSON.parse("{{interventions_json | escapejs}}");
+            document.addEventListener("DOMContentLoaded", function(){
+                const interventions = JSON.parse("{{interventions_json | escapejs}}");
 
-            let filteredInterventions = interventions;
-            
-            let currentPage = 1;
-            
-            const itemsPerPage = 10;
-
-            function displayInterventions(page){
-                const startIndex = (page - 1) * itemsPerPage;
+                let filteredInterventions = interventions;
                 
-                const endIndex = startIndex + itemsPerPage;
+                let currentPage = 1;
                 
-                const paginatedInterventions = filteredInterventions.slice(startIndex, endIndex);
-                
-                let table = document.getElementById("interventionsTable");
-                
-                table.innerHTML = "";
+                const itemsPerPage = 10;
 
-                paginatedInterventions.forEach(intervention => {
-                    let row = table.insertRow();
-
-                    let dateCell = row.insertCell(0);
+                function displayInterventions(page){
+                    const startIndex = (page - 1) * itemsPerPage;
                     
-                    const date = new Date(intervention.event_date);
-
-                    const formattedDate = ("0" + (date.getMonth() + 1)).slice(-2) + "/" + ("0" + date.getDate()).slice(-2) + "/" + date.getFullYear().toString().slice(-4);
-
-                    dateCell.innerText = formattedDate;
-
-                    // dateCell.className = "center-text";
+                    const endIndex = startIndex + itemsPerPage;
                     
-                    dateCell.addEventListener("click", function() {
-                        window.location.href = "{% url 'Officer Control Intervention Read' 0 %}".replace("0", intervention.id);
+                    const paginatedInterventions = filteredInterventions.slice(startIndex, endIndex);
+                    
+                    let table = document.getElementById("interventionsTable");
+                    
+                    table.innerHTML = "";
+
+                    paginatedInterventions.forEach(intervention => {
+                        let row = table.insertRow();
+
+                        let dateCell = row.insertCell(0);
+                        
+                        const date = new Date(intervention.event_date);
+
+                        const formattedDate = ("0" + (date.getMonth() + 1)).slice(-2) + "/" + ("0" + date.getDate()).slice(-2) + "/" + date.getFullYear().toString().slice(-4);
+
+                        dateCell.innerText = formattedDate;
+
+                        // dateCell.className = "center-text";
+                        
+                        dateCell.addEventListener("click", function() {
+                            window.location.href = "{% url 'Officer Control Intervention Read' 0 %}".replace("0", intervention.id);
+                        });
+
+                        let titleCell = row.insertCell(1);
+
+                        titleCell.innerText = intervention.title;
+                        
+                        // titleCell.className = "center-text";
+                        
+                        titleCell.addEventListener("click", function(){
+                            window.location.href = "{% url 'Officer Control Intervention Read' 0 %}".replace("0", intervention.id);
+                        });
+
+                        let municipalityCell = row.insertCell(2);
+
+                        municipalityCell.innerText = intervention.municipality;
+                        
+                        // municipalityCell.className = "center-text";
+                        
+                        municipalityCell.addEventListener("click", function(){
+                            window.location.href = "{% url 'Officer Control Intervention Read' 0 %}".replace("0", intervention.id);
+                        });
+
+                        let barangayCell = row.insertCell(3);
+
+                        barangayCell.innerText = intervention.barangay;
+                        
+                        // barangayCell.className = "center-text";
+                        
+                        barangayCell.addEventListener("click", function(){
+                            window.location.href = "{% url 'Officer Control Intervention Read' 0 %}".replace("0", intervention.id);
+                        });
+
+                        let caughtCell = row.insertCell(4);
+
+                        caughtCell.innerText = intervention.caught_amount;
+                        
+                        // caughtCell.className = "center-text";
+                        
+                        caughtCell.addEventListener("click", function(){
+                            window.location.href = "{% url 'Officer Control Intervention Read' 0 %}".replace("0", intervention.id);
+                        });
+
+                        let actionsCell = row.insertCell(5);
+
+                        actionsCell.className = "center-text";
+
+                        actionsCell.innerHTML = 
+                            `<div class = "button-container">
+                                <a style = "padding-left: 10px !important; padding-right: 10px !important; padding-top: 5px !important; padding-bottom: 5px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px; background-color: rgb(52, 144, 242);" class = "btn btn-primary btn-sm" onclick = "updateIntervention(${intervention.id})">Edit</a>
+                            </div>`;
                     });
 
-                    let titleCell = row.insertCell(1);
+                    const pagination = document.getElementById("pagination");
 
-                    titleCell.innerText = intervention.title;
+                    const totalPages = Math.ceil(filteredInterventions.length / itemsPerPage);
                     
-                    // titleCell.className = "center-text";
-                    
-                    titleCell.addEventListener("click", function(){
-                        window.location.href = "{% url 'Officer Control Intervention Read' 0 %}".replace("0", intervention.id);
-                    });
+                    pagination.innerHTML = 
+                        `<li class = "page-item ${currentPage === 1 ? 'disabled' : ''}">
+                            <a class = "page-link" href = "#" onclick = "changePage('prev')">Previous</a>
+                        </li>`;
 
-                    let municipalityCell = row.insertCell(2);
+                    for (let i = 1; i <= totalPages; i++){
+                        pagination.innerHTML += 
+                            `<li class = "page-item ${i === currentPage ? 'active' : ''}">
+                                <a class = "page-link" href = "#" onclick = "changePage(${i})">${i}</a>
+                            </li>`;
+                    };
 
-                    municipalityCell.innerText = intervention.municipality;
-                    
-                    // municipalityCell.className = "center-text";
-                    
-                    municipalityCell.addEventListener("click", function(){
-                        window.location.href = "{% url 'Officer Control Intervention Read' 0 %}".replace("0", intervention.id);
-                    });
-
-                    let barangayCell = row.insertCell(3);
-
-                    barangayCell.innerText = intervention.barangay;
-                    
-                    // barangayCell.className = "center-text";
-                    
-                    barangayCell.addEventListener("click", function(){
-                        window.location.href = "{% url 'Officer Control Intervention Read' 0 %}".replace("0", intervention.id);
-                    });
-
-                    let caughtCell = row.insertCell(4);
-
-                    caughtCell.innerText = intervention.caught_amount;
-                    
-                    // caughtCell.className = "center-text";
-                    
-                    caughtCell.addEventListener("click", function(){
-                        window.location.href = "{% url 'Officer Control Intervention Read' 0 %}".replace("0", intervention.id);
-                    });
-
-                    let actionsCell = row.insertCell(5);
-
-                    actionsCell.className = "center-text";
-
-                    actionsCell.innerHTML = 
-                        `<div class = "button-container">
-                            <a style = "padding-left: 10px !important; padding-right: 10px !important; padding-top: 5px !important; padding-bottom: 5px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px; background-color: rgb(52, 144, 242);" class = "btn btn-primary btn-sm" onclick = "updateIntervention(${intervention.id})">Update</a>
-                        </div>`;
-                });
-
-                const pagination = document.getElementById("pagination");
-
-                const totalPages = Math.ceil(filteredInterventions.length / itemsPerPage);
-                
-                pagination.innerHTML = 
-                    `<li class = "page-item ${currentPage === 1 ? 'disabled' : ''}">
-                        <a class = "page-link" href = "#" onclick = "changePage('prev')">Previous</a>
-                    </li>`;
-
-                for (let i = 1; i <= totalPages; i++){
                     pagination.innerHTML += 
-                        `<li class = "page-item ${i === currentPage ? 'active' : ''}">
-                            <a class = "page-link" href = "#" onclick = "changePage(${i})">${i}</a>
+                        `<li class = "page-item ${currentPage === totalPages ? 'disabled' : ''}">
+                            <a class = "page-link" href = "#" onclick = "changePage('next')">Next</a>
                         </li>`;
                 };
 
-                pagination.innerHTML += 
-                    `<li class = "page-item ${currentPage === totalPages ? 'disabled' : ''}">
-                        <a class = "page-link" href = "#" onclick = "changePage('next')">Next</a>
-                    </li>`;
-            };
+                function getStatusClass(status){
+                    switch (status){
+                        case "None":
+                            return "status-none";
 
-            function getStatusClass(status){
-                switch (status){
-                    case "None":
-                        return "status-none";
+                        case "Low":
+                            return "status-low";
 
-                    case "Low":
-                        return "status-low";
+                        case "Moderate":
+                            return "status-med";
 
-                    case "Moderate":
-                        return "status-med";
+                        case "High":
+                            return "status-high";
 
-                    case "High":
-                        return "status-high";
-
-                    case "Critical":
-                        return "status-crit";
-                    
-                    default:
-                        return "status-default";
-                };
-            };
-
-            window.showDropdown = function(event){
-                event.stopPropagation();
-
-                const dropdown = event.currentTarget.nextElementSibling;
-                
-                dropdown.classList.toggle("show");
-            };
-
-            document.addEventListener("click", function(event){
-                const dropdowns = document.querySelectorAll(".dropdown.show");
-
-                dropdowns.forEach(dropdown => dropdown.classList.remove("show"));
-            });
-
-   
-            window.updateIntervention = function(id){
-                window.location.href = "{% url 'Officer Control Intervention Update' id=0 %}".replace("0", id);
-            };
-
-            window.deleteIntervention = function(id){
-                Swal.fire({title: "Alert!", text: "Officer, are you sure that you want to delete the activity", icon: "warning", showCancelButton: true, confirmButtonColor: "#3085D6", cancelButtonColor: "#D33", confirmButtonText: "Yes"}).then((result) => {
-                    if (result.isConfirmed){
-                        fetch("{% url 'Officer Control Intervention Delete' id=0 %}".replace("0", id), {
-                            method: "DELETE",
-                            headers: {
-                                "X-CSRFToken": "{{csrf_token}}",
-
-                                "Content-Type": "application/json",
-                            },
-
-                        }).then(response => response.json()).then(data => {
-                            if (data.success){
-                                Swal.fire("Success!", "The activity has been successfully deleted.", "success").then(() => {
-                                    location.reload(); 
-                                });
-
-                            } else{
-                                Swal.fire("Error!", "The activity could not be deleted. Kindly try again later.", "error");
-                            };
-
-                        }).catch(error => {
-                            console.error("Error:", error);
-                            
-                            Swal.fire("Error!", "The activity could not be deleted. Kindly try again later.", "error");
-                        });
+                        case "Critical":
+                            return "status-crit";
+                        
+                        default:
+                            return "status-default";
                     };
+                };
+
+                window.showDropdown = function(event){
+                    event.stopPropagation();
+
+                    const dropdown = event.currentTarget.nextElementSibling;
+                    
+                    dropdown.classList.toggle("show");
+                };
+
+                document.addEventListener("click", function(event){
+                    const dropdowns = document.querySelectorAll(".dropdown.show");
+
+                    dropdowns.forEach(dropdown => dropdown.classList.remove("show"));
                 });
-            };
 
-            window.changePage = function(action){
-                const totalPages = Math.ceil(filteredInterventions.length / itemsPerPage);
-                
-                if (action === "prev" && currentPage > 1){
-                    currentPage--;
+    
+                window.updateIntervention = function(id){
+                    window.location.href = "{% url 'Officer Control Intervention Update' id=0 %}".replace("0", id);
+                };
 
-                } else if (action === "next" && currentPage < totalPages){
-                    currentPage++;
+                window.deleteIntervention = function(id){
+                    Swal.fire({title: "Alert!", text: "Officer, are you sure that you want to delete the activity", icon: "warning", showCancelButton: true, confirmButtonColor: "#3085D6", cancelButtonColor: "#D33", confirmButtonText: "Yes"}).then((result) => {
+                        if (result.isConfirmed){
+                            fetch("{% url 'Officer Control Intervention Delete' id=0 %}".replace("0", id), {
+                                method: "DELETE",
+                                headers: {
+                                    "X-CSRFToken": "{{csrf_token}}",
 
-                } else if (typeof action === "number"){
-                    currentPage = action;
+                                    "Content-Type": "application/json",
+                                },
+
+                            }).then(response => response.json()).then(data => {
+                                if (data.success){
+                                    Swal.fire("Success!", "The activity has been successfully deleted.", "success").then(() => {
+                                        location.reload(); 
+                                    });
+
+                                } else{
+                                    Swal.fire("Error!", "The activity could not be deleted. Kindly try again later.", "error");
+                                };
+
+                            }).catch(error => {
+                                console.error("Error:", error);
+                                
+                                Swal.fire("Error!", "The activity could not be deleted. Kindly try again later.", "error");
+                            });
+                        };
+                    });
+                };
+
+                window.changePage = function(action){
+                    const totalPages = Math.ceil(filteredInterventions.length / itemsPerPage);
+                    
+                    if (action === "prev" && currentPage > 1){
+                        currentPage--;
+
+                    } else if (action === "next" && currentPage < totalPages){
+                        currentPage++;
+
+                    } else if (typeof action === "number"){
+                        currentPage = action;
+                    };
+
+                    displayInterventions(currentPage);
                 };
 
                 displayInterventions(currentPage);
-            };
 
-            displayInterventions(currentPage);
+                window.filterInterventions = function(){
+                    const searchQuery = document.getElementById("searchBar").value.toLowerCase();
 
-            window.filterInterventions = function(){
-                const searchQuery = document.getElementById("searchBar").value.toLowerCase();
+                    const municipalityFilterValue = document.getElementById("municipalityFilter").value;
 
-                const municipalityFilterValue = document.getElementById("municipalityFilter").value;
+                    console.log(municipalityFilterValue)
+                    const barangayFilterValue = document.getElementById("barangayFilter").value;
 
-                console.log(municipalityFilterValue)
-                const barangayFilterValue = document.getElementById("barangayFilter").value;
+                    const dateFrom = document.getElementById("dateFrom").value;
 
-                const dateFrom = document.getElementById("dateFrom").value;
+                    const dateTo = document.getElementById("dateTo").value;
 
-                const dateTo = document.getElementById("dateTo").value;
+                    const orderBy = document.getElementById("orderBy").value;
 
-                const orderBy = document.getElementById("orderBy").value;
+                    filteredInterventions = interventions.filter(intervention => {
+                        const matchesSearch = intervention.title.toLowerCase().includes(searchQuery);
+                        
+                        const matchesMunicipality = municipalityFilterValue ? intervention.municipality.includes(municipalityFilterValue) : true;
+                        
+                        const matchesBarangay = barangayFilterValue ? intervention.barangay.includes(barangayFilterValue) : true;
+                        
+                        const matchesDateFrom = dateFrom ? new Date(intervention.event_date) >= new Date(dateFrom) : true;
+                        
+                        const matchesDateTo = dateTo ? new Date(intervention.event_date) <= new Date(dateTo) : true;
 
-                filteredInterventions = interventions.filter(intervention => {
-                    const matchesSearch = intervention.title.toLowerCase().includes(searchQuery);
-                    
-                    const matchesMunicipality = municipalityFilterValue ? intervention.municipality.includes(municipalityFilterValue) : true;
-                    
-                    const matchesBarangay = barangayFilterValue ? intervention.barangay.includes(barangayFilterValue) : true;
-                    
-                    const matchesDateFrom = dateFrom ? new Date(intervention.event_date) >= new Date(dateFrom) : true;
-                    
-                    const matchesDateTo = dateTo ? new Date(intervention.event_date) <= new Date(dateTo) : true;
-
-                    return matchesSearch && matchesMunicipality && matchesBarangay && matchesDateFrom && matchesDateTo;
-                });
-
-                if (orderBy === "latest"){
-                    filteredInterventions.sort((a, b) => new Date(b.event_date) - new Date(a.event_date));
-
-                } else{
-                    filteredInterventions.sort((a, b) => new Date(a.event_date) - new Date(b.event_date));
-                }
-
-                currentPage = 1;
-
-                displayInterventions(currentPage);
-            };
-
-            window.resetFilter = function(){
-                window.location.reload();
-
-                document.getElementById("orderBy").value = "latest";
-
-                filteredInterventions = interventions;
-
-                displayInterventions(currentPage);
-            };
-
-            window.updateBarangayOptions = function(){
-                const municipalityFilter = document.getElementById("municipalityFilter").value;
-
-                const barangayLabel = document.getElementById("barangayLabel");
-                
-                const barangayFilter = document.getElementById("barangayFilter");
-
-                barangayFilter.innerHTML = "<option value = ''>Select Barangay</option>";
-
-                if (municipalityFilter){
-                    $.ajax({
-                        url: "{% url 'Officer Control Barangay Read' %}",
-
-                        data: {
-                            "municipality": municipalityFilter
-                        },
-
-                        success: function(data){
-                            data.forEach(function(barangay){
-                                const option = document.createElement("option");
-
-                                option.value = barangay;
-                                
-                                option.textContent = barangay;
-                                
-                                barangayFilter.appendChild(option);
-                            });
-                        }
+                        return matchesSearch && matchesMunicipality && matchesBarangay && matchesDateFrom && matchesDateTo;
                     });
 
-                    barangayLabel.style.display = "block";
+                    if (orderBy === "latest"){
+                        filteredInterventions.sort((a, b) => new Date(b.event_date) - new Date(a.event_date));
 
-                    barangayFilter.style.display = "block";
+                    } else{
+                        filteredInterventions.sort((a, b) => new Date(a.event_date) - new Date(b.event_date));
+                    }
+
+                    currentPage = 1;
+
+                    displayInterventions(currentPage);
                 };
-            };
-        });
-    </script>
+
+                window.resetFilter = function(){
+                    window.location.reload();
+
+                    document.getElementById("orderBy").value = "latest";
+
+                    filteredInterventions = interventions;
+
+                    displayInterventions(currentPage);
+                };
+
+                window.updateBarangayOptions = function(){
+                    const municipalityFilter = document.getElementById("municipalityFilter").value;
+
+                    const barangayLabel = document.getElementById("barangayLabel");
+                    
+                    const barangayFilter = document.getElementById("barangayFilter");
+
+                    barangayFilter.innerHTML = "<option value = ''>Select Barangay</option>";
+
+                    if (municipalityFilter){
+                        $.ajax({
+                            url: "{% url 'Officer Control Barangay Read' %}",
+
+                            data: {
+                                "municipality": municipalityFilter
+                            },
+
+                            success: function(data){
+                                data.forEach(function(barangay){
+                                    const option = document.createElement("option");
+
+                                    option.value = barangay;
+                                    
+                                    option.textContent = barangay;
+                                    
+                                    barangayFilter.appendChild(option);
+                                });
+                            }
+                        });
+
+                        barangayLabel.style.display = "block";
+
+                        barangayFilter.style.display = "block";
+                    };
+                };
+            });
+        </script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const filterCollapse = document.getElementById('filterCollapse');
+                const mainContent = document.getElementById('mainContent');
+                const filterToggle = document.getElementById('filterToggle');
+            
+                function adjustMainContentWidth() {
+                    if (filterCollapse.classList.contains('show')) {
+                        // Filter is open
+                        mainContent.classList.remove('w-100');
+                    } else {
+                        // Filter is collapsed
+                        console.log(mainContent.classList)
+                        mainContent.classList.add('w-100');
+                    }
+                }
+            
+                // Initial adjustment
+                adjustMainContentWidth();
+            
+                // Add event listener to toggle button
+                filterToggle.addEventListener('click', adjustMainContentWidth);
+            
+                // Handle collapse events directly if needed
+                filterCollapse.addEventListener('shown.bs.collapse', adjustMainContentWidth);
+                filterCollapse.addEventListener('hidden.bs.collapse', adjustMainContentWidth);
+            });
+        </script>
+{% endblock intervention_content %}
 {% endblock %}

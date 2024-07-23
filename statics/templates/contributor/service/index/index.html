@@ -37,6 +37,8 @@
 
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/intervention/intervention.css' %}">
 
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/leaderboard/leaderboard.css' %}">
+
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/intervention/read.css' %}">
 
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/post/post.css' %}">
@@ -79,7 +81,7 @@
 
         <link rel = "stylesheet" href = "https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@v0.74.0/dist/L.Control.Locate.min.css"/>
 
-        <script src = "https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@v0.74.0/dist/L.Control.Locate.min.js" charset="utf-8"></script>
+        <script src = "https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@v0.74.0/dist/L.Control.Locate.min.js" charset = "utf-8"></script>
 
         <title>COTSEye | Home</title>
     </head>
@@ -146,6 +148,18 @@
 
                                         <div class = "item-context">
                                             <p><strong>{{notification.object.hosting_agency}}</strong> held an activity.</p>
+                                            
+                                            <p>{{notification.creation_date | date:'m/d/Y'}}</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            {% elif notification.contenttype.model == "achievement" %}
+                                <a class = "dropdown-item" href = "{% url 'Contributor Service Profile' %}" class = "intervention-link">
+                                    <div class = "item-header">
+                                        <img src = "{{notification.object.badge_icon.url}}">
+
+                                        <div class = "item-context">
+                                            <p><strong>{{notification.object.badge_name}}</strong> has been achieved!.</p>
                                             
                                             <p>{{notification.creation_date | date:'m/d/Y'}}</p>
                                         </div>
@@ -285,6 +299,10 @@
             
             <a href = "{% url 'Contributor Service Intervention' %}">
                 <img src = "{% static 'assets/icons/intervention.png' %}">
+            </a>
+
+            <a href = "{% url 'Contributor Service Leaderboard' %}">
+                <img src = "{% static 'assets/icons/leaderboard.png' %}">
             </a>
         </nav>
     </body>

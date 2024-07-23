@@ -14,6 +14,7 @@ from authentications.views import ContributorCheck, OfficerCheck
 from django.utils import timezone
 import datetime
 import json
+from django.db.models import Count
 
 
 # Create your views here.
@@ -268,6 +269,10 @@ def ContributorServiceInterventionRead(request, id):
 @login_required(login_url = "Officer Control Login")
 @user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def OfficerControlAnnouncement(request):
+    tab_number = 5
+
+    ann_number = 1
+
     notification_life = timezone.now() - timedelta(days = 30) 
 
     user = User.objects.get(account = request.user)
@@ -280,7 +285,7 @@ def OfficerControlAnnouncement(request):
 
     locations = Location.objects.all()
 
-    context = {"unread_notifications": unread_notifications, "announcements": announcements, "municipalities": municipalities, "locations": locations}
+    context = {"ann_number": ann_number,"tab_number": tab_number,"unread_notifications": unread_notifications, "announcements": announcements, "municipalities": municipalities, "locations": locations}
 
     return render(request, "officer/control/announcement/announcement.html", context)
 
@@ -288,6 +293,11 @@ def OfficerControlAnnouncement(request):
 @login_required(login_url = "Officer Control Login")
 @user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def OfficerControlAnnouncementRead(request, id):
+
+    tab_number = 5
+
+    ann_number = 2
+
     notification_life = timezone.now() - timedelta(days = 30)
 
     user = User.objects.get(account = request.user)
@@ -302,7 +312,7 @@ def OfficerControlAnnouncementRead(request, id):
 
     municipalities = Location.objects.values("municipality").distinct()
 
-    context = {"unread_notifications": unread_notifications, "announcement": announcement, "municipalities": municipalities, "other_announcements": other_announcements, "announcements": announcements}
+    context = {"ann_number": ann_number,"tab_number": tab_number, "unread_notifications": unread_notifications, "announcement": announcement, "municipalities": municipalities, "other_announcements": other_announcements, "announcements": announcements}
 
     return render(request, "officer/control/announcement/read.html", context)
 
@@ -310,6 +320,10 @@ def OfficerControlAnnouncementRead(request, id):
 @login_required(login_url = "Officer Control Login")
 @user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def OfficerControlAnnouncementAdd(request):
+    tab_number = 5
+
+    ann_number = 2
+
     notification_life = timezone.now() - timedelta(days = 30)
 
     user = User.objects.get(account = request.user)
@@ -355,7 +369,7 @@ def OfficerControlAnnouncementAdd(request):
     else:
         form = AnnouncementForm()
 
-    context = {"unread_notifications": unread_notifications, "form": form, "municipalities": municipalities, "locations": locations, "errors": errors, "field_labels": field_labels, "location_error": location_error}
+    context = {"ann_number": ann_number,"tab_number": tab_number, "unread_notifications": unread_notifications, "form": form, "municipalities": municipalities, "locations": locations, "errors": errors, "field_labels": field_labels, "location_error": location_error}
 
     return render(request, "officer/control/announcement/add.html", context)
 
@@ -363,6 +377,11 @@ def OfficerControlAnnouncementAdd(request):
 @login_required(login_url = "Officer Control Login")
 @user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def OfficerControlAnnouncementUpdate(request, id):
+     
+    tab_number = 5
+
+    ann_number = 2
+
     notification_life = timezone.now() - timedelta(days = 30)
 
     user = User.objects.get(account = request.user)
@@ -410,7 +429,7 @@ def OfficerControlAnnouncementUpdate(request, id):
     else:
         form = AnnouncementForm(instance = announcement)
 
-    context = {"unread_notifications": unread_notifications, "form": form, "announcement": announcement, "municipalities": municipalities, "locations": locations, "errors": errors, "field_labels": field_labels, "location_error": location_error}
+    context = {"ann_number": ann_number,"tab_number": tab_number, "unread_notifications": unread_notifications, "form": form, "announcement": announcement, "municipalities": municipalities, "locations": locations, "errors": errors, "field_labels": field_labels, "location_error": location_error}
 
     return render(request, "officer/control/announcement/update.html", context)
 
@@ -440,6 +459,9 @@ def OfficerControlInterventionSerialize(interventions):
 @login_required(login_url = "Officer Control Login")
 @user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def OfficerControlIntervention(request):
+    tab_number =  4
+
+    int_number = 1
 
     notification_life = timezone.now() - timedelta(days = 30)
 
@@ -457,7 +479,7 @@ def OfficerControlIntervention(request):
 
     hosting_agencies = interventions.values("hosting_agency").distinct()
 
-    context = {"unread_notifications": unread_notifications, "interventions": interventions, "municipalities": municipalities, "interventions_json": interventions_json, "locations": locations, "hosting_agencies": hosting_agencies}
+    context = {"int_number":int_number, "tab_number": tab_number,  "unread_notifications": unread_notifications, "interventions": interventions, "municipalities": municipalities, "interventions_json": interventions_json, "locations": locations, "hosting_agencies": hosting_agencies}
     
     return render(request, "officer/control/intervention/intervention.html", context)
 
@@ -465,6 +487,10 @@ def OfficerControlIntervention(request):
 @login_required(login_url = "Officer Control Login")
 @user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def OfficerControlInterventionRead(request, id):
+    tab_number =  4
+
+    int_number = 2
+
     notification_life = timezone.now() - timedelta(days = 30)
 
     user = User.objects.get(account = request.user)
@@ -477,7 +503,7 @@ def OfficerControlInterventionRead(request, id):
 
     last_intervention = (Intervention.objects.filter(location = intervention.location).exclude(id = id).order_by("-event_date").first())
 
-    context = {"unread_notifications": unread_notifications, "intervention": intervention, "other_interventions": other_interventions, "last_intervention": last_intervention }
+    context = {"int_number":int_number, "tab_number": tab_number, "unread_notifications": unread_notifications, "intervention": intervention, "other_interventions": other_interventions, "last_intervention": last_intervention }
 
     return render(request, "officer/control/intervention/read.html", context)
 
@@ -485,6 +511,10 @@ def OfficerControlInterventionRead(request, id):
 @login_required(login_url = "Officer Control Login")
 @user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def OfficerControlInterventionAdd(request):
+    tab_number =  4
+
+    int_number = 2
+
     notification_life = timezone.now() - timedelta(days = 30)
 
     user = User.objects.get(account = request.user)
@@ -533,7 +563,7 @@ def OfficerControlInterventionAdd(request):
     else:
         form = InterventionForm()
 
-    context = {"unread_notifications": unread_notifications, "form": form, 'municipalities': municipalities, "locations": locations, "errors": errors, "field_labels": field_labels, "location_error": location_error}
+    context = {"int_number":int_number, "tab_number": tab_number, "unread_notifications": unread_notifications, "form": form, 'municipalities': municipalities, "locations": locations, "errors": errors, "field_labels": field_labels, "location_error": location_error}
 
     return render(request, "officer/control/intervention/add.html", context)
 
@@ -541,6 +571,10 @@ def OfficerControlInterventionAdd(request):
 @login_required(login_url = "Officer Control Login")
 @user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def OfficerControlInterventionUpdate(request, id):
+    tab_number =  4
+
+    int_number = 2
+
     notification_life = timezone.now() - timedelta(days = 30)
 
     user = User.objects.get(account = request.user)
@@ -551,7 +585,7 @@ def OfficerControlInterventionUpdate(request, id):
 
     locations = Location.objects.all().distinct("municipality")
 
-    municipalities = Municipality.objects.values('municipality_name').distinct()
+    municipalities = Municipality.objects.values("municipality_name").distinct()
 
     errors = None
 
@@ -588,7 +622,7 @@ def OfficerControlInterventionUpdate(request, id):
     else:
         form = InterventionForm(instance = intervention)
 
-    context = {"unread_notifications": unread_notifications, "form": form, "update": True, "intervention": intervention, "municipalities": municipalities, "locations": locations, "errors": errors, "field_labels": field_labels, "location_error": location_error}
+    context = {"int_number":int_number, "tab_number": tab_number, "unread_notifications": unread_notifications, "form": form, "update": True, "intervention": intervention, "municipalities": municipalities, "locations": locations, "errors": errors, "field_labels": field_labels, "location_error": location_error}
 
     return render(request, "officer/control/intervention/update.html", context)
 
@@ -612,25 +646,83 @@ def OfficerControlStatusSerialize(statuses):
     return json.dumps(statuses_list, cls = DjangoJSONEncoder)
 
 
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
+def get_geojson_data(status_counts):
+    features = []
+
+    locations = {loc.id: loc for loc in Location.objects.all()} 
+
+    status_types = {status.id: status.statustype for status in StatusType.objects.all()}
+
+    for status in status_counts:
+        location_id = status.get("location")
+
+        count = status.get("count", 0)
+
+        statustype_id = status.get("statustype")  
+
+        location = locations.get(location_id)
+
+        if not location:
+            continue
+
+        try:
+            coordinates = json.loads(location.perimeters) 
+
+            if not coordinates:
+                continue
+
+        except (json.JSONDecodeError, TypeError):
+            continue
+
+        statustype = status_types.get(statustype_id, "Unknown")
+
+        features.append({"type": "Feature", "geometry": {"type": "Polygon", "coordinates": coordinates}, "properties": {"statustype": statustype, "count": count}})
+
+    return {"type": "FeatureCollection", "features": features}
+
+
 def OfficerControlStatus(request):
+    tab_number = 3
+
+    location_number = 1
+
     notification_life = timezone.now() - timedelta(days = 30)
+
+    municipality_filter = request.GET.get("municipality", "")
+
+    status_filter = request.GET.get("status", "")
+
+    status_queryset = Status.objects.all()
+
+    if municipality_filter:
+        status_queryset = status_queryset.filter(location__municipality__municipality_name = municipality_filter)
+    
+    if status_filter:
+        status_queryset = status_queryset.filter(statustype__statustype = status_filter)
+
+    status_counts = status_queryset.values("location", "statustype").annotate(count = Count("id"))
+
+    geojson_data = get_geojson_data(status_counts)
 
     user = User.objects.get(account = request.user)
 
-    unread_notifications = Notification.objects.filter(user = user, is_read = False, creation_date__gte = notification_life).order_by("-creation_date")[:3]
-    
-    latest_status_per_municipality = Status.objects.values("location__municipality").annotate(latest_date=Max("onset_date"))
+    unread_notifications = Notification.objects.filter(user=user, is_read = False, creation_date__gte = notification_life).order_by("-creation_date")[:3]
 
+    latest_status_per_municipality = Status.objects.values("location__municipality").annotate(latest_date = Max("onset_date"))
+   
     latest_statuses = []
 
     for entry in latest_status_per_municipality:
         status = Status.objects.filter(location__municipality=entry["location__municipality"]).order_by("-onset_date").first()
-
+        
         if status:
-            print(status)
             latest_statuses.append(status)
+
+    if municipality_filter:
+        latest_statuses = [status for status in latest_statuses if status.location.municipality.municipality_name == municipality_filter]
+    
+    if status_filter:
+        latest_statuses = [status for status in latest_statuses if status.statustype.statustype == status_filter]
 
     paginator = Paginator(latest_statuses, 10)
 
@@ -638,15 +730,87 @@ def OfficerControlStatus(request):
 
     paginated_statuses = paginator.get_page(page_number)
 
-    context = {"unread_notifications": unread_notifications, "locations": Location.objects.all(), "years": Status.objects.dates("onset_date", "year", order = "DESC"), "paginated_statuses": paginated_statuses,}
+    municipalities = Location.objects.values_list("municipality__municipality_name", flat = True).distinct()
+
+    statuses = Status.objects.values_list("statustype__statustype", flat = True).distinct()
+
+    current_statuses = Status.objects.values("location__municipality__id", "location__municipality__municipality_name", "location__barangay__id", "location__barangay__barangay_name", "statustype__id", "onset_date").annotate(latest_date = Max("onset_date"))
+
+    if municipality_filter:
+        latest_statuses = [status for status in latest_statuses if status.location.municipality.municipality_name == municipality_filter]
+
+        current_statuses = [status for status in current_statuses if status["location__municipality__municipality_name"] == municipality_filter]
+    
+    if status_filter:
+        latest_statuses = [status for status in latest_statuses if status.statustype.statustype == status_filter]
+
+        current_statuses = [status for status in current_statuses if status["statustype__statustype"] == status_filter]
+
+    status_types = list(StatusType.objects.all().values("id", "statustype"))
+
+    chart_data = {}
+
+    for status in current_statuses:
+        municipality_name = status["location__municipality__municipality_name"]
+
+        barangay_name = status["location__barangay__barangay_name"]
+
+        statustype_id = status["statustype__id"]
+
+        date = status["latest_date"].strftime("%Y-%m-%d")
+
+        if municipality_name not in chart_data:
+            chart_data[municipality_name] = {}
+
+        if statustype_id not in chart_data[municipality_name]:
+            chart_data[municipality_name][statustype_id] = []
+
+        existing_entry = next((item for item in chart_data[municipality_name][statustype_id] if item["barangay_name"] == barangay_name and item['date'] == date), None)
+        
+        if existing_entry:
+            existing_entry["count"] += 1
+
+        else:
+            chart_data[municipality_name][statustype_id].append({"barangay_name": barangay_name, "date": date, "count": 1})
+
+    context = {"geojson_data": json.dumps(geojson_data), "chart_data": json.dumps(chart_data), "status_types": json.dumps(status_types), "location_number": location_number, "tab_number": tab_number, "unread_notifications": unread_notifications, "locations": Location.objects.all(), "years": Status.objects.dates("onset_date", "year", order = "DESC"), "paginated_statuses": paginated_statuses, "municipalities": municipalities, "statuses": statuses,}
 
     return render(request, "officer/control/status/status.html", context)
+
 
 
 @login_required(login_url = "Officer Control Login")
 @user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def OfficerControlStatusMunicipalityRead(request, municipality_name):
+    tab_number = 3
+
+    location_number = 2 
+
     locations = Location.objects.filter(municipality__municipality_name = municipality_name)
+
+    barangay_filter = request.GET.get("barangay", "")
+
+    status_filter = request.GET.get("status", "")
+
+    status_queryset = Status.objects.all()
+
+    status_queryset = status_queryset.filter(location__municipality__municipality_name = municipality_name)
+
+    notification_life = timezone.now() - timedelta(days = 30)
+
+    user = User.objects.get(account = request.user)
+
+    unread_notifications = Notification.objects.filter(user = user, is_read = False, creation_date__gte = notification_life).order_by("-creation_date")[:3]
+
+    if barangay_filter:
+        status_queryset = status_queryset.filter(location__barangay__barangay_name = barangay_filter)
+    
+    if status_filter:
+        status_queryset = status_queryset.filter(statustype__statustype = status_filter)
+
+    status_counts = status_queryset.values("location", "statustype").annotate(count = Count("id"))
+    
+    geojson_data = get_geojson_data(status_counts)
 
     latest_statuses = []
 
@@ -656,7 +820,49 @@ def OfficerControlStatusMunicipalityRead(request, municipality_name):
         if latest_status:
             latest_statuses.append(latest_status)
 
-    context = {"municipality_name": municipality_name, "latest_statuses": latest_statuses}
+    barangays = Location.objects.filter(municipality__municipality_name = municipality_name).values_list("barangay__barangay_name", flat = True).distinct()
+    
+    statuses = Status.objects.values_list("statustype__statustype", flat = True).distinct()
+
+    status_types = list(StatusType.objects.all().values("id", "statustype"))
+
+    current_statuses = Status.objects.filter(location__barangay__municipality__municipality_name = municipality_name).values("location__barangay__id", "location__barangay__barangay_name", "statustype__id", "onset_date").annotate(latest_date = Max("onset_date"))
+
+    if barangay_filter:
+        latest_statuses = [status for status in latest_statuses if status.location.barangay.barangay_name == barangay_filter]
+        
+        current_statuses = [
+            status for status in current_statuses 
+
+            if status["location__barangay__barangay_name"] == barangay_filter
+        ]
+
+    if status_filter:
+        latest_statuses = [status for status in latest_statuses if status.statustype.statustype == status_filter]
+
+        current_statuses = [
+            status for status in current_statuses 
+
+            if status["statustype__statustype"] == status_filter
+        ]
+
+    chart_data = {}
+
+    for status in current_statuses:
+        barangay_id = status["location__barangay__id"]
+
+        barangay_name = status["location__barangay__barangay_name"]
+
+        statustype_id = status["statustype__id"]
+
+        date = status["latest_date"].strftime("%Y-%m-%d")
+
+        if barangay_name not in chart_data:
+            chart_data[barangay_name] = {}
+
+        chart_data[barangay_name][statustype_id] = {"count": chart_data[barangay_name].get(statustype_id, {"count": 0})["count"] + 1, "date": date}
+
+    context = {"unread_notifications": unread_notifications, "geojson_data": json.dumps(geojson_data), "chart_data": json.dumps(chart_data), "status_types": json.dumps(status_types), "barangays": barangays, "statuses": statuses, "location_number": location_number, "tab_number": tab_number, "municipality_name": municipality_name, "latest_statuses": latest_statuses}
 
     return render(request, "officer/control/status/municipality.html", context)
 
@@ -664,11 +870,127 @@ def OfficerControlStatusMunicipalityRead(request, municipality_name):
 @login_required(login_url = "Officer Control Login")
 @user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def OfficerControlStatusBarangayRead(request, barangay_name):
+    tab_number = 3
+
+    location_number = 3
+
+    status_filter = request.GET.get("status", "")
+
     locations = Location.objects.filter(barangay__barangay_name = barangay_name)
-    
+
+    notification_life = timezone.now() - timedelta(days = 30)
+
+    user = User.objects.get(account = request.user)
+
+    unread_notifications = Notification.objects.filter(user = user, is_read = False, creation_date__gte = notification_life).order_by("-creation_date")[:3]
+
+
+    if locations.exists():
+        municipality_name = locations.first().municipality.municipality_name
+
+    else:
+        municipality_name = None
+
     all_statuses = Status.objects.filter(location__in = locations).order_by("-onset_date")
 
-    context = {"barangay_name": barangay_name, "all_statuses": all_statuses}
+    status_filter = request.GET.get("status", "")
+
+    if status_filter:
+        all_statuses = [status for status in all_statuses if status.statustype.statustype == status_filter]
+    
+    statuses = Status.objects.values_list("statustype__statustype", flat = True).distinct()
+
+    status_types = list(StatusType.objects.all().values("id", "statustype"))
+
+    status_queryset = Status.objects.all()
+
+    status_queryset = status_queryset.filter(location__municipality__municipality_name = municipality_name)
+
+    status_queryset = status_queryset.filter(location__barangay__barangay_name = barangay_name)
+    
+    if status_filter:
+        status_queryset = status_queryset.filter(statustype__statustype = status_filter)
+
+    status_counts = status_queryset.values("location", "statustype").annotate(count = Count("id"))
+    
+    geojson_data = get_geojson_data(status_counts)
+
+    locations_query = Location.objects.all()
+
+    locations_query = locations_query.filter(municipality__municipality_name = municipality_name)
+
+    locations_query = locations_query.filter(barangay__barangay_name = barangay_name)
+
+    data = []
+
+    total_caught_overall = 0
+
+    for location in locations:
+        interventions_query = Intervention.objects.filter(location = location).order_by("event_date")
+    
+
+        event_dates = []
+
+        caught_overalls = []
+        
+        titles = []
+        
+        status_types = []
+        
+        volunteer_amounts = []
+        
+        caught_overall_sum = 0
+
+        for intervention in interventions_query:
+            if intervention.statustype:
+                event_dates.append(intervention.event_date.strftime("%Y-%m-%d"))
+
+                caught_overalls.append(intervention.caught_amount)
+                
+                titles.append(intervention.title)
+                
+                status_types.append(str(intervention.statustype))
+                
+                volunteer_amounts.append(intervention.volunteer_amount)
+                
+                caught_overall_sum += intervention.caught_amount
+
+        total_caught_overall += caught_overall_sum
+
+        if event_dates:
+            min_date = datetime.datetime.strptime(event_dates[0], "%Y-%m-%d")
+
+            max_date = datetime.datetime.strptime(event_dates[-1], "%Y-%m-%d")
+            
+            current_date = min_date
+            
+            date_set = set(event_dates)
+
+            while current_date <= max_date:
+                date_string = current_date.strftime("%Y-%m-%d")
+
+                if date_string not in date_set:
+                    event_dates.append(date_string)
+                
+                    caught_overalls.append(None)
+                
+                    titles.append("N/A")
+                
+                    status_types.append("N/A")
+                
+                    volunteer_amounts.append(None)
+                
+                current_date += timedelta(days = 1)
+
+            sorted_data = sorted(zip(event_dates, caught_overalls, titles, status_types, volunteer_amounts))
+
+            event_dates, caught_overalls, titles, status_types, volunteer_amounts = zip(*sorted_data)
+
+            for item in range(len(event_dates)):
+                data.append({"location": f"{location.barangay.barangay_name}, {location.municipality.municipality_name}", "municipality": location.municipality.municipality_name, "event_date": event_dates[item], "caught_amount": caught_overalls[item], "title": titles[item], "status_type": status_types[item], "volunteer_amount": volunteer_amounts[item]})
+
+
+    context = {"unread_notifications": unread_notifications, "geojson_data": json.dumps(geojson_data), "chart_data": json.dumps(data), 'status_types': json.dumps(status_types), "municipality_name":municipality_name,"statuses":statuses,"location_number": location_number, "tab_number": tab_number, "barangay_name": barangay_name, "all_statuses": all_statuses}
 
     return render(request, "officer/control/status/barangay.html", context)
 
@@ -772,9 +1094,7 @@ def OfficerControlReport(request):
 
     municipalities = Municipality.objects.values("municipality_name").distinct()
 
-    barangays = Barangay.objects.filter(municipality__municipality_name=selected_municipality).values("barangay_name").distinct() if selected_municipality else []
-
-    print(barangays)
+    barangays = Barangay.objects.filter(municipality__municipality_name = selected_municipality).values("barangay_name").distinct() if selected_municipality else []
 
     data = {}
     

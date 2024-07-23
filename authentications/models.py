@@ -97,16 +97,30 @@ class Account(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return str(self.username)
 
+class Badge(models.Model):
+    badge_name = models.CharField(max_length = 255, unique = True, verbose_name = "Badge Name")
+    description = models.TextField(max_length = 255, verbose_name = "Description")
+    badge_icon = models.ImageField(upload_to = "badges/", verbose_name = "Badge Icon")
+    goal = models.CharField(default = 0, blank = True, verbose_name = "Goal")
+    class Meta:
+        db_table = "auth_badge"
+        verbose_name = "Badge"
+        verbose_name_plural = "Badges"
+
+    def __str__(self):
+        return self.badge_name
+    
 
 class User(models.Model):
-    account = models.OneToOneField(Account, on_delete = models.SET_NULL, null = True, help_text = "Designates the foreign key of the Account model.", verbose_name = "Account")
-    first_name = models.CharField(max_length = 65, null = True, help_text = "Designates the first name of the user.", verbose_name = "First Name")
-    last_name = models.CharField(max_length = 65, null = True, help_text = "Designates the last name of the user.", verbose_name = "Last Name")
-    email = models.EmailField(max_length = 65, null = True, help_text = "Designates the email of the user.", verbose_name = "Email")
-    phone_number = models.IntegerField(validators = [MinValueValidator(0)], null = True, blank = True, help_text = "Designates the phone number of the user.", verbose_name = "Phone Number")
-    profile_photo = models.ImageField(default = "profiles/default.png", null = True, upload_to = "profiles", help_text = "Designates the profile photo of the user.", verbose_name = "Profile Photo")
-    joined_date = models.DateTimeField(default = datetime.datetime.now(), help_text = "Designates the joined date and time of the user.", verbose_name = "Joined Date")
-    
+    account = models.OneToOneField(Account, on_delete = models.SET_NULL, null = True, verbose_name = "Account")
+    first_name = models.CharField(max_length = 65, null = True, verbose_name = "First Name")
+    last_name = models.CharField(max_length = 65, null = True, verbose_name = "Last Name")
+    email = models.EmailField(max_length = 65, null = True, verbose_name = "Email")
+    phone_number = models.IntegerField(validators = [MinValueValidator(0)], null = True, blank = True, verbose_name = "Phone Number")
+    profile_photo = models.ImageField(default = "profiles/default.png", null = True, upload_to = "profiles", verbose_name = "Profile Photo")
+    joined_date = models.DateTimeField(default = datetime.datetime.now(), verbose_name = "Joined Date")
+    badges = models.ManyToManyField(Badge, blank=True)
+
     class Meta:
         db_table = "localaccount_user"
         verbose_name = "User"
@@ -123,7 +137,7 @@ class User(models.Model):
     
 
 class Notification(models.Model):
-    notificationtypes = (("post", "Post"), ("announcement", "Announcement"), ("intervention", "Intervention"),("post_valid", "Post Validated"))
+    notificationtypes = (("post", "Post"), ("announcement", "Announcement"), ("intervention", "Intervention"),("post_valid", "Post Validated"),("achievement", "Achievement"))
     notificationtype = models.CharField(max_length = 20, choices = notificationtypes)
     user = models.ForeignKey(User, on_delete = models.CASCADE)
     is_read = models.BooleanField(default = False)
@@ -228,3 +242,5 @@ class SocialApp2(SocialApp):
     
     def __str__(self):
         return str(SocialApp._meta.get_field("provider"))
+    
+

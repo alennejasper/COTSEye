@@ -8,7 +8,7 @@ from django.template.loader import render_to_string
 from django.utils import timezone
 from django.utils.html import strip_tags
 from managements.models import Intervention, Announcement
-from reports.models import Post
+from reports.models import Post, PostStatus
 from django.db.models import Q
 
 
@@ -337,3 +337,33 @@ def UpdateNotification(sender, instance, created, **kwargs):
             user_filter = Q(id = instance.user.id)
 
             AddNotification(notification_type, instance, sender, user_filter)
+
+
+@receiver(post_save, sender = Post)
+def AddBadge(sender, instance, created, **kwargs):
+    if instance.post_status.is_valid:
+        user = instance.user
+
+        post_count = Post.objects.filter(user = user, post_status__is_valid = True).count()
+
+        award = []
+
+        if post_count == 1:
+            award.append(Badge.objects.get(badge_name = "First Sighting"))
+
+        elif post_count == 25:
+            award.append(Badge.objects.get(badge_name = "25 Sightings"))
+
+        elif post_count == 50:
+            award.append(Badge.objects.get(badge_name = "50 Sightings"))
+
+
+        top_reporter = Post.objects.filter(post_status__is_valid = True).values("user").annotate(count = models.Count("id")).order_by("-count").first()
+        
+        if top_reporter and top_reporter["user"] == user.id:
+            award.append(Badge.objects.get(badge_name = "Top Reporter"))
+
+        for badge in award:
+            user.badges.add(badge)
+
+            Notification.objects.create(user = user, notificationtype = "achievement", object = badge, contenttype = ContentType.objects.get_for_model(badge), key = badge.id)

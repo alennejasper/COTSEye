@@ -1,8 +1,10 @@
-{% extends "officer/control/index/index.html" %}
+{% extends "officer/control/announcement/announcement.html" %}
 {% load custom_filters %}
 {% load static %}
-
-{% block content %}
+<header>
+    {% block action %} Read {% endblock action %}
+</header>
+{% block announcement_content %}
 <div class = "container-fluid mt-3">
     <div class = "row">
         <div class = "col-lg-10 offset-lg-1">
@@ -73,7 +75,7 @@
                     </div>
 
                     <div class = "text-end">
-                        <a style = "padding-left: 10px !important; padding-right: 10px !important; padding-top: 5px !important; padding-bottom: 5px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px; background-color: rgb(52, 144, 242);" href = "{% url 'Officer Control Announcement Update' id=announcement.id %}" class = "btn btn-primary">Update</a>
+                        <a style = "padding-left: 10px !important; padding-right: 10px !important; padding-top: 5px !important; padding-bottom: 5px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px; background-color: rgb(52, 144, 242);" href = "{% url 'Officer Control Announcement Update' id=announcement.id %}" class = "btn btn-primary">Edit</a>
                     </div>
                 </div>
             </div>

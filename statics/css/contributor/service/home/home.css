@@ -1,3 +1,5 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+
 .home-body{
     position: relative;
     display: grid;
@@ -15,19 +17,12 @@
     text-align: center;                                   
 }
 
-@media screen and (min-width: 320px) and (max-width: 775px){
-    .home-body .home-section{
-        gap: 5px;
-    }
-}
-
 .home-body .home-section h1{
     margin-bottom: 0px !important;
-    text-align: center;     
+    text-align: center;    
+    font-family: "Montserrat"; 
     font-weight: 700;       
     font-size: 24px;        
-    font-family: "Montserrat";
-    color: #003755;
 }
 
 @media screen and (min-width: 446px) and (max-width: 775px){
@@ -1489,6 +1484,7 @@
         margin-right: 10px;
     }
 }
+
 .home-body .home-announcement .announcement-gallery a img{
     place-items: center;
     object-fit: contain;

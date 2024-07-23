@@ -105,7 +105,7 @@ class DepthAdmin(admin.ModelAdmin):
 administrator.register(Depth, DepthAdmin)
 
 
-class WeatherAdmin(admin.ModelAdmin):
+class DensityAdmin(admin.ModelAdmin):
     class Media:   
         css = {
             "all": ["css/admin/control/index/index.css"]
@@ -119,11 +119,11 @@ class WeatherAdmin(admin.ModelAdmin):
 
         return super().render_change_form(request, context, add, change, form_url, obj)
 
-    list_display = ["weather"]
+    list_display = ["density", "description"]
 
-    search_fields = ["weather"]
+    search_fields = ["density"]
 
-administrator.register(Weather, WeatherAdmin)
+administrator.register(Density, DensityAdmin)
 
 
 # class PostObservationAdmin(admin.ModelAdmin):
@@ -172,3 +172,5 @@ administrator.register(Weather, WeatherAdmin)
 #         return super().render_change_form(request, context, add, change, form_url, obj)
 
 # admin.site.register(Post, PostAdmin)
+
+

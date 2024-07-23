@@ -6,7 +6,7 @@
         .dropdown{
             position: absolute;
             display: none;
-            right: -5rem;
+            right: 0px;
             top: 100%;
             min-width: 150px; 
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -66,372 +66,461 @@
             font-weight: 400;
             font-size: 12px !important;
         }
+
+        .breadcrumb{
+            padding: 1rem;
+            border-radius: 0.25rem;
+            background-color: #FAFAFA;
+        }
+
+        .breadcrub-item{
+            display: none;
+            color: #6C757D;
+        }
+
+        .breadcrumb-item::before{
+            display: none !important;
+        }
+
+        .status_active{
+            display: block;
+            font-family: "Montserrat"; 
+            font-weight: 700; 
+            font-size: 16px;            
+            color: rgb(28, 186, 234);
+        }
+
+        .status_active::before{
+            display: block !important;
+        }
     </style>
 
-    <div class = "container-fluid mt-3">
-        <div class = "row">
-            <div class = "col-12 col-md-3">
-                <div class = "filtercont">
-                    <div class = "card-body">
-                        <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 20px !important; color: rgb(52, 144, 242);" class = "fs-3 mb-3">FILTER</p>
+    <nav aria-label = "breadcrumb">
+        <ol class = "breadcrumb">
+            <li style = "font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: rgb(52, 144, 242);" class = "breadcrumb-item {% if ann_number >= 1 %}status_active{% endif %}">
+                {% if ann_number >= 1 %}
+                    Announcements
+                {% endif %}
+            </li>
 
-                        <p style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: rgb(28, 186, 234);">Title</p>
+            <li style = "font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: rgb(52, 144, 242);" class = "breadcrumb-item {% if ann_number >= 2 %}status_active{% endif %}">
+                {% if ann_number >= 2 %}
+                    {% block action %} Action {% endblock action %}
+                {% endif %}
+            </li>
+        </ol>
+    </nav>
 
-                        <div>                            
-                            <input style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;" type = "text" id = "searchBar" class = "form-control" placeholder = "Search by title...">
-                        </div>
+    {% if ann_number > 1 %}
+        <button style = "margin-bottom: 15px; padding-left: 10px !important; padding-right: 10px !important; padding-top: 5px !important; padding-bottom: 5px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: #FFFFFF;" class = "btn btn-secondary mb-3 back-button" onclick = "window.history.back()">
+            <i class = "fas fa-arrow-left"></i> 
+            
+            Back
+        </button>
+    {% endif %}
 
-                        <p style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: rgb(28, 186, 234);">Location</p>
+    {% block announcement_content %}
+        <div class = "container-fluid mt-3">
+            <button style = "margin-bottom: 15px; padding-left: 10px !important; padding-right: 10px !important; padding-top: 5px !important; padding-bottom: 5px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: #FFFFFF;" class = "btn btn-secondary collapse-button" type = "button" id = "filterToggle" data-bs-toggle = "collapse" data-bs-target="#filterCollapse" aria-expanded = "false" aria-controls = "filterCollapse">
+                <i class = "fas fa-chevron-down"></i>
 
-                        <div>
-                            <label for = "municipalityFilter" class = "form-label" style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">Municipality:</label>
+                Filter
+            </button>
 
-                            <select id = "municipalityFilter" class = "form-select form-select-sm mb-3 select2" onchange = "updateBarangayOptions()">
-                                <option value = "" disabled = "disabled" selected = "selected" style = "display: none;">Municipality</option>
-    
-                                {% for location in municipalities %}
-                                    <option value = "{{location.municipality_name}}" {% if request.GET.location == location.municipality_name %} selected {% endif %}>{{location.municipality_name}}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
+            <div class = "row">
+                <div class = "col-12 col-md-3 mt-3 collapse" id = "filterCollapse">
+                    <div class = "filtercont">
+                        <div class = "card-body">
+                            <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 20px !important; color: rgb(52, 144, 242);" class = "fs-3 mb-3">FILTER</p>
 
-                        <div>
-                            <label id = "barangayLabel" for = "barangayFilter" class = "form-label" style = "display: none; margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">Barangay:</label>
+                            <p style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: rgb(28, 186, 234);">Title</p>
 
-                            <select id = "barangayFilter" class = "form-select form-select-sm mb-3 select2">
-                                <option value = "" disabled = "disabled" selected = "selected" style = "display: none;">Select Barangay</option>
-                            </select>
-                        </div>
+                            <div>                            
+                                <input style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;" type = "text" id = "searchBar" class = "form-control" placeholder = "Search by title...">
+                            </div>
 
-                        <p style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: rgb(28, 186, 234);">Date</p>
+                            <p style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: rgb(28, 186, 234);">Location</p>
 
-                        <div>
-                            <label for = "dateFrom" class = "form-label" style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">From:</label>
+                            <div>
+                                <label for = "municipalityFilter" class = "form-label" style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">Municipality:</label>
 
-                            <input style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;" type = "date" id = "dateFrom" name = "dateFrom" class = "form-control form-control-sm">
-                        </div>
+                                <select id = "municipalityFilter" class = "form-select form-select-sm mb-3 select2" onchange = "updateBarangayOptions()">
+                                    <option value = "" disabled = "disabled" selected = "selected" style = "display: none;">Municipality</option>
+        
+                                    {% for location in municipalities %}
+                                        <option value = "{{location.municipality_name}}" {% if request.GET.location == location.municipality_name %} selected {% endif %}>{{location.municipality_name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
 
-                        <div>
-                            <label for = "dateTo" class = "form-label" style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">To:</label>
+                            <div>
+                                <label id = "barangayLabel" for = "barangayFilter" class = "form-label" style = "display: none; margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">Barangay:</label>
+
+                                <select id = "barangayFilter" class = "form-select form-select-sm mb-3 select2">
+                                    <option value = "" disabled = "disabled" selected = "selected" style = "display: none;">Select Barangay</option>
+                                </select>
+                            </div>
+
+                            <p style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: rgb(28, 186, 234);">Date</p>
+
+                            <div>
+                                <label for = "dateFrom" class = "form-label" style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">From:</label>
+
+                                <input style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;" type = "date" id = "dateFrom" name = "dateFrom" class = "form-control form-control-sm">
+                            </div>
+
+                            <div>
+                                <label for = "dateTo" class = "form-label" style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">To:</label>
+                                
+                                <input style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;" type = "date" id = "dateTo" name = "dateTo" class = "form-control form-control-sm">
+                            </div>
+
+                            <p style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: rgb(28, 186, 234);">Order by</p>
                             
-                            <input style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;" type = "date" id = "dateTo" name = "dateTo" class = "form-control form-control-sm">
+                            <select id = "orderBy" class = "form-select form-select-sm mb-3 select2">
+                                <option value = "latest">Latest</option>
+
+                                <option value = "oldest">Oldest</option>
+                            </select>
+
+                            <button style = "margin-top: 0px !important;" type = "button" class = "filterbutton" onclick = "filterAnnouncements()">Apply Filter</button>
+
+                            <button type = "button" class = "resetbutton" onclick = "resetFilter()">Reset Filter</button>
                         </div>
+                    </div>
+                </div>
 
-                        <p style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: rgb(28, 186, 234);">Order by</p>
-                        
-                        <select id = "orderBy" class = "form-select form-select-sm mb-3 select2">
-                            <option value = "latest">Latest</option>
+                <div class = "col-12 col-lg-9 mx-auto w-100" id = "mainContent">
+                    <div class = "table-container container-fluid mb-3 w-100" style = "padding: 0px !important;">
+                        <button class = "btn btn-primary" style = "float: right; margin-top: 7px; padding-left: 10px !important; padding-right: 10px !important; padding-top: 5px !important; padding-bottom: 5px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px; background-color: rgb(30, 173, 95);" onclick = "window.location.href = '{% url 'Officer Control Announcement Add' %}'">ADD NEW</button>
 
-                            <option value = "oldest">Oldest</option>
-                        </select>
+                        <h2 style = "border-bottom: 1px solid rgba(229, 229, 229); font-family: 'Montserrat'; font-weight: 700; font-size: 20px; color: rgb(52, 144, 242);">ALL ANNOUNCEMENTS</h2>
+                                            
+                        <table class = "table table-hover" style = "display: table; margin-bottom: 15px !important; width: 100%;">
+                            <thead class = "thead-dark">
+                                <tr>
+                                    <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">Event Date</th>
 
-                        <button style = "margin-top: 0px !important;" type = "button" class = "filterbutton" onclick = "filterAnnouncements()">Apply Filter</button>
+                                    <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">Title</th>
+                                    
+                                    <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">Municipality</th>
+                                    
+                                    <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">Barangay</th>
+                                    
+                                    <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">Hosting Agency</th>
+                                    
+                                    <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234); text-align: center;" scope = "col">Action</th>
+                                </tr>
+                            </thead>
 
-                        <button type = "button" class = "resetbutton" onclick = "resetFilter()">Reset Filter</button>
+                            <tbody class = "table-group-divider" id = "announcementsTable"></tbody>
+                        </table>
+
+                        <nav>
+                            <ul class = "pagination justify-content-center" id = "pagination"></ul>
+                        </nav>
                     </div>
                 </div>
             </div>
-
-            <div class = "col-12 col-md-9">
-                <div class = "table-container mb-3">
-                    <button class = "btn btn-primary" style = "float: right; margin-top: 7px; padding-left: 10px !important; padding-right: 10px !important; padding-top: 5px !important; padding-bottom: 5px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px; background-color: rgb(30, 173, 95);" onclick = "window.location.href = '{% url 'Officer Control Announcement Add' %}'">ADD NEW</button>
-
-                    <h2 style = "border-bottom: 1px solid rgba(229, 229, 229); font-family: 'Montserrat'; font-weight: 700; font-size: 20px; color: rgb(52, 144, 242);">ALL ANNOUNCEMENTS</h2>
-                                        
-                    <table class = "table table-hover" style = "display: table; margin-bottom: 15px !important; width: 100%;">
-                        <thead class = "thead-dark">
-                            <tr>
-                                <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">Event Date</th>
-
-                                <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">Title</th>
-                                
-                                <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">Municipality</th>
-                                
-                                <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">Barangay</th>
-                                
-                                <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">Hosting Agency</th>
-                                
-                                <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col"></th>
-                            </tr>
-                        </thead>
-
-                        <tbody class = "table-group-divider" id = "announcementsTable"></tbody>
-                    </table>
-
-                    <nav>
-                        <ul class = "pagination justify-content-center" id = "pagination"></ul>
-                    </nav>
-                </div>
-            </div>
         </div>
-    </div>
 
-    <link rel = "stylesheet" href = "https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+        <link rel = "stylesheet" href = "https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 
-    <script src = "https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src = "https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <script>
-        $(document).ready(function(){
-            $(".select2").select2();
-        });
+        <script>
+            $(document).ready(function(){
+                $(".select2").select2();
+            });
 
-        document.addEventListener("DOMContentLoaded", function(){
-            const announcements = [
-                {% for announcement in announcements %}
-                    {id: {{announcement.id}}, title: "{{announcement.title}}", date: "{{announcement.release_date | date:'Y-m-d'}}", location: "{{announcement.location}}", user: "{{announcement.user}}", barangay: "{{announcement.location.barangay}}", municipality: "{{announcement.location.municipality}}", hosting_agency: "{{announcement.hosting_agency}}"},
-                {% endfor %}
-            ];
+            document.addEventListener("DOMContentLoaded", function(){
+                const announcements = [
+                    {% for announcement in announcements %}
+                        {id: {{announcement.id}}, title: "{{announcement.title}}", date: "{{announcement.release_date | date:'Y-m-d'}}", location: "{{announcement.location}}", user: "{{announcement.user}}", barangay: "{{announcement.location.barangay}}", municipality: "{{announcement.location.municipality}}", hosting_agency: "{{announcement.hosting_agency}}"},
+                    {% endfor %}
+                ];
 
-            let currentPage = 1;
+                let currentPage = 1;
 
-            const itemsPerPage = 10;
-            
-            let filteredAnnouncements = [...announcements];
-
-            const users = [...new Set(announcements.map(a => a.user))];
-
-            function displayAnnouncements(page){
-                const startIndex = (page - 1) * itemsPerPage;
-
-                const endIndex = startIndex + itemsPerPage;
+                const itemsPerPage = 10;
                 
-                const paginatedAnnouncements = filteredAnnouncements.slice(startIndex, endIndex);
+                let filteredAnnouncements = [...announcements];
 
-                let table = document.getElementById("announcementsTable");
+                const users = [...new Set(announcements.map(a => a.user))];
 
-                table.innerHTML = "";
+                function displayAnnouncements(page){
+                    const startIndex = (page - 1) * itemsPerPage;
 
-                paginatedAnnouncements.forEach((announcement, index) => {
-                    let row = table.insertRow();
-                
-                    let dateCell = row.insertCell(0);
-                
-                    const date = new Date( announcement.date);
-
-                    const formattedDate = ("0" + (date.getMonth() + 1)).slice(-2) + "/" + ("0" + date.getDate()).slice(-2) + "/" + date.getFullYear().toString().slice(-4);
-
-                    dateCell.innerText = formattedDate;
+                    const endIndex = startIndex + itemsPerPage;
                     
-                    let titleCell = row.insertCell(1);
+                    const paginatedAnnouncements = filteredAnnouncements.slice(startIndex, endIndex);
 
-                    titleCell.innerText = announcement.title;
+                    let table = document.getElementById("announcementsTable");
+
+                    table.innerHTML = "";
+
+                    paginatedAnnouncements.forEach((announcement, index) => {
+                        let row = table.insertRow();
                     
-                    titleCell.addEventListener("click", function(){
-                        window.location.href = "{% url 'Officer Control Announcement Read' 0 %}".replace("0", announcement.id);
-                    });
-
-                    dateCell.addEventListener("click", function(){
-                        window.location.href = "{% url 'Officer Control Announcement Read' 0 %}".replace("0", announcement.id);
-                    });
-
-                    let municipalityCell = row.insertCell(2);
-
-                    municipalityCell.innerText = announcement.municipality;
+                        let dateCell = row.insertCell(0);
                     
-                    municipalityCell.addEventListener("click", function(){
-                        window.location.href = "{% url 'Officer Control Announcement Read' 0 %}".replace("0", announcement.id);
-                    });
+                        const date = new Date( announcement.date);
 
-                    let barangayCell = row.insertCell(3);
+                        const formattedDate = ("0" + (date.getMonth() + 1)).slice(-2) + "/" + ("0" + date.getDate()).slice(-2) + "/" + date.getFullYear().toString().slice(-4);
 
-                    barangayCell.innerText = announcement.barangay;
-                    
-                    barangayCell.addEventListener("click", function(){
-                        window.location.href = "{% url 'Officer Control Announcement Read' 0 %}".replace('0', announcement.id);
-                    });
+                        dateCell.innerText = formattedDate;
+                        
+                        let titleCell = row.insertCell(1);
 
-                    let userCell = row.insertCell(4);
+                        titleCell.innerText = announcement.title;
+                        
+                        titleCell.addEventListener("click", function(){
+                            window.location.href = "{% url 'Officer Control Announcement Read' 0 %}".replace("0", announcement.id);
+                        });
 
-                    userCell.innerText = announcement.hosting_agency;
+                        dateCell.addEventListener("click", function(){
+                            window.location.href = "{% url 'Officer Control Announcement Read' 0 %}".replace("0", announcement.id);
+                        });
 
-                    userCell.addEventListener("click", function(){
-                        window.location.href = "{% url 'Officer Control Announcement Read' 0 %}".replace('0', announcement.id);
-                    });
+                        let municipalityCell = row.insertCell(2);
 
-                    let actionsCell = row.insertCell(5);
+                        municipalityCell.innerText = announcement.municipality;
+                        
+                        municipalityCell.addEventListener("click", function(){
+                            window.location.href = "{% url 'Officer Control Announcement Read' 0 %}".replace("0", announcement.id);
+                        });
 
-                    actionsCell.innerHTML = 
-                        `<div class = "button-container">
-                            <a onclick = "showDropdown(event)"><img height = "15px" src = "{% static 'assets/icons/options.png' %}" class = "drop"></a>
+                        let barangayCell = row.insertCell(3);
 
-                            <div class = "dropdown">
-                                <div class = "dropdown-content">
-                                    <a class = "dropdown-header" onclick = "updateAnnouncement(${announcement.id})">Update</a>
+                        barangayCell.innerText = announcement.barangay;
+                        
+                        barangayCell.addEventListener("click", function(){
+                            window.location.href = "{% url 'Officer Control Announcement Read' 0 %}".replace('0', announcement.id);
+                        });
 
-                                    <div class = "dropdown-divider"></div>
+                        let userCell = row.insertCell(4);
 
-                                    <a class = "dropdown-footer" onclick = "deleteAnnouncement(${announcement.id}, ${startIndex}, ${index})">Delete</a>
+                        userCell.innerText = announcement.hosting_agency;
+
+                        userCell.addEventListener("click", function(){
+                            window.location.href = "{% url 'Officer Control Announcement Read' 0 %}".replace('0', announcement.id);
+                        });
+
+                        let actionsCell = row.insertCell(5);
+
+                        actionsCell.innerHTML = 
+                            `<div class = "button-container" style = "display: flex; justify-content: center; align-items: center;">
+                                <a onclick = "showDropdown(event)"><img height = "15px" src = "{% static 'assets/icons/options.png' %}" class = "drop"></a>
+
+                                <div class = "dropdown">
+                                    <div class = "dropdown-content">
+                                        <a class = "dropdown-header" onclick = "updateAnnouncement(${announcement.id})">Edit</a>
+
+                                        <div class = "dropdown-divider"></div>
+
+                                        <a class = "dropdown-footer" onclick = "deleteAnnouncement(${announcement.id}, ${startIndex}, ${index})">Delete</a>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>`;
-                });
+                            </div>`;
+                    });
 
-                const pagination = document.getElementById("pagination");
+                    const pagination = document.getElementById("pagination");
 
-                const totalPages = Math.ceil(filteredAnnouncements.length / itemsPerPage);
+                    const totalPages = Math.ceil(filteredAnnouncements.length / itemsPerPage);
 
-                pagination.innerHTML = 
-                    `<li class = "page-item ${currentPage === 1 ? 'disabled' : ''}">
-                        <a class = "page-link" href = "#" onclick = "changePage('prev')">Previous</a>
-                    </li>`;
-                
-                for (let i = 1; i <= totalPages; i++){
+                    pagination.innerHTML = 
+                        `<li class = "page-item ${currentPage === 1 ? 'disabled' : ''}">
+                            <a class = "page-link" href = "#" onclick = "changePage('prev')">Previous</a>
+                        </li>`;
+                    
+                    for (let i = 1; i <= totalPages; i++){
+                        pagination.innerHTML += 
+                            `<li class = "page-item ${i === currentPage ? 'active' : ''}">
+                                <a class = "page-link" href = "#" onclick = "changePage(${i})">${i}</a>
+                            </li>`;
+                    };
+
                     pagination.innerHTML += 
-                        `<li class = "page-item ${i === currentPage ? 'active' : ''}">
-                            <a class = "page-link" href = "#" onclick = "changePage(${i})">${i}</a>
+                        `<li class = "page-item ${currentPage === totalPages ? 'disabled' : ''}">
+                            <a class = "page-link" href = "#" onclick = "changePage('next')">Next</a>
                         </li>`;
                 };
 
-                pagination.innerHTML += 
-                    `<li class = "page-item ${currentPage === totalPages ? 'disabled' : ''}">
-                        <a class = "page-link" href = "#" onclick = "changePage('next')">Next</a>
-                    </li>`;
-            };
+                window.showDropdown = function(event){
+                    event.stopPropagation();
 
-            window.showDropdown = function(event){
-                event.stopPropagation();
-
-                const dropdown = event.currentTarget.nextElementSibling;
-                
-                dropdown.classList.toggle("show");
-            };
-
-            document.addEventListener("click", function(event){
-                const dropdowns = document.querySelectorAll(".dropdown.show");
-
-                dropdowns.forEach(dropdown => dropdown.classList.remove("show"));
-            });
-
-            window.updateAnnouncement = function(id){
-                window.location.href = "{% url 'Officer Control Announcement Update' id=0 %}".replace("0", id);
-            };
-
-            window.deleteAnnouncement = function(id, startIndex, index){
-                Swal.fire({title: "Alert!", text: "Officer, are you sure that you want to delete the announcement?", icon: "warning", showCancelButton: true, confirmButtonColor: "#3085D6", cancelButtonColor: "#D33", confirmButtonText: "Yes"}).then((result) => {
-                    if (result.isConfirmed){
-                        fetch("{% url 'Officer Control Announcement Delete' id=0 %}".replace("0", id), {
-                            method: "DELETE",
-
-                            headers: {
-                                "X-CSRFToken": "{{csrf_token}}",
-
-                                "Content-Type": "application/json",
-                            },
-                        
-                        }).then(response => response.json()).then(data => {
-                            if (data.success){
-                                filteredAnnouncements.splice(startIndex + index, 1);
-
-                                displayAnnouncements(currentPage);
-
-                            } else {
-                                alert("The announcement could not be deleted. Kindly try again later.");
-                            };
-                        });
-                    };
-                });
-            };
-
-            window.changePage = function(action){
-                const totalPages = Math.ceil(filteredAnnouncements.length / itemsPerPage);
-
-                if (action === "prev" && currentPage > 1){
-                    currentPage--;
-
-                } else if (action === "next" && currentPage < totalPages){
-                    currentPage++;
-
-                } else if (typeof action === "number"){
-                    currentPage = action;
+                    const dropdown = event.currentTarget.nextElementSibling;
+                    
+                    dropdown.classList.toggle("show");
                 };
 
-                displayAnnouncements(currentPage);
-            };
+                document.addEventListener("click", function(event){
+                    const dropdowns = document.querySelectorAll(".dropdown.show");
 
-            window.filterAnnouncements = function(){
-                const searchQuery = document.getElementById("searchBar").value.toLowerCase();
-
-                const municipalityFilterValue = document.getElementById("municipalityFilter").value;
-                
-                const barangayFilterValue = document.getElementById("barangayFilter").value;
-                
-                const dateFrom = document.getElementById("dateFrom").value;
-                
-                const dateTo = document.getElementById("dateTo").value;
-                
-                const orderBy = document.getElementById("orderBy").value;
-
-                filteredAnnouncements = announcements.filter(announcement => {
-                    const matchesSearch = announcement.title.toLowerCase().includes(searchQuery);
-
-                    const matchesMunicipality = municipalityFilterValue ? announcement.location.includes(municipalityFilterValue) : true;
-                    
-                    const matchesBarangay = barangayFilterValue ? announcement.location.includes(barangayFilterValue) : true;
-                    
-                    const matchesDateFrom = dateFrom ? new Date(announcement.date) >= new Date(dateFrom) : true;
-                    
-                    const matchesDateTo = dateTo ? new Date(announcement.date) <= new Date(dateTo) : true;
-                    
-                    return matchesSearch  && matchesMunicipality && matchesBarangay && matchesDateFrom && matchesDateTo;
+                    dropdowns.forEach(dropdown => dropdown.classList.remove("show"));
                 });
 
-                if (orderBy === "latest"){
-                    filteredAnnouncements.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-                } else {
-                    filteredAnnouncements.sort((a, b) => new Date(a.date) - new Date(b.date));
+                window.updateAnnouncement = function(id){
+                    window.location.href = "{% url 'Officer Control Announcement Update' id=0 %}".replace("0", id);
                 };
 
-                currentPage = 1;
+                window.deleteAnnouncement = function(id, startIndex, index){
+                    Swal.fire({title: "Alert!", text: "Officer, are you sure that you want to delete the announcement?", icon: "warning", showCancelButton: true, confirmButtonColor: "#3085D6", cancelButtonColor: "#D33", confirmButtonText: "Yes"}).then((result) => {
+                        if (result.isConfirmed){
+                            fetch("{% url 'Officer Control Announcement Delete' id=0 %}".replace("0", id), {
+                                method: "DELETE",
 
-                displayAnnouncements(currentPage);
-            };
+                                headers: {
+                                    "X-CSRFToken": "{{csrf_token}}",
 
-            window.updateBarangayOptions = function(){
-                const municipalityFilter = document.getElementById("municipalityFilter").value;
+                                    "Content-Type": "application/json",
+                                },
+                            
+                            }).then(response => response.json()).then(data => {
+                                if (data.success){
+                                    filteredAnnouncements.splice(startIndex + index, 1);
 
-                const barangayLabel = document.getElementById("barangayLabel");
+                                    displayAnnouncements(currentPage);
 
-                const barangayFilter = document.getElementById("barangayFilter");
-                
-                barangayFilter.innerHTML = "<option value = ''>Barangay</option>";
-
-                if (municipalityFilter){
-                    $.ajax({
-                        url: "{% url 'Officer Control Barangay Read' %}",
-
-                        data: {
-                            "municipality": municipalityFilter
-                        },
-                        
-                        success: function(data){
-                            data.forEach(function(barangay){
-                                const option = document.createElement("option");
-
-                                option.value = barangay;
-                                
-                                option.textContent = barangay;
-                                
-                                barangayFilter.appendChild(option);
+                                } else {
+                                    alert("The announcement could not be deleted. Kindly try again later.");
+                                };
                             });
-                        }
+                        };
+                    });
+                };
+
+                window.changePage = function(action){
+                    const totalPages = Math.ceil(filteredAnnouncements.length / itemsPerPage);
+
+                    if (action === "prev" && currentPage > 1){
+                        currentPage--;
+
+                    } else if (action === "next" && currentPage < totalPages){
+                        currentPage++;
+
+                    } else if (typeof action === "number"){
+                        currentPage = action;
+                    };
+
+                    displayAnnouncements(currentPage);
+                };
+
+                window.filterAnnouncements = function(){
+                    const searchQuery = document.getElementById("searchBar").value.toLowerCase();
+
+                    const municipalityFilterValue = document.getElementById("municipalityFilter").value;
+                    
+                    const barangayFilterValue = document.getElementById("barangayFilter").value;
+                    
+                    const dateFrom = document.getElementById("dateFrom").value;
+                    
+                    const dateTo = document.getElementById("dateTo").value;
+                    
+                    const orderBy = document.getElementById("orderBy").value;
+
+                    filteredAnnouncements = announcements.filter(announcement => {
+                        const matchesSearch = announcement.title.toLowerCase().includes(searchQuery);
+
+                        const matchesMunicipality = municipalityFilterValue ? announcement.location.includes(municipalityFilterValue) : true;
+                        
+                        const matchesBarangay = barangayFilterValue ? announcement.location.includes(barangayFilterValue) : true;
+                        
+                        const matchesDateFrom = dateFrom ? new Date(announcement.date) >= new Date(dateFrom) : true;
+                        
+                        const matchesDateTo = dateTo ? new Date(announcement.date) <= new Date(dateTo) : true;
+                        
+                        return matchesSearch  && matchesMunicipality && matchesBarangay && matchesDateFrom && matchesDateTo;
                     });
 
-                    barangayLabel.style.display = "block";
+                    if (orderBy === "latest"){
+                        filteredAnnouncements.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-                    barangayFilter.style.display = "block";
+                    } else {
+                        filteredAnnouncements.sort((a, b) => new Date(a.date) - new Date(b.date));
+                    };
+
+                    currentPage = 1;
+
+                    displayAnnouncements(currentPage);
                 };
-            };
 
-            window.resetFilter = function(){
-                window.location.reload();
+                window.updateBarangayOptions = function(){
+                    const municipalityFilter = document.getElementById("municipalityFilter").value;
 
-                currentPage = 1;
-                
+                    const barangayLabel = document.getElementById("barangayLabel");
+
+                    const barangayFilter = document.getElementById("barangayFilter");
+                    
+                    barangayFilter.innerHTML = "<option value = ''>Barangay</option>";
+
+                    if (municipalityFilter){
+                        $.ajax({
+                            url: "{% url 'Officer Control Barangay Read' %}",
+
+                            data: {
+                                "municipality": municipalityFilter
+                            },
+                            
+                            success: function(data){
+                                data.forEach(function(barangay){
+                                    const option = document.createElement("option");
+
+                                    option.value = barangay;
+                                    
+                                    option.textContent = barangay;
+                                    
+                                    barangayFilter.appendChild(option);
+                                });
+                            }
+                        });
+
+                        barangayLabel.style.display = "block";
+
+                        barangayFilter.style.display = "block";
+                    };
+                };
+
+                window.resetFilter = function(){
+                    window.location.reload();
+
+                    currentPage = 1;
+                    
+                    displayAnnouncements(currentPage);
+                };
+
                 displayAnnouncements(currentPage);
-            };
+            });
+        </script>
+        
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const filterCollapse = document.getElementById('filterCollapse');
+                const mainContent = document.getElementById('mainContent');
+                const filterToggle = document.getElementById('filterToggle');
+            
+                function adjustMainContentWidth() {
+                    if (filterCollapse.classList.contains('show')) {
+                        // Filter is open
+                        mainContent.classList.remove('w-100');
+                    } else {
+                        // Filter is collapsed
+                        console.log(mainContent.classList)
+                        mainContent.classList.add('w-100');
+                    }
+                }
+            
+                // Initial adjustment
+                adjustMainContentWidth();
+            
+                // Add event listener to toggle button
+                filterToggle.addEventListener('click', adjustMainContentWidth);
+            
+                // Handle collapse events directly if needed
+                filterCollapse.addEventListener('shown.bs.collapse', adjustMainContentWidth);
+                filterCollapse.addEventListener('hidden.bs.collapse', adjustMainContentWidth);
+            });
+        </script>
+    {% endblock announcement_content %}
 
-            displayAnnouncements(currentPage);
-        });
-    </script>
 {% endblock %}

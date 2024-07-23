@@ -548,6 +548,9 @@
     font-weight: 400 !important;
     font-size: 20px !important;   
     color: #003755 !important;
+    background: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '20' height = '20' viewBox = '0 0 320 512' fill = '%23154360'> <path d = 'M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center; 
     cursor: pointer;
 }
 
@@ -558,24 +561,36 @@
 @media screen and (min-width: 446px) and (max-width: 775px){
     .report-body .report-form .municipality select{
         font-size: 18px !important;
+        background: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '18' height = '18' viewBox = '0 0 320 512' fill = '%23154360'> <path d = 'M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center; 
     }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .report-body .report-form .municipality select{
         font-size: 16px !important;
+        background: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '16' height = '16' viewBox = '0 0 320 512' fill = '%23154360'> <path d = 'M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center; 
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .report-body .report-form .municipality select{
         font-size: 14px !important;
+        background: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '14' height = '14' viewBox = '0 0 320 512' fill = '%23154360'> <path d = 'M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center; 
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .report-body .report-form .municipality select{
         font-size: 12px !important;
+        background: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '12' height = '12' viewBox = '0 0 320 512' fill = '%23154360'> <path d = 'M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center; 
     }
 }
 
@@ -629,6 +644,9 @@
     font-weight: 400 !important;
     font-size: 20px !important;   
     color: #003755 !important;
+    background: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '20' height = '20' viewBox = '0 0 320 512' fill = '%23154360'> <path d = 'M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center; 
     cursor: pointer;
 }
 
@@ -639,24 +657,36 @@
 @media screen and (min-width: 446px) and (max-width: 775px){
     .report-body .report-form .barangay select{
         font-size: 18px !important;
+        background: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '18' height = '18' viewBox = '0 0 320 512' fill = '%23154360'> <path d = 'M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center; 
     }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .report-body .report-form .barangay select{
         font-size: 16px !important;
+        background: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '16' height = '16' viewBox = '0 0 320 512' fill = '%23154360'> <path d = 'M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .report-body .report-form .barangay select{
         font-size: 14px !important;
+        background: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '14' height = '14' viewBox = '0 0 320 512' fill = '%23154360'> <path d = 'M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .report-body .report-form .barangay select{
         font-size: 12px !important;
+        background: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '12' height = '12' viewBox = '0 0 320 512' fill = '%23154360'> <path d = 'M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
     }
 }
 
@@ -698,7 +728,7 @@
     padding-top: 5px;
     padding-bottom: 5px;
     width: 100%;
-    height: 100px;
+    height: 150px;
     border: 1px solid #D3D3D3;
     border-radius: 5px;
     outline: none !important;
@@ -819,6 +849,9 @@
     font-weight: 400 !important;
     font-size: 20px !important;   
     color: #003755 !important;
+    background: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '20' height = '20' viewBox = '0 0 320 512' fill = '%23154360'> <path d = 'M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
     cursor: pointer;
 }
 
@@ -829,24 +862,36 @@
 @media screen and (min-width: 446px) and (max-width: 775px){
     .report-body .report-form .size select{
         font-size: 18px !important;
+        background: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '18' height = '18' viewBox = '0 0 320 512' fill = '%23154360'> <path d = 'M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
     }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .report-body .report-form .size select{
         font-size: 16px !important;
+        background: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '16' height = '16' viewBox = '0 0 320 512' fill = '%23154360'> <path d = 'M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .report-body .report-form .size select{
         font-size: 14px !important;
+        background: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '14' height = '14' viewBox = '0 0 320 512' fill = '%23154360'> <path d = 'M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .report-body .report-form .size select{
         font-size: 12px !important;
+        background: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '12' height = '12' viewBox = '0 0 320 512' fill = '%23154360'> <path d = 'M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
     }
 }
 
@@ -882,7 +927,7 @@
     }
 }
 
-.report-body .report-form .density input{
+.report-body .report-form .density select{
     width: 100%;
     padding-left: 10px;
     padding-right: 10px;
@@ -890,77 +935,55 @@
     padding-bottom: 5px;
     border: 1px solid #D3D3D3;
     border-radius: 5px;
+    appearance: none;
     outline: none !important;
     font-family: "Montserrat";
     font-weight: 400 !important;
     font-size: 20px !important;   
     color: #003755 !important;
+    background: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '20' height = '20' viewBox = '0 0 320 512' fill = '%23154360'> <path d = 'M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center; 
+    cursor: pointer;
 }
 
-.report-body .report-form .density input:focus{
+.report-body .report-form .density select:focus{
     border: 1px solid #D3D3D3 !important;
 }
 
 @media screen and (min-width: 446px) and (max-width: 775px){
-    .report-body .report-form .density input{
+    .report-body .report-form .density select{
         font-size: 18px !important;
+        background: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '18' height = '18' viewBox = '0 0 320 512' fill = '%23154360'> <path d = 'M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center; 
     }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .report-body .report-form .density input{
+    .report-body .report-form .density select{
         font-size: 16px !important;
+        background: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '16' height = '16' viewBox = '0 0 320 512' fill = '%23154360'> <path d = 'M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center; 
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .report-body .report-form .density input{
+    .report-body .report-form .density select{
         font-size: 14px !important;
+        background: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '16' height = '16' viewBox = '0 0 320 512' fill = '%23154360'> <path d = 'M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center; 
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .report-body .report-form .density input{
+    .report-body .report-form .density select{
         font-size: 12px !important;
-    }
-}
-
-.report-body .report-form .density::after{
-    content: "per m²";
-    position: absolute;
-    right: 40px;
-    transform: translateY(30%);
-    font-family: "Montserrat";
-    font-weight: 400;
-    font-size: 20px;   
-    pointer-events: none;
-}
-
-@media screen and (min-width: 446px) and (max-width: 775px){
-    .report-body .report-form .density::after{
-        right: 20px;
-        font-size: 18px !important;
-    }
-}
-
-@media screen and (min-width: 369px) and (max-width: 445px){
-    .report-body .report-form .density::after{
-        right: 20px;
-        font-size: 16px !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
-    .report-body .report-form .density::after{
-        right: 20px;
-        font-size: 14px !important;
-    }
-}
-
-@media screen and (min-width: 320px) and (max-width: 348px){
-    .report-body .report-form .density::after{
-        right: 20px;
-        font-size: 12px !important;
+        background: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '16' height = '16' viewBox = '0 0 320 512' fill = '%23154360'> <path d = 'M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center; 
     }
 }
 
@@ -1010,6 +1033,9 @@
     font-weight: 400 !important;
     font-size: 20px !important;   
     color: #003755 !important;
+    background: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '20' height = '20' viewBox = '0 0 320 512' fill = '%23154360'> <path d = 'M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
     cursor: pointer;
 }
 
@@ -1020,28 +1046,44 @@
 @media screen and (min-width: 446px) and (max-width: 775px){
     .report-body .report-form .depth select{
         font-size: 18px !important;
+        background: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '18' height = '18' viewBox = '0 0 320 512' fill = '%23154360'> <path d = 'M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
     }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
     .report-body .report-form .depth select{
         font-size: 16px !important;
+        background: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '16' height = '16' viewBox = '0 0 320 512' fill = '%23154360'> <path d = 'M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
     .report-body .report-form .depth select{
         font-size: 14px !important;
+        background: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '14' height = '14' viewBox = '0 0 320 512' fill = '%23154360'> <path d = 'M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
     .report-body .report-form .depth select{
         font-size: 12px !important;
+        background: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '12' height = '12' viewBox = '0 0 320 512' fill = '%23154360'> <path d = 'M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
     }
 }
 
-.report-body .report-form .weather label{
+.report-body .report-form .weather{
+    position: relative;
+}
+
+.report-body .report-form label[for = "weather"]{
     margin-bottom: 0px !important;
     font-family: "Montserrat";
     font-weight: 700;
@@ -1050,33 +1092,33 @@
 }
 
 @media screen and (min-width: 446px) and (max-width: 775px){
-    .report-body .report-form .weather label{
+    .report-body .report-form label[for = "weather"]{
         font-size: 18px !important;
     }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .report-body .report-form .weather label{
+    .report-body .report-form label[for = "weather"]{
         font-size: 16px !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .report-body .report-form .weather label{
+    .report-body .report-form label[for = "weather"]{
         font-size: 14px !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .report-body .report-form .weather label{
+    .report-body .report-form label[for = "weather"]{
         font-size: 12px !important;
     }
 }
 
-.report-body .report-form .weather select{
+.report-body .report-form .weather input{
     width: 100%;
     padding-left: 10px;
-    padding-right: 10px;
+    padding-right: 40px !important;    
     padding-top: 5px;
     padding-bottom: 5px;
     border: 1px solid #D3D3D3;
@@ -1090,32 +1132,72 @@
     cursor: pointer;
 }
 
-.report-body .report-form .weather select:focus{
+.report-body .report-form .weather input:focus{
     border: 1px solid #D3D3D3 !important;
 }
 
 @media screen and (min-width: 446px) and (max-width: 775px){
-    .report-body .report-form .weather select{
+    .report-body .report-form .weather input{
         font-size: 18px !important;
     }
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .report-body .report-form .weather select{
+    .report-body .report-form .weather input{
         font-size: 16px !important;
     }
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .report-body .report-form .weather select{
+    .report-body .report-form .weather input{
         font-size: 14px !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .report-body .report-form .weather select{
+    .report-body .report-form .weather input{
         font-size: 12px !important;
     }
+}
+
+.report-body .report-form .weather img{
+    position: absolute;
+    display: grid;
+    place-items: center;
+    right: 10px;
+    top: 50%;
+    height: 20px;
+    border: none;
+    cursor: pointer;
+    transform: translateY(-50%);
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .report-body .report-form .weather img{
+        height: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .report-body .report-form .weather img{
+        height: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .report-body .report-form .depth select{
+        height: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .report-body .report-form .depth select{
+        height: 12px !important;
+    }
+}
+
+.report-body .report-form .weather button:hover{
+    color: #B2BEB5 !important;
 }
 
 .report-body .report-form .buttons{

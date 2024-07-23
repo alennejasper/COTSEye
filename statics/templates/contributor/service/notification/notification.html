@@ -118,6 +118,41 @@
                                     </div>
                                 {% endif %}
                             </a>
+
+                        {% elif notification.notificationtype == "achievement" %}
+                            <a href = "{% url 'Contributor Service Notification Read' id=notification.id %}">
+                                {% if notification.is_read %}
+                                    <div class = "notification-read">
+                                        <div class = "item-header">
+                                            <img src = "{{notification.object.badge_icon.url}}">
+                                            
+                                            <div class = "item-context">
+                                                <p><strong>{{notification.object.badge_name}}</strong> has been achieved.</p>
+                                                
+                                                <p>{{notification.creation_date | date:'m/d/Y'}}</p>
+                                            </div>
+
+                                            <i class = "fa-solid fa-ellipsis"></i>
+                                        </div>
+                                    </div>
+
+                                {% else %}
+                                    <div class = "notification-unread">
+                                        <div class = "item-header">
+                                            <img src = "{{notification.object.badge_icon.url}}">
+
+                                            <div class = "item-context">
+                                                <p><strong>{{notification.object.badge_name}}</strong> has been achieved.</p>
+                                                
+                                                <p>{{notification.creation_date | date:'m/d/Y'}}</p>
+                                            </div>
+
+                                            <i class = "fa-solid fa-ellipsis"></i>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </a>
+                        {% else %}
                         {% endif %}
                     {% endfor %}
                 </div>

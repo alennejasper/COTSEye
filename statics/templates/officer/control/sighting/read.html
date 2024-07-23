@@ -1,8 +1,12 @@
-{% extends "officer/control/index/index.html" %}
+{% extends "officer/control/sighting/sighting.html" %}
 {% load static %}
 {% load custom_filters %}
 
-{% block content %}
+<header>
+    {% block action %} Read {% endblock action %}
+</header>
+
+{% block sighting_content %}
     <script src = "https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
@@ -14,25 +18,47 @@
             <div class = "row">
                 <div class = "col-md-6">
                     <div class = "card mb-4" style = "padding: 12px;">
-                      
-
                         <div class = "card-body">
-                            <div class = "row">
-                                <div class = "col-md-6">
-                                    <h5 style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 20px !important; color: rgb(52, 144, 242);">Sighting Dates</h5>
-
-                                    <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Created Date: </strong>
-
-                                    <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">{{post.creation_date | format_date_mmddyy}}</p>
-                                    
-                                    <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Capture Date: </strong>
-
-                                    <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">{{post.capture_date | format_date_mmddyy}}</p>
+                            <div id = "postCarousel" class = "carousel slide" data-bs-ride = "carousel" style = "margin-bottom: 15px; padding: 0px; border-radius: 5px;">
+                                <div class = "carousel-inner">
+                                    {% for photo in post_photos %}
+                                        <div class = "carousel-item {% if forloop.first %} active {% endif %}">
+                                            <img src = "{{photo.post_photo.url}}" style = "object-fit: cover; height: 250px;" class = "d-block w-100 carousel-image" alt = "...">
+                                            
+                                            {% if post.post_status.is_pending != True %}
+        
+                                            {% else %}
+                                                <a href = "#" class = "delete-photo" data-photo-id = "{{photo.id}}" onclick = "deletePhoto({{photo.id}})" style = "position: absolute; top: 10px; right: 15px; z-index: 1000;">
+                                                    <i class = "fa fa-trash" style = "padding: 5px; border-radius: 5px; font-size: 16px; background-color: white; color: black;"></i>
+                                                </a>
+                                            {% endif %}
+                                        </div>
+                                    {% endfor %}
                                 </div>
-
+        
+                                <button class = "carousel-control-prev" type = "button" data-bs-target = "#postCarousel" data-bs-slide = "prev">
+                                    <span class = "carousel-control-prev-icon" aria-hidden = "true"></span>
+                                    
+                                    <span class = "visually-hidden">Previous</span>
+                                </button>
+                                
+                                <button class = "carousel-control-next" type = "button" data-bs-target = "#postCarousel" data-bs-slide = "next">
+                                    <span class = "carousel-control-next-icon" aria-hidden = "true"></span>
+                                    
+                                    <span class = "visually-hidden">Next</span>
+                                </button>
+                            </div>
+                            <hr>
+                            <div class = "row">
+                               
+                                
                                 <div class = "col-md-6">
-                                    <h5 style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 20px !important; color: rgb(52, 144, 242);">Observation</h5>
+                                    <h5 style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 16px !important; color: rgb(52, 144, 242);">Observation</h5>
 
+                                    <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Description: </strong>
+                                
+                                    <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">{{post.description}}</p>
+                                    
                                     <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Size: </strong>
 
                                     <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">{{post.post_observation.size}}</p>
@@ -48,30 +74,18 @@
                                     <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Weather: </strong>
 
                                     <p style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">{{post.post_observation.weather}}</p>
-                                </div>           
-                            </div>
-
-                            <hr>
-
-                            <div class = "row">
+                                </div>   
+                                
                                 <div class = "col-md-6">
-                                    <h5 style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 20px !important; color: rgb(52, 144, 242);">Location Details</h5>
+                                    <h5 style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 16px !important; color: rgb(52, 144, 242);">Report Details</h5>
 
-                                    <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Municipality: </strong>
+                                    <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Submission Date: </strong>
 
-                                    <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">{{post.location.municipality}}</p>
+                                    <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">{{post.creation_date | format_date_mmddyy}}</p>
                                     
-                                    <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Barangay: </strong>
+                                    <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Capture Date: </strong>
 
-                                    <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">{{post.location.barangay}}</p>
-                                    
-                                    <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Coordinates: </strong>
-
-                                    <p style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">{{post.coordinates}}</p>
-                                </div>
-
-                                <div class = "col-md-6">
-                                    <h5 style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 20px !important; color: rgb(52, 144, 242);">Other Details</h5>
+                                    <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">{{post.capture_date | format_date_mmddyy}}</p>
 
                                     <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Contributor: </strong>
 
@@ -88,14 +102,15 @@
                                             <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">{{post.remarks}}</p>
                                         {% endif %}
                                     {% endif %}
-                                </div>           
+                                </div>
                             </div>
 
-                            <hr>
+                            <!-- <hr>
+
+                            <div class = "row">
+                            </div> -->
+
                             
-                            <h5 style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 20px !important; color: rgb(52, 144, 242);">Description</h5>
-                            
-                            <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">{{post.description}}</p>     
                         </div>
                     </div>
                 </div>
@@ -113,36 +128,6 @@
                 </script>
 
                 <div class = "col-md-6">
-                    <div id = "postCarousel" class = "carousel slide" data-bs-ride = "carousel" style = "padding: 12px; border-radius: 5px;">
-                        <div class = "carousel-inner">
-                            {% for photo in post_photos %}
-                                <div class = "carousel-item {% if forloop.first %} active {% endif %}">
-                                    <img src = "{{photo.post_photo.url}}" style = "object-fit: cover; height: 250px;" class = "d-block w-100 carousel-image" alt = "...">
-                                    
-                                    {% if post.post_status.is_pending != True %}
-
-                                    {% else %}
-                                        <a href = "#" class = "delete-photo" data-photo-id = "{{photo.id}}" onclick = "deletePhoto({{photo.id}})" style = "position: absolute; top: 10px; right: 15px; z-index: 1000;">
-                                            <i class = "fa fa-trash" style = "padding: 5px; border-radius: 5px; font-size: 15px; background-color: white; color: black;"></i>
-                                        </a>
-                                    {% endif %}
-                                </div>
-                            {% endfor %}
-                        </div>
-
-                        <button class = "carousel-control-prev" type = "button" data-bs-target = "#postCarousel" data-bs-slide = "prev">
-                            <span class = "carousel-control-prev-icon" aria-hidden = "true"></span>
-                            
-                            <span class = "visually-hidden">Previous</span>
-                        </button>
-                        
-                        <button class = "carousel-control-next" type = "button" data-bs-target = "#postCarousel" data-bs-slide = "next">
-                            <span class = "carousel-control-next-icon" aria-hidden = "true"></span>
-                            
-                            <span class = "visually-hidden">Next</span>
-                        </button>
-                    </div>
-
                     {% if post.post_status.is_pending != True %}
                         <a class = "" style = "position: absolute; margin-top: 20px; right: 75px; padding: 5px; z-index: 1000; border-radius: 5px; background-color: white;">
                             <img style = "cursor: pointer;" width = "20px" src = "{% static 'assets/icons/update.png' %}" {% if post.post_status.is_pending != True %} data-toggle = "tooltip" data-placement = "top" title = "Action not allowed" {% endif %}>
@@ -156,6 +141,22 @@
 
                     <div id = "map" class = "mb-3" style = "margin: 12px; height: 265px;"></div>
                     
+                    <div class = "col-md-6" style = "margin: 12px">
+                        <h5 style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 16px !important; color: rgb(52, 144, 242);">Location Details</h5>
+
+                        <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Municipality: </strong>
+
+                        <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">{{post.location.municipality}}</p>
+                        
+                        <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Barangay: </strong>
+
+                        <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">{{post.location.barangay}}</p>
+                        
+                        <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Coordinates: </strong>
+
+                        <p style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">{{post.coordinates}}</p>
+                    </div> 
+
                     <div class = "card mb-4" style = "border: none !important;">
                         <div class = "card-body" style = "padding: 12px !important;">
                             {% if post.post_status.is_pending != True %}
@@ -167,9 +168,9 @@
 
                             {% else %}
                                 <div class = "button-container" style = "display: flex; gap: 10px; flex-direction: column;">
-                                    <button style = "padding-left: 10px !important; padding-right: 10px !important; padding-top: 5px !important; padding-bottom: 5px !important; font-family: 'Montserrat' !important; font-weight: 400; font-size: 12px !important; background-color: rgb(76, 196, 76);" class = "btn btn-success w-100" onclick = "changeStatus({{post.id}})">Approve</button>
+                                    <button style = "padding-left: 10px !important; padding-right: 10px !important; padding-top: 5px !important; padding-bottom: 5px !important; font-family: 'Montserrat' !important; font-weight: 400; font-size: 16px !important; background-color: rgb(76, 196, 76);" class = "btn btn-success w-100" onclick = "changeStatus({{post.id}})">Approve</button>
 
-                                    <button style = "padding-left: 10px !important; padding-right: 10px !important; padding-top: 5px !important; padding-bottom: 5px !important; font-family: 'Montserrat' !important; font-weight: 400; font-size: 12px !important; background-color: rgb(226, 51, 51);" class = "btn btn-danger w-100" onclick = "invalidStatus({{post.id}})">Disapprove</button>
+                                    <button style = "padding-left: 10px !important; padding-right: 10px !important; padding-top: 5px !important; padding-bottom: 5px !important; font-family: 'Montserrat' !important; font-weight: 400; font-size: 16px !important; background-color: rgb(226, 51, 51);" class = "btn btn-danger w-100" onclick = "invalidStatus({{post.id}})">Disapprove</button>
                                 </div>
                             {% endif %}
                         </div>

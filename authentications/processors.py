@@ -1,12 +1,15 @@
 from managements.models import Status
 from reports.models import Post
-
+from datetime import timedelta
+from django.utils import timezone
 
 def coordinates(request):
     try:
-        map_posts = Post.objects.filter(post_status = 1)
+        six_months_ago = timezone.now() - timedelta(days = 180) 
 
-        map_statuses = Status.objects.all()
+        map_posts = Post.objects.filter(creation_date__gte = six_months_ago)
+
+        map_statuses = Status.objects.filter(creation_date__gte = six_months_ago)
     
     except:
         map_posts = None
