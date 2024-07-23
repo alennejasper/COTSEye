@@ -33,9 +33,9 @@
 }
 
 
-/* body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .content-wrapper, body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .main-footer, body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .main-header{
+body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .content-wrapper, body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .main-footer, body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .main-header{
     margin-left: 0px !important;
-} */
+}
 
 
 #load{
@@ -56,7 +56,7 @@
 } 
 
 
-/* .navbar{
+.navbar{
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 15px;
@@ -6927,6 +6927,255 @@ table#result_list tr th.sorting a{
 }
 
 
+.selector .selector-available h2{
+    margin-bottom: 0px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    border: 1px solid #003755 !important;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #FFFFFF !important;
+    background-color: #003755 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .selector .selector-available h2{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .selector .selector-available h2{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .selector .selector-available h2{
+        font-size: 14px !important;
+    }
+}
+
+.selector .selector-chosen h2{
+    margin-bottom: 0px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    border: 1px solid #003755 !important;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #FFFFFF !important;
+    background-color: #698F3F !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .selector .selector-chosen h2{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .selector .selector-chosen h2{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .selector .selector-chosen h2{
+        font-size: 14px !important;
+    }
+}
+
+.selector .selector-filter label{
+    display: none !important;
+}
+
+.selector .selector-filter{
+    border: unset !important;
+    border-left: 1px solid #003755 !important;
+    border-right: 1px solid #003755 !important;
+}
+
+.selector-filter input{
+    height: unset;
+}
+
+.selector select{
+    box-sizing: border-box !important;
+    margin: 0px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    height: fit-content !important;
+    appearance: none !important;
+    outline: none !important;
+    border: 1px solid #003755 !important;
+    border-radius: unset !important;
+    border-bottom-left-radius: 5px !important;
+    border-bottom-right-radius: 5px !important;
+}
+
+.selector select option{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 20px !important;
+}
+
+select:-internal-list-box option:checked{
+    color: #B2BEB5 !important;
+    background-color: #002C44 !important;
+}
+
+.selector select option:hover{
+    color: #B2BEB5 !important;
+    background-color: #002C44 !important;
+}
+
+.selector select option:active{
+    color: #B2BEB5 !important;
+    background-color: #002C44 !important;
+}
+
+.selector select option:focus{
+    color: #B2BEB5 !important;
+    background-color: #002C44 !important;
+}
+
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .selector select option{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .selector select option{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .selector select option{
+        font-size: 14px !important;
+    }
+}
+
+.selector ul.selector-chooser{
+    position: relative !important;
+    bottom: 120px;
+    border-radius: unset !important;
+    background-color: #B2BEB5 !important;
+}
+
+.selector-chooser li{
+    padding: 5px !important;
+}
+
+.selector a{
+    margin-top: 0px;
+    margin-bottom: 0px !important;
+    font-family: "Montserrat";
+    font-weight: 700;
+    font-size: 20px !important;
+    color: #003755 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .selector a{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .selector a{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .selector a{
+        font-size: 14px !important;
+    }
+}
+
+.selector span{
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #003755 !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .selector span{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .selector span{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .selector span{
+        font-size: 14px !important;
+    }
+}
+
+.selector .list-footer-display span{
+    display: none !important;
+    font-family: "Montserrat";
+    font-weight: 400 !important;
+    font-size: 14px !important;
+    color: #698F3F !important;
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .selector .list-footer-display span{
+        width: 100% !important;
+        font-family: "Montserrat";
+        font-weight: 400 !important;
+        font-size: 12px !important;
+        color: #698F3F !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .selector .list-footer-display span{
+        width: 100% !important;
+        font-family: "Montserrat";
+        font-weight: 400 !important;
+        font-size: 11px !important;
+        color: #698F3F !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .selector .list-footer-display span{
+        width: 100% !important;
+        font-family: "Montserrat";
+        font-weight: 400 !important;
+        font-size: 10px !important;
+        color: #698F3F !important;
+    }
+}
+
+
 input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus input:-webkit-autofill, textarea:-webkit-autofill, textarea:-webkit-autofill:hover textarea:-webkit-autofill:focus, select:-webkit-autofill, select:-webkit-autofill:hover, select:-webkit-autofill:focus{
     -webkit-text-fill-color: #003755;
     -webkit-box-shadow: 0 0 0px 1000px #FFFFFF inset;
@@ -6935,4 +7184,4 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 
 input:autofill{
     background: #FFFFFF !important;
-} */
+}

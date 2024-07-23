@@ -17,23 +17,55 @@ from authentications.models import *
 # administrator.register(UserType, UserTypeAdmin)
 
 class BadgeAdmin(admin.ModelAdmin):
-    list_display = ("badge_name", "description")
+    class Media:   
+        css = {
+            "all": ["css/admin/control/index/index.css"]
+        }
+
+    def has_add_permission(self, request, obj = None):
+        return True
+
+    def has_module_permission(self, request):
+        return request.user.usertype_id == 1
     
-    search_fields = ("badge_name",)
+    def render_change_form(self, request, context, add = False, change = False, form_url = "", obj = None):
+        context.update({"show_save": True, "show_save_and_continue": False, "show_save_and_add_another": False, "show_delete": True})
+
+        return super().render_change_form(request, context, add, change, form_url, obj)
+    
+    list_display = ["badge_name", "description"]
+    
+    search_fields = ["badge_name",]
 
 administrator.register(Badge, BadgeAdmin)
 
 
 class UserAdmin(admin.ModelAdmin):
-    list_display = ("account", "joined_date")
+    class Media:   
+        css = {
+            "all": ["css/admin/control/index/index.css"]
+        }
+
+    def has_add_permission(self, request, obj = None):
+        return False
+
+    def has_module_permission(self, request):
+        return request.user.usertype_id == 1
     
-    search_fields = ("account__username", "first_name", "last_name", "email")
+    def render_change_form(self, request, context, add = False, change = False, form_url = "", obj = None):
+        context.update({"show_save": True, "show_save_and_continue": False, "show_save_and_add_another": False, "show_delete": True})
+
+        return super().render_change_form(request, context, add, change, form_url, obj)
     
-    list_filter = ("joined_date",)
+    list_display = ["account", "joined_date"]
     
-    fieldsets = ((None, {"fields": ("account", "first_name", "last_name", "email", "phone_number", "profile_photo", "joined_date", "badges")}),)
+    search_fields = ["account__username", "first_name", "last_name", "email"]
     
-    filter_horizontal = ("badges",)
+    list_filter = ["joined_date",]
+        
+    fieldsets = [(None, {"fields": ("account", "badges")}),]
+    
+    filter_horizontal = ["badges",]
 
 administrator.register(User, UserAdmin)
 

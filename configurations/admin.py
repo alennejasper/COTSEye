@@ -10,7 +10,7 @@ class AdministratorSite(admin.AdminSite):
 
     site_title = "Home"
 
-    index_title = "COTSEYE"
+    index_title = "COTSye"
     
     index_template = "admin/control/index/index.html"
 
