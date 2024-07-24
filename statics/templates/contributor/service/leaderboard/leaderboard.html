@@ -24,6 +24,7 @@
     
                     <p class = "count"><i class = "fas fa-star"></i>{{leaderboard.0.post_count | default:'0'}}</p>
                 </div>
+            {% else %}
             {% endif %}
             
             <div class = "second-row">
@@ -41,6 +42,7 @@
                             <h2>2</h2>
                         </div>
                     </div>
+                {% else %}
                 {% endif %}
                 
                 <div class = "box-div">
@@ -61,7 +63,8 @@
                             <h2>3</h2>
                         </div>
                     </div>
-                 {% endif %}
+                {% else %}
+                {% endif %}
             </div>
         </div>
        

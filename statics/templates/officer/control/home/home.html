@@ -13,7 +13,6 @@
             <div class = "cards-container">
             </div>
         </div>
-       
         
         <script src = "https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
@@ -114,7 +113,7 @@
             <div class = "map">
             </div>
         </div>
-        
+
         <div class = "leaderboard">
             <h2>TOP CONTRIBUTORS</h2>
 
@@ -129,6 +128,7 @@
 
                         <p class = "count"><i class = "fas fa-star"></i>{{leaderboard.0.post_count | default:'0'}}</p>
                     </div>
+                {% else %}
                 {% endif %}
                 
                 <div class = "second-row">
@@ -146,8 +146,8 @@
                                 <h2>2</h2>
                             </div>
                         </div>
+                    {% else %}
                     {% endif %}
-                    
             
                     <div class = "box-div">
                         <h2>1</h2>
@@ -159,7 +159,7 @@
                                 <img id = "profilePicture" src = "{{user.user.profile_photo.url | default:''}}" class = "profile-picture">
                             </div>
 
-                            <p class = "name">{{leaderboard.2.user__account__username}}</p>
+                            <p class = "name">{{leaderboard.2.user__account__username | default:'None available'}}</p>
 
                             <p class = "count"><i class="fas fa-star"></i>{{leaderboard.2.post_count | default:'0'}}</p>
                             
@@ -167,7 +167,8 @@
                                 <h2>3</h2>
                             </div>
                         </div>
-                     {% endif %}
+                    {% else %}
+                    {% endif %}
                 </div>
             </div>
 
@@ -183,6 +184,7 @@
 
                         <p class = "count"><i class="fas fa-star"></i>{{entry.post_count | default:'0'}}</p>
                     </div>
+                {% else %}
                 {% endfor %}
             </div>
         </div>
