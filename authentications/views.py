@@ -78,7 +78,13 @@ def PublicServiceHome(request):
             map_posts = Post.objects.filter(post_status = 1)
 
             map_statuses = Status.objects.all()
-    
+
+            six_months_ago = timezone.now() - timedelta(days = 180)
+
+            map_posts = Post.objects.filter(post_status = 1, creation_date__gte = six_months_ago)
+
+            map_statuses = Status.objects.filter(creation_date__gte = six_months_ago)
+
         except:
             map_posts = None
 
@@ -345,11 +351,7 @@ def ContributorServiceHome(request):
     user_profile = User.objects.get(account = request.user)
 
     notification_life = timezone.now() - timedelta(days = 30)
-
-    valid_posts = Post.objects.filter(post_status__is_valid = True)
-    
-    leaderboard = valid_posts.values("user__account__username", "user__profile_photo").annotate(post_count = Count("id")).order_by('-post_count')
-    
+        
     user = User.objects.get(account = request.user)
 
     unread_notifications = Notification.objects.filter(user = user, is_read = False, creation_date__gte = notification_life).order_by("-creation_date")
@@ -374,7 +376,7 @@ def ContributorServiceHome(request):
 
         map_statuses = None
     
-    context = {"leaderboard": leaderboard, "username": username, "user_profile": user_profile, "unread_notifications": unread_notifications, "map_posts": map_posts, "map_statuses": map_statuses, "latest_announcements": latest_announcements, "valid_posts": valid_posts}
+    context = {"username": username, "user_profile": user_profile, "unread_notifications": unread_notifications, "map_posts": map_posts, "map_statuses": map_statuses, "latest_announcements": latest_announcements, "valid_posts": valid_posts}
 
     return render(request, "contributor/service/home/home.html", context)
     
@@ -948,15 +950,9 @@ def OfficerControlHome(request):
     for status_entry in latest_status_entries:
         status_data.append({"municipality": status_entry.location.municipality.municipality_name, "caught_amount": status_entry.caught_overall, "volunteer_amount": status_entry.volunteer_overall, "status_type": str(status_entry.statustype.statustype), "event_date": status_entry.onset_date.strftime("%m/%d/%Y")})
     
-    status_order = {
-        'Critical': 1,
-        'High': 2,
-        'Moderate': 3,
-        'Low': 4,
-        'None': 5
-    }
+    status_order = {"Critical": 1, "High": 2, "Moderate": 3, "Low": 4, "None": 5}
 
-    status_data = sorted(status_data, key=lambda x: status_order.get(x['status_type'], float('inf')))
+    status_data = sorted(status_data, key = lambda x: status_order.get(x["status_type"], float("inf")))
 
     municipalities = Municipality.objects.values("municipality_name").distinct()
 

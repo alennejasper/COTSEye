@@ -354,7 +354,7 @@ i.fas.fa-users{
     margin-bottom: 0px !important;
     font-family: "Montserrat" !important;
     font-weight: 700 !important;
-    font-size: 22px !important;
+    font-size: 20px !important;
     color: #FFFFFF !important;
     text-align: justify !important;
     white-space: nowrap !important; 
@@ -365,7 +365,7 @@ i.fas.fa-users{
     .card-title p{
         font-family: "Montserrat";
         font-weight: 700;
-        font-size: 20px !important;
+        font-size: 18px !important;
         color: #FFFFFF;
         white-space: nowrap !important; 
         overflow: auto !important;
@@ -376,7 +376,7 @@ i.fas.fa-users{
     .card-title p{
         font-family: "Montserrat";
         font-weight: 700;
-        font-size: 18px !important;
+        font-size: 16px !important;
         color: #FFFFFF;
         white-space: nowrap !important; 
         overflow: auto !important;
@@ -387,7 +387,7 @@ i.fas.fa-users{
     .card-title p{
         font-family: "Montserrat";
         font-weight: 700;
-        font-size: 16px !important;
+        font-size: 14px !important;
         color: #FFFFFF;
         white-space: nowrap !important; 
         overflow: auto !important;
@@ -3093,24 +3093,13 @@ li.select2-results__option{
 .col-12 .card-header h4.card-title{
     font-family: "Montserrat" !important;
     font-weight: 700 !important; 
-    font-size: 22px !important;
+    font-size: 20px !important;
     color: #FFFFFF;
     white-space: nowrap !important; 
     overflow: auto !important;
 }
 
 @media screen and (min-width: 369px) and (max-width: 445px){
-    .col-12 .card-header h4.card-title{
-        font-family: "Montserrat" !important;
-        font-weight: 700 !important;
-        font-size: 20px !important;
-        color: #FFFFFF;
-        white-space: nowrap !important; 
-        overflow: auto !important;
-    }
-}
-
-@media screen and (min-width: 349px) and (max-width: 368px){
     .col-12 .card-header h4.card-title{
         font-family: "Montserrat" !important;
         font-weight: 700 !important;
@@ -3121,11 +3110,22 @@ li.select2-results__option{
     }
 }
 
-@media screen and (min-width: 320px) and (max-width: 348px){
+@media screen and (min-width: 349px) and (max-width: 368px){
     .col-12 .card-header h4.card-title{
         font-family: "Montserrat" !important;
         font-weight: 700 !important;
         font-size: 16px !important;
+        color: #FFFFFF;
+        white-space: nowrap !important; 
+        overflow: auto !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .col-12 .card-header h4.card-title{
+        font-family: "Montserrat" !important;
+        font-weight: 700 !important;
+        font-size: 14px !important;
         color: #FFFFFF;
         white-space: nowrap !important; 
         overflow: auto !important;
@@ -3173,7 +3173,7 @@ li.select2-results__option{
     border-right: 1px solid #003755 !important;
     font-family: "Montserrat";
     font-weight: 700;
-    font-size: 22px !important;
+    font-size: 20px !important;
     color: #003755;
 }
 
@@ -3204,7 +3204,7 @@ li.select2-results__option{
     white-space: nowrap;
     font-family: "Montserrat";
     font-weight: 700;
-    font-size: 22px !important;
+    font-size: 20px !important;
     color: #003755 !important;
 }
 
@@ -3215,7 +3215,7 @@ li.select2-results__option{
     padding-bottom: 0px !important;
     font-family: "Montserrat";
     font-weight: 700;
-    font-size: 22px !important;
+    font-size: 20px !important;
     color: #003755 !important;
 }
 
@@ -3224,7 +3224,7 @@ li.select2-results__option{
     padding-right: 30px !important;
     padding-top: 0px !important;
     padding-bottom: 0px !important;
-    font-size: 22px;
+    font-size: 20px;
     color: #003755;
 }
 
@@ -3416,8 +3416,8 @@ li.select2-results__option{
     margin-bottom: 0px !important;
     font-family: "Montserrat";
     font-weight: 400;
-    font-size: 22px !important;
-    color: #000000 !important;
+    font-size: 20px !important;
+    color: #003755 !important;
     text-align: center;
     cursor: default;
 }
@@ -3426,8 +3426,8 @@ li.select2-results__option{
     .home-map .map .legend .popup-header p{
         font-family: "Montserrat";
         font-weight: 400;
-        font-size: 14px !important;
-        color: #000000;
+        font-size: 16px !important;
+        color: #003755;
     }
 }
 
@@ -3435,8 +3435,8 @@ li.select2-results__option{
     .home-map .map .legend .popup-header p{
         font-family: "Montserrat";
         font-weight: 400;
-        font-size: 12px !important;
-        color: #000000;
+        font-size: 14px !important;
+        color: #003755;
     }
 }
 
@@ -3445,7 +3445,7 @@ li.select2-results__option{
         font-family: "Montserrat";
         font-weight: 400;
         font-size: 12px !important;
-        color: #000000;
+        color: #003755;
     }
 }
 
@@ -3454,8 +3454,8 @@ li.select2-results__option{
     margin-bottom: 0px !important;
     font-family: "Montserrat";
     font-weight: 700;
-    font-size: 22px !important;
-    color: #000000 !important;
+    font-size: 20px !important;
+    color: #003755 !important;
     cursor: default;
 }
 
@@ -3463,8 +3463,8 @@ li.select2-results__option{
     .home-map .map .legend .popup-header p a{
         font-family: "Montserrat";
         font-weight: 700;
-        font-size: 14px !important;
-        color: #000000;
+        font-size: 16px !important;
+        color: #003755;
     }
 }
 
@@ -3472,8 +3472,8 @@ li.select2-results__option{
     .home-map .map .legend .popup-header p a{
         font-family: "Montserrat";
         font-weight: 700;
-        font-size: 12px !important;
-        color: #000000;
+        font-size: 14px !important;
+        color: #003755;
     }
 }
 
@@ -3482,7 +3482,7 @@ li.select2-results__option{
         font-family: "Montserrat";
         font-weight: 700;
         font-size: 12px !important;
-        color: #000000;
+        color: #003755;
     }
 }
 
@@ -3530,8 +3530,8 @@ li.select2-results__option{
     margin-bottom: 0px !important;
     font-family: "Montserrat";
     font-weight: 400;
-    font-size: 22px !important;
-    color: #000000;
+    font-size: 20px !important;
+    color: #003755;
     cursor: default;
 }
 
@@ -3540,7 +3540,7 @@ li.select2-results__option{
         font-family: "Montserrat";
         font-weight: 400;
         font-size: 16px !important;
-        color: #000000;
+        color: #003755;
     }
 }
 
@@ -3549,7 +3549,7 @@ li.select2-results__option{
         font-family: "Montserrat";
         font-weight: 400;
         font-size: 14px !important;
-        color: #000000;
+        color: #003755;
     }
 }
 
@@ -3558,7 +3558,7 @@ li.select2-results__option{
         font-family: "Montserrat";
         font-weight: 400;
         font-size: 12px !important;
-        color: #000000;
+        color: #003755;
     }
 }
 
@@ -3568,8 +3568,8 @@ li.select2-results__option{
     margin-bottom: 0px !important;
     font-family: "Montserrat";
     font-weight: 700;
-    font-size: 22px !important;
-    color: #000000;
+    font-size: 20px !important;
+    color: #003755;
     cursor: default;
 }
 
@@ -3578,7 +3578,7 @@ li.select2-results__option{
         font-family: "Montserrat";
         font-weight: 700;
         font-size: 16px !important;
-        color: #000000;
+        color: #003755;
     }
 }
 
@@ -3587,7 +3587,7 @@ li.select2-results__option{
         font-family: "Montserrat";
         font-weight: 700;
         font-size: 14px !important;
-        color: #000000;
+        color: #003755;
     }
 }
 
@@ -3596,7 +3596,7 @@ li.select2-results__option{
         font-family: "Montserrat";
         font-weight: 700;
         font-size: 12px !important;
-        color: #000000;
+        color: #003755;
     }
 }
 
@@ -3609,9 +3609,9 @@ li.select2-results__option{
     border-radius: 5px;
     font-family: "Montserrat";
     font-weight: 400;
-    font-size: 22px !important;
+    font-size: 20px !important;
     background: #FFFFFF !important;
-    color: #000000;
+    color: #003755;
     cursor: default;
 }
 
@@ -3624,7 +3624,7 @@ li.select2-results__option{
         font-family: "Montserrat";
         font-weight: 400;
         font-size: 16px !important;
-        color: #000000;
+        color: #003755;
     }
 }
 
@@ -3637,7 +3637,7 @@ li.select2-results__option{
         font-family: "Montserrat";
         font-weight: 400;
         font-size: 14px !important;
-        color: #000000;
+        color: #003755;
     }
 }
 
@@ -3650,7 +3650,7 @@ li.select2-results__option{
         font-family: "Montserrat";
         font-weight: 400;
         font-size: 12px !important;
-        color: #000000;
+        color: #003755;
     }
 }
 
@@ -3659,8 +3659,8 @@ li.select2-results__option{
     margin-bottom: 0px !important;
     font-family: "Montserrat";
     font-weight: 700;
-    font-size: 22px !important;
-    color: #000000;
+    font-size: 20px !important;
+    color: #003755;
     cursor: default;
 }
 
@@ -3669,7 +3669,7 @@ li.select2-results__option{
         font-family: "Montserrat";
         font-weight: 700;
         font-size: 16px !important;
-        color: #000000;
+        color: #003755;
     }
 }
 
@@ -3678,7 +3678,7 @@ li.select2-results__option{
         font-family: "Montserrat";
         font-weight: 700;
         font-size: 14px !important;
-        color: #000000;
+        color: #003755;
     }
 }
 
@@ -3687,7 +3687,7 @@ li.select2-results__option{
         font-family: "Montserrat";
         font-weight: 700;
         font-size: 12px !important;
-        color: #000000;
+        color: #003755;
     }
 }
 
@@ -3700,8 +3700,8 @@ li.select2-results__option{
     margin-bottom: 0px !important;
     font-family: "Montserrat";
     font-weight: 400;
-    font-size: 22px !important;
-    color: #000000;
+    font-size: 20px !important;
+    color: #003755;
     cursor: default;
 }
 
@@ -3710,7 +3710,7 @@ li.select2-results__option{
         font-family: "Montserrat";
         font-weight: 400;
         font-size: 16px !important;
-        color: #000000;
+        color: #003755;
     }
 }
 
@@ -3719,7 +3719,7 @@ li.select2-results__option{
         font-family: "Montserrat";
         font-weight: 400;
         font-size: 14px !important;
-        color: #000000;
+        color: #003755;
     }
 }
 
@@ -3728,7 +3728,7 @@ li.select2-results__option{
         font-family: "Montserrat";
         font-weight: 400;
         font-size: 12px !important;
-        color: #000000;
+        color: #003755;
     }
 }
 
@@ -3764,7 +3764,7 @@ li.select2-results__option{
     padding-bottom: 10px !important;
     font-family: "Montserrat" !important;
     font-weight: 200 !important;
-    font-size: 22px !important;
+    font-size: 20px !important;
     color: #FFFFFF !important;
     text-align: justify;
 }
@@ -3988,8 +3988,8 @@ li.select2-results__option{
     margin-bottom: 0px !important;
     font-family: "Montserrat";
     font-weight: 400;
-    font-size: 22px !important;
-    color: #000000;
+    font-size: 20px !important;
+    color: #003755;
     cursor: default;
 }
 
@@ -3997,8 +3997,8 @@ li.select2-results__option{
     .home-map .map .popup .popup-place p{
         font-family: "Montserrat";
         font-weight: 400;
-        font-size: 20px !important;
-        color: #000000;
+        font-size: 18px !important;
+        color: #003755;
     }
 }
 
@@ -4006,8 +4006,8 @@ li.select2-results__option{
     .home-map .map .popup .popup-place p{
         font-family: "Montserrat";
         font-weight: 400;
-        font-size: 18px !important;
-        color: #000000;
+        font-size: 16px !important;
+        color: #003755;
     }
 }
 
@@ -4015,8 +4015,8 @@ li.select2-results__option{
     .home-map .map .popup .popup-place p{
         font-family: "Montserrat";
         font-weight: 400;
-        font-size: 16px !important;
-        color: #000000;
+        font-size: 14px !important;
+        color: #003755;
     }
 }
 
@@ -4024,8 +4024,8 @@ li.select2-results__option{
     .home-map .map .popup .popup-place p{
         font-family: "Montserrat";
         font-weight: 400;
-        font-size: 14px !important;
-        color: #000000;
+        font-size: 12px !important;
+        color: #003755;
     }
 }
 
@@ -4034,8 +4034,8 @@ li.select2-results__option{
     margin-bottom: 0px !important;
     font-family: "Montserrat";
     font-weight: 700;
-    font-size: 22px !important;
-    color: #000000;
+    font-size: 20px !important;
+    color: #003755;
     cursor: default;
 }
 
@@ -4044,7 +4044,7 @@ li.select2-results__option{
         font-family: "Montserrat";
         font-weight: 700;
         font-size: 16px !important;
-        color: #000000;
+        color: #003755;
     }
 }
 
@@ -4053,7 +4053,7 @@ li.select2-results__option{
         font-family: "Montserrat";
         font-weight: 700;
         font-size: 14px !important;
-        color: #000000;
+        color: #003755;
     }
 }
 
@@ -4062,7 +4062,7 @@ li.select2-results__option{
         font-family: "Montserrat";
         font-weight: 700;
         font-size: 12px !important;
-        color: #000000;
+        color: #003755;
     }
 }
 
@@ -4083,8 +4083,8 @@ li.select2-results__option{
     margin-bottom: 0px !important;
     font-family: "Montserrat";
     font-weight: 400;
-    font-size: 22px !important;
-    color: #000000;
+    font-size: 20px !important;
+    color: #003755;
     cursor: default;
 }
 
@@ -4093,7 +4093,7 @@ li.select2-results__option{
         font-family: "Montserrat";
         font-weight: 400;
         font-size: 16px !important;
-        color: #000000;
+        color: #003755;
     }
 }
 
@@ -4102,7 +4102,7 @@ li.select2-results__option{
         font-family: "Montserrat";
         font-weight: 400;
         font-size: 14px !important;
-        color: #000000;
+        color: #003755;
     }
 }
 
@@ -4111,7 +4111,7 @@ li.select2-results__option{
         font-family: "Montserrat";
         font-weight: 400;
         font-size: 12px !important;
-        color: #000000;
+        color: #003755;
     }
 }
 
@@ -4120,8 +4120,8 @@ li.select2-results__option{
     margin-bottom: 0px !important;
     font-family: "Montserrat";
     font-weight: 700;
-    font-size: 22px !important;
-    color: #000000;
+    font-size: 20px !important;
+    color: #003755;
     cursor: default;
 }
 
@@ -4130,7 +4130,7 @@ li.select2-results__option{
         font-family: "Montserrat";
         font-weight: 700;
         font-size: 16px !important;
-        color: #000000;
+        color: #003755;
     }
 }
 
@@ -4139,7 +4139,7 @@ li.select2-results__option{
         font-family: "Montserrat";
         font-weight: 700;
         font-size: 14px !important;
-        color: #000000;
+        color: #003755;
     }
 }
 
@@ -4148,7 +4148,7 @@ li.select2-results__option{
         font-family: "Montserrat";
         font-weight: 700;
         font-size: 12px !important;
-        color: #000000;
+        color: #003755;
     }
 }
 
@@ -4172,8 +4172,8 @@ li.select2-results__option{
     margin-bottom: 0px !important;
     font-family: "Montserrat";
     font-weight: 400;
-    font-size: 22px !important;
-    color: #000000;
+    font-size: 20px !important;
+    color: #003755;
     cursor: default;
     word-break: break-all;
 }
@@ -4183,7 +4183,7 @@ li.select2-results__option{
         font-family: "Montserrat";
         font-weight: 400;
         font-size: 16px !important;
-        color: #000000;
+        color: #003755;
     }
 }
 
@@ -4201,7 +4201,7 @@ li.select2-results__option{
         font-family: "Montserrat";
         font-weight: 400;
         font-size: 12px !important;
-        color: #000000;
+        color: #003755;
     }
 }
 
@@ -4210,8 +4210,8 @@ li.select2-results__option{
     margin-bottom: 0px !important;
     font-family: "Montserrat";
     font-weight: 700;
-    font-size: 22px !important;
-    color: #000000;
+    font-size: 20px !important;
+    color: #003755;
     cursor: default;
 }
 
@@ -4220,7 +4220,7 @@ li.select2-results__option{
         font-family: "Montserrat";
         font-weight: 700;
         font-size: 16px !important;
-        color: #000000;
+        color: #003755;
     }
 }
 
@@ -4229,7 +4229,7 @@ li.select2-results__option{
         font-family: "Montserrat";
         font-weight: 700;
         font-size: 14px !important;
-        color: #000000;
+        color: #003755;
     }
 }
 
@@ -4238,7 +4238,7 @@ li.select2-results__option{
         font-family: "Montserrat";
         font-weight: 700;
         font-size: 12px !important;
-        color: #000000;
+        color: #003755;
     }
 }
 
@@ -4285,7 +4285,7 @@ li.select2-results__option{
     margin-bottom: 0px;
     font-family: "Montserrat";
     font-weight: 400;
-    font-size: 22px !important;
+    font-size: 20px !important;
     color: #FFFFFF;
 }
 
@@ -4321,7 +4321,7 @@ li.select2-results__option{
     margin-bottom: 0px !important;
     font-family: "Montserrat";
     font-weight: 700;
-    font-size: 22px !important;
+    font-size: 20px !important;
     color: #FFFFFF;
 }
 
@@ -4386,7 +4386,7 @@ li.select2-results__option{
 .home-map .map .popup .button a.read-post{
     font-family: "Montserrat";
     font-weight: 400;
-    font-size: 22px;
+    font-size: 20px;
     color: #FFFFFF !important;
     text-decoration: none;
 }
@@ -4489,7 +4489,7 @@ li.select2-results__option{
 .col-md-6.col-sm-12 .card-header > .m-0{
     font-family: "Montserrat";
     font-weight: 700;
-    font-size: 22px !important;
+    font-size: 20px !important;
     color: #FFFFFF;
     white-space: nowrap !important; 
     overflow: auto !important;
@@ -4499,7 +4499,7 @@ li.select2-results__option{
     .col-md-6.col-sm-12 .card-header > .m-0{
         font-family: "Montserrat";
         font-weight: 700;
-        font-size: 20px !important;
+        font-size: 16px !important;
         color: #FFFFFF;
         white-space: nowrap !important; 
         overflow: auto !important;
@@ -4510,7 +4510,7 @@ li.select2-results__option{
     .col-md-6.col-sm-12 .card-header > .m-0{
         font-family: "Montserrat";
         font-weight: 700;
-        font-size: 18px !important;
+        font-size: 14px !important;
         color: #FFFFFF;
         white-space: nowrap !important; 
         overflow: auto !important;
@@ -4521,7 +4521,7 @@ li.select2-results__option{
     .col-md-6.col-sm-12 .card-header > .m-0{
         font-family: "Montserrat";
         font-weight: 700;
-        font-size: 16px !important;
+        font-size: 12px !important;
         color: #FFFFFF;
         white-space: nowrap !important; 
         overflow: auto !important;
@@ -4722,7 +4722,7 @@ li.select2-results__option{
     margin-bottom: 15px !important;
     font-family: "Montserrat";
     font-weight: 700;
-    font-size: 22px;
+    font-size: 20px;
     color: #003755;
 }
 
@@ -4731,7 +4731,7 @@ li.select2-results__option{
         margin-bottom: 15px !important;
         font-family: "Montserrat";
         font-weight: 700;
-        font-size: 20px;
+        font-size: 16px;
         color: #003755;
     }
 }
@@ -4741,7 +4741,7 @@ li.select2-results__option{
         margin-bottom: 15px !important;
         font-family: "Montserrat";
         font-weight: 700;
-        font-size: 18px;
+        font-size: 14px;
         color: #003755;
     }
 }
@@ -4751,7 +4751,7 @@ li.select2-results__option{
         margin-bottom: 15px !important;
         font-family: "Montserrat";
         font-weight: 700;
-        font-size: 16px;
+        font-size: 12px;
         color: #003755;
     }
 }
@@ -5935,7 +5935,7 @@ table#result_list tr th:nth-child(2){
     padding-bottom: 0px !important;
     font-family: "Montserrat";
     font-weight: 700;
-    font-size: 22px !important;
+    font-size: 20px !important;
     color: #FFFFFF !important;
     display: flex !important;
 }
@@ -5945,7 +5945,7 @@ table#result_list tr th:nth-child(2){
         width: fit-content !important;
         font-family: "Montserrat" !important;
         font-weight: 700;
-        font-size: 22px !important;
+        font-size: 18px !important;
         color: #FFFFFF !important;
         display: flex !important;
     }
@@ -5957,7 +5957,7 @@ table#result_list tr th:nth-child(2){
         outline: none !important;
         font-family: "Montserrat";
         font-weight: 700;
-        font-size: 20px !important; 
+        font-size: 16px !important; 
         color: #FFFFFF !important;
         display: flex !important;
     }
@@ -5968,7 +5968,7 @@ table#result_list tr th:nth-child(2){
         width: fit-content !important;
         font-family: "Montserrat";
         font-weight: 700;
-        font-size: 18px !important;
+        font-size: 14px !important;
         color: #FFFFFF !important;
         display: flex !important;
     }
@@ -5979,7 +5979,7 @@ table#result_list tr th:nth-child(2){
         width: fit-content !important;
         font-family: "Montserrat";
         font-weight: 700;
-        font-size: 16px !important;
+        font-size: 12px !important;
         color: #FFFFFF !important;
         display: flex !important;
     }
@@ -6177,7 +6177,7 @@ table#result_list tr th.sorting_asc a{
     width: fit-content !important;
     font-family: "Montserrat";
     font-weight: 700;
-    font-size: 22px !important;
+    font-size: 20px !important;
     color: #FFFFFF !important;
     display: flex !important;
 }
@@ -6191,7 +6191,7 @@ table#result_list tr th.sorting_asc a{
         width: fit-content !important;
         font-family: "Montserrat" !important;
         font-weight: 700;
-        font-size: 22px !important;
+        font-size: 18px !important;
         color: #FFFFFF !important;
         display: flex !important;
     }
@@ -6205,7 +6205,7 @@ table#result_list tr th.sorting_asc a{
         outline: none !important;
         font-family: "Montserrat";
         font-weight: 700;
-        font-size: 20px !important; 
+        font-size: 16px !important; 
         color: #FFFFFF !important;
         display: flex !important;
     }
@@ -6220,7 +6220,7 @@ table#result_list tr th.sorting_asc a{
         width: fit-content !important;
         font-family: "Montserrat";
         font-weight: 700;
-        font-size: 18px !important;
+        font-size: 14px !important;
         color: #FFFFFF !important;
         display: flex !important;
     }
@@ -6235,7 +6235,7 @@ table#result_list tr th.sorting_asc a{
         width: fit-content !important;
         font-family: "Montserrat";
         font-weight: 700;
-        font-size: 16px !important;
+        font-size: 12px !important;
         color: #FFFFFF !important;
         display: flex !important;
     }
@@ -6263,7 +6263,7 @@ table#result_list tr th.sorting a{
     padding-bottom: 5px !important;
     font-family: "Montserrat";
     font-weight: 700;
-    font-size: 22px !important;
+    font-size: 20px !important;
     color: #FFFFFF !important;
     display: flex !important;
 }
@@ -6277,7 +6277,7 @@ table#result_list tr th.sorting a{
         width: fit-content !important;
         font-family: "Montserrat" !important;
         font-weight: 700;
-        font-size: 22px !important;
+        font-size: 18px !important;
         color: #FFFFFF !important;
         display: flex !important;
     }
@@ -6291,7 +6291,7 @@ table#result_list tr th.sorting a{
         outline: none !important;
         font-family: "Montserrat";
         font-weight: 700;
-        font-size: 20px !important; 
+        font-size: 16px !important; 
         color: #FFFFFF !important;
         display: flex !important;
     }
@@ -6306,7 +6306,7 @@ table#result_list tr th.sorting a{
         width: fit-content !important;
         font-family: "Montserrat";
         font-weight: 700;
-        font-size: 18px !important;
+        font-size: 14px !important;
         color: #FFFFFF !important;
         display: flex !important;
     }
@@ -6321,7 +6321,7 @@ table#result_list tr th.sorting a{
         width: fit-content !important;
         font-family: "Montserrat";
         font-weight: 700;
-        font-size: 16px !important;
+        font-size: 12px !important;
         color: #FFFFFF !important; 
         display: flex !important;
     }
@@ -6336,7 +6336,7 @@ table#result_list tr th.sorting a{
 .col-12 .card-danger h4.card-title{
     font-family: "Montserrat" !important;
     font-weight: 700 !important; 
-    font-size: 22px !important;
+    font-size: 20px !important;
     color: #FFFFFF;
     white-space: nowrap !important; 
     overflow: auto !important;
@@ -6346,7 +6346,7 @@ table#result_list tr th.sorting a{
     .col-12 .card-danger h4.card-title{
         font-family: "Montserrat" !important;
         font-weight: 700 !important;
-        font-size: 20px !important;
+        font-size: 16px !important;
         color: #FFFFFF;
         white-space: nowrap !important; 
         overflow: auto !important;
@@ -6357,7 +6357,7 @@ table#result_list tr th.sorting a{
     .col-12 .card-danger h4.card-title{
         font-family: "Montserrat" !important;
         font-weight: 700 !important;
-        font-size: 18px !important;
+        font-size: 14px !important;
         color: #FFFFFF;
         white-space: nowrap !important; 
         overflow: auto !important;
@@ -6368,7 +6368,7 @@ table#result_list tr th.sorting a{
     .col-12 .card-danger h4.card-title{
         font-family: "Montserrat" !important;
         font-weight: 700 !important;
-        font-size: 16px !important;
+        font-size: 12px !important;
         color: #FFFFFF;
         white-space: nowrap !important; 
         overflow: auto !important;
