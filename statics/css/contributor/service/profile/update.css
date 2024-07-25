@@ -82,6 +82,7 @@
 .profileupdate-body form .profileupdate-section img{
     width: 350px;
     height: 350px;
+    border: 1px solid #D3D3D3;
     border-radius: 50%;
     cursor: pointer;
 }

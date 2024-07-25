@@ -571,24 +571,24 @@ nav.navigation-bottombar img:active{
     font-family: "Montserrat";
     font-weight: 700;
     font-size: 24px;
-    background-color: rgb(52, 144, 242);
+    background-color: #003755;
     color: #FFFFFF;
     text-align: center;
     text-decoration: none !important;
 }
 
 .profile-content a.dropdown-header:hover{
-    background-color: rgb(52, 144, 242) !important;
+    background-color: #002C44 !important;
     color: #B2BEB5 !important;
 }
 
 .profile-content a.dropdown-header:focus{
-    background-color: rgb(52, 144, 242) !important;
+    background-color: #002C44 !important;
     color: #B2BEB5 !important;
 }
 
 .profile-content a.dropdown-header:active{
-    background-color: rgb(52, 144, 242) !important;
+    background-color: #002C44 !important;
     color: #B2BEB5 !important;
 }
 
@@ -769,24 +769,24 @@ nav.navigation-bottombar img:active{
     font-family: "Montserrat";
     font-weight: 700;
     font-size: 24px;
-    background-color: rgb(52, 144, 242);
+    background-color: #003755;
     color: #FFFFFF;
     text-align: center;
     text-decoration: none !important;
 }
 
 .profile-content a.dropdown-footer:hover{
-    background-color: rgb(52, 144, 242) !important;
+    background-color: #002C44 !important;
     color: #B2BEB5 !important;
 }
 
 .dropdown-content a.dropdown-footer:focus{
-    background-color: rgb(52, 144, 242) !important;
+    background-color: #002C44 !important;
     color: #B2BEB5 !important;
 }
 
 .profile-content a.dropdown-footer:active{
-    background-color: rgb(52, 144, 242) !important;
+    background-color: #002C44 !important;
     color: #B2BEB5 !important;
 }
 
@@ -866,22 +866,22 @@ nav.navigation-bottombar img:active{
     font-weight: 400;
     font-size: 20px;
     background-color: #FFFFFF;
-    color: rgb(52, 144, 242);
+    color: #003755;
     text-decoration: none !important;
 }
 
 .notification-content .dropdown-item:hover{
-    color: rgb(52, 144, 242) !important;
+    color: #002C44 !important;
     background-color: #B2BEB5;
 }
 
 .notification-content .dropdown-item:focus{
-    color: rgb(52, 144, 242) !important;
+    color: #002C44 !important;
     background-color: #B2BEB5;
 }
 
 .notification-content .dropdown-item:active{
-    color: rgb(52, 144, 242) !important;
+    color: #002C44 !important;
     background-color: #B2BEB5;
 }
 
@@ -1049,24 +1049,24 @@ nav.navigation-bottombar img:active{
     font-family: "Montserrat";
     font-weight: 400;
     font-size: 20px;
-    background-color: rgb(52, 144, 242);
+    background-color: #003755;
     color: #FFFFFF;
     text-align: center;
     text-decoration: none !important;
 }
 
 .notification-content a.dropdown-footer:hover{
-    background-color: rgb(52, 144, 242) !important;
+    background-color: #002C44 !important;
     color: #B2BEB5 !important;
 }
 
 .notification-content a.dropdown-footer:focus{
-    background-color: rgb(52, 144, 242) !important;
+    background-color: #002C44 !important;
     color: #B2BEB5 !important;
 }
 
 .notification-content a.dropdown-footer:active{
-    background-color: rgb(52, 144, 242) !important;
+    background-color: #002C44 !important;
     color: #B2BEB5 !important;
 }
 

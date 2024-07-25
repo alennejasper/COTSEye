@@ -50,6 +50,7 @@
 .profile-body .profile-section img{
     width: 350px;
     height: 350px;
+    border: 1px solid #003755;
     border-radius: 50%;
     cursor: pointer;
 }

@@ -1,85 +1,87 @@
 {% extends "officer/control/announcement/announcement.html" %}
 {% load custom_filters %}
 {% load static %}
+
 <header>
-    {% block action %} Read {% endblock action %}
+    {% block action %}Read{% endblock action %}
 </header>
+
 {% block announcement_content %}
-<div class = "container-fluid mt-3">
-    <div class = "row">
-        <div class = "col-lg-10 offset-lg-1">
-            <div class = "card mb-4 shadow-sm">
-                <div class = "card-body">
-                    <div class = "row">
-                        <div class = "col-md-8">
-                            <h1 class = "card-title h1" style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 20px !important; color: rgb(52, 144, 242);">{{announcement.title}}</h1>
+    <div class = "container-fluid mt-3">
+        <div class = "row">
+            <div class = "col-lg-10 offset-lg-1">
+                <div class = "card mb-4 shadow-sm">
+                    <div class = "card-body">
+                        <div class = "row">
+                            <div class = "col-md-8">
+                                <h1 class = "card-title h1" style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 20px !important; color: rgb(52, 144, 242);">{{announcement.title}}</h1>
 
-                            <div class = "card-body" style = "padding: 0px !important;">
-                                <div class = "row">
-                                    <div class = "col-md-6">
-                                        <h5 style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 20px; color: rgb(28, 186, 234);">Announcement Details</h5>
-                                        
-                                        <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Event Date: </strong>
+                                <div class = "card-body" style = "padding: 0px !important;">
+                                    <div class = "row">
+                                        <div class = "col-md-6">
+                                            <h5 style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 20px; color: rgb(28, 186, 234);">Announcement Details</h5>
+                                            
+                                            <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Event Date: </strong>
 
-                                        <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">{{announcement.release_date | format_date_mmddyy}}</p>
+                                            <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">{{announcement.release_date | format_date_mmddyy}}</p>
 
-                                        <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Hosting Agency: </strong>
+                                            <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Hosting Agency: </strong>
 
-                                        <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">{{announcement.hosting_agency}}</p>
+                                            <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">{{announcement.hosting_agency}}</p>
 
-                                        <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Posted By: </strong>
+                                            <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Posted By: </strong>
 
-                                        <p style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">{{announcement.user}}</p>
+                                            <p style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">{{announcement.user}}</p>
+                                        </div>
+
+                                        <div class = "col-md-6">
+                                            <h5 style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 20px; color: rgb(28, 186, 234);">Location Details</h5>
+
+                                            <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Municipality: </strong>
+
+                                            <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">{{announcement.location.municipality}}</p>
+                                            
+                                            <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Barangay: </strong>
+
+                                            <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">{{announcement.location.barangay}}</p>
+                                            
+                                            <!-- <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Coordinates: </strong>
+
+                                            <p style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">{{announcement.location.latitude}}, {{announcement.location.longitude}}</p> -->
+                                        </div>
                                     </div>
 
-                                    <div class = "col-md-6">
-                                        <h5 style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 20px; color: rgb(28, 186, 234);">Location Details</h5>
-
-                                        <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Municipality: </strong>
-
-                                        <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">{{announcement.location.municipality}}</p>
-                                        
-                                        <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Barangay: </strong>
-
-                                        <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">{{announcement.location.barangay}}</p>
-                                        
-                                        <!-- <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Coordinates: </strong>
-
-                                        <p style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">{{announcement.location.latitude}}, {{announcement.location.longitude}}</p> -->
-                                    </div>
+                                    <hr>
+                            
+                                    {% if announcement.context == '' %}
+                                        <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Context</strong> 
+                                    
+                                        <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">No context were given.</p>
+                                    
+                                    {% else %}
+                                        <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Context</strong> 
+                                    
+                                        <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">{{announcement.context}}</p>
+                                    {% endif %}
                                 </div>
+                            </div>
 
-                                <hr>
-                           
-                                {% if announcement.context == '' %}
-                                    <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Context</strong> 
-                                
-                                    <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">No context were given.</p>
-                                
+                            <div class = "col-md-4 text-center">
+                                {% if announcement.announcement_photo %}
+                                    <img src = "{{announcement.get_photo_url}}" alt = "Announcement Photo" class = "img-fluid rounded" style = "align-self: center; margin-bottom: 15px; max-width: 100%;">
+                            
                                 {% else %}
-                                    <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Context</strong> 
-                                
-                                    <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">{{announcement.context}}</p>
+                                        <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">No photo available.</p>
                                 {% endif %}
                             </div>
                         </div>
 
-                        <div class = "col-md-4 text-center">
-                            {% if announcement.announcement_photo %}
-                                <img src = "{{announcement.get_photo_url}}" alt = "Announcement Photo" class = "img-fluid rounded" style = "align-self: center; margin-bottom: 15px; max-width: 100%;">
-                        
-                            {% else %}
-                                    <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">No photo available.</p>
-                            {% endif %}
+                        <div class = "text-end">
+                            <a style = "padding-left: 10px !important; padding-right: 10px !important; padding-top: 5px !important; padding-bottom: 5px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px; background-color: rgb(52, 144, 242);" href = "{% url 'Officer Control Announcement Update' id=announcement.id %}" class = "btn btn-primary">Edit</a>
                         </div>
-                    </div>
-
-                    <div class = "text-end">
-                        <a style = "padding-left: 10px !important; padding-right: 10px !important; padding-top: 5px !important; padding-bottom: 5px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px; background-color: rgb(52, 144, 242);" href = "{% url 'Officer Control Announcement Update' id=announcement.id %}" class = "btn btn-primary">Edit</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 {% endblock %}

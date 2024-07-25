@@ -324,7 +324,6 @@ def ContributorCheck(account):
 def ContributorServiceLeaderboard(request):
     username = request.user.username
 
-
     user_profile = User.objects.get(account = request.user)
 
     notification_life = timezone.now() - timedelta(days = 30)
@@ -337,9 +336,7 @@ def ContributorServiceLeaderboard(request):
 
     unread_notifications = Notification.objects.filter(user = user, is_read = False, creation_date__gte = notification_life).order_by("-creation_date")
 
-    context = { 
-        "leaderboard": leaderboard, "username": username, "user_profile": user_profile, "valid_posts": valid_posts, "unread_notifications": unread_notifications,
-    }
+    context = {"leaderboard": leaderboard, "username": username, "user_profile": user_profile, "valid_posts": valid_posts, "unread_notifications": unread_notifications,}
 
     return render(request, "contributor/service/leaderboard/leaderboard.html", context)
 
@@ -1072,6 +1069,8 @@ def OfficerControlHome(request):
 def OfficerControlNotification(request):
     tab_number = 6 
 
+    notification_number = 1
+
     user = User.objects.get(account = request.user)
 
     notification_life = timezone.now() - timedelta(days = 30)
@@ -1094,7 +1093,7 @@ def OfficerControlNotification(request):
 
     read_posts = read_paginator.get_page(read_page_number)
     
-    context = {"tab_number": tab_number, "unread_notifications": unread_notifications, "unread_posts": unread_posts, "read_posts": read_posts}
+    context = {"tab_number": tab_number, "notification_number": notification_number, "unread_notifications": unread_notifications, "unread_posts": unread_posts, "read_posts": read_posts}
     
     return render(request, "officer/control/notification/notification.html", context)
 
@@ -1143,6 +1142,8 @@ def OfficerControlMarkNotificationAsRead(request, id):
 def OfficerControlProfile(request):
     tab_number = 7 
 
+    profile_number = 1
+
     account = Account.objects.get(id = request.user.id)
 
     user = User.objects.get(account = request.user)
@@ -1155,7 +1156,7 @@ def OfficerControlProfile(request):
 
     unread_notifications = Notification.objects.filter(user = user, is_read = False, creation_date__gte = notification_life).order_by("-creation_date")[:3]
 
-    context = {"tab_number": tab_number, "account": account, "user": user, "username": username, "user_profile": user_profile, "unread_notifications": unread_notifications}
+    context = {"tab_number": tab_number, "profile_number": profile_number, "account": account, "user": user, "username": username, "user_profile": user_profile, "unread_notifications": unread_notifications}
 
     return render(request, "officer/control/profile/profile.html", context)
 
@@ -1163,6 +1164,8 @@ def OfficerControlProfile(request):
 @login_required(login_url = "Officer Control Login")
 @user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def OfficerControlProfileUpdate(request):
+    profile_number = 2
+
     user = User.objects.get(account = request.user)
 
     username = request.user.username
@@ -1192,7 +1195,7 @@ def OfficerControlProfileUpdate(request):
     else:
         profile_form = ProfileForm(request.user.user)
 
-    context = {"user": user, "username": username, "user_profile": user_profile, "profile_form": profile_form, "unread_notifications": unread_notifications}
+    context = {"profile_number": profile_number, "user": user, "username": username, "user_profile": user_profile, "profile_form": profile_form, "unread_notifications": unread_notifications}
     
     return render(request, "officer/control/profile/update.html", context)
 

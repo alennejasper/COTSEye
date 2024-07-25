@@ -479,7 +479,7 @@ def OfficerControlIntervention(request):
 
     hosting_agencies = interventions.values("hosting_agency").distinct()
 
-    context = {"int_number":int_number, "tab_number": tab_number,  "unread_notifications": unread_notifications, "interventions": interventions, "municipalities": municipalities, "interventions_json": interventions_json, "locations": locations, "hosting_agencies": hosting_agencies}
+    context = {"int_number": int_number, "tab_number": tab_number,  "unread_notifications": unread_notifications, "interventions": interventions, "municipalities": municipalities, "interventions_json": interventions_json, "locations": locations, "hosting_agencies": hosting_agencies}
     
     return render(request, "officer/control/intervention/intervention.html", context)
 

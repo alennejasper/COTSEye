@@ -76,10 +76,9 @@
 }
 
 .profileupdate-body form .profileupdate-section{
-    display: flex;                   
+    display: grid;                   
     align-items: center; 
     justify-content: center;          
-    flex-direction: column;
     row-gap: 15px;
     width: 100%;               
     height: fit-content;
@@ -89,6 +88,7 @@
 .profileupdate-body form .profileupdate-section img{
     width: 350px;
     height: 350px;
+    border: 1px solid #003755;
     border-radius: 50%;
     cursor: pointer;
 }
@@ -140,8 +140,7 @@
 }
 
 .profileupdate-body form .profileupdate-section p{
-    display: flex;
-    align-items: center;
+    margin-bottom: 0px !important;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -149,6 +148,7 @@
     font-weight: 400;
     font-size: 20px !important;
     color: #003755;
+    text-align: center;
     text-transform: uppercase;
 }
 

@@ -2,59 +2,128 @@
 {% load static %}
 
 {% block content %}
-<div class = "profile-body">
-    <h1>MY PROFILE</h1>
+    <style>
+        .breadcrumb{
+            padding: 1rem;
+            border-radius: 0.25rem;
+            background-color: #FAFAFA;
+        }
 
-    <div class = "profile">
-        <div class = "profile-section">
-            <img src = "{{user.profile_photo.url}}">
-    
-            <h1>{{user.account.username}}</h1>
-                        
-            <p>{{user.account.usertype}}</p>
+        .breadcrumb-separator{
+            margin: 0 1rem;
+            font-weight: 700;
+            color: rgba(33, 37, 41, 0.75);
+            display: none;
+        }
+
+        .breadcrumb-separator.status_active{
+            margin: 0 0.8rem;
+            font-weight: 700;
+            color: rgba(33, 37, 41, 0.75);
+            display: block;
+        }
+
+        .breadcrub-item{
+            display: none;
+            color: #6C757D;
+        }
+
+        .breadcrumb-item::before{
+            display: none !important;
+        }
+
+        .status_active{
+            display: block;
+            font-family: "Montserrat"; 
+            font-weight: 700; 
+            font-size: 16px;            
+            color: rgb(28, 186, 234);
+        }
+
+        .status_active::before{
+            display: block !important;
+        }
+    </style>
+
+    <nav aria-label = "breadcrumb">
+        <ol class = "breadcrumb">
+            <li style = "font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: rgb(52, 144, 242);" class = "breadcrumb-item {% if int_number >= 1 %}status_active{% endif %}">
+                {% if profile_number >= 1 %}
+                    Profile
+                {% endif %}
+            </li>
+
+            <span style = "font-family: 'Montserrat'; font-weight: 400; font-size: 16px;" class = "breadcrumb-separator {% if profile_number == 2 %}status_active{% endif %}">/</span>
+
+            <li style = "font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: rgb(52, 144, 242);" class = "breadcrumb-item {% if int_number >= 2 %}status_active{% endif %}">
+                {% if profile_number >= 2 %}
+                    {% block action %}Action{% endblock action %}
+                {% endif %}
+            </li>
+        </ol>
+    </nav>
+
+    {% if profile_number > 1 %}
+        <button style = "margin-bottom: 15px; padding-left: 10px !important; padding-right: 10px !important; padding-top: 5px !important; padding-bottom: 5px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: #FFFFFF;" class = "btn btn-secondary mb-3 back-button" onclick = "window.history.back()">
+            <i class = "fas fa-arrow-left"></i> 
+            
+            Back
+        </button>
+    {% endif %}
+
+    {% block profile_content %}
+        <div class = "profile-body">
+            <div class = "profile">
+                <div class = "profile-section">
+                    <img src = "{{user.profile_photo.url}}">
+            
+                    <h1>{{user.account.username}}</h1>
+                                
+                    <p>{{user.account.usertype}}</p>
+                </div>
+            
+                <div class = "profile-details">
+                    <div class = "profile-context">
+                        <p>First Name:</p>
+            
+                        <p>{{user.first_name | default:'None available'}}</p>
+                    </div>
+            
+                    <div class = "profile-context">
+                        <p>Last Name:</p>
+            
+                        <p>{{user.last_name | default:'None available'}}</p>
+                    </div>
+            
+                    <div class = "profile-context">
+                        <p>Email:</p>
+            
+                        <p>{{user.email | default:'None available'}}</p>
+                    </div>
+            
+                    <div class = "profile-context">
+                        <p>Phone Number:</p>
+            
+                        <p>{{user.phone_number | default:'None available'}}</p>
+                    </div>
+            
+                    <div class = "button">
+                        <a class = "update-profile" href = "{% url 'Officer Control Profile Update' %}">Update</a>
+
+                        <!-- <a class = "delete-account" href = "{% url 'Officer Control Profile Delete' account.id %}">Deactivate</a> -->
+                    </div>
+                </div>
+            </div>
         </div>
-    
-        <div class = "profile-details">
-            <div class = "profile-context">
-                <p>First Name:</p>
-    
-                <p>{{user.first_name | default:'None available'}}</p>
-            </div>
-    
-            <div class = "profile-context">
-                <p>Last Name:</p>
-    
-                <p>{{user.last_name | default:'None available'}}</p>
-            </div>
-    
-            <div class = "profile-context">
-                <p>Email:</p>
-    
-                <p>{{user.email | default:'None available'}}</p>
-            </div>
-    
-            <div class = "profile-context">
-                <p>Phone Number:</p>
-    
-                <p>{{user.phone_number | default:'None available'}}</p>
-            </div>
-    
-            <div class = "button">
-                <a class = "update-profile" href = "{% url 'Officer Control Profile Update' %}">Update</a>
 
-                <!-- <a class = "delete-account" href = "{% url 'Officer Control Profile Delete' account.id %}">Deactivate</a> -->
-            </div>
-        </div>
-    </div>
-</div>
+        <script>
+            document.querySelector(".delete-account").onclick = function(event){
+                event.preventDefault();
 
-<script>
-    document.querySelector(".delete-account").onclick = function(event){
-        event.preventDefault();
+                const username = "{{request.user.username}}";
 
-        const username = "{{request.user.username}}";
-
-        Swal.fire({title: "Alert!", text: username + ", " + "are you sure that you want to deactivate your account?", icon: "warning", showCancelButton: true, confirmButtonColor: "#003755", cancelButtonColor: "#003755", confirmButtonText: "Yes", cancelButtonText: "No", customClass: {confirmButton: "confirm-button", cancelButton: "cancel-button", title: "title"}}).then((result) => {if (result.isConfirmed){window.location.href = this.href;}});
-    };
-</script>
+                Swal.fire({title: "Alert!", text: username + ", " + "are you sure that you want to deactivate your account?", icon: "warning", showCancelButton: true, confirmButtonColor: "#003755", cancelButtonColor: "#003755", confirmButtonText: "Yes", cancelButtonText: "No", customClass: {confirmButton: "confirm-button", cancelButton: "cancel-button", title: "title"}}).then((result) => {if (result.isConfirmed){window.location.href = this.href;}});
+            };
+        </script>
+    {% endblock profile_content %}
 {% endblock content %}

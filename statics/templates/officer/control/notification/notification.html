@@ -10,13 +10,48 @@
         .table thead th{
             border-bottom: 2px solid black !important;
         }
+
+        .breadcrumb{
+            padding: 1rem;
+            border-radius: 0.25rem;
+            background-color: #FAFAFA;
+        }
+
+        .breadcrub-item{
+            display: none;
+            color: #6C757D;
+        }
+
+        .breadcrumb-item::before{
+            display: none !important;
+        }
+
+        .status_active{
+            display: block;
+            font-family: "Montserrat"; 
+            font-weight: 700; 
+            font-size: 16px;            
+            color: rgb(28, 186, 234);
+        }
+
+        .status_active::before{
+            display: block !important;
+        }
     </style>
 
     <!-- <link rel = "stylesheet" href = "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
 
-    <h2 style = "font-family: 'Montserrat'; font-weight: 700; font-size: 24px; color: #003755; text-align: center;">NOTIFICATIONS</h3>
+    <nav aria-label = "breadcrumb">
+        <ol class = "breadcrumb">
+            <li style = "font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: rgb(52, 144, 242);" class = "breadcrumb-item {% if int_number >= 1 %}status_active{% endif %}">
+                {% if notification_number >= 1 %}
+                    Notifications
+                {% endif %}
+            </li>
+        </ol>
+    </nav>
 
-    <div class="container-fluid mt-3" style = "padding: 0px !important">
+    <div class = "container-fluid mt-3" style = "padding: 0px !important">
         <div class = "table-container mb-3" style = "padding: 0px !important">
             <h2 style = "border-bottom: 1px solid rgba(229, 229, 229); font-family: 'Montserrat'; font-weight: 700; font-size: 20px; color: rgb(52, 144, 242);">UNREAD</h2>
 
