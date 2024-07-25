@@ -271,7 +271,7 @@ def ContributorServiceInterventionRead(request, id):
 def OfficerControlAnnouncement(request):
     tab_number = 5
 
-    ann_number = 1
+    announcement_number = 1
 
     notification_life = timezone.now() - timedelta(days = 30) 
 
@@ -285,7 +285,7 @@ def OfficerControlAnnouncement(request):
 
     locations = Location.objects.all()
 
-    context = {"ann_number": ann_number,"tab_number": tab_number,"unread_notifications": unread_notifications, "announcements": announcements, "municipalities": municipalities, "locations": locations}
+    context = {"announcement_number": announcement_number,"tab_number": tab_number,"unread_notifications": unread_notifications, "announcements": announcements, "municipalities": municipalities, "locations": locations}
 
     return render(request, "officer/control/announcement/announcement.html", context)
 
@@ -296,7 +296,7 @@ def OfficerControlAnnouncementRead(request, id):
 
     tab_number = 5
 
-    ann_number = 2
+    announcement_number = 2
 
     notification_life = timezone.now() - timedelta(days = 30)
 
@@ -312,7 +312,7 @@ def OfficerControlAnnouncementRead(request, id):
 
     municipalities = Location.objects.values("municipality").distinct()
 
-    context = {"ann_number": ann_number,"tab_number": tab_number, "unread_notifications": unread_notifications, "announcement": announcement, "municipalities": municipalities, "other_announcements": other_announcements, "announcements": announcements}
+    context = {"announcement_number": announcement_number,"tab_number": tab_number, "unread_notifications": unread_notifications, "announcement": announcement, "municipalities": municipalities, "other_announcements": other_announcements, "announcements": announcements}
 
     return render(request, "officer/control/announcement/read.html", context)
 
@@ -322,7 +322,7 @@ def OfficerControlAnnouncementRead(request, id):
 def OfficerControlAnnouncementAdd(request):
     tab_number = 5
 
-    ann_number = 2
+    announcement_number = 2
 
     notification_life = timezone.now() - timedelta(days = 30)
 
@@ -369,7 +369,7 @@ def OfficerControlAnnouncementAdd(request):
     else:
         form = AnnouncementForm()
 
-    context = {"ann_number": ann_number,"tab_number": tab_number, "unread_notifications": unread_notifications, "form": form, "municipalities": municipalities, "locations": locations, "errors": errors, "field_labels": field_labels, "location_error": location_error}
+    context = {"announcement_number": announcement_number,"tab_number": tab_number, "unread_notifications": unread_notifications, "form": form, "municipalities": municipalities, "locations": locations, "errors": errors, "field_labels": field_labels, "location_error": location_error}
 
     return render(request, "officer/control/announcement/add.html", context)
 
@@ -380,7 +380,7 @@ def OfficerControlAnnouncementUpdate(request, id):
      
     tab_number = 5
 
-    ann_number = 2
+    announcement_number = 2
 
     notification_life = timezone.now() - timedelta(days = 30)
 
@@ -461,7 +461,7 @@ def OfficerControlInterventionSerialize(interventions):
 def OfficerControlIntervention(request):
     tab_number =  4
 
-    int_number = 1
+    intervention_number = 1
 
     notification_life = timezone.now() - timedelta(days = 30)
 
@@ -479,7 +479,7 @@ def OfficerControlIntervention(request):
 
     hosting_agencies = interventions.values("hosting_agency").distinct()
 
-    context = {"int_number": int_number, "tab_number": tab_number,  "unread_notifications": unread_notifications, "interventions": interventions, "municipalities": municipalities, "interventions_json": interventions_json, "locations": locations, "hosting_agencies": hosting_agencies}
+    context = {"intervention_number": intervention_number, "tab_number": tab_number,  "unread_notifications": unread_notifications, "interventions": interventions, "municipalities": municipalities, "interventions_json": interventions_json, "locations": locations, "hosting_agencies": hosting_agencies}
     
     return render(request, "officer/control/intervention/intervention.html", context)
 
@@ -489,7 +489,7 @@ def OfficerControlIntervention(request):
 def OfficerControlInterventionRead(request, id):
     tab_number =  4
 
-    int_number = 2
+    intervention_number = 2
 
     notification_life = timezone.now() - timedelta(days = 30)
 
@@ -503,7 +503,7 @@ def OfficerControlInterventionRead(request, id):
 
     last_intervention = (Intervention.objects.filter(location = intervention.location).exclude(id = id).order_by("-event_date").first())
 
-    context = {"int_number":int_number, "tab_number": tab_number, "unread_notifications": unread_notifications, "intervention": intervention, "other_interventions": other_interventions, "last_intervention": last_intervention }
+    context = {"intervention_number":intervention_number, "tab_number": tab_number, "unread_notifications": unread_notifications, "intervention": intervention, "other_interventions": other_interventions, "last_intervention": last_intervention }
 
     return render(request, "officer/control/intervention/read.html", context)
 
@@ -513,7 +513,7 @@ def OfficerControlInterventionRead(request, id):
 def OfficerControlInterventionAdd(request):
     tab_number =  4
 
-    int_number = 2
+    intervention_number = 2
 
     notification_life = timezone.now() - timedelta(days = 30)
 
@@ -563,7 +563,7 @@ def OfficerControlInterventionAdd(request):
     else:
         form = InterventionForm()
 
-    context = {"int_number":int_number, "tab_number": tab_number, "unread_notifications": unread_notifications, "form": form, 'municipalities': municipalities, "locations": locations, "errors": errors, "field_labels": field_labels, "location_error": location_error}
+    context = {"intervention_number":intervention_number, "tab_number": tab_number, "unread_notifications": unread_notifications, "form": form, 'municipalities': municipalities, "locations": locations, "errors": errors, "field_labels": field_labels, "location_error": location_error}
 
     return render(request, "officer/control/intervention/add.html", context)
 
@@ -573,7 +573,7 @@ def OfficerControlInterventionAdd(request):
 def OfficerControlInterventionUpdate(request, id):
     tab_number =  4
 
-    int_number = 2
+    intervention_number = 2
 
     notification_life = timezone.now() - timedelta(days = 30)
 

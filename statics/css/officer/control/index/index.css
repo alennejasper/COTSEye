@@ -29,7 +29,7 @@
 }
 
 ::-webkit-scrollbar-thumb:hover{
-    background: #78cffd !important;
+    background: #002C44 !important;
 }
 
 
@@ -47,17 +47,6 @@ body{
     background-color: unset !important;
 }
 
-.content{
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 15px;
-    padding-bottom: 15px;
-}
-
-.container-fluid{
-    max-width: 100%;
-}
-
 
 .breadcrub-item{
     display: none;
@@ -73,6 +62,18 @@ body{
 
 .status_active::before{
     display: block !important;
+}
+
+
+.content{
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.container-fluid{
+    max-width: 100%;
 }
 
 @media (max-width: 768px){

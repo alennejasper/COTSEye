@@ -57,8 +57,9 @@ nav.navigation-topbar{
     padding-top: 15px;
     padding-bottom: 15px;
     width: 100%;
-    background-color: #FFFFFF;
     border-bottom: 1px solid #D3D3D3;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+    background-color: #FFFFFF;
     z-index: 100;
 }
 

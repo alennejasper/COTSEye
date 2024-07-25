@@ -4,7 +4,7 @@
 {% block content %}
     <div class = "home-body">
         <div class = "home-section">
-           <img src = "{% static 'assets/icons/brand.png' %}" style = "padding-left: 30px; padding-right: 30px; padding-top: 30px; padding-bottom: 30px; width: 100%;">
+           <img src = "{% static 'assets/icons/brand.png' %}" style = "padding-left: 30px; padding-right: 30px; padding-top: 30px; padding-bottom: 30px; width: 100%; border-radius: 5px; background-color: rgba(28, 169, 234, 0.4);">
         </div>
 
         <div class = "home-cards">
@@ -112,81 +112,6 @@
         <div class = "home-map">
             <div class = "map">
             </div>
-        </div>
-
-        <div class = "leaderboard">
-            <h2>TOP CONTRIBUTORS</h2>
-
-            {% if leaderboard|length > 0 %}
-                <div class = "top-3">
-                    {% if leaderboard|length >= 1 %}
-                        <div class = "rank-1">
-                            <div class = "circle rank-1">
-                                <img id = "profilePicture" src = "{{user.user.profile_photo.url | default:'None available'}}" class = "profile-picture">
-                            </div>
-
-                            <p class = "name">{{leaderboard.0.user__account__username | default:'None available'}}</p>
-
-                            <p class = "count"><i class = "fas fa-star"></i>{{leaderboard.0.post_count | default:'0'}}</p>
-                        </div>
-                    {% else %}
-                    {% endif %}
-                    
-                    <div class = "second-row">
-                        {% if leaderboard|length >= 2 %}
-                            <div class = "rank-2">
-                                <div class = "circle rank-2">
-                                    <img id = "profilePicture" src = "{{user.user.profile_photo.url | default:'None available'}}" class = "profile-picture">
-                                </div>
-
-                                <p class = "name">{{leaderboard.1.user__account__username | default:'None available'}}</p>
-
-                                <p class = "count"><i class="fas fa-star"></i>{{leaderboard.1.post_count | default:'0'}}</p>
-                                
-                                <div class = "box-div">
-                                    <h2>2</h2>
-                                </div>
-                            </div>
-                        {% else %}
-                        {% endif %}
-                
-                        <div class = "box-div">
-                            <h2>1</h2>
-                        </div>
-
-                        {% if leaderboard|length >= 3 %}
-                            <div class = "rank-3">
-                                <div class = "circle rank-3">
-                                    <img id = "profilePicture" src = "{{user.user.profile_photo.url | default:''}}" class = "profile-picture">
-                                </div>
-
-                                <p class = "name">{{leaderboard.2.user__account__username | default:'None available'}}</p>
-
-                                <p class = "count"><i class="fas fa-star"></i>{{leaderboard.2.post_count | default:'0'}}</p>
-                                
-                                <div class = "box-div">
-                                    <h2>3</h2>
-                                </div>
-                            </div>
-                        {% else %}
-                        {% endif %}
-                    </div>
-                </div>
-
-                <div class = "third-row">
-                    {% for entry in leaderboard|slice:"3:5" %}
-                        <div class = "rank-4-5">
-                            <div class = "circle">
-                                <img id = "profilePicture" src = "{{user.user.profile_photo.url | default:''}}" class = "profile-picture">
-                            </div>
-
-                            <p class = "name">{{entry.user__account__username | default:'None available'}}</p>
-
-                            <p class = "count"><i class="fas fa-star"></i>{{entry.post_count | default:'0'}}</p>
-                        </div>
-                    {% endfor %}
-                </div>
-            {% endif %}
         </div>
         
         <script>
@@ -411,12 +336,6 @@
                 revealMap();
             });
         </script>
-
-        <style>
-            .table > :not(caption) > * > *{
-                padding: 15px 30px !important;
-            }
-        </style>
     
         <div class = "home-graph">  
             <form method = "GET" action = "{% url 'Officer Control Home' %}">
@@ -575,6 +494,12 @@
                 </div>
             </div>
         </div>
+
+        <style>
+            .table > :not(caption) > * > *{
+                padding: 15px 30px !important;
+            }
+        </style>
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -970,5 +895,80 @@
                 });
             };
         </script>
+
+        <div class = "leaderboard">
+            <h2>TOP CONTRIBUTORS</h2>
+
+            {% if leaderboard|length >= 5 %}
+                <div class = "top-3">
+                    {% if leaderboard|length >= 1 %}
+                        <div class = "rank-1">
+                            <div class = "circle rank-1">
+                                <img id = "profilePicture" src = "{{user.user.profile_photo.url | default:'None available'}}" class = "profile-picture">
+                            </div>
+
+                            <p class = "name">{{leaderboard.0.user__account__username | default:'None available'}}</p>
+
+                            <p class = "count"><i class = "fas fa-star"></i>{{leaderboard.0.post_count | default:'0'}}</p>
+                        </div>
+                    {% else %}
+                    {% endif %}
+                    
+                    <div class = "second-row">
+                        {% if leaderboard|length >= 2 %}
+                            <div class = "rank-2">
+                                <div class = "circle rank-2">
+                                    <img id = "profilePicture" src = "{{user.user.profile_photo.url | default:'None available'}}" class = "profile-picture">
+                                </div>
+
+                                <p class = "name">{{leaderboard.1.user__account__username | default:'None available'}}</p>
+
+                                <p class = "count"><i class="fas fa-star"></i>{{leaderboard.1.post_count | default:'0'}}</p>
+                                
+                                <div class = "box-div">
+                                    <h2>2</h2>
+                                </div>
+                            </div>
+                        {% else %}
+                        {% endif %}
+                
+                        <div class = "box-div">
+                            <h2>1</h2>
+                        </div>
+
+                        {% if leaderboard|length >= 3 %}
+                            <div class = "rank-3">
+                                <div class = "circle rank-3">
+                                    <img id = "profilePicture" src = "{{user.user.profile_photo.url | default:''}}" class = "profile-picture">
+                                </div>
+
+                                <p class = "name">{{leaderboard.2.user__account__username | default:'None available'}}</p>
+
+                                <p class = "count"><i class="fas fa-star"></i>{{leaderboard.2.post_count | default:'0'}}</p>
+                                
+                                <div class = "box-div">
+                                    <h2>3</h2>
+                                </div>
+                            </div>
+                        {% else %}
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class = "third-row">
+                    {% for entry in leaderboard|slice:"3:5" %}
+                        <div class = "rank-4-5">
+                            <div class = "circle">
+                                <img id = "profilePicture" src = "{{user.user.profile_photo.url | default:''}}" class = "profile-picture">
+                            </div>
+
+                            <p class = "name">{{entry.user__account__username | default:'None available'}}</p>
+
+                            <p class = "count"><i class="fas fa-star"></i>{{entry.post_count | default:'0'}}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
     </div>
 {% endblock %}

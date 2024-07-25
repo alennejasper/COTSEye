@@ -61,6 +61,7 @@ body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .content-w
     padding-right: 30px;
     padding-top: 15px;
     padding-bottom: 15px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
     background-color: #003755;
 }
 
