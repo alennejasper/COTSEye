@@ -97,21 +97,21 @@
 
     <nav aria-label = "breadcrumb">
         <ol class = "breadcrumb">
-            <li style = "font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: rgb(52, 144, 242);" class = "breadcrumb-item {% if ann_number >= 1 %}status_active{% endif %}">
-                {% if ann_number >= 1 %}
+            <li style = "font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: rgb(52, 144, 242);" class = "breadcrumb-item {% if announcement_number >= 1 %}status_active{% endif %}">
+                {% if announcement_number >= 1 %}
                     Announcements
                 {% endif %}
             </li>
 
-            <li style = "font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: rgb(52, 144, 242);" class = "breadcrumb-item {% if ann_number >= 2 %}status_active{% endif %}">
-                {% if ann_number >= 2 %}
+            <li style = "font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: rgb(52, 144, 242);" class = "breadcrumb-item {% if announcement_number >= 2 %}status_active{% endif %}">
+                {% if announcement_number >= 2 %}
                     {% block action %} Action {% endblock action %}
                 {% endif %}
             </li>
         </ol>
     </nav>
 
-    {% if ann_number > 1 %}
+    {% if announcement_number > 1 %}
         <button style = "margin-bottom: 15px; padding-left: 10px !important; padding-right: 10px !important; padding-top: 5px !important; padding-bottom: 5px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: #FFFFFF;" class = "btn btn-secondary mb-3 back-button" onclick = "window.history.back()">
             <i class = "fas fa-arrow-left"></i> 
             

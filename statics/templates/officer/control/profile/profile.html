@@ -47,7 +47,7 @@
 
     <nav aria-label = "breadcrumb">
         <ol class = "breadcrumb">
-            <li style = "font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: rgb(52, 144, 242);" class = "breadcrumb-item {% if int_number >= 1 %}status_active{% endif %}">
+            <li style = "font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: rgb(52, 144, 242);" class = "breadcrumb-item {% if intervention_number >= 1 %}status_active{% endif %}">
                 {% if profile_number >= 1 %}
                     Profile
                 {% endif %}
@@ -55,7 +55,7 @@
 
             <span style = "font-family: 'Montserrat'; font-weight: 400; font-size: 16px;" class = "breadcrumb-separator {% if profile_number == 2 %}status_active{% endif %}">/</span>
 
-            <li style = "font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: rgb(52, 144, 242);" class = "breadcrumb-item {% if int_number >= 2 %}status_active{% endif %}">
+            <li style = "font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: rgb(52, 144, 242);" class = "breadcrumb-item {% if intervention_number >= 2 %}status_active{% endif %}">
                 {% if profile_number >= 2 %}
                     {% block action %}Action{% endblock action %}
                 {% endif %}
