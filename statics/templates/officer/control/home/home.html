@@ -896,10 +896,10 @@
             };
         </script>
 
-        <div class = "leaderboard">
-            <h2>TOP CONTRIBUTORS</h2>
+        {% if leaderboard|length >= 5 %}
+            <div class = "leaderboard">
+                <h2>TOP CONTRIBUTORS</h2>
 
-            {% if leaderboard|length >= 5 %}
                 <div class = "top-3">
                     {% if leaderboard|length >= 1 %}
                         <div class = "rank-1">
@@ -968,7 +968,7 @@
                         </div>
                     {% endfor %}
                 </div>
-            {% endif %}
-        </div>
+            </div>
+        {% endif %}
     </div>
 {% endblock %}

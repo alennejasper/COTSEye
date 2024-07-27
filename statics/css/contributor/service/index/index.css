@@ -519,7 +519,7 @@ nav.navigation-bottombar img:active{
 @media screen and (min-width: 320px) and (max-width: 775px){
     .draggable-report{
         right: 10px;
-        bottom: 40px;
+        bottom: 60px;
     }
 }
 
