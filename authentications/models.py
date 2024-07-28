@@ -242,5 +242,3 @@ class SocialApp2(SocialApp):
     
     def __str__(self):
         return str(SocialApp._meta.get_field("provider"))
-    
-

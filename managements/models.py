@@ -43,8 +43,8 @@ class Location(models.Model):
 
     class Meta:
         db_table = "managements_location"
-        verbose_name = "Barangay Perimeters and Default Coordinates"
-        verbose_name_plural = "Barangay Perimeters and Default Coordinates"
+        verbose_name = "Location"
+        verbose_name_plural = "Location"
     
     def __str__(self):
         return str(self.barangay.barangay_name) + ", " + str(self.municipality.municipality_name)
