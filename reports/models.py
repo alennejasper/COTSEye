@@ -65,7 +65,7 @@ class PostStatus(models.Model):
 
 class Size(models.Model):
     size = models.CharField(max_length = 65, unique = True, error_messages = {"unique": "This size already exist."}, null = True, verbose_name = "Size")
-    description = models.TextField(max_length = 255, default = "Default Description", verbose_name = "Description")
+    description = models.TextField(max_length = 255, verbose_name = "Description")
     class Meta:
         db_table = "reports_size"
         verbose_name = "Size"
@@ -77,7 +77,7 @@ class Size(models.Model):
         
 class Depth(models.Model):
     depth = models.CharField(max_length = 65, unique = True, error_messages = {"unique": "This depth already exist."}, null = True, verbose_name = "Depth")
-    description = models.TextField(max_length = 255, default = "Default Description", verbose_name = "Description")
+    description = models.TextField(max_length = 255, verbose_name = "Description")
     class Meta:
         db_table = "reports_depth"
         verbose_name = "Depth"
@@ -89,7 +89,7 @@ class Depth(models.Model):
 
 class Density(models.Model):
     density = models.CharField(max_length = 65, unique = True, error_messages = {"unique": "This Density already exist."}, null = True, verbose_name = "Density")
-    description = models.TextField(max_length = 255, default = "Default Description", verbose_name = "Description")
+    description = models.TextField(max_length = 255, verbose_name = "Description")
     
     class Meta:
         db_table = "reports_density"
