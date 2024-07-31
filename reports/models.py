@@ -39,15 +39,15 @@ class Coordinates(models.Model):
         return str(self.latitude) + "° N, " + str(self.longitude) + "° E"
 
 class PostStatus(models.Model):
-    is_valid = models.BooleanField(default = False, help_text = "Designates that the post can be pinned into the contributors site.", verbose_name = "Valid")
-    is_invalid = models.BooleanField(default = False, help_text = "Designates that the post cannot be pinned into the contributors site.", verbose_name = "Invalid")
-    is_pending = models.BooleanField(default = False, help_text = "Designates that the post is under review to be pinned into the contributors site.", verbose_name = "Pending")
-    is_draft = models.BooleanField(default = False, help_text = "Designates that the post is under draft to be reviewed for the contributors site.", verbose_name = "Draft")
+    is_valid = models.BooleanField(default = False, verbose_name = "Valid")
+    is_invalid = models.BooleanField(default = False, verbose_name = "Invalid")
+    is_pending = models.BooleanField(default = False, verbose_name = "Pending")
+    is_draft = models.BooleanField(default = False, verbose_name = "Draft")
    
     class Meta:
         db_table = "reports_post_status"
-        verbose_name = "Post Status"
-        verbose_name_plural = "Posts Status"
+        verbose_name = "Report Status"
+        verbose_name_plural = "Report Status"
     
     def __str__(self):
         if self.is_valid == True:

@@ -60,7 +60,7 @@ class Location(models.Model):
 
 
 class StatusType(models.Model):
-    statustype = models.CharField(default = "None", unique = True, error_messages = {"unique": "This infestation level already exist."}, null = True, max_length = 65, verbose_name = "Infestation Level")
+    statustype = models.CharField(unique = True, error_messages = {"unique": "This infestation level already exist."}, null = True, max_length = 65, verbose_name = "Infestation Level")
     description = models.TextField(max_length = 255, verbose_name = "Description")
     class Meta:
         db_table = "managements_status_type"
