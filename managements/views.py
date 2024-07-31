@@ -429,7 +429,7 @@ def OfficerControlAnnouncementUpdate(request, id):
     else:
         form = AnnouncementForm(instance = announcement)
 
-    context = {"ann_number": ann_number,"tab_number": tab_number, "unread_notifications": unread_notifications, "form": form, "announcement": announcement, "municipalities": municipalities, "locations": locations, "errors": errors, "field_labels": field_labels, "location_error": location_error}
+    context = {"announcement_number": announcement_number, "tab_number": tab_number, "unread_notifications": unread_notifications, "form": form, "announcement": announcement, "municipalities": municipalities, "locations": locations, "errors": errors, "field_labels": field_labels, "location_error": location_error}
 
     return render(request, "officer/control/announcement/update.html", context)
 
@@ -622,7 +622,7 @@ def OfficerControlInterventionUpdate(request, id):
     else:
         form = InterventionForm(instance = intervention)
 
-    context = {"int_number":int_number, "tab_number": tab_number, "unread_notifications": unread_notifications, "form": form, "update": True, "intervention": intervention, "municipalities": municipalities, "locations": locations, "errors": errors, "field_labels": field_labels, "location_error": location_error}
+    context = {"intervention_number": intervention_number, "tab_number": tab_number, "unread_notifications": unread_notifications, "form": form, "update": True, "intervention": intervention, "municipalities": municipalities, "locations": locations, "errors": errors, "field_labels": field_labels, "location_error": location_error}
 
     return render(request, "officer/control/intervention/update.html", context)
 
