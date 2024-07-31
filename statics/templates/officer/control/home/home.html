@@ -228,7 +228,22 @@
 
                 status.addTo(map_statuses);
 
-                var map_posts = L.markerClusterGroup({iconCreateFunction: function(cluster){return starfish}, removeOutsideVisibleBounds: false});
+                var map_posts = L.markerClusterGroup({
+                    iconCreateFunction: function(cluster){
+                        var markers = cluster.getAllChildMarkers();
+                        
+                        if (markers.length > 0){
+                            var iconUrl = markers[0].options.icon.options.iconUrl;
+
+                            return L.icon({iconUrl: iconUrl, iconSize: [30, 30], iconAnchor: [15, 15], className: "pin"});
+
+                        } else{
+                            return L.icon({iconUrl: "/statics/assets/posts/default.png", iconSize: [30, 30], iconAnchor: [15, 15], className: "pin"});
+                        };
+                    },
+
+                    removeOutsideVisibleBounds: false
+                });
                 
                 {% for post in map_posts %}
                     var starfish = L.icon({iconUrl: "{{post.post_photos.first.post_photo.url | default:'/statics/assets/posts/default.png'}}",  iconSize: [30, 30], iconAnchor: [15, 15], className: "pin"});

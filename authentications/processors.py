@@ -7,7 +7,7 @@ def coordinates(request):
     try:
         six_months_ago = timezone.now() - timedelta(days = 180) 
 
-        map_posts = Post.objects.filter(creation_date__gte = six_months_ago)
+        map_posts = Post.objects.filter(post_status = 1, creation_date__gte = six_months_ago)
 
         map_statuses = Status.objects.filter(creation_date__gte = six_months_ago)
     
