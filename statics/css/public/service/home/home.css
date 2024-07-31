@@ -87,13 +87,15 @@
 }
 
 .home-body .home-map{ 
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
     width: 100%;
     height: 100vh;
 }
 
 @media screen and (min-width: 320px) and (max-width: 935px){
     .home-body .home-map{ 
-        height: 400px;
+        height: 85vh;
     }
 }
 
@@ -106,7 +108,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 935px){
     .home-body .home-map .map{
-        height: 400px;
+        height: 85vh;
     }
 }
 
@@ -532,18 +534,18 @@
     justify-content: flex-start;
     font-family: "Montserrat" !important;
     font-weight: 400 !important;
-    font-size: 20px !important;
+    font-size: 24px !important;
 }
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .home-body .home-map .map .leaflet-control-layers span{
-        font-size: 16px !important;
+        font-size: 20px !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 445px){
     .home-body .home-map .map .leaflet-control-layers span{
-        font-size: 12px !important;
+        font-size: 16px !important;
     }
 }
 
@@ -579,17 +581,17 @@
         padding-right: 10px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
-        font-size: 16px !important;
+        font-size: 20px !important;
     }
 }
 
-@media screen and (min-width: 369px) and (max-width: 445px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .home-body .home-map .map .leaflet-control-layers-list{
         padding-left: 10px !important;
         padding-right: 10px !important;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
-        font-size: 12px !important;
+        font-size: 16px !important;
     }
 }
 
@@ -806,12 +808,24 @@
 
 @media screen and (min-width: 446px) and (max-width: 775px){
     .home-body .home-map .map .popup .popup-header .popup-back{
-        font-size: 20px !important;
+        font-size: 22px !important;
 
     }
 }
 
-@media screen and (min-width: 320px) and (max-width: 445px){
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .home-body .home-map .map .popup .popup-header .popup-back{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .home-body .home-map .map .popup .popup-header .popup-back{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
     .home-body .home-map .map .popup .popup-header .popup-back{
         font-size: 16px !important;
     }
@@ -980,10 +994,10 @@
     }
 }
 
-@media screen and (min-width: 320px) and (max-width: 445px){
+@media screen and (min-width: 369px) and (max-width: 445px){
     .home-body .home-map .map .popup .popup-header img{
-        width: 12px;
-        height: 12px;
+        width: 16px;
+        height: 16px;
     }
 }
 
@@ -1124,7 +1138,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 445px){
     .home-body .home-map .map .popup .popup-post .post-gallery .post-context a{
-        font-size: 14px !important;
+        font-size: 12px !important;
     }
 }
 

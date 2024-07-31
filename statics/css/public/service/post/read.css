@@ -335,7 +335,7 @@
     }
 }
 
-@media screen and (min-width: 369px) and (max-width: 445px){
+@media screen and (min-width: 320px) and (max-width: 445px){
     .postandfeedread-body .postandfeedread .postandfeedread-origin .origin-context p:last-child{
         font-size: 14px !important;
     }
