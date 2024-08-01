@@ -29,7 +29,7 @@ SECRET_KEY = "django-insecure-vz!lj^+vf@!(6&07mgt6r*u72%!g-2@tqa*3fqc_g1y=!$x(hk
 DEBUG = True
 
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["cotseye.onrender.com"]
 
 
 #Application definition
@@ -210,9 +210,9 @@ DATETIME_FORMAT = "%b. %j, %Y %I:%M %P"
 #https://docs.djangoproject.com/en/4.2/howto/static-files/
 STATIC_URL = "statics/"
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "statics")
-]
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, "statics")
+# ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, "statics")
 
@@ -221,8 +221,6 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 MEDIA_URL = "assets/"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "statics/assets")
-
-DATA_UPLOAD_MAX_MEMORY_SIZE = 5242880
 
 
 #Default primary key field type
@@ -314,9 +312,9 @@ JAZZMIN_SETTINGS = {
 
     "custom_css": "css/admin/control/index/index.css", 
 
-    "navigation_expanded": False,
+    "navigation_expanded": True,
 
-    "show_sidebar": False,
+    "show_sidebar": True,
 
     "site_brand": "COTSEYE",
     
