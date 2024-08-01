@@ -647,38 +647,42 @@ def OfficerControlStatusSerialize(statuses):
 
 
 def get_geojson_data(status_counts):
-    features = []
+    if not status_counts:
+        return {"type": "FeatureCollection", "features": []}
+
+    status_counts = sorted(status_counts, key = lambda x: x.get("count", 0), reverse = True)
+    
+    latest_status = status_counts[0]
+
+    location_id = latest_status.get("location")
+
+    count = latest_status.get("count", 0)
+
+    statustype_id = latest_status.get("statustype")
 
     locations = {loc.id: loc for loc in Location.objects.all()} 
 
     status_types = {status.id: status.statustype for status in StatusType.objects.all()}
 
-    for status in status_counts:
-        location_id = status.get("location")
+    location = locations.get(location_id)
 
-        count = status.get("count", 0)
+    if not location:
+        return {"type": "FeatureCollection", "features": []}
 
-        statustype_id = status.get("statustype")  
+    try:
+        coordinates = json.loads(location.perimeters)
 
-        location = locations.get(location_id)
+        if not coordinates:
+            return {"type": "FeatureCollection", "features": []}
 
-        if not location:
-            continue
+    except (json.JSONDecodeError, TypeError):
+        return {"type": "FeatureCollection", "features": []}
 
-        try:
-            coordinates = json.loads(location.perimeters) 
+    statustype = status_types.get(statustype_id, "Unknown")
 
-            if not coordinates:
-                continue
+    feature = {"type": "Feature", "geometry": {"type": "Polygon", "coordinates": coordinates}, "properties": {"statustype": statustype, "count": count}}
 
-        except (json.JSONDecodeError, TypeError):
-            continue
-
-        statustype = status_types.get(statustype_id, "Unknown")
-
-        features.append({"type": "Feature", "geometry": {"type": "Polygon", "coordinates": coordinates}, "properties": {"statustype": statustype, "count": count}})
-
-    return {"type": "FeatureCollection", "features": features}
+    return {"type": "FeatureCollection", "features": [feature]}
 
 
 def OfficerControlStatus(request):
@@ -706,7 +710,7 @@ def OfficerControlStatus(request):
 
     user = User.objects.get(account = request.user)
 
-    unread_notifications = Notification.objects.filter(user=user, is_read = False, creation_date__gte = notification_life).order_by("-creation_date")[:3]
+    unread_notifications = Notification.objects.filter(user = user, is_read = False, creation_date__gte = notification_life).order_by("-creation_date")[:3]
 
     latest_status_per_municipality = Status.objects.values("location__municipality").annotate(latest_date = Max("onset_date"))
    

@@ -408,13 +408,13 @@
                 <tbody class = "table-group-divider" style = "cursor: pointer;">
                     {% for status in paginated_statuses %}
                         <tr data-href = "{% url 'Officer Control Status Municipality Read' status.location.municipality %}">
-                            <td style = "display: table-cell !important; max-width: 0px; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">{{ status.onset_date | format_date_mmddyy }}</td>
+                            <td style = "display: table-cell !important; max-width: 0px; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">{{status.onset_date | format_date_mmddyy}}</td>
                             
-                            <td style = "display: table-cell !important; max-width: 0px; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">{{ status.location.municipality }}</td>
+                            <td style = "display: table-cell !important; max-width: 0px; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">{{status.location.municipality}}</td>
                             
-                            <td style = "display: table-cell !important; max-width: 0px; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">{{ status.caught_overall }}</td>
+                            <td style = "display: table-cell !important; max-width: 0px; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">{{status.caught_overall}}</td>
                             
-                            <td style = "display: table-cell !important; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 12px;" class = "status-{{ status.statustype }}">{{ status.statustype }}</td>
+                            <td style = "display: table-cell !important; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 12px;" class = "status-{{status.statustype}}">{{status.statustype}}</td>
                             
                             <td style = "display: table-cell !important; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 12px; text-align: center; vertical-align: middle;">
                                 <i class = "fas fa-search" style = "font-size: 12px; color: rgb(28, 169, 234);" aria-hidden="true"></i>
@@ -1204,7 +1204,7 @@
 
         var geojsonLayerGroup = L.layerGroup().addTo(map);
 
-        function updateMap() {
+        function updateMap(){
             var geojsonData = JSON.parse("{{geojson_data|escapejs}}");
 
             function getColor(statustype){
@@ -1236,13 +1236,34 @@
                 renderer: L.canvas(),
 
                 style: function(feature){
+                    var status = feature.properties.statustype;
+
+                    var fillings = "";
+
+                    if (status === "Critical"){
+                        fillings = "#C90016";
+                
+                    } else if (status === "High"){
+                        fillings = "#FF7518";
+
+                    } else if (status === "Moderate"){
+                        fillings = "#F4C430";
+
+                    } else if (status === "Low"){
+                        fillings = "#698F3F";
+                    
+                    } else{
+                        fillings = "#003755";
+                    };
+
                     return{
-                        color: getColor(feature.properties.statustype),
-                        weight: 2,
+                        color: "#002C44", 
                         
-                        opacity: 1,
-                        
-                        fillOpacity: 0.5
+                        weight: 1, 
+
+                        fillColor: fillings, 
+
+                        fillOpacity: 0.75
                     };
                 },
 
@@ -1264,21 +1285,6 @@
                             if (lng > maxLng) maxLng = lng;
                         });
                     });
-
-                    var centroid = getCentroid(layer.getLatLngs());
-                    
-                    var color = getColor(feature.properties.statustype);
-
-                    L.circle(centroid, {
-                        color: color,
-
-                        fillColor: color,
-                        
-                        fillOpacity: 0.5,
-                        
-                        radius: 10
-                        
-                    }).addTo(geojsonLayerGroup);
                 }
             }).addTo(geojsonLayerGroup);
 
