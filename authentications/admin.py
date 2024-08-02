@@ -87,7 +87,7 @@ class AccountAdmin(admin.ModelAdmin):
 
         return super().render_change_form(request, context, add, change, form_url, obj)
     
-    fields = ["username", "usertype", "is_active"]
+    fields = ["username", "is_active"]
 
     list_display = ["username", "last_login"]
 
