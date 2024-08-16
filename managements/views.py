@@ -647,42 +647,38 @@ def OfficerControlStatusSerialize(statuses):
 
 
 def get_geojson_data(status_counts):
-    if not status_counts:
-        return {"type": "FeatureCollection", "features": []}
-
-    status_counts = sorted(status_counts, key = lambda x: x.get("count", 0), reverse = True)
-    
-    latest_status = status_counts[0]
-
-    location_id = latest_status.get("location")
-
-    count = latest_status.get("count", 0)
-
-    statustype_id = latest_status.get("statustype")
+    features = []
 
     locations = {loc.id: loc for loc in Location.objects.all()} 
 
     status_types = {status.id: status.statustype for status in StatusType.objects.all()}
 
-    location = locations.get(location_id)
+    for status in status_counts:
+        location_id = status.get("location")
 
-    if not location:
-        return {"type": "FeatureCollection", "features": []}
+        count = status.get("count", 0)
 
-    try:
-        coordinates = json.loads(location.perimeters)
+        statustype_id = status.get("statustype")  
 
-        if not coordinates:
-            return {"type": "FeatureCollection", "features": []}
+        location = locations.get(location_id)
 
-    except (json.JSONDecodeError, TypeError):
-        return {"type": "FeatureCollection", "features": []}
+        if not location:
+            continue
 
-    statustype = status_types.get(statustype_id, "Unknown")
+        try:
+            coordinates = json.loads(location.perimeters) 
 
-    feature = {"type": "Feature", "geometry": {"type": "Polygon", "coordinates": coordinates}, "properties": {"statustype": statustype, "count": count}}
+            if not coordinates:
+                continue
 
-    return {"type": "FeatureCollection", "features": [feature]}
+        except (json.JSONDecodeError, TypeError):
+            continue
+
+        statustype = status_types.get(statustype_id, "Unknown")
+
+        features.append({"type": "Feature", "geometry": {"type": "Polygon", "coordinates": coordinates}, "properties": {"statustype": statustype, "count": count}})
+
+    return {"type": "FeatureCollection", "features": features}
 
 
 def OfficerControlStatus(request):
@@ -717,7 +713,7 @@ def OfficerControlStatus(request):
     latest_statuses = []
 
     for entry in latest_status_per_municipality:
-        status = Status.objects.filter(location__municipality=entry["location__municipality"]).order_by("-onset_date").first()
+        status = Status.objects.filter(location__municipality = entry["location__municipality"]).order_by("-onset_date").first()
         
         if status:
             latest_statuses.append(status)

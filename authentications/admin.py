@@ -53,7 +53,7 @@ class UserAdmin(admin.ModelAdmin):
         return request.user.usertype_id == 1
     
     def render_change_form(self, request, context, add = False, change = False, form_url = "", obj = None):
-        context.update({"show_save": True, "show_save_and_continue": False, "show_save_and_add_another": False, "show_delete": True})
+        context.update({"show_save": True, "show_save_and_continue": False, "show_save_and_add_another": False, "show_delete": False})
 
         return super().render_change_form(request, context, add, change, form_url, obj)
     

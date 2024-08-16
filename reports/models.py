@@ -39,15 +39,15 @@ class Coordinates(models.Model):
         return str(self.latitude) + "° N, " + str(self.longitude) + "° E"
 
 class PostStatus(models.Model):
-    is_valid = models.BooleanField(default = False, verbose_name = "Valid")
-    is_invalid = models.BooleanField(default = False, verbose_name = "Invalid")
-    is_pending = models.BooleanField(default = False, verbose_name = "Pending")
-    is_draft = models.BooleanField(default = False, verbose_name = "Draft")
+    is_valid = models.BooleanField(default = False, help_text = "Designates that the post can be pinned into the contributors site.", verbose_name = "Valid")
+    is_invalid = models.BooleanField(default = False, help_text = "Designates that the post cannot be pinned into the contributors site.", verbose_name = "Invalid")
+    is_pending = models.BooleanField(default = False, help_text = "Designates that the post is under review to be pinned into the contributors site.", verbose_name = "Pending")
+    is_draft = models.BooleanField(default = False, help_text = "Designates that the post is under draft to be reviewed for the contributors site.", verbose_name = "Draft")
    
     class Meta:
         db_table = "reports_post_status"
-        verbose_name = "Report Status"
-        verbose_name_plural = "Report Status"
+        verbose_name = "Post Status"
+        verbose_name_plural = "Posts Status"
     
     def __str__(self):
         if self.is_valid == True:
@@ -66,6 +66,7 @@ class PostStatus(models.Model):
 class Size(models.Model):
     size = models.CharField(max_length = 65, unique = True, error_messages = {"unique": "This size already exist."}, null = True, verbose_name = "Size")
     description = models.TextField(max_length = 255, verbose_name = "Description")
+    
     class Meta:
         db_table = "reports_size"
         verbose_name = "Size"
@@ -78,6 +79,7 @@ class Size(models.Model):
 class Depth(models.Model):
     depth = models.CharField(max_length = 65, unique = True, error_messages = {"unique": "This depth already exist."}, null = True, verbose_name = "Depth")
     description = models.TextField(max_length = 255, verbose_name = "Description")
+    
     class Meta:
         db_table = "reports_depth"
         verbose_name = "Depth"
