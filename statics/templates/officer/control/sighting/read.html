@@ -347,7 +347,7 @@
         function showPopup(postId){
             fetch(`/officer/control/sighting/update/${postId}/`).then(response => response.json()).then(data => {
                 Swal.fire({
-                    title: "Drag Pin to Update Municipality and Barangay",
+                    title: "Drag Pin to Update Location",
 
                     html: 
                         `<div class = "map">
@@ -396,7 +396,9 @@
                         });
                     },
 
-                    showConfirmButton: false
+                    showConfirmButton: false,
+
+                    customClass: {title: "title"}
                 });
             });
         };
