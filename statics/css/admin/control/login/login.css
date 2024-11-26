@@ -704,6 +704,10 @@ input:autofill{
     background-color: #003755 !important;
 }
 
+.swal2-container div:where(.swal2-icon).swal2-success.swal2-icon-show .swal2-success-circular-line-right{
+    background-color: transparent !important;
+}
+
 .swal2-container div:where(.swal2-icon).swal2-error{
     border-color: #003755 !important;
     color: #003755 !important;

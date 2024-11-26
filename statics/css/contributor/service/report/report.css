@@ -972,7 +972,7 @@
 @media screen and (min-width: 349px) and (max-width: 368px){
     .report-body .report-form .density select{
         font-size: 14px !important;
-        background: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '16' height = '16' viewBox = '0 0 320 512' fill = '%23154360'> <path d = 'M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z'/></svg>");
+        background: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '14' height = '14' viewBox = '0 0 320 512' fill = '%23154360'> <path d = 'M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z'/></svg>");
         background-repeat: no-repeat;
         background-position: right 10px center; 
     }
@@ -981,7 +981,7 @@
 @media screen and (min-width: 320px) and (max-width: 348px){
     .report-body .report-form .density select{
         font-size: 12px !important;
-        background: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '16' height = '16' viewBox = '0 0 320 512' fill = '%23154360'> <path d = 'M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z'/></svg>");
+        background: url("data: image/svg+xml; utf8, <svg xmlns = 'http://www.w3.org/2000/svg' width = '12' height = '12' viewBox = '0 0 320 512' fill = '%23154360'> <path d = 'M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z'/></svg>");
         background-repeat: no-repeat;
         background-position: right 10px center; 
     }
@@ -1185,13 +1185,13 @@
 }
 
 @media screen and (min-width: 349px) and (max-width: 368px){
-    .report-body .report-form .depth select{
+    .report-body .report-form .weather img{
         height: 14px !important;
     }
 }
 
 @media screen and (min-width: 320px) and (max-width: 348px){
-    .report-body .report-form .depth select{
+    .report-body .report-form .weather img{
         height: 12px !important;
     }
 }

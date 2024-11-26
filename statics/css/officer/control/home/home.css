@@ -608,7 +608,6 @@
 }
 
 .home-body .home-map .map .leaflet-control-layers{
-    margin-top: 15px;
     border: none !important;
     background: #003755 !important;
 }
@@ -1847,10 +1846,6 @@
     text-align: center;
 }
 
-.rank-2, .rank-3{
-    width: 45%;
-}
-
 .rank-2{
     place-items: center;
     margin-right: auto;
@@ -1868,7 +1863,7 @@
     text-align: center;
 }
 
-.circle{
+.profile{
     position: relative;
     display: flex;
     align-items: center;
@@ -1881,30 +1876,20 @@
     font-size: 1.5em;
 }
 
-.circle .medal-icon {
-    position: absolute;
-    font-size: 1.5em;
-}
-
-.circle .rank-number{
-    z-index: 1;
-}
-
-.circle.rank-1{
+.profile.rank-1{
     justify-content: center;
     margin-bottom: 5px;
     background-color: #FFD700;
     text-align: center;
 }
 
-.circle.rank-2{
+.profile.rank-2{
     justify-content: center;
     background-color: #C0C0C0;
     text-align: center;
-
 }
 
-.circle.rank-3{
+.profile.rank-3{
     position: relative; 
     justify-content: center;
     background-color: #CD7F32;
@@ -1951,26 +1936,6 @@
 
 p.count{
     margin-bottom: 0.5rem !important;
-}
-
-.leaderboard table{
-    width: 100%;
-    border-collapse: collapse;
-    background-color: unset !important;
-}
-
-.leaderboard table, .leaderboard th, .leaderboard td{
-    border: 1px solid #D3D3D3;
-    background-color: #FFFFFF !important;
-}
-
-.leaderboard th, .leaderboard td{
-    padding: 8px;
-    text-align: left;
-}
-
-.leaderboard th{
-    background-color: #D3D3D3;
 }
 
 .second-row{
@@ -2080,28 +2045,6 @@ p.count{
     width: 5rem;
     font-size: medium !important;
 
-}
-
-.rank-4{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 1rem;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0.5rem;
-    width: fit-content;
-}
-
-.rank-5{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 1rem;
-    padding: 0.5rem;
-    width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
 }
     
 .rank-4-5 p.name{

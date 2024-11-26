@@ -943,6 +943,18 @@ def OfficerControlSighting(request):
     return render(request, 'officer/control/sighting/sighting.html', context)
 
 
+def OfficerControlSightingFetch(request, id):
+    try:
+        post = get_object_or_404(Post, id = id)
+    
+        post_data = {"id": post.id, "description": post.description, "coordinates": str(post.coordinates), "municipality":  str(post.location.municipality), "barangay":  str(post.location.barangay), "municipality":  str(post.location.municipality), "post_status": str(post.post_status), "size": str(post.post_observation.size), "density": str(post.post_observation.density), "weather": str(post.post_observation.weather), "depth": str(post.post_observation.depth), "remarks": post.remarks, "capture_date": post.capture_date.isoformat(), "creation_date": post.creation_date.isoformat(), "user": str(post.user), "validator": str(post.validator) if post.validator else None, "post_photos": [{"url": photo.post_photo.url, "id": photo.id} for photo in post.post_photos.all()]}
+        
+        return JsonResponse(post_data)
+    
+    except Post.DoesNotExist:
+        return JsonResponse({"error": "The post could not be found."}, status = 404)
+    
+
 @login_required(login_url = "Officer Control Login")
 @user_passes_test(OfficerCheck, login_url = "Officer Control Login")
 def OfficerControlSightingRead(request, id):
@@ -1025,6 +1037,48 @@ def OfficerControlSightingUpdate(request, id):
     
     return JsonResponse(data)
 
+
+@login_required(login_url = "Officer Control Login")
+@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
+def OfficerControlSightingLocationUpdate(request, id):
+    post = get_object_or_404(Post, id = id)
+
+    data = json.loads(request.body)
+
+    try:
+        municipality = data.get("municipality")
+
+        barangay = data.get("barangay")
+
+        latitude = data.get("latitude")
+
+        longitude = data.get("longitude")
+        
+        print(f"The received coordinates are {latitude}° N, and {longitude}° E.")
+
+        coordinates_qs = Coordinates.objects.filter(latitude = latitude, longitude = longitude)
+
+        if coordinates_qs.exists():
+            coordinates = coordinates_qs.first()
+
+        else:
+            coordinates = Coordinates.objects.create(latitude = latitude, longitude = longitude)
+
+        post.coordinates = coordinates
+
+        print(f"The updated post coordinates are {post.coordinates.latitude}° N, and {post.coordinates.longitude}° E.")
+        
+        location = get_object_or_404(Location, municipality__municipality_name = municipality, barangay__barangay_name = barangay)
+
+        post.location = location
+        
+        post.save()
+
+        return JsonResponse({"status": "success"}, status = 200)
+    
+    except Exception as e:
+        return JsonResponse({"status": "error", "message": str(e)}, status = 400)
+    
 
 @login_required(login_url = "Officer Control Login")
 @user_passes_test(OfficerCheck, login_url = "Officer Control Login")
@@ -1114,91 +1168,3 @@ def PostValidReadRedirect(request, id):
         object = Post.objects.get(id = id)
 
         return redirect(reverse("Public Service Post Feed Read", kwargs = {"id": object.id}))
-    
-
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
-def update_post(request, post_id):
-    post = get_object_or_404(Post, id = post_id)
-
-    data = json.loads(request.body)
-
-    try:
-        municipality = data.get("municipality")
-
-        barangay = data.get("barangay")
-
-        latitude = data.get("latitude")
-
-        longitude = data.get("longitude")
-        
-        print(f"Received coordinates: {latitude}° N, {longitude}° E")
-
-        coordinates_qs = Coordinates.objects.filter(latitude = latitude, longitude = longitude)
-
-        if coordinates_qs.exists():
-            coordinates = coordinates_qs.first()
-
-        else:
-            coordinates = Coordinates.objects.create(latitude = latitude, longitude = longitude)
-
-        post.coordinates = coordinates
-
-        print(f"Updated post coordinates: {post.coordinates.latitude}° N, {post.coordinates.longitude}° E")
-        
-        location = get_object_or_404(Location, municipality__municipality_name = municipality, barangay__barangay_name = barangay)
-
-        post.location = location
-        
-        post.save()
-
-        return JsonResponse({"status": "success"}, status = 200)
-    
-    except Exception as e:
-        return JsonResponse({"status": "error", "message": str(e)}, status = 400)
-    
-
-def GetPostDetails(request, post_id):
-    try:
-        post = get_object_or_404(Post, id = post_id)
-    
-        post_data = {
-            "id": post.id,
-
-            "description": post.description,
-
-            "coordinates": str(post.coordinates),
-
-            "municipality":  str(post.location.municipality),
-
-            "barangay":  str(post.location.barangay),
-
-            "municipality":  str(post.location.municipality),
-
-            "post_status": str(post.post_status),  
-
-            "size": str(post.post_observation.size), 
-
-            "density": str(post.post_observation.density), 
-
-            "weather": str(post.post_observation.weather), 
-
-            "depth": str(post.post_observation.depth), 
-
-            "remarks": post.remarks,
-
-            "capture_date": post.capture_date.isoformat(),
-
-            "creation_date": post.creation_date.isoformat(),
-
-            "user": str(post.user),
-
-            "validator": str(post.validator) if post.validator else None,
-
-            "post_photos": [{"url": photo.post_photo.url, "id": photo.id} for photo in post.post_photos.all()],
-        }
-        
-        return JsonResponse(post_data)
-    
-    except Post.DoesNotExist:
-        return JsonResponse({"error": "The post could not be found."}, status = 404)

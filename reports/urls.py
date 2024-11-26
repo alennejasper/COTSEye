@@ -37,6 +37,8 @@ urlpatterns = [
 
     path("officer/control/sighting/", views.OfficerControlSighting, name = "Officer Control Sighting"),
     
+    path("officer/control/sighting/fetch/<int:id>/", views.OfficerControlSightingFetch, name = "Officer Control Sighting Fetch"),
+
     path("officer/control/sighting/read/<int:id>/", views.OfficerControlSightingRead, name = "Officer Control Sighting Read"),
 
     path("officer/control/sighting/read/<int:id>/redirect/", views.OfficerControlSightingReadRedirect, name = "Officer Control Sighting Read Redirect"),
@@ -45,6 +47,8 @@ urlpatterns = [
 
     path("officer/control/sighting/update/<int:id>/", views.OfficerControlSightingUpdate, name = "Officer Control Sighting Update"),
 
+    path("officer/control/sighting/location/update/<int:id>/", views.OfficerControlSightingLocationUpdate, name = "Officer Control Sighting Location Update"), 
+
     path("officer/control/sighting/valid/", views.OfficerControlSightingValid, name = "Officer Control Sighting Valid"),
 
     path("officer/control/sighting/invalid/", views.OfficerControlSightingInvalid, name = "Officer Control Sighting Invalid"),
@@ -52,8 +56,4 @@ urlpatterns = [
     path("officer/control/sighting/delete/<int:id>/", views.OfficerControlSightingDelete, name = "Officer Control Sighting Delete"),
 
     path("service/post/valid/read/<int:id>/redirect/", views.PostValidReadRedirect, name = "Post Valid Read Redirect"),
-
-    path("api/posts/update/<int:post_id>/", views.update_post, name = "update_post"), 
-
-    path("post-detail/<int:post_id>/", views.GetPostDetails, name = "post-detail"),
 ] 

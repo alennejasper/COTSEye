@@ -65,17 +65,17 @@
 
 }
 
-.top-3{
+.leaderboard .top-three{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.top-3 p{
+.leaderboard .top-three p{
     margin-bottom: 5px !important;
 }
 
-.top-3 > div{
+.leaderboard .top-three > div{
     position: relative;
     display: flex;
     justify-content: space-between;
@@ -84,18 +84,14 @@
     max-width: 400px;
 }
 
-.rank-1{
+.leaderboard .rank-one{
     justify-content: center;
     place-items: center;
     margin-bottom: -30px;
     text-align: center;
 }
 
-.rank-2, .rank-3{
-    width: 45%;
-}
-
-.rank-2{
+.leaderboard .rank-two{
     place-items: center;
     margin-right: auto;
     margin-left: auto;
@@ -104,7 +100,7 @@
     text-align: center;
 }
 
-.rank-3{
+.leaderboard .rank-three{
     place-items: center;
     margin-left: auto;
     margin-right: auto;
@@ -112,7 +108,7 @@
     text-align: center;
 }
 
-.circle{
+.leaderboard .profile{
     position: relative;
     display: flex;
     align-items: center;
@@ -125,37 +121,28 @@
     font-size: 1.5em;
 }
 
-.circle .medal-icon {
-    position: absolute;
-    font-size: 1.5em;
-}
-
-.circle .rank-number{
-    z-index: 1;
-}
-
-.circle.rank-1{
+.leaderboard .profile.rank-one{
     justify-content: center;
     margin-bottom: 5px;
     background-color: #FFD700;
     text-align: center;
 }
 
-.circle.rank-2{
+.leaderboard .profile.rank-two{
     justify-content: center;
     background-color: #C0C0C0;
     text-align: center;
 
 }
 
-.circle.rank-3{
+.leaderboard .profile.rank-three{
     position: relative; 
     justify-content: center;
     background-color: #CD7F32;
     text-align: center;
 }
 
-.profile-picture{
+.leaderboard .profile-picture{
     position: absolute;
     top: 50%; 
     left: 50%; 
@@ -167,14 +154,14 @@
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);  
 }
 
-.name{
+.leaderboard .name{
     font-weight: 700;
     font-size: 1.1em;
     color: rgba(28, 169, 234);
     text-align: center;
 }
 
-.count{
+.leaderboard .count{
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -193,38 +180,11 @@
     text-align: center;
 }
 
-p.count{
+.leaderboard p.count{
     margin-bottom: 0.5rem !important;
 }
 
-.leaderboard table{
-    width: 100%;
-    border-collapse: collapse;
-    background-color: unset !important;
-}
-
-.leaderboard table, .leaderboard th, .leaderboard td{
-    border: 1px solid #D3D3D3;
-    background-color: #FFFFFF !important;
-}
-
-.leaderboard th, .leaderboard td{
-    padding: 8px;
-    text-align: left;
-}
-
-.leaderboard th{
-    background-color: #D3D3D3;
-}
-
-.second-row{
-    display: grid !important;
-    grid-template-columns: 1fr 1fr 1fr;
-    justify-content: space-between !important; 
-    justify-content: center;
-}
-
-.box-div{
+.leaderboard .box{
     position: relative;
     display: block;
     place-self: end;
@@ -233,7 +193,25 @@ p.count{
     background-color: rgba(28, 169, 234, 0.8);
 }
 
-.rank-3 .box-div{
+.leaderboard .box h2{
+    font-weight: 700;
+    color: white;
+    font-size: 64px;
+}
+
+.leaderboard .rank-two .box{
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(28, 169, 234, 0.8);
+}
+
+.leaderboard .rank-two .box h2{
+    font-size: 36px;
+}
+
+.leaderboard .rank-three .box{
     position: relative;
     display: block;
     bottom: 0px;
@@ -242,29 +220,18 @@ p.count{
     background-color: rgba(28, 169, 234, 0.8);
 }
 
-.rank-2 .box-div{
-    position: relative;
-    display: block;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(28, 169, 234, 0.8);
-}
-
-.rank-3 .box-div h2{
+.leaderboard .rank-three .box h2{
     font-size: 24px;
 }
 
-.rank-2 .box-div h2{
-    font-size: 36px;
+.leaderboard .second-row{
+    display: grid !important;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: space-between !important; 
+    justify-content: center;
 }
 
-.box-div h2{
-    font-weight: 700;
-    color: white;
-    font-size: 64px;
-}
-
-.rank-4-5{
+.leaderboard .rank-fourandfive{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -273,8 +240,11 @@ p.count{
     width: 100%;
 }
 
+.leaderboard .rank-fourandfive p.name{
+    max-width: 20rem;
+}
 
-.rank-4-5 p.count{
+.leaderboard .rank-fourandfive p.count{
     justify-content: center;
     margin-left: auto;
     margin-right: auto;
@@ -283,7 +253,7 @@ p.count{
     text-align: center;
 }
 
-.third-row{
+.leaderboard .third-row{
     position: relative;
     display: flex;
     flex-direction: column;
@@ -302,52 +272,25 @@ p.count{
 }
 
 @media screen and (min-width: 320px) and (max-width: 775px){
-    .third-row{
+    .leaderboard .third-row{
         width: 100%;
         max-width: 100vw;
     }
 }
 
-.third-row h3{
+.leaderboard .third-row h3{
     font-size: 1.5rem;
 }
 
-.third-row p{
+.leaderboard .third-row p{
     margin-bottom: 0 !important;
     width: 8rem;
     font-size: larger;
     font-weight: 700;
 }
 
-.third-row p.count{
+.leaderboard .third-row p.count{
     margin-bottom: 0 !important;
     width: 5rem;
     font-size: medium !important;
-
-}
-
-.rank-4{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 1rem;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0.5rem;
-    width: fit-content;
-}
-
-.rank-5{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 1rem;
-    padding: 0.5rem;
-    width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
-}
-    
-.rank-4-5 p.name{
-    max-width: 20rem;
 }

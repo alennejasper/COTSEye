@@ -11,11 +11,11 @@
             <div class = "leaderboard">
                 <h2>TOP CONTRIBUTORS</h2>
 
-                <div class = "top-3">
+                <div class = "top-three">
                     {% if leaderboard|length >= 1 %}
-                        <div class = "rank-1">
-                            <div class = "circle rank-1">
-                                <img id = "profilePicture" src = "{{user.user.profile_photo.url | default:''}}" class = "profile-picture">
+                        <div class = "rank-one">
+                            <div class = "profile rank-one">
+                                <img src = "{{user.user.profile_photo.url | default:''}}" class = "profile-picture">
                             </div>
             
                             <p class = "name">{{leaderboard.0.user__account__username | default:'None available'}}</p>
@@ -27,37 +27,37 @@
                     
                     <div class = "second-row">
                         {% if leaderboard|length >= 2 %}
-                            <div class = "rank-2">
-                                <div class = "circle rank-2">
-                                    <img id = "profilePicture" src = "{{user.user.profile_photo.url | default:''}}" class = "profile-picture">
+                            <div class = "rank-two">
+                                <div class = "profile rank-two">
+                                    <img src = "{{user.user.profile_photo.url | default:''}}" class = "profile-picture">
                                 </div>
             
                                 <p class = "name">{{leaderboard.1.user__account__username}}</p>
             
                                 <p class = "count"><i class = "fas fa-star"></i>{{leaderboard.1.post_count}}</p>
             
-                                <div class = "box-div">
+                                <div class = "box">
                                     <h2>2</h2>
                                 </div>
                             </div>
                         {% else %}
                         {% endif %}
                         
-                        <div class = "box-div">
+                        <div class = "box">
                             <h2>1</h2>
                         </div>
             
                         {% if leaderboard|length >= 3 %}
-                            <div class = "rank-3">
-                                <div class = "circle rank-3">
-                                    <img id = "profilePicture" src = "{{user.user.profile_photo.url | default:''}}" class = "profile-picture">
+                            <div class = "rank-three">
+                                <div class = "profile rank-three">
+                                    <img src = "{{user.user.profile_photo.url | default:''}}" class = "profile-picture">
                                 </div>
             
                                 <p class = "name">{{leaderboard.2.user__account__username | default:'None available'}}</p>
             
                                 <p class = "count"><i class = "fas fa-star"></i>{{leaderboard.2.post_count | default:'0'}}</p>
             
-                                <div class = "box-div">
+                                <div class = "box">
                                     <h2>3</h2>
                                 </div>
                             </div>
@@ -68,9 +68,9 @@
             
                 <div class = "third-row">
                     {% for entry in leaderboard|slice:"3:5" %}
-                        <div class = "rank-4-5">
-                            <div class = "circle">
-                                <img id = "profilePicture" src = "{{user.user.profile_photo.url | default:''}}" class = "profile-picture">
+                        <div class = "rank-fourandfive">
+                            <div class = "profile">
+                                <img src = "{{user.user.profile_photo.url | default:''}}" class = "profile-picture">
                             </div>
             
                             <p class = "name">{{entry.user__account__username | default:'None available'}}</p>

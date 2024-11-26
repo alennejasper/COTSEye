@@ -428,7 +428,7 @@
                     longitude: parseFloat(longitude)
                 };
 
-                fetch(`/api/posts/update/${postId}/`, {
+                fetch(`/officer/control/sighting/location/update/${postId}/`, {
                     method: "POST",
 
                     headers: {
@@ -560,7 +560,7 @@
 
             async function showItemDetails(itemId){
                 try{
-                    const response = await fetch(`/post-detail/${itemId}/`);
+                    const response = await fetch(`/officer/control/sighting/fetch/${itemId}/`);
 
                     const data = await response.json();
                     

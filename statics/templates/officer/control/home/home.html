@@ -918,8 +918,8 @@
                 <div class = "top-3">
                     {% if leaderboard|length >= 1 %}
                         <div class = "rank-1">
-                            <div class = "circle rank-1">
-                                <img id = "profilePicture" src = "{{user.user.profile_photo.url | default:'None available'}}" class = "profile-picture">
+                            <div class = "profile rank-1">
+                                <img src = "{{user.user.profile_photo.url | default:'None available'}}" class = "profile-picture">
                             </div>
 
                             <p class = "name">{{leaderboard.0.user__account__username | default:'None available'}}</p>
@@ -932,13 +932,13 @@
                     <div class = "second-row">
                         {% if leaderboard|length >= 2 %}
                             <div class = "rank-2">
-                                <div class = "circle rank-2">
-                                    <img id = "profilePicture" src = "{{user.user.profile_photo.url | default:'None available'}}" class = "profile-picture">
+                                <div class = "profile rank-2">
+                                    <img src = "{{user.user.profile_photo.url | default:'None available'}}" class = "profile-picture">
                                 </div>
 
                                 <p class = "name">{{leaderboard.1.user__account__username | default:'None available'}}</p>
 
-                                <p class = "count"><i class="fas fa-star"></i>{{leaderboard.1.post_count | default:'0'}}</p>
+                                <p class = "count"><i class = "fas fa-star"></i>{{leaderboard.1.post_count | default:'0'}}</p>
                                 
                                 <div class = "box-div">
                                     <h2>2</h2>
@@ -953,13 +953,13 @@
 
                         {% if leaderboard|length >= 3 %}
                             <div class = "rank-3">
-                                <div class = "circle rank-3">
-                                    <img id = "profilePicture" src = "{{user.user.profile_photo.url | default:''}}" class = "profile-picture">
+                                <div class = "profile rank-3">
+                                    <img src = "{{user.user.profile_photo.url | default:''}}" class = "profile-picture">
                                 </div>
 
                                 <p class = "name">{{leaderboard.2.user__account__username | default:'None available'}}</p>
 
-                                <p class = "count"><i class="fas fa-star"></i>{{leaderboard.2.post_count | default:'0'}}</p>
+                                <p class = "count"><i class = "fas fa-star"></i>{{leaderboard.2.post_count | default:'0'}}</p>
                                 
                                 <div class = "box-div">
                                     <h2>3</h2>
@@ -973,13 +973,13 @@
                 <div class = "third-row">
                     {% for entry in leaderboard|slice:"3:5" %}
                         <div class = "rank-4-5">
-                            <div class = "circle">
-                                <img id = "profilePicture" src = "{{user.user.profile_photo.url | default:''}}" class = "profile-picture">
+                            <div class = "profile">
+                                <img src = "{{user.user.profile_photo.url | default:''}}" class = "profile-picture">
                             </div>
 
                             <p class = "name">{{entry.user__account__username | default:'None available'}}</p>
 
-                            <p class = "count"><i class="fas fa-star"></i>{{entry.post_count | default:'0'}}</p>
+                            <p class = "count"><i class = "fas fa-star"></i>{{entry.post_count | default:'0'}}</p>
                         </div>
                     {% endfor %}
                 </div>
