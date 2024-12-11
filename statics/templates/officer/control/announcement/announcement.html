@@ -47,7 +47,7 @@
             cursor: pointer;
         }
 
-        .select2-container:has(span[title = "Select Barangay"]){
+        .select2-container:has(span[title = "Barangay"]){
             display: none;
         }
 
@@ -494,31 +494,31 @@
         </script>
         
         <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const filterCollapse = document.getElementById('filterCollapse');
-                const mainContent = document.getElementById('mainContent');
-                const filterToggle = document.getElementById('filterToggle');
+            document.addEventListener('DOMContentLoaded', function (){
+                const filterCollapse = document.getElementById("filterCollapse");
+
+                const mainContent = document.getElementById("mainContent");
+
+                const filterToggle = document.getElementById("filterToggle");
             
                 function adjustMainContentWidth() {
-                    if (filterCollapse.classList.contains('show')) {
-                        // Filter is open
-                        mainContent.classList.remove('w-100');
+                    if (filterCollapse.classList.contains("show")){
+                        mainContent.classList.remove("w-100");
+
                     } else {
-                        // Filter is collapsed
                         console.log(mainContent.classList)
-                        mainContent.classList.add('w-100');
+
+                        mainContent.classList.add("w-100");
                     }
                 }
             
-                // Initial adjustment
                 adjustMainContentWidth();
             
-                // Add event listener to toggle button
-                filterToggle.addEventListener('click', adjustMainContentWidth);
+                filterToggle.addEventListener("click", adjustMainContentWidth);
             
-                // Handle collapse events directly if needed
-                filterCollapse.addEventListener('shown.bs.collapse', adjustMainContentWidth);
-                filterCollapse.addEventListener('hidden.bs.collapse', adjustMainContentWidth);
+                filterCollapse.addEventListener("shown.bs.collapse", adjustMainContentWidth);
+
+                filterCollapse.addEventListener("hidden.bs.collapse", adjustMainContentWidth);
             });
         </script>
     {% endblock announcement_content %}

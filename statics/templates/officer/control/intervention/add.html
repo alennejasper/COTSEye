@@ -190,15 +190,13 @@
 
             municipalityInput.value = municipalityFilter;
 
-            barangayFilter.innerHTML = '<option value = "">Select Barangay</option>';
+            barangayFilter.innerHTML = "<option value = ''>Select Barangay</option>";
 
             if (municipalityFilter){
                 $.ajax({
                     url: "{% url 'Officer Control Barangay Read' %}",
 
-                    data: {
-                        'municipality': municipalityFilter
-                    },
+                    data: {"municipality": municipalityFilter},
                     
                     success: function(data){
                         data.forEach(function(barangay){
