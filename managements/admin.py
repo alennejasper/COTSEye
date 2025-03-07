@@ -146,10 +146,10 @@ administrator.register(Barangay, BarangayAdmin)
 
 #     readonly_fields = ["gallery_photo"]
 
-# admin.site.register(Announcement, AnnouncementAdmin)
+# administrator.register(Announcement, AnnouncementAdmin)
 
 
-class InterventionAdmin(admin.ModelAdmin):
+class ActivityAdmin(admin.ModelAdmin):
     class Media:   
         css = {
             "all": ["css/admin/control/index/index.css"]
@@ -166,7 +166,7 @@ class InterventionAdmin(admin.ModelAdmin):
 
         return super().render_change_form(request, context, add, change, form_url, obj)
 
-    list_display = ["title", "hosting_agency", "event_date"]
+    list_display = ["title", "hosting_agency", "activity_date"]
 
     list_filter = ["location"]
 
@@ -174,7 +174,7 @@ class InterventionAdmin(admin.ModelAdmin):
 
     search_fields = ["title"]
 
-administrator.register(Intervention, InterventionAdmin)
+administrator.register(Activity, ActivityAdmin)
 
 
 # class StatusAdmin(admin.ModelAdmin):
@@ -191,4 +191,4 @@ administrator.register(Intervention, InterventionAdmin)
 
 #         return super().render_change_form(request, context, add, change, form_url, obj)
 
-# admin.site.register(Status, StatusAdmin)
+# administrator.register(Status, StatusAdmin)

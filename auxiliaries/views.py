@@ -19,6 +19,12 @@ def PublicServiceMap(request):
 
         map_statuses = Status.objects.all()
 
+        six_months_ago = timezone.now() - timedelta(days = 180)
+
+        map_posts = Post.objects.filter(post_status = 1, creation_date__gte = six_months_ago)
+
+        map_statuses = Status.objects.filter(creation_date__gte = six_months_ago)
+
     except:
         map_posts = None
 
@@ -68,6 +74,12 @@ def ContributorServiceMap(request):
         map_posts = Post.objects.filter(post_status = 1)
 
         map_statuses = Status.objects.all()
+
+        six_months_ago = timezone.now() - timedelta(days = 180)
+
+        map_posts = Post.objects.filter(post_status = 1, creation_date__gte = six_months_ago)
+
+        map_statuses = Status.objects.filter(creation_date__gte = six_months_ago)
 
     except:
         map_posts = None

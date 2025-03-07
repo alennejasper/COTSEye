@@ -1,0 +1,489 @@
+{% extends "curator/control/index/index.html" %}
+{% load static %}
+
+{% block content %}
+    <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+
+    <link href = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel = "stylesheet" integrity = "sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity = "sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    
+    <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/daterangepicker/3.1/daterangepicker.css">
+    
+    <script src = "https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    
+    <script src = "https://cdn.jsdelivr.net/npm/moment@2.29.1/min/moment.min.js"></script>
+    
+    <script src = "https://cdn.jsdelivr.net/npm/daterangepicker@3.1/daterangepicker.min.js"></script>
+    
+    <script src = "https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+    
+    <script src = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <style>
+        @media print{
+            @page{
+                size: auto;
+                margin-top: 0px;
+                margin-bottom: 0px;
+            }
+
+            body{
+                margin-top: 72px;
+                margin-bottom: 72px;
+            }
+
+            .report-header{
+                display: grid !important;
+                align-items: center;
+                place-items: center;
+                margin-bottom: 15px;
+            }
+
+            .table-header{
+                display: flex !important;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 15px;
+                border-bottom: 1px solid rgba(229, 229, 229);  
+            }
+
+            .table-header h2{
+                margin-bottom: 0px !important;
+                border-bottom: unset !important;
+            }
+
+            .table-info{
+                display: block !important;
+            }
+
+            .navbar, .filter-form, .print-button, .filter-button, .header-section{
+                display: none;
+            }
+
+            .table-container{
+                width: 100%;
+            }
+
+            .table{
+                table-layout: fixed !important;
+                width: 100%;
+                border-collapse: collapse !important;
+                page-break-after: auto;
+                page-break-inside: avoid !important;
+            }
+
+            .table > :not(caption) > * > *{
+                max-width: 100% !important;
+                padding: 5px 10px !important;
+                text-align: center;
+            }
+
+            th, td{ 
+                overflow: hidden; 
+                text-overflow: ellipsis; 
+                word-wrap: break-word;
+            }
+        }
+
+        .table > :not(caption) > * > *{
+            padding: 15px 30px;
+        }
+
+        table.table-bordered{
+            border: 1px solid #B2BEB5;
+        }
+
+        table.table-bordered > thead > tr > th{
+            border: 1px solid #B2BEB5;
+        }
+
+        table.table-bordered > tbody > tr > td{
+            border: 1px solid #B2BEB5;
+        }
+
+        .table thead th{
+            border-bottom: unset !important;
+        }
+
+        .select2-container:has(span[aria-labelledby = "select2-barangayFilter-container"]){
+            display: none;
+        }
+
+        .select2-selection__rendered{
+            line-height: 35px !important;
+        }
+
+        .select2-container .select2-selection--single{
+            height: 35px !important;
+        }
+
+        .select2-selection__arrow{
+            height: 35px !important;
+        }
+
+        .select2-container .select2-selection{
+            font-family: "Montserrat";
+            font-weight: 400;
+            font-size: 16px !important;
+        }
+
+        .select2-results__option{
+            padding-left: 10px !important;
+            padding-right: 10px !important;
+            padding-top: 5px !important;
+            padding-bottom: 5px !important;
+            font-family: "Montserrat";
+            font-weight: 400;
+            font-size: 16px !important;
+        }
+    </style>
+
+    <div class = "container">
+        <div class = "header-section text-center">
+            <h1 style = "font-family: 'Montserrat'; font-weight: 700; font-size: 24px; color: #003755; text-align: center;">GENERATE REPORT</h1>
+        </div>
+
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == "info" %}<script>Swal.fire({title: "Info!", text: "{{message}}", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}})</script>
+                
+                {% elif message.tags == "success" %}<script>Swal.fire({title: "Success!", text: "{{message}}", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", llowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}})</script>
+                
+                {% else %}<script>Swal.fire({title: "Error!", text: "{{message}}", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}})</script>
+                
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+        <form method = "GET" class = "filter-form row">
+            <div class = "col-md-6">
+                <label for = "from_date" class = "form-label" style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">From:</label>
+                
+                <input style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;" type = "date" id = "from_date" name = "from_date" class = "form-control" value = "{{request.GET.from_date}}">
+            </div>
+
+            <div class = "col-md-6">
+                <label for = "to_date" class = "form-label" style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">To:</label>
+                
+                <input style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;" type = "date" id = "to_date" name = "to_date" class = "form-control" value = "{{request.GET.to_date}}">
+            </div>
+
+            <div class = "col-md-6">
+                <label for = "status" class = "form-label" style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Status:</label>
+                
+                <select id = "status" class = "form-select select2" name = "status">
+                    <option value = "">All</option>
+
+                    {% for option in status_options %}
+                        <option value = "{{option.id}}" {% if option.id|stringformat:"s" == request.GET.status %} selected {% endif %}>{{option}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class = "col-md-6">
+                <label for = "municipalityFilter" class = "form-label" style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Municipality:</label>
+                
+                <select id = "municipalityFilter" name = "municipalityFilter" class = "form-select select2" onchange = "updateBarangayOptions()">
+                    <option value = "">All</option>
+
+                    {% for location in municipalities %}
+                        <option value = "{{location.municipality_name}}" {% if location.municipality_name == request.GET.municipalityFilter %} selected {% endif %}>{{location.municipality_name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class = "col-md-6">
+                <label for = "barangayFilter" id = "barangayLabel" class = "form-label" style = "display: none; margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Barangay:</label>
+                
+                <select id = "barangayFilter" name = "barangayFilter" class = "form-select select2">
+                    <option value = "">All</option>
+
+                    {% if selected_municipality %}
+                        {% for location in barangays %}
+                            <option value = "{{location.barangay__name}}" {% if location.barangay__name ==  request.GET.barangayFilter %} selected {% endif %}>{{location.barangay_name}}</option>
+                        {% endfor %}
+                    {% endif %}
+                </select>
+            </div>
+
+            <div style = "margin-bottom: 15px;">
+                <button id = "submit" type = "submit" style = "padding-left: 10px !important; padding-right: 10px !important; padding-top: 5px !important; padding-bottom: 5px !important; width: 100%; font-family: 'Montserrat'; font-weight: 400; font-size: 16px; background-color: rgb(52, 144, 242);" class = "btn btn-primary filter-button">Filter</button>
+            </div>
+        </form>
+
+        <div class = "report-header" style = "display: none; margin-bottom: 15px !important; align-items: center; place-items: center; margin-bottom: 15px;">
+            <div class = "report-subheader" style = "display: flex !important; align-items: center; gap: 10px;">
+                <img src = "{% static 'assets/icons/denr.png' %}" style = "width: fit-content; height: 48px;">
+                
+                <img src = "{% static 'assets/icons/pamb.png' %}" style = "width: fit-content; height: 48px;">
+            </div>
+
+            <img src = "{% static 'assets/icons/sbps.png' %}" style = "width: fit-content; height: 48px;">
+        </div>
+
+        <div class = "table-header">
+            <h2 style = "margin-bottom: 15px; border-bottom: 1px solid rgba(229, 229, 229); font-family: 'Montserrat'; font-weight: 700; font-size: 20px !important; color: rgb(52, 144, 242);" class = "text-center">Infestation Report</h2>
+            
+            <div class = "table-info" style = "display: none; float: right;">
+                <div id = "date-label" style = "display: block !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px; color: rgb(52, 144, 242); text-align: right;"></div>
+
+                <div id = "status-label" style = "display: block !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px; color: rgb(52, 144, 242); text-align: right;"></div>
+            </div>
+        </div>
+
+        <div class = "table-container" style = "padding: 0px !important;">
+            <table class = "table table-bordered" style = "position: relative; display: table; margin-bottom: 15px !important; width: 100%;">
+                <thead>
+                    <tr>
+                        <th style = "display: table-cell; vertical-align: middle; max-width: 100%; font-family: 'Montserrat'; font-weight: 700; font-size: 12px; color: rgb(28, 169, 234);">Activity Date</th>
+                        
+                        <th style = "display: table-cell; vertical-align: middle; max-width: 100%; font-family: 'Montserrat'; font-weight: 700; font-size: 12px; color: rgb(28, 169, 234);">Municipality</th>
+                        
+                        <th style = "display: table-cell; vertical-align: middle; max-width: 100%; font-family: 'Montserrat'; font-weight: 700; font-size: 12px; color: rgb(28, 169, 234);">Barangay</th>
+                        
+                        <th style = "display: table-cell; vertical-align: middle; max-width: 100%; font-family: 'Montserrat'; font-weight: 700; font-size: 12px; color: rgb(28, 169, 234);">Volunteers</th>
+                        
+                        <th style = "display: table-cell; vertical-align: middle; max-width: 100%; font-family: 'Montserrat'; font-weight: 700; font-size: 12px; color: rgb(28, 169, 234);">Total No. of COTS Collected</th>
+                        
+                        <th style = "display: table-cell; vertical-align: middle; max-width: 100%; font-family: 'Montserrat'; font-weight: 700; font-size: 12px; color: rgb(28, 169, 234);">Infestation Level</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for result in results %}
+                        <tr>
+                            <td style = "display: table-cell !important; vertical-align: middle; max-width: 100%; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">{{result.onset_date | date:'m/d/Y'}}</td>
+
+                            <td style = "display: table-cell !important; vertical-align: middle; max-width: 100%; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">{{result.location.municipality}}</td>
+                            
+                            <td style = "display: table-cell !important; vertical-align: middle; max-width: 100%; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">{{result.location.barangay}}</td>
+                            
+                            <td style = "display: table-cell !important; vertical-align: middle; max-width: 100%; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">{{result.volunteer_overall}}</td>
+                            
+                            <td style = "display: table-cell !important; vertical-align: middle; max-width: 100%; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">{{result.caught_overall}}</td>
+                            
+                            <td style = "display: table-cell !important; vertical-align: middle; max-width: 100%; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">{{result.statustype.statustype}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div class = "col-md-12 text-end">
+                <button type = "button" class = "btn btn-secondary print-button" onclick = "printPage()">Print</button>
+
+                <button type = "button" class = "btn btn-secondary print-button" onclick = "exportToPDF()">Export to PDF</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showLoad(){
+            document.getElementById("load").style.display = "flex";
+        }
+
+        function hideLoad(){
+            document.getElementById("load").style.display = "none";
+        }
+
+        function printPage(){
+            window.print();
+        };
+
+        async function exportToPDF(){
+            showLoad();
+
+            const {jsPDF} = window.jspdf;
+
+            const pdf = new jsPDF("p", "pt", "a4");
+
+            const margin = 72;
+
+        
+            document.querySelector(".report-header").style.display = "grid";
+
+            document.querySelector(".report-header").style.alignItems = "center";
+
+            document.querySelector(".report-header").style.placeItems = "center";
+
+            const headerCanvas = await html2canvas(document.querySelector(".report-header"), {scale: 5});
+
+            const headerImgData = headerCanvas.toDataURL("image/png");
+
+            const headerImgProps = pdf.getImageProperties(headerImgData);
+
+            const headerPdfWidth = (pdf.internal.pageSize.getWidth() - (2 * margin)) * 1.5;
+
+            const headerPdfHeight = (headerImgProps.height * headerPdfWidth) / headerImgProps.width;
+            
+            const headerX = margin - (headerPdfWidth - (pdf.internal.pageSize.getWidth() - (2 * margin))) / 2;
+
+            pdf.addImage(headerImgData, "PNG", headerX, margin, headerPdfWidth, headerPdfHeight);
+
+            document.querySelector(".report-header").style.display = "none";
+                    
+
+            document.querySelector(".table-header").style.display = "flex";
+
+            document.querySelector(".table-header").style.alignItems = "center";
+
+            document.querySelector(".table-header").style.justifyContent = "space-between";
+
+            document.querySelector(".table-header").style.marginBottom = "15px";
+
+            document.querySelector(".table-header").style.borderBottom = "2px solid rgba(229, 229, 229)";  
+
+            document.querySelector(".table-header h2").style.marginBottom = "0px";
+
+            document.querySelector(".table-header h2").style.borderBottom = "unset";
+
+            document.querySelector(".table-header h2").style.fontSize = "24px";
+
+            document.querySelector(".table-info").style.display = "block";
+    
+            document.querySelector("#date-label").style.fontSize = "16px";
+
+            document.querySelector("#status-label").style.fontSize = "16px";
+
+            document.querySelectorAll("table.table-bordered > tbody > tr > th").forEach(function(th){th.style.border = "2px solid #B2BEB5";});
+
+            document.querySelectorAll("table.table-bordered > tbody > tr > td").forEach(function(td){td.style.border = "2px solid #B2BEB5";});
+
+            document.querySelector("th").style.fontSize = "16px";
+
+            document.querySelector("td").style.fontSize = "16px";
+
+            const tableHeaderCanvas = await html2canvas(document.querySelector(".table-header"), {scale: 5});
+    
+            const tableHeaderImgData = tableHeaderCanvas.toDataURL("image/png");
+    
+            const tableHeaderImgProps = pdf.getImageProperties(tableHeaderImgData);
+    
+            const tableHeaderPdfWidth = (pdf.internal.pageSize.getWidth() - (2 * margin)) * 1.05;
+    
+            const tableHeaderPdfHeight = (tableHeaderImgProps.height * tableHeaderPdfWidth) / tableHeaderImgProps.width;
+    
+            const tableHeaderX = margin - (tableHeaderPdfWidth - (pdf.internal.pageSize.getWidth() - (2 * margin))) / 2;
+
+            const tableHeaderY = margin + headerPdfHeight + 15;
+
+            pdf.addImage(tableHeaderImgData, "PNG", tableHeaderX, tableHeaderY, tableHeaderPdfWidth, tableHeaderPdfHeight);
+
+            document.querySelector(".table-header").style.display = "unset";
+
+            document.querySelector(".table-header").style.marginBottom = "15px";
+
+            document.querySelector(".table-header").style.borderBottom = "1px solid rgba(229, 229, 229)";  
+
+            document.querySelector(".table-header h2").style.marginBottom = "15px";
+
+            document.querySelector(".table-header h2").style.borderBottom = "1px solid rgba(229, 229, 229)";
+
+            document.querySelector(".table-header h2").style.fontSize = "20px";
+
+            document.querySelector(".table-info").style.display = "none";
+
+            document.querySelector("#date-label").style.fontSize = "12px";
+
+            document.querySelector("#status-label").style.fontSize = "12px";
+
+            document.querySelectorAll("table.table-bordered > tbody > tr > th").forEach(function(th){th.style.border = "1px solid #B2BEB5";});
+
+            document.querySelectorAll("table.table-bordered > tbody > tr > td").forEach(function(td){td.style.border = "1px solid #B2BEB5";});
+            
+            document.querySelector("th").style.fontSize = "12px";
+
+            document.querySelector("td").style.fontSize = "12px";
+
+
+            const tableCanvas = await html2canvas(document.querySelector(".table-bordered"), {scale: 5});
+
+            const imgData = tableCanvas.toDataURL("image/png");
+
+            const imgProps = pdf.getImageProperties(imgData);
+
+            const pdfWidth = (pdf.internal.pageSize.getWidth() - (2 * margin)) * 1.05;
+
+            const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+            const tableX = margin - (pdfWidth - (pdf.internal.pageSize.getWidth() - (2 * margin))) / 2;
+
+            const tableY = margin + headerPdfHeight + tableHeaderPdfHeight + 30;
+
+            pdf.addImage(imgData, "PNG", tableX, tableY, pdfWidth, pdfHeight);
+            
+
+            pdf.save("report.pdf");
+
+            hideLoad();
+        };
+    </script>
+
+    <script>
+        function formatDate(date){
+            const options = {year: "numeric", month: "2-digit", day: "2-digit"};
+            
+            return new Date(date).toLocaleDateString("en-US", options);
+        };
+
+        function updateDateLabel(){
+            const fromDate = document.getElementById("from_date").value;
+
+            const toDate = document.getElementById("to_date").value;
+
+            const dateLabel = document.getElementById("date-label");
+    
+            if (fromDate && toDate){
+                dateLabel.textContent = `${formatDate(fromDate)} to ${formatDate(toDate)}`;
+
+            } else if (fromDate && !toDate){
+                dateLabel.textContent = `${formatDate(fromDate)} and Above`;
+
+            }  else if (!fromDate && toDate){
+                dateLabel.textContent = `${formatDate(toDate)} and Below`;
+
+            } else{
+                dateLabel.textContent = "All";
+            };
+        };
+    
+        document.addEventListener("DOMContentLoaded", function(){
+            updateDateLabel();
+
+            document.getElementById("from_date").addEventListener("change", updateDateLabel);
+
+            document.getElementById("to_date").addEventListener("change", updateDateLabel);
+        });
+
+        function updateStatusLabel(){
+            const selectElement = document.getElementById("status");
+
+            const selectedOption = selectElement.options[selectElement.selectedIndex];
+
+            const selectedText = selectedOption.textContent || selectedOption.innerText;
+
+            const status = selectedText
+
+            const statusLabel = document.getElementById("status-label");
+    
+            if (status){
+                statusLabel.textContent = `${(status)}`;
+
+            } else{
+                statusLabel.textContent = "All";
+            };
+        };
+    
+        document.addEventListener("DOMContentLoaded", function() {
+            updateStatusLabel();
+
+            document.getElementById("status").addEventListener("change", updateStatusLabel);
+        });
+    </script>
+{% endblock %}

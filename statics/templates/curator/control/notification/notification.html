@@ -1,0 +1,177 @@
+{% extends "curator/control/index/index.html" %}
+{% load static %}
+
+{% block content %}
+    <style>
+        .table > :not(caption) > * > *{
+            padding: 15px 30px !important;
+        }
+
+        .table thead th{
+            border-bottom: 2px solid black !important;
+        }
+
+        .breadcrumb{
+            padding: 1rem;
+            border-radius: 0.25rem;
+            background-color: #FAFAFA;
+        }
+
+        .breadcrub-item{
+            display: none;
+            color: #6C757D;
+        }
+
+        .breadcrumb-item::before{
+            display: none !important;
+        }
+
+        .status_active{
+            display: block;
+            font-family: "Montserrat"; 
+            font-weight: 700; 
+            font-size: 16px;            
+            color: rgb(28, 186, 234);
+        }
+
+        .status_active::before{
+            display: block !important;
+        }
+    </style>
+
+    <!-- <link rel = "stylesheet" href = "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+
+    <nav aria-label = "breadcrumb">
+        <ol class = "breadcrumb">
+            <li style = "font-family: 'Montserrat'; font-weight: 400; font-size: 16px; color: rgb(52, 144, 242);" class = "breadcrumb-item {% if activity_number >= 1 %}status_active{% endif %}">
+                {% if notification_number >= 1 %}
+                    Notifications
+                {% endif %}
+            </li>
+        </ol>
+    </nav>
+
+    <div class = "container-fluid mt-3" style = "padding: 0px !important">
+        <div class = "table-container mb-3" style = "padding: 0px !important">
+            <h2 style = "border-bottom: 1px solid rgba(229, 229, 229); font-family: 'Montserrat'; font-weight: 700; font-size: 20px; color: rgb(52, 144, 242);">UNREAD</h2>
+
+            <table class = "table table-hover" style = "display: table; margin-bottom: 15px !important; width: 100%;">
+                <thead>
+                    <tr>
+                        <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">User</th>
+
+                        <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">Description</th>
+                        
+                        <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">Creation Date</th>
+                        
+                        <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234); text-align: center;" scope = "col">Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody style = "border-top: 2px solid #000000 !important;">
+                    {% for post in unread_posts %}
+                        <tr>
+                            <td style = "display: table-cell !important; max-width: 0px; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">{{post.object.user}}</td>
+
+                            <td style = "display: table-cell !important; max-width: 0px; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">{{post.object.user}} has sent a report.</td>
+                            
+                            <td style = "display: table-cell !important; max-width: 0px; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">{{post.creation_date}}</td>
+                            
+                            <td style = "display: table-cell !important; max-width: 0px; font-family: 'Montserrat'; font-weight: 400; font-size: 12px; text-align: center; vertical-align: middle;">    
+                                <a href = "{% url 'Curator Control Notification Read' post.id %}" class = "btn btn-sm btn-primary">View</a>
+                            
+                                <!-- <a href = "{% url 'Curator Control Notification Mark' post.key %}" class = "btn btn-sm btn-primary">Mark as read</a> -->
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <nav aria-label = "Unread posts pagination">
+                <ul class = "pagination justify-content-center">
+                    {% if unread_posts.has_previous %}
+                        <li class = "page-item">
+                            <a class = "page-link" href = "?unread_page = {{unread_posts.previous_page_number}} {% if read_posts.has_other_pages %} &read_page = {{read_posts.number}} {% endif %}" aria-label = "Previous">
+                                <span aria-hidden = "true">&laquo;</span>
+                            </a>
+                        </li>
+                    {% endif %}
+
+                    {% for num in unread_posts.paginator.page_range %}
+                        <li class = "page-item {% if unread_posts.number == num %} active {% endif %}">
+                            <a class = "page-link" href = "?unread_page = {{num}} {% if read_posts.has_other_pages %} &read_page = {{read_posts.number}} {% endif %}">{{num}}</a>
+                        </li>
+                    {% endfor %}
+
+                    {% if unread_posts.has_next %}
+                        <li class = "page-item">
+                            <a class = "page-link" href = "?unread_page = {{unread_posts.next_page_number}} {% if read_posts.has_other_pages %}&read_page={{read_posts.number}}{% endif %}" aria-label="Next">
+                                <span aria-hidden = "true">&raquo;</span>
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+
+        <div class = "table-container mb-3" style = "padding: 0px !important">
+            <h2 style = "border-bottom: 1px solid rgba(229, 229, 229); font-family: 'Montserrat'; font-weight: 700; font-size: 20px; color: rgb(52, 144, 242);">READ</h2>
+
+            <table class = "table table-hover" style = "display: table; margin-bottom: 15px !important; width: 100%;">
+                <thead>
+                    <tr>
+                        <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">User</th>
+
+                        <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">Description</th>
+                        
+                        <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234);" scope = "col">Creation Date</th>
+                        
+                        <th style = "display: table-cell; max-width: 0px; font-family: 'Montserrat'; font-weight: 700; font-size: 16px; color: rgb(28, 169, 234); text-align: center;" scope = "col">Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody style = "border-top: 2px solid #000000 !important;">
+                    {% for post in read_posts %}
+                        <tr>
+                            <td style = "display: table-cell !important; max-width: 0px; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">{{post.object.user}}</td>
+                            
+                            <td style = "display: table-cell !important; max-width: 0px; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">{{post.object.user}} has sent a report.</td>
+                            
+                            <td style = "display: table-cell !important; max-width: 0px; font-family: 'Montserrat'; font-weight: 400; font-size: 12px;">{{post.creation_date}}</td>
+                            
+                            <td style = "display: table-cell !important; max-width: 0px; font-family: 'Montserrat'; font-weight: 400; font-size: 12px; text-align: center; vertical-align: middle;">
+                                <a href = "{% url 'Curator Control Sighting Read' id=post.id %}" class = "btn btn-sm btn-primary">View</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <nav aria-label = "Read posts pagination">
+            <ul class = "pagination justify-content-center">
+                {% if read_posts.has_previous %}
+                    <li class = "page-item">
+                        <a class = "page-link" href = "?read_page = {{read_posts.previous_page_number}} {% if unread_posts.has_other_pages %} &unread_page = {{unread_posts.number}}{% endif %}" aria-label = "Previous">
+                            <span aria-hidden = "true">&laquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+
+                {% for num in read_posts.paginator.page_range %}
+                    <li class = "page-item {% if read_posts.number == num %} active {% endif %}">
+                        <a class = "page-link" href = "?read_page = {{num}} {% if unread_posts.has_other_pages %} &unread_page = {{unread_posts.number}}{% endif %}">{{num}}</a>
+                    </li>
+                {% endfor %}
+
+                {% if read_posts.has_next %}
+                    <li class = "page-item">
+                        <a class = "page-link" href = "?read_page = {{read_posts.next_page_number}} {% if unread_posts.has_other_pages %} &unread_page = {{unread_posts.number}}{% endif %}" aria-label = "Next">
+                            <span aria-hidden = "true">&raquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+{% endblock %}

@@ -1,0 +1,719 @@
+{% extends "curator/control/sighting/sighting.html" %}
+{% load static %}
+{% load custom_filters %}
+
+<header>
+    {% block action %}Read{% endblock action %}
+</header>
+
+{% block sighting_content %}
+    <script src = "https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+    <div class = "container-fluid mt-3">
+        <div class = "container-fluid">
+            <div class = "row">
+                <div class = "col-md-6">
+                    <div class = "card mb-4" style = "padding: 12px;">
+                        <div class = "card-body">
+                            <div id = "postCarousel" class = "carousel slide" data-bs-ride = "carousel" style = "margin-bottom: 15px; padding: 0px; border-radius: 5px;">
+                                <div class = "carousel-inner">
+                                    {% for photo in post_photos %}
+                                        <div class = "carousel-item {% if forloop.first %} active {% endif %}">
+                                            <img src = "{{photo.post_photo.url}}" style = "object-fit: cover; height: 250px;" class = "d-block w-100 carousel-image" alt = "...">
+                                            
+                                            {% if post.post_status.is_pending != True %}
+        
+                                            {% else %}
+                                                <a href = "#" class = "delete-photo" data-photo-id = "{{photo.id}}" onclick = "deletePhoto({{photo.id}})" style = "position: absolute; top: 10px; right: 15px; z-index: 1000;">
+                                                    <i class = "fa fa-trash" style = "padding: 5px; border-radius: 5px; font-size: 16px; background-color: white; color: black;"></i>
+                                                </a>
+                                            {% endif %}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+        
+                                <button class = "carousel-control-prev" type = "button" data-bs-target = "#postCarousel" data-bs-slide = "prev">
+                                    <span class = "carousel-control-prev-icon" aria-hidden = "true"></span>
+                                    
+                                    <span class = "visually-hidden">Previous</span>
+                                </button>
+                                
+                                <button class = "carousel-control-next" type = "button" data-bs-target = "#postCarousel" data-bs-slide = "next">
+                                    <span class = "carousel-control-next-icon" aria-hidden = "true"></span>
+                                    
+                                    <span class = "visually-hidden">Next</span>
+                                </button>
+                            </div>
+                            <hr>
+                            <div class = "row">
+                               
+                                
+                                <div class = "col-md-6">
+                                    <h5 style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 16px !important; color: rgb(52, 144, 242);">Observation</h5>
+
+                                    <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Description: </strong>
+                                
+                                    <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">{{post.description}}</p>
+                                    
+                                    <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Size: </strong>
+
+                                    <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">{{post.post_observation.size}}</p>
+                                    
+                                    <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Depth: </strong>
+
+                                    <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">{{post.post_observation.depth}}</p>
+                                    
+                                    <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Density: </strong>
+
+                                    <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">{{post.post_observation.density}}</p>
+                                    
+                                    <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Weather: </strong>
+
+                                    <p style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">{{post.post_observation.weather}}</p>
+                                </div>   
+                                
+                                <div class = "col-md-6">
+                                    <h5 style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 16px !important; color: rgb(52, 144, 242);">Report Details</h5>
+
+                                    <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Submission Date: </strong>
+
+                                    <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">{{post.creation_date | format_date_mmddyy}}</p>
+                                    
+                                    <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Capture Date: </strong>
+
+                                    <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">{{post.capture_date | format_date_mmddyy}}</p>
+
+                                    <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Contributor: </strong>
+
+                                    <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">{{post.user}}</p>   
+                                    
+                                    {% if post.validator is not None %}
+                                        <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Validated by: </strong>
+
+                                        <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">{{post.validator}}</p>
+
+                                        {% if post.remarks is not None %}
+                                            <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Remarks: </strong>
+
+                                            <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">{{post.remarks}}</p>
+                                        {% endif %}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <!-- <hr>
+
+                            <div class = "row">
+                            </div> -->
+
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <script src = "https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+                
+                <script src = "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+                
+                <script src = "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+                <script>
+                    $(function (){
+                        $("[data-toggle = 'tooltip']").tooltip();
+                    });
+                </script>
+
+                <div class = "col-md-6">
+                    {% if post.post_status.is_pending != True %}
+                        <a class = "" style = "position: absolute; margin-top: 20px; right: 75px; padding: 5px; z-index: 1000; border-radius: 5px; background-color: white;">
+                            <img style = "cursor: pointer;" width = "20px" src = "{% static 'assets/icons/update.png' %}" {% if post.post_status.is_pending != True %} data-toggle = "tooltip" data-placement = "top" title = "Action not allowed" {% endif %}>
+                        </a>
+
+                    {% else %}
+                        <a class = "" style = "position: absolute; margin-top: 20px; right: 75px; padding: 5px; z-index: 1000; border-radius: 5px; background-color: white;" onclick = "showPopup({{post.id}})">
+                            <img style = "cursor: pointer;" width = "20px" src = "{% static 'assets/icons/update.png' %}">
+                        </a>
+                    {% endif %}
+
+                    <div id = "map" class = "mb-3" style = "margin: 12px; height: 265px;"></div>
+                    
+                    <div class = "col-md-6" style = "margin: 12px">
+                        <h5 style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 700; font-size: 16px !important; color: rgb(52, 144, 242);">Location Details</h5>
+
+                        <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Municipality: </strong>
+
+                        <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">{{post.location.municipality}}</p>
+                        
+                        <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Barangay: </strong>
+
+                        <p style = "margin-bottom: 15px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">{{post.location.barangay}}</p>
+                        
+                        <strong style = "font-family: 'Montserrat'; font-weight: 700; font-size: 16px;">Coordinates: </strong>
+
+                        <p style = "margin-bottom: 0px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 16px;">{{post.coordinates}}</p>
+                    </div> 
+
+                    <div class = "card mb-4" style = "border: none !important;">
+                        <div class = "card-body" style = "padding: 12px !important;">
+                            {% if post.post_status.is_pending != True %}
+                                <div class = "button-container" style = "display: flex; gap: 10px; flex-direction: column;">
+                                    <button style = "padding-left: 10px !important; padding-right: 10px !important; padding-top: 5px !important; padding-bottom: 5px !important; font-family: 'Montserrat' !important; font-weight: 400; font-size: 12px !important;" class = "btn btn-success w-100" {% if post.post_status.is_pending != True %} data-toggle = "tooltip" data-placement = "top" title = "Action not allowed" {% endif %}>Approve</button>
+                                    
+                                    <button style = "padding-left: 10px !important; padding-right: 10px !important; padding-top: 5px !important; padding-bottom: 5px !important; font-family: 'Montserrat' !important; font-weight: 400; font-size: 12px !important;" class = "btn btn-danger w-100" {% if post.post_status.is_pending != True %} data-toggle = "tooltip" data-placement = "top" title = "Action not allowed" {% endif %}>Disapprove</button>
+                                </div>
+
+                            {% else %}
+                                <div class = "button-container" style = "display: flex; gap: 10px; flex-direction: column;">
+                                    <button style = "padding-left: 10px !important; padding-right: 10px !important; padding-top: 5px !important; padding-bottom: 5px !important; font-family: 'Montserrat' !important; font-weight: 400; font-size: 16px !important; background-color: rgb(76, 196, 76);" class = "btn btn-success w-100" onclick = "changeStatus({{post.id}})">Approve</button>
+
+                                    <button style = "padding-left: 10px !important; padding-right: 10px !important; padding-top: 5px !important; padding-bottom: 5px !important; font-family: 'Montserrat' !important; font-weight: 400; font-size: 16px !important; background-color: rgb(226, 51, 51);" class = "btn btn-danger w-100" onclick = "invalidStatus({{post.id}})">Disapprove</button>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+        
+        <script>
+            function deletePhoto(photoId){
+                console.log("test")
+
+                Swal.fire({title: "Alert!", text: "are you sure that you want to delete the photo?", icon: "warning", showCancelButton: true, confirmButtonColor: "#3085D6", cancelButtonColor: "#D33", confirmButtonText: "Yes"}).then((result) => {
+                    if (result.isConfirmed){
+                        fetch(`/curator/control/sighting/delete/${photoId}/`, {
+                            method: "DELETE",
+
+                            headers: {
+                                "X-CSRFToken": "{{csrf_token}}",
+                            },
+                        
+                        }).then(response => {
+                            if (response.ok){
+                                Swal.fire("Success!", "The photo has been successfully deleted.", "success").then(() => {
+                                    location.reload();
+                                });
+
+                            } else {
+                                Swal.fire("Error!", "The photo could not be deleted. Kindly try again later.", "error");
+                            };
+                        });
+                    };
+                });
+            };
+        </script>        
+    </div>
+
+    <link rel = "stylesheet" href = "https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity = "sha384-2jRDr5PhAULVgoLZLSn/mO/HZBQ3TfP7mFS0ELbcfLLp7oqFLjMdV9a/9QIfzQNC" crossorigin = ""/>
+
+    <script src = "https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity = "sha384-xodZBntMNu6FoRrJbZtZtLFWl6Ck63tzpC6/WF9AWnLX7M4i06rLyf5gxyXjeWhg" crossorigin = ""></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var lat = parseFloat("{{post.coordinates.latitude}}");
+
+            var lng = parseFloat("{{post.coordinates.longitude}}");
+
+            var map = L.map("map", {center: [lat, lng], zoom: 10, dragging: false});
+
+            L.tileLayer("http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}", {minZoom: 11, maxZoom: 15, subdomains: ["mt0", "mt1", "mt2", "mt3"], attribution: "Google"}).addTo(map);
+
+            var starfish = L.icon({iconUrl: "{% static 'assets/icons/pin.png' %}", iconSize: [30, 30], iconAnchor: [15, 15]});
+
+            L.marker([lat, lng], {icon: starfish}).addTo(map);
+        });
+
+        function changeStatus(postId){
+            const username = "{{request.user.username}}";
+            
+            Swal.fire({title: "Alert!", text: username + ", " + "are you sure that you want to update the post status?", icon: "warning", showCancelButton: true, confirmButtonColor: "#3085D6", cancelButtonColor: "#D33", confirmButtonText: "Yes"}).then((result) => {
+                if (result.isConfirmed){
+                    $.ajax({
+                        type: "POST",
+
+                        url: "{% url 'Curator Control Sighting Valid' %}",
+
+                        data: {
+                            "post_id": postId,
+
+                            "csrfmiddlewaretoken": "{{csrf_token}}"
+                        },
+
+                        success: function(response){
+                            if (response.success){
+                                Swal.fire({title: "Success!", text: response.message, icon: "success", confirmButtonText: "Ok"}).then(() => {
+                                    location.reload();
+                                });
+
+                            } else {
+                                Swal.fire({title: "Error!", text: response.message, icon: "error", confirmButtonText: "Ok"});
+                            };
+                        },
+
+                        error: function(){
+                            Swal.fire({title: "Error!", text: response.message, icon: "error", confirmButtonText: "Ok"});
+                        }
+                    });
+                };
+            });
+        };
+
+        function invalidStatus(postId){
+            Swal.fire({
+                title: "Add Remarks", 
+                
+                input: "textarea", 
+                
+                inputLabel: "Remarks",
+
+                inputPlaceholder: "Enter your remarks here...", 
+                
+                showCancelButton: true,
+                
+                confirmButtonText: "Submit",
+                
+                cancelButtonText: "Cancel",
+
+                preConfirm: (remarks) => {
+                    return new Promise((resolve) => {
+                        resolve(remarks);
+                    });
+                }
+
+            }).then((result) => {
+                if (result.isConfirmed){
+                    const remarks = result.value;
+
+                    $.ajax({
+                        type: "POST",
+
+                        url: "{% url 'Curator Control Sighting Invalid' %}",
+
+                        data: {
+                            "post_id": postId,
+
+                            "remarks": remarks,
+
+                            "csrfmiddlewaretoken": "{{csrf_token}}"
+                        },
+
+                        success: function(response){
+                            if (response.success){
+                                Swal.fire({title: "Success!", text: response.message, icon: "success", confirmButtonText: "Ok"}).then(() => {
+                                    location.reload();
+                                });
+
+                            } else{
+                                Swal.fire({title: "Error!", text: response.message, icon: "error", confirmButtonText: "Ok"});
+                            };
+                        },
+
+                        error: function(){
+                            Swal.fire({title: "Error!", text: "An unexpected error occurred.", icon: "error", confirmButtonText: "Ok"});
+                        }
+                    });
+                };
+            });
+        };
+    </script>
+
+    <script>
+        function shownDropdown(event){
+            event.stopPropagation();
+
+            const dropdown = event.currentTarget.closest(".button-container").querySelector(".dropdown-content");
+            
+            dropdown.classList.toggle("show");
+        };
+
+        window.onclick = function(event){
+            if (!event.target.matches("img.drop")){
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+
+                for (var i = 0; i < dropdowns.length; i++){
+                    var openDropdown = dropdowns[i];
+
+                    if (openDropdown.classList.contains("show")){
+                        openDropdown.classList.remove("show");
+                    };
+                };
+            };
+        };
+
+        function showPopup(postId){
+            fetch(`/curator/control/sighting/update/${postId}/`).then(response => response.json()).then(data => {
+                Swal.fire({
+                    title: "Drag Pin to Update Location",
+
+                    html: 
+                        `<div class = "map">
+                            <div class = "report-map" id = "map" style = "height: 300px;"></div>
+                        </div>
+
+                        <div class = "coordinates">
+                            <input type = "hidden" id = "latitude" name = "latitude" value = "${data.latitude}" required>
+                            
+                            <input type = "hidden" id = "longitude" name = "longitude" value = "${data.longitude}" required>
+                        </div>
+
+                        <div class = "municipality">
+                            <label style = "margin-top: 12px; margin-bottom: 12px" for = "municipality">Municipality:</label>
+
+                            <select name = "municipality" id = "popupMunicipality" onchange = "updateBarangay()">
+                                <option disabled = "disabled" selected = "selected" style = "display: none !important;" value = "${data.location.municipality}">${data.location.municipality}</option>
+                                
+                                {% for location in municipalities %}
+                                    <option value = "{{location.municipality_name}}">{{location.municipality_name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class = "barangay">
+                            <label for = "barangay">Barangay:</label>
+
+                            <select name = "barangay" id = "popupBarangay" onchange = "updateMarker()">
+                                <option selected = "selected" value = "${data.location.barangay}">${data.location.barangay}</option>
+                            </select>
+                        </div>
+
+                        <button class = "submit-button" type = "button" onclick = "submitPopup(${postId})">Submit</button>`,
+
+                    didOpen: () => {
+                        const latitude = parseFloat(document.getElementById("latitude").value);
+                        
+                        const longitude = parseFloat(document.getElementById("longitude").value);
+
+                        revealMap(latitude, longitude);
+
+                        document.getElementById("popupBarangay").addEventListener("click", function(){
+                            var barangayId = this.value;
+
+                            updateMarker(barangayId);
+                        });
+                    },
+
+                    showConfirmButton: false,
+
+                    customClass: {title: "title"}
+                });
+            });
+        };
+
+        var map;
+
+        var report;
+        
+        var isDragging = false;
+    
+        function updateCoordinates(latitude, longitude){
+            var latitudeInput = document.getElementById("latitude");
+
+            var longitudeInput = document.getElementById("longitude");
+    
+            latitudeInput.value = latitude.toFixed(6);
+            
+            longitudeInput.value = longitude.toFixed(6);
+        };
+    
+        function swapCoordinates(coordinates){
+            return coordinates.map(function (ring){
+                return ring.map(function (point){
+                    return [point[1], point[0]];
+                });
+            });
+        };
+
+        function setMunicipalityByBarangay(barangayId){
+            const locations = [
+                {% for location in locations %}
+                    { id: "{{location.id}}", barangay: "{{location.barangay}}", municipality: "{{location.municipality}}"},
+                {% endfor %}
+            ];
+    
+            const location = locations.find(location => location.id == barangayId);
+
+            if (location){
+                const municipalitySelect = document.getElementById("popupMunicipality");
+
+                municipalitySelect.value = location.municipality;
+
+                const barangaySelect = document.getElementById("popupBarangay");
+
+                barangaySelect.innerHTML = ''; // Clear any existing options
+
+                const option = document.createElement("option");
+
+                option.value = location.barangay;
+
+                option.textContent = location.barangay;
+
+                barangaySelect.appendChild(option);
+
+                const barangaysInMunicipality = locations.filter(location => location.municipality == location.municipality);
+
+                barangaysInMunicipality.forEach(location => {
+                    const option = document.createElement("option");
+
+                    option.value = location.id;
+
+                    option.textContent = location.barangay;
+
+                    barangaySelect.appendChild(option);
+                });
+
+                const barangayContainer = document.querySelector(".barangay");
+                
+                barangayContainer.style.display = "block";
+            }
+        };
+    
+
+        function updateBarangay(){
+            const locations = [
+                {% for location in locations %}
+                    { id: "{{location.barangay}}", barangay: "{{location.barangay}}", municipality: "{{location.municipality}}"},
+                {% endfor %}
+            ];
+    
+            const municipality = document.getElementById("popupMunicipality").value;
+
+            const barangay = document.getElementById("popupBarangay");
+    
+            barangay.innerHTML = "";
+    
+            const filteredLocations = locations.filter(location => location.municipality === municipality);
+    
+            filteredLocations.forEach(location => {
+                const option = document.createElement("option");
+    
+                option.value = location.barangay;
+            
+                option.textContent = location.barangay;
+    
+                barangay.appendChild(option);
+            });
+    
+            if (filteredLocations.length > 0){
+                updateMarker(filteredLocations[0].id);
+
+                console.log("filteredloc", filteredLocations[0].id)
+            };
+        };
+        
+        function updateMarker(barangayId){
+            var barangayCoordinates = {
+                {% for location in locations %}
+                    "{{location.barangay}}": [{{location.latitude}}, {{location.longitude}}],
+                {% endfor %}
+            };
+    
+            if (barangayCoordinates[barangayId]){
+                var coordinates = barangayCoordinates[barangayId];
+                
+                if (!isDragging){
+                    map.setView(coordinates, 15);
+                    
+                    report.setLatLng(coordinates);
+
+                    updateCoordinates(coordinates[0], coordinates[1]);
+                };
+            };
+        };
+        
+        function revealMap(latitude, longitude){
+            var starfish = L.icon({iconUrl: "{% static 'assets/icons/pin.png' %}", iconSize: [30, 30], iconAnchor: [15, 15]});
+    
+            report = L.marker([latitude, longitude], {draggable: true, icon: starfish});
+    
+            var reportMap = document.getElementsByClassName("report-map")[0];
+    
+            var background = L.tileLayer("http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}", {minZoom: 11, maxZoom: 15, subdomains: ["mt0", "mt1", "mt2", "mt3"], attribution: "Google"});
+    
+            map = L.map(reportMap, {zoomControl: true, scrollWheelZoom: false, dragging: true, maxBounds: [[5.3, 124.3], [6.3, 126.3]], layers: [background, report]}).setView([latitude, longitude], 20);
+    
+            map.attributionControl.remove();
+    
+            {% for location in locations %}
+                var originalCoordinates = {{location.perimeters | safe}};
+
+                var swappedCoordinates = swapCoordinates(originalCoordinates);
+                
+                var polygon = L.polygon(swappedCoordinates, {color: "transparent", fillColor: "transparent", fillOpacity: 0}).addTo(map);
+    
+                polygon.locationId = {{location.id}};
+                
+                polygon.locationName = "{{location}}";
+            {% endfor %}
+    
+            report.on("dragstart", function (){
+                isDragging = true;
+            });
+
+            report.on("drag", function (event){
+                var position = event.target.getLatLng();
+
+                updateCoordinates(position.lat, position.lng);
+            });
+    
+            report.on("dragend", function (event){
+                var position = event.target.getLatLng();
+
+                updateCoordinates(position.lat, position.lng);
+    
+                var selectElement = document.getElementById("popupBarangay");
+                
+                selectElement.value = "";
+    
+                var selectElement2 = document.getElementById("popupMunicipality");
+                
+                selectElement2.value = "";
+    
+                map.eachLayer(function (layer){
+                    if (layer instanceof L.Polygon){
+                        if (layer.getBounds().contains(position) && layer.locationId){
+                            selectElement.value = layer.locationId;
+                
+                            setMunicipalityByBarangay(layer.locationId);
+                
+                            console.log("location id", layer.locationId)
+
+                            return;
+                        };
+                    };
+                });
+
+                isDragging = false;
+            });
+    
+            document.getElementById("popupBarangay").addEventListener("change", function (){
+                var barangayId = this.value;
+
+                updateMarker(barangayId);
+            });
+    
+            document.getElementById("popupMunicipality").addEventListener("change", function (){
+                updateBarangay();
+            });
+    
+            var defaultLatitude = report.getLatLng().lat;
+
+            var defaultLongitude = report.getLatLng().lng;
+    
+            updateCoordinates(defaultLatitude, defaultLongitude);
+    
+            {% if draft_post %}
+                updateBarangay();
+            {% endif %}
+        };
+        
+        
+        function submitPopup(postId){
+            const municipality = document.getElementById("popupMunicipality").value;
+
+            const barangay = document.getElementById("popupBarangay").value;
+
+            const latitude = document.getElementById("latitude").value;
+
+            const longitude = document.getElementById("longitude").value;
+
+            const data = {
+                municipality: municipality,
+
+                barangay: barangay,
+                
+                latitude: parseFloat(latitude),
+                
+                longitude: parseFloat(longitude)
+            };
+
+            fetch(`/curator/control/sighting/location/update/${postId}/`, {
+                method: "POST",
+                
+                headers: {
+                    "Content-Type": "application/json",
+
+                    "X-CSRFToken": "{{csrf_token}}" 
+                },
+
+                body: JSON.stringify(data)
+
+            }).then(response => response.json()).then(result => {
+                if (result.status === "success"){
+                    Swal.fire({title: "Success!", text: "The municipality and barangay has been successfully updated.", icon: "success", confirmButtonText: "Close"}).then(() => {
+                        window.location.reload();
+                    }); 
+
+                } else {
+                    Swal.fire({title: "Error!", text: result.message, icon: "error", confirmButtonText: "Close"});
+                };
+            
+            }).catch(error => {
+                Swal.fire({
+                    title: "Error!", text: "The municipality and barangay could not be updated. Kindly try again later.", icon: "error", confirmButtonText: "Close"
+                });
+            });
+        };
+
+        window.addRemarks = function(postId){
+            Swal.fire({
+                title: "Add Remarks", 
+
+                input: "textarea", 
+                
+                inputLabel: "Remarks",
+                
+                inputPlaceholder: "Enter your remarks here...", 
+                
+                showCancelButton: true,
+                
+                confirmButtonText: "Submit",
+
+                preConfirm: (remark) => {
+                    return fetch("{% url 'Curator Control Sighting Add' 0 %}".replace("0", postId), {
+                        method: "POST",
+
+                        headers: {
+                            "X-CSRFToken": "{{csrf_token}}",
+
+                            "Content-Type": "application/json"
+                        },
+
+                        body: JSON.stringify({remark: remark})
+                    
+                    }).then(response => {
+                        if (!response.ok){
+                            throw new Error(response.statusText)
+                        }
+
+                        return response.json()
+                    
+                    }).then(data => {
+                        if (!data.success){
+                            throw new Error(data.message || "The remarks could not be saved. Kindly try again later.")
+                        }
+
+                        return data
+                    
+                    }).catch(error => {
+                        Swal.showValidationMessage(`${error}`)
+                    });
+                },
+
+                allowOutsideClick: () => !Swal.isLoading()
+
+            }).then((result) => {
+                if (result.isConfirmed){
+                    Swal.fire({title: "Success!", text: "The remarks has been successfully saved.", icon: "success"}).then(() => {
+                        window.location.reload();
+                    });
+                };
+            });
+        };
+    </script>
+{% endblock %}

@@ -7,7 +7,7 @@ from django.dispatch import receiver
 from django.template.loader import render_to_string
 from django.utils import timezone
 from django.utils.html import strip_tags
-from managements.models import Intervention, Announcement
+from managements.models import Activity, Announcement
 from reports.models import Post, PostStatus
 from django.db.models import Q
 
@@ -58,7 +58,7 @@ def UpdateUserTypeLog(sender, instance, **kwargs):
                 changes.append("Changed Administrator")
             
             if instance.is_staff != usertype.is_staff:
-                changes.append("Changed Officer")
+                changes.append("Changed Curator")
             
             if instance.is_contributor != usertype.is_contributor:
                 changes.append("Changed Contributor")
@@ -138,22 +138,22 @@ def UpdateAccountLog(sender, instance, **kwargs):
             if instance.is_active != account.is_active:
                 administrator = request.user.username
 
-                officers = User.objects.filter(account = account)
+                curators = User.objects.filter(account = account)
 
-                for officer in officers:
+                for curator in curators:
                     subject = "COTSEye has delivered an alert message!"
 
                     scheme = request.scheme
 
                     host = request.META["HTTP_HOST"]
 
-                    template = render_to_string("admin/control/profile/email.html", {"officer": officer.account.username, "administrator": administrator, "scheme": scheme, "host": host})
+                    template = render_to_string("admin/control/profile/email.html", {"curator": curator.account.username, "administrator": administrator, "scheme": scheme, "host": host})
 
                     body = strip_tags(template)
 
                     source = "COTSEye <settings.EMAIL_HOST_USER>"
 
-                    recipient = [officer.email]
+                    recipient = [curator.email]
 
                     email = EmailMultiAlternatives(
                         subject,
@@ -307,7 +307,7 @@ def AddNotification(notification_type, instance, sender, user_filter):
 
 @receiver(post_save, sender = Post)
 @receiver(post_save, sender = Announcement)
-@receiver(post_save, sender = Intervention)
+@receiver(post_save, sender = Activity)
 def SendNotification(sender, instance, created, **kwargs):
     if created:
         if sender == Post:
@@ -320,8 +320,8 @@ def SendNotification(sender, instance, created, **kwargs):
 
             user_filter =  Q(account__usertype__is_contributor = True)
 
-        elif sender == Intervention:
-            notification_type = "intervention"
+        elif sender == Activity:
+            notification_type = "activity"
 
             user_filter =  Q(account__usertype__is_contributor = True)
         

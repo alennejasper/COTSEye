@@ -1,0 +1,152 @@
+.status-None{
+    color: #003755 !important;
+}
+
+.status-Low{
+    color: #698F3F !important;
+}
+
+.status-Moderate{
+    color: #F4C430 !important;
+}
+
+.status-High{
+    color: #FF7518 !important;
+}
+
+.status-Critical{
+    color: #C90016 !important;
+}
+
+.card-custom{
+    margin-bottom: 20px;
+    border: 1px solid #DDD;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.card-custom .card-header {
+    padding: 10px 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom: 1px solid #DDD;
+    background-color: #F8F9FA;
+}
+
+.card-custom .card-body{
+    padding: 20px;
+}
+
+.table > :not(caption) > * > *{
+    padding: 9px !important;
+}
+
+th, td{
+    border-top: unset !important;
+    text-align: left;
+}
+
+.table thead th{
+    border-bottom: 2px solid black;
+}
+
+.report-button{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.report-button button{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: none;
+    border-radius: 5px;
+    outline: none !important;
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 12px;        
+    color: #FFFFFF;
+    background-color: rgb(30, 173, 95);
+    text-align: center;
+    cursor: pointer;
+}
+
+.report-button button:hover{
+    color: #B2BEB5;
+    background-color: rgb(25, 141, 77);
+}
+
+.report-button button:focus{
+    color: #B2BEB5;
+    background-color: rgb(25, 141, 77);
+}
+
+.report-button button:active{
+    color: #B2BEB5;
+    background-color: #547232;
+}
+
+.graph-legends{
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.graph-legends h1{
+    margin-bottom: 0px !important;
+    font-weight: 700;       
+    font-size: 16px;        
+    font-family: "Montserrat";
+    color: #003755;
+    text-align: center;
+}
+
+
+.graph-legends .legends-container{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 30px;
+    width: 210px;
+}
+
+.graph-legends .legends-container .legend-item{
+    display: flex;
+    align-items: flex-start ;
+    justify-content: flex-start;
+}
+
+
+.graph-legends .legends-container .legend-item .legend-colorbox{
+    width: 30px;
+    height: 15px;
+    margin-right: 10px;
+}
+
+.graph-legends .legends-container .legend-item span{
+    margin-bottom: 0px !important;
+    font-weight: 400;       
+    font-size: 12px;        
+    font-family: "Montserrat";
+    color: #003755;
+    text-align: left;
+}
+
+.graph-legends .legends-container .legend-item strong{
+    margin-bottom: 0px !important;
+    font-weight: 700;       
+    font-size: 12px;        
+    font-family: "Montserrat";
+    color: #003755;
+    text-align: center;
+}
+
+.graph-legends p{
+    margin-bottom: 0px !important;
+    font-weight: 400;       
+    font-size: 12px;        
+    font-family: "Montserrat";
+    color: #003755;
+    text-align: center;
+}

@@ -10,7 +10,7 @@ from django.utils.dateparse import parse_date
 from .forms import *
 from .models import *
 from authentications.models import User, Notification
-from authentications.views import ContributorCheck, OfficerCheck
+from authentications.views import ContributorCheck, CuratorCheck
 from django.utils import timezone
 import datetime
 import json
@@ -33,7 +33,7 @@ def PublicServiceAnnouncement(request):
 
     to_date = request.GET.get("to_date")
 
-    announcements = Announcement.objects.all().order_by("-release_date")
+    announcements = Announcement.objects.all().order_by("-event_date")
 
     if municipality:
         announcements = announcements.filter(location__municipality__municipality_name = municipality)
@@ -44,12 +44,12 @@ def PublicServiceAnnouncement(request):
     if from_date:
         from_date = datetime.datetime.strptime(from_date, '%Y-%m-%d')
 
-        announcements = announcements.filter(release_date__gte = from_date)
+        announcements = announcements.filter(event_date__gte = from_date)
     
     if to_date:
         to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d")
 
-        announcements = announcements.filter(release_date__lte = to_date)
+        announcements = announcements.filter(event_date__lte = to_date)
 
     context = {"username": username, "locations": locations, "municipalities": municipalities, "announcements": announcements}
 
@@ -70,7 +70,7 @@ def PublicServiceAnnouncementRead(request, id):
     return render(request, "public/service/announcement/read.html", context)
 
 
-def PublicServiceIntervention(request):
+def PublicServiceActivity(request):
     username = "public/everyone"
 
     locations = Location.objects.all()
@@ -85,41 +85,41 @@ def PublicServiceIntervention(request):
 
     to_date = request.GET.get("to_date")
 
-    interventions = Intervention.objects.all().order_by("-event_date")
+    activities = Activity.objects.all().order_by("-activity_date")
 
     if municipality:
-        interventions = interventions.filter(location__municipality__municipality_name = municipality)
+        activities = activities.filter(location__municipality__municipality_name = municipality)
 
     if barangay:
-        interventions = interventions.filter(location__barangay__barangay_name = barangay)
+        activities = activities.filter(location__barangay__barangay_name = barangay)
 
     if from_date:
         from_date = datetime.datetime.strptime(from_date, '%Y-%m-%d')
 
-        interventions = interventions.filter(event_date__gte = from_date)
+        activities = activities.filter(activity_date__gte = from_date)
     
     if to_date:
         to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d")
 
-        interventions = interventions.filter(event_date__lte = to_date)
+        activities = activities.filter(activity_date__lte = to_date)
 
-    context = {"username": username, "locations": locations, "municipalities": municipalities, "interventions": interventions}
+    context = {"username": username, "locations": locations, "municipalities": municipalities, "activities": activities}
 
-    return render(request, "public/service/intervention/intervention.html", context)
+    return render(request, "public/service/activity/activity.html", context)
 
 
-def PublicServiceInterventionRead(request, id):
+def PublicServiceActivityRead(request, id):
     username = "public/everyone"
 
     scheme = request.scheme
 
     host = request.META["HTTP_HOST"]
     
-    intervention = Intervention.objects.get(id = id)
+    activity = Activity.objects.get(id = id)
 
-    context = {"username": username, "scheme": scheme, "host": host, "intervention": intervention}
+    context = {"username": username, "scheme": scheme, "host": host, "activity": activity}
 
-    return render(request, "public/service/intervention/read.html", context)
+    return render(request, "public/service/activity/read.html", context)
 
 
 @login_required(login_url = "Contributor Service Login")
@@ -147,7 +147,7 @@ def ContributorServiceAnnouncement(request):
 
     to_date = request.GET.get("to_date")
 
-    announcements = Announcement.objects.all().order_by("-release_date")
+    announcements = Announcement.objects.all().order_by("-event_date")
 
     if municipality:
         announcements = announcements.filter(location__municipality__municipality_name = municipality)
@@ -158,12 +158,12 @@ def ContributorServiceAnnouncement(request):
     if from_date:
         from_date = datetime.datetime.strptime(from_date, '%Y-%m-%d')
 
-        announcements = announcements.filter(release_date__gte = from_date)
+        announcements = announcements.filter(event_date__gte = from_date)
     
     if to_date:
         to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d")
 
-        announcements = announcements.filter(release_date__lte = to_date)
+        announcements = announcements.filter(event_date__lte = to_date)
 
     context = {"username": username, "user_profile": user_profile, "unread_notifications": unread_notifications, "locations": locations, "municipalities": municipalities, "announcements": announcements}
 
@@ -196,7 +196,7 @@ def ContributorServiceAnnouncementRead(request, id):
 
 @login_required(login_url = "Contributor Service Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
-def ContributorServiceIntervention(request):
+def ContributorServiceActivity(request):
     username = request.user.username
 
     user_profile = User.objects.get(account = request.user)
@@ -219,32 +219,32 @@ def ContributorServiceIntervention(request):
 
     to_date = request.GET.get("to_date")
 
-    interventions = Intervention.objects.all().order_by("-event_date")
+    activities = Activity.objects.all().order_by("-activity_date")
 
     if municipality:
-        interventions = interventions.filter(location__municipality__municipality_name = municipality)
+        activities = activities.filter(location__municipality__municipality_name = municipality)
 
     if barangay:
-        interventions = interventions.filter(location__barangay__barangay_name = barangay)
+        activities = activities.filter(location__barangay__barangay_name = barangay)
 
     if from_date:
         from_date = datetime.datetime.strptime(from_date, '%Y-%m-%d')
 
-        interventions = interventions.filter(event_date__gte = from_date)
+        activities = activities.filter(activity_date__gte = from_date)
     
     if to_date:
         to_date = datetime.datetime.strptime(to_date, "%Y-%m-%d")
 
-        interventions = interventions.filter(event_date__lte = to_date)
+        activities = activities.filter(activity_date__lte = to_date)
 
-    context = {"username": username, "user_profile": user_profile, "unread_notifications": unread_notifications, "locations": locations, "municipalities": municipalities, "interventions": interventions}
+    context = {"username": username, "user_profile": user_profile, "unread_notifications": unread_notifications, "locations": locations, "municipalities": municipalities, "activities": activities}
 
-    return render(request, "contributor/service/intervention/intervention.html", context)
+    return render(request, "contributor/service/activity/activity.html", context)
 
 
 @login_required(login_url = "Contributor Service Login")
 @user_passes_test(ContributorCheck, login_url = "Contributor Service Login")
-def ContributorServiceInterventionRead(request, id):
+def ContributorServiceActivityRead(request, id):
     username = request.user.username
 
     user_profile = User.objects.get(account = request.user)
@@ -259,16 +259,16 @@ def ContributorServiceInterventionRead(request, id):
 
     host = request.META["HTTP_HOST"]
 
-    intervention = Intervention.objects.get(id = id)
+    activity = Activity.objects.get(id = id)
 
-    context = {"username": username, "user_profile": user_profile, "unread_notifications": unread_notifications, "scheme": scheme, "host": host, "intervention": intervention}
+    context = {"username": username, "user_profile": user_profile, "unread_notifications": unread_notifications, "scheme": scheme, "host": host, "activity": activity}
 
-    return render(request, "contributor/service/intervention/read.html", context)
+    return render(request, "contributor/service/activity/read.html", context)
 
 
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
-def OfficerControlAnnouncement(request):
+@login_required(login_url = "Curator Control Login")
+@user_passes_test(CuratorCheck, login_url = "Curator Control Login")
+def CuratorControlAnnouncement(request):
     tab_number = 5
 
     announcement_number = 1
@@ -279,7 +279,7 @@ def OfficerControlAnnouncement(request):
 
     unread_notifications = Notification.objects.filter(user = user, is_read = False, creation_date__gte = notification_life).order_by("-creation_date")[:3]
    
-    announcements = Announcement.objects.all().order_by("-release_date")
+    announcements = Announcement.objects.all().order_by("-event_date")
 
     municipalities = Municipality.objects.values("municipality_name").distinct()
 
@@ -287,12 +287,12 @@ def OfficerControlAnnouncement(request):
 
     context = {"announcement_number": announcement_number,"tab_number": tab_number,"unread_notifications": unread_notifications, "announcements": announcements, "municipalities": municipalities, "locations": locations}
 
-    return render(request, "officer/control/announcement/announcement.html", context)
+    return render(request, "curator/control/announcement/announcement.html", context)
 
 
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
-def OfficerControlAnnouncementRead(request, id):
+@login_required(login_url = "Curator Control Login")
+@user_passes_test(CuratorCheck, login_url = "Curator Control Login")
+def CuratorControlAnnouncementRead(request, id):
 
     tab_number = 5
 
@@ -308,18 +308,18 @@ def OfficerControlAnnouncementRead(request, id):
 
     other_announcements = Announcement.objects.exclude(id = id)
 
-    announcements = Announcement.objects.all().order_by("-release_date")
+    announcements = Announcement.objects.all().order_by("-event_date")
 
     municipalities = Location.objects.values("municipality").distinct()
 
     context = {"announcement_number": announcement_number,"tab_number": tab_number, "unread_notifications": unread_notifications, "announcement": announcement, "municipalities": municipalities, "other_announcements": other_announcements, "announcements": announcements}
 
-    return render(request, "officer/control/announcement/read.html", context)
+    return render(request, "curator/control/announcement/read.html", context)
 
 
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
-def OfficerControlAnnouncementAdd(request):
+@login_required(login_url = "Curator Control Login")
+@user_passes_test(CuratorCheck, login_url = "Curator Control Login")
+def CuratorControlAnnouncementAdd(request):
     tab_number = 5
 
     announcement_number = 2
@@ -357,7 +357,7 @@ def OfficerControlAnnouncementAdd(request):
 
                 announcement.save()
 
-                return redirect("Officer Control Announcement")
+                return redirect("Curator Control Announcement")
 
             except Location.DoesNotExist:
                 location_error = "The municipality and barangay is empty."
@@ -371,12 +371,12 @@ def OfficerControlAnnouncementAdd(request):
 
     context = {"announcement_number": announcement_number,"tab_number": tab_number, "unread_notifications": unread_notifications, "form": form, "municipalities": municipalities, "locations": locations, "errors": errors, "field_labels": field_labels, "location_error": location_error}
 
-    return render(request, "officer/control/announcement/add.html", context)
+    return render(request, "curator/control/announcement/add.html", context)
 
 
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
-def OfficerControlAnnouncementUpdate(request, id):
+@login_required(login_url = "Curator Control Login")
+@user_passes_test(CuratorCheck, login_url = "Curator Control Login")
+def CuratorControlAnnouncementUpdate(request, id):
      
     tab_number = 5
 
@@ -417,7 +417,7 @@ def OfficerControlAnnouncementUpdate(request, id):
 
                 updated_announcement.save()
 
-                return redirect("Officer Control Announcement Read", id = id)
+                return redirect("Curator Control Announcement Read", id = id)
 
             except Location.DoesNotExist:
                 location_error = "The municipality and barangay is empty."
@@ -431,12 +431,12 @@ def OfficerControlAnnouncementUpdate(request, id):
 
     context = {"announcement_number": announcement_number, "tab_number": tab_number, "unread_notifications": unread_notifications, "form": form, "announcement": announcement, "municipalities": municipalities, "locations": locations, "errors": errors, "field_labels": field_labels, "location_error": location_error}
 
-    return render(request, "officer/control/announcement/update.html", context)
+    return render(request, "curator/control/announcement/update.html", context)
 
 
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
-def OfficerControlAnnouncementDelete(request, id):
+@login_required(login_url = "Curator Control Login")
+@user_passes_test(CuratorCheck, login_url = "Curator Control Login")
+def CuratorControlAnnouncementDelete(request, id):
     announcement = get_object_or_404(Announcement, id = id)
 
     if request.method == "DELETE":
@@ -447,21 +447,21 @@ def OfficerControlAnnouncementDelete(request, id):
     return JsonResponse({"success": False})
 
 
-def OfficerControlInterventionSerialize(interventions):
-    interventions_list = []
+def CuratorControlActivitySerialize(activities):
+    activities_list = []
 
-    for intervention in interventions:
-        interventions_list.append({"id": intervention.id, "title": intervention.title, "event_date": intervention.event_date, "municipality": intervention.location.municipality.municipality_name, "barangay": intervention.location.barangay.barangay_name, "details": intervention.details, "hosting_agency": intervention.hosting_agency, "caught_amount": intervention.caught_amount, "volunteer_amount": intervention.volunteer_amount, "status": str(intervention.statustype)})
+    for activity in activities:
+        activities_list.append({"id": activity.id, "title": activity.title, "activity_date": activity.activity_date, "municipality": activity.location.municipality.municipality_name, "barangay": activity.location.barangay.barangay_name, "details": activity.details, "hosting_agency": activity.hosting_agency, "caught_amount": activity.caught_amount, "volunteer_amount": activity.volunteer_amount, "status": str(activity.statustype)})
     
-    return json.dumps(interventions_list, cls = DjangoJSONEncoder)
+    return json.dumps(activities_list, cls = DjangoJSONEncoder)
 
 
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
-def OfficerControlIntervention(request):
+@login_required(login_url = "Curator Control Login")
+@user_passes_test(CuratorCheck, login_url = "Curator Control Login")
+def CuratorControlActivity(request):
     tab_number =  4
 
-    intervention_number = 1
+    activity_number = 1
 
     notification_life = timezone.now() - timedelta(days = 30)
 
@@ -471,25 +471,25 @@ def OfficerControlIntervention(request):
 
     locations = Location.objects.all()
 
-    interventions = Intervention.objects.all().order_by("-event_date")
+    activities = Activity.objects.all().order_by("-activity_date")
 
     municipalities = Municipality.objects.values("municipality_name").distinct()
     
-    interventions_json = OfficerControlInterventionSerialize(interventions)
+    activities_json = CuratorControlActivitySerialize(activities)
 
-    hosting_agencies = interventions.values("hosting_agency").distinct()
+    hosting_agencies = activities.values("hosting_agency").distinct()
 
-    context = {"intervention_number": intervention_number, "tab_number": tab_number,  "unread_notifications": unread_notifications, "interventions": interventions, "municipalities": municipalities, "interventions_json": interventions_json, "locations": locations, "hosting_agencies": hosting_agencies}
+    context = {"activity_number": activity_number, "tab_number": tab_number,  "unread_notifications": unread_notifications, "activities": activities, "municipalities": municipalities, "activities_json": activities_json, "locations": locations, "hosting_agencies": hosting_agencies}
     
-    return render(request, "officer/control/intervention/intervention.html", context)
+    return render(request, "curator/control/activity/activity.html", context)
 
 
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
-def OfficerControlInterventionRead(request, id):
+@login_required(login_url = "Curator Control Login")
+@user_passes_test(CuratorCheck, login_url = "Curator Control Login")
+def CuratorControlActivityRead(request, id):
     tab_number =  4
 
-    intervention_number = 2
+    activity_number = 2
 
     notification_life = timezone.now() - timedelta(days = 30)
 
@@ -497,23 +497,23 @@ def OfficerControlInterventionRead(request, id):
 
     unread_notifications = Notification.objects.filter(user = user, is_read = False, creation_date__gte = notification_life).order_by("-creation_date")[:3]
     
-    intervention = get_object_or_404(Intervention, id = id)
+    activity = get_object_or_404(Activity, id = id)
 
-    other_interventions = Intervention.objects.exclude(id = id)[:5]
+    other_activities = Activity.objects.exclude(id = id)[:5]
 
-    last_intervention = (Intervention.objects.filter(location = intervention.location).exclude(id = id).order_by("-event_date").first())
+    last_activity = (Activity.objects.filter(location = activity.location).exclude(id = id).order_by("-activity_date").first())
 
-    context = {"intervention_number":intervention_number, "tab_number": tab_number, "unread_notifications": unread_notifications, "intervention": intervention, "other_interventions": other_interventions, "last_intervention": last_intervention }
+    context = {"activity_number": activity_number, "tab_number": tab_number, "unread_notifications": unread_notifications, "activity": activity, "other_activities": other_activities, "last_activity": last_activity}
 
-    return render(request, "officer/control/intervention/read.html", context)
+    return render(request, "curator/control/activity/read.html", context)
 
 
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
-def OfficerControlInterventionAdd(request):
+@login_required(login_url = "Curator Control Login")
+@user_passes_test(CuratorCheck, login_url = "Curator Control Login")
+def CuratorControlActivityAdd(request):
     tab_number =  4
 
-    intervention_number = 2
+    activity_number = 2
 
     notification_life = timezone.now() - timedelta(days = 30)
 
@@ -533,7 +533,7 @@ def OfficerControlInterventionAdd(request):
 
     if request.method == "POST":
 
-        form = InterventionForm(request.POST, request.FILES)
+        form = ActivityForm(request.POST, request.FILES)
 
         if form.is_valid():
 
@@ -544,13 +544,13 @@ def OfficerControlInterventionAdd(request):
             try:
                 location = Location.objects.get(municipality__municipality_name = municipality, barangay__barangay_name = barangay)
 
-                intervention = form.save(commit=False)
+                activity = form.save(commit = False)
                 
-                intervention.location = location
+                activity.location = location
 
-                intervention.save()
+                activity.save()
 
-                return redirect("Officer Control Intervention")
+                return redirect("Curator Control Activity")
             
             except Location.DoesNotExist:
 
@@ -561,19 +561,19 @@ def OfficerControlInterventionAdd(request):
         field_labels = {field.name: field.label for field in form}
 
     else:
-        form = InterventionForm()
+        form = ActivityForm()
 
-    context = {"intervention_number":intervention_number, "tab_number": tab_number, "unread_notifications": unread_notifications, "form": form, 'municipalities': municipalities, "locations": locations, "errors": errors, "field_labels": field_labels, "location_error": location_error}
+    context = {"activity_number":activity_number, "tab_number": tab_number, "unread_notifications": unread_notifications, "form": form, 'municipalities': municipalities, "locations": locations, "errors": errors, "field_labels": field_labels, "location_error": location_error}
 
-    return render(request, "officer/control/intervention/add.html", context)
+    return render(request, "curator/control/activity/add.html", context)
 
 
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
-def OfficerControlInterventionUpdate(request, id):
+@login_required(login_url = "Curator Control Login")
+@user_passes_test(CuratorCheck, login_url = "Curator Control Login")
+def CuratorControlActivityUpdate(request, id):
     tab_number =  4
 
-    intervention_number = 2
+    activity_number = 2
 
     notification_life = timezone.now() - timedelta(days = 30)
 
@@ -581,7 +581,7 @@ def OfficerControlInterventionUpdate(request, id):
 
     unread_notifications = Notification.objects.filter(user = user, is_read = False, creation_date__gte = notification_life).order_by("-creation_date")[:3]
     
-    intervention = get_object_or_404(Intervention, id = id)
+    activity = get_object_or_404(Activity, id = id)
 
     locations = Location.objects.all().distinct("municipality")
 
@@ -594,7 +594,7 @@ def OfficerControlInterventionUpdate(request, id):
     location_error = None
     
     if request.method == "POST":
-        form = InterventionForm(request.POST, request.FILES, instance = intervention)
+        form = ActivityForm(request.POST, request.FILES, instance = activity)
 
         if form.is_valid():
             municipality = request.POST.get("municipality")
@@ -604,13 +604,13 @@ def OfficerControlInterventionUpdate(request, id):
             try:
                 location = Location.objects.get(municipality__municipality_name = municipality, barangay__barangay_name = barangay)
 
-                intervention.location = location
+                activity.location = location
 
-                intervention.creation_date = datetime.datetime.now()
+                activity.creation_date = datetime.datetime.now()
 
                 form.save()
 
-                return redirect("Officer Control Intervention")
+                return redirect("Curator Control Activity")
 
             except Location.DoesNotExist:
                 location_error = "The municipality and barangay is empty."
@@ -620,24 +620,24 @@ def OfficerControlInterventionUpdate(request, id):
         field_labels = {field.name: field.label for field in form}
 
     else:
-        form = InterventionForm(instance = intervention)
+        form = ActivityForm(instance = activity)
 
-    context = {"intervention_number": intervention_number, "tab_number": tab_number, "unread_notifications": unread_notifications, "form": form, "update": True, "intervention": intervention, "municipalities": municipalities, "locations": locations, "errors": errors, "field_labels": field_labels, "location_error": location_error}
+    context = {"activity_number": activity_number, "tab_number": tab_number, "unread_notifications": unread_notifications, "form": form, "update": True, "activity": activity, "municipalities": municipalities, "locations": locations, "errors": errors, "field_labels": field_labels, "location_error": location_error}
 
-    return render(request, "officer/control/intervention/update.html", context)
+    return render(request, "curator/control/activity/update.html", context)
 
 
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
-def OfficerControlInterventionDelete(request, id):
-    intervention = get_object_or_404(Intervention, id = id)
+@login_required(login_url = "Curator Control Login")
+@user_passes_test(CuratorCheck, login_url = "Curator Control Login")
+def CuratorControlActivityDelete(request, id):
+    activity = get_object_or_404(Activity, id = id)
 
-    intervention.delete()
+    activity.delete()
 
     return JsonResponse({"success": True})
 
 
-def OfficerControlStatusSerialize(statuses):
+def CuratorControlStatusSerialize(statuses):
     statuses_list = []
 
     for status in statuses:
@@ -646,7 +646,7 @@ def OfficerControlStatusSerialize(statuses):
     return json.dumps(statuses_list, cls = DjangoJSONEncoder)
 
 
-def get_geojson_data(status_counts):
+def CuratorControlStatusFetch(status_counts):
     features = []
 
     locations = {loc.id: loc for loc in Location.objects.all()} 
@@ -681,7 +681,9 @@ def get_geojson_data(status_counts):
     return {"type": "FeatureCollection", "features": features}
 
 
-def OfficerControlStatus(request):
+@login_required(login_url = "Curator Control Login")
+@user_passes_test(CuratorCheck, login_url = "Curator Control Login")
+def CuratorControlStatus(request):
     tab_number = 3
 
     location_number = 1
@@ -702,7 +704,7 @@ def OfficerControlStatus(request):
 
     status_counts = status_queryset.values("location", "statustype").annotate(count = Count("id"))
 
-    geojson_data = get_geojson_data(status_counts)
+    geojson_data = CuratorControlStatusFetch(status_counts)
 
     user = User.objects.get(account = request.user)
 
@@ -775,13 +777,13 @@ def OfficerControlStatus(request):
 
     context = {"geojson_data": json.dumps(geojson_data), "chart_data": json.dumps(chart_data), "status_types": json.dumps(status_types), "location_number": location_number, "tab_number": tab_number, "unread_notifications": unread_notifications, "locations": Location.objects.all(), "years": Status.objects.dates("onset_date", "year", order = "DESC"), "paginated_statuses": paginated_statuses, "municipalities": municipalities, "statuses": statuses,}
 
-    return render(request, "officer/control/status/status.html", context)
+    return render(request, "curator/control/status/status.html", context)
 
 
 
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
-def OfficerControlStatusMunicipalityRead(request, municipality_name):
+@login_required(login_url = "Curator Control Login")
+@user_passes_test(CuratorCheck, login_url = "Curator Control Login")
+def CuratorControlStatusMunicipalityRead(request, municipality_name):
     tab_number = 3
 
     location_number = 2 
@@ -810,7 +812,7 @@ def OfficerControlStatusMunicipalityRead(request, municipality_name):
 
     status_counts = status_queryset.values("location", "statustype").annotate(count = Count("id"))
     
-    geojson_data = get_geojson_data(status_counts)
+    geojson_data = CuratorControlStatusFetch(status_counts)
 
     latest_statuses = []
 
@@ -864,12 +866,12 @@ def OfficerControlStatusMunicipalityRead(request, municipality_name):
 
     context = {"unread_notifications": unread_notifications, "geojson_data": json.dumps(geojson_data), "chart_data": json.dumps(chart_data), "status_types": json.dumps(status_types), "barangays": barangays, "statuses": statuses, "location_number": location_number, "tab_number": tab_number, "municipality_name": municipality_name, "latest_statuses": latest_statuses}
 
-    return render(request, "officer/control/status/municipality.html", context)
+    return render(request, "curator/control/status/municipality.html", context)
 
 
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
-def OfficerControlStatusBarangayRead(request, barangay_name):
+@login_required(login_url = "Curator Control Login")
+@user_passes_test(CuratorCheck, login_url = "Curator Control Login")
+def CuratorControlStatusBarangayRead(request, barangay_name):
     tab_number = 3
 
     location_number = 3
@@ -883,7 +885,6 @@ def OfficerControlStatusBarangayRead(request, barangay_name):
     user = User.objects.get(account = request.user)
 
     unread_notifications = Notification.objects.filter(user = user, is_read = False, creation_date__gte = notification_life).order_by("-creation_date")[:3]
-
 
     if locations.exists():
         municipality_name = locations.first().municipality.municipality_name
@@ -913,7 +914,7 @@ def OfficerControlStatusBarangayRead(request, barangay_name):
 
     status_counts = status_queryset.values("location", "statustype").annotate(count = Count("id"))
     
-    geojson_data = get_geojson_data(status_counts)
+    geojson_data = CuratorControlStatusFetch(status_counts)
 
     locations_query = Location.objects.all()
 
@@ -926,10 +927,9 @@ def OfficerControlStatusBarangayRead(request, barangay_name):
     total_caught_overall = 0
 
     for location in locations:
-        interventions_query = Intervention.objects.filter(location = location).order_by("event_date")
-    
+        activities_query = Activity.objects.filter(location = location).order_by("activity_date")
 
-        event_dates = []
+        activity_dates = []
 
         caught_overalls = []
         
@@ -941,36 +941,36 @@ def OfficerControlStatusBarangayRead(request, barangay_name):
         
         caught_overall_sum = 0
 
-        for intervention in interventions_query:
-            if intervention.statustype:
-                event_dates.append(intervention.event_date.strftime("%Y-%m-%d"))
+        for activity in activities_query:
+            if activity.statustype:
+                activity_dates.append(activity.activity_date.strftime("%Y-%m-%d"))
 
-                caught_overalls.append(intervention.caught_amount)
+                caught_overalls.append(activity.caught_amount)
                 
-                titles.append(intervention.title)
+                titles.append(activity.title)
                 
-                status_types.append(str(intervention.statustype))
+                status_types.append(str(activity.statustype))
                 
-                volunteer_amounts.append(intervention.volunteer_amount)
+                volunteer_amounts.append(activity.volunteer_amount)
                 
-                caught_overall_sum += intervention.caught_amount
+                caught_overall_sum += activity.caught_amount
 
         total_caught_overall += caught_overall_sum
 
-        if event_dates:
-            min_date = datetime.datetime.strptime(event_dates[0], "%Y-%m-%d")
+        if activity_dates:
+            min_date = datetime.datetime.strptime(activity_dates[0], "%Y-%m-%d")
 
-            max_date = datetime.datetime.strptime(event_dates[-1], "%Y-%m-%d")
+            max_date = datetime.datetime.strptime(activity_dates[-1], "%Y-%m-%d")
             
             current_date = min_date
             
-            date_set = set(event_dates)
+            date_set = set(activity_dates)
 
             while current_date <= max_date:
                 date_string = current_date.strftime("%Y-%m-%d")
 
                 if date_string not in date_set:
-                    event_dates.append(date_string)
+                    activity_dates.append(date_string)
                 
                     caught_overalls.append(None)
                 
@@ -982,22 +982,22 @@ def OfficerControlStatusBarangayRead(request, barangay_name):
                 
                 current_date += timedelta(days = 1)
 
-            sorted_data = sorted(zip(event_dates, caught_overalls, titles, status_types, volunteer_amounts))
+            sorted_data = sorted(zip(activity_dates, caught_overalls, titles, status_types, volunteer_amounts))
 
-            event_dates, caught_overalls, titles, status_types, volunteer_amounts = zip(*sorted_data)
+            activity_dates, caught_overalls, titles, status_types, volunteer_amounts = zip(*sorted_data)
 
-            for item in range(len(event_dates)):
-                data.append({"location": f"{location.barangay.barangay_name}, {location.municipality.municipality_name}", "municipality": location.municipality.municipality_name, "event_date": event_dates[item], "caught_amount": caught_overalls[item], "title": titles[item], "status_type": status_types[item], "volunteer_amount": volunteer_amounts[item]})
+            for item in range(len(activity_dates)):
+                data.append({"location": f"{location.barangay.barangay_name}, {location.municipality.municipality_name}", "municipality": location.municipality.municipality_name, "activity_date": activity_dates[item], "caught_amount": caught_overalls[item], "title": titles[item], "status_type": status_types[item], "volunteer_amount": volunteer_amounts[item]})
 
 
     context = {"unread_notifications": unread_notifications, "geojson_data": json.dumps(geojson_data), "chart_data": json.dumps(data), 'status_types': json.dumps(status_types), "municipality_name":municipality_name,"statuses":statuses,"location_number": location_number, "tab_number": tab_number, "barangay_name": barangay_name, "all_statuses": all_statuses}
 
-    return render(request, "officer/control/status/barangay.html", context)
+    return render(request, "curator/control/status/barangay.html", context)
 
 
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
-def OfficerControlStatusAdd(request):
+@login_required(login_url = "Curator Control Login")
+@user_passes_test(CuratorCheck, login_url = "Curator Control Login")
+def CuratorControlStatusAdd(request):
     notification_life = timezone.now() - timedelta(days = 30) 
 
     user = User.objects.get(account = request.user)
@@ -1010,18 +1010,18 @@ def OfficerControlStatusAdd(request):
         if form.is_valid():
             form.save()
 
-            return redirect("Officer Control Status")
+            return redirect("Curator Control Status")
     else:
         form = StatusForm()
 
     context = {"unread_notifications": unread_notifications, "form": form}
 
-    return render(request, "officer/control/status/add.html", context) 
+    return render(request, "curator/control/status/add.html", context) 
 
 
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
-def OfficerControlDeleteStatus(request, id):
+@login_required(login_url = "Curator Control Login")
+@user_passes_test(CuratorCheck, login_url = "Curator Control Login")
+def CuratorControlDeleteStatus(request, id):
     if request.method == "POST":
         status = get_object_or_404(Status, id = id)
 
@@ -1032,9 +1032,9 @@ def OfficerControlDeleteStatus(request, id):
     return JsonResponse({"success": False}, status = 400)
 
 
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
-def OfficerControlBarangayRead(request):
+@login_required(login_url = "Curator Control Login")
+@user_passes_test(CuratorCheck, login_url = "Curator Control Login")
+def CuratorControlBarangayRead(request):
     municipality = request.GET.get("municipality")
 
     barangays = Barangay.objects.filter(municipality__municipality_name = municipality).values_list("barangay_name", flat = True).distinct()
@@ -1042,9 +1042,9 @@ def OfficerControlBarangayRead(request):
     return JsonResponse(list(barangays), safe = False)
 
 
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
-def OfficerControlReport(request):
+@login_required(login_url = "Curator Control Login")
+@user_passes_test(CuratorCheck, login_url = "Curator Control Login")
+def CuratorControlReport(request):
     username = request.user.username
 
     notification_life = timezone.now() - timedelta(days = 30)
@@ -1109,4 +1109,4 @@ def OfficerControlReport(request):
 
     context = {"username": username, "unread_notifications": unread_notifications, "chart_data": json.dumps(data), "status_options": status_options, "location_options": location_options, "results": results, "from_date": from_date, "to_date": to_date, "selected_status": selected_status, "selected_municipality": selected_municipality, "selected_barangay": selected_barangay, "municipalities": municipalities, "barangays": barangays}
 
-    return render(request, "officer/control/report/report.html", context)
+    return render(request, "curator/control/report/report.html", context)

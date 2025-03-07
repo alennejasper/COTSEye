@@ -112,7 +112,7 @@ administrator.register(Account, AccountAdmin)
 
 #         return super().render_change_form(request, context, add, change, form_url, obj)
 
-# admin.site.register(User, UserAdmin)
+# administrator.register(User, UserAdmin)
 
 
 class SiteAdmin(admin.ModelAdmin):

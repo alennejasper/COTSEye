@@ -35,11 +35,11 @@
 
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/announcement/read.css' %}">
 
-        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/intervention/intervention.css' %}">
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/activity/activity.css' %}">
 
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/leaderboard/leaderboard.css' %}">
 
-        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/intervention/read.css' %}">
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/activity/read.css' %}">
 
         <link rel = "stylesheet" type = "text/css" href = "{% static 'css/contributor/service/post/post.css' %}">
 
@@ -143,10 +143,10 @@
                                     </div>
                                 </a>
 
-                            {% elif notification.contenttype.model == "intervention" %}
-                                <a class = "dropdown-item" href = "{% url 'Contributor Service Notification Read' id=notification.id %}" class = "intervention-link">
+                            {% elif notification.contenttype.model == "activity" %}
+                                <a class = "dropdown-item" href = "{% url 'Contributor Service Notification Read' id=notification.id %}" class = "activity-link">
                                     <div class = "item-header">
-                                        <img src = "{{notification.object.intervention_photo.url}}">
+                                        <img src = "{{notification.object.activity_photo.url}}">
 
                                         <div class = "item-context">
                                             <p><strong>{{notification.object.hosting_agency}}</strong> held an activity.</p>
@@ -156,7 +156,7 @@
                                     </div>
                                 </a>
                             {% elif notification.contenttype.model == "achievement" %}
-                                <a class = "dropdown-item" href = "{% url 'Contributor Service Profile' %}" class = "intervention-link">
+                                <a class = "dropdown-item" href = "{% url 'Contributor Service Profile' %}" class = "activity-link">
                                     <div class = "item-header">
                                         <img src = "{{notification.object.badge_icon.url}}">
 
@@ -299,8 +299,8 @@
                 <img src = "{% static 'assets/icons/announcement.png' %}">
             </a>
             
-            <a href = "{% url 'Contributor Service Intervention' %}">
-                <img src = "{% static 'assets/icons/intervention.png' %}">
+            <a href = "{% url 'Contributor Service Activity' %}">
+                <img src = "{% static 'assets/icons/activity.png' %}">
             </a>
 
             <a href = "{% url 'Contributor Service Leaderboard' %}">

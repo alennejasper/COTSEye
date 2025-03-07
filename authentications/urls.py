@@ -27,7 +27,7 @@ urlpatterns = [
 
     path("contributor/service/profile/update/fetch/", views.ContributorServiceProfileUpdateFetch, name = "Contributor Service Profile Update Fetch"),
 
-    path("officer/control/profile/delete/<int:id>/", views.ContributorServiceProfileDelete, name = "Contributor Service Profile Delete"),
+    path("contributor/service/profile/delete/<int:id>/", views.ContributorServiceProfileDelete, name = "Contributor Service Profile Delete"),
 
     path("contributor/service/profile/delete/fetch/", views.ContributorServiceProfileDeleteFetch, name = "Contributor Service Profile Delete Fetch"),
     
@@ -35,25 +35,25 @@ urlpatterns = [
 
     path("contributor/service/logout/", views.ContributorServiceLogout, name = "Contributor Service Logout"),       
 
-    path("officer/control/fallback/", views.OfficerControlFallback, name = "Officer Control Fallback"),
+    path("curator/control/fallback/", views.CuratorControlFallback, name = "Curator Control Fallback"),
 
-    path("officer/control/register/", views.OfficerControlRegister, name = "Officer Control Register"),
+    path("curator/control/register/", views.CuratorControlRegister, name = "Curator Control Register"),
 
-    path("officer/control/login/", views.OfficerControlLogin, name = "Officer Control Login"),
+    path("curator/control/login/", views.CuratorControlLogin, name = "Curator Control Login"),
 
-    path("officer/control/home/", views.OfficerControlHome, name = "Officer Control Home"),
+    path("curator/control/home/", views.CuratorControlHome, name = "Curator Control Home"),
 
-    path("officer/control/notification/", views.OfficerControlNotification, name = "Officer Control Notification"),
+    path("curator/control/notification/", views.CuratorControlNotification, name = "Curator Control Notification"),
 
-    path("officer/control/notification/mark/<int:id>/", views.OfficerControlNotificationMark, name = "Officer Control Notification Mark"),
+    path("curator/control/notification/mark/<int:id>/", views.CuratorControlNotificationMark, name = "Curator Control Notification Mark"),
     
-    path("officer/control/notification/read/<int:id>/", views.OfficerControlMarkNotificationAsRead, name = "Officer Control Notification Read"),
+    path("curator/control/notification/read/<int:id>/", views.CuratorControlNotificationRead, name = "Curator Control Notification Read"),
 
-    path("officer/control/profile/", views.OfficerControlProfile, name = "Officer Control Profile"),
+    path("curator/control/profile/", views.CuratorControlProfile, name = "Curator Control Profile"),
     
-    path("officer/control/profile/update/", views.OfficerControlProfileUpdate, name = "Officer Control Profile Update"),
+    path("curator/control/profile/update/", views.CuratorControlProfileUpdate, name = "Curator Control Profile Update"),
 
-    path("officer/control/profile/delete/<int:id>/", views.OfficerControlProfileDelete, name = "Officer Control Profile Delete"),
+    path("curator/control/profile/delete/<int:id>/", views.CuratorControlProfileDelete, name = "Curator Control Profile Delete"),
 
-    path("officer/control/logout/", views.OfficerControlLogout, name = "Officer Control Logout"),      
+    path("curator/control/logout/", views.CuratorControlLogout, name = "Curator Control Logout"),      
 ]

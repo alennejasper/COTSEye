@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang = "en">
+    <head>
+        <meta charset = "UTF-8">
+            
+        <meta http-equiv = "X-UA-Compatible" content = "IE=edge">
+            
+        <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+
+        <link rel = "icon" type = "image/x-icon" href = "{% static 'assets/icons/logo.png' %}">
+                        
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/curator/control/register/register.css' %}">
+                    
+        <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">          
+
+        <script src = "https://www.google.com/recaptcha/api.js" async defer></script>
+
+        <script src = "https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <title>COTSEye | Register</title>
+    </head>
+
+    <body>
+        <div class = "content">
+            <div class = "register">
+                <div class = "card-header">
+                    <header>Register</header>
+                </div>
+
+                <div class = "card-body">
+                    <form action = "" class = "register-form" method = "POST">
+                        {% csrf_token %}
+
+                        <div class = "field">
+                            <div class = "column">
+                                <label for = "username">Username</label>
+
+                                <div class = "username">
+                                    <input type = "text" id = "username" name = "username" required>
+                                
+                                    <i class = "fa-solid fa-user"></i>
+                                </div>
+
+                                <label for = "first-name">First Name</label>
+
+                                <div class = "first-name">
+                                    <input type = "text" id = "first-name" name = "first_name" required>
+
+                                    <i class = "fa-solid fa-id-card"></i>
+                                </div>
+
+                                <label for = "last-name">Last Name</label>
+
+                                <div class = "last-name">
+                                    <input type = "text" id = "last-name" name = "last_name" required>
+
+                                    <i class = "fa-solid fa-id-card"></i>
+                                </div>
+                            </div>
+
+                            <div class = "column">
+                                <label for = "email">Email</label>
+
+                                <div class = "email">
+                                    <input type = "email" id = "email" name = "email" required>
+
+                                    <i class = "fa-solid fa-envelope"></i>
+                                </div>
+
+                                <label for = "password1">Create Password</label>
+
+                                <div class = "password1">        
+                                    <input type = "password" id = "password1" name = "password1" required>
+        
+                                    <i class = "fa-solid fa-eye" id = "toggle-password1"></i>
+                                </div>
+
+                                <label for = "password2">Confirm Password</label>
+
+                                <div class = "password2">
+                                    <input type = "password" id = "password2" name = "password2" required>
+
+                                    <i class = "fa-solid fa-eye" id = "toggle-password2"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class = "g-recaptcha" data-sitekey = "6LeLKv0pAAAAAK9mrndyaPeMfKa7zrY6avR_2rlc" data-error-callback = "recaptchaError"></div>
+
+                        <button type = "submit">Register</button>
+                    </form>
+
+                    {% if messages %}
+                        {% for message in messages %}
+                            {% if message.tags == "info" %}<script>Swal.fire({title: "Info!", text: "{{message}}", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}})</script>
+                            
+                            {% elif message.tags == "success" %}<script>Swal.fire({title: "Success!", text: "{{message}}", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}})</script>
+                            
+                            {% else %}<script>Swal.fire({title: "Error!", text: "{{message}}", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}})</script>
+                            
+                            {% endif %}    
+                        {% endfor %}
+                    {% endif %}
+
+                    <div class = "login">
+                        <span>Already have an account? <a href = "{% url 'Curator Control Login' %}">Login</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id = "load">
+            <img class = "load" src = "{% static 'assets/icons/load.gif' %}"/>
+        </div>  
+    </body>
+
+    <script> 
+		window.onload = function(){
+			var $recaptcha = document.querySelector("#g-recaptcha-response");
+            
+            document.querySelector("form").addEventListener("submit", (event) => {
+                if($recaptcha && !$recaptcha.value){
+                    event.preventDefault();
+                    
+                    $recaptcha.setAttribute("required", "required");
+                
+                    Swal.fire({title: "Oops!", text: "reCAPTCHA is not valid. Kindly check the reCAPTCHA and try again.", icon: "error", iconColor: "#C90016", confirmButtonColor: "#C90016"});
+                };
+            });
+
+            document.getElementById("load").style.display = "none";
+
+            redirectMobileHandler();
+		};
+	</script>
+
+    <script>
+        function recaptchaError(){
+            Swal.fire({title: "Oops!", text: "The COTSEye cannot contact reCAPTCHA today. Kindly check the connection and try again.", icon: "error", iconColor: "#C90016", confirmButtonColor: "#C90016"});
+        };
+    </script>
+
+    <script>
+		const togglePassword1 = document.querySelector("#toggle-password1");
+
+		const password1 = document.querySelector("#password1");
+
+		togglePassword1.addEventListener("click", function(){
+			const type = password1.getAttribute("type") === "password" ? "text" : "password";
+
+			password1.setAttribute("type", type);
+
+            this.classList.toggle("fa-eye");
+
+            this.classList.toggle("fa-eye-slash");
+        });
+	</script>
+
+	<script>
+		const togglePassword2 = document.querySelector("#toggle-password2");
+
+		const password2 = document.querySelector("#password2");
+
+		togglePassword2.addEventListener("click", function(){
+			const type = password2.getAttribute("type") === "password" ? "text" : "password";
+
+			password2.setAttribute("type", type);
+
+            this.classList.toggle("fa-eye");
+
+            this.classList.toggle("fa-eye-slash");		
+        });
+	</script>
+
+    <script>
+        var checkboxes = $("input[type='checkbox']"),
+            submit = $("button[type='submit']");
+
+        checkboxes.click(function(){
+            submit.attr("required", !checkboxes.is(":checked"));
+        });
+    </script>
+
+    <script>
+        window.onbeforeunload = function(event){
+            event.preventDefault(); 
+            
+            event.returnValue = ""; 
+        };
+
+        function disableOnBeforeUnload(){
+            window.onbeforeunload = null;
+        };
+    </script>
+
+    <script>
+        document.querySelector("button[type='submit']").onclick = function(event){
+            event.preventDefault();
+
+            disableOnBeforeUnload();
+
+            const username = "{{username}}";
+
+        
+            Swal.fire({title: "Alert!", text: username + ", " + "are you sure that you want to register the account?", icon: "warning", showCancelButton: true, confirmButtonColor: "#003755", cancelButtonColor: "#003755", confirmButtonText: "Yes", cancelButtonText: "No", customClass: {confirmButton: "confirm-button", cancelButton: "cancel-button", title: "title"}}).then((result) => {if (result.isConfirmed){document.querySelector(".register-form").submit();}});
+        };
+    </script>
+
+    <script>
+        function redirectMobileHandler() {
+            const width = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+            
+            if (width < 1080){
+                window.location.href = "{% url 'Curator Control Fallback' %}";
+            }
+        }
+
+        window.onresize = redirectMobileHandler;
+    </script>
+</html>

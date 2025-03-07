@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+{% load static %}
+{% load socialaccount %}
+
+<html lang = "en">
+    <head>
+        <meta charset = "UTF-8">
+            
+        <meta http-equiv = "X-UA-Compatible" content = "IE=edge">
+            
+        <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+
+        <link rel = "icon" type = "image/x-icon" href = "{% static 'assets/icons/logo.png' %}">
+                        
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/curator/control/login/login.css' %}">
+                    
+        <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">          
+        
+        <script src = "https://www.google.com/recaptcha/api.js" async defer></script>
+
+        <script src = "https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        
+        <title>COTSEye | Login</title>
+    </head>
+
+    <body>
+        <div class = "content">
+            <div class = "login">
+                <div class = "card-header">
+                    <header>Login</header>
+                </div>
+
+                <div class = "card-body">
+                    <form action = "" method = "POST">
+                        {% csrf_token %}
+
+                        <div class = "field">
+                            <div class = "column">
+                                <label for = "username">Username</label>
+
+                                <div class = "username">
+                                    <input type = "text" id = "username" name = "username" required>
+                                
+                                    <i class = "fa-solid fa-user"></i>
+                                </div>
+                        
+                                <label for = "password1">Password</label>
+
+                                <div class = "password1">
+                                    <input type = "password" id = "password1" name = "password1" required>
+
+                                    <i class = "fa-solid fa-eye" id = "toggle-password1"></i>
+                                </div>
+
+                                <script>
+                                    const togglePassword1 = document.querySelector("#toggle-password1");
+                            
+                                    const password1 = document.querySelector("#password1");
+                            
+                                    togglePassword1.addEventListener("click", function(){
+                                        const type = password1.getAttribute("type") === "password" ? "text" : "password";
+                            
+                                        password1.setAttribute("type", type);
+                            
+                                        this.classList.toggle("fa-eye");
+                            
+                                        this.classList.toggle("fa-eye-slash");
+                                    });
+                                </script>
+                            </div>
+                        </div>
+
+                        <div class = "g-recaptcha" data-sitekey = "6LeLKv0pAAAAAK9mrndyaPeMfKa7zrY6avR_2rlc" data-error-callback = "recaptchaError"></div>
+
+                        <script>
+                            function recaptchaError(){
+                                Swal.fire({title: "Error!", text: "The reCAPTCHA verification failed due to a network error. Kindly check your connection and try again.", icon: "error", iconColor: "#C90016", confirmButtonColor: "#C90016"});
+                            };
+                        </script>
+
+                        <button type = "submit">Login</button>
+                    </form>
+                    
+                    {% if messages %}
+                        {% for message in messages %}
+                            {% if message.tags == "info" %}<script>Swal.fire({title: "Info!", text: "{{message}}", background: "#FFFFFF", icon: "warning", iconColor: "#154360", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#154360", customClass: {confirmButton: "info-button", title: "title"}})</script>
+                            
+                            {% elif message.tags == "success" %}<script>Swal.fire({title: "Success!", text: "{{message}}", background: "#FFFFFF", icon: "success", iconColor: "#698F3F", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#698F3F", customClass: {confirmButton: "success-button", title: "title"}})</script>
+                            
+                            {% else %}<script>Swal.fire({title: "Error!", text: "{{message}}", background: "#FFFFFF", icon: "error", iconColor: "#C90016", allowOutsideClick: false, allowEscapeKey: false, confirmButtonColor: "#C90016", customClass: {confirmButton: "error-button", title: "title"}})</script>
+                            
+                            {% endif %}    
+                        {% endfor %}
+                    {% endif %}
+                    
+                    <div class = "register">
+                        <span>Do not have an account? <a href = "{% url 'Curator Control Register' %}">Register</a></span>
+                    </div>
+
+                    <div class = "line"></div>
+
+                    <div class = "socials">
+                        <button class = "facebook">
+                            <a href = "{% provider_login_url 'facebook' %}?next=/curator/control/home/">
+                                <i class = "fa-brands fa-facebook-f"></i> 
+                            
+                                <span>Connect with Facebook</span>
+                            </a>
+                        </button>
+
+                        <script type = "text/javascript">if(window.location.hash && window.location.hash === "#_=_"){ window.location.hash = ""; history.pushState("", document.title, window.location.pathname);}</script>
+
+                        <button class = "google">
+                            <a href = "{% provider_login_url 'google' %}?next=/curator/control/home/">
+                                <i class = "fa-brands fa-google"></i> 
+                            
+                                <span>Connect with Google</span>
+                            </a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id = "load">
+            <img class = "load" src = "{% static 'assets/icons/load.gif' %}"/>
+        </div>  
+
+        <script> 
+            window.onload = function(){    
+                var $recaptcha = document.querySelector("#g-recaptcha-response");
+                
+                document.querySelector("form").addEventListener("submit", (event) => {
+                    if($recaptcha && !$recaptcha.value){
+                        event.preventDefault();
+                        
+                        $recaptcha.setAttribute("required", "required");
+                    
+                        Swal.fire({title: "Error!", text: "The reCAPTCHA verification was not completed. Kindly try again.", icon: "error", iconColor: "#C90016", confirmButtonColor: "#C90016"}).then(() => {$recaptcha.removeAttribute("required")});
+                    };
+                });
+    
+                document.getElementById("load").style.display = "none";
+
+                redirectMobileHandler();
+            };
+        </script>
+
+        <script>
+            function redirectMobileHandler() {
+                const width = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+                
+                if (width < 1080){
+                    window.location.href = "{% url 'Curator Control Fallback' %}";
+                }
+            }
+
+            window.onresize = redirectMobileHandler;
+        </script>
+    </body>
+</html>

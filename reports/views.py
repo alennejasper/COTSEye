@@ -10,7 +10,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.utils.html import strip_tags
 from authentications.models import Account, Notification
-from authentications.views import ContributorCheck, OfficerCheck
+from authentications.views import ContributorCheck, CuratorCheck
 from managements.models import Location, Municipality, Barangay
 from reports.models import *
 from reports.forms import CoordinatesForm, PostObservationForm, PostForm
@@ -778,22 +778,22 @@ def ContributorServicePostDraftSend(request, id):
 
     post.save()
 
-    officers = User.objects.filter(account__usertype_id = 2)
+    curators = User.objects.filter(account__usertype_id = 2)
 
-    for officer in officers:
+    for curator in curators:
         subject = "COTSEye has delivered an alert message!"
 
         scheme = request.scheme
 
         host = request.META["HTTP_HOST"]
 
-        template = render_to_string("contributor/service/post/email.html", {"officer": officer.account.username, "contributor": post.user.account.username, "post": post, "scheme": scheme, "host": host})
+        template = render_to_string("contributor/service/post/email.html", {"curator": curator.account.username, "contributor": post.user.account.username, "post": post, "scheme": scheme, "host": host})
 
         body = strip_tags(template)
 
         source = "COTSEye <settings.EMAIL_HOST_USER>"
 
-        recipient = [officer.email]
+        recipient = [curator.email]
 
         email = EmailMultiAlternatives(
             subject,
@@ -825,22 +825,22 @@ def ContributorServicePostDraftSendFetch(request):
         for information in post:            
             post = Post.objects.filter(id = information.get("id"), user = information.get("user")).update(post_status_id = 3)
     
-        officers = User.objects.filter(account__usertype_id = 2)
+        curators = User.objects.filter(account__usertype_id = 2)
 
-        for officer in officers:
+        for curator in curators:
             subject = "COTSEye has delivered an alert message!"
 
             scheme = request.scheme
 
             host = request.META["HTTP_HOST"]
 
-            template = render_to_string("contributor/service/post/email.html", {"officer": officer.account.username, "contributor": post.user.account.username, "post": post, "scheme": scheme, "host": host})
+            template = render_to_string("contributor/service/post/email.html", {"curator": curator.account.username, "contributor": post.user.account.username, "post": post, "scheme": scheme, "host": host})
 
             body = strip_tags(template)
 
             source = "COTSEye <settings.EMAIL_HOST_USER>"
 
-            recipient = [officer.email]
+            recipient = [curator.email]
 
             email = EmailMultiAlternatives(
                 subject,
@@ -915,9 +915,9 @@ def ContributorServicePostDraftDeleteFetch(request):
             post.delete()
 
 
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
-def OfficerControlSighting(request):
+@login_required(login_url = "Curator Control Login")
+@user_passes_test(CuratorCheck, login_url = "Curator Control Login")
+def CuratorControlSighting(request):
     tab_number = 2
 
     sighting_number = 1
@@ -940,10 +940,10 @@ def OfficerControlSighting(request):
     
     context = {"sighting_number": sighting_number, "tab_number": tab_number, "unread_notifications": unread_notifications, "posts": posts, "locations": locations, 'municipalities': municipalities}  
     
-    return render(request, 'officer/control/sighting/sighting.html', context)
+    return render(request, 'curator/control/sighting/sighting.html', context)
 
 
-def OfficerControlSightingFetch(request, id):
+def CuratorControlSightingFetch(request, id):
     try:
         post = get_object_or_404(Post, id = id)
     
@@ -955,9 +955,9 @@ def OfficerControlSightingFetch(request, id):
         return JsonResponse({"error": "The post could not be found."}, status = 404)
     
 
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
-def OfficerControlSightingRead(request, id):
+@login_required(login_url = "Curator Control Login")
+@user_passes_test(CuratorCheck, login_url = "Curator Control Login")
+def CuratorControlSightingRead(request, id):
     notification_life = timezone.now() - timedelta(days = 30) 
     
     tab_number = 2
@@ -987,31 +987,31 @@ def OfficerControlSightingRead(request, id):
     
     context = {"tab_number": tab_number, "sighting_number": sighting_number, "unread_notifications": unread_notifications, "post": post, "other_posts_with_photos": other_photos, "municipalities": municipalities, "post_photos": post_photos, "locations": locations}
     
-    return render(request, "officer/control/sighting/read.html", context)
+    return render(request, "curator/control/sighting/read.html", context)
 
 
-def OfficerControlSightingReadRedirect(request, id):
+def CuratorControlSightingReadRedirect(request, id):
     object = Post.objects.get(id = id)
 
     if request.user.is_authenticated:
         usertype = request.user.usertype_id
 
         if usertype == 3:
-            return redirect(reverse("Officer Control Sighting Read", kwargs = {"object_id": object.id}))
+            return redirect(reverse("Curator Control Sighting Read", kwargs = {"object_id": object.id}))
         
         elif usertype == 2:
-            return redirect(reverse("Officer Control Sighting Read", kwargs = {"object_id": object.id}))
+            return redirect(reverse("Curator Control Sighting Read", kwargs = {"object_id": object.id}))
 
         elif usertype == 1:
             return redirect(reverse("admin:reports_post_change", kwargs = {"object_id": object.id}))
 
     else:
-        return redirect(reverse("Officer Control Sighting Read", kwargs = {"object_id": object.id}))
+        return redirect(reverse("Curator Control Sighting Read", kwargs = {"object_id": object.id}))
     
 
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
-def OfficerControlSightingAdd(request, id):
+@login_required(login_url = "Curator Control Login")
+@user_passes_test(CuratorCheck, login_url = "Curator Control Login")
+def CuratorControlSightingAdd(request, id):
     post = get_object_or_404(Post, id = id)
 
     if request.method == "POST":
@@ -1028,9 +1028,9 @@ def OfficerControlSightingAdd(request, id):
     return JsonResponse({"success": False, "message": "The remark could not be added. Kindly try again later."})
 
 
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
-def OfficerControlSightingUpdate(request, id):
+@login_required(login_url = "Curator Control Login")
+@user_passes_test(CuratorCheck, login_url = "Curator Control Login")
+def CuratorControlSightingUpdate(request, id):
     post = get_object_or_404(Post, id = id)
 
     data = {"latitude": post.location.latitude, "longitude": post.location.longitude, "location": {"municipality": post.location.municipality.municipality_name, "barangay": post.location.barangay.barangay_name}}
@@ -1038,9 +1038,9 @@ def OfficerControlSightingUpdate(request, id):
     return JsonResponse(data)
 
 
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
-def OfficerControlSightingLocationUpdate(request, id):
+@login_required(login_url = "Curator Control Login")
+@user_passes_test(CuratorCheck, login_url = "Curator Control Login")
+def CuratorControlSightingLocationUpdate(request, id):
     post = get_object_or_404(Post, id = id)
 
     data = json.loads(request.body)
@@ -1080,9 +1080,9 @@ def OfficerControlSightingLocationUpdate(request, id):
         return JsonResponse({"status": "error", "message": str(e)}, status = 400)
     
 
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
-def OfficerControlSightingValid(request):
+@login_required(login_url = "Curator Control Login")
+@user_passes_test(CuratorCheck, login_url = "Curator Control Login")
+def CuratorControlSightingValid(request):
     if request.method == "POST" and request.headers.get("x-requested-with") == "XMLHttpRequest":
         id = request.POST.get("post_id")
 
@@ -1104,9 +1104,9 @@ def OfficerControlSightingValid(request):
     return JsonResponse({"success": False, "message": "The post status could not be updated. Kindly try again later."}, status = 400)
 
 
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
-def OfficerControlSightingInvalid(request):
+@login_required(login_url = "Curator Control Login")
+@user_passes_test(CuratorCheck, login_url = "Curator Control Login")
+def CuratorControlSightingInvalid(request):
     if request.method == "POST" and request.headers.get("x-requested-with") == "XMLHttpRequest":
         id = request.POST.get("post_id")
 
@@ -1128,9 +1128,9 @@ def OfficerControlSightingInvalid(request):
     return JsonResponse({"success": False, "message": "The post status could not be updated. Kindly try again later."}, status = 400)
     
 
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
-def OfficerControlSightingDelete(request, id):
+@login_required(login_url = "Curator Control Login")
+@user_passes_test(CuratorCheck, login_url = "Curator Control Login")
+def CuratorControlSightingDelete(request, id):
     if request.method == "DELETE":
         try:
             photo = get_object_or_404(PostPhoto, id = id)
@@ -1157,7 +1157,7 @@ def PostValidReadRedirect(request, id):
         elif usertype == 2:
             object = Post.objects.get(id = id)
 
-            return redirect(reverse("Officer Control Sighting Read", kwargs = {"id": object.id}))
+            return redirect(reverse("Curator Control Sighting Read", kwargs = {"id": object.id}))
 
         elif usertype == 1:
             object = Post.objects.get(id = id)

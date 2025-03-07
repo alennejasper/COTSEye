@@ -41,9 +41,9 @@ class AccountManager(BaseUserManager):
 
 
 class UserType(models.Model):
-    is_superuser = models.BooleanField(default = False, help_text = "Designates that the user has all permissions.", verbose_name = "Administrator")
-    is_staff = models.BooleanField(default = False, help_text = "Designates whether the user can log into the officers site or not.", verbose_name = "Officer")
-    is_contributor = models.BooleanField(default = False, help_text = "Designates whether the user can log into the contributors site or not.", verbose_name = "Contributor")
+    is_superuser = models.BooleanField(default = False, verbose_name = "Administrator")
+    is_staff = models.BooleanField(default = False, verbose_name = "Curator")
+    is_contributor = models.BooleanField(default = False, verbose_name = "Contributor")
 
     class Meta:
         db_table = "auth_user_type"
@@ -55,7 +55,7 @@ class UserType(models.Model):
             return "Administrator"
         
         elif self.is_staff == True:
-            return "Officer"
+            return "Curator"
 
         elif self.is_contributor == True:
             return "Contributor"
@@ -137,7 +137,7 @@ class User(models.Model):
     
 
 class Notification(models.Model):
-    notificationtypes = (("post", "Post"), ("announcement", "Announcement"), ("intervention", "Intervention"),("post_valid", "Post Validated"),("achievement", "Achievement"))
+    notificationtypes = (("post", "Post"), ("announcement", "Announcement"), ("activity", "Activity"),("post_valid", "Post Validated"),("achievement", "Achievement"))
     notificationtype = models.CharField(max_length = 20, choices = notificationtypes)
     user = models.ForeignKey(User, on_delete = models.CASCADE)
     is_read = models.BooleanField(default = False)
@@ -177,13 +177,13 @@ class Site2(Site):
 
 
 class SocialAccount2(SocialAccount):
-    SocialAccount._meta.get_field("user").help_text = "Designates the username of the social account."
+    SocialAccount._meta.get_field("user").help_text = ""
     SocialAccount._meta.get_field("user").verbose_name = "Username"
-    SocialAccount._meta.get_field("provider").help_text = "Designates the provider name of the social account."
+    SocialAccount._meta.get_field("provider").help_text = ""
     SocialAccount._meta.get_field("provider").verbose_name = "Provider Name"
-    SocialAccount._meta.get_field("uid").help_text = "Designates the unique identifier for the social account."
+    SocialAccount._meta.get_field("uid").help_text = ""
     SocialAccount._meta.get_field("uid").verbose_name = "User Identifier"
-    SocialAccount._meta.get_field("extra_data").help_text = "Designates the extra information for the social account."
+    SocialAccount._meta.get_field("extra_data").help_text = ""
     SocialAccount._meta.get_field("extra_data").verbose_name = "Extra Information"
     SocialAccount._meta.verbose_name = "Account"
     SocialAccount._meta.verbose_name_plural = "Accounts"
@@ -197,16 +197,16 @@ class SocialAccount2(SocialAccount):
 
 
 class SocialToken2(SocialToken):
-    SocialToken._meta.get_field("app").help_text = "Designates the social application name for the token."
+    SocialToken._meta.get_field("app").help_text = ""
     SocialToken._meta.get_field("app").verbose_name = "Social Application"
-    SocialToken._meta.get_field("account").help_text = "Designates the social account for the token."
+    SocialToken._meta.get_field("account").help_text = ""
     SocialToken._meta.get_field("account").verbose_name = "Social Account"
-    SocialToken._meta.get_field("token").help_text = "Designates the token for the social account."
+    SocialToken._meta.get_field("token").help_text = ""
     SocialToken._meta.get_field("token").verbose_name = "Token"
-    SocialToken._meta.get_field("token_secret").help_text = "Designates the encrpyted token for the social account."
+    SocialToken._meta.get_field("token_secret").help_text = ""
     SocialToken._meta.get_field("token_secret").verbose_name = "Secret Token"
     SocialToken._meta.get_field("expires_at").verbose_name = "Expiration Date"
-    SocialToken._meta.get_field("expires_at").help_text = "Designates the expiration date of the token."
+    SocialToken._meta.get_field("expires_at").help_text = ""
     SocialToken._meta.verbose_name = "Social Token"
     SocialToken._meta.verbose_name_plural = "Social Tokens"
 
@@ -219,19 +219,19 @@ class SocialToken2(SocialToken):
     
 
 class SocialApp2(SocialApp):
-    SocialApp._meta.get_field("provider").help_text = "Designates the provider name of the social account."
+    SocialApp._meta.get_field("provider").help_text = ""
     SocialApp._meta.get_field("provider").verbose_name = "Provider Name"
-    SocialApp._meta.get_field("provider_id").help_text = "Designates the unique identifier of the social account provider."
+    SocialApp._meta.get_field("provider_id").help_text = ""
     SocialApp._meta.get_field("provider_id").verbose_name = "Provider ID"
-    SocialApp._meta.get_field("name").help_text = "Designates the name of the social application."
+    SocialApp._meta.get_field("name").help_text = ""
     SocialApp._meta.get_field("name").verbose_name = "Social Application"
-    SocialApp._meta.get_field("client_id").help_text = "Designates the unique identifier for the social application client."
+    SocialApp._meta.get_field("client_id").help_text = ""
     SocialApp._meta.get_field("client_id").verbose_name = "Client Identifier"
-    SocialApp._meta.get_field("secret").help_text = "Designates the encrpyted key for the social application."
+    SocialApp._meta.get_field("secret").help_text = ""
     SocialApp._meta.get_field("secret").verbose_name = "Secret Key"
-    SocialApp._meta.get_field("key").help_text = "Designates the key for the social application."
+    SocialApp._meta.get_field("key").help_text = ""
     SocialApp._meta.get_field("key").verbose_name = "Key"
-    SocialApp._meta.get_field("settings").help_text = "Designates the settings for the social application."
+    SocialApp._meta.get_field("settings").help_text = ""
     SocialApp._meta.get_field("settings").verbose_name = "Settings"
     SocialApp._meta.verbose_name = "Social Application"
     SocialApp._meta.verbose_name_plural = "Social Applications"

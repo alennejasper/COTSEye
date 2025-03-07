@@ -10,7 +10,7 @@ import datetime
 
 # Create your models here.
 class PostPhoto(models.Model):
-    post_photo = models.ImageField(default = "posts/default.png", null = True, upload_to = "posts", help_text = "Designates the photo of the post.", verbose_name = "Post Photo")
+    post_photo = models.ImageField(default = "posts/default.png", null = True, upload_to = "posts", verbose_name = "Post Photo")
     class Meta:
         db_table = "reports_post_photo"
         verbose_name = "Post Photo"
@@ -27,8 +27,8 @@ class PostPhoto(models.Model):
 
 
 class Coordinates(models.Model):
-    latitude = models.DecimalField(max_digits = 9, decimal_places = 6, help_text = "Designates the latitude of the post.", verbose_name = "Latitude")
-    longitude = models.DecimalField(max_digits = 9, decimal_places = 6, help_text = "Designates the longitude of the post.", verbose_name = "Longitude")
+    latitude = models.DecimalField(max_digits = 9, decimal_places = 6, verbose_name = "Latitude")
+    longitude = models.DecimalField(max_digits = 9, decimal_places = 6, verbose_name = "Longitude")
 
     class Meta:
         db_table = "reports_coordinates"
@@ -39,10 +39,10 @@ class Coordinates(models.Model):
         return str(self.latitude) + "° N, " + str(self.longitude) + "° E"
 
 class PostStatus(models.Model):
-    is_valid = models.BooleanField(default = False, help_text = "Designates that the post can be pinned into the contributors site.", verbose_name = "Valid")
-    is_invalid = models.BooleanField(default = False, help_text = "Designates that the post cannot be pinned into the contributors site.", verbose_name = "Invalid")
-    is_pending = models.BooleanField(default = False, help_text = "Designates that the post is under review to be pinned into the contributors site.", verbose_name = "Pending")
-    is_draft = models.BooleanField(default = False, help_text = "Designates that the post is under draft to be reviewed for the contributors site.", verbose_name = "Draft")
+    is_valid = models.BooleanField(default = False, verbose_name = "Valid")
+    is_invalid = models.BooleanField(default = False, verbose_name = "Invalid")
+    is_pending = models.BooleanField(default = False, verbose_name = "Pending")
+    is_draft = models.BooleanField(default = False, verbose_name = "Draft")
    
     class Meta:
         db_table = "reports_post_status"
@@ -103,9 +103,9 @@ class Density(models.Model):
 
 
 class PostObservation(models.Model):
-    size = models.ForeignKey(Size, on_delete = models.CASCADE, null = True, blank = True, help_text = "Designates the foreign key of the Size model.", verbose_name = "Size")
-    depth = models.ForeignKey(Depth, on_delete = models.CASCADE, null = True, blank = True, help_text = "Designates the foreign key of the Depth model.", verbose_name = "Depth")
-    density = models.ForeignKey(Density, on_delete = models.CASCADE, null = True, blank = True, help_text = "Designates the foreign key of the Density model.", verbose_name = "Density")
+    size = models.ForeignKey(Size, on_delete = models.CASCADE, null = True, blank = True, verbose_name = "Size")
+    depth = models.ForeignKey(Depth, on_delete = models.CASCADE, null = True, blank = True, verbose_name = "Depth")
+    density = models.ForeignKey(Density, on_delete = models.CASCADE, null = True, blank = True, verbose_name = "Density")
     weather = models.CharField(max_length = 65, null = True, blank = True, verbose_name = "Weather")
 
     class Meta:
@@ -118,17 +118,17 @@ class PostObservation(models.Model):
     
 
 class Post(models.Model):
-    user = models.ForeignKey(User, on_delete = models.CASCADE, help_text = "Designates the foreign key of the User model.", verbose_name = "User")
-    validator = models.ForeignKey(User, null = True, blank = True, on_delete = models.SET_NULL, help_text = "Designates the validator the post.", related_name = "validator", verbose_name = "Validator")
-    description = models.TextField(max_length = 255, help_text = "Designates the description of the post.", verbose_name = "Description")
-    coordinates = models.ForeignKey(Coordinates, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Coordinates model.", verbose_name = "Coordinates")
-    location = models.ForeignKey(Location, blank = True, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Location model.", verbose_name = "Location")
-    post_status = models.ForeignKey(PostStatus, on_delete = models.CASCADE, default = 4, help_text = "Designates the foreign key of the Post Status model.", verbose_name = "Post Status")
-    post_observation = models.ForeignKey(PostObservation, null = True, blank = True, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Post Observation model.", verbose_name = "Post Observation")
-    remarks = models.CharField(null = True, blank = True, max_length = 255, help_text = "Additional remarks for the post.", verbose_name = "Remarks")
-    post_photos = models.ManyToManyField(PostPhoto, blank = True, through = "PostGallery", help_text = "Designates the foreign key of the Post Photo model.", verbose_name = "Post Photos")
-    capture_date = models.DateTimeField(default = datetime.datetime.now, help_text = "Designates the capture date and time of the post.", verbose_name = "Capture Date")
-    creation_date = models.DateTimeField(default = datetime.datetime.now, help_text = "Designates the creation date and time of the post.", verbose_name = "Creation Date")
+    user = models.ForeignKey(User, on_delete = models.CASCADE, verbose_name = "User")
+    validator = models.ForeignKey(User, null = True, blank = True, on_delete = models.SET_NULL, related_name = "validator", verbose_name = "Validator")
+    description = models.TextField(max_length = 255, verbose_name = "Description")
+    coordinates = models.ForeignKey(Coordinates, on_delete = models.CASCADE, verbose_name = "Coordinates")
+    location = models.ForeignKey(Location, blank = True, on_delete = models.CASCADE, verbose_name = "Location")
+    post_status = models.ForeignKey(PostStatus, on_delete = models.CASCADE, default = 4, verbose_name = "Post Status")
+    post_observation = models.ForeignKey(PostObservation, null = True, blank = True, on_delete = models.CASCADE, verbose_name = "Post Observation")
+    remarks = models.CharField(null = True, blank = True, max_length = 255, verbose_name = "Remarks")
+    post_photos = models.ManyToManyField(PostPhoto, blank = True, through = "PostGallery", verbose_name = "Post Photos")
+    capture_date = models.DateTimeField(default = datetime.datetime.now, verbose_name = "Capture Date")
+    creation_date = models.DateTimeField(default = datetime.datetime.now, verbose_name = "Creation Date")
 
     class Meta:
         db_table = "reports_post"
@@ -143,8 +143,8 @@ class Post(models.Model):
         return self.validator is not None
 
 class PostGallery(models.Model):
-    post_photos = models.ForeignKey(PostPhoto, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Post Photos model.", verbose_name = "Post Photo")
-    post = models.ForeignKey(Post, on_delete = models.CASCADE, help_text = "Designates the foreign key of the Post model.", verbose_name = "Post")
+    post_photos = models.ForeignKey(PostPhoto, on_delete = models.CASCADE, verbose_name = "Post Photo")
+    post = models.ForeignKey(Post, on_delete = models.CASCADE, verbose_name = "Post")
 
     class Meta:
         db_table = "reports_post_gallery"

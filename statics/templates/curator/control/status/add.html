@@ -1,0 +1,29 @@
+{% extends "curator/control/index/index.html" %}
+
+{% block content %}
+    <h1 style = "border-bottom: 1px solid rgba(229, 229, 229); font-family: 'Montserrat'; font-weight: 700; font-size: 20px; color: rgb(52, 144, 242); text-align: left; text-transform: uppercase;">Create Status</h1>
+
+    <form id = "statusForm" method = "post">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+        
+        <button style = "padding-left: 10px !important; padding-right: 10px !important; padding-top: 5px !important; padding-bottom: 5px !important; font-family: 'Montserrat'; font-weight: 400; font-size: 12px; background-color: rgb(52, 144, 242);" type = "button" class = "btn btn-primary" id = "submitButton">Save</button>
+    </form>
+
+    <script src = "https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        document.getElementById("submitButton").addEventListener("click", function(event){
+            event.preventDefault();
+
+            const username = "{{request.user.username}}";
+
+            Swal.fire({title: "Alert!", text: username + ", " + "are you sure that you want to update the infestation?", icon: "warning", showCancelButton: true, confirmButtonColor: "#3085D6", cancelButtonColor: "#D33", confirmButtonText: "Yes"}).then((result) => {
+                if (result.isConfirmed){
+                    document.getElementById("statusForm").submit();
+                };
+            });
+        });
+    </script>
+{% endblock %}

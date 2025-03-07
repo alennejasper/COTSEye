@@ -329,8 +329,8 @@ def UpdateStatusLog(sender, instance, **kwargs):
             if instance.location != status.location:
                 changes.append("Changed Location")
             
-            if instance.intervention != status.intervention:
-                changes.append("Changed Intervention")
+            if instance.activity != status.activity:
+                changes.append("Changed Activity")
             
             if instance.statustype != status.statustype:
                 changes.append("Changed Status Type")
@@ -427,8 +427,8 @@ def UpdateAnnouncementLog(sender, instance, **kwargs):
             if instance.announcement_photo != announcement.announcement_photo:
                 changes.append("Changed Announcement Photo")
             
-            if instance.release_date != announcement.release_date:
-                changes.append("Changed Release Date")
+            if instance.event_date != announcement.event_date:
+                changes.append("Changed Event Date")
             
             if instance.creation_date != announcement.creation_date:
                 changes.append("Changed Creation Date")
@@ -455,8 +455,8 @@ def DeleteAnnouncementLog(sender, instance, **kwargs):
     LogEntry.objects.create(content_type = ContentType.objects.get_for_model(instance), object_id = instance.id, object_repr = str(instance), action_flag = DELETION, change_message = "Deleted.", user = Account.objects.get(username = request.user.username), action_time = timezone.now())
 
 
-@receiver(post_save, sender = Intervention)
-def AddInterventionLog(sender, instance, created, **kwargs):
+@receiver(post_save, sender = Activity)
+def AddActivityLog(sender, instance, created, **kwargs):
     if created:
         import inspect
 
@@ -472,14 +472,14 @@ def AddInterventionLog(sender, instance, created, **kwargs):
         LogEntry.objects.create(content_type = ContentType.objects.get_for_model(instance), object_id = instance.id, object_repr = str(instance), action_flag = ADDITION, change_message = "Added.", user = Account.objects.get(username = request.user.username), action_time = timezone.now())
 
 
-@receiver(pre_save, sender = Intervention)
-def UpdateInterventionLog(sender, instance, **kwargs):
+@receiver(pre_save, sender = Activity)
+def UpdateActivityLog(sender, instance, **kwargs):
     if instance.id:
         try:
-            intervention = Intervention.objects.get(id = instance.id)
+            activity = Activity.objects.get(id = instance.id)
 
-        except Intervention.DoesNotExist:
-            intervention = None
+        except Activity.DoesNotExist:
+            activity = None
 
         import inspect
 
@@ -494,32 +494,32 @@ def UpdateInterventionLog(sender, instance, **kwargs):
 
         changes = []
         
-        if intervention:
-            if instance.title != intervention.title:
+        if activity:
+            if instance.title != activity.title:
                 changes.append("Changed Title")
             
-            if instance.details != intervention.details:
+            if instance.details != activity.details:
                 changes.append("Changed Details")
 
-            if instance.location != intervention.location:
+            if instance.location != activity.location:
                 changes.append("Changed Location")
             
-            if instance.statustype != intervention.statustype:
+            if instance.statustype != activity.statustype:
                 changes.append("Changed Status Type")
             
-            if instance.volunteer_amount != intervention.volunteer_amount:
+            if instance.volunteer_amount != activity.volunteer_amount:
                 changes.append("Changed Volunteer Amount")
             
-            if instance.caught_amount != intervention.caught_amount:
+            if instance.caught_amount != activity.caught_amount:
                 changes.append("Changed Caught Amount")
             
-            if instance.intervention_photo != intervention.intervention_photo:
-                changes.append("Changed Intervention Photo")
+            if instance.activity_photo != activity.activity_photo:
+                changes.append("Changed Activity Photo")
             
-            if instance.event_date != intervention.event_date:
-                changes.append("Changed Event Date")
+            if instance.activity_date != activity.activity_date:
+                changes.append("Changed Activity Date")
             
-            if instance.creation_date != intervention.creation_date:
+            if instance.creation_date != activity.creation_date:
                 changes.append("Changed Creation Date")
                 
             if changes:
@@ -528,8 +528,8 @@ def UpdateInterventionLog(sender, instance, **kwargs):
                 LogEntry.objects.create(content_type = ContentType.objects.get_for_model(instance), object_id = instance.id, object_repr = str(instance), action_flag = CHANGE, change_message = message, user = Account.objects.get(username = request.user.username), action_time = timezone.now())
 
 
-@receiver(post_delete, sender = Intervention)
-def DeleteInterventionLog(sender, instance, **kwargs):
+@receiver(post_delete, sender = Activity)
+def DeleteActivityLog(sender, instance, **kwargs):
     import inspect
 
     for information in inspect.stack():

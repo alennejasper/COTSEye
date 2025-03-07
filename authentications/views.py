@@ -16,10 +16,11 @@ from django.utils.html import strip_tags
 from allauth.socialaccount.signals import pre_social_login
 from authentications.forms import AccountForm, UserForm, ProfileForm
 from authentications.models import *
-from managements.models import Status, Announcement, Intervention, Location, Municipality, Barangay
+from managements.models import Status, Announcement, Activity, Location, Municipality, Barangay
 from reports.models import Post
 from django.db.models import Count
 from operator import itemgetter
+from allauth.socialaccount.models import SocialAccount
 
 import base64
 import json
@@ -41,7 +42,7 @@ def PublicServiceHome(request):
 
     username = "public/anyone"
 
-    latest_announcements = Announcement.objects.all().order_by("-release_date")[:3]
+    latest_announcements = Announcement.objects.all().order_by("-event_date")[:3]
 
     valid_posts = Post.objects.filter(post_status = 1).order_by("-capture_date")[:3]
 
@@ -157,7 +158,10 @@ def ContributorServiceRegister(request):
 def ContributorServiceLogin(request):
     @receiver(pre_social_login)
     def UpdateUser(sender, request, sociallogin, **kwargs):
-        if sociallogin.account.provider == "google":
+        if not request or not hasattr(request, "is_contributor"):
+            return
+    
+        elif sociallogin.account.provider == "google":
             if sociallogin.user.usertype_id == 1 or sociallogin.user.usertype_id == 2:
                 messages.error(request, "Account not found. Kindly create a new one and try again.")
                 
@@ -267,6 +271,8 @@ def ContributorServiceLogin(request):
                         
     pre_social_login.connect(UpdateUser, sender = None)
      
+    request.is_contributor = True
+
     if request.method == "POST":
         username = request.POST.get("username")
         
@@ -294,7 +300,7 @@ def ContributorServiceLogin(request):
         
             username = user.username
 
-            messages.success(request, username + ", " + "you have successfully logged out. Have a great day ahead!")
+            messages.info(request, username + ", " + "you need authorization to proceed. Kindly contact support for assistance.")
 
             return redirect("Contributor Service Login")
         
@@ -303,7 +309,7 @@ def ContributorServiceLogin(request):
 
             username = user.username
 
-            messages.success(request, username + ", " + "you have successfully logged out. Have a great day ahead!")
+            messages.info(request, username + ", " + "you need authorization to proceed. Kindly contact support for assistance.")
 
             return redirect("Contributor Service Login")
 
@@ -353,7 +359,7 @@ def ContributorServiceHome(request):
 
     unread_notifications = Notification.objects.filter(user = user, is_read = False, creation_date__gte = notification_life).order_by("-creation_date")
 
-    latest_announcements = Announcement.objects.all().order_by("-release_date")[:3]
+    latest_announcements = Announcement.objects.all().order_by("-event_date")[:3]
 
     valid_posts = Post.objects.filter(post_status = 1).order_by("-capture_date")[:3]
             
@@ -430,8 +436,8 @@ def ContributorServiceMarkNotificationAsRead(request, id):
         elif notification.contenttype.model == "announcement":
             return redirect("Contributor Service Announcement Read", id = notification.key)
         
-        elif notification.contenttype.model == "intervention":
-            return redirect("Contributor Service Intervention Read", id = notification.key)
+        elif notification.contenttype.model == "activity":
+            return redirect("Contributor Service Activity Read", id = notification.key)
         
         elif notification.notificationtype  == "achievement":
             return redirect("Contributor Service Profile")
@@ -657,17 +663,17 @@ def ContributorServiceLogout(request):
     return redirect("Public Service Home")
 
 
-def OfficerControlFallback(request):
-    officer = "officer/anyone"
+def CuratorControlFallback(request):
+    curator = "curator/anyone"
 
     fallback = "Your device screen is too small to view this page. Please try again on a device with a screen width of 1080px or higher."
 
-    context = {"officer": officer, "fallback": fallback}
+    context = {"curator": curator, "fallback": fallback}
     
-    return render(request, "officer/control/fallback/fallback.html", context)
+    return render(request, "curator/control/fallback/fallback.html", context)
 
 
-def OfficerControlRegister(request):
+def CuratorControlRegister(request):
     username = "public/anyone"
 
     account_form = AccountForm()
@@ -691,7 +697,7 @@ def OfficerControlRegister(request):
             account = Account.objects.create(username = account.username, password = account.password, usertype = usertype, is_active = inactive)
             
             if Account.objects.filter(username = account.username, password = account.password, usertype = usertype, is_active = inactive).exists():
-                officer = User.objects.create(account = account, first_name = user.first_name, last_name = user.last_name, email = user.email, phone_number = user.phone_number)
+                curator = User.objects.create(account = account, first_name = user.first_name, last_name = user.last_name, email = user.email, phone_number = user.phone_number)
                 
                 administrators = User.objects.filter(account__usertype_id = 1)
 
@@ -702,7 +708,7 @@ def OfficerControlRegister(request):
 
                     host = request.META["HTTP_HOST"]
 
-                    template = render_to_string("officer/control/register/email.html", {"administrator": administrator.account.username, "officer": officer.account.username, "account": account, "scheme": scheme, "host": host})
+                    template = render_to_string("curator/control/register/email.html", {"administrator": administrator.account.username, "curator": curator.account.username, "account": account, "scheme": scheme, "host": host})
 
                     body = strip_tags(template)
 
@@ -730,7 +736,7 @@ def OfficerControlRegister(request):
                 
                 messages.success(request, username + ", " + "your account has been successfully registered. Kindly wait for an email approval from the administrator.")
                 
-                return redirect("Officer Control Login")
+                return redirect("Curator Control Login")
         
         else:
             for field, errors in account_form.errors.items():
@@ -746,13 +752,16 @@ def OfficerControlRegister(request):
 
     context = {"username": username, "account_form": account_form, "user_form": user_form}
     
-    return render(request, "officer/control/register/register.html", context)
+    return render(request, "curator/control/register/register.html", context)
 
 
-def OfficerControlLogin(request):
+def CuratorControlLogin(request):
     @receiver(pre_social_login)
     def UpdateUser(sender, request, sociallogin, **kwargs):
-        if sociallogin.account.provider == "google":
+        if not request or not hasattr(request, "is_staff"):
+            return
+        
+        elif sociallogin.account.provider == "google":
             if sociallogin.user.usertype_id == 1 or sociallogin.user.usertype_id == 3:
                 messages.error(request, "Account not found. Kindly create a new one and try again.")
                 
@@ -760,7 +769,7 @@ def OfficerControlLogin(request):
                 
                 sociallogin.state["save"] = False
                 
-                return redirect("Officer Control Login")
+                return redirect("Curator Control Login")
 
             elif sociallogin.user.is_active == False:
                 messages.error(request, "Account is not active. Kindly contact support for assistance.")
@@ -769,7 +778,7 @@ def OfficerControlLogin(request):
                 
                 sociallogin.state["save"] = False
                 
-                return redirect("Officer Control Login")
+                return redirect("Curator Control Login")
             
             else:
                 if sociallogin.account.provider == "google":
@@ -813,7 +822,7 @@ def OfficerControlLogin(request):
                 
                 sociallogin.state["save"] = False
                 
-                return redirect("Officer Control Login")
+                return redirect("Curator Control Login")
             
             elif sociallogin.user.is_active == False:
                 messages.error(request, "Account is not active. Kindly contact support for assistance.")
@@ -822,7 +831,7 @@ def OfficerControlLogin(request):
                 
                 sociallogin.state["save"] = False
                 
-                return redirect("Officer Control Login")
+                return redirect("Curator Control Login")
             
             else:
                 if sociallogin.account.provider == "facebook":                  
@@ -860,6 +869,8 @@ def OfficerControlLogin(request):
     
     pre_social_login.connect(UpdateUser, sender = None)
 
+    request.is_staff = True
+    
     if request.method == "POST":
         username = request.POST.get("username")
         
@@ -871,7 +882,7 @@ def OfficerControlLogin(request):
             if account.usertype_id == 2:
                 login(request, account)
                 
-                return redirect("Officer Control Home")
+                return redirect("Curator Control Home")
 
             else:
                 messages.error(request, "Account not found. Kindly create a new one and try again.")
@@ -887,25 +898,25 @@ def OfficerControlLogin(request):
         
             username = user.username
 
-            messages.success(request, username + ", " + "you have successfully logged out. Have a great day ahead!")
+            messages.info(request, username + ", " + "you need authorization to proceed. Kindly contact support for assistance.")
 
-            return redirect("Officer Control Login")
+            return redirect("Curator Control Login")
         
         elif user.usertype_id == 1:
             logout(request)
 
             username = user.username
 
-            messages.success(request, username + ", " + "you have successfully logged out. Have a great day ahead!")
+            messages.info(request, username + ", " + "you need authorization to proceed. Kindly contact support for assistance.")
 
-            return redirect("Officer Control Login")
+            return redirect("Curator Control Login")
         
     context = {}
 
-    return render(request, "officer/control/login/login.html", context)
+    return render(request, "curator/control/login/login.html", context)
 
 
-def OfficerCheck(account):
+def CuratorCheck(account):
     try:
         return account.is_authenticated and account.usertype_id == 2 != None
     
@@ -913,18 +924,18 @@ def OfficerCheck(account):
             return False
     
 
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
-def OfficerControlHome(request):
+@login_required(login_url = "Curator Control Login")
+@user_passes_test(CuratorCheck, login_url = "Curator Control Login")
+def CuratorControlHome(request):
     tab_number = 1
 
     username = request.user.username
 
     user_profile = User.objects.get(account = request.user)
 
-    valid_posts = Post.objects.filter(post_status__is_valid=True)
+    valid_posts = Post.objects.filter(post_status__is_valid = True)
 
-    leaderboard = valid_posts.values('user__account__username').annotate(post_count=Count('id')).order_by('-post_count')
+    leaderboard = valid_posts.values("user__account__username").annotate(post_count = Count("id")).order_by("-post_count")
 
     user = User.objects.get(account = request.user)
 
@@ -945,7 +956,7 @@ def OfficerControlHome(request):
     status_data = []
 
     for status_entry in latest_status_entries:
-        status_data.append({"municipality": status_entry.location.municipality.municipality_name, "caught_amount": status_entry.caught_overall, "volunteer_amount": status_entry.volunteer_overall, "status_type": str(status_entry.statustype.statustype), "event_date": status_entry.onset_date.strftime("%m/%d/%Y")})
+        status_data.append({"municipality": status_entry.location.municipality.municipality_name, "caught_amount": status_entry.caught_overall, "volunteer_amount": status_entry.volunteer_overall, "status_type": str(status_entry.statustype.statustype), "activity_date": status_entry.onset_date.strftime("%m/%d/%Y")})
     
     status_order = {"Critical": 1, "High": 2, "Moderate": 3, "Low": 4, "None": 5}
 
@@ -983,23 +994,23 @@ def OfficerControlHome(request):
     total_caught_overall = 0
 
     for location in locations:
-        interventions_query = Intervention.objects.filter(location = location).order_by("event_date")
+        activities_query = Activity.objects.filter(location = location).order_by("activity_date")
         
         if year_filter:
             start_date = datetime.datetime.strptime(year_filter, "%Y").replace(month = 1, day = 1)
 
             end_date = datetime.datetime.strptime(year_filter, "%Y").replace(month = 12, day = 31)
 
-            interventions_query = interventions_query.filter(event_date__range = [start_date, end_date])
+            activities_query = activities_query.filter(activity_date__range = [start_date, end_date])
 
         else:
             start_date = datetime.datetime.strptime("2024", "%Y").replace(month = 1, day = 1)
 
             end_date = datetime.datetime.strptime("2024", "%Y").replace(month = 12, day = 31)
 
-            interventions_query = interventions_query.filter(event_date__range = [start_date, end_date])
+            activities_query = activities_query.filter(activity_date__range = [start_date, end_date])
 
-        event_dates = []
+        activity_dates = []
 
         caught_overalls = []
         
@@ -1011,36 +1022,36 @@ def OfficerControlHome(request):
         
         caught_overall_sum = 0
 
-        for intervention in interventions_query:
-            if intervention.statustype:
-                event_dates.append(intervention.event_date.strftime("%Y-%m-%d"))
+        for activity in activities_query:
+            if activity.statustype:
+                activity_dates.append(activity.activity_date.strftime("%Y-%m-%d"))
 
-                caught_overalls.append(intervention.caught_amount)
+                caught_overalls.append(activity.caught_amount)
                 
-                titles.append(intervention.title)
+                titles.append(activity.title)
                 
-                status_types.append(str(intervention.statustype))
+                status_types.append(str(activity.statustype))
                 
-                volunteer_amounts.append(intervention.volunteer_amount)
+                volunteer_amounts.append(activity.volunteer_amount)
                 
-                caught_overall_sum += intervention.caught_amount
+                caught_overall_sum += activity.caught_amount
 
         total_caught_overall += caught_overall_sum
 
-        if event_dates:
-            min_date = datetime.datetime.strptime(event_dates[0], "%Y-%m-%d")
+        if activity_dates:
+            min_date = datetime.datetime.strptime(activity_dates[0], "%Y-%m-%d")
 
-            max_date = datetime.datetime.strptime(event_dates[-1], "%Y-%m-%d")
+            max_date = datetime.datetime.strptime(activity_dates[-1], "%Y-%m-%d")
             
             current_date = min_date
             
-            date_set = set(event_dates)
+            date_set = set(activity_dates)
 
             while current_date <= max_date:
                 date_string = current_date.strftime("%Y-%m-%d")
 
                 if date_string not in date_set:
-                    event_dates.append(date_string)
+                    activity_dates.append(date_string)
                 
                     caught_overalls.append(None)
                 
@@ -1052,21 +1063,21 @@ def OfficerControlHome(request):
                 
                 current_date += timedelta(days = 1)
 
-            sorted_data = sorted(zip(event_dates, caught_overalls, titles, status_types, volunteer_amounts))
+            sorted_data = sorted(zip(activity_dates, caught_overalls, titles, status_types, volunteer_amounts))
 
-            event_dates, caught_overalls, titles, status_types, volunteer_amounts = zip(*sorted_data)
+            activity_dates, caught_overalls, titles, status_types, volunteer_amounts = zip(*sorted_data)
 
-            for item in range(len(event_dates)):
-                data.append({"location": f"{location.barangay.barangay_name}, {location.municipality.municipality_name}", "municipality": location.municipality.municipality_name, "event_date": event_dates[item], "caught_amount": caught_overalls[item], "title": titles[item], "status_type": status_types[item], "volunteer_amount": volunteer_amounts[item]})
+            for item in range(len(activity_dates)):
+                data.append({"location": f"{location.barangay.barangay_name}, {location.municipality.municipality_name}", "municipality": location.municipality.municipality_name, "activity_date": activity_dates[item], "caught_amount": caught_overalls[item], "title": titles[item], "status_type": status_types[item], "volunteer_amount": volunteer_amounts[item]})
 
     context = {"leaderboard": leaderboard, "tab_number": tab_number, "username": username, "user_profile": user_profile, "unread_notifications": unread_notifications, "chart_data": json.dumps(data), "locations": locations, "municipalities": municipalities, "barangays": barangays, "total_caught_overall": total_caught_overall, "selected_municipality": municipality_filter, "selected_barangay": barangay_filter, "year_filter": year_filter, "current_year": timezone.now().year, "status_data": status_data}
 
-    return render(request, "officer/control/home/home.html", context)
+    return render(request, "curator/control/home/home.html", context)
 
 
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
-def OfficerControlNotification(request):
+@login_required(login_url = "Curator Control Login")
+@user_passes_test(CuratorCheck, login_url = "Curator Control Login")
+def CuratorControlNotification(request):
     tab_number = 6 
 
     notification_number = 1
@@ -1095,12 +1106,12 @@ def OfficerControlNotification(request):
     
     context = {"tab_number": tab_number, "notification_number": notification_number, "unread_notifications": unread_notifications, "unread_posts": unread_posts, "read_posts": read_posts}
     
-    return render(request, "officer/control/notification/notification.html", context)
+    return render(request, "curator/control/notification/notification.html", context)
 
 
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
-def OfficerControlNotificationMark(request, id):
+@login_required(login_url = "Curator Control Login")
+@user_passes_test(CuratorCheck, login_url = "Curator Control Login")
+def CuratorControlNotificationMark(request, id):
     post = Post.objects.get(id = id)
 
     post.read_status = True
@@ -1112,12 +1123,12 @@ def OfficerControlNotificationMark(request, id):
         
     post.save()
 
-    return redirect("Officer Control Notification")
+    return redirect("Curator Control Notification")
 
 
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
-def OfficerControlMarkNotificationAsRead(request, id):
+@login_required(login_url = "Curator Control Login")
+@user_passes_test(CuratorCheck, login_url = "Curator Control Login")
+def CuratorControlNotificationRead(request, id):
     if request.user.is_authenticated:
         user = User.objects.get(account = request.user)
 
@@ -1128,18 +1139,18 @@ def OfficerControlMarkNotificationAsRead(request, id):
         notification.save()
 
         if notification.contenttype.model == "post":
-            return redirect("Officer Control Sighting Read", id = notification.key)
+            return redirect("Curator Control Sighting Read", id = notification.key)
         
         else:
-            return redirect("Officer Control Notification")
+            return redirect("Curator Control Notification")
         
     else:
-        return redirect("Officer Control Login")
+        return redirect("Curator Control Login")
     
     
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
-def OfficerControlProfile(request):
+@login_required(login_url = "Curator Control Login")
+@user_passes_test(CuratorCheck, login_url = "Curator Control Login")
+def CuratorControlProfile(request):
     tab_number = 7 
 
     profile_number = 1
@@ -1158,12 +1169,12 @@ def OfficerControlProfile(request):
 
     context = {"tab_number": tab_number, "profile_number": profile_number, "account": account, "user": user, "username": username, "user_profile": user_profile, "unread_notifications": unread_notifications}
 
-    return render(request, "officer/control/profile/profile.html", context)
+    return render(request, "curator/control/profile/profile.html", context)
 
 
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
-def OfficerControlProfileUpdate(request):
+@login_required(login_url = "Curator Control Login")
+@user_passes_test(CuratorCheck, login_url = "Curator Control Login")
+def CuratorControlProfileUpdate(request):
     profile_number = 2
 
     user = User.objects.get(account = request.user)
@@ -1186,7 +1197,7 @@ def OfficerControlProfileUpdate(request):
 
             messages.success(request, username + ", " + "your information input was recorded online for COTSEye.")
 
-            return redirect("Officer Control Profile")
+            return redirect("Curator Control Profile")
         
         else:
             for field, errors in profile_form.errors.items():
@@ -1197,12 +1208,12 @@ def OfficerControlProfileUpdate(request):
 
     context = {"profile_number": profile_number, "user": user, "username": username, "user_profile": user_profile, "profile_form": profile_form, "unread_notifications": unread_notifications}
     
-    return render(request, "officer/control/profile/update.html", context)
+    return render(request, "curator/control/profile/update.html", context)
 
 
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
-def OfficerControlProfileDelete(request, id):
+@login_required(login_url = "Curator Control Login")
+@user_passes_test(CuratorCheck, login_url = "Curator Control Login")
+def CuratorControlProfileDelete(request, id):
     account = Account.objects.get(id = id)
 
     account.is_active = False
@@ -1220,7 +1231,7 @@ def OfficerControlProfileDelete(request, id):
 
         host = request.META["HTTP_HOST"]
 
-        template = render_to_string("officer/control/profile/email.html", {"administrator": administrator.account.username, "officer": user.account.username, "account": account, "scheme": scheme, "host": host})
+        template = render_to_string("curator/control/profile/email.html", {"administrator": administrator.account.username, "curator": user.account.username, "account": account, "scheme": scheme, "host": host})
 
         body = strip_tags(template)
 
@@ -1248,19 +1259,19 @@ def OfficerControlProfileDelete(request, id):
 
     messages.success(request, username + ", " + "your account was deactivated online from COTSEye.")
 
-    return redirect("Officer Control Login")
+    return redirect("Curator Control Login")
 
 
-@login_required(login_url = "Officer Control Login")
-@user_passes_test(OfficerCheck, login_url = "Officer Control Login")
-def OfficerControlLogout(request):
+@login_required(login_url = "Curator Control Login")
+@user_passes_test(CuratorCheck, login_url = "Curator Control Login")
+def CuratorControlLogout(request):
     username = request.user.username
 
     logout(request)
     
     messages.success(request, username + ", " + "you have successfully logged out. Have a great day ahead!")
     
-    return redirect("Officer Control Login")
+    return redirect("Curator Control Login")
 
 
 def AdministratorControlFallback(request):

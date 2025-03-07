@@ -209,14 +209,14 @@
         <div class = "content">
             <div class = "email">
                 <div class = "card-header">
-                    <header>Attention! {{officer}},</header>
+                    <header>Attention! {{curator}},</header>
                 </div>
 
                 <div class = "card-body">
                     <p>This alert message serves to inform that a report has been succesfully sent by contributor {{contributor}}. Kindly review the report at the earliest convenience.</p>
 
                     <div class = "button">
-                        <a class = "review-post" href = "{{scheme}}://{{host}}{% url 'Officer Control Sighting Read Redirect' post.id %}">Review</a>
+                        <a class = "review-post" href = "{{scheme}}://{{host}}{% url 'Curator Control Sighting Read Redirect' post.id %}">Review</a>
                     </div> 
                 </div>
             </div>

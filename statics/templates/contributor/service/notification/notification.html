@@ -1,4 +1,4 @@
-{% extends 'contributor/service/index/index.html' %}
+{% extends "contributor/service/index/index.html" %}
 {% load static %}
 
 {% block content %}
@@ -85,12 +85,12 @@
                                 {% endif %}
                             </a>
 
-                        {% elif notification.contenttype.model == "intervention" %}
+                        {% elif notification.contenttype.model == "activity" %}
                             <a href = "{% url 'Contributor Service Notification Read' id=notification.id %}">
                                 {% if notification.is_read == True %}
                                     <div class = "notification-read">
                                         <div class = "item-header">
-                                            <img src = "{{notification.object.intervention_photo.url}}">
+                                            <img src = "{{notification.object.activity_photo.url}}">
 
                                             <div class = "item-context">
                                                 <p><strong>{{notification.object.hosting_agency}}</strong> held an activity.</p>
@@ -105,7 +105,7 @@
                                 {% else %}
                                     <div class = "notification-unread">
                                         <div class = "item-header">
-                                            <img src = "{{notification.object.intervention_photo.url}}">
+                                            <img src = "{{notification.object.activity_photo.url}}">
 
                                             <div class = "item-context">
                                                 <p><strong>{{notification.object.hosting_agency}}</strong> held an activity.</p>

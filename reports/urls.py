@@ -35,25 +35,25 @@ urlpatterns = [
 
     path("contributor/service/post/draft/send/fetch/", views.ContributorServicePostDraftSendFetch, name = "Contributor Service Post Draft Send Fetch"),
 
-    path("officer/control/sighting/", views.OfficerControlSighting, name = "Officer Control Sighting"),
+    path("curator/control/sighting/", views.CuratorControlSighting, name = "Curator Control Sighting"),
     
-    path("officer/control/sighting/fetch/<int:id>/", views.OfficerControlSightingFetch, name = "Officer Control Sighting Fetch"),
+    path("curator/control/sighting/fetch/<int:id>/", views.CuratorControlSightingFetch, name = "Curator Control Sighting Fetch"),
 
-    path("officer/control/sighting/read/<int:id>/", views.OfficerControlSightingRead, name = "Officer Control Sighting Read"),
+    path("curator/control/sighting/read/<int:id>/", views.CuratorControlSightingRead, name = "Curator Control Sighting Read"),
 
-    path("officer/control/sighting/read/<int:id>/redirect/", views.OfficerControlSightingReadRedirect, name = "Officer Control Sighting Read Redirect"),
+    path("curator/control/sighting/read/<int:id>/redirect/", views.CuratorControlSightingReadRedirect, name = "Curator Control Sighting Read Redirect"),
 
-    path("officer/control/sighting/add/<int:id>/", views.OfficerControlSightingAdd, name = "Officer Control Sighting Add"),
+    path("curator/control/sighting/add/<int:id>/", views.CuratorControlSightingAdd, name = "Curator Control Sighting Add"),
 
-    path("officer/control/sighting/update/<int:id>/", views.OfficerControlSightingUpdate, name = "Officer Control Sighting Update"),
+    path("curator/control/sighting/update/<int:id>/", views.CuratorControlSightingUpdate, name = "Curator Control Sighting Update"),
 
-    path("officer/control/sighting/location/update/<int:id>/", views.OfficerControlSightingLocationUpdate, name = "Officer Control Sighting Location Update"), 
+    path("curator/control/sighting/location/update/<int:id>/", views.CuratorControlSightingLocationUpdate, name = "Curator Control Sighting Location Update"), 
 
-    path("officer/control/sighting/valid/", views.OfficerControlSightingValid, name = "Officer Control Sighting Valid"),
+    path("curator/control/sighting/valid/", views.CuratorControlSightingValid, name = "Curator Control Sighting Valid"),
 
-    path("officer/control/sighting/invalid/", views.OfficerControlSightingInvalid, name = "Officer Control Sighting Invalid"),
+    path("curator/control/sighting/invalid/", views.CuratorControlSightingInvalid, name = "Curator Control Sighting Invalid"),
     
-    path("officer/control/sighting/delete/<int:id>/", views.OfficerControlSightingDelete, name = "Officer Control Sighting Delete"),
+    path("curator/control/sighting/delete/<int:id>/", views.CuratorControlSightingDelete, name = "Curator Control Sighting Delete"),
 
     path("service/post/valid/read/<int:id>/redirect/", views.PostValidReadRedirect, name = "Post Valid Read Redirect"),
 ] 

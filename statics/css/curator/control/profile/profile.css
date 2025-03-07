@@ -1,0 +1,276 @@
+.profile-body{
+    position: relative;
+    width: 100% !important;
+    height: 100%;
+    color: #003755;
+}
+
+.profile-body h1{
+    margin-bottom: 0px !important;
+    text-align: center;     
+    font-weight: 700;       
+    font-size: 24px;        
+    font-family: "Montserrat";
+    color: #003755;
+}
+
+.profile-body .profile{
+    display: grid;
+    place-items: center;
+    align-items: center; 
+    justify-content: center;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 15px;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .profile-body .profile{
+        grid-template-columns: 100%;
+    }
+}
+
+.profile-body .profile-section{
+    display: flex;                   
+    align-items: center; 
+    justify-content: center;          
+    flex-direction: column;
+    row-gap: 15px;
+    width: 100%;               
+    height: fit-content;
+    text-align: center;                                   
+}
+
+/* @media screen and (min-width: 320px) and (max-width: 775px){
+    .profile-body .profile-section{
+        row-gap: 5px;
+    }
+} */
+
+.profile-body .profile-section img{
+    width: 350px;
+    height: 350px;
+    border: 1px solid #003755;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 320px) and (max-width: 775px){
+    .profile-body .profile-section img{
+        width: 175px;
+        height: 175px;
+    }
+}
+
+.profile-body .profile-section h1{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: "Montserrat";    
+    font-weight: 700;       
+    font-size: 24px;     
+    color: #003755;   
+    text-align: center;  
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .profile-body .profile-section h1{
+        font-size: 22px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .profile-body .profile-section h1{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .profile-body .profile-section h1{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .profile-body .profile-section h1{
+        font-size: 16px !important;
+    }
+}
+
+.profile-body .profile-section p{
+    display: flex;
+    align-items: center;
+    margin-bottom: 0px !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 20px !important;
+    color: #003755;
+    text-transform: uppercase;
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .profile-body .profile-section p{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .profile-body .profile-section p{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .profile-body .profile-section p{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .profile-body .profile-section p{
+        font-size: 12px !important;
+    }
+}
+
+.profile-body .profile-details{
+    display: grid;
+    align-items: center; 
+    row-gap: 15px;
+    width: 100%;               
+    height: fit-content;
+}
+
+/* @media screen and (min-width: 320px) and (max-width: 775px){
+    .profile-body .profile-details{
+        row-gap: 5px;
+    }
+} */
+
+.profile-body .profile-details .profile-context p:first-child{
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    margin-bottom: 0px !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: "Montserrat";
+    font-weight: 400;       
+    font-size: 20px;
+    color: #003755;                          
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .profile-body .profile-details .profile-context p:first-child{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .profile-body .profile-details .profile-context p:first-child{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .profile-body .profile-details .profile-context p:first-child{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .profile-body .profile-details .profile-context p:first-child{
+        font-size: 12px !important;
+    }
+}
+
+.profile-body .profile-details .profile-context p:last-child{
+    display: flex;
+    align-items: center;
+    margin-bottom: 0px !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: "Montserrat";
+    font-weight: 700;       
+    font-size: 24px;
+    color: #003755;                          
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .profile-body .profile-details .profile-context p:last-child{
+        font-size: 22px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .profile-body .profile-details .profile-context p:last-child{
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .profile-body .profile-details .profile-context p:last-child{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .profile-body .profile-details .profile-context p:last-child{
+        font-size: 16px !important;
+    }
+    
+}
+
+.profile-body .button{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    width: 100%;
+}
+
+.profile-body a{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 100%;
+    border-radius: 5px;
+    outline: none !important;
+    font-family: "Montserrat";
+    text-align: center;                                   
+    font-weight: 400;
+    font-size: 20px;
+    color: #FFFFFF !important;
+    background-color: #003755 !important;
+    text-decoration: none !important;
+    cursor: pointer;  
+}
+
+@media screen and (min-width: 446px) and (max-width: 775px){
+    .profile-body a{
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (min-width: 369px) and (max-width: 445px){
+    .profile-body a{
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (min-width: 349px) and (max-width: 368px){
+    .profile-body a{
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 348px){
+    .profile-body a{
+        font-size: 12px !important;
+    }
+}
